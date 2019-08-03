@@ -51,7 +51,7 @@ task api(type: Javadoc) {
 	}
 }
 
-dokka {
+/*dokka {
 	dependsOn {
 		tasks.getByName("api")
 	}
@@ -108,7 +108,7 @@ asciidoctor {
 			stylesheet: 'main.css',
 			'spring-version': project.version
 
-}
+}*/
 
 task docsZip(type: Zip, dependsOn: ['api', 'asciidoctor', 'dokka']) {
 	group = "Distribution"
