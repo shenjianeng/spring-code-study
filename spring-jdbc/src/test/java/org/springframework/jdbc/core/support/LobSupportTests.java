@@ -80,8 +80,7 @@ public class LobSupportTests {
 		thrown.expect(IncorrectResultSizeDataAccessException.class);
 		try {
 			lobRse.extractData(rset);
-		}
-		finally {
+		} finally {
 			verify(rset).next();
 		}
 	}
@@ -104,8 +103,7 @@ public class LobSupportTests {
 		thrown.expect(IncorrectResultSizeDataAccessException.class);
 		try {
 			lobRse.extractData(rset);
-		}
-		finally {
+		} finally {
 			verify(rset).clearWarnings();
 		}
 	}
@@ -127,8 +125,7 @@ public class LobSupportTests {
 			protected void streamData(ResultSet rs) throws SQLException, IOException {
 				if (ex) {
 					throw new IOException();
-				}
-				else {
+				} else {
 					rs.clearWarnings();
 				}
 			}

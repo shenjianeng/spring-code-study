@@ -156,8 +156,7 @@ public class ModelFactoryTests {
 		try {
 			modelFactory.initModel(this.webRequest, this.mavContainer, handlerMethod);
 			fail("Expected HttpSessionRequiredException");
-		}
-		catch (HttpSessionRequiredException ex) {
+		} catch (HttpSessionRequiredException ex) {
 			// expected
 		}
 
@@ -294,7 +293,7 @@ public class ModelFactoryTests {
 			return null;
 		}
 
-		@ModelAttribute(name="foo", binding=false)
+		@ModelAttribute(name = "foo", binding = false)
 		public Foo modelAttrWithBindingDisabled() {
 			return new Foo();
 		}

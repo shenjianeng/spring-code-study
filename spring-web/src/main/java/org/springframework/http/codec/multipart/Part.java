@@ -32,15 +32,16 @@ import org.springframework.http.HttpHeaders;
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see <a href="https://tools.ietf.org/html/rfc7578">RFC 7578 (multipart/form-data)</a>
  * @see <a href="https://tools.ietf.org/html/rfc2183">RFC 2183 (Content-Disposition)</a>
  * @see <a href="https://www.w3.org/TR/html5/forms.html#multipart-form-data">HTML5 (multipart forms)</a>
+ * @since 5.0
  */
 public interface Part {
 
 	/**
 	 * Return the name of the part in the multipart form.
+	 *
 	 * @return the name of the part, never {@code null} or empty
 	 */
 	String name();

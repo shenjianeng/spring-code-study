@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 @ManagedResource(objectName = "bean:name=testBean4", description = "My Managed Bean", log = true,
 		logFile = "jmx.log", currencyTimeLimit = 15, persistPolicy = "OnUpdate", persistPeriod = 200,
 		persistLocation = "./foo", persistName = "bar.jmx")
-@ManagedNotification(name = "My Notification", notificationTypes = { "type.foo", "type.bar" })
+@ManagedNotification(name = "My Notification", notificationTypes = {"type.foo", "type.bar"})
 public class AnnotationTestBean implements IJmxTestBean {
 
 	private String name;
@@ -92,8 +92,8 @@ public class AnnotationTestBean implements IJmxTestBean {
 
 	@Override
 	@ManagedOperation(description = "Add Two Numbers Together")
-	@ManagedOperationParameter(name="x", description="Left operand")
-	@ManagedOperationParameter(name="y", description="Right operand")
+	@ManagedOperationParameter(name = "x", description = "Left operand")
+	@ManagedOperationParameter(name = "y", description = "Right operand")
 	public int add(int x, int y) {
 		return x + y;
 	}
@@ -106,8 +106,8 @@ public class AnnotationTestBean implements IJmxTestBean {
 		throw new RuntimeException();
 	}
 
-	@ManagedMetric(description="The QueueSize metric", currencyTimeLimit = 20, persistPolicy="OnUpdate", persistPeriod=300,
-			category="utilization", metricType = MetricType.COUNTER, displayName="Queue Size", unit="messages")
+	@ManagedMetric(description = "The QueueSize metric", currencyTimeLimit = 20, persistPolicy = "OnUpdate", persistPeriod = 300,
+			category = "utilization", metricType = MetricType.COUNTER, displayName = "Queue Size", unit = "messages")
 	public long getQueueSize() {
 		return 100L;
 	}

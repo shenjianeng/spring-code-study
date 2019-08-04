@@ -32,7 +32,6 @@ import org.springframework.validation.DataBinder;
 import static org.junit.Assert.*;
 
 /**
- *
  * Test fixture for {@link RedirectAttributesModelMap} tests.
  *
  * @author Rossen Stoyanchev

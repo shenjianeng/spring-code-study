@@ -35,8 +35,8 @@ import static org.junit.Assert.*;
  * that uses a true {@link Configuration @Configuration class}.
  *
  * @author Sam Brannen
- * @since 3.2
  * @see TransactionalAnnotatedConfigClassesWithoutAtConfigurationTests
+ * @since 3.2
  */
 @ContextConfiguration
 public class TransactionalAnnotatedConfigClassWithAtConfigurationTests extends
@@ -68,10 +68,10 @@ public class TransactionalAnnotatedConfigClassWithAtConfigurationTests extends
 		@Bean
 		public DataSource dataSource() {
 			return new EmbeddedDatabaseBuilder()//
-			.addScript("classpath:/org/springframework/test/jdbc/schema.sql")//
-			// Ensure that this in-memory database is only used by this class:
-			.setName(getClass().getName())//
-			.build();
+					.addScript("classpath:/org/springframework/test/jdbc/schema.sql")//
+					// Ensure that this in-memory database is only used by this class:
+					.setName(getClass().getName())//
+					.build();
 		}
 
 	}

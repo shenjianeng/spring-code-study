@@ -42,19 +42,15 @@ abstract class AbstractXMLStreamReader implements XMLStreamReader {
 			if (eventType == XMLStreamConstants.CHARACTERS || eventType == XMLStreamConstants.CDATA ||
 					eventType == XMLStreamConstants.SPACE || eventType == XMLStreamConstants.ENTITY_REFERENCE) {
 				builder.append(getText());
-			}
-			else if (eventType == XMLStreamConstants.PROCESSING_INSTRUCTION ||
+			} else if (eventType == XMLStreamConstants.PROCESSING_INSTRUCTION ||
 					eventType == XMLStreamConstants.COMMENT) {
 				// skipping
-			}
-			else if (eventType == XMLStreamConstants.END_DOCUMENT) {
+			} else if (eventType == XMLStreamConstants.END_DOCUMENT) {
 				throw new XMLStreamException("Unexpected end of document when reading element text content",
 						getLocation());
-			}
-			else if (eventType == XMLStreamConstants.START_ELEMENT) {
+			} else if (eventType == XMLStreamConstants.START_ELEMENT) {
 				throw new XMLStreamException("Element text content may not contain START_ELEMENT", getLocation());
-			}
-			else {
+			} else {
 				throw new XMLStreamException("Unexpected event type " + eventType, getLocation());
 			}
 			eventType = next();
@@ -82,8 +78,7 @@ abstract class AbstractXMLStreamReader implements XMLStreamReader {
 		int eventType = getEventType();
 		if (eventType == XMLStreamConstants.START_ELEMENT || eventType == XMLStreamConstants.END_ELEMENT) {
 			return getName().getNamespaceURI();
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Parser must be on START_ELEMENT or END_ELEMENT state");
 		}
 	}
@@ -106,8 +101,7 @@ abstract class AbstractXMLStreamReader implements XMLStreamReader {
 		int eventType = getEventType();
 		if (eventType == XMLStreamConstants.START_ELEMENT || eventType == XMLStreamConstants.END_ELEMENT) {
 			return getName().getPrefix();
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Parser must be on START_ELEMENT or END_ELEMENT state");
 		}
 	}

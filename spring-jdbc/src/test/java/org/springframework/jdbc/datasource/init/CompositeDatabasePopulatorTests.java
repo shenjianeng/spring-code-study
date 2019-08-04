@@ -46,7 +46,7 @@ public class CompositeDatabasePopulatorTests {
 		CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
 		populator.addPopulators(mockedDatabasePopulator1, mockedDatabasePopulator2);
 		populator.populate(mockedConnection);
-		verify(mockedDatabasePopulator1,times(1)).populate(mockedConnection);
+		verify(mockedDatabasePopulator1, times(1)).populate(mockedConnection);
 		verify(mockedDatabasePopulator2, times(1)).populate(mockedConnection);
 	}
 

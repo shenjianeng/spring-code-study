@@ -56,14 +56,16 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @since 1.2
  * @see java.sql.ResultSet
  * @see javax.sql.rowset.CachedRowSet
  * @see org.springframework.jdbc.core.JdbcTemplate#queryForRowSet
+ * @since 1.2
  */
 public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
-	/** use serialVersionUID from Spring 1.2 for interoperability. */
+	/**
+	 * use serialVersionUID from Spring 1.2 for interoperability.
+	 */
 	private static final long serialVersionUID = -4688694393146734764L;
 
 
@@ -76,10 +78,11 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
 	/**
 	 * Create a new ResultSetWrappingSqlRowSet for the given ResultSet.
+	 *
 	 * @param resultSet a disconnected ResultSet to wrap
-	 * (usually a {@code javax.sql.rowset.CachedRowSet})
+	 *                  (usually a {@code javax.sql.rowset.CachedRowSet})
 	 * @throws InvalidResultSetAccessException if extracting
-	 * the ResultSetMetaData failed
+	 *                                         the ResultSetMetaData failed
 	 * @see javax.sql.rowset.CachedRowSet
 	 * @see java.sql.ResultSet#getMetaData
 	 * @see ResultSetWrappingSqlRowSetMetaData
@@ -88,8 +91,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 		this.resultSet = resultSet;
 		try {
 			this.rowSetMetaData = new ResultSetWrappingSqlRowSetMetaData(resultSet.getMetaData());
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 		try {
@@ -105,12 +107,10 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 						this.columnLabelMap.put(key, i);
 					}
 				}
-			}
-			else {
+			} else {
 				this.columnLabelMap = Collections.emptyMap();
 			}
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 
@@ -120,6 +120,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	/**
 	 * Return the underlying ResultSet
 	 * (usually a {@code javax.sql.rowset.CachedRowSet}).
+	 *
 	 * @see javax.sql.rowset.CachedRowSet
 	 */
 	public final ResultSet getResultSet() {
@@ -142,12 +143,10 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 		Integer columnIndex = this.columnLabelMap.get(columnLabel);
 		if (columnIndex != null) {
 			return columnIndex;
-		}
-		else {
+		} else {
 			try {
 				return this.resultSet.findColumn(columnLabel);
-			}
-			catch (SQLException se) {
+			} catch (SQLException se) {
 				throw new InvalidResultSetAccessException(se);
 			}
 		}
@@ -163,8 +162,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public BigDecimal getBigDecimal(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getBigDecimal(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -184,8 +182,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean getBoolean(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getBoolean(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -205,8 +202,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public byte getByte(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getByte(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -226,8 +222,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Date getDate(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getDate(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -247,8 +242,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Date getDate(int columnIndex, Calendar cal) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getDate(columnIndex, cal);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -268,8 +262,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public double getDouble(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getDouble(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -289,8 +282,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public float getFloat(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getFloat(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -310,8 +302,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public int getInt(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getInt(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -331,8 +322,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public long getLong(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getLong(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -352,8 +342,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public String getNString(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getNString(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -373,8 +362,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Object getObject(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getObject(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -394,8 +382,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Object getObject(int columnIndex, Map<String, Class<?>> map) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getObject(columnIndex, map);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -415,8 +402,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public <T> T getObject(int columnIndex, Class<T> type) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getObject(columnIndex, type);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -436,8 +422,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public short getShort(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getShort(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -457,8 +442,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public String getString(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getString(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -478,8 +462,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Time getTime(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getTime(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -499,8 +482,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Time getTime(int columnIndex, Calendar cal) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getTime(columnIndex, cal);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -520,8 +502,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Timestamp getTimestamp(int columnIndex) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getTimestamp(columnIndex);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -541,8 +522,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public Timestamp getTimestamp(int columnIndex, Calendar cal) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getTimestamp(columnIndex, cal);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -565,8 +545,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean absolute(int row) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.absolute(row);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -578,8 +557,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public void afterLast() throws InvalidResultSetAccessException {
 		try {
 			this.resultSet.afterLast();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -591,8 +569,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public void beforeFirst() throws InvalidResultSetAccessException {
 		try {
 			this.resultSet.beforeFirst();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -604,8 +581,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean first() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.first();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -617,8 +593,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public int getRow() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.getRow();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -630,8 +605,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean isAfterLast() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.isAfterLast();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -643,8 +617,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean isBeforeFirst() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.isBeforeFirst();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -656,8 +629,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean isFirst() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.isFirst();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -669,8 +641,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean isLast() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.isLast();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -682,8 +653,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean last() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.last();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -695,8 +665,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean next() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.next();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -708,8 +677,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean previous() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.previous();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -721,8 +689,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean relative(int rows) throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.relative(rows);
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}
@@ -734,8 +701,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 	public boolean wasNull() throws InvalidResultSetAccessException {
 		try {
 			return this.resultSet.wasNull();
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new InvalidResultSetAccessException(se);
 		}
 	}

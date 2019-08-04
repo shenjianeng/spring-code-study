@@ -50,8 +50,8 @@ import org.springframework.util.Assert;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 2.5
  * @see ContextCacheUtils#retrieveMaxCacheSize()
+ * @since 2.5
  */
 public class DefaultContextCache implements ContextCache {
 
@@ -82,9 +82,10 @@ public class DefaultContextCache implements ContextCache {
 	/**
 	 * Create a new {@code DefaultContextCache} using the maximum cache size
 	 * obtained via {@link ContextCacheUtils#retrieveMaxCacheSize()}.
-	 * @since 4.3
+	 *
 	 * @see #DefaultContextCache(int)
 	 * @see ContextCacheUtils#retrieveMaxCacheSize()
+	 * @since 4.3
 	 */
 	public DefaultContextCache() {
 		this(ContextCacheUtils.retrieveMaxCacheSize());
@@ -93,11 +94,12 @@ public class DefaultContextCache implements ContextCache {
 	/**
 	 * Create a new {@code DefaultContextCache} using the supplied maximum
 	 * cache size.
+	 *
 	 * @param maxSize the maximum cache size
 	 * @throws IllegalArgumentException if the supplied {@code maxSize} value
-	 * is not positive
-	 * @since 4.3
+	 *                                  is not positive
 	 * @see #DefaultContextCache()
+	 * @since 4.3
 	 */
 	public DefaultContextCache(int maxSize) {
 		Assert.isTrue(maxSize > 0, "'maxSize' must be positive");
@@ -124,8 +126,7 @@ public class DefaultContextCache implements ContextCache {
 		ApplicationContext context = this.contextMap.get(key);
 		if (context == null) {
 			this.missCount.incrementAndGet();
-		}
-		else {
+		} else {
 			this.hitCount.incrementAndGet();
 		}
 		return context;
@@ -296,6 +297,7 @@ public class DefaultContextCache implements ContextCache {
 	 * cache and its statistics.
 	 * <p>The string returned by this method contains all information
 	 * required for compliance with the contract for {@link #logStatistics()}.
+	 *
 	 * @return a string representation of this cache, including statistics
 	 */
 	@Override
@@ -314,6 +316,7 @@ public class DefaultContextCache implements ContextCache {
 	 * Simple cache implementation based on {@link LinkedHashMap} with a maximum
 	 * size and a <em>least recently used</em> (LRU) eviction policy that
 	 * properly closes application contexts.
+	 *
 	 * @since 4.3
 	 */
 	@SuppressWarnings("serial")
@@ -322,8 +325,9 @@ public class DefaultContextCache implements ContextCache {
 		/**
 		 * Create a new {@code LruCache} with the supplied initial capacity
 		 * and load factor.
+		 *
 		 * @param initialCapacity the initial capacity
-		 * @param loadFactor the load factor
+		 * @param loadFactor      the load factor
 		 */
 		LruCache(int initialCapacity, float loadFactor) {
 			super(initialCapacity, loadFactor, true);

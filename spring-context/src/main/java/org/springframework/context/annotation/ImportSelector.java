@@ -39,11 +39,11 @@ import org.springframework.core.type.AnnotationMetadata;
  * (see {@link DeferredImportSelector} for details).
  *
  * @author Chris Beams
- * @since 3.1
  * @see DeferredImportSelector
  * @see Import
  * @see ImportBeanDefinitionRegistrar
  * @see Configuration
+ * @since 3.1
  */
 public interface ImportSelector {
 

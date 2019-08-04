@@ -166,7 +166,7 @@ public class RedirectViewTests {
 		wac.getBean(RequestDataValueProcessorWrapper.class).setRequestDataValueProcessor(mockProcessor);
 
 		RedirectView rv = new RedirectView();
-		rv.setApplicationContext(wac);	// Init RedirectView with WebAppCxt
+		rv.setApplicationContext(wac);    // Init RedirectView with WebAppCxt
 		rv.setUrl("/path");
 
 		request.setAttribute(DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE, wac);
@@ -196,8 +196,7 @@ public class RedirectViewTests {
 			given(mockProcessor.processUrl(request, "/path")).willReturn("/path?key=123");
 			rv.render(new ModelMap(), request, response);
 			verify(mockProcessor).processUrl(request, "/path");
-		}
-		finally {
+		} finally {
 			contextLoader.closeWebApplicationContext(servletContext);
 		}
 	}
@@ -210,7 +209,7 @@ public class RedirectViewTests {
 		assertFalse(rv.isRemoteHost("/path"));
 		assertFalse(rv.isRemoteHost("http://url.somewhereelse.com"));
 
-		rv.setHosts(new String[] {"url.somewhere.com"});
+		rv.setHosts(new String[]{"url.somewhere.com"});
 
 		assertFalse(rv.isRemoteHost("https://url.somewhere.com"));
 		assertFalse(rv.isRemoteHost("/path"));
@@ -296,8 +295,7 @@ public class RedirectViewTests {
 		try {
 			String expectedUrlForEncoding = url + "?" + key + "=" + val + "&" + key2 + "=" + val2;
 			doTest(model, url, false, expectedUrlForEncoding);
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			// OK, so it's the other order... probably on Sun JDK 1.6 or IBM JDK 1.5
 			String expectedUrlForEncoding = url + "?" + key2 + "=" + val2 + "&" + key + "=" + val;
 			doTest(model, url, false, expectedUrlForEncoding);
@@ -308,14 +306,13 @@ public class RedirectViewTests {
 	public void arrayParam() throws Exception {
 		String url = "https://url.somewhere.com";
 		String key = "foo";
-		String[] val = new String[] {"bar", "baz"};
+		String[] val = new String[]{"bar", "baz"};
 		Map<String, String[]> model = new HashMap<>();
 		model.put(key, val);
 		try {
 			String expectedUrlForEncoding = url + "?" + key + "=" + val[0] + "&" + key + "=" + val[1];
 			doTest(model, url, false, expectedUrlForEncoding);
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			// OK, so it's the other order... probably on Sun JDK 1.6 or IBM JDK 1.5
 			String expectedUrlForEncoding = url + "?" + key + "=" + val[1] + "&" + key + "=" + val[0];
 			doTest(model, url, false, expectedUrlForEncoding);
@@ -334,8 +331,7 @@ public class RedirectViewTests {
 		try {
 			String expectedUrlForEncoding = url + "?" + key + "=" + val.get(0) + "&" + key + "=" + val.get(1);
 			doTest(model, url, false, expectedUrlForEncoding);
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			// OK, so it's the other order... probably on Sun JDK 1.6 or IBM JDK 1.5
 			String expectedUrlForEncoding = url + "?" + key + "=" + val.get(1) + "&" + key + "=" + val.get(0);
 			doTest(model, url, false, expectedUrlForEncoding);

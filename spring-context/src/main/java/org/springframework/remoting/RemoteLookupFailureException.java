@@ -28,6 +28,7 @@ public class RemoteLookupFailureException extends RemoteAccessException {
 
 	/**
 	 * Constructor for RemoteLookupFailureException.
+	 *
 	 * @param msg the detail message
 	 */
 	public RemoteLookupFailureException(String msg) {
@@ -36,7 +37,8 @@ public class RemoteLookupFailureException extends RemoteAccessException {
 
 	/**
 	 * Constructor for RemoteLookupFailureException.
-	 * @param msg message
+	 *
+	 * @param msg   message
 	 * @param cause the root cause from the remoting API in use
 	 */
 	public RemoteLookupFailureException(String msg, Throwable cause) {

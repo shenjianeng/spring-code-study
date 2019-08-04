@@ -27,8 +27,8 @@ import org.springframework.scheduling.TriggerContext;
  * Wraps a {@link CronSequenceGenerator}.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see CronSequenceGenerator
+ * @since 3.0
  */
 public class CronTrigger implements Trigger {
 
@@ -37,8 +37,9 @@ public class CronTrigger implements Trigger {
 
 	/**
 	 * Build a {@link CronTrigger} from the pattern provided in the default time zone.
+	 *
 	 * @param expression a space-separated list of time fields, following cron
-	 * expression conventions
+	 *                   expression conventions
 	 */
 	public CronTrigger(String expression) {
 		this.sequenceGenerator = new CronSequenceGenerator(expression);
@@ -46,9 +47,10 @@ public class CronTrigger implements Trigger {
 
 	/**
 	 * Build a {@link CronTrigger} from the pattern provided in the given time zone.
+	 *
 	 * @param expression a space-separated list of time fields, following cron
-	 * expression conventions
-	 * @param timeZone a time zone in which the trigger times will be generated
+	 *                   expression conventions
+	 * @param timeZone   a time zone in which the trigger times will be generated
 	 */
 	public CronTrigger(String expression, TimeZone timeZone) {
 		this.sequenceGenerator = new CronSequenceGenerator(expression, timeZone);
@@ -80,8 +82,7 @@ public class CronTrigger implements Trigger {
 				// in order to prevent accidental re-fires in the same second.
 				date = scheduled;
 			}
-		}
-		else {
+		} else {
 			date = new Date();
 		}
 		return this.sequenceGenerator.next(date);

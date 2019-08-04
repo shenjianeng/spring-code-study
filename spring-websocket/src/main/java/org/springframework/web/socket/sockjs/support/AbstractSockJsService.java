@@ -58,7 +58,7 @@ import org.springframework.web.util.WebUtils;
  * An abstract base class for {@link SockJsService} implementations that provides SockJS
  * path resolution and handling of static SockJS requests (e.g. "/info", "/iframe.html",
  * etc). Sub-classes must handle session URLs (i.e. transport-specific requests).
- *
+ * <p>
  * By default, only same origin requests are allowed. Use {@link #setAllowedOrigins}
  * to specify a list of allowed origins (a list containing "*" will allow all origins).
  *
@@ -283,6 +283,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	 * This option can be used to disable automatic addition of CORS headers for
 	 * SockJS requests.
 	 * <p>The default value is "false".
+	 *
 	 * @since 4.1.2
 	 */
 	public void setSuppressCors(boolean suppressCors) {
@@ -291,8 +292,9 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 	/**
 	 * Return if automatic addition of CORS headers has been disabled.
-	 * @since 4.1.2
+	 *
 	 * @see #setSuppressCors
+	 * @since 4.1.2
 	 */
 	public boolean shouldSuppressCors() {
 		return this.suppressCors;
@@ -309,9 +311,10 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	 * <p>Each provided allowed origin must have a scheme, and optionally a port
 	 * (e.g. "https://example.org", "https://example.org:9090"). An allowed origin
 	 * string may also be "*" in which case all origins are allowed.
-	 * @since 4.1.2
+	 *
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
 	 * @see <a href="https://github.com/sockjs/sockjs-client#supported-transports-by-browser-html-served-from-http-or-https">SockJS supported transports by browser</a>
+	 * @since 4.1.2
 	 */
 	public void setAllowedOrigins(Collection<String> allowedOrigins) {
 		Assert.notNull(allowedOrigins, "Allowed origins Collection must not be null");
@@ -321,8 +324,9 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 	/**
 	 * Return configure allowed {@code Origin} header values.
-	 * @since 4.1.2
+	 *
 	 * @see #setAllowedOrigins
+	 * @since 4.1.2
 	 */
 	public Collection<String> getAllowedOrigins() {
 		return Collections.unmodifiableSet(this.allowedOrigins);
@@ -335,7 +339,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	 */
 	@Override
 	public final void handleRequest(ServerHttpRequest request, ServerHttpResponse response,
-			@Nullable String sockJsPath, WebSocketHandler wsHandler) throws SockJsException {
+									@Nullable String sockJsPath, WebSocketHandler wsHandler) throws SockJsException {
 
 		if (sockJsPath == null) {
 			if (logger.isWarnEnabled()) {
@@ -347,8 +351,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 		try {
 			request.getHeaders();
-		}
-		catch (InvalidMediaTypeException ex) {
+		} catch (InvalidMediaTypeException ex) {
 			// As per SockJS protocol content-type can be ignored (it's always json)
 		}
 
@@ -361,16 +364,12 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 				}
 				response.getHeaders().setContentType(new MediaType("text", "plain", StandardCharsets.UTF_8));
 				response.getBody().write("Welcome to SockJS!\n".getBytes(StandardCharsets.UTF_8));
-			}
-
-			else if (sockJsPath.equals("/info")) {
+			} else if (sockJsPath.equals("/info")) {
 				if (requestInfo != null) {
 					logger.debug("Processing transport request: " + requestInfo);
 				}
 				this.infoHandler.handle(request, response);
-			}
-
-			else if (sockJsPath.matches("/iframe[0-9-.a-z_]*.html")) {
+			} else if (sockJsPath.matches("/iframe[0-9-.a-z_]*.html")) {
 				if (!this.allowedOrigins.isEmpty() && !this.allowedOrigins.contains("*")) {
 					if (requestInfo != null) {
 						logger.debug("Iframe support is disabled when an origin check is required. " +
@@ -386,21 +385,16 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 					logger.debug("Processing transport request: " + requestInfo);
 				}
 				this.iframeHandler.handle(request, response);
-			}
-
-			else if (sockJsPath.equals("/websocket")) {
+			} else if (sockJsPath.equals("/websocket")) {
 				if (isWebSocketEnabled()) {
 					if (requestInfo != null) {
 						logger.debug("Processing transport request: " + requestInfo);
 					}
 					handleRawWebSocketRequest(request, response, wsHandler);
-				}
-				else if (requestInfo != null) {
+				} else if (requestInfo != null) {
 					logger.debug("WebSocket disabled. Ignoring transport request: " + requestInfo);
 				}
-			}
-
-			else {
+			} else {
 				String[] pathSegments = StringUtils.tokenizeToStringArray(sockJsPath.substring(1), "/");
 				if (pathSegments.length != 3) {
 					if (logger.isWarnEnabled()) {
@@ -423,8 +417,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 					}
 					response.setStatusCode(HttpStatus.NOT_FOUND);
 					return;
-				}
-				else if (!validateRequest(serverId, sessionId, transport) || !validatePath(request)) {
+				} else if (!validateRequest(serverId, sessionId, transport) || !validatePath(request)) {
 					if (requestInfo != null) {
 						logger.debug("Ignoring transport request: " + requestInfo);
 					}
@@ -438,8 +431,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 				handleTransportRequest(request, response, wsHandler, sessionId, transport);
 			}
 			response.close();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new SockJsException("Failed to write to the response", null, ex);
 		}
 	}
@@ -528,13 +520,13 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	 * Handle request for raw WebSocket communication, i.e. without any SockJS message framing.
 	 */
 	protected abstract void handleRawWebSocketRequest(ServerHttpRequest request,
-			ServerHttpResponse response, WebSocketHandler webSocketHandler) throws IOException;
+													  ServerHttpResponse response, WebSocketHandler webSocketHandler) throws IOException;
 
 	/**
 	 * Handle a SockJS session URL (i.e. transport-specific request).
 	 */
 	protected abstract void handleTransportRequest(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler webSocketHandler, String sessionId, String transport) throws SockJsException;
+												   WebSocketHandler webSocketHandler, String sessionId, String transport) throws SockJsException;
 
 
 	private interface SockJsRequestHandler {
@@ -559,39 +551,39 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 					response.getBody().write(content.getBytes());
 				}
 
-			}
-			else if (request.getMethod() == HttpMethod.OPTIONS) {
+			} else if (request.getMethod() == HttpMethod.OPTIONS) {
 				if (checkOrigin(request, response)) {
 					addCacheHeaders(response);
 					response.setStatusCode(HttpStatus.NO_CONTENT);
 				}
-			}
-			else {
+			} else {
 				sendMethodNotAllowed(response, HttpMethod.GET, HttpMethod.OPTIONS);
 			}
 		}
-	};
+	}
+
+	;
 
 
 	private class IframeHandler implements SockJsRequestHandler {
 
 		private static final String IFRAME_CONTENT =
 				"<!DOCTYPE html>\n" +
-				"<html>\n" +
-				"<head>\n" +
-				"  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
-				"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n" +
-				"  <script>\n" +
-				"    document.domain = document.domain;\n" +
-				"    _sockjs_onload = function(){SockJS.bootstrap_iframe();};\n" +
-				"  </script>\n" +
-				"  <script src=\"%s\"></script>\n" +
-				"</head>\n" +
-				"<body>\n" +
-				"  <h2>Don't panic!</h2>\n" +
-				"  <p>This is a SockJS hidden iframe. It's used for cross domain magic.</p>\n" +
-				"</body>\n" +
-				"</html>";
+						"<html>\n" +
+						"<head>\n" +
+						"  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+						"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n" +
+						"  <script>\n" +
+						"    document.domain = document.domain;\n" +
+						"    _sockjs_onload = function(){SockJS.bootstrap_iframe();};\n" +
+						"  </script>\n" +
+						"  <script src=\"%s\"></script>\n" +
+						"</head>\n" +
+						"<body>\n" +
+						"  <h2>Don't panic!</h2>\n" +
+						"  <p>This is a SockJS hidden iframe. It's used for cross domain magic.</p>\n" +
+						"</body>\n" +
+						"</html>";
 
 		@Override
 		public void handle(ServerHttpRequest request, ServerHttpResponse response) throws IOException {
@@ -621,6 +613,8 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 			response.getHeaders().setETag(etagValue);
 			response.getBody().write(contentBytes);
 		}
-	};
+	}
+
+	;
 
 }

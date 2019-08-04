@@ -47,9 +47,9 @@ import java.lang.annotation.Target;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 3.0
  * @see java.time.format.DateTimeFormatter
  * @see org.joda.time.format.DateTimeFormat
+ * @since 3.0
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

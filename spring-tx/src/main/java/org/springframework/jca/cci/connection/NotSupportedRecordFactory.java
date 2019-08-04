@@ -33,11 +33,11 @@ import javax.resource.cci.RecordFactory;
  * RecordFactory's methods.
  *
  * @author Juergen Hoeller
- * @since 1.2.4
  * @see org.springframework.jca.cci.core.RecordCreator#createRecord(javax.resource.cci.RecordFactory)
  * @see org.springframework.jca.cci.core.CciTemplate#getRecordFactory(javax.resource.cci.ConnectionFactory)
  * @see javax.resource.cci.ConnectionFactory#getRecordFactory()
  * @see javax.resource.NotSupportedException
+ * @since 1.2.4
  */
 public class NotSupportedRecordFactory implements RecordFactory {
 

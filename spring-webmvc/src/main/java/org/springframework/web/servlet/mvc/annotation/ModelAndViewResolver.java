@@ -54,6 +54,6 @@ public interface ModelAndViewResolver {
 
 
 	ModelAndView resolveModelAndView(Method handlerMethod, Class<?> handlerType,
-			@Nullable Object returnValue, ExtendedModelMap implicitModel, NativeWebRequest webRequest);
+									 @Nullable Object returnValue, ExtendedModelMap implicitModel, NativeWebRequest webRequest);
 
 }

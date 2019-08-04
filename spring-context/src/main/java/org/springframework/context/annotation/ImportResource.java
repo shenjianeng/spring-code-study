@@ -45,9 +45,9 @@ import org.springframework.core.annotation.AliasFor;
  * @author Chris Beams
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @since 3.0
  * @see Configuration
  * @see Import
+ * @since 3.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -56,6 +56,7 @@ public @interface ImportResource {
 
 	/**
 	 * Alias for {@link #locations}.
+	 *
 	 * @see #locations
 	 * @see #reader
 	 */
@@ -68,9 +69,10 @@ public @interface ImportResource {
 	 * {@code file:}, etc.
 	 * <p>Consult the Javadoc for {@link #reader} for details on how resources
 	 * will be processed.
-	 * @since 4.2
+	 *
 	 * @see #value
 	 * @see #reader
+	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String[] locations() default {};
@@ -83,6 +85,7 @@ public @interface ImportResource {
 	 * {@link org.springframework.beans.factory.groovy.GroovyBeanDefinitionReader GroovyBeanDefinitionReader};
 	 * whereas, all other resources will be processed with an
 	 * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader XmlBeanDefinitionReader}.
+	 *
 	 * @see #value
 	 */
 	Class<? extends BeanDefinitionReader> reader() default BeanDefinitionReader.class;

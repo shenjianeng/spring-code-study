@@ -62,8 +62,7 @@ public class WebApplicationContextScopeTests {
 			assertSame(bean, ac.getBean(NAME));
 			requestAttributes.requestCompleted();
 			assertTrue(bean.wasDestroyed());
-		}
-		finally {
+		} finally {
 			RequestContextHolder.setRequestAttributes(null);
 		}
 	}
@@ -81,8 +80,7 @@ public class WebApplicationContextScopeTests {
 			assertSame(bean, ac.getBean(NAME));
 			request.getSession().invalidate();
 			assertTrue(bean.wasDestroyed());
-		}
-		finally {
+		} finally {
 			RequestContextHolder.setRequestAttributes(null);
 		}
 	}

@@ -42,12 +42,12 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 2.5
  * @see #setMessageListener
  * @see #setTransactionManager
  * @see JmsMessageEndpointManager
+ * @since 2.5
  */
-public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
+public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory {
 
 	@Nullable
 	private MessageListener messageListener;
@@ -89,25 +89,21 @@ public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
 			if (applyDeliveryCalls) {
 				try {
 					beforeDelivery(null);
-				}
-				catch (ResourceException ex) {
+				} catch (ResourceException ex) {
 					throw new JmsResourceException(ex);
 				}
 			}
 			try {
 				getMessageListener().onMessage(message);
-			}
-			catch (RuntimeException | Error ex) {
+			} catch (RuntimeException | Error ex) {
 				endpointEx = ex;
 				onEndpointException(ex);
 				throw ex;
-			}
-			finally {
+			} finally {
 				if (applyDeliveryCalls) {
 					try {
 						afterDelivery();
-					}
-					catch (ResourceException ex) {
+					} catch (ResourceException ex) {
 						if (endpointEx == null) {
 							throw new JmsResourceException(ex);
 						}

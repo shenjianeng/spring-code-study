@@ -40,9 +40,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Craig Andrews
  * @author Juergen Hoeller
- * @since 4.2
  * @see #resize
  * @see ResizableByteArrayOutputStream
+ * @since 4.2
  */
 public class FastByteArrayOutputStream extends OutputStream {
 
@@ -80,6 +80,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	/**
 	 * Create a new <code>FastByteArrayOutputStream</code>
 	 * with the specified initial capacity.
+	 *
 	 * @param initialBlockSize the initial buffer size in bytes
 	 */
 	public FastByteArrayOutputStream(int initialBlockSize) {
@@ -95,8 +96,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	public void write(int datum) throws IOException {
 		if (this.closed) {
 			throw new IOException("Stream closed");
-		}
-		else {
+		} else {
 			if (this.buffers.peekLast() == null || this.buffers.getLast().length == this.index) {
 				addBuffer(1);
 			}
@@ -109,11 +109,9 @@ public class FastByteArrayOutputStream extends OutputStream {
 	public void write(byte[] data, int offset, int length) throws IOException {
 		if (offset < 0 || offset + length > data.length || length < 0) {
 			throw new IndexOutOfBoundsException();
-		}
-		else if (this.closed) {
+		} else if (this.closed) {
 			throw new IOException("Stream closed");
-		}
-		else {
+		} else {
 			if (this.buffers.peekLast() == null || this.buffers.getLast().length == this.index) {
 				addBuffer(length);
 			}
@@ -133,8 +131,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 					length -= copyLength;
 				}
 				while (length > 0);
-			}
-			else {
+			} else {
 				// copy in the sub-array
 				System.arraycopy(data, offset, this.buffers.getLast(), this.index, length);
 				this.index += length;
@@ -157,6 +154,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	 * default character set. The {@linkplain java.nio.charset.CharsetDecoder}
 	 * class should be used when more control over the decoding process is
 	 * required.
+	 *
 	 * @return a String decoded from the buffer's contents
 	 */
 	@Override
@@ -182,6 +180,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	 * the second call is a no-op.
 	 * <p>This method is "unsafe" as it returns the internal buffer.
 	 * Callers should not modify the returned buffer.
+	 *
 	 * @return the current contents of this output stream, as a byte array.
 	 * @see #size()
 	 * @see #toByteArray()
@@ -200,6 +199,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	 * <p>Its size is the current
 	 * size of this output stream and the valid contents of the buffer
 	 * have been copied into it.</p>
+	 *
 	 * @return the current contents of this output stream, as a byte array.
 	 * @see #size()
 	 * @see #toByteArrayUnsafe()
@@ -230,6 +230,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 	 * (including, but not limited to, any of the write methods, {@link #reset()},
 	 * {@link #toByteArray()}, and {@link #toByteArrayUnsafe()}) then the
 	 * {@link java.io.InputStream}'s behavior is undefined.
+	 *
 	 * @return {@link InputStream} of the contents of this OutputStream
 	 */
 	public InputStream getInputStream() {
@@ -238,6 +239,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
 	/**
 	 * Write the buffers content to the given OutputStream.
+	 *
 	 * @param out the OutputStream to write to
 	 */
 	public void writeTo(OutputStream out) throws IOException {
@@ -246,8 +248,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 			byte[] bytes = it.next();
 			if (it.hasNext()) {
 				out.write(bytes, 0, bytes.length);
-			}
-			else {
+			} else {
 				out.write(bytes, 0, this.index);
 			}
 		}
@@ -255,20 +256,19 @@ public class FastByteArrayOutputStream extends OutputStream {
 
 	/**
 	 * Resize the internal buffer size to a specified capacity.
+	 *
 	 * @param targetCapacity the desired size of the buffer
 	 * @throws IllegalArgumentException if the given capacity is smaller than
-	 * the actual size of the content stored in the buffer already
+	 *                                  the actual size of the content stored in the buffer already
 	 * @see FastByteArrayOutputStream#size()
 	 */
 	public void resize(int targetCapacity) {
 		Assert.isTrue(targetCapacity >= size(), "New capacity must not be smaller than current size");
 		if (this.buffers.peekFirst() == null) {
 			this.nextBlockSize = targetCapacity - size();
-		}
-		else if (size() == targetCapacity && this.buffers.getFirst().length == targetCapacity) {
+		} else if (size() == targetCapacity && this.buffers.getFirst().length == targetCapacity) {
 			// do nothing - already at the targetCapacity
-		}
-		else {
+		} else {
 			int totalSize = size();
 			byte[] data = new byte[targetCapacity];
 			int pos = 0;
@@ -278,8 +278,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 				if (it.hasNext()) {
 					System.arraycopy(bytes, 0, data, pos, bytes.length);
 					pos += bytes.length;
-				}
-				else {
+				} else {
 					System.arraycopy(bytes, 0, data, pos, this.index);
 				}
 			}
@@ -351,8 +350,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 				this.currentBuffer = this.buffersIterator.next();
 				if (this.currentBuffer == fastByteArrayOutputStream.buffers.getLast()) {
 					this.currentBufferLength = fastByteArrayOutputStream.index;
-				}
-				else {
+				} else {
 					this.currentBufferLength = (this.currentBuffer != null ? this.currentBuffer.length : 0);
 				}
 			}
@@ -363,19 +361,16 @@ public class FastByteArrayOutputStream extends OutputStream {
 			if (this.currentBuffer == null) {
 				// This stream doesn't have any data in it...
 				return -1;
-			}
-			else {
+			} else {
 				if (this.nextIndexInCurrentBuffer < this.currentBufferLength) {
 					this.totalBytesRead++;
 					return this.currentBuffer[this.nextIndexInCurrentBuffer++] & 0xFF;
-				}
-				else {
+				} else {
 					if (this.buffersIterator.hasNext()) {
 						this.currentBuffer = this.buffersIterator.next();
 						updateCurrentBufferLength();
 						this.nextIndexInCurrentBuffer = 0;
-					}
-					else {
+					} else {
 						this.currentBuffer = null;
 					}
 					return read();
@@ -392,16 +387,13 @@ public class FastByteArrayOutputStream extends OutputStream {
 		public int read(byte[] b, int off, int len) {
 			if (off < 0 || len < 0 || len > b.length - off) {
 				throw new IndexOutOfBoundsException();
-			}
-			else if (len == 0) {
+			} else if (len == 0) {
 				return 0;
-			}
-			else {
+			} else {
 				if (this.currentBuffer == null) {
 					// This stream doesn't have any data in it...
 					return -1;
-				}
-				else {
+				} else {
 					if (this.nextIndexInCurrentBuffer < this.currentBufferLength) {
 						int bytesToCopy = Math.min(len, this.currentBufferLength - this.nextIndexInCurrentBuffer);
 						System.arraycopy(this.currentBuffer, this.nextIndexInCurrentBuffer, b, off, bytesToCopy);
@@ -409,14 +401,12 @@ public class FastByteArrayOutputStream extends OutputStream {
 						this.nextIndexInCurrentBuffer += bytesToCopy;
 						int remaining = read(b, off + bytesToCopy, len - bytesToCopy);
 						return bytesToCopy + Math.max(remaining, 0);
-					}
-					else {
+					} else {
 						if (this.buffersIterator.hasNext()) {
 							this.currentBuffer = this.buffersIterator.next();
 							updateCurrentBufferLength();
 							this.nextIndexInCurrentBuffer = 0;
-						}
-						else {
+						} else {
 							this.currentBuffer = null;
 						}
 						return read(b, off, len);
@@ -429,32 +419,27 @@ public class FastByteArrayOutputStream extends OutputStream {
 		public long skip(long n) throws IOException {
 			if (n > Integer.MAX_VALUE) {
 				throw new IllegalArgumentException("n exceeds maximum (" + Integer.MAX_VALUE + "): " + n);
-			}
-			else if (n == 0) {
+			} else if (n == 0) {
 				return 0;
-			}
-			else if (n < 0) {
+			} else if (n < 0) {
 				throw new IllegalArgumentException("n must be 0 or greater: " + n);
 			}
 			int len = (int) n;
 			if (this.currentBuffer == null) {
 				// This stream doesn't have any data in it...
 				return 0;
-			}
-			else {
+			} else {
 				if (this.nextIndexInCurrentBuffer < this.currentBufferLength) {
 					int bytesToSkip = Math.min(len, this.currentBufferLength - this.nextIndexInCurrentBuffer);
 					this.totalBytesRead += bytesToSkip;
 					this.nextIndexInCurrentBuffer += bytesToSkip;
 					return (bytesToSkip + skip(len - bytesToSkip));
-				}
-				else {
+				} else {
 					if (this.buffersIterator.hasNext()) {
 						this.currentBuffer = this.buffersIterator.next();
 						updateCurrentBufferLength();
 						this.nextIndexInCurrentBuffer = 0;
-					}
-					else {
+					} else {
 						this.currentBuffer = null;
 					}
 					return skip(len);
@@ -469,6 +454,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
 		/**
 		 * Update the message digest with the remaining bytes in this stream.
+		 *
 		 * @param messageDigest the message digest to update
 		 */
 		@Override
@@ -479,35 +465,31 @@ public class FastByteArrayOutputStream extends OutputStream {
 		/**
 		 * Update the message digest with the next len bytes in this stream.
 		 * Avoids creating new byte arrays and use internal buffers for performance.
+		 *
 		 * @param messageDigest the message digest to update
-		 * @param len how many bytes to read from this stream and use to update the message digest
+		 * @param len           how many bytes to read from this stream and use to update the message digest
 		 */
 		@Override
 		public void updateMessageDigest(MessageDigest messageDigest, int len) {
 			if (this.currentBuffer == null) {
 				// This stream doesn't have any data in it...
 				return;
-			}
-			else if (len == 0) {
+			} else if (len == 0) {
 				return;
-			}
-			else if (len < 0) {
+			} else if (len < 0) {
 				throw new IllegalArgumentException("len must be 0 or greater: " + len);
-			}
-			else {
+			} else {
 				if (this.nextIndexInCurrentBuffer < this.currentBufferLength) {
 					int bytesToCopy = Math.min(len, this.currentBufferLength - this.nextIndexInCurrentBuffer);
 					messageDigest.update(this.currentBuffer, this.nextIndexInCurrentBuffer, bytesToCopy);
 					this.nextIndexInCurrentBuffer += bytesToCopy;
 					updateMessageDigest(messageDigest, len - bytesToCopy);
-				}
-				else {
+				} else {
 					if (this.buffersIterator.hasNext()) {
 						this.currentBuffer = this.buffersIterator.next();
 						updateCurrentBufferLength();
 						this.nextIndexInCurrentBuffer = 0;
-					}
-					else {
+					} else {
 						this.currentBuffer = null;
 					}
 					updateMessageDigest(messageDigest, len);
@@ -518,8 +500,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 		private void updateCurrentBufferLength() {
 			if (this.currentBuffer == this.fastByteArrayOutputStream.buffers.getLast()) {
 				this.currentBufferLength = this.fastByteArrayOutputStream.index;
-			}
-			else {
+			} else {
 				this.currentBufferLength = (this.currentBuffer != null ? this.currentBuffer.length : 0);
 			}
 		}

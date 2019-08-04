@@ -34,8 +34,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * <p>This adapter gets automatically registered by {@link TilesConfigurer}.
  *
  * @author Nicolas Le Bas
- * @since 3.2
  * @see org.apache.tiles.definition.UrlDefinitionsFactory#LOCALE_RESOLVER_IMPL_PROPERTY
+ * @since 3.2
  */
 public class SpringLocaleResolver extends DefaultLocaleResolver {
 
@@ -46,8 +46,7 @@ public class SpringLocaleResolver extends DefaultLocaleResolver {
 			if (servletRequest != null) {
 				return RequestContextUtils.getLocale(servletRequest);
 			}
-		}
-		catch (NotAServletEnvironmentException ex) {
+		} catch (NotAServletEnvironmentException ex) {
 			// ignore
 		}
 		return super.resolveLocale(request);

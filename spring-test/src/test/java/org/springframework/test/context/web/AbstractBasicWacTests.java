@@ -91,7 +91,7 @@ public abstract class AbstractBasicWacTests implements ServletContextAware {
 		assertSame("ServletContext in the WAC and in the mock request", mockServletContext, request.getServletContext());
 
 		assertEquals("Getting real path for ServletContext resource.",
-			new File("src/main/webapp/index.jsp").getCanonicalPath(), mockServletContext.getRealPath("index.jsp"));
+				new File("src/main/webapp/index.jsp").getCanonicalPath(), mockServletContext.getRealPath("index.jsp"));
 
 	}
 

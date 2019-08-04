@@ -179,8 +179,8 @@ final class DefaultClientRequestBuilder implements ClientRequest.Builder {
 		private final String logPrefix;
 
 		public BodyInserterRequest(HttpMethod method, URI url, HttpHeaders headers,
-				MultiValueMap<String, String> cookies, BodyInserter<?, ? super ClientHttpRequest> body,
-				Map<String, Object> attributes) {
+								   MultiValueMap<String, String> cookies, BodyInserter<?, ? super ClientHttpRequest> body,
+								   Map<String, Object> attributes) {
 
 			this.method = method;
 			this.url = url;
@@ -251,10 +251,12 @@ final class DefaultClientRequestBuilder implements ClientRequest.Builder {
 				public List<HttpMessageWriter<?>> messageWriters() {
 					return strategies.messageWriters();
 				}
+
 				@Override
 				public Optional<ServerHttpRequest> serverRequest() {
 					return Optional.empty();
 				}
+
 				@Override
 				public Map<String, Object> hints() {
 					return Hints.from(Hints.LOG_PREFIX_HINT, logPrefix());

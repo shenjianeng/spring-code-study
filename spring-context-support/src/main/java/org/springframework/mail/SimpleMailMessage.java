@@ -34,12 +34,12 @@ import org.springframework.util.StringUtils;
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
- * @since 10.09.2003
  * @see MailSender
  * @see org.springframework.mail.javamail.JavaMailSender
  * @see org.springframework.mail.javamail.MimeMessagePreparator
  * @see org.springframework.mail.javamail.MimeMessageHelper
  * @see org.springframework.mail.javamail.MimeMailMessage
+ * @since 10.09.2003
  */
 @SuppressWarnings("serial")
 public class SimpleMailMessage implements MailMessage, Serializable {
@@ -114,7 +114,7 @@ public class SimpleMailMessage implements MailMessage, Serializable {
 
 	@Override
 	public void setTo(String to) {
-		this.to = new String[] {to};
+		this.to = new String[]{to};
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class SimpleMailMessage implements MailMessage, Serializable {
 
 	@Override
 	public void setCc(String cc) {
-		this.cc = new String[] {cc};
+		this.cc = new String[]{cc};
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class SimpleMailMessage implements MailMessage, Serializable {
 
 	@Override
 	public void setBcc(String bcc) {
-		this.bcc = new String[] {bcc};
+		this.bcc = new String[]{bcc};
 	}
 
 	@Override
@@ -190,6 +190,7 @@ public class SimpleMailMessage implements MailMessage, Serializable {
 
 	/**
 	 * Copy the contents of this message to the given target message.
+	 *
 	 * @param target the {@code MailMessage} to copy to
 	 */
 	public void copyTo(MailMessage target) {

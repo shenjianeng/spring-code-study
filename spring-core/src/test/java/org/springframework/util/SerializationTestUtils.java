@@ -43,8 +43,7 @@ public class SerializationTestUtils {
 		try {
 			testSerialization(o);
 			return true;
-		}
-		catch (NotSerializableException ex) {
+		} catch (NotSerializableException ex) {
 			return false;
 		}
 	}

@@ -87,8 +87,7 @@ public class PropertyPlaceholderHelperTests {
 					public String resolvePlaceholder(String placeholderName) {
 						if ("foo".equals(placeholderName)) {
 							return "bar";
-						}
-						else {
+						} else {
 							return null;
 						}
 					}

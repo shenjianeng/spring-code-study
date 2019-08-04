@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
  * Exception thrown when an HTTP 4xx is received.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see DefaultResponseErrorHandler
+ * @since 3.0
  */
 public class HttpClientErrorException extends HttpStatusCodeException {
 
@@ -61,7 +61,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	 * Constructor with a status code and status text, headers, and content.
 	 */
 	public HttpClientErrorException(HttpStatus statusCode, String statusText,
-			@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset responseCharset) {
+									@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset responseCharset) {
 
 		super(statusCode, statusText, headers, body, responseCharset);
 	}
@@ -69,6 +69,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * Create {@code HttpClientErrorException} or an HTTP status specific sub-class.
+	 *
 	 * @since 5.1
 	 */
 	public static HttpClientErrorException create(
@@ -107,6 +108,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 400 Bad Request.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -119,6 +121,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 401 Unauthorized.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -131,6 +134,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 403 Forbidden.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -143,6 +147,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 404 Not Found.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -155,6 +160,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 405 Method Not Allowed.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -167,6 +173,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 406 Not Acceptable.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -179,6 +186,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 409 Conflict.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -191,6 +199,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 410 Gone.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -203,6 +212,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 415 Unsupported Media Type.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -215,6 +225,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 422 Unprocessable Entity.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -227,6 +238,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpClientErrorException} for status HTTP 429 Too Many Requests.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")

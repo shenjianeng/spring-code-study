@@ -35,8 +35,8 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * {@link Rollback @Rollback} annotation.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see Rollback
+ * @since 4.2
  */
 public class RollbackOverrideDefaultRollbackFalseRollbackAnnotationTransactionalTests extends
 		DefaultRollbackFalseRollbackAnnotationTransactionalTests {
@@ -58,7 +58,7 @@ public class RollbackOverrideDefaultRollbackFalseRollbackAnnotationTransactional
 		originalNumRows = clearPersonTable(jdbcTemplate);
 		assertEquals("Adding bob", 1, addPerson(jdbcTemplate, BOB));
 		assertEquals("Verifying the initial number of rows in the person table.", 1,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Test
@@ -70,13 +70,13 @@ public class RollbackOverrideDefaultRollbackFalseRollbackAnnotationTransactional
 		assertEquals("Adding jane", 1, addPerson(jdbcTemplate, JANE));
 		assertEquals("Adding sue", 1, addPerson(jdbcTemplate, SUE));
 		assertEquals("Verifying the number of rows in the person table within a transaction.", 2,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@AfterClass
 	public static void verifyFinalTestData() {
 		assertEquals("Verifying the final number of rows in the person table after all tests.", originalNumRows,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 }

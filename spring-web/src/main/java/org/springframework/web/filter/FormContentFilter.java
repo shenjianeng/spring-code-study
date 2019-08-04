@@ -87,8 +87,7 @@ public class FormContentFilter extends OncePerRequestFilter {
 		MultiValueMap<String, String> params = parseIfNecessary(request);
 		if (!CollectionUtils.isEmpty(params)) {
 			filterChain.doFilter(new FormContentRequestWrapper(request, params), response);
-		}
-		else {
+		} else {
 			filterChain.doFilter(request, response);
 		}
 	}
@@ -115,8 +114,7 @@ public class FormContentFilter extends OncePerRequestFilter {
 		try {
 			MediaType mediaType = MediaType.parseMediaType(request.getContentType());
 			return MediaType.APPLICATION_FORM_URLENCODED.includes(mediaType);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			return false;
 		}
 	}
@@ -168,8 +166,7 @@ public class FormContentFilter extends OncePerRequestFilter {
 			}
 			if (parameterValues == null || getQueryString() == null) {
 				return StringUtils.toStringArray(formParam);
-			}
-			else {
+			} else {
 				List<String> result = new ArrayList<>(parameterValues.length + formParam.size());
 				result.addAll(Arrays.asList(parameterValues));
 				result.addAll(formParam);

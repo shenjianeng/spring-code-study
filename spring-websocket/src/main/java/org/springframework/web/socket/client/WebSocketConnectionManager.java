@@ -50,7 +50,7 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 
 
 	public WebSocketConnectionManager(WebSocketClient client,
-			WebSocketHandler webSocketHandler, String uriTemplate, Object... uriVariables) {
+									  WebSocketHandler webSocketHandler, String uriTemplate, Object... uriVariables) {
 
 		super(uriTemplate, uriVariables);
 		this.client = client;
@@ -145,6 +145,7 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 				webSocketSession = result;
 				logger.info("Successfully connected");
 			}
+
 			@Override
 			public void onFailure(Throwable ex) {
 				logger.error("Failed to connect", ex);

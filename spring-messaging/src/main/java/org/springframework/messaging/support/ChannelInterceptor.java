@@ -27,9 +27,9 @@ import org.springframework.messaging.MessageChannel;
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
- * @since 4.0
  * @see Message
  * @see MessageChannel
+ * @since 4.0
  */
 public interface ChannelInterceptor {
 
@@ -56,6 +56,7 @@ public interface ChannelInterceptor {
 	 * have been raised thus allowing for proper resource cleanup.
 	 * <p>Note that this will be invoked only if {@link #preSend} successfully
 	 * completed and returned a Message, i.e. it did not return {@code null}.
+	 *
 	 * @since 4.1
 	 */
 	default void afterSendCompletion(
@@ -87,10 +88,11 @@ public interface ChannelInterceptor {
 	 * have been raised thus allowing for proper resource cleanup.
 	 * <p>Note that this will be invoked only if {@link #preReceive} successfully
 	 * completed and returned {@code true}.
+	 *
 	 * @since 4.1
 	 */
 	default void afterReceiveCompletion(@Nullable Message<?> message, MessageChannel channel,
-			@Nullable Exception ex) {
+										@Nullable Exception ex) {
 	}
 
 }

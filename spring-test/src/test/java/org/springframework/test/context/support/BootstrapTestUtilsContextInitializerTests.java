@@ -44,7 +44,7 @@ public class BootstrapTestUtilsContextInitializerTests extends AbstractContextCo
 		MergedContextConfiguration mergedConfig = buildMergedContextConfiguration(testClass);
 
 		assertMergedConfig(mergedConfig, testClass, EMPTY_STRING_ARRAY, EMPTY_CLASS_ARRAY,
-			initializers(FooInitializer.class), DelegatingSmartContextLoader.class);
+				initializers(FooInitializer.class), DelegatingSmartContextLoader.class);
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class BootstrapTestUtilsContextInitializerTests extends AbstractContextCo
 		MergedContextConfiguration mergedConfig = buildMergedContextConfiguration(testClass);
 
 		assertMergedConfig(mergedConfig, testClass, EMPTY_STRING_ARRAY, classes(FooConfig.class),
-			initializers(FooInitializer.class), DelegatingSmartContextLoader.class);
+				initializers(FooInitializer.class), DelegatingSmartContextLoader.class);
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class BootstrapTestUtilsContextInitializerTests extends AbstractContextCo
 		MergedContextConfiguration mergedConfig = buildMergedContextConfiguration(testClass);
 
 		assertMergedConfig(mergedConfig, testClass, EMPTY_STRING_ARRAY, classes(FooConfig.class, BarConfig.class),
-			initializers(FooInitializer.class, BarInitializer.class), DelegatingSmartContextLoader.class);
+				initializers(FooInitializer.class, BarInitializer.class), DelegatingSmartContextLoader.class);
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BootstrapTestUtilsContextInitializerTests extends AbstractContextCo
 		MergedContextConfiguration mergedConfig = buildMergedContextConfiguration(testClass);
 
 		assertMergedConfig(mergedConfig, testClass, EMPTY_STRING_ARRAY, classes(FooConfig.class, BarConfig.class),
-			initializers(BarInitializer.class), DelegatingSmartContextLoader.class);
+				initializers(BarInitializer.class), DelegatingSmartContextLoader.class);
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class BootstrapTestUtilsContextInitializerTests extends AbstractContextCo
 		MergedContextConfiguration mergedConfig = buildMergedContextConfiguration(testClass);
 
 		assertMergedConfig(mergedConfig, testClass, EMPTY_STRING_ARRAY, classes(BarConfig.class),
-			initializers(BarInitializer.class), DelegatingSmartContextLoader.class);
+				initializers(BarInitializer.class), DelegatingSmartContextLoader.class);
 	}
 
 	private Set<Class<? extends ApplicationContextInitializer<?>>> initializers(

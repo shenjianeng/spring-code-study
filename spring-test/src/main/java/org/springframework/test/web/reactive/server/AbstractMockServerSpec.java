@@ -30,9 +30,9 @@ import org.springframework.web.server.session.WebSessionManager;
 /**
  * Base class for implementations of {@link WebTestClient.MockServerSpec}.
  *
+ * @param <B> a self reference to the builder type
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <B> a self reference to the builder type
  */
 abstract class AbstractMockServerSpec<B extends WebTestClient.MockServerSpec<B>>
 		implements WebTestClient.MockServerSpec<B> {

@@ -41,13 +41,14 @@ final class H2EmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfigu
 
 	/**
 	 * Get the singleton {@code H2EmbeddedDatabaseConfigurer} instance.
+	 *
 	 * @return the configurer instance
 	 * @throws ClassNotFoundException if H2 is not on the classpath
 	 */
 	@SuppressWarnings("unchecked")
 	public static synchronized H2EmbeddedDatabaseConfigurer getInstance() throws ClassNotFoundException {
 		if (instance == null) {
-			instance = new H2EmbeddedDatabaseConfigurer( (Class<? extends Driver>)
+			instance = new H2EmbeddedDatabaseConfigurer((Class<? extends Driver>)
 					ClassUtils.forName("org.h2.Driver", H2EmbeddedDatabaseConfigurer.class.getClassLoader()));
 		}
 		return instance;

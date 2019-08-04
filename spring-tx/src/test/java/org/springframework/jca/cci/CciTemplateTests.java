@@ -461,12 +461,12 @@ public class CciTemplateTests {
 
 		given(connectionFactory.getConnection()).willReturn(connection);
 		given(connection.createInteraction()).willReturn(interaction);
-		given(interactionCallback.doInInteraction(interaction,connectionFactory)).willReturn(new Object());
+		given(interactionCallback.doInInteraction(interaction, connectionFactory)).willReturn(new Object());
 
 		CciTemplate ct = new CciTemplate(connectionFactory);
 		ct.execute(interactionCallback);
 
-		verify(interactionCallback).doInInteraction(interaction,connectionFactory);
+		verify(interactionCallback).doInInteraction(interaction, connectionFactory);
 		verify(interaction).close();
 		verify(connection).close();
 	}

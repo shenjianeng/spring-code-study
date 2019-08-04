@@ -34,8 +34,8 @@ import static org.junit.Assert.*;
  * Spring Boot.
  *
  * @author Sam Brannen
- * @since 4.0.4
  * @see HybridContextLoader
+ * @since 4.0.4
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = HybridContextLoader.class)

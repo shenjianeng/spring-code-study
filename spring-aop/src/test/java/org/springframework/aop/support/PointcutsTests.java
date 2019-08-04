@@ -44,8 +44,7 @@ public class PointcutsTests {
 			TEST_BEAN_GET_AGE = TestBean.class.getMethod("getAge");
 			TEST_BEAN_GET_NAME = TestBean.class.getMethod("getName");
 			TEST_BEAN_ABSQUATULATE = TestBean.class.getMethod("absquatulate");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new RuntimeException("Shouldn't happen: error in test suite");
 		}
 	}

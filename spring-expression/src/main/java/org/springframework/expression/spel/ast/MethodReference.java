@@ -97,7 +97,7 @@ public class MethodReference extends SpelNodeImpl {
 	}
 
 	private TypedValue getValueInternal(EvaluationContext evaluationContext,
-			@Nullable Object value, @Nullable TypeDescriptor targetType, Object[] arguments) {
+										@Nullable Object value, @Nullable TypeDescriptor targetType, Object[] arguments) {
 
 		List<TypeDescriptor> argumentTypes = getArgumentTypes(arguments);
 		if (value == null) {
@@ -109,8 +109,7 @@ public class MethodReference extends SpelNodeImpl {
 		if (executorToUse != null) {
 			try {
 				return executorToUse.execute(evaluationContext, value, arguments);
-			}
-			catch (AccessException ex) {
+			} catch (AccessException ex) {
 				// Two reasons this can occur:
 				// 1. the method invoked actually threw a real exception
 				// 2. the method invoked was not passed the arguments it expected and
@@ -136,8 +135,7 @@ public class MethodReference extends SpelNodeImpl {
 				executorToUse, (value instanceof Class ? (Class<?>) value : null), targetType, argumentTypes);
 		try {
 			return executorToUse.execute(evaluationContext, value, arguments);
-		}
-		catch (AccessException ex) {
+		} catch (AccessException ex) {
 			// Same unwrapping exception handling as above in above catch block
 			throwSimpleExceptionIfPossible(value, ex);
 			throw new SpelEvaluationException(getStartPosition(), ex,
@@ -161,8 +159,7 @@ public class MethodReference extends SpelNodeImpl {
 			try {
 				state.pushActiveContextObject(state.getScopeRootContextObject());
 				arguments[i] = this.children[i].getValueInternal(state).getValue();
-			}
-			finally {
+			} finally {
 				state.popActiveContextObject();
 			}
 		}
@@ -179,7 +176,7 @@ public class MethodReference extends SpelNodeImpl {
 
 	@Nullable
 	private MethodExecutor getCachedExecutor(EvaluationContext evaluationContext, Object value,
-			@Nullable TypeDescriptor target, List<TypeDescriptor> argumentTypes) {
+											 @Nullable TypeDescriptor target, List<TypeDescriptor> argumentTypes) {
 
 		List<MethodResolver> methodResolvers = evaluationContext.getMethodResolvers();
 		if (methodResolvers.size() != 1 || !(methodResolvers.get(0) instanceof ReflectiveMethodResolver)) {
@@ -196,7 +193,7 @@ public class MethodReference extends SpelNodeImpl {
 	}
 
 	private MethodExecutor findAccessorForMethod(List<TypeDescriptor> argumentTypes, Object targetObject,
-			EvaluationContext evaluationContext) throws SpelEvaluationException {
+												 EvaluationContext evaluationContext) throws SpelEvaluationException {
 
 		AccessException accessException = null;
 		List<MethodResolver> methodResolvers = evaluationContext.getMethodResolvers();
@@ -207,8 +204,7 @@ public class MethodReference extends SpelNodeImpl {
 				if (methodExecutor != null) {
 					return methodExecutor;
 				}
-			}
-			catch (AccessException ex) {
+			} catch (AccessException ex) {
 				accessException = ex;
 				break;
 			}
@@ -220,8 +216,7 @@ public class MethodReference extends SpelNodeImpl {
 		if (accessException != null) {
 			throw new SpelEvaluationException(
 					getStartPosition(), accessException, SpelMessage.PROBLEM_LOCATING_METHOD, method, className);
-		}
-		else {
+		} else {
 			throw new SpelEvaluationException(getStartPosition(), SpelMessage.METHOD_NOT_FOUND, method, className);
 		}
 	}
@@ -238,7 +233,7 @@ public class MethodReference extends SpelNodeImpl {
 			}
 			throw new ExpressionInvocationTargetException(getStartPosition(),
 					"A problem occurred when trying to execute method '" + this.name +
-					"' on object of type [" + value.getClass().getName() + "]", rootCause);
+							"' on object of type [" + value.getClass().getName() + "]", rootCause);
 		}
 	}
 
@@ -250,8 +245,7 @@ public class MethodReference extends SpelNodeImpl {
 			if (this.nullSafe && CodeFlow.isPrimitive(descriptor)) {
 				this.originalPrimitiveExitTypeDescriptor = descriptor;
 				this.exitTypeDescriptor = CodeFlow.toBoxedDescriptor(descriptor);
-			}
-			else {
+			} else {
 				this.exitTypeDescriptor = descriptor;
 			}
 		}
@@ -339,8 +333,7 @@ public class MethodReference extends SpelNodeImpl {
 		String classDesc;
 		if (Modifier.isPublic(method.getDeclaringClass().getModifiers())) {
 			classDesc = method.getDeclaringClass().getName().replace('.', '/');
-		}
-		else {
+		} else {
 			Class<?> publicDeclaringClass = methodExecutor.getPublicDeclaringClass();
 			Assert.state(publicDeclaringClass != null, "No public declaring class");
 			classDesc = publicDeclaringClass.getName().replace('.', '/');
@@ -418,7 +411,7 @@ public class MethodReference extends SpelNodeImpl {
 		private final List<TypeDescriptor> argumentTypes;
 
 		public CachedMethodExecutor(MethodExecutor methodExecutor, @Nullable Class<?> staticClass,
-				@Nullable TypeDescriptor target, List<TypeDescriptor> argumentTypes) {
+									@Nullable TypeDescriptor target, List<TypeDescriptor> argumentTypes) {
 
 			this.methodExecutor = methodExecutor;
 			this.staticClass = staticClass;

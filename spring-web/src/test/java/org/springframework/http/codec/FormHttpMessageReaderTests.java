@@ -123,9 +123,9 @@ public class FormHttpMessageReaderTests extends AbstractLeakCheckingTestCase {
 
 	private MockServerHttpRequest request(Publisher<? extends DataBuffer> body) {
 		return MockServerHttpRequest
-					.method(HttpMethod.GET, "/")
-					.header(HttpHeaders.CONTENT_TYPE,  MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-					.body(body);
+				.method(HttpMethod.GET, "/")
+				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+				.body(body);
 	}
 
 	private DataBuffer stringBuffer(String value) {

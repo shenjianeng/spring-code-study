@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  */
 public abstract class AbstractEntityManagerFactoryIntegrationTests {
 
-	protected static final String[] ECLIPSELINK_CONFIG_LOCATIONS = new String[] {
+	protected static final String[] ECLIPSELINK_CONFIG_LOCATIONS = new String[]{
 			"/org/springframework/orm/jpa/eclipselink/eclipselink-manager.xml",
 			"/org/springframework/orm/jpa/memdb.xml", "/org/springframework/orm/jpa/inject.xml"};
 
@@ -144,12 +144,10 @@ public abstract class AbstractEntityManagerFactoryIntegrationTests {
 			try {
 				if (commit) {
 					this.transactionManager.commit(this.transactionStatus);
-				}
-				else {
+				} else {
 					this.transactionManager.rollback(this.transactionStatus);
 				}
-			}
-			finally {
+			} finally {
 				this.transactionStatus = null;
 			}
 		}

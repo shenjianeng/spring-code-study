@@ -40,8 +40,8 @@ import org.springframework.util.StringUtils;
  * JSR-310 <code>java.time</code> package in JDK 8.
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see org.springframework.format.annotation.DateTimeFormat
+ * @since 4.0
  */
 public class Jsr310DateTimeFormatAnnotationFormatterFactory extends EmbeddedValueResolutionSupport
 		implements AnnotationFormatterFactory<DateTimeFormat> {
@@ -75,13 +75,11 @@ public class Jsr310DateTimeFormatAnnotationFormatterFactory extends EmbeddedValu
 			if (isLocal(fieldType)) {
 				formatter = DateTimeFormatter.ISO_LOCAL_DATE;
 			}
-		}
-		else if (formatter == DateTimeFormatter.ISO_TIME) {
+		} else if (formatter == DateTimeFormatter.ISO_TIME) {
 			if (isLocal(fieldType)) {
 				formatter = DateTimeFormatter.ISO_LOCAL_TIME;
 			}
-		}
-		else if (formatter == DateTimeFormatter.ISO_DATE_TIME) {
+		} else if (formatter == DateTimeFormatter.ISO_DATE_TIME) {
 			if (isLocal(fieldType)) {
 				formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 			}
@@ -99,8 +97,9 @@ public class Jsr310DateTimeFormatAnnotationFormatterFactory extends EmbeddedValu
 
 	/**
 	 * Factory method used to create a {@link DateTimeFormatter}.
+	 *
 	 * @param annotation the format annotation for the field
-	 * @param fieldType the declared type of the field
+	 * @param fieldType  the declared type of the field
 	 * @return a {@link DateTimeFormatter} instance
 	 */
 	protected DateTimeFormatter getFormatter(DateTimeFormat annotation, Class<?> fieldType) {

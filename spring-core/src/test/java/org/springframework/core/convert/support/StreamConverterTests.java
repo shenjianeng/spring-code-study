@@ -136,7 +136,7 @@ public class StreamConverterTests {
 	@Test
 	@SuppressWarnings("resource")
 	public void convertFromArrayToStream() throws NoSuchFieldException {
-		Integer[] stream = new Integer[] {1, 0, 1};
+		Integer[] stream = new Integer[]{1, 0, 1};
 		this.conversionService.addConverter(new Converter<Integer, Boolean>() {
 			@Override
 			public Boolean convert(Integer source) {
@@ -184,7 +184,7 @@ public class StreamConverterTests {
 	}
 
 
-	@SuppressWarnings({ "rawtypes" })
+	@SuppressWarnings({"rawtypes"})
 	static class Types {
 
 		public List<String> listOfStrings;

@@ -47,6 +47,7 @@ public class BasicAuthorizationInterceptor implements ClientHttpRequestIntercept
 	/**
 	 * Create a new interceptor which adds a BASIC authorization header
 	 * for the given username and password.
+	 *
 	 * @param username the username to use
 	 * @param password the password to use
 	 */

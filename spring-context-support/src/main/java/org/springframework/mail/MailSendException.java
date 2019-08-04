@@ -42,6 +42,7 @@ public class MailSendException extends MailException {
 
 	/**
 	 * Constructor for MailSendException.
+	 *
 	 * @param msg the detail message
 	 */
 	public MailSendException(String msg) {
@@ -50,7 +51,8 @@ public class MailSendException extends MailException {
 
 	/**
 	 * Constructor for MailSendException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the mail API in use
 	 */
 	public MailSendException(String msg, @Nullable Throwable cause) {
@@ -64,10 +66,11 @@ public class MailSendException extends MailException {
 	 * messages that failed as keys, and the thrown exceptions as values.
 	 * <p>The messages should be the same that were originally passed
 	 * to the invoked send method.
-	 * @param msg the detail message
-	 * @param cause the root cause from the mail API in use
+	 *
+	 * @param msg            the detail message
+	 * @param cause          the root cause from the mail API in use
 	 * @param failedMessages a Map of failed messages as keys and thrown
-	 * exceptions as values
+	 *                       exceptions as values
 	 */
 	public MailSendException(@Nullable String msg, @Nullable Throwable cause, Map<Object, Exception> failedMessages) {
 		super(msg, cause);
@@ -80,8 +83,9 @@ public class MailSendException extends MailException {
 	 * messages that failed as keys, and the thrown exceptions as values.
 	 * <p>The messages should be the same that were originally passed
 	 * to the invoked send method.
+	 *
 	 * @param failedMessages a Map of failed messages as keys and thrown
-	 * exceptions as values
+	 *                       exceptions as values
 	 */
 	public MailSendException(Map<Object, Exception> failedMessages) {
 		this(null, null, failedMessages);
@@ -102,6 +106,7 @@ public class MailSendException extends MailException {
 	 * <p><b>NOTE:</b> This Map will not be available after serialization.
 	 * Use {@link #getMessageExceptions()} in such a scenario, which will
 	 * be available after serialization as well.
+	 *
 	 * @return the Map of failed messages as keys and thrown exceptions as values
 	 * @see SimpleMailMessage
 	 * @see javax.mail.internet.MimeMessage
@@ -115,6 +120,7 @@ public class MailSendException extends MailException {
 	 * <p>Note that a general mail server connection failure will not result
 	 * in failed messages being returned here: A message will only be
 	 * contained here if actually sending it was attempted but failed.
+	 *
 	 * @return the array of thrown message exceptions,
 	 * or an empty array if no failed messages
 	 */
@@ -128,8 +134,7 @@ public class MailSendException extends MailException {
 	public String getMessage() {
 		if (ObjectUtils.isEmpty(this.messageExceptions)) {
 			return super.getMessage();
-		}
-		else {
+		} else {
 			StringBuilder sb = new StringBuilder();
 			String baseMessage = super.getMessage();
 			if (baseMessage != null) {
@@ -151,8 +156,7 @@ public class MailSendException extends MailException {
 	public String toString() {
 		if (ObjectUtils.isEmpty(this.messageExceptions)) {
 			return super.toString();
-		}
-		else {
+		} else {
 			StringBuilder sb = new StringBuilder(super.toString());
 			sb.append("; message exceptions (").append(this.messageExceptions.length).append(") are:");
 			for (int i = 0; i < this.messageExceptions.length; i++) {
@@ -168,8 +172,7 @@ public class MailSendException extends MailException {
 	public void printStackTrace(PrintStream ps) {
 		if (ObjectUtils.isEmpty(this.messageExceptions)) {
 			super.printStackTrace(ps);
-		}
-		else {
+		} else {
 			ps.println(super.toString() + "; message exception details (" +
 					this.messageExceptions.length + ") are:");
 			for (int i = 0; i < this.messageExceptions.length; i++) {
@@ -184,8 +187,7 @@ public class MailSendException extends MailException {
 	public void printStackTrace(PrintWriter pw) {
 		if (ObjectUtils.isEmpty(this.messageExceptions)) {
 			super.printStackTrace(pw);
-		}
-		else {
+		} else {
 			pw.println(super.toString() + "; message exception details (" +
 					this.messageExceptions.length + ") are:");
 			for (int i = 0; i < this.messageExceptions.length; i++) {

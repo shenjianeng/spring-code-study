@@ -118,6 +118,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	/**
 	 * Accepts a list of String-based location values to be resolved into
 	 * {@link Resource} locations.
+	 *
 	 * @since 5.1
 	 */
 	public void setLocationValues(List<String> locationValues) {
@@ -128,6 +129,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Return the configured location values.
+	 *
 	 * @since 5.1
 	 */
 	public List<String> getLocationValues() {
@@ -151,6 +153,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	 * <p>Note that if {@link #setLocationValues(List) locationValues} are provided,
 	 * instead of loaded Resource-based locations, this method will return
 	 * empty until after initialization via {@link #afterPropertiesSet()}.
+	 *
 	 * @see #setLocationValues
 	 * @see #setLocations
 	 */
@@ -231,6 +234,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	/**
 	 * Provide the ResourceLoader to load {@link #setLocationValues(List)
 	 * location values} with.
+	 *
 	 * @since 5.1
 	 */
 	public void setResourceLoader(ResourceLoader resourceLoader) {
@@ -265,8 +269,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	private void resolveResourceLocations() {
 		if (CollectionUtils.isEmpty(this.locationValues)) {
 			return;
-		}
-		else if (!CollectionUtils.isEmpty(this.locations)) {
+		} else if (!CollectionUtils.isEmpty(this.locations)) {
 			throw new IllegalArgumentException("Please set either Resource-based \"locations\" or " +
 					"String-based \"locationValues\", but not both.");
 		}
@@ -367,8 +370,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 								null, ResolvableType.forClass(Resource.class), mediaType,
 								exchange.getRequest(), exchange.getResponse(),
 								Hints.from(Hints.LOG_PREFIX_HINT, exchange.getLogPrefix()));
-					}
-					catch (IOException ex) {
+					} catch (IOException ex) {
 						return Mono.error(ex);
 					}
 				});
@@ -403,6 +405,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	 * with a single "/" or "". For example {@code "  / // foo/bar"}
 	 * becomes {@code "/foo/bar"}.
 	 * </ul>
+	 *
 	 * @since 3.2.12
 	 */
 	protected String processPath(String path) {
@@ -426,8 +429,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 				if (sb != null) {
 					sb.append(path.charAt(i));
 				}
-			}
-			finally {
+			} finally {
 				prev = curr;
 			}
 		}
@@ -439,8 +441,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 		for (int i = 0; i < path.length(); i++) {
 			if (path.charAt(i) == '/') {
 				slash = true;
-			}
-			else if (path.charAt(i) > ' ' && path.charAt(i) != 127) {
+			} else if (path.charAt(i) > ' ' && path.charAt(i) != 127) {
 				if (i == 0 || (i == 1 && slash)) {
 					return path;
 				}
@@ -452,6 +453,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Check whether the given path contains invalid escape sequences.
+	 *
 	 * @param path the path to validate
 	 * @return {@code true} if the path is invalid, {@code false} otherwise
 	 */
@@ -467,8 +469,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 				if (isInvalidPath(decodedPath)) {
 					return true;
 				}
-			}
-			catch (IllegalArgumentException | UnsupportedEncodingException ex) {
+			} catch (IllegalArgumentException | UnsupportedEncodingException ex) {
 				// Should never happen...
 			}
 		}
@@ -487,6 +488,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	 * <p><strong>Note:</strong> this method assumes that leading, duplicate '/'
 	 * or control characters (e.g. white space) have been trimmed so that the
 	 * path starts predictably with a single '/' or does not have one.
+	 *
 	 * @param path the path to validate
 	 * @return {@code true} if the path is invalid, {@code false} otherwise
 	 */
@@ -517,8 +519,9 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 
 	/**
 	 * Set headers on the response. Called for both GET and HEAD requests.
-	 * @param exchange current exchange
-	 * @param resource the identified resource (never {@code null})
+	 *
+	 * @param exchange  current exchange
+	 * @param resource  the identified resource (never {@code null})
 	 * @param mediaType the resource's media type (never {@code null})
 	 */
 	protected void setHeaders(ServerWebExchange exchange, Resource resource, @Nullable MediaType mediaType)
@@ -547,8 +550,7 @@ public class ResourceWebHandler implements WebHandler, InitializingBean {
 	private Object formatLocations() {
 		if (!this.locationValues.isEmpty()) {
 			return this.locationValues.stream().collect(Collectors.joining("\", \"", "[\"", "\"]"));
-		}
-		else if (!this.locations.isEmpty()) {
+		} else if (!this.locations.isEmpty()) {
 			return "[" + this.locations + "]";
 		}
 		return Collections.emptyList();

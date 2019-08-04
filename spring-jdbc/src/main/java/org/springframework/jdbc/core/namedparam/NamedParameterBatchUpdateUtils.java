@@ -51,6 +51,7 @@ public abstract class NamedParameterBatchUpdateUtils extends org.springframework
 						int[] columnTypes = NamedParameterUtils.buildSqlTypeArray(parsedSql, batchArgs[i]);
 						setStatementParameters(values, ps, columnTypes);
 					}
+
 					@Override
 					public int getBatchSize() {
 						return batchArgs.length;

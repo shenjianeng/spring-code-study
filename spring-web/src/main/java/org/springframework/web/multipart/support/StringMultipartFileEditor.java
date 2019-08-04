@@ -46,8 +46,9 @@ public class StringMultipartFileEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new {@link StringMultipartFileEditor}, using the given charset.
+	 *
 	 * @param charsetName valid charset name
-	 * @see java.lang.String#String(byte[],String)
+	 * @see java.lang.String#String(byte[], String)
 	 */
 	public StringMultipartFileEditor(String charsetName) {
 		this.charsetName = charsetName;
@@ -67,12 +68,10 @@ public class StringMultipartFileEditor extends PropertyEditorSupport {
 				super.setValue(this.charsetName != null ?
 						new String(multipartFile.getBytes(), this.charsetName) :
 						new String(multipartFile.getBytes()));
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalArgumentException("Cannot read contents of multipart file", ex);
 			}
-		}
-		else {
+		} else {
 			super.setValue(value);
 		}
 	}

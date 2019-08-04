@@ -30,7 +30,8 @@ public abstract class UncategorizedDataAccessException extends NonTransientDataA
 
 	/**
 	 * Constructor for UncategorizedDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the exception thrown by underlying data access API
 	 */
 	public UncategorizedDataAccessException(@Nullable String msg, @Nullable Throwable cause) {

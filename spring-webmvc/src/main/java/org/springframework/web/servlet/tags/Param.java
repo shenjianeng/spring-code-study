@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
  * been encoded or escaped.
  *
  * @author Scott Andrews
- * @since 3.0
  * @see ParamTag
+ * @since 3.0
  */
 public class Param {
 

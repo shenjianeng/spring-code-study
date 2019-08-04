@@ -77,10 +77,10 @@ import org.springframework.web.util.UriBuilderFactory;
  * and Spring Kotlin extensions to perform integration tests on an embedded WebFlux server.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see StatusAssertions
  * @see HeaderAssertions
  * @see JsonPathAssertions
+ * @since 5.0
  */
 public interface WebTestClient {
 
@@ -96,48 +96,56 @@ public interface WebTestClient {
 
 	/**
 	 * Prepare an HTTP GET request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> get();
 
 	/**
 	 * Prepare an HTTP HEAD request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> head();
 
 	/**
 	 * Prepare an HTTP POST request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec post();
 
 	/**
 	 * Prepare an HTTP PUT request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec put();
 
 	/**
 	 * Prepare an HTTP PATCH request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec patch();
 
 	/**
 	 * Prepare an HTTP DELETE request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> delete();
 
 	/**
 	 * Prepare an HTTP OPTIONS request.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> options();
 
 	/**
 	 * Prepare a request for the specified {@code HttpMethod}.
+	 *
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec method(HttpMethod method);
@@ -154,6 +162,7 @@ public interface WebTestClient {
 	 * <pre>
 	 * mutate().apply(configurer).build();
 	 * </pre>
+	 *
 	 * @param configurer the configurer to apply
 	 * @return the mutated test client
 	 */
@@ -169,8 +178,9 @@ public interface WebTestClient {
 	 * There are builder methods to customize the Java config. The resulting
 	 * WebFlux application will be tested without an HTTP server using a mock
 	 * request and response.
+	 *
 	 * @param controllers one or more controller instances to tests
-	 * (specified {@code Class} will be turned into instance)
+	 *                    (specified {@code Class} will be turned into instance)
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
 	 */
@@ -183,6 +193,7 @@ public interface WebTestClient {
 	 * Internally the provided configuration is passed to
 	 * {@code RouterFunctions#toWebHandler}. The resulting WebFlux application
 	 * will be tested without an HTTP server using a mock request and response.
+	 *
 	 * @param routerFunction the RouterFunction to test
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -201,6 +212,7 @@ public interface WebTestClient {
 	 * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}
 	 * in order to efficiently load and inject the Spring configuration into the
 	 * test class.
+	 *
 	 * @param applicationContext the Spring context
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -211,6 +223,7 @@ public interface WebTestClient {
 
 	/**
 	 * Integration testing with a "mock" server targeting the given WebHandler.
+	 *
 	 * @param webHandler the handler to test
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -227,6 +240,7 @@ public interface WebTestClient {
 	 *         .baseUrl("http://localhost:8080")
 	 *         .build();
 	 * </pre>
+	 *
 	 * @return chained API to customize client config
 	 */
 	static Builder bindToServer() {
@@ -240,6 +254,7 @@ public interface WebTestClient {
 	 *         .baseUrl("http://localhost:8080")
 	 *         .build();
 	 * </pre>
+	 *
 	 * @return chained API to customize client config
 	 * @since 5.0.2
 	 */
@@ -257,6 +272,7 @@ public interface WebTestClient {
 
 		/**
 		 * Register {@link WebFilter} instances to add to the mock server.
+		 *
 		 * @param filter one or more filters
 		 */
 		<T extends B> T webFilter(WebFilter... filter);
@@ -266,12 +282,14 @@ public interface WebTestClient {
 		 * <p>By default an instance of
 		 * {@link org.springframework.web.server.session.DefaultWebSessionManager
 		 * DefaultWebSessionManager} is used.
+		 *
 		 * @param sessionManager the session manager to use
 		 */
 		<T extends B> T webSessionManager(WebSessionManager sessionManager);
 
 		/**
 		 * Shortcut for pre-packaged customizations to the mock server setup.
+		 *
 		 * @param configurer the configurer to apply
 		 */
 		<T extends B> T apply(MockServerConfigurer configurer);
@@ -302,48 +320,56 @@ public interface WebTestClient {
 
 		/**
 		 * Customize content type resolution.
+		 *
 		 * @see WebFluxConfigurer#configureContentTypeResolver
 		 */
 		ControllerSpec contentTypeResolver(Consumer<RequestedContentTypeResolverBuilder> consumer);
 
 		/**
 		 * Configure CORS support.
+		 *
 		 * @see WebFluxConfigurer#addCorsMappings
 		 */
 		ControllerSpec corsMappings(Consumer<CorsRegistry> consumer);
 
 		/**
 		 * Configure path matching options.
+		 *
 		 * @see WebFluxConfigurer#configurePathMatching
 		 */
 		ControllerSpec pathMatching(Consumer<PathMatchConfigurer> consumer);
 
 		/**
 		 * Configure resolvers for custom controller method arguments.
+		 *
 		 * @see WebFluxConfigurer#configureHttpMessageCodecs
 		 */
 		ControllerSpec argumentResolvers(Consumer<ArgumentResolverConfigurer> configurer);
 
 		/**
 		 * Configure custom HTTP message readers and writers or override built-in ones.
+		 *
 		 * @see WebFluxConfigurer#configureHttpMessageCodecs
 		 */
 		ControllerSpec httpMessageCodecs(Consumer<ServerCodecConfigurer> configurer);
 
 		/**
 		 * Register formatters and converters to use for type conversion.
+		 *
 		 * @see WebFluxConfigurer#addFormatters
 		 */
 		ControllerSpec formatters(Consumer<FormatterRegistry> consumer);
 
 		/**
 		 * Configure a global Validator.
+		 *
 		 * @see WebFluxConfigurer#getValidator()
 		 */
 		ControllerSpec validator(Validator validator);
 
 		/**
 		 * Configure view resolution.
+		 *
 		 * @see WebFluxConfigurer#configureViewResolvers
 		 */
 		ControllerSpec viewResolvers(Consumer<ViewResolverRegistry> consumer);
@@ -385,7 +411,8 @@ public interface WebTestClient {
 
 		/**
 		 * Add the given header to all requests that haven't added it.
-		 * @param headerName the header name
+		 *
+		 * @param headerName   the header name
 		 * @param headerValues the header values
 		 */
 		Builder defaultHeader(String headerName, String... headerValues);
@@ -396,6 +423,7 @@ public interface WebTestClient {
 		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
 		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
 		 * {@link HttpHeaders} methods.
+		 *
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
@@ -403,7 +431,8 @@ public interface WebTestClient {
 
 		/**
 		 * Add the given header to all requests that haven't added it.
-		 * @param cookieName the cookie name
+		 *
+		 * @param cookieName   the cookie name
 		 * @param cookieValues the cookie values
 		 */
 		Builder defaultCookie(String cookieName, String... cookieValues);
@@ -414,6 +443,7 @@ public interface WebTestClient {
 		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing header values,
 		 * {@linkplain MultiValueMap#remove(Object) remove} values, or use any of the other
 		 * {@link MultiValueMap} methods.
+		 *
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
@@ -421,6 +451,7 @@ public interface WebTestClient {
 
 		/**
 		 * Add the given filter to the filter chain.
+		 *
 		 * @param filter the filter to be added to the chain
 		 */
 		Builder filter(ExchangeFilterFunction filter);
@@ -429,6 +460,7 @@ public interface WebTestClient {
 		 * Manipulate the filters with the given consumer. The
 		 * list provided to the consumer is "live", so that the consumer can be used to remove
 		 * filters, change ordering, etc.
+		 *
 		 * @param filtersConsumer a function that consumes the filter list
 		 * @return this builder
 		 */
@@ -437,6 +469,7 @@ public interface WebTestClient {
 		/**
 		 * Configure the {@link ExchangeStrategies} to use.
 		 * <p>By default {@link ExchangeStrategies#withDefaults()} is used.
+		 *
 		 * @param strategies the strategies to use
 		 */
 		Builder exchangeStrategies(ExchangeStrategies strategies);
@@ -444,6 +477,7 @@ public interface WebTestClient {
 		/**
 		 * Max amount of time to wait for responses.
 		 * <p>By default 5 seconds.
+		 *
 		 * @param timeout the response timeout value
 		 */
 		Builder responseTimeout(Duration timeout);
@@ -451,6 +485,7 @@ public interface WebTestClient {
 		/**
 		 * Apply the given configurer to this builder instance.
 		 * <p>This can be useful for applying pre-packaged customizations.
+		 *
 		 * @param configurer the configurer to apply
 		 */
 		Builder apply(WebTestClientConfigurer configurer);
@@ -471,6 +506,7 @@ public interface WebTestClient {
 
 		/**
 		 * Specify the URI using an absolute, fully constructed {@link URI}.
+		 *
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(URI uri);
@@ -479,6 +515,7 @@ public interface WebTestClient {
 		 * Specify the URI for the request using a URI template and URI variables.
 		 * If a {@link UriBuilderFactory} was configured for the client (e.g.
 		 * with a base URI) it will be used to expand the URI template.
+		 *
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(String uri, Object... uriVariables);
@@ -487,6 +524,7 @@ public interface WebTestClient {
 		 * Specify the URI for the request using a URI template and URI variables.
 		 * If a {@link UriBuilderFactory} was configured for the client (e.g.
 		 * with a base URI) it will be used to expand the URI template.
+		 *
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(String uri, Map<String, ?> uriVariables);
@@ -494,6 +532,7 @@ public interface WebTestClient {
 		/**
 		 * Build the URI for the request with a {@link UriBuilder} obtained
 		 * through the {@link UriBuilderFactory} configured for this client.
+		 *
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(Function<UriBuilder, URI> uriFunction);
@@ -510,6 +549,7 @@ public interface WebTestClient {
 		/**
 		 * Set the list of acceptable {@linkplain MediaType media types}, as
 		 * specified by the {@code Accept} header.
+		 *
 		 * @param acceptableMediaTypes the acceptable media types
 		 * @return the same instance
 		 */
@@ -518,6 +558,7 @@ public interface WebTestClient {
 		/**
 		 * Set the list of acceptable {@linkplain Charset charsets}, as specified
 		 * by the {@code Accept-Charset} header.
+		 *
 		 * @param acceptableCharsets the acceptable charsets
 		 * @return the same instance
 		 */
@@ -525,7 +566,8 @@ public interface WebTestClient {
 
 		/**
 		 * Add a cookie with the given name and value.
-		 * @param name the cookie name
+		 *
+		 * @param name  the cookie name
 		 * @param value the cookie value
 		 * @return the same instance
 		 */
@@ -537,6 +579,7 @@ public interface WebTestClient {
 		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing header values,
 		 * {@linkplain MultiValueMap#remove(Object) remove} values, or use any of the other
 		 * {@link MultiValueMap} methods.
+		 *
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
@@ -546,6 +589,7 @@ public interface WebTestClient {
 		 * Set the value of the {@code If-Modified-Since} header.
 		 * <p>The date should be specified as the number of milliseconds since
 		 * January 1, 1970 GMT.
+		 *
 		 * @param ifModifiedSince the new value of the header
 		 * @return the same instance
 		 */
@@ -553,6 +597,7 @@ public interface WebTestClient {
 
 		/**
 		 * Set the values of the {@code If-None-Match} header.
+		 *
 		 * @param ifNoneMatches the new value of the header
 		 * @return the same instance
 		 */
@@ -560,7 +605,8 @@ public interface WebTestClient {
 
 		/**
 		 * Add the given, single header value under the given name.
-		 * @param headerName  the header name
+		 *
+		 * @param headerName   the header name
 		 * @param headerValues the header value(s)
 		 * @return the same instance
 		 */
@@ -572,6 +618,7 @@ public interface WebTestClient {
 		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
 		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
 		 * {@link HttpHeaders} methods.
+		 *
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
@@ -579,7 +626,8 @@ public interface WebTestClient {
 
 		/**
 		 * Set the attribute with the given name to the given value.
-		 * @param name the name of the attribute to add
+		 *
+		 * @param name  the name of the attribute to add
 		 * @param value the value of the attribute to add
 		 * @return this builder
 		 */
@@ -589,6 +637,7 @@ public interface WebTestClient {
 		 * Manipulate the request attributes with the given consumer. The attributes provided to
 		 * the consumer are "live", so that the consumer can be used to inspect attributes,
 		 * remove attributes, or use any of the other map-provided methods.
+		 *
 		 * @param attributesConsumer a function that consumes the attributes
 		 * @return this builder
 		 */
@@ -596,6 +645,7 @@ public interface WebTestClient {
 
 		/**
 		 * Perform the exchange without a request body.
+		 *
 		 * @return spec for decoding the response
 		 */
 		ResponseSpec exchange();
@@ -609,6 +659,7 @@ public interface WebTestClient {
 		/**
 		 * Set the length of the body in bytes, as specified by the
 		 * {@code Content-Length} header.
+		 *
 		 * @param contentLength the content length
 		 * @return the same instance
 		 * @see HttpHeaders#setContentLength(long)
@@ -618,6 +669,7 @@ public interface WebTestClient {
 		/**
 		 * Set the {@linkplain MediaType media type} of the body, as specified
 		 * by the {@code Content-Type} header.
+		 *
 		 * @param contentType the content type
 		 * @return the same instance
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -626,6 +678,7 @@ public interface WebTestClient {
 
 		/**
 		 * Set the body of the request to the given {@code BodyInserter}.
+		 *
 		 * @param inserter the inserter
 		 * @return spec for decoding the response
 		 * @see org.springframework.web.reactive.function.BodyInserters
@@ -634,10 +687,11 @@ public interface WebTestClient {
 
 		/**
 		 * Set the body of the request to the given asynchronous {@code Publisher}.
-		 * @param publisher the request body data
+		 *
+		 * @param publisher    the request body data
 		 * @param elementClass the class of elements contained in the publisher
-		 * @param <T> the type of the elements contained in the publisher
-		 * @param <S> the type of the {@code Publisher}
+		 * @param <T>          the type of the elements contained in the publisher
+		 * @param <S>          the type of the {@code Publisher}
 		 * @return spec for decoding the response
 		 */
 		<T, S extends Publisher<T>> RequestHeadersSpec<?> body(S publisher, Class<T> elementClass);
@@ -656,6 +710,7 @@ public interface WebTestClient {
 		 * {@link org.springframework.http.HttpEntity HttpEntity} representing a
 		 * part with body and headers. The {@code MultiValueMap} can be built
 		 * conveniently using
+		 *
 		 * @param body the {@code Object} to write to the request
 		 * @return a {@code Mono} with the response
 		 */
@@ -696,6 +751,7 @@ public interface WebTestClient {
 		/**
 		 * Consume and decode the response body to a single object of type
 		 * {@code <B>} and then apply assertions.
+		 *
 		 * @param bodyType the expected body type
 		 */
 		<B> BodySpec<B, ?> expectBody(Class<B> bodyType);
@@ -709,6 +765,7 @@ public interface WebTestClient {
 		/**
 		 * Consume and decode the response body to {@code List<E>} and then apply
 		 * List-specific assertions.
+		 *
 		 * @param elementType the expected List element type
 		 */
 		<E> ListBodySpec<E> expectBodyList(Class<E> elementType);
@@ -764,6 +821,7 @@ public interface WebTestClient {
 
 		/**
 		 * Assert the extracted body with a {@link Matcher}.
+		 *
 		 * @since 5.1
 		 */
 		<T extends S> T value(Matcher<B> matcher);
@@ -771,12 +829,14 @@ public interface WebTestClient {
 		/**
 		 * Transform the extracted the body with a function, e.g. extracting a
 		 * property, and assert the mapped value with a {@link Matcher}.
+		 *
 		 * @since 5.1
 		 */
 		<T extends S, R> T value(Function<B, R> bodyMapper, Matcher<R> matcher);
 
 		/**
 		 * Assert the extracted body with a {@link Matcher}.
+		 *
 		 * @since 5.1
 		 */
 		<T extends S> T value(Consumer<B> consumer);
@@ -803,12 +863,14 @@ public interface WebTestClient {
 
 		/**
 		 * Assert the extracted list of values is of the given size.
+		 *
 		 * @param size the expected size
 		 */
 		ListBodySpec<E> hasSize(int size);
 
 		/**
 		 * Assert the extracted list of values contains the given elements.
+		 *
 		 * @param elements the elements to check
 		 */
 		@SuppressWarnings("unchecked")
@@ -816,6 +878,7 @@ public interface WebTestClient {
 
 		/**
 		 * Assert the extracted list of values doesn't contain the given elements.
+		 *
 		 * @param elements the elements to check
 		 */
 		@SuppressWarnings("unchecked")
@@ -839,6 +902,7 @@ public interface WebTestClient {
 		 * <p>Use of this option requires the
 		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> library
 		 * on to be on the classpath.
+		 *
 		 * @param expectedJson the expected JSON content.
 		 */
 		BodyContentSpec json(String expectedJson);
@@ -850,9 +914,10 @@ public interface WebTestClient {
 		 * <p>Use of this method requires the
 		 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> library on
 		 * the classpath.
+		 *
 		 * @param expectedXml the expected JSON content.
-		 * @since 5.1
 		 * @see org.springframework.test.util.XmlExpectationsHelper#assertXmlEqual(String, String)
+		 * @since 5.1
 		 */
 		BodyContentSpec xml(String expectedXml);
 
@@ -862,8 +927,9 @@ public interface WebTestClient {
 		 * to inspect a specific subset of the body.
 		 * <p>The JSON path expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
+		 *
 		 * @param expression the JsonPath expression
-		 * @param args arguments to parameterize the expression
+		 * @param args       arguments to parameterize the expression
 		 */
 		JsonPathAssertions jsonPath(String expression, Object... args);
 
@@ -872,12 +938,13 @@ public interface WebTestClient {
 		 * inspect a specific subset of the body.
 		 * <p>The XPath expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
+		 *
 		 * @param expression the XPath expression
-		 * @param args arguments to parameterize the expression
-		 * @since 5.1
+		 * @param args       arguments to parameterize the expression
 		 * @see #xpath(String, Map, Object...)
+		 * @since 5.1
 		 */
-		default XpathAssertions xpath(String expression, Object... args){
+		default XpathAssertions xpath(String expression, Object... args) {
 			return xpath(expression, null, args);
 		}
 
@@ -886,17 +953,19 @@ public interface WebTestClient {
 		 * XPath expression to inspect a specific subset of the body.
 		 * <p>The XPath expression can be a parameterized string using
 		 * formatting specifiers as defined in {@link String#format}.
+		 *
 		 * @param expression the XPath expression
 		 * @param namespaces namespaces to use
-		 * @param args arguments to parameterize the expression
+		 * @param args       arguments to parameterize the expression
 		 * @since 5.1
 		 */
-		XpathAssertions xpath(String expression, @Nullable  Map<String, String> namespaces, Object... args);
+		XpathAssertions xpath(String expression, @Nullable Map<String, String> namespaces, Object... args);
 
 		/**
 		 * Assert the response body content with the given {@link Consumer}.
+		 *
 		 * @param consumer the consumer for the response body; the input
-		 * {@code byte[]} may be {@code null} if there was no response body.
+		 *                 {@code byte[]} may be {@code null} if there was no response body.
 		 */
 		BodyContentSpec consumeWith(Consumer<EntityExchangeResult<byte[]>> consumer);
 

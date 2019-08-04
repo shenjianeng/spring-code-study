@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
  * metric. Only valid when used on a JavaBean getter.
  *
  * @author Jennifer Hickey
- * @since 3.0
  * @see org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
+ * @since 3.0
  */
 public class ManagedMetric extends AbstractJmxAttribute {
 

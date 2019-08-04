@@ -37,12 +37,11 @@ public class ContextLoaderTestUtils {
 	}
 
 	public static void setCurrentWebApplicationContext(ClassLoader classLoader,
-			WebApplicationContext applicationContext) {
+													   WebApplicationContext applicationContext) {
 
 		if (applicationContext != null) {
 			currentContextPerThread.put(classLoader, applicationContext);
-		}
-		else {
+		} else {
 			currentContextPerThread.remove(classLoader);
 		}
 	}
@@ -53,8 +52,7 @@ public class ContextLoaderTestUtils {
 			Field field = ContextLoader.class.getDeclaredField("currentContextPerThread");
 			field.setAccessible(true);
 			return (Map<ClassLoader, WebApplicationContext>) field.get(null);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

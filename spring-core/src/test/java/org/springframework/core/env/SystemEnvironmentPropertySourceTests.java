@@ -59,7 +59,7 @@ public class SystemEnvironmentPropertySourceTests {
 		envMap.put("akey", "avalue");
 
 		assertThat(ps.containsProperty("akey"), equalTo(true));
-		assertThat(ps.getProperty("akey"), equalTo((Object)"avalue"));
+		assertThat(ps.getProperty("akey"), equalTo((Object) "avalue"));
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class SystemEnvironmentPropertySourceTests {
 		envMap.put("a.key", "a.value");
 
 		assertThat(ps.containsProperty("a.key"), equalTo(true));
-		assertThat(ps.getProperty("a.key"), equalTo((Object)"a.value"));
+		assertThat(ps.getProperty("a.key"), equalTo((Object) "a.value"));
 	}
 
 	@Test
@@ -77,8 +77,8 @@ public class SystemEnvironmentPropertySourceTests {
 		assertThat(ps.containsProperty("a_key"), equalTo(true));
 		assertThat(ps.containsProperty("a.key"), equalTo(true));
 
-		assertThat(ps.getProperty("a_key"), equalTo((Object)"a_value"));
-		assertThat( ps.getProperty("a.key"), equalTo((Object)"a_value"));
+		assertThat(ps.getProperty("a_key"), equalTo((Object) "a_value"));
+		assertThat(ps.getProperty("a.key"), equalTo((Object) "a_value"));
 	}
 
 	@Test
@@ -86,8 +86,8 @@ public class SystemEnvironmentPropertySourceTests {
 		envMap.put("a_key", "a_value");
 		envMap.put("a.key", "a.value");
 
-		assertThat(ps.getProperty("a_key"), equalTo((Object)"a_value"));
-		assertThat( ps.getProperty("a.key"), equalTo((Object)"a.value"));
+		assertThat(ps.getProperty("a_key"), equalTo((Object) "a_value"));
+		assertThat(ps.getProperty("a.key"), equalTo((Object) "a.value"));
 	}
 
 	@Test
@@ -156,6 +156,7 @@ public class SystemEnvironmentPropertySourceTests {
 			public boolean containsKey(Object key) {
 				throw new UnsupportedOperationException();
 			}
+
 			@Override
 			public Set<String> keySet() {
 				return new HashSet<>(super.keySet());
@@ -171,7 +172,7 @@ public class SystemEnvironmentPropertySourceTests {
 		};
 
 		assertThat(ps.containsProperty("A_KEY"), equalTo(true));
-		assertThat(ps.getProperty("A_KEY"), equalTo((Object)"a_value"));
+		assertThat(ps.getProperty("A_KEY"), equalTo((Object) "a_value"));
 	}
 
 }

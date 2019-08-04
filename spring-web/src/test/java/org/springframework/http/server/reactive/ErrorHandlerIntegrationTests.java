@@ -86,11 +86,9 @@ public class ErrorHandlerIntegrationTests extends AbstractHttpHandlerIntegration
 			String path = request.getURI().getPath();
 			if (path.endsWith("response-body-error")) {
 				return response.writeWith(Mono.error(error));
-			}
-			else if (path.endsWith("handling-error")) {
+			} else if (path.endsWith("handling-error")) {
 				return Mono.error(error);
-			}
-			else {
+			} else {
 				return Mono.empty();
 			}
 		}

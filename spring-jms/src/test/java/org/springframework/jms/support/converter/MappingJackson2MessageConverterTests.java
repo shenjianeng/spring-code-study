@@ -135,7 +135,7 @@ public class MappingJackson2MessageConverterTests {
 		given(textMessageMock.getStringProperty("__typeid__")).willReturn(MyBean.class.getName());
 		given(textMessageMock.getText()).willReturn(text);
 
-		MyBean result = (MyBean)converter.fromMessage(textMessageMock);
+		MyBean result = (MyBean) converter.fromMessage(textMessageMock);
 		assertEquals("Invalid result", result, unmarshalled);
 	}
 
@@ -148,7 +148,7 @@ public class MappingJackson2MessageConverterTests {
 		given(textMessageMock.getStringProperty("__typeid__")).willReturn(MyBean.class.getName());
 		given(textMessageMock.getText()).willReturn(text);
 
-		MyBean result = (MyBean)converter.fromMessage(textMessageMock);
+		MyBean result = (MyBean) converter.fromMessage(textMessageMock);
 		assertEquals("Invalid result", result, unmarshalled);
 	}
 
@@ -305,9 +305,15 @@ public class MappingJackson2MessageConverterTests {
 	}
 
 
-	private interface Summary {};
+	private interface Summary {
+	}
 
-	private interface Full extends Summary {};
+	;
+
+	private interface Full extends Summary {
+	}
+
+	;
 
 
 	private static class MyAnotherBean {

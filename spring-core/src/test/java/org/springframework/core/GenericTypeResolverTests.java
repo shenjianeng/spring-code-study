@@ -130,8 +130,7 @@ public class GenericTypeResolverTests {
 		for (Map.Entry<TypeVariable, Type> entry : map.entrySet()) {
 			if (entry.getKey().toString().equals("T")) {
 				t = entry.getValue();
-			}
-			else {
+			} else {
 				x = entry.getValue();
 			}
 		}
@@ -291,13 +290,16 @@ public class GenericTypeResolverTests {
 	static class GenericClass<T> {
 	}
 
-	class A{}
+	class A {
+	}
 
-	class B<T>{}
+	class B<T> {
+	}
 
-	class TestIfc<T>{}
+	class TestIfc<T> {
+	}
 
-	class TestImpl<I extends A, T extends B<I>> extends TestIfc<T>{
+	class TestImpl<I extends A, T extends B<I>> extends TestIfc<T> {
 	}
 
 	static class TopLevelClass<T> {

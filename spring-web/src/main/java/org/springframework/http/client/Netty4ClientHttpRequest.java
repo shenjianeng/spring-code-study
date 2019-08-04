@@ -89,16 +89,13 @@ class Netty4ClientHttpRequest extends AbstractAsyncClientHttpRequest implements 
 	public ClientHttpResponse execute() throws IOException {
 		try {
 			return executeAsync().get();
-		}
-		catch (InterruptedException ex) {
+		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 			throw new IOException("Interrupted during request execution", ex);
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			if (ex.getCause() instanceof IOException) {
 				throw (IOException) ex.getCause();
-			}
-			else {
+			} else {
 				throw new IOException(ex.getMessage(), ex.getCause());
 			}
 		}
@@ -119,8 +116,7 @@ class Netty4ClientHttpRequest extends AbstractAsyncClientHttpRequest implements 
 				channel.pipeline().addLast(new RequestExecuteHandler(responseFuture));
 				FullHttpRequest nettyRequest = createFullHttpRequest(headers);
 				channel.writeAndFlush(nettyRequest);
-			}
-			else {
+			} else {
 				responseFuture.setException(future.cause());
 			}
 		};
@@ -153,8 +149,7 @@ class Netty4ClientHttpRequest extends AbstractAsyncClientHttpRequest implements 
 		if (port == -1) {
 			if ("http".equalsIgnoreCase(uri.getScheme())) {
 				port = 80;
-			}
-			else if ("https".equalsIgnoreCase(uri.getScheme())) {
+			} else if ("https".equalsIgnoreCase(uri.getScheme())) {
 				port = 443;
 			}
 		}

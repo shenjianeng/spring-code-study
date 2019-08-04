@@ -38,10 +38,9 @@ public class AopNamespaceHandlerReturningTests {
 	@Test
 	public void testParseReturningOnOtherAdviceType() {
 		try {
-		new ClassPathXmlApplicationContext(getClass().getSimpleName() + "-error.xml", getClass());
+			new ClassPathXmlApplicationContext(getClass().getSimpleName() + "-error.xml", getClass());
 			fail("Expected BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			assertTrue(ex.contains(SAXParseException.class));
 		}
 	}

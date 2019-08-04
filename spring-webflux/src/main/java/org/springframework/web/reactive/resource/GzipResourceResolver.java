@@ -47,7 +47,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Mono<Resource> resolveResourceInternal(@Nullable ServerWebExchange exchange,
-			String requestPath, List<? extends Resource> locations, ResourceResolverChain chain) {
+													 String requestPath, List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		return chain.resolveResource(exchange, requestPath, locations)
 				.map(resource -> {
@@ -57,8 +57,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 							if (gzipped.exists()) {
 								resource = gzipped;
 							}
-						}
-						catch (IOException ex) {
+						} catch (IOException ex) {
 							String logPrefix = exchange != null ? exchange.getLogPrefix() : "";
 							logger.trace(logPrefix + "No gzip resource for [" + resource.getFilename() + "]", ex);
 						}
@@ -74,7 +73,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Mono<String> resolveUrlPathInternal(String resourceUrlPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+												  List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		return chain.resolveUrlPath(resourceUrlPath, locations);
 	}

@@ -47,7 +47,7 @@ public abstract class AbstractHttpHandlerIntegrationTests {
 	@Parameterized.Parameters(name = "server [{0}]")
 	public static Object[][] arguments() {
 		File base = new File(System.getProperty("java.io.tmpdir"));
-		return new Object[][] {
+		return new Object[][]{
 				{new JettyHttpServer()},
 				{new ReactorHttpServer()},
 				{new TomcatHttpServer(base.getAbsolutePath())},

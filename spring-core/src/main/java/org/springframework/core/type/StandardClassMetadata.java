@@ -37,6 +37,7 @@ public class StandardClassMetadata implements ClassMetadata {
 
 	/**
 	 * Create a new StandardClassMetadata wrapper for the given Class.
+	 *
 	 * @param introspectedClass the Class to introspect
 	 */
 	public StandardClassMetadata(Class<?> introspectedClass) {

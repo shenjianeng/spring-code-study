@@ -90,6 +90,7 @@ public class ViewResolverRegistry {
 	 * Register a script template view resolver with an empty default view name prefix and suffix.
 	 * <p><strong>Note</strong> that you must also configure script templating by
 	 * adding a {@link ScriptTemplateConfigurer} bean.
+	 *
 	 * @since 5.0.4
 	 */
 	public UrlBasedViewResolverRegistration scriptTemplate() {

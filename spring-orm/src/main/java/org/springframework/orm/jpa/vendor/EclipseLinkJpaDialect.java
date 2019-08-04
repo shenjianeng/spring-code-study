@@ -43,9 +43,9 @@ import org.springframework.transaction.TransactionException;
  * and therefore keep EclipseLink in shared cache mode.
  *
  * @author Juergen Hoeller
- * @since 2.5.2
  * @see #setLazyDatabaseTransaction
  * @see org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
+ * @since 2.5.2
  */
 @SuppressWarnings("serial")
 public class EclipseLinkJpaDialect extends DefaultJpaDialect {
@@ -65,6 +65,7 @@ public class EclipseLinkJpaDialect extends DefaultJpaDialect {
 	 * even for non-read-only transactions, allowing access to EclipseLink's
 	 * shared cache and following EclipseLink's connection mode configuration,
 	 * assuming that isolation and visibility at the JDBC level are less important.
+	 *
 	 * @see org.eclipse.persistence.sessions.UnitOfWork#beginEarlyTransaction()
 	 */
 	public void setLazyDatabaseTransaction(boolean lazyDatabaseTransaction) {

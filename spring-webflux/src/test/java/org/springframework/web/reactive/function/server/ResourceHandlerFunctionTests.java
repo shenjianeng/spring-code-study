@@ -60,6 +60,7 @@ public class ResourceHandlerFunctionTests {
 			public List<HttpMessageWriter<?>> messageWriters() {
 				return strategies.messageWriters();
 			}
+
 			@Override
 			public List<ViewResolver> viewResolvers() {
 				return strategies.viewResolvers();
@@ -78,13 +79,13 @@ public class ResourceHandlerFunctionTests {
 		Mono<ServerResponse> responseMono = this.handlerFunction.handle(request);
 
 		Mono<Void> result = responseMono.flatMap(response -> {
-					assertEquals(HttpStatus.OK, response.statusCode());
-					assertTrue(response instanceof EntityResponse);
-					@SuppressWarnings("unchecked")
-					EntityResponse<Resource> entityResponse = (EntityResponse<Resource>) response;
-					assertEquals(this.resource, entityResponse.entity());
-					return response.writeTo(exchange, context);
-				});
+			assertEquals(HttpStatus.OK, response.statusCode());
+			assertTrue(response instanceof EntityResponse);
+			@SuppressWarnings("unchecked")
+			EntityResponse<Resource> entityResponse = (EntityResponse<Resource>) response;
+			assertEquals(this.resource, entityResponse.entity());
+			return response.writeTo(exchange, context);
+		});
 
 		StepVerifier.create(result)
 				.expectComplete()

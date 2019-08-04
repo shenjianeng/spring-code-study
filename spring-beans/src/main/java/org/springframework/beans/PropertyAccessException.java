@@ -36,9 +36,10 @@ public abstract class PropertyAccessException extends BeansException {
 
 	/**
 	 * Create a new PropertyAccessException.
+	 *
 	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg                 the detail message
+	 * @param cause               the root cause
 	 */
 	public PropertyAccessException(PropertyChangeEvent propertyChangeEvent, String msg, @Nullable Throwable cause) {
 		super(msg, cause);
@@ -47,7 +48,8 @@ public abstract class PropertyAccessException extends BeansException {
 
 	/**
 	 * Create a new PropertyAccessException without PropertyChangeEvent.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public PropertyAccessException(String msg, @Nullable Throwable cause) {

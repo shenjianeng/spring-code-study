@@ -62,7 +62,7 @@ public class RdbmsOperationTests {
 		operation.setSql("select * from mytable");
 		operation.compile();
 		exception.expect(InvalidDataAccessApiUsageException.class);
-		operation.setTypes(new int[] { Types.INTEGER });
+		operation.setTypes(new int[]{Types.INTEGER});
 	}
 
 	@Test
@@ -77,7 +77,7 @@ public class RdbmsOperationTests {
 	@Test
 	public void tooFewParameters() {
 		operation.setSql("select * from mytable");
-		operation.setTypes(new int[] { Types.INTEGER });
+		operation.setTypes(new int[]{Types.INTEGER});
 		exception.expect(InvalidDataAccessApiUsageException.class);
 		operation.validateParameters((Object[]) null);
 	}
@@ -85,7 +85,7 @@ public class RdbmsOperationTests {
 	@Test
 	public void tooFewMapParameters() {
 		operation.setSql("select * from mytable");
-		operation.setTypes(new int[] { Types.INTEGER });
+		operation.setTypes(new int[]{Types.INTEGER});
 		exception.expect(InvalidDataAccessApiUsageException.class);
 		operation.validateNamedParameters((Map<String, String>) null);
 	}
@@ -103,7 +103,7 @@ public class RdbmsOperationTests {
 	public void tooManyParameters() {
 		operation.setSql("select * from mytable");
 		exception.expect(InvalidDataAccessApiUsageException.class);
-		operation.validateParameters(new Object[] { 1, 2 });
+		operation.validateParameters(new Object[]{1, 2});
 	}
 
 	@Test
@@ -126,7 +126,8 @@ public class RdbmsOperationTests {
 
 	@Test
 	public void emptyDataSource() {
-		SqlOperation operation = new SqlOperation() {};
+		SqlOperation operation = new SqlOperation() {
+		};
 		operation.setSql("select * from mytable");
 		exception.expect(InvalidDataAccessApiUsageException.class);
 		operation.compile();
@@ -134,7 +135,8 @@ public class RdbmsOperationTests {
 
 	@Test
 	public void parameterPropagation() {
-		SqlOperation operation = new SqlOperation() {};
+		SqlOperation operation = new SqlOperation() {
+		};
 		DataSource ds = new DriverManagerDataSource();
 		operation.setDataSource(ds);
 		operation.setFetchSize(10);
@@ -151,7 +153,7 @@ public class RdbmsOperationTests {
 		operation.setSql("DUMMY_PROC");
 		operation.declareParameter(new SqlOutParameter("DUMMY_OUT_PARAM", Types.VARCHAR));
 		operation.declareParameter(new SqlInOutParameter("DUMMY_IN_OUT_PARAM", Types.VARCHAR));
-		operation.validateParameters(new Object[] {"DUMMY_VALUE1", "DUMMY_VALUE2"});
+		operation.validateParameters(new Object[]{"DUMMY_VALUE1", "DUMMY_VALUE2"});
 	}
 
 	@Test
@@ -159,11 +161,11 @@ public class RdbmsOperationTests {
 		DataSource ds = new DriverManagerDataSource();
 		operation.setDataSource(ds);
 		operation.setSql("select * from mytable where one = ? and two = ?");
-		operation.setParameters(new SqlParameter[] {
+		operation.setParameters(new SqlParameter[]{
 				new SqlParameter("one", Types.NUMERIC),
 				new SqlParameter("two", Types.NUMERIC)});
 		operation.afterPropertiesSet();
-		operation.validateParameters(new Object[] { 1, "2" });
+		operation.validateParameters(new Object[]{1, "2"});
 		assertEquals(2, operation.getDeclaredParameters().size());
 	}
 

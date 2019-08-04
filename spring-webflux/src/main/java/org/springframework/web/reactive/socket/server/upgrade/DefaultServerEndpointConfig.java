@@ -48,7 +48,8 @@ class DefaultServerEndpointConfig extends ServerEndpointConfig.Configurator
 
 	/**
 	 * Constructor with a path and an {@code javax.websocket.Endpoint}.
-	 * @param path the endpoint path
+	 *
+	 * @param path     the endpoint path
 	 * @param endpoint the endpoint instance
 	 */
 	public DefaultServerEndpointConfig(String path, Endpoint endpoint) {

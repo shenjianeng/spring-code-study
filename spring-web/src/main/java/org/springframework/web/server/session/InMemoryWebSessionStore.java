@@ -61,6 +61,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * reached, any attempt to store an additional session will result in an
 	 * {@link IllegalStateException}.
 	 * <p>By default set to 10000.
+	 *
 	 * @param maxSessions the maximum number of sessions
 	 * @since 5.0.8
 	 */
@@ -70,6 +71,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 
 	/**
 	 * Return the maximum number of sessions that can be stored.
+	 *
 	 * @since 5.0.8
 	 */
 	public int getMaxSessions() {
@@ -83,6 +85,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * back in a test, e.g. {@code Clock.offset(clock, Duration.ofMinutes(-31))}
 	 * in order to simulate session expiration.
 	 * <p>By default this is {@code Clock.system(ZoneId.of("GMT"))}.
+	 *
 	 * @param clock the clock to use
 	 */
 	public void setClock(Clock clock) {
@@ -102,6 +105,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * Return the map of sessions with an {@link Collections#unmodifiableMap
 	 * unmodifiable} wrapper. This could be used for management purposes, to
 	 * list active sessions, invalidate expired ones, etc.
+	 *
 	 * @since 5.0.8
 	 */
 	public Map<String, WebSession> getSessions() {
@@ -123,12 +127,10 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 		InMemoryWebSession session = this.sessions.get(id);
 		if (session == null) {
 			return Mono.empty();
-		}
-		else if (session.isExpired(now)) {
+		} else if (session.isExpired(now)) {
 			this.sessions.remove(id);
 			return Mono.empty();
-		}
-		else {
+		} else {
 			session.updateLastAccessTime(now);
 			return Mono.just(session);
 		}
@@ -153,6 +155,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	 * kicked off lazily during calls to {@link #createWebSession() create} or
 	 * {@link #retrieveSession retrieve}, no less than 60 seconds apart.
 	 * This method can be called to force a check at a specific time.
+	 *
 	 * @since 5.0.8
 	 */
 	public void removeExpiredSessions() {
@@ -300,7 +303,9 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 
 	private class ExpiredSessionChecker {
 
-		/** Max time between expiration checks. */
+		/**
+		 * Max time between expiration checks.
+		 */
 		private static final int CHECK_PERIOD = 60 * 1000;
 
 
@@ -329,8 +334,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 							session.invalidate();
 						}
 					}
-				}
-				finally {
+				} finally {
 					this.checkTime = now.plus(CHECK_PERIOD, ChronoUnit.MILLIS);
 					this.lock.unlock();
 				}
@@ -339,6 +343,6 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	}
 
 
-	private enum State { NEW, STARTED, EXPIRED }
+	private enum State {NEW, STARTED, EXPIRED}
 
 }

@@ -61,6 +61,7 @@ public class OkHttp3ClientHttpRequestFactory
 
 	/**
 	 * Create a factory with the given {@link OkHttpClient} instance.
+	 *
 	 * @param client the client to use
 	 */
 	public OkHttp3ClientHttpRequestFactory(OkHttpClient client) {

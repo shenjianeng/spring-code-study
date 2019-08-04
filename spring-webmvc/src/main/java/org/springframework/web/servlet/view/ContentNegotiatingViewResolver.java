@@ -80,10 +80,10 @@ import org.springframework.web.servlet.ViewResolver;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
- * @since 3.0
  * @see ViewResolver
  * @see InternalResourceViewResolver
  * @see BeanNameViewResolver
+ * @since 3.0
  */
 public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 		implements ViewResolver, Ordered, InitializingBean {
@@ -108,6 +108,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	 * Set the {@link ContentNegotiationManager} to use to determine requested media types.
 	 * <p>If not set, ContentNegotiationManager's default constructor will be used,
 	 * applying a {@link org.springframework.web.accept.HeaderContentNegotiationStrategy}.
+	 *
 	 * @see ContentNegotiationManager#ContentNegotiationManager()
 	 */
 	public void setContentNegotiationManager(@Nullable ContentNegotiationManager contentNegotiationManager) {
@@ -116,6 +117,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 	/**
 	 * Return the {@link ContentNegotiationManager} to use to determine requested media types.
+	 *
 	 * @since 4.1.9
 	 */
 	@Nullable
@@ -190,8 +192,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 					this.viewResolvers.add(viewResolver);
 				}
 			}
-		}
-		else {
+		} else {
 			for (int i = 0; i < this.viewResolvers.size(); i++) {
 				ViewResolver vr = this.viewResolvers.get(i);
 				if (matchingBeans.contains(vr)) {
@@ -239,8 +240,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 				logger.debug("Using 406 NOT_ACCEPTABLE" + mediaTypeInfo);
 			}
 			return NOT_ACCEPTABLE_VIEW;
-		}
-		else {
+		} else {
 			logger.debug("View remains unresolved" + mediaTypeInfo);
 			return null;
 		}
@@ -248,6 +248,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 	/**
 	 * Determines the list of {@link MediaType} for the given {@link HttpServletRequest}.
+	 *
 	 * @param request the current servlet request
 	 * @return the list of media types requested, if any
 	 */
@@ -269,8 +270,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 			List<MediaType> selectedMediaTypes = new ArrayList<>(compatibleMediaTypes);
 			MediaType.sortBySpecificityAndQuality(selectedMediaTypes);
 			return selectedMediaTypes;
-		}
-		catch (HttpMediaTypeNotAcceptableException ex) {
+		} catch (HttpMediaTypeNotAcceptableException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug(ex.getMessage());
 			}
@@ -284,8 +284,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 				request.getAttribute(HandlerMapping.PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE);
 		if (!CollectionUtils.isEmpty(mediaTypes)) {
 			return new ArrayList<>(mediaTypes);
-		}
-		else {
+		} else {
 			return Collections.singletonList(MediaType.ALL);
 		}
 	}

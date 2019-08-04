@@ -93,8 +93,7 @@ class KeyGeneratorAdapter implements KeyGenerator {
 
 		if (this.cacheKeyGenerator != null) {
 			return this.cacheKeyGenerator.generateCacheKey(invocationContext);
-		}
-		else {
+		} else {
 			Assert.state(this.keyGenerator != null, "No key generator");
 			return doGenerate(this.keyGenerator, invocationContext);
 		}
@@ -108,8 +107,7 @@ class KeyGeneratorAdapter implements KeyGenerator {
 			if (param.getParameterPosition() == context.getAllParameters().length - 1 &&
 					context.getMethod().isVarArgs()) {
 				parameters.addAll((List<Object>) CollectionUtils.arrayToList(value));
-			}
-			else {
+			} else {
 				parameters.add(value);
 			}
 		}

@@ -36,10 +36,10 @@ import org.springframework.core.annotation.AliasFor;
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @since 3.0
  * @see RequestMapping
  * @see RequestParam
  * @see CookieValue
+ * @since 3.0
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -54,6 +54,7 @@ public @interface RequestHeader {
 
 	/**
 	 * The name of the request header to bind to.
+	 *
 	 * @since 4.2
 	 */
 	@AliasFor("value")

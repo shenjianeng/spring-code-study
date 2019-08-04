@@ -150,7 +150,7 @@ public class ObjectToStringHttpMessageConverterTests {
 		assertEquals("ISO-8859-1", this.servletResponse.getCharacterEncoding());
 		assertTrue(this.servletResponse.getContentType().startsWith(MediaType.TEXT_PLAIN_VALUE));
 		assertEquals(2, this.servletResponse.getContentLength());
-		assertArrayEquals(new byte[] { '-', '8' }, this.servletResponse.getContentAsByteArray());
+		assertArrayEquals(new byte[]{'-', '8'}, this.servletResponse.getContentAsByteArray());
 	}
 
 	@Test
@@ -162,7 +162,7 @@ public class ObjectToStringHttpMessageConverterTests {
 		assertTrue(this.servletResponse.getContentType().startsWith(MediaType.TEXT_PLAIN_VALUE));
 		assertEquals(8, this.servletResponse.getContentLength());
 		// First two bytes: byte order mark
-		assertArrayEquals(new byte[] { -2, -1, 0, '9', 0, '5', 0, '8' }, this.servletResponse.getContentAsByteArray());
+		assertArrayEquals(new byte[]{-2, -1, 0, '9', 0, '5', 0, '8'}, this.servletResponse.getContentAsByteArray());
 	}
 
 	@Test(expected = IllegalArgumentException.class)

@@ -39,8 +39,8 @@ interface BootstrapWithTestInterface {
 		@Override
 		protected List<ContextCustomizerFactory> getContextCustomizerFactories() {
 			return singletonList(
-				(ContextCustomizerFactory) (testClass, configAttributes) -> (ContextCustomizer) (context,
-						mergedConfig) -> context.getBeanFactory().registerSingleton("foo", "foo"));
+					(ContextCustomizerFactory) (testClass, configAttributes) -> (ContextCustomizer) (context,
+																									 mergedConfig) -> context.getBeanFactory().registerSingleton("foo", "foo"));
 		}
 	}
 

@@ -27,9 +27,9 @@ import org.springframework.format.Printer;
  * using a {@link java.time.format.DateTimeFormatter}) (the contextual one, if available).
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see DateTimeContextHolder#getFormatter
  * @see java.time.format.DateTimeFormatter#format(java.time.temporal.TemporalAccessor)
+ * @since 4.0
  */
 public final class TemporalAccessorPrinter implements Printer<TemporalAccessor> {
 
@@ -38,6 +38,7 @@ public final class TemporalAccessorPrinter implements Printer<TemporalAccessor> 
 
 	/**
 	 * Create a new TemporalAccessorPrinter.
+	 *
 	 * @param formatter the base DateTimeFormatter instance
 	 */
 	public TemporalAccessorPrinter(DateTimeFormatter formatter) {

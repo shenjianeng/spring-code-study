@@ -37,6 +37,7 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * Create a new HttpMediaTypeNotSupportedException.
+	 *
 	 * @param message the exception message
 	 */
 	public HttpMediaTypeNotSupportedException(String message) {
@@ -46,7 +47,8 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * Create a new HttpMediaTypeNotSupportedException.
-	 * @param contentType the unsupported content type
+	 *
+	 * @param contentType         the unsupported content type
 	 * @param supportedMediaTypes the list of supported media types
 	 */
 	public HttpMediaTypeNotSupportedException(@Nullable MediaType contentType, List<MediaType> supportedMediaTypes) {
@@ -56,12 +58,13 @@ public class HttpMediaTypeNotSupportedException extends HttpMediaTypeException {
 
 	/**
 	 * Create a new HttpMediaTypeNotSupportedException.
-	 * @param contentType the unsupported content type
+	 *
+	 * @param contentType         the unsupported content type
 	 * @param supportedMediaTypes the list of supported media types
-	 * @param msg the detail message
+	 * @param msg                 the detail message
 	 */
 	public HttpMediaTypeNotSupportedException(@Nullable MediaType contentType,
-			List<MediaType> supportedMediaTypes, String msg) {
+											  List<MediaType> supportedMediaTypes, String msg) {
 
 		super(msg, supportedMediaTypes);
 		this.contentType = contentType;

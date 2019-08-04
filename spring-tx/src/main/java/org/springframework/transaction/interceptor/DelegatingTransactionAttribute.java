@@ -39,6 +39,7 @@ public abstract class DelegatingTransactionAttribute extends DelegatingTransacti
 
 	/**
 	 * Create a DelegatingTransactionAttribute for the given target attribute.
+	 *
 	 * @param targetAttribute the target TransactionAttribute to delegate to
 	 */
 	public DelegatingTransactionAttribute(TransactionAttribute targetAttribute) {

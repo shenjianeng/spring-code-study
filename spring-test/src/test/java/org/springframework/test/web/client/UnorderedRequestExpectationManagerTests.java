@@ -49,8 +49,7 @@ public class UnorderedRequestExpectationManagerTests {
 	public void unexpectedRequest() throws Exception {
 		try {
 			this.manager.validateRequest(createRequest(GET, "/foo"));
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			assertEquals("No further requests expected: HTTP GET /foo\n" +
 					"0 request(s) executed.\n", error.getMessage());
 		}
@@ -122,9 +121,8 @@ public class UnorderedRequestExpectationManagerTests {
 	@SuppressWarnings("deprecation")
 	private ClientHttpRequest createRequest(HttpMethod method, String url) {
 		try {
-			return new org.springframework.mock.http.client.MockAsyncClientHttpRequest(method,  new URI(url));
-		}
-		catch (URISyntaxException ex) {
+			return new org.springframework.mock.http.client.MockAsyncClientHttpRequest(method, new URI(url));
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

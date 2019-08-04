@@ -128,7 +128,9 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 	 */
 	protected abstract static class AbstractLinkParser implements LinkParser {
 
-		/** Return the keyword to use to search for links, e.g. "@import", "url(" */
+		/**
+		 * Return the keyword to use to search for links, e.g. "@import", "url("
+		 */
 		protected abstract String getKeyword();
 
 		@Override
@@ -145,11 +147,9 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 				}
 				if (content.charAt(position) == '\'') {
 					position = extractLink(position, "'", content, result);
-				}
-				else if (content.charAt(position) == '"') {
+				} else if (content.charAt(position) == '"') {
 					position = extractLink(position, "\"", content, result);
-				}
-				else {
+				} else {
 					position = extractLink(position, content, result);
 
 				}
@@ -182,8 +182,7 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 		protected int extractLink(int index, String content, SortedSet<ContentChunkInfo> linksToAdd) {
 			if (content.substring(index, index + 4).equals("url(")) {
 				// Ignore, UrlLinkParser will take care
-			}
-			else if (logger.isTraceEnabled()) {
+			} else if (logger.isTraceEnabled()) {
 				logger.trace("Unexpected syntax for @import link at index " + index);
 			}
 			return index;

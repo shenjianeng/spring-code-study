@@ -119,7 +119,7 @@ public class MessageHeaderAccessor {
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-	private static final MimeType[] READABLE_MIME_TYPES = new MimeType[] {
+	private static final MimeType[] READABLE_MIME_TYPES = new MimeType[]{
 			MimeTypeUtils.APPLICATION_JSON, MimeTypeUtils.APPLICATION_XML,
 			new MimeType("text", "*"), new MimeType("application", "*+json"), new MimeType("application", "*+xml")
 	};
@@ -146,6 +146,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * A constructor accepting the headers of an existing message to copy.
+	 *
 	 * @param message a message to copy the headers from, or {@code null} if none
 	 */
 	public MessageHeaderAccessor(@Nullable Message<?> message) {
@@ -155,6 +156,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Build a 'nested' accessor for the given message.
+	 *
 	 * @param message the message to build a new accessor for
 	 * @return the nested accessor (typically a specific subclass)
 	 */
@@ -178,6 +180,7 @@ public class MessageHeaderAccessor {
 	 * further changes. The intended use case for this mechanism is initialization
 	 * of a Message within a single thread.
 	 * <p>By default this is set to {@code false}.
+	 *
 	 * @since 4.1
 	 */
 	public void setLeaveMutable(boolean leaveMutable) {
@@ -191,6 +194,7 @@ public class MessageHeaderAccessor {
 	 * underlying message headers. However if {@link #setLeaveMutable(boolean)}
 	 * is used, this method is necessary to indicate explicitly when the
 	 * {@code MessageHeaders} instance should no longer be modified.
+	 *
 	 * @since 4.1
 	 */
 	public void setImmutable() {
@@ -199,6 +203,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Whether the underlying headers can still be modified.
+	 *
 	 * @since 4.1
 	 */
 	public boolean isMutable() {
@@ -207,6 +212,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Mark the underlying message headers as modified.
+	 *
 	 * @param modified typically {@code true}, or {@code false} to reset the flag
 	 * @since 4.1
 	 */
@@ -216,6 +222,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Check whether the underlying message headers have been marked as modified.
+	 *
 	 * @return {@code true} if the flag has been set, {@code false} otherwise
 	 */
 	public boolean isModified() {
@@ -226,6 +233,7 @@ public class MessageHeaderAccessor {
 	 * A package private mechanism to enables the automatic addition of the
 	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} header.
 	 * <p>By default, this property is set to {@code false}.
+	 *
 	 * @see IdTimestampMessageHeaderInitializer
 	 */
 	void setEnableTimestamp(boolean enableTimestamp) {
@@ -236,6 +244,7 @@ public class MessageHeaderAccessor {
 	 * A package-private mechanism to configure the IdGenerator strategy to use.
 	 * <p>By default this property is not set in which case the default IdGenerator
 	 * in {@link org.springframework.messaging.MessageHeaders} is used.
+	 *
 	 * @see IdTimestampMessageHeaderInitializer
 	 */
 	void setIdGenerator(IdGenerator idGenerator) {
@@ -253,6 +262,7 @@ public class MessageHeaderAccessor {
 	 * <p>This method always returns the same {@code MessageHeaders} instance if
 	 * invoked multiples times. To obtain a copy of the underlying headers, use
 	 * {@link #toMessageHeaders()} or {@link #toMap()} instead.
+	 *
 	 * @since 4.1
 	 */
 	public MessageHeaders getMessageHeaders() {
@@ -266,6 +276,7 @@ public class MessageHeaderAccessor {
 	 * Return a copy of the underlying header values as a {@link MessageHeaders} object.
 	 * <p>This method can be invoked many times, with modifications in between
 	 * where each new call returns a fresh copy of the current header values.
+	 *
 	 * @since 4.1
 	 */
 	public MessageHeaders toMessageHeaders() {
@@ -286,6 +297,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Retrieve the value for the header with the given name.
+	 *
 	 * @param headerName the name of the header
 	 * @return the associated value, or {@code null} if none found
 	 */
@@ -309,8 +321,7 @@ public class MessageHeaderAccessor {
 				this.modified = true;
 				this.headers.getRawHeaders().put(name, value);
 			}
-		}
-		else {
+		} else {
 			// Remove header if available
 			if (this.headers.containsKey(name)) {
 				this.modified = true;
@@ -358,11 +369,10 @@ public class MessageHeaderAccessor {
 	public void removeHeaders(String... headerPatterns) {
 		List<String> headersToRemove = new ArrayList<>();
 		for (String pattern : headerPatterns) {
-			if (StringUtils.hasLength(pattern)){
-				if (pattern.contains("*")){
+			if (StringUtils.hasLength(pattern)) {
+				if (pattern.contains("*")) {
 					headersToRemove.addAll(getMatchingHeaderNames(pattern, this.headers));
-				}
-				else {
+				} else {
 					headersToRemove.add(pattern);
 				}
 			}
@@ -488,6 +498,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Return a concise message for logging purposes.
+	 *
 	 * @param payload the payload that corresponds to the headers.
 	 * @return the message
 	 */
@@ -497,6 +508,7 @@ public class MessageHeaderAccessor {
 
 	/**
 	 * Return a more detailed message for logging purposes.
+	 *
 	 * @param payload the payload that corresponds to the headers.
 	 * @return the message
 	 */
@@ -508,21 +520,18 @@ public class MessageHeaderAccessor {
 		if (payload instanceof String) {
 			String payloadText = (String) payload;
 			return (payloadText.length() < 80) ?
-				" payload=" + payloadText :
-				" payload=" + payloadText.substring(0, 80) + "...(truncated)";
-		}
-		else if (payload instanceof byte[]) {
+					" payload=" + payloadText :
+					" payload=" + payloadText.substring(0, 80) + "...(truncated)";
+		} else if (payload instanceof byte[]) {
 			byte[] bytes = (byte[]) payload;
 			if (isReadableContentType()) {
 				return (bytes.length < 80) ?
 						" payload=" + new String(bytes, getCharset()) :
 						" payload=" + new String(Arrays.copyOf(bytes, 80), getCharset()) + "...(truncated)";
-			}
-			else {
+			} else {
 				return " payload=byte[" + bytes.length + "]";
 			}
-		}
-		else {
+		} else {
 			String payloadText = payload.toString();
 			return (payloadText.length() < 80) ?
 					" payload=" + payloadText :
@@ -533,17 +542,14 @@ public class MessageHeaderAccessor {
 	protected String getDetailedPayloadLogMessage(@Nullable Object payload) {
 		if (payload instanceof String) {
 			return " payload=" + payload;
-		}
-		else if (payload instanceof byte[]) {
+		} else if (payload instanceof byte[]) {
 			byte[] bytes = (byte[]) payload;
 			if (isReadableContentType()) {
 				return " payload=" + new String(bytes, getCharset());
-			}
-			else {
+			} else {
 				return " payload=byte[" + bytes.length + "]";
 			}
-		}
-		else {
+		} else {
 			return " payload=" + payload;
 		}
 	}
@@ -572,7 +578,8 @@ public class MessageHeaderAccessor {
 	 * its type does not match the required type.
 	 * <p>This is for cases where the existence of an accessor is strongly expected
 	 * (followed up with an assertion) or where an accessor will be created otherwise.
-	 * @param message the message to get an accessor for
+	 *
+	 * @param message      the message to get an accessor for
 	 * @param requiredType the required accessor type (or {@code null} for any)
 	 * @return an accessor instance of the specified type, or {@code null} if none
 	 * @since 4.1
@@ -586,8 +593,9 @@ public class MessageHeaderAccessor {
 	 * A variation of {@link #getAccessor(org.springframework.messaging.Message, Class)}
 	 * with a {@code MessageHeaders} instance instead of a {@code Message}.
 	 * <p>This is for cases when a full message may not have been created yet.
+	 *
 	 * @param messageHeaders the message headers to get an accessor for
-	 * @param requiredType the required accessor type (or {@code null} for any)
+	 * @param requiredType   the required accessor type (or {@code null} for any)
 	 * @return an accessor instance of the specified type, or {@code null} if none
 	 * @since 4.1
 	 */
@@ -599,7 +607,7 @@ public class MessageHeaderAccessor {
 		if (messageHeaders instanceof MutableMessageHeaders) {
 			MutableMessageHeaders mutableHeaders = (MutableMessageHeaders) messageHeaders;
 			MessageHeaderAccessor headerAccessor = mutableHeaders.getAccessor();
-			if (requiredType == null || requiredType.isInstance(headerAccessor))  {
+			if (requiredType == null || requiredType.isInstance(headerAccessor)) {
 				return (T) headerAccessor;
 			}
 		}
@@ -612,6 +620,7 @@ public class MessageHeaderAccessor {
 	 * wrapping the message with a {@code MessageHeaderAccessor} instance.
 	 * <p>This is for cases where a header needs to be updated in generic code
 	 * while preserving the accessor type for downstream processing.
+	 *
 	 * @return an accessor of the required type (never {@code null})
 	 * @since 4.1
 	 */

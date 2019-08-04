@@ -128,7 +128,7 @@ public enum SpelMessage {
 	PROBLEM_LOCATING_METHOD(Kind.ERROR, 1031,
 			"Problem locating method {0} on type {1}"),
 
-	SETVALUE_NOT_SUPPORTED(	Kind.ERROR, 1032,
+	SETVALUE_NOT_SUPPORTED(Kind.ERROR, 1032,
 			"setValue(ExpressionState, Object) not supported for ''{0}''"),
 
 	MULTIPLE_POSSIBLE_METHODS(Kind.ERROR, 1033,
@@ -151,7 +151,7 @@ public enum SpelMessage {
 
 	FUNCTION_MUST_BE_STATIC(Kind.ERROR, 1039,
 			"Only static methods can be called via function references. " +
-			"The method ''{0}'' referred to by name ''{1}'' is not static."),
+					"The method ''{0}'' referred to by name ''{1}'' is not static."),
 
 	NOT_A_REAL(Kind.ERROR, 1040,
 			"The value ''{0}'' cannot be parsed as a double"),
@@ -249,11 +249,15 @@ public enum SpelMessage {
 	MISSING_SELECTION_EXPRESSION(Kind.ERROR, 1071,
 			"A required selection expression has not been specified"),
 
-	/** @since 4.1 */
+	/**
+	 * @since 4.1
+	 */
 	EXCEPTION_RUNNING_COMPILED_EXPRESSION(Kind.ERROR, 1072,
 			"An exception occurred whilst evaluating a compiled expression"),
 
-	/** @since 4.3.17 */
+	/**
+	 * @since 4.3.17
+	 */
 	FLAWED_PATTERN(Kind.ERROR, 1073,
 			"Failed to efficiently evaluate pattern ''{0}'': consider redesigning it");
 
@@ -275,6 +279,7 @@ public enum SpelMessage {
 	/**
 	 * Produce a complete message including the prefix and with the inserts
 	 * applied to the message.
+	 *
 	 * @param inserts the inserts to put into the formatted message
 	 * @return a formatted message
 	 * @since 4.3.5
@@ -296,6 +301,6 @@ public enum SpelMessage {
 	/**
 	 * Message kinds.
 	 */
-	public enum Kind { INFO, WARNING, ERROR }
+	public enum Kind {INFO, WARNING, ERROR}
 
 }

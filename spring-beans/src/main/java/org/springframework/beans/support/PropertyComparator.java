@@ -32,11 +32,11 @@ import org.springframework.util.StringUtils;
  * PropertyComparator performs a comparison of two beans,
  * evaluating the specified bean property via a BeanWrapper.
  *
+ * @param <T> the type of objects that may be compared by this comparator
  * @author Juergen Hoeller
  * @author Jean-Pierre Pawlak
- * @since 19.05.2003
- * @param <T> the type of objects that may be compared by this comparator
  * @see org.springframework.beans.BeanWrapper
+ * @since 19.05.2003
  */
 public class PropertyComparator<T> implements Comparator<T> {
 
@@ -49,6 +49,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * Create a new PropertyComparator for the given SortDefinition.
+	 *
 	 * @see MutableSortDefinition
 	 */
 	public PropertyComparator(SortDefinition sortDefinition) {
@@ -57,9 +58,10 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * Create a PropertyComparator for the given settings.
-	 * @param property the property to compare
+	 *
+	 * @param property   the property to compare
 	 * @param ignoreCase whether upper and lower case in String values should be ignored
-	 * @param ascending whether to sort ascending (true) or descending (false)
+	 * @param ascending  whether to sort ascending (true) or descending (false)
 	 */
 	public PropertyComparator(String property, boolean ignoreCase, boolean ascending) {
 		this.sortDefinition = new MutableSortDefinition(property, ignoreCase, ascending);
@@ -89,12 +91,10 @@ public class PropertyComparator<T> implements Comparator<T> {
 		try {
 			if (v1 != null) {
 				result = (v2 != null ? ((Comparable<Object>) v1).compareTo(v2) : -1);
-			}
-			else {
+			} else {
 				result = (v2 != null ? 1 : 0);
 			}
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Could not sort objects [" + o1 + "] and [" + o2 + "]", ex);
 			}
@@ -106,6 +106,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 	/**
 	 * Get the SortDefinition's property value for the given object.
+	 *
 	 * @param obj the object to get the property value for
 	 * @return the property value
 	 */
@@ -117,8 +118,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 		try {
 			this.beanWrapper.setWrappedInstance(obj);
 			return this.beanWrapper.getPropertyValue(this.sortDefinition.getProperty());
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			logger.debug("PropertyComparator could not access property - treating as null for sorting", ex);
 			return null;
 		}
@@ -129,7 +129,8 @@ public class PropertyComparator<T> implements Comparator<T> {
 	 * Sort the given List according to the given sort definition.
 	 * <p>Note: Contained objects have to provide the given property
 	 * in the form of a bean property, i.e. a getXXX method.
-	 * @param source the input List
+	 *
+	 * @param source         the input List
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
 	 */
@@ -143,7 +144,8 @@ public class PropertyComparator<T> implements Comparator<T> {
 	 * Sort the given source according to the given sort definition.
 	 * <p>Note: Contained objects have to provide the given property
 	 * in the form of a bean property, i.e. a getXXX method.
-	 * @param source input source
+	 *
+	 * @param source         input source
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
 	 */

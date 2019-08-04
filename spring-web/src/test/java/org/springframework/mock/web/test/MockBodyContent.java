@@ -40,7 +40,8 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * Create a MockBodyContent for the given response.
-	 * @param content the body content to expose
+	 *
+	 * @param content  the body content to expose
 	 * @param response the servlet response to wrap
 	 */
 	public MockBodyContent(String content, HttpServletResponse response) {
@@ -49,7 +50,8 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * Create a MockBodyContent for the given response.
-	 * @param content the body content to expose
+	 *
+	 * @param content      the body content to expose
 	 * @param targetWriter the target Writer to wrap
 	 */
 	public MockBodyContent(String content, Writer targetWriter) {
@@ -58,8 +60,9 @@ public class MockBodyContent extends BodyContent {
 
 	/**
 	 * Create a MockBodyContent for the given response.
-	 * @param content the body content to expose
-	 * @param response the servlet response to wrap
+	 *
+	 * @param content      the body content to expose
+	 * @param response     the servlet response to wrap
 	 * @param targetWriter the target Writer to wrap
 	 */
 	public MockBodyContent(String content, @Nullable HttpServletResponse response, @Nullable Writer targetWriter) {
@@ -70,8 +73,7 @@ public class MockBodyContent extends BodyContent {
 	private static JspWriter adaptJspWriter(@Nullable Writer targetWriter, @Nullable HttpServletResponse response) {
 		if (targetWriter instanceof JspWriter) {
 			return (JspWriter) targetWriter;
-		}
-		else {
+		} else {
 			return new MockJspWriter(response, targetWriter);
 		}
 	}

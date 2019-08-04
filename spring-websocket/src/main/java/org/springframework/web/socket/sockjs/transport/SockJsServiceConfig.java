@@ -68,6 +68,7 @@ public interface SockJsServiceConfig {
 
 	/**
 	 * The codec to use for encoding and decoding SockJS messages.
+	 *
 	 * @throws IllegalStateException if no {@link SockJsMessageCodec} is available
 	 */
 	SockJsMessageCodec getMessageCodec();

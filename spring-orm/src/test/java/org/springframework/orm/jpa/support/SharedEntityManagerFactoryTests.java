@@ -61,16 +61,14 @@ public class SharedEntityManagerFactoryTests {
 		try {
 			emProxy.getTargetEntityManager();
 			fail("Should have thrown IllegalStateException outside of transaction");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 
 		TransactionSynchronizationManager.bindResource(mockEmf, new EntityManagerHolder(mockEm));
 		try {
 			assertSame(mockEm, emProxy.getTargetEntityManager());
-		}
-		finally {
+		} finally {
 			TransactionSynchronizationManager.unbindResource(mockEmf);
 		}
 

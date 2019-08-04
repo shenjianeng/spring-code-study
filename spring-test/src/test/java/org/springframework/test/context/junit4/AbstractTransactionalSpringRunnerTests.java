@@ -27,10 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
  * &#64;Transactional} annotation.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see ClassLevelTransactionalSpringRunnerTests
  * @see MethodLevelTransactionalSpringRunnerTests
  * @see Transactional
+ * @since 2.5
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration("transactionalTests-context.xml")

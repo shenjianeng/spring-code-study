@@ -54,8 +54,8 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * at the <strong>class level</strong>.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see MethodLevelTransactionalSpringRunnerTests
+ * @since 2.5
  */
 @Transactional
 public class ClassLevelTransactionalSpringRunnerTests extends AbstractTransactionalSpringRunnerTests {
@@ -71,7 +71,7 @@ public class ClassLevelTransactionalSpringRunnerTests extends AbstractTransactio
 	@AfterClass
 	public static void verifyFinalTestData() {
 		assertEquals("Verifying the final number of rows in the person table after all tests.", 4,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Before
@@ -79,7 +79,7 @@ public class ClassLevelTransactionalSpringRunnerTests extends AbstractTransactio
 		clearPersonTable(jdbcTemplate);
 		assertEquals("Adding bob", 1, addPerson(jdbcTemplate, BOB));
 		assertEquals("Verifying the initial number of rows in the person table.", 1,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class ClassLevelTransactionalSpringRunnerTests extends AbstractTransactio
 		assertEquals("Adding jane", 1, addPerson(jdbcTemplate, JANE));
 		assertEquals("Adding sue", 1, addPerson(jdbcTemplate, SUE));
 		assertEquals("Verifying the number of rows in the person table within a transaction.", 2,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class ClassLevelTransactionalSpringRunnerTests extends AbstractTransactio
 		assertEquals("Adding leia", 1, addPerson(jdbcTemplate, LEIA));
 		assertEquals("Adding yoda", 1, addPerson(jdbcTemplate, YODA));
 		assertEquals("Verifying the number of rows in the person table without a transaction.", 4,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 }

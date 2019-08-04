@@ -35,10 +35,10 @@ import org.springframework.lang.Nullable;
  * or through a {@link org.springframework.beans.factory.config.CustomScopeConfigurer} bean.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see org.springframework.context.support.SimpleThreadScope
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope
  * @see org.springframework.beans.factory.config.CustomScopeConfigurer
+ * @since 4.2
  */
 public class SimpleTransactionScope implements Scope {
 
@@ -65,8 +65,7 @@ public class SimpleTransactionScope implements Scope {
 		if (scopedObjects != null) {
 			scopedObjects.destructionCallbacks.remove(name);
 			return scopedObjects.scopedInstances.remove(name);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

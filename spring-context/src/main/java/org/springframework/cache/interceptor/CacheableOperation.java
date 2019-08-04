@@ -36,6 +36,7 @@ public class CacheableOperation extends CacheOperation {
 
 	/**
 	 * Create a new {@link CacheableOperation} instance from the given builder.
+	 *
 	 * @since 4.3
 	 */
 	public CacheableOperation(CacheableOperation.Builder b) {
@@ -57,6 +58,7 @@ public class CacheableOperation extends CacheOperation {
 
 	/**
 	 * A builder that can be used to create a {@link CacheableOperation}.
+	 *
 	 * @since 4.3
 	 */
 	public static class Builder extends CacheOperation.Builder {

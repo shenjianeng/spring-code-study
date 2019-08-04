@@ -37,8 +37,8 @@ import org.springframework.util.ClassUtils;
  * the SchedulerFactoryBean runs in a Spring ApplicationContext.
  *
  * @author Juergen Hoeller
- * @since 2.5.5
  * @see SchedulerFactoryBean#setApplicationContext
+ * @since 2.5.5
  */
 public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 
@@ -51,6 +51,7 @@ public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 	/**
 	 * Create a new ResourceLoaderClassLoadHelper for the default
 	 * ResourceLoader.
+	 *
 	 * @see SchedulerFactoryBean#getConfigTimeResourceLoader()
 	 */
 	public ResourceLoaderClassLoadHelper() {
@@ -58,6 +59,7 @@ public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 
 	/**
 	 * Create a new ResourceLoaderClassLoadHelper for the given ResourceLoader.
+	 *
 	 * @param resourceLoader the ResourceLoader to delegate to
 	 */
 	public ResourceLoaderClassLoadHelper(@Nullable ResourceLoader resourceLoader) {
@@ -94,15 +96,13 @@ public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 		if (resource.exists()) {
 			try {
 				return resource.getURL();
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				if (logger.isWarnEnabled()) {
 					logger.warn("Could not load " + resource);
 				}
 				return null;
 			}
-		}
-		else {
+		} else {
 			return getClassLoader().getResource(name);
 		}
 	}
@@ -115,15 +115,13 @@ public class ResourceLoaderClassLoadHelper implements ClassLoadHelper {
 		if (resource.exists()) {
 			try {
 				return resource.getInputStream();
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				if (logger.isWarnEnabled()) {
 					logger.warn("Could not load " + resource);
 				}
 				return null;
 			}
-		}
-		else {
+		} else {
 			return getClassLoader().getResourceAsStream(name);
 		}
 	}

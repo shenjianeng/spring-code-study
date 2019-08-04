@@ -127,8 +127,7 @@ public class BeanWrapperAutoGrowingTests {
 		try {
 			assertNotNull(wrapper.getPropertyValue("list[4]"));
 			fail("Should have thrown InvalidPropertyException");
-		}
-		catch (InvalidPropertyException ex) {
+		} catch (InvalidPropertyException ex) {
 			// expected
 			assertTrue(ex.getRootCause() instanceof IndexOutOfBoundsException);
 		}

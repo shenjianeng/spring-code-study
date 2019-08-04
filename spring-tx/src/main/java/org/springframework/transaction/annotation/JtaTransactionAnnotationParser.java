@@ -46,8 +46,7 @@ public class JtaTransactionAnnotationParser implements TransactionAnnotationPars
 				element, javax.transaction.Transactional.class);
 		if (attributes != null) {
 			return parseTransactionAnnotation(attributes);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

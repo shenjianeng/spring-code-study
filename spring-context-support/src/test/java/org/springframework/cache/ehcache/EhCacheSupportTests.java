@@ -50,8 +50,7 @@ public class EhCacheSupportTests {
 			assertTrue("Loaded CacheManager with no caches", cm.getCacheNames().length == 0);
 			Cache myCache1 = cm.getCache("myCache1");
 			assertTrue("No myCache1 defined", myCache1 == null);
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -73,11 +72,9 @@ public class EhCacheSupportTests {
 			cacheManagerFb2.setCacheManagerName("myCacheManager");
 			cacheManagerFb2.afterPropertiesSet();
 			fail("Should have thrown CacheException because of naming conflict");
-		}
-		catch (CacheException ex) {
+		} catch (CacheException ex) {
 			// expected
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -102,8 +99,7 @@ public class EhCacheSupportTests {
 			CacheManager cm2 = cacheManagerFb2.getObject();
 			assertSame(cm, cm2);
 			cacheManagerFb2.destroy();
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -119,8 +115,7 @@ public class EhCacheSupportTests {
 			Cache myCache1 = cm.getCache("myCache1");
 			assertFalse("myCache1 is not eternal", myCache1.getCacheConfiguration().isEternal());
 			assertTrue("myCache1.maxElements == 300", myCache1.getCacheConfiguration().getMaxEntriesLocalHeap() == 300);
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -160,10 +155,9 @@ public class EhCacheSupportTests {
 			assertSame(objectType, objectType2);
 			CacheConfiguration config = cache.getCacheConfiguration();
 			assertEquals("myCache1", cache.getName());
-			if (useCacheManagerFb){
+			if (useCacheManagerFb) {
 				assertEquals("myCache1.maxElements", 300, config.getMaxEntriesLocalHeap());
-			}
-			else {
+			} else {
 				assertEquals("myCache1.maxElements", 10000, config.getMaxEntriesLocalHeap());
 			}
 
@@ -202,12 +196,10 @@ public class EhCacheSupportTests {
 			assertTrue("default timeToLive is correct", config.getTimeToLiveSeconds() == 8);
 			assertTrue("default timeToIdle is correct", config.getTimeToIdleSeconds() == 7);
 			assertTrue("overridden diskExpiryThreadIntervalSeconds is correct", config.getDiskExpiryThreadIntervalSeconds() == 10);
-		}
-		finally {
+		} finally {
 			if (cacheManagerFbInitialized) {
 				cacheManagerFb.destroy();
-			}
-			else {
+			} else {
 				CacheManager.getInstance().shutdown();
 			}
 		}
@@ -227,8 +219,7 @@ public class EhCacheSupportTests {
 			cacheFb.afterPropertiesSet();
 			Ehcache myCache1 = cm.getEhcache("myCache1");
 			assertTrue(myCache1 instanceof BlockingCache);
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -248,8 +239,7 @@ public class EhCacheSupportTests {
 			Ehcache myCache1 = cm.getEhcache("myCache1");
 			assertTrue(myCache1 instanceof SelfPopulatingCache);
 			assertEquals("myKey1", myCache1.get("myKey1").getObjectValue());
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}
@@ -268,6 +258,7 @@ public class EhCacheSupportTests {
 				public Object createEntry(Object key) {
 					return key;
 				}
+
 				@Override
 				public void updateEntryValue(Object key, Object value) {
 				}
@@ -277,8 +268,7 @@ public class EhCacheSupportTests {
 			Ehcache myCache1 = cm.getEhcache("myCache1");
 			assertTrue(myCache1 instanceof UpdatingSelfPopulatingCache);
 			assertEquals("myKey1", myCache1.get("myKey1").getObjectValue());
-		}
-		finally {
+		} finally {
 			cacheManagerFb.destroy();
 		}
 	}

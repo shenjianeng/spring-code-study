@@ -24,10 +24,10 @@ import java.sql.SQLException;
  *
  * @author Keith Donald
  * @author Sam Brannen
- * @since 3.0
  * @see ResourceDatabasePopulator
  * @see DatabasePopulatorUtils
  * @see DataSourceInitializer
+ * @since 3.0
  */
 @FunctionalInterface
 public interface DatabasePopulator {
@@ -40,10 +40,11 @@ public interface DatabasePopulator {
 	 * specific {@link ScriptException} instead. For example, Spring's
 	 * {@link ResourceDatabasePopulator} and {@link DatabasePopulatorUtils} wrap
 	 * all {@code SQLExceptions} in {@code ScriptExceptions}.
+	 *
 	 * @param connection the JDBC connection to use to populate the db; already
-	 * configured and ready to use; never {@code null}
-	 * @throws SQLException if an unrecoverable data access exception occurs
-	 * during database population
+	 *                   configured and ready to use; never {@code null}
+	 * @throws SQLException    if an unrecoverable data access exception occurs
+	 *                         during database population
 	 * @throws ScriptException in all other error cases
 	 * @see DatabasePopulatorUtils#execute
 	 */

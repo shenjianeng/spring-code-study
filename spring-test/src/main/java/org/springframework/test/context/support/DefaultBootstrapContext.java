@@ -35,9 +35,10 @@ public class DefaultBootstrapContext implements BootstrapContext {
 
 	/**
 	 * Construct a new {@code DefaultBootstrapContext} from the supplied arguments.
-	 * @param testClass the test class for this bootstrap context; never {@code null}
+	 *
+	 * @param testClass                       the test class for this bootstrap context; never {@code null}
 	 * @param cacheAwareContextLoaderDelegate the context loader delegate to use for
-	 * transparent interaction with the {@code ContextCache}; never {@code null}
+	 *                                        transparent interaction with the {@code ContextCache}; never {@code null}
 	 */
 	public DefaultBootstrapContext(Class<?> testClass, CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
 		Assert.notNull(testClass, "Test class must not be null");
@@ -68,9 +69,9 @@ public class DefaultBootstrapContext implements BootstrapContext {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this)//
-		.append("testClass", this.testClass.getName())//
-		.append("cacheAwareContextLoaderDelegate", this.cacheAwareContextLoaderDelegate.getClass().getName())//
-		.toString();
+				.append("testClass", this.testClass.getName())//
+				.append("cacheAwareContextLoaderDelegate", this.cacheAwareContextLoaderDelegate.getClass().getName())//
+				.toString();
 	}
 
 }

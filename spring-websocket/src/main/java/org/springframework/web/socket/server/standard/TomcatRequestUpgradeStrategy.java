@@ -49,12 +49,12 @@ public class TomcatRequestUpgradeStrategy extends AbstractStandardUpgradeStrateg
 
 	@Override
 	public String[] getSupportedVersions() {
-		return new String[] {"13"};
+		return new String[]{"13"};
 	}
 
 	@Override
 	public void upgradeInternal(ServerHttpRequest request, ServerHttpResponse response,
-			@Nullable String selectedProtocol, List<Extension> selectedExtensions, Endpoint endpoint)
+								@Nullable String selectedProtocol, List<Extension> selectedExtensions, Endpoint endpoint)
 			throws HandshakeFailureException {
 
 		HttpServletRequest servletRequest = getHttpServletRequest(request);
@@ -62,7 +62,7 @@ public class TomcatRequestUpgradeStrategy extends AbstractStandardUpgradeStrateg
 
 		StringBuffer requestUrl = servletRequest.getRequestURL();
 		String path = servletRequest.getRequestURI();  // shouldn't matter
-		Map<String, String> pathParams = Collections.<String, String> emptyMap();
+		Map<String, String> pathParams = Collections.<String, String>emptyMap();
 
 		ServerEndpointRegistration endpointConfig = new ServerEndpointRegistration(path, endpoint);
 		endpointConfig.setSubprotocols(Collections.singletonList(selectedProtocol));
@@ -70,12 +70,10 @@ public class TomcatRequestUpgradeStrategy extends AbstractStandardUpgradeStrateg
 
 		try {
 			getContainer(servletRequest).doUpgrade(servletRequest, servletResponse, endpointConfig, pathParams);
-		}
-		catch (ServletException ex) {
+		} catch (ServletException ex) {
 			throw new HandshakeFailureException(
 					"Servlet request failed to upgrade to WebSocket: " + requestUrl, ex);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new HandshakeFailureException(
 					"Response update failed during upgrade to WebSocket: " + requestUrl, ex);
 		}

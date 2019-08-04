@@ -33,9 +33,9 @@ import org.springframework.web.util.UrlPathHelper;
  * and {@code urlDecode} properties.
  *
  * @author Juergen Hoeller
- * @since 1.2.6
  * @see #setAlwaysUseFullPath
  * @see #setUrlDecode
+ * @since 1.2.6
  */
 public abstract class AbstractUrlViewController extends AbstractController {
 
@@ -47,6 +47,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	 * context. Else, the path within the current servlet mapping is used
 	 * if applicable (i.e. in the case of a ".../*" servlet mapping in web.xml).
 	 * Default is "false".
+	 *
 	 * @see org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath
 	 */
 	public void setAlwaysUseFullPath(boolean alwaysUseFullPath) {
@@ -59,6 +60,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	 * in contrast to the servlet path.
 	 * <p>Uses either the request encoding or the default encoding according
 	 * to the Servlet spec (ISO-8859-1).
+	 *
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode
 	 */
 	public void setUrlDecode(boolean urlDecode) {
@@ -67,6 +69,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 
 	/**
 	 * Set if ";" (semicolon) content should be stripped from the request URI.
+	 *
 	 * @see org.springframework.web.util.UrlPathHelper#setRemoveSemicolonContent(boolean)
 	 */
 	public void setRemoveSemicolonContent(boolean removeSemicolonContent) {
@@ -78,6 +81,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
 	 * or to share common UrlPathHelper settings across multiple MethodNameResolvers
 	 * and HandlerMappings.
+	 *
 	 * @see org.springframework.web.servlet.handler.AbstractUrlHandlerMapping#setUrlPathHelper
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
@@ -110,6 +114,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	/**
 	 * Return the name of the view to render for this request, based on the
 	 * given lookup path. Called by {@link #handleRequestInternal}.
+	 *
 	 * @param request current HTTP request
 	 * @return a view name for this request (never {@code null})
 	 * @see #handleRequestInternal

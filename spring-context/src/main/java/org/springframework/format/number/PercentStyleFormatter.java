@@ -29,8 +29,8 @@ import java.util.Locale;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 4.2
  * @see #setLenient
+ * @since 4.2
  */
 public class PercentStyleFormatter extends AbstractNumberFormatter {
 

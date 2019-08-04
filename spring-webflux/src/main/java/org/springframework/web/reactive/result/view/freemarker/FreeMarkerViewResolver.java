@@ -39,6 +39,7 @@ public class FreeMarkerViewResolver extends UrlBasedViewResolver {
 
 	/**
 	 * Convenience constructor with a prefix and suffix.
+	 *
 	 * @param suffix the suffix to prepend view names with
 	 * @param prefix the prefix to prepend view names with
 	 */

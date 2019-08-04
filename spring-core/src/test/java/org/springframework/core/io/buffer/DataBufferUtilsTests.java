@@ -164,7 +164,7 @@ public class DataBufferUtilsTests extends AbstractDataBufferAllocatingTestCase {
 			completionHandler.failed(new IOException(), dataBuffer);
 			return null;
 		})
-		.when(channel).read(any(), anyLong(), any(), any());
+				.when(channel).read(any(), anyLong(), any(), any());
 
 		Flux<DataBuffer> result =
 				DataBufferUtils.readAsynchronousFileChannel(() -> channel, this.bufferFactory, 3);
@@ -244,7 +244,7 @@ public class DataBufferUtilsTests extends AbstractDataBufferAllocatingTestCase {
 
 	@Test
 	public void readByteArrayResourcePositionAndTakeUntil() throws Exception {
-		Resource resource = new ByteArrayResource("foobarbazqux" .getBytes());
+		Resource resource = new ByteArrayResource("foobarbazqux".getBytes());
 		Flux<DataBuffer> flux = DataBufferUtils.read(resource, 3, this.bufferFactory, 3);
 
 		flux = DataBufferUtils.takeUntilByteCount(flux, 5);
@@ -495,11 +495,9 @@ public class DataBufferUtilsTests extends AbstractDataBufferAllocatingTestCase {
 
 								assertEquals(expected, result);
 
-							}
-							catch (IOException e) {
+							} catch (IOException e) {
 								fail(e.getMessage());
-							}
-							finally {
+							} finally {
 								DataBufferUtils.closeChannel(channel);
 							}
 						});
@@ -530,11 +528,9 @@ public class DataBufferUtilsTests extends AbstractDataBufferAllocatingTestCase {
 								assertEquals(expected, result);
 								latch.countDown();
 
-							}
-							catch (IOException e) {
+							} catch (IOException e) {
 								fail(e.getMessage());
-							}
-							finally {
+							} finally {
 								DataBufferUtils.closeChannel(channel);
 							}
 						});

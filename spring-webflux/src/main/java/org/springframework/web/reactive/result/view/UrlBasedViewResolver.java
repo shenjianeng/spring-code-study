@@ -94,8 +94,9 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * Set the view class to instantiate through {@link #createView(String)}.
+	 *
 	 * @param viewClass a class that is assignable to the required view class
-	 * which by default is AbstractUrlBasedView
+	 *                  which by default is AbstractUrlBasedView
 	 */
 	public void setViewClass(@Nullable Class<?> viewClass) {
 		if (viewClass != null && !requiredViewClass().isAssignableFrom(viewClass)) {
@@ -117,6 +118,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	/**
 	 * Return the required type of view for this resolver.
 	 * This implementation returns {@link AbstractUrlBasedView}.
+	 *
 	 * @see AbstractUrlBasedView
 	 */
 	protected Class<?> requiredViewClass() {
@@ -155,6 +157,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	 * Set the view names (or name patterns) that can be handled by this
 	 * {@link ViewResolver}. View names can contain simple wildcards such that
 	 * 'my*', '*Report' and '*Repo*' will all match the view name 'myReport'.
+	 *
 	 * @see #canHandle
 	 */
 	public void setViewNames(@Nullable String... viewNames) {
@@ -180,6 +183,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * Set the name of the {@link RequestContext} attribute for all views.
+	 *
 	 * @param requestContextAttribute name of the RequestContext attribute
 	 * @see AbstractView#setRequestContextAttribute
 	 */
@@ -199,6 +203,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	 * Accept the containing {@code ApplicationContext}, if any.
 	 * <p>To be used for the initialization of newly created {@link View} instances,
 	 * applying lifecycle callbacks and providing access to the containing environment.
+	 *
 	 * @see #setViewClass
 	 * @see #createView
 	 * @see #applyLifecycleMethods
@@ -210,6 +215,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 
 	/**
 	 * Return the containing {@code ApplicationContext}, if any.
+	 *
 	 * @see #setApplicationContext
 	 */
 	@Nullable
@@ -236,16 +242,14 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 		if (viewName.startsWith(REDIRECT_URL_PREFIX)) {
 			String redirectUrl = viewName.substring(REDIRECT_URL_PREFIX.length());
 			urlBasedView = this.redirectViewProvider.apply(redirectUrl);
-		}
-		else {
+		} else {
 			urlBasedView = createView(viewName);
 		}
 
 		View view = applyLifecycleMethods(viewName, urlBasedView);
 		try {
 			return (urlBasedView.checkResourceExists(locale) ? Mono.just(view) : Mono.empty());
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			return Mono.error(ex);
 		}
 	}
@@ -254,8 +258,9 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	 * Indicates whether or not this {@link ViewResolver} can handle the supplied
 	 * view name. If not, an empty result is returned. The default implementation
 	 * checks against the configured {@link #setViewNames view names}.
+	 *
 	 * @param viewName the name of the view to retrieve
-	 * @param locale the Locale to retrieve the view for
+	 * @param locale   the Locale to retrieve the view for
 	 * @return whether this resolver applies to the specified view
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)
 	 */
@@ -270,6 +275,7 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	 * <p>Spring lifecycle methods as defined by the bean container do not have to
 	 * be called here: They will be automatically applied afterwards, provided
 	 * that an {@link #setApplicationContext ApplicationContext} is available.
+	 *
 	 * @param viewName the name of the view to build
 	 * @return the View instance
 	 * @see #getViewClass()
@@ -291,9 +297,10 @@ public class UrlBasedViewResolver extends ViewResolverSupport
 	/**
 	 * Apply the containing {@link ApplicationContext}'s lifecycle methods
 	 * to the given {@link View} instance, if such a context is available.
+	 *
 	 * @param viewName the name of the view
-	 * @param view the freshly created View instance, pre-configured with
-	 * {@link AbstractUrlBasedView}'s properties
+	 * @param view     the freshly created View instance, pre-configured with
+	 *                 {@link AbstractUrlBasedView}'s properties
 	 * @return the {@link View} instance to use (either the original one
 	 * or a decorated variant)
 	 * @see #getApplicationContext()

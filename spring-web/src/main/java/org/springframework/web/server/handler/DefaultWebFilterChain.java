@@ -58,6 +58,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 
 	/**
 	 * Public constructor with the list of filters and the target handler to use.
+	 *
 	 * @param handler the target handler
 	 * @param filters the filters ahead of the handler
 	 * @since 5.1
@@ -84,7 +85,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 	 * Private constructor to represent one link in the chain.
 	 */
 	private DefaultWebFilterChain(List<WebFilter> allFilters, WebHandler handler,
-			@Nullable WebFilter currentFilter, @Nullable DefaultWebFilterChain next) {
+								  @Nullable WebFilter currentFilter, @Nullable DefaultWebFilterChain next) {
 
 		this.allFilters = allFilters;
 		this.currentFilter = currentFilter;
@@ -94,6 +95,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 
 	/**
 	 * Public constructor with the list of filters and the target handler to use.
+	 *
 	 * @param handler the target handler
 	 * @param filters the filters ahead of the handler
 	 * @deprecated as of 5.1 this constructor is deprecated in favor of

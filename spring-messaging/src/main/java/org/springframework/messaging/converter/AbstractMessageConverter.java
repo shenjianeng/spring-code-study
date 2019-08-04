@@ -59,6 +59,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * Construct an {@code AbstractMessageConverter} supporting a single MIME type.
+	 *
 	 * @param supportedMimeType the supported MIME type
 	 */
 	protected AbstractMessageConverter(MimeType supportedMimeType) {
@@ -68,6 +69,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * Construct an {@code AbstractMessageConverter} supporting multiple MIME types.
+	 *
 	 * @param supportedMimeTypes the supported MIME types
 	 */
 	protected AbstractMessageConverter(Collection<MimeType> supportedMimeTypes) {
@@ -135,6 +137,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	 * Configure the preferred serialization class to use (byte[] or String) when
 	 * converting an Object payload to a {@link Message}.
 	 * <p>The default value is byte[].
+	 *
 	 * @param payloadClass either byte[] or String
 	 */
 	public void setSerializedPayloadClass(Class<?> payloadClass) {
@@ -157,6 +160,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	 * without a content type header.
 	 * <p>By default, this returns the first element of the {@link #getSupportedMimeTypes()
 	 * supportedMimeTypes}, if any. Can be overridden in sub-classes.
+	 *
 	 * @param payload the payload being converted to message
 	 * @return the content type, or {@code null} if not known
 	 */
@@ -252,6 +256,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * Whether the given class is supported by this converter.
+	 *
 	 * @param clazz the class to test for support
 	 * @return {@code true} if supported; {@code false} otherwise
 	 */
@@ -259,10 +264,11 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * Convert the message payload from serialized form to an Object.
-	 * @param message the input message
-	 * @param targetClass the target class for the conversion
+	 *
+	 * @param message        the input message
+	 * @param targetClass    the target class for the conversion
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
+	 *                       e.g. the associated {@code MethodParameter} (may be {@code null}}
 	 * @return the result of the conversion, or {@code null} if the converter cannot
 	 * perform the conversion
 	 * @since 4.2
@@ -276,10 +282,11 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 	/**
 	 * Convert the payload object to serialized form.
-	 * @param payload the Object to convert
-	 * @param headers optional headers for the message (may be {@code null})
+	 *
+	 * @param payload        the Object to convert
+	 * @param headers        optional headers for the message (may be {@code null})
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}
+	 *                       e.g. the associated {@code MethodParameter} (may be {@code null}}
 	 * @return the resulting payload for the message, or {@code null} if the converter
 	 * cannot perform the conversion
 	 * @since 4.2

@@ -34,9 +34,9 @@ import org.springframework.util.Assert;
  * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
  *
  * @author Juergen Hoeller
- * @since 2.5.6
  * @see #setScheduler
  * @see #setSchedulerName
+ * @since 2.5.6
  */
 public class SchedulerAccessorBean extends SchedulerAccessor implements BeanFactoryAware, InitializingBean {
 
@@ -119,8 +119,7 @@ public class SchedulerAccessorBean extends SchedulerAccessor implements BeanFact
 	protected Scheduler findDefaultScheduler() {
 		if (this.beanFactory != null) {
 			return this.beanFactory.getBean(Scheduler.class);
-		}
-		else {
+		} else {
 			throw new IllegalStateException(
 					"No Scheduler specified, and cannot find a default Scheduler without a BeanFactory");
 		}

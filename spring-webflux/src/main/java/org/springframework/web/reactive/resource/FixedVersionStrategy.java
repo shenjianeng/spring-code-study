@@ -30,8 +30,8 @@ import org.springframework.core.io.Resource;
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @since 5.0
  * @see VersionResourceResolver
+ * @since 5.0
  */
 public class FixedVersionStrategy extends AbstractPrefixVersionStrategy {
 
@@ -40,6 +40,7 @@ public class FixedVersionStrategy extends AbstractPrefixVersionStrategy {
 
 	/**
 	 * Create a new FixedVersionStrategy with the given version string.
+	 *
 	 * @param version the fixed version string to use
 	 */
 	public FixedVersionStrategy(String version) {

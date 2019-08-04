@@ -49,7 +49,7 @@ public class ResponseBodyTests {
 	@Controller
 	private class PersonController {
 
-		@RequestMapping(value="/person/{name}")
+		@RequestMapping(value = "/person/{name}")
 		@ResponseBody
 		public Person get(@PathVariable String name) {
 			return new Person(name);

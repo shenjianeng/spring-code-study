@@ -64,14 +64,11 @@ public class DefaultContentTypeResolver implements ContentTypeResolver {
 		Object value = headers.get(MessageHeaders.CONTENT_TYPE);
 		if (value == null) {
 			return null;
-		}
-		else if (value instanceof MimeType) {
+		} else if (value instanceof MimeType) {
 			return (MimeType) value;
-		}
-		else if (value instanceof String) {
+		} else if (value instanceof String) {
 			return MimeType.valueOf((String) value);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException(
 					"Unknown type for contentType header value: " + value.getClass());
 		}

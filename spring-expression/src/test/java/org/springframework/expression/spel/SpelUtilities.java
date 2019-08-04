@@ -30,8 +30,9 @@ public class SpelUtilities {
 
 	/**
 	 * Output an indented representation of the expression syntax tree to the specified output stream.
+	 *
 	 * @param printStream the output stream to print into
-	 * @param expression the expression to be displayed
+	 * @param expression  the expression to be displayed
 	 */
 	public static void printAbstractSyntaxTree(PrintStream printStream, Expression expression) {
 		printStream.println("===> Expression '" + expression.getExpressionString() + "' - AST start");

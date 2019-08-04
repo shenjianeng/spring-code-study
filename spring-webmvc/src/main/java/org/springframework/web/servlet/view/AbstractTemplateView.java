@@ -38,9 +38,9 @@ import org.springframework.web.servlet.support.RequestContext;
  *
  * @author Juergen Hoeller
  * @author Darren Davison
- * @since 1.0.2
  * @see AbstractTemplateViewResolver
  * @see org.springframework.web.servlet.view.freemarker.FreeMarkerView
+ * @since 1.0.2
  */
 public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 
@@ -104,6 +104,7 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 	 * <p>Currently needed for Spring's FreeMarker default macros.
 	 * Note that this is <i>not</i> required for templates that use HTML forms
 	 * <i>unless</i> you wish to take advantage of the Spring helper macros.
+	 *
 	 * @see #SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE
 	 */
 	public void setExposeSpringMacroHelpers(boolean exposeSpringMacroHelpers) {
@@ -117,11 +118,11 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 
 		if (this.exposeRequestAttributes) {
 			Map<String, Object> exposed = null;
-			for (Enumeration<String> en = request.getAttributeNames(); en.hasMoreElements();) {
+			for (Enumeration<String> en = request.getAttributeNames(); en.hasMoreElements(); ) {
 				String attribute = en.nextElement();
 				if (model.containsKey(attribute) && !this.allowRequestOverride) {
 					throw new ServletException("Cannot expose request attribute '" + attribute +
-						"' because of an existing model object of the same name");
+							"' because of an existing model object of the same name");
 				}
 				Object attributeValue = request.getAttribute(attribute);
 				if (logger.isDebugEnabled()) {
@@ -139,11 +140,11 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
 				Map<String, Object> exposed = null;
-				for (Enumeration<String> en = session.getAttributeNames(); en.hasMoreElements();) {
+				for (Enumeration<String> en = session.getAttributeNames(); en.hasMoreElements(); ) {
 					String attribute = en.nextElement();
 					if (model.containsKey(attribute) && !this.allowSessionOverride) {
 						throw new ServletException("Cannot expose session attribute '" + attribute +
-							"' because of an existing model object of the same name");
+								"' because of an existing model object of the same name");
 					}
 					Object attributeValue = session.getAttribute(attribute);
 					if (logger.isDebugEnabled()) {
@@ -162,7 +163,7 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 			if (model.containsKey(SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE)) {
 				throw new ServletException(
 						"Cannot expose bind macro helper '" + SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE +
-						"' because of an existing model object of the same name");
+								"' because of an existing model object of the same name");
 			}
 			// Expose RequestContext instance for Spring macros.
 			model.put(SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE,
@@ -184,10 +185,11 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 	 * <p>Only applies the view's contentType if no content type has been
 	 * set on the response before. This allows handlers to override the
 	 * default content type beforehand.
+	 *
 	 * @param response current HTTP response
 	 * @see #setContentType
 	 */
-	protected void applyContentType(HttpServletResponse response)	{
+	protected void applyContentType(HttpServletResponse response) {
 		if (response.getContentType() == null) {
 			response.setContentType(getContentType());
 		}
@@ -195,9 +197,10 @@ public abstract class AbstractTemplateView extends AbstractUrlBasedView {
 
 	/**
 	 * Subclasses must implement this method to actually render the view.
-	 * @param model combined output Map, with request attributes and
-	 * session attributes merged into it if required
-	 * @param request current HTTP request
+	 *
+	 * @param model    combined output Map, with request attributes and
+	 *                 session attributes merged into it if required
+	 * @param request  current HTTP request
 	 * @param response current HTTP response
 	 * @throws Exception if rendering failed
 	 */

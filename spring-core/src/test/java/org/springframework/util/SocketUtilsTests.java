@@ -87,8 +87,7 @@ public class SocketUtilsTests {
 			exception.expectMessage(endsWith("after 1 attempts"));
 			// will only look for the exact port
 			SocketUtils.findAvailableTcpPort(port, port);
-		}
-		finally {
+		} finally {
 			socket.close();
 		}
 	}
@@ -164,8 +163,7 @@ public class SocketUtilsTests {
 			exception.expectMessage(endsWith("after 1 attempts"));
 			// will only look for the exact port
 			SocketUtils.findAvailableUdpPort(port, port);
-		}
-		finally {
+		} finally {
 			socket.close();
 		}
 	}
@@ -232,6 +230,7 @@ public class SocketUtilsTests {
 		SortedSet<Integer> ports = SocketUtils.findAvailableUdpPorts(numRequested, minPort, maxPort);
 		assertAvailablePorts(ports, numRequested, minPort, maxPort);
 	}
+
 	private void assertPortInRange(int port, int minPort, int maxPort) {
 		assertTrue("port [" + port + "] >= " + minPort, port >= minPort);
 		assertTrue("port [" + port + "] <= " + maxPort, port <= maxPort);

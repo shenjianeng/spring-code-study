@@ -35,12 +35,12 @@ import org.springframework.util.MimeType;
  * before serialization for performance reason.
  *
  * @author Sebastien Deleuze
- * @since 5.0
  * @see Jackson2SmileDecoder
+ * @since 5.0
  */
 public class Jackson2SmileEncoder extends AbstractJackson2Encoder {
 
-	private static final MimeType[] DEFAULT_SMILE_MIME_TYPES = new MimeType[] {
+	private static final MimeType[] DEFAULT_SMILE_MIME_TYPES = new MimeType[]{
 			new MimeType("application", "x-jackson-smile", StandardCharsets.UTF_8),
 			new MimeType("application", "*+x-jackson-smile", StandardCharsets.UTF_8)};
 

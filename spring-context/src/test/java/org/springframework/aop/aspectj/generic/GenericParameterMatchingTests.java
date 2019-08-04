@@ -107,13 +107,16 @@ public class GenericParameterMatchingTests {
 		}
 
 		@Pointcut("execution(* org.springframework.aop.aspectj.generic.GenericParameterMatchingTests.GenericInterface.save(..))")
-		public void genericInterfaceGenericArgExecution() {}
+		public void genericInterfaceGenericArgExecution() {
+		}
 
 		@Pointcut("execution(* org.springframework.aop.aspectj.generic.GenericParameterMatchingTests.GenericInterface.saveAll(..))")
-		public void GenericInterfaceGenericCollectionArgExecution() {}
+		public void GenericInterfaceGenericCollectionArgExecution() {
+		}
 
 		@Pointcut("execution(* org.springframework.aop.aspectj.generic.GenericParameterMatchingTests.GenericInterface+.saveAll(..))")
-		public void genericInterfaceSubtypeGenericCollectionArgExecution() {}
+		public void genericInterfaceSubtypeGenericCollectionArgExecution() {
+		}
 
 		@Before("genericInterfaceGenericArgExecution()")
 		public void incrementGenericInterfaceGenericArgExecution() {

@@ -30,12 +30,12 @@ import org.springframework.lang.Nullable;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Rob Harrop
- * @since 2.0
  * @see RequestContextHolder#currentRequestAttributes()
  * @see RequestAttributes#SCOPE_REQUEST
  * @see RequestContextListener
  * @see org.springframework.web.filter.RequestContextFilter
  * @see org.springframework.web.servlet.DispatcherServlet
+ * @since 2.0
  */
 public class RequestScope extends AbstractRequestAttributesScope {
 

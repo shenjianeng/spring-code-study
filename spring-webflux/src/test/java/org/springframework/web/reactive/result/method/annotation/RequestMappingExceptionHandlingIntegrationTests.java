@@ -81,8 +81,7 @@ public class RequestMappingExceptionHandlingIntegrationTests extends AbstractReq
 		try {
 			performGet("/SPR-16051", new HttpHeaders(), String.class).getBody();
 			fail();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			String message = ex.getMessage();
 			assertNotNull(message);
 			assertTrue("Actual: " + message, message.startsWith("Error while extracting response"));
@@ -96,8 +95,7 @@ public class RequestMappingExceptionHandlingIntegrationTests extends AbstractReq
 			headers.add("Accept", "text/plain, application/problem+json");
 			performGet("/SPR-16318", headers, String.class).getBody();
 			fail();
-		}
-		catch (HttpStatusCodeException ex) {
+		} catch (HttpStatusCodeException ex) {
 			assertEquals(500, ex.getRawStatusCode());
 			assertEquals("application/problem+json;charset=UTF-8", ex.getResponseHeaders().getContentType().toString());
 			assertEquals("{\"reason\":\"error\"}", ex.getResponseBodyAsString());

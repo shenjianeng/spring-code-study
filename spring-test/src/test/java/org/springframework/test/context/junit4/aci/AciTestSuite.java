@@ -40,13 +40,13 @@ import org.springframework.test.context.junit4.aci.xml.MultipleInitializersXmlCo
 @RunWith(Suite.class)
 // Note: the following 'multi-line' layout is for enhanced code readability.
 @SuiteClasses({//
-	MultipleInitializersXmlConfigTests.class,//
-	SingleInitializerAnnotationConfigTests.class,//
-	MultipleInitializersAnnotationConfigTests.class,//
-	MergedInitializersAnnotationConfigTests.class,//
-	OverriddenInitializersAnnotationConfigTests.class,//
-	OrderedInitializersAnnotationConfigTests.class,//
-	InitializerWithoutConfigFilesOrClassesTests.class //
+		MultipleInitializersXmlConfigTests.class,//
+		SingleInitializerAnnotationConfigTests.class,//
+		MultipleInitializersAnnotationConfigTests.class,//
+		MergedInitializersAnnotationConfigTests.class,//
+		OverriddenInitializersAnnotationConfigTests.class,//
+		OrderedInitializersAnnotationConfigTests.class,//
+		InitializerWithoutConfigFilesOrClassesTests.class //
 })
 public class AciTestSuite {
 }

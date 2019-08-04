@@ -28,8 +28,8 @@ import javax.ejb.TransactionAttributeType;
  *
  * @author Sam Brannen
  * @author Xavier Detant
- * @since 4.0.1
  * @see RequiresNewEjbTxTestEntityDao
+ * @since 4.0.1
  */
 @Stateless
 @Local(TestEntityDao.class)

@@ -51,14 +51,15 @@ public class RestClientResponseException extends RestClientException {
 
 	/**
 	 * Construct a new instance of with the given response data.
-	 * @param statusCode the raw status code value
-	 * @param statusText the status text
+	 *
+	 * @param statusCode      the raw status code value
+	 * @param statusText      the status text
 	 * @param responseHeaders the response headers (may be {@code null})
-	 * @param responseBody the response body content (may be {@code null})
+	 * @param responseBody    the response body content (may be {@code null})
 	 * @param responseCharset the response body charset (may be {@code null})
 	 */
 	public RestClientResponseException(String message, int statusCode, String statusText,
-			@Nullable HttpHeaders responseHeaders, @Nullable byte[] responseBody, @Nullable Charset responseCharset) {
+									   @Nullable HttpHeaders responseHeaders, @Nullable byte[] responseBody, @Nullable Charset responseCharset) {
 
 		super(message);
 		this.rawStatusCode = statusCode;
@@ -107,8 +108,7 @@ public class RestClientResponseException extends RestClientException {
 		}
 		try {
 			return new String(this.responseBody, this.responseCharset);
-		}
-		catch (UnsupportedEncodingException ex) {
+		} catch (UnsupportedEncodingException ex) {
 			// should not occur
 			throw new IllegalStateException(ex);
 		}

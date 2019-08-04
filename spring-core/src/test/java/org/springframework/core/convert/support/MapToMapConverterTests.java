@@ -63,8 +63,7 @@ public class MapToMapConverterTests {
 		assertTrue(conversionService.canConvert(sourceType, targetType));
 		try {
 			conversionService.convert(map, sourceType, targetType);
-		}
-		catch (ConversionFailedException ex) {
+		} catch (ConversionFailedException ex) {
 			assertTrue(ex.getCause() instanceof ConverterNotFoundException);
 		}
 
@@ -98,8 +97,7 @@ public class MapToMapConverterTests {
 		assertTrue(conversionService.canConvert(sourceType, targetType));
 		try {
 			conversionService.convert(map, sourceType, targetType);
-		}
-		catch (ConversionFailedException ex) {
+		} catch (ConversionFailedException ex) {
 			assertTrue(ex.getCause() instanceof ConverterNotFoundException);
 		}
 
@@ -123,8 +121,7 @@ public class MapToMapConverterTests {
 		assertTrue(conversionService.canConvert(sourceType, targetType));
 		try {
 			conversionService.convert(map, sourceType, targetType);
-		}
-		catch (ConversionFailedException ex) {
+		} catch (ConversionFailedException ex) {
 			assertTrue(ex.getCause() instanceof ConverterNotFoundException);
 		}
 
@@ -150,8 +147,7 @@ public class MapToMapConverterTests {
 		try {
 			conversionService.convert(map, sourceType, targetType);
 			fail("Should have failed");
-		}
-		catch (ConverterNotFoundException ex) {
+		} catch (ConverterNotFoundException ex) {
 			// expected
 		}
 

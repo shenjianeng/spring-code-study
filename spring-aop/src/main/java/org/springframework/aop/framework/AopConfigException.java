@@ -29,6 +29,7 @@ public class AopConfigException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for AopConfigException.
+	 *
 	 * @param msg the detail message
 	 */
 	public AopConfigException(String msg) {
@@ -37,7 +38,8 @@ public class AopConfigException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for AopConfigException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public AopConfigException(String msg, Throwable cause) {

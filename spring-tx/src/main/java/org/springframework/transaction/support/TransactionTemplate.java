@@ -56,16 +56,18 @@ import org.springframework.util.Assert;
  * for convenient configuration in context definitions.
  *
  * @author Juergen Hoeller
- * @since 17.03.2003
  * @see #execute
  * @see #setTransactionManager
  * @see org.springframework.transaction.PlatformTransactionManager
+ * @since 17.03.2003
  */
 @SuppressWarnings("serial")
 public class TransactionTemplate extends DefaultTransactionDefinition
 		implements TransactionOperations, InitializingBean {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -76,6 +78,7 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 	 * Construct a new TransactionTemplate for bean usage.
 	 * <p>Note: The PlatformTransactionManager needs to be set before
 	 * any {@code execute} calls.
+	 *
 	 * @see #setTransactionManager
 	 */
 	public TransactionTemplate() {
@@ -83,6 +86,7 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 	/**
 	 * Construct a new TransactionTemplate using the given transaction manager.
+	 *
 	 * @param transactionManager the transaction management strategy to be used
 	 */
 	public TransactionTemplate(PlatformTransactionManager transactionManager) {
@@ -92,9 +96,10 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 	/**
 	 * Construct a new TransactionTemplate using the given transaction manager,
 	 * taking its default settings from the given transaction definition.
-	 * @param transactionManager the transaction management strategy to be used
+	 *
+	 * @param transactionManager    the transaction management strategy to be used
 	 * @param transactionDefinition the transaction definition to copy the
-	 * default settings from. Local properties can still be set to change values.
+	 *                              default settings from. Local properties can still be set to change values.
 	 */
 	public TransactionTemplate(PlatformTransactionManager transactionManager, TransactionDefinition transactionDefinition) {
 		super(transactionDefinition);
@@ -132,19 +137,16 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 		if (this.transactionManager instanceof CallbackPreferringPlatformTransactionManager) {
 			return ((CallbackPreferringPlatformTransactionManager) this.transactionManager).execute(this, action);
-		}
-		else {
+		} else {
 			TransactionStatus status = this.transactionManager.getTransaction(this);
 			T result;
 			try {
 				result = action.doInTransaction(status);
-			}
-			catch (RuntimeException | Error ex) {
+			} catch (RuntimeException | Error ex) {
 				// Transactional code threw application exception -> rollback
 				rollbackOnException(status, ex);
 				throw ex;
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// Transactional code threw unexpected exception -> rollback
 				rollbackOnException(status, ex);
 				throw new UndeclaredThrowableException(ex, "TransactionCallback threw undeclared checked exception");
@@ -156,8 +158,9 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 	/**
 	 * Perform a rollback, handling rollback exceptions properly.
+	 *
 	 * @param status object representing the transaction
-	 * @param ex the thrown application exception or error
+	 * @param ex     the thrown application exception or error
 	 * @throws TransactionException in case of a rollback error
 	 */
 	private void rollbackOnException(TransactionStatus status, Throwable ex) throws TransactionException {
@@ -166,13 +169,11 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 		logger.debug("Initiating transaction rollback on application exception", ex);
 		try {
 			this.transactionManager.rollback(status);
-		}
-		catch (TransactionSystemException ex2) {
+		} catch (TransactionSystemException ex2) {
 			logger.error("Application exception overridden by rollback exception", ex);
 			ex2.initApplicationException(ex);
 			throw ex2;
-		}
-		catch (RuntimeException | Error ex2) {
+		} catch (RuntimeException | Error ex2) {
 			logger.error("Application exception overridden by rollback exception", ex);
 			throw ex2;
 		}

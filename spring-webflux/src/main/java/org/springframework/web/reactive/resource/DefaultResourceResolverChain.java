@@ -69,7 +69,7 @@ class DefaultResourceResolverChain implements ResourceResolverChain {
 
 	@Override
 	public Mono<Resource> resolveResource(@Nullable ServerWebExchange exchange, String requestPath,
-			List<? extends Resource> locations) {
+										  List<? extends Resource> locations) {
 
 		return (this.resolver != null && this.nextChain != null ?
 				this.resolver.resolveResource(exchange, requestPath, locations, this.nextChain) :

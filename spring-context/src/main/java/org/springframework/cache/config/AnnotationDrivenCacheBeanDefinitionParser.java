@@ -85,8 +85,7 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 		if ("aspectj".equals(mode)) {
 			// mode="aspectj"
 			registerCacheAspect(element, parserContext);
-		}
-		else {
+		} else {
 			// mode="proxy"
 			registerCacheAdvisor(element, parserContext);
 		}

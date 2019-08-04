@@ -26,9 +26,9 @@ import org.springframework.lang.Nullable;
  * Expects the same syntax as Pattern's {@code compile} method.
  *
  * @author Juergen Hoeller
- * @since 2.0.1
  * @see java.util.regex.Pattern
  * @see java.util.regex.Pattern#compile(String)
+ * @since 2.0.1
  */
 public class PatternEditor extends PropertyEditorSupport {
 
@@ -44,6 +44,7 @@ public class PatternEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new PatternEditor with the given settings.
+	 *
 	 * @param flags the {@code java.util.regex.Pattern} flags to apply
 	 * @see java.util.regex.Pattern#compile(String, int)
 	 * @see java.util.regex.Pattern#CASE_INSENSITIVE

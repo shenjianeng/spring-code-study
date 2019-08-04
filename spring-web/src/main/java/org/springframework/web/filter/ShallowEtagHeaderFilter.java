@@ -71,8 +71,9 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	 * Set whether the ETag value written to the response should be weak, as per RFC 7232.
 	 * <p>Should be configured using an {@code <init-param>} for parameter name
 	 * "writeWeakETag" in the filter definition in {@code web.xml}.
-	 * @since 4.3
+	 *
 	 * @see <a href="https://tools.ietf.org/html/rfc7232#section-2.3">RFC 7232 section 2.3</a>
+	 * @since 4.3
 	 */
 	public void setWriteWeakETag(boolean writeWeakETag) {
 		this.writeWeakETag = writeWeakETag;
@@ -80,6 +81,7 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 
 	/**
 	 * Return whether the ETag value written to the response should be weak, as per RFC 7232.
+	 *
 	 * @since 4.3
 	 */
 	public boolean isWriteWeakETag() {
@@ -121,19 +123,16 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 
 		if (rawResponse.isCommitted()) {
 			responseWrapper.copyBodyToResponse();
-		}
-		else if (isEligibleForEtag(request, responseWrapper, statusCode, responseWrapper.getContentInputStream())) {
+		} else if (isEligibleForEtag(request, responseWrapper, statusCode, responseWrapper.getContentInputStream())) {
 			String responseETag = generateETagHeaderValue(responseWrapper.getContentInputStream(), this.writeWeakETag);
 			rawResponse.setHeader(HEADER_ETAG, responseETag);
 			String requestETag = request.getHeader(HEADER_IF_NONE_MATCH);
 			if (requestETag != null && ("*".equals(requestETag) || compareETagHeaderValue(requestETag, responseETag))) {
 				rawResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
-			}
-			else {
+			} else {
 				responseWrapper.copyBodyToResponse();
 			}
-		}
-		else {
+		} else {
 			responseWrapper.copyBodyToResponse();
 		}
 	}
@@ -146,14 +145,15 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	 * <li>request method is a GET</li>
 	 * <li>response Cache-Control header is not set or does not contain a "no-store" directive</li>
 	 * </ul>
-	 * @param request the HTTP request
-	 * @param response the HTTP response
+	 *
+	 * @param request            the HTTP request
+	 * @param response           the HTTP response
 	 * @param responseStatusCode the HTTP response status code
-	 * @param inputStream the response body
+	 * @param inputStream        the response body
 	 * @return {@code true} if eligible for ETag generation, {@code false} otherwise
 	 */
 	protected boolean isEligibleForEtag(HttpServletRequest request, HttpServletResponse response,
-			int responseStatusCode, InputStream inputStream) {
+										int responseStatusCode, InputStream inputStream) {
 
 		String method = request.getMethod();
 		if (responseStatusCode >= 200 && responseStatusCode < 300 && HttpMethod.GET.matches(method)) {
@@ -166,8 +166,9 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	/**
 	 * Generate the ETag header value from the given response body byte array.
 	 * <p>The default implementation generates an MD5 hash.
+	 *
 	 * @param inputStream the response body as an InputStream
-	 * @param isWeak whether the generated ETag should be weak
+	 * @param isWeak      whether the generated ETag should be weak
 	 * @return the ETag header value
 	 * @see org.springframework.util.DigestUtils
 	 */
@@ -199,6 +200,7 @@ public class ShallowEtagHeaderFilter extends OncePerRequestFilter {
 	 * of the ShallowEtagHeaderFilter. This can be done before the start of HTTP
 	 * streaming for example where the response will be written to asynchronously
 	 * and not in the context of a Servlet container thread.
+	 *
 	 * @since 4.2
 	 */
 	public static void disableContentCaching(ServletRequest request) {

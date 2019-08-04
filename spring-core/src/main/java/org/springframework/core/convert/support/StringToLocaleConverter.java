@@ -30,8 +30,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 3.0
  * @see StringUtils#parseLocale
+ * @since 3.0
  */
 final class StringToLocaleConverter implements Converter<String, Locale> {
 

@@ -39,7 +39,7 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @since 11.11.2003
  */
-@SuppressWarnings({"serial" })
+@SuppressWarnings({"serial"})
 public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFilter, Ordered, Serializable {
 
 	private final Advice advice;
@@ -51,8 +51,9 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
+	 *
 	 * @param advice the Advice to apply (may implement the
-	 * {@link org.springframework.aop.IntroductionInfo} interface)
+	 *               {@link org.springframework.aop.IntroductionInfo} interface)
 	 * @see #addInterface
 	 */
 	public DefaultIntroductionAdvisor(Advice advice) {
@@ -61,9 +62,10 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
-	 * @param advice the Advice to apply
+	 *
+	 * @param advice           the Advice to apply
 	 * @param introductionInfo the IntroductionInfo that describes
-	 * the interface to introduce (may be {@code null})
+	 *                         the interface to introduce (may be {@code null})
 	 */
 	public DefaultIntroductionAdvisor(Advice advice, @Nullable IntroductionInfo introductionInfo) {
 		Assert.notNull(advice, "Advice must not be null");
@@ -81,8 +83,9 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * Create a DefaultIntroductionAdvisor for the given advice.
+	 *
 	 * @param advice the Advice to apply
-	 * @param intf the interface to introduce
+	 * @param intf   the interface to introduce
 	 */
 	public DefaultIntroductionAdvisor(DynamicIntroductionAdvice advice, Class<?> intf) {
 		Assert.notNull(advice, "Advice must not be null");
@@ -93,6 +96,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 	/**
 	 * Add the specified interface to the list of interfaces to introduce.
+	 *
 	 * @param intf the interface to introduce
 	 */
 	public void addInterface(Class<?> intf) {
@@ -113,8 +117,8 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 		for (Class<?> ifc : this.interfaces) {
 			if (this.advice instanceof DynamicIntroductionAdvice &&
 					!((DynamicIntroductionAdvice) this.advice).implementsInterface(ifc)) {
-			throw new IllegalArgumentException("DynamicIntroductionAdvice [" + this.advice + "] " +
-					"does not implement interface [" + ifc.getName() + "] specified for introduction");
+				throw new IllegalArgumentException("DynamicIntroductionAdvice [" + this.advice + "] " +
+						"does not implement interface [" + ifc.getName() + "] specified for introduction");
 			}
 		}
 	}

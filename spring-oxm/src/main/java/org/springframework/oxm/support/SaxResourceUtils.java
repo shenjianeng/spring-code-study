@@ -35,6 +35,7 @@ public abstract class SaxResourceUtils {
 	/**
 	 * Create a SAX {@code InputSource} from the given resource.
 	 * <p>Sets the system identifier to the resource's {@code URL}, if available.
+	 *
 	 * @param resource the resource
 	 * @return the input source created from the resource
 	 * @throws IOException if an I/O exception occurs
@@ -55,8 +56,7 @@ public abstract class SaxResourceUtils {
 	private static String getSystemId(Resource resource) {
 		try {
 			return resource.getURI().toString();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return null;
 		}
 	}

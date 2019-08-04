@@ -38,6 +38,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * Create an {@code AbstractValueAdaptingCache} with the given setting.
+	 *
 	 * @param allowNullValues whether to allow for {@code null} values
 	 */
 	protected AbstractValueAdaptingCache(boolean allowNullValues) {
@@ -73,6 +74,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 	/**
 	 * Perform an actual lookup in the underlying store.
+	 *
 	 * @param key the key whose associated value is to be returned
 	 * @return the raw store value for the key, or {@code null} if none
 	 */
@@ -83,6 +85,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	/**
 	 * Convert the given value from the internal store to a user value
 	 * returned from the get method (adapting {@code null}).
+	 *
 	 * @param storeValue the store value
 	 * @return the value to return to the user
 	 */
@@ -97,6 +100,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	/**
 	 * Convert the given user value, as passed into the put method,
 	 * to a value in the internal store (adapting {@code null}).
+	 *
 	 * @param userValue the given user value
 	 * @return the value to store
 	 */
@@ -115,6 +119,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	 * Wrap the given store value with a {@link SimpleValueWrapper}, also going
 	 * through {@link #fromStoreValue} conversion. Useful for {@link #get(Object)}
 	 * and {@link #putIfAbsent(Object, Object)} implementations.
+	 *
 	 * @param storeValue the original value
 	 * @return the wrapped value
 	 */

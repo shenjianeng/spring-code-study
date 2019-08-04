@@ -89,6 +89,7 @@ public class ServletPathExtensionContentNegotiationStrategy extends PathExtensio
 	 * Extends the base class
 	 * {@link PathExtensionContentNegotiationStrategy#getMediaTypeForResource}
 	 * with the ability to also look up through the ServletContext.
+	 *
 	 * @param resource the resource to look up
 	 * @return the MediaType for the extension, or {@code null} if none found
 	 * @since 4.3

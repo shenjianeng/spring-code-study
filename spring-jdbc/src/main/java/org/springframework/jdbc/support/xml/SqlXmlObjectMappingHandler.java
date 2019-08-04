@@ -29,9 +29,9 @@ import org.springframework.lang.Nullable;
  * purposes.
  *
  * @author Thomas Risberg
- * @since 2.5.5
  * @see java.sql.ResultSet#getSQLXML
  * @see java.sql.SQLXML
+ * @since 2.5.5
  * @deprecated as of Spring Framework 5.1.5 since this class is only known to be used in spring-data-jdbc-ext project
  * which was never upgraded to Spring Framework 5.x and is no longer actively developed
  */
@@ -42,7 +42,8 @@ public interface SqlXmlObjectMappingHandler extends SqlXmlHandler {
 	 * Retrieve the given column as an object marshalled from the XML data retrieved
 	 * from the given ResultSet.
 	 * <p>Works with an internal Object to XML Mapping implementation.
-	 * @param rs the ResultSet to retrieve the content from
+	 *
+	 * @param rs         the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as an Object, or {@code null} in case of SQL NULL
 	 * @throws java.sql.SQLException if thrown by JDBC methods
@@ -55,7 +56,8 @@ public interface SqlXmlObjectMappingHandler extends SqlXmlHandler {
 	 * Retrieve the given column as an object marshalled from the XML data retrieved
 	 * from the given ResultSet.
 	 * <p>Works with an internal Object to XML Mapping implementation.
-	 * @param rs the ResultSet to retrieve the content from
+	 *
+	 * @param rs          the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as an Object, or {@code null} in case of SQL NULL
 	 * @throws java.sql.SQLException if thrown by JDBC methods
@@ -67,6 +69,7 @@ public interface SqlXmlObjectMappingHandler extends SqlXmlHandler {
 	/**
 	 * Get an instance of an {@code SqlXmlValue} implementation to be used together
 	 * with the database specific implementation of this {@code SqlXmlObjectMappingHandler}.
+	 *
 	 * @param value the Object to be marshalled to XML
 	 * @return the implementation specific instance
 	 * @see SqlXmlValue

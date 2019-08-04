@@ -33,8 +33,7 @@ public class AnnotationBeanWiringInfoResolverTests {
 		try {
 			new AnnotationBeanWiringInfoResolver().resolveWiringInfo(null);
 			fail("Must have thrown an IllegalArgumentException by this point (null argument)");
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 

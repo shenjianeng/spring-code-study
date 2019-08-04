@@ -41,9 +41,9 @@ import org.springframework.util.Assert;
  * @author Costin Leau
  * @author Arjen Poutsma
  * @author Luke Taylor
- * @since 1.2
  * @see org.w3c.dom.Node
  * @see org.w3c.dom.Element
+ * @since 1.2
  */
 public abstract class DomUtils {
 
@@ -51,7 +51,8 @@ public abstract class DomUtils {
 	 * Retrieves all child elements of the given DOM element that match any of the given element names.
 	 * Only looks at the direct child level of the given element; do not go into further depth
 	 * (in contrast to the DOM API's {@code getElementsByTagName} method).
-	 * @param ele the DOM element to analyze
+	 *
+	 * @param ele           the DOM element to analyze
 	 * @param childEleNames the child element names to look for
 	 * @return a List of child {@code org.w3c.dom.Element} instances
 	 * @see org.w3c.dom.Element
@@ -76,19 +77,21 @@ public abstract class DomUtils {
 	 * Retrieves all child elements of the given DOM element that match the given element name.
 	 * Only look at the direct child level of the given element; do not go into further depth
 	 * (in contrast to the DOM API's {@code getElementsByTagName} method).
-	 * @param ele the DOM element to analyze
+	 *
+	 * @param ele          the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return a List of child {@code org.w3c.dom.Element} instances
 	 * @see org.w3c.dom.Element
 	 * @see org.w3c.dom.Element#getElementsByTagName
 	 */
 	public static List<Element> getChildElementsByTagName(Element ele, String childEleName) {
-		return getChildElementsByTagName(ele, new String[] {childEleName});
+		return getChildElementsByTagName(ele, new String[]{childEleName});
 	}
 
 	/**
 	 * Utility method that returns the first child element identified by its name.
-	 * @param ele the DOM element to analyze
+	 *
+	 * @param ele          the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return the {@code org.w3c.dom.Element} instance, or {@code null} if none found
 	 */
@@ -108,7 +111,8 @@ public abstract class DomUtils {
 
 	/**
 	 * Utility method that returns the first child element value identified by its name.
-	 * @param ele the DOM element to analyze
+	 *
+	 * @param ele          the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return the extracted text value, or {@code null} if no child element found
 	 */
@@ -120,6 +124,7 @@ public abstract class DomUtils {
 
 	/**
 	 * Retrieves all child elements of the given DOM element.
+	 *
 	 * @param ele the DOM element to analyze
 	 * @return a List of child {@code org.w3c.dom.Element} instances
 	 */
@@ -141,6 +146,7 @@ public abstract class DomUtils {
 	 * <p>Appends all CharacterData nodes and EntityReference nodes into a single
 	 * String value, excluding Comment nodes. Only exposes actual user-specified
 	 * text, no default values of any kind.
+	 *
 	 * @see CharacterData
 	 * @see EntityReference
 	 * @see Comment
@@ -171,6 +177,7 @@ public abstract class DomUtils {
 
 	/**
 	 * Returns a SAX {@code ContentHandler} that transforms callback calls to DOM {@code Node}s.
+	 *
 	 * @param node the node to publish events to
 	 * @return the content handler
 	 */

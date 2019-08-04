@@ -90,8 +90,7 @@ public class PasswordInputTagTests extends InputTagTests {
 		try {
 			this.getTag().setDynamicAttribute(null, "type", "email");
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("Attribute type=\"email\" is not allowed", e.getMessage());
 		}
 	}
@@ -100,8 +99,7 @@ public class PasswordInputTagTests extends InputTagTests {
 	protected void assertValueAttribute(String output, String expectedValue) {
 		if (this.getPasswordTag().isShowPassword()) {
 			super.assertValueAttribute(output, expectedValue);
-		}
-		else {
+		} else {
 			super.assertValueAttribute(output, "");
 		}
 	}

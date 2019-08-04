@@ -25,10 +25,10 @@ import org.springframework.lang.Nullable;
  * used as a return value for scheduling methods.
  *
  * @author Juergen Hoeller
- * @since 4.3
  * @see ScheduledTaskRegistrar#scheduleCronTask(CronTask)
  * @see ScheduledTaskRegistrar#scheduleFixedRateTask(FixedRateTask)
  * @see ScheduledTaskRegistrar#scheduleFixedDelayTask(FixedDelayTask)
+ * @since 4.3
  */
 public final class ScheduledTask {
 
@@ -46,6 +46,7 @@ public final class ScheduledTask {
 	/**
 	 * Return the underlying task (typically a {@link CronTask},
 	 * {@link FixedRateTask} or {@link FixedDelayTask}).
+	 *
 	 * @since 5.0.2
 	 */
 	public Task getTask() {

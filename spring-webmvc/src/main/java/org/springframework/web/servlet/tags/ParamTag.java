@@ -55,9 +55,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Scott Andrews
  * @author Nicholas Williams
- * @since 3.0
  * @see Param
  * @see UrlTag
+ * @since 3.0
  */
 @SuppressWarnings("serial")
 public class ParamTag extends BodyTagSupport {
@@ -92,8 +92,7 @@ public class ParamTag extends BodyTagSupport {
 		param.setName(this.name);
 		if (this.valueSet) {
 			param.setValue(this.value);
-		}
-		else if (getBodyContent() != null) {
+		} else if (getBodyContent() != null) {
 			// Get the value from the tag body
 			param.setValue(getBodyContent().getString().trim());
 		}

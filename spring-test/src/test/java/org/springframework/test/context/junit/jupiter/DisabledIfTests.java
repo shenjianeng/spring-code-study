@@ -36,10 +36,10 @@ import static org.junit.jupiter.api.Assertions.fail;
  *
  * @author Tadaya Tsuyukubo
  * @author Sam Brannen
- * @since 5.0
  * @see DisabledIfConditionTests
  * @see DisabledIf
  * @see SpringExtension
+ * @since 5.0
  */
 class DisabledIfTests {
 

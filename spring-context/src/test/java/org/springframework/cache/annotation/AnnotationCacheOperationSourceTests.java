@@ -204,7 +204,7 @@ public class AnnotationCacheOperationSourceTests {
 	public void fullClassLevelWithCustomKeyManager() {
 		Collection<CacheOperation> ops = getOps(AnnotatedClassWithFullDefault.class, "methodLevelKeyGenerator", 1);
 		CacheOperation cacheOperation = ops.iterator().next();
-		assertSharedConfig(cacheOperation, "custom", "", "classCacheResolver" , "classCacheName");
+		assertSharedConfig(cacheOperation, "custom", "", "classCacheResolver", "classCacheName");
 	}
 
 	@Test
@@ -218,7 +218,7 @@ public class AnnotationCacheOperationSourceTests {
 	public void fullClassLevelWithCustomCacheResolver() {
 		Collection<CacheOperation> ops = getOps(AnnotatedClassWithFullDefault.class, "methodLevelCacheResolver", 1);
 		CacheOperation cacheOperation = ops.iterator().next();
-		assertSharedConfig(cacheOperation, "classKeyGenerator", "", "custom" , "classCacheName");
+		assertSharedConfig(cacheOperation, "classKeyGenerator", "", "custom", "classCacheName");
 	}
 
 	@Test
@@ -291,16 +291,15 @@ public class AnnotationCacheOperationSourceTests {
 		try {
 			Method method = target.getMethod(name);
 			return this.source.getCacheOperations(method, target);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
 
 	private void assertSharedConfig(CacheOperation actual, String keyGenerator, String cacheManager,
-			String cacheResolver, String... cacheNames) {
+									String cacheResolver, String... cacheNames) {
 
-		assertEquals("Wrong key manager",  keyGenerator, actual.getKeyGenerator());
+		assertEquals("Wrong key manager", keyGenerator, actual.getKeyGenerator());
 		assertEquals("Wrong cache manager", cacheManager, actual.getCacheManager());
 		assertEquals("Wrong cache resolver", cacheResolver, actual.getCacheResolver());
 		assertEquals("Wrong number of cache names", cacheNames.length, actual.getCacheNames().size());
@@ -363,7 +362,7 @@ public class AnnotationCacheOperationSourceTests {
 		public void multipleComposed() {
 		}
 
-		@Caching(cacheable = { @Cacheable(cacheNames = "test", key = "a"), @Cacheable(cacheNames = "test", key = "b") })
+		@Caching(cacheable = {@Cacheable(cacheNames = "test", key = "a"), @Cacheable(cacheNames = "test", key = "b")})
 		public void multipleCaching() {
 		}
 

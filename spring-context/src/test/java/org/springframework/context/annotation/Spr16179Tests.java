@@ -53,7 +53,8 @@ public class Spr16179Tests {
 
 		@Bean
 		Assembler<SomeType> someAssembler() {
-			return new Assembler<SomeType>() {};
+			return new Assembler<SomeType>() {
+			};
 		}
 	}
 
@@ -83,16 +84,22 @@ public class Spr16179Tests {
 	}
 
 
-	interface Assembler<T> {}
+	interface Assembler<T> {
+	}
 
-	interface PageAssembler<T> extends Assembler<Page<T>> {}
+	interface PageAssembler<T> extends Assembler<Page<T>> {
+	}
 
-	static class PageAssemblerImpl<T> implements PageAssembler<T> {}
+	static class PageAssemblerImpl<T> implements PageAssembler<T> {
+	}
 
-	interface Page<T> {}
+	interface Page<T> {
+	}
 
-	interface SomeType {}
+	interface SomeType {
+	}
 
-	interface SomeOtherType {}
+	interface SomeOtherType {
+	}
 
 }

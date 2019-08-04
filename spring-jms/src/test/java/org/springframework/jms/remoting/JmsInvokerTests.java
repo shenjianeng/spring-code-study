@@ -131,8 +131,7 @@ public class JmsInvokerTests {
 		pfb.setConnectionFactory(this.mockConnectionFactory);
 		if (dynamicQueue) {
 			pfb.setQueueName("myQueue");
-		}
-		else {
+		} else {
 			pfb.setQueue(this.mockQueue);
 		}
 		pfb.setMessageConverter(new MockSimpleMessageConverter());
@@ -144,21 +143,19 @@ public class JmsInvokerTests {
 		assertEquals(99, proxy.getAge());
 		proxy.setAge(50);
 		assertEquals(50, proxy.getAge());
-		proxy.setStringArray(new String[] {"str1", "str2"});
-		assertTrue(Arrays.equals(new String[] {"str1", "str2"}, proxy.getStringArray()));
+		proxy.setStringArray(new String[]{"str1", "str2"});
+		assertTrue(Arrays.equals(new String[]{"str1", "str2"}, proxy.getStringArray()));
 
 		try {
 			proxy.exceptional(new IllegalStateException());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 		try {
 			proxy.exceptional(new IllegalAccessException());
 			fail("Should have thrown IllegalAccessException");
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			// expected
 		}
 	}

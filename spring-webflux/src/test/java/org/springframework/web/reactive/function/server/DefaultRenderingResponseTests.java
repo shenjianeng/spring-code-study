@@ -179,7 +179,7 @@ public class DefaultRenderingResponseTests {
 
 		@Override
 		protected Mono<Void> renderInternal(Map<String, Object> renderAttributes,
-				MediaType contentType, ServerWebExchange exchange) {
+											MediaType contentType, ServerWebExchange exchange) {
 
 			return Mono.empty();
 		}

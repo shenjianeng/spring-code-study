@@ -72,18 +72,21 @@ public class MockMvcConnectionBuilderSupportTests {
 	@Before
 	public void setup() {
 		when(this.client.getWebConnection()).thenReturn(mock(WebConnection.class));
-		this.builder = new MockMvcWebConnectionBuilderSupport(this.wac) {};
+		this.builder = new MockMvcWebConnectionBuilderSupport(this.wac) {
+		};
 	}
 
 
 	@Test(expected = IllegalArgumentException.class)
 	public void constructorMockMvcNull() {
-		new MockMvcWebConnectionBuilderSupport((MockMvc) null){};
+		new MockMvcWebConnectionBuilderSupport((MockMvc) null) {
+		};
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void constructorContextNull() {
-		new MockMvcWebConnectionBuilderSupport((WebApplicationContext) null){};
+		new MockMvcWebConnectionBuilderSupport((WebApplicationContext) null) {
+		};
 	}
 
 	@Test
@@ -97,7 +100,8 @@ public class MockMvcConnectionBuilderSupportTests {
 	@Test
 	public void mockMvc() throws Exception {
 		MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-		WebConnection conn = new MockMvcWebConnectionBuilderSupport(mockMvc) {}.createConnection(this.client);
+		WebConnection conn = new MockMvcWebConnectionBuilderSupport(mockMvc) {
+		}.createConnection(this.client);
 
 		assertMockMvcUsed(conn, "http://localhost/");
 		assertMockMvcNotUsed(conn, "https://example.com/");

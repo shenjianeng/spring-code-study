@@ -25,13 +25,14 @@ import javax.sql.DataSource;
  * <p>Thanks to Jens Eickmeyer for the suggestion!
  *
  * @author Juergen Hoeller
- * @since 4.3.15
  * @see Db2LuwMaxValueIncrementer
+ * @since 4.3.15
  */
 public class Db2MainframeMaxValueIncrementer extends AbstractSequenceMaxValueIncrementer {
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -40,7 +41,8 @@ public class Db2MainframeMaxValueIncrementer extends AbstractSequenceMaxValueInc
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public Db2MainframeMaxValueIncrementer(DataSource dataSource, String incrementerName) {

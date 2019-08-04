@@ -45,6 +45,7 @@ public interface WebSocketTestServer {
 	 * Get the {@link ServletContext} created by the underlying server.
 	 * <p>The {@code ServletContext} is only guaranteed to be available
 	 * after {@link #deployConfig} has been invoked.
+	 *
 	 * @since 4.2
 	 */
 	ServletContext getServletContext();

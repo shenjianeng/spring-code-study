@@ -57,21 +57,16 @@ class WebLogicClassPreProcessorAdapter implements InvocationHandler {
 		String name = method.getName();
 		if ("equals".equals(name)) {
 			return (proxy == args[0]);
-		}
-		else if ("hashCode".equals(name)) {
+		} else if ("hashCode".equals(name)) {
 			return hashCode();
-		}
-		else if ("toString".equals(name)) {
+		} else if ("toString".equals(name)) {
 			return toString();
-		}
-		else if ("initialize".equals(name)) {
+		} else if ("initialize".equals(name)) {
 			initialize((Hashtable<?, ?>) args[0]);
 			return null;
-		}
-		else if ("preProcess".equals(name)) {
+		} else if ("preProcess".equals(name)) {
 			return preProcess((String) args[0], (byte[]) args[1]);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unknown method: " + method);
 		}
 	}
@@ -83,8 +78,7 @@ class WebLogicClassPreProcessorAdapter implements InvocationHandler {
 		try {
 			byte[] result = this.transformer.transform(this.loader, className, null, null, classBytes);
 			return (result != null ? result : classBytes);
-		}
-		catch (IllegalClassFormatException ex) {
+		} catch (IllegalClassFormatException ex) {
 			throw new IllegalStateException("Cannot transform due to illegal class format", ex);
 		}
 	}

@@ -66,6 +66,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * The default maximum response size.
+	 *
 	 * @see #setMaxResponseSize(int)
 	 */
 	public static final int DEFAULT_MAX_RESPONSE_SIZE = 1024 * 1024 * 10;
@@ -115,8 +116,9 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the default maximum response size.
 	 * <p>By default this is set to {@link #DEFAULT_MAX_RESPONSE_SIZE}.
-	 * @since 4.1.5
+	 *
 	 * @see HttpObjectAggregator#HttpObjectAggregator(int)
+	 * @since 4.1.5
 	 */
 	public void setMaxResponseSize(int maxResponseSize) {
 		this.maxResponseSize = maxResponseSize;
@@ -134,6 +136,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the underlying connect timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
+	 *
 	 * @see ChannelConfig#setConnectTimeoutMillis(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -143,6 +146,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the underlying URLConnection's read timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
+	 *
 	 * @see ReadTimeoutHandler
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -160,8 +164,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	private SslContext getDefaultClientSslContext() {
 		try {
 			return SslContextBuilder.forClient().build();
-		}
-		catch (SSLException ex) {
+		} catch (SSLException ex) {
 			throw new IllegalStateException("Could not create default client SslContext", ex);
 		}
 	}
@@ -185,8 +188,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 		boolean isSecure = (uri.getPort() == 443 || "https".equalsIgnoreCase(uri.getScheme()));
 		if (isSecure) {
 			return buildBootstrap(uri, true);
-		}
-		else {
+		} else {
 			Bootstrap bootstrap = this.bootstrap;
 			if (bootstrap == null) {
 				bootstrap = buildBootstrap(uri, false);
@@ -222,6 +224,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Template method for changing properties on the given {@link SocketChannelConfig}.
 	 * <p>The default implementation sets the connect timeout based on the set property.
+	 *
 	 * @param config the channel configuration
 	 */
 	protected void configureChannel(SocketChannelConfig config) {

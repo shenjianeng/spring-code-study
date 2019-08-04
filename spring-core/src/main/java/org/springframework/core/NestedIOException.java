@@ -31,11 +31,11 @@ import org.springframework.lang.Nullable;
  * class is unavoidable, as this class needs to derive from IOException.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #getMessage
  * @see #printStackTrace
  * @see org.springframework.core.NestedCheckedException
  * @see org.springframework.core.NestedRuntimeException
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class NestedIOException extends IOException {
@@ -49,6 +49,7 @@ public class NestedIOException extends IOException {
 
 	/**
 	 * Construct a {@code NestedIOException} with the specified detail message.
+	 *
 	 * @param msg the detail message
 	 */
 	public NestedIOException(String msg) {
@@ -58,7 +59,8 @@ public class NestedIOException extends IOException {
 	/**
 	 * Construct a {@code NestedIOException} with the specified detail message
 	 * and nested exception.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the nested exception
 	 */
 	public NestedIOException(@Nullable String msg, @Nullable Throwable cause) {

@@ -55,7 +55,7 @@ public class ViewResolutionTests {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver("/WEB-INF/", ".jsp");
 
 		standaloneSetup(new PersonController()).setViewResolvers(viewResolver).build()
-			.perform(get("/person/Corea"))
+				.perform(get("/person/Corea"))
 				.andExpect(status().isOk())
 				.andExpect(model().size(1))
 				.andExpect(model().attributeExists("person"))
@@ -65,7 +65,7 @@ public class ViewResolutionTests {
 	@Test
 	public void testJsonOnly() throws Exception {
 		standaloneSetup(new PersonController()).setSingleView(new MappingJackson2JsonView()).build()
-			.perform(get("/person/Corea"))
+				.perform(get("/person/Corea"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.person.name").value("Corea"));
@@ -77,7 +77,7 @@ public class ViewResolutionTests {
 		marshaller.setClassesToBeBound(Person.class);
 
 		standaloneSetup(new PersonController()).setSingleView(new MarshallingView(marshaller)).build()
-			.perform(get("/person/Corea"))
+				.perform(get("/person/Corea"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_XML))
 				.andExpect(xpath("/person/name/text()").string(equalTo("Corea")));
@@ -101,31 +101,31 @@ public class ViewResolutionTests {
 		cnViewResolver.afterPropertiesSet();
 
 		MockMvc mockMvc =
-			standaloneSetup(new PersonController())
-				.setViewResolvers(cnViewResolver, new InternalResourceViewResolver())
-				.build();
+				standaloneSetup(new PersonController())
+						.setViewResolvers(cnViewResolver, new InternalResourceViewResolver())
+						.build();
 
 		mockMvc.perform(get("/person/Corea"))
-			.andExpect(status().isOk())
-			.andExpect(model().size(1))
-			.andExpect(model().attributeExists("person"))
-			.andExpect(forwardedUrl("person/show"));
+				.andExpect(status().isOk())
+				.andExpect(model().size(1))
+				.andExpect(model().attributeExists("person"))
+				.andExpect(forwardedUrl("person/show"));
 
 		mockMvc.perform(get("/person/Corea").accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-			.andExpect(jsonPath("$.person.name").value("Corea"));
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(jsonPath("$.person.name").value("Corea"));
 
 		mockMvc.perform(get("/person/Corea").accept(MediaType.APPLICATION_XML))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_XML))
-			.andExpect(xpath("/person/name/text()").string(equalTo("Corea")));
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_XML))
+				.andExpect(xpath("/person/name/text()").string(equalTo("Corea")));
 	}
 
 	@Test
 	public void defaultViewResolver() throws Exception {
 		standaloneSetup(new PersonController()).build()
-			.perform(get("/person/Corea"))
+				.perform(get("/person/Corea"))
 				.andExpect(model().attribute("person", hasProperty("name", equalTo("Corea"))))
 				.andExpect(status().isOk())
 				.andExpect(forwardedUrl("person/show"));  // InternalResourceViewResolver

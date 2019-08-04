@@ -48,9 +48,9 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.BEFO
  * {@code DependencyInjectionTestExecutionListener}.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see DirtiesContext
  * @see DirtiesContextTestExecutionListener
+ * @since 4.2
  */
 public class DirtiesContextBeforeModesTestExecutionListener extends AbstractDirtiesContextTestExecutionListener {
 

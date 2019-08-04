@@ -35,6 +35,7 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Unit tests for {@link ExceptionHandlingWebHandler}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ExceptionHandlingWebHandlerTests {
@@ -125,7 +126,9 @@ public class ExceptionHandlingWebHandlerTests {
 		}
 	}
 
-	/** Leave the exception unresolved. */
+	/**
+	 * Leave the exception unresolved.
+	 */
 	private static class UnresolvedExceptionHandler implements WebExceptionHandler {
 
 		@Override

@@ -52,7 +52,7 @@ public class Matchers {
 			public boolean matches(Object item) {
 				Throwable cause = null;
 				if (item != null && item instanceof Throwable) {
-					cause = ((Throwable)item).getCause();
+					cause = ((Throwable) item).getCause();
 				}
 				return matcher.matches(cause);
 			}

@@ -42,9 +42,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen
- * @since 5.0.5
  * @see NestedTestsWithSpringAndJUnitJupiterTests
  * @see org.springframework.test.context.junit4.nested.NestedTestsWithSpringRulesTests
+ * @since 5.0.5
  */
 @SpringJUnitConfig(TopLevelConfig.class)
 class NestedTestsWithConstructorInjectionWithSpringAndJUnitJupiterTests {

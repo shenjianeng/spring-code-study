@@ -32,8 +32,8 @@ import org.springframework.core.convert.converter.Converter;
  * {@link java.util.Date#from(java.time.Instant)} and {@link java.util.Date#toInstant()}.
  *
  * @author Juergen Hoeller
- * @since 4.0.1
  * @see java.util.GregorianCalendar#from(java.time.ZonedDateTime)
+ * @since 4.0.1
  */
 final class ZonedDateTimeToCalendarConverter implements Converter<ZonedDateTime, Calendar> {
 

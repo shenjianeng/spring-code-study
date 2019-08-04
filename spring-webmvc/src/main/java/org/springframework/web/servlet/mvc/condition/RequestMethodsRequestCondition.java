@@ -48,8 +48,9 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 	/**
 	 * Create a new instance with the given request methods.
+	 *
 	 * @param requestMethods 0 or more HTTP request methods;
-	 * if, 0 the condition will match to every request
+	 *                       if, 0 the condition will match to every request
 	 */
 	public RequestMethodsRequestCondition(RequestMethod... requestMethods) {
 		this(Arrays.asList(requestMethods));
@@ -91,6 +92,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	/**
 	 * Check if any of the HTTP request methods match the given request and
 	 * return an instance that contains the matching HTTP request method only.
+	 *
 	 * @param request the current request
 	 * @return the same instance if the condition is empty (unless the request
 	 * method is HTTP OPTIONS), a new condition with the matched request method,
@@ -161,12 +163,10 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	public int compareTo(RequestMethodsRequestCondition other, HttpServletRequest request) {
 		if (other.methods.size() != this.methods.size()) {
 			return other.methods.size() - this.methods.size();
-		}
-		else if (this.methods.size() == 1) {
+		} else if (this.methods.size() == 1) {
 			if (this.methods.contains(RequestMethod.HEAD) && other.methods.contains(RequestMethod.GET)) {
 				return -1;
-			}
-			else if (this.methods.contains(RequestMethod.GET) && other.methods.contains(RequestMethod.HEAD)) {
+			} else if (this.methods.contains(RequestMethod.GET) && other.methods.contains(RequestMethod.HEAD)) {
 				return 1;
 			}
 		}

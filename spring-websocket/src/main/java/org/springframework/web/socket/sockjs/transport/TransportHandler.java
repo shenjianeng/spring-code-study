@@ -33,8 +33,9 @@ public interface TransportHandler {
 
 	/**
 	 * Initialize this handler with the given configuration.
+	 *
 	 * @param serviceConfig the configuration as defined by the containing
-	 * {@link org.springframework.web.socket.sockjs.SockJsService}
+	 *                      {@link org.springframework.web.socket.sockjs.SockJsService}
 	 */
 	void initialize(SockJsServiceConfig serviceConfig);
 
@@ -47,6 +48,7 @@ public interface TransportHandler {
 	 * Check whether the type of the given session matches the transport type
 	 * of this {@code TransportHandler} where session id and the transport type
 	 * are extracted from the SockJS URL.
+	 *
 	 * @return {@code true} if the session matches (and would therefore get
 	 * accepted by {@link #handleRequest}), or {@code false} otherwise
 	 * @since 4.3.4
@@ -56,14 +58,15 @@ public interface TransportHandler {
 	/**
 	 * Handle the given request and delegate messages to the provided
 	 * {@link WebSocketHandler}.
-	 * @param request the current request
+	 *
+	 * @param request  the current request
 	 * @param response the current response
-	 * @param handler the target WebSocketHandler (never {@code null})
-	 * @param session the SockJS session (never {@code null})
+	 * @param handler  the target WebSocketHandler (never {@code null})
+	 * @param session  the SockJS session (never {@code null})
 	 * @throws SockJsException raised when request processing fails as
-	 * explained in {@link SockJsService}
+	 *                         explained in {@link SockJsService}
 	 */
 	void handleRequest(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler handler, SockJsSession session) throws SockJsException;
+					   WebSocketHandler handler, SockJsSession session) throws SockJsException;
 
 }

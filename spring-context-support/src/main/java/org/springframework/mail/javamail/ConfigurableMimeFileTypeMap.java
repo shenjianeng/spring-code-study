@@ -38,7 +38,7 @@ import org.springframework.lang.Nullable;
  * <pre class="code">
  * # map text/html to .htm and .html files
  * text/html  html htm HTML HTM</pre>
- *
+ * <p>
  * Lines starting with {@code #} are treated as comments and are ignored. All
  * other lines are treated as mappings. Each mapping line should contain the MIME
  * type as the first entry and then each file extension to map to that MIME type
@@ -54,10 +54,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see #setMappingLocation
  * @see #setMappings
  * @see javax.activation.MimetypesFileTypeMap
+ * @since 1.2
  */
 public class ConfigurableMimeFileTypeMap extends FileTypeMap implements InitializingBean {
 
@@ -112,6 +112,7 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 	/**
 	 * Return the delegate FileTypeMap, compiled from the mappings in the mapping file
 	 * and the entries in the {@code mappings} property.
+	 *
 	 * @see #setMappingLocation
 	 * @see #setMappings
 	 * @see #createFileTypeMap
@@ -120,8 +121,7 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 		if (this.fileTypeMap == null) {
 			try {
 				this.fileTypeMap = createFileTypeMap(this.mappingLocation, this.mappings);
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalStateException(
 						"Could not load specified MIME type mapping file: " + this.mappingLocation, ex);
 			}
@@ -135,8 +135,9 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 	 * <p>The default implementation creates an Activation Framework {@link MimetypesFileTypeMap},
 	 * passing in an InputStream from the mapping resource (if any) and registering
 	 * the mapping lines programmatically.
+	 *
 	 * @param mappingLocation a {@code mime.types} mapping resource (can be {@code null})
-	 * @param mappings an array of MIME type mapping lines (can be {@code null})
+	 * @param mappings        an array of MIME type mapping lines (can be {@code null})
 	 * @return the compiled FileTypeMap
 	 * @throws IOException if resource access failed
 	 * @see javax.activation.MimetypesFileTypeMap#MimetypesFileTypeMap(java.io.InputStream)
@@ -148,12 +149,10 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 			InputStream is = mappingLocation.getInputStream();
 			try {
 				fileTypeMap = new MimetypesFileTypeMap(is);
-			}
-			finally {
+			} finally {
 				is.close();
 			}
-		}
-		else {
+		} else {
 			fileTypeMap = new MimetypesFileTypeMap();
 		}
 		if (mappings != null) {
@@ -167,6 +166,7 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 
 	/**
 	 * Delegates to the underlying FileTypeMap.
+	 *
 	 * @see #getFileTypeMap()
 	 */
 	@Override
@@ -176,6 +176,7 @@ public class ConfigurableMimeFileTypeMap extends FileTypeMap implements Initiali
 
 	/**
 	 * Delegates to the underlying FileTypeMap.
+	 *
 	 * @see #getFileTypeMap()
 	 */
 	@Override

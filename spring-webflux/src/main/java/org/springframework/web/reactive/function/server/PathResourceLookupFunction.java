@@ -76,12 +76,10 @@ class PathResourceLookupFunction implements Function<ServerRequest, Mono<Resourc
 			Resource resource = this.location.createRelative(path);
 			if (resource.exists() && resource.isReadable() && isResourceUnderLocation(resource)) {
 				return Mono.just(resource);
-			}
-			else {
+			} else {
 				return Mono.empty();
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new UncheckedIOException(ex);
 		}
 	}
@@ -91,8 +89,7 @@ class PathResourceLookupFunction implements Function<ServerRequest, Mono<Resourc
 		for (int i = 0; i < path.length(); i++) {
 			if (path.charAt(i) == '/') {
 				slash = true;
-			}
-			else if (path.charAt(i) > ' ' && path.charAt(i) != 127) {
+			} else if (path.charAt(i) > ' ' && path.charAt(i) != 127) {
 				if (i == 0 || (i == 1 && slash)) {
 					return path;
 				}
@@ -130,12 +127,10 @@ class PathResourceLookupFunction implements Function<ServerRequest, Mono<Resourc
 		if (resource instanceof UrlResource) {
 			resourcePath = resource.getURL().toExternalForm();
 			locationPath = StringUtils.cleanPath(this.location.getURL().toString());
-		}
-		else if (resource instanceof ClassPathResource) {
+		} else if (resource instanceof ClassPathResource) {
 			resourcePath = ((ClassPathResource) resource).getPath();
 			locationPath = StringUtils.cleanPath(((ClassPathResource) this.location).getPath());
-		}
-		else {
+		} else {
 			resourcePath = resource.getURL().getPath();
 			locationPath = StringUtils.cleanPath(this.location.getURL().getPath());
 		}

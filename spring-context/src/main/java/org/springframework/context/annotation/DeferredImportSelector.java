@@ -42,6 +42,7 @@ public interface DeferredImportSelector extends ImportSelector {
 	/**
 	 * Return a specific import group.
 	 * <p>The default implementations return {@code null} for no grouping required.
+	 *
 	 * @return the import group class, or {@code null} if none
 	 * @since 5.0
 	 */

@@ -64,8 +64,7 @@ class TypeHelper {
 			Element enclosingElement = declaredType.asElement().getEnclosingElement();
 			if (enclosingElement != null && enclosingElement instanceof TypeElement) {
 				return getQualifiedName(enclosingElement) + "$" + declaredType.asElement().getSimpleName().toString();
-			}
-			else {
+			} else {
 				return getQualifiedName(declaredType.asElement());
 			}
 		}
@@ -113,8 +112,7 @@ class TypeHelper {
 	public List<? extends AnnotationMirror> getAllAnnotationMirrors(Element e) {
 		try {
 			return this.env.getElementUtils().getAllAnnotationMirrors(e);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			// This may fail if one of the annotations is not available.
 			return Collections.emptyList();
 		}

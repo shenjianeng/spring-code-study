@@ -101,11 +101,11 @@ public class Jackson2TokenizerTests extends AbstractLeakCheckingTestCase {
 						"{\"id\":3,\"name\":\"Ford\"}]"), false);
 
 		// SPR-16166: top-level JSON values
-		testTokenize(asList("\"foo", "bar\""),singletonList("\"foobar\""), false);
+		testTokenize(asList("\"foo", "bar\""), singletonList("\"foobar\""), false);
 
-		testTokenize(asList("12", "34"),singletonList("1234"), false);
+		testTokenize(asList("12", "34"), singletonList("1234"), false);
 
-		testTokenize(asList("12.", "34"),singletonList("12.34"), false);
+		testTokenize(asList("12.", "34"), singletonList("12.34"), false);
 
 		// note that we do not test for null, true, or false, which are also valid top-level values,
 		// but are unsupported by JSONassert
@@ -171,11 +171,11 @@ public class Jackson2TokenizerTests extends AbstractLeakCheckingTestCase {
 						"{\"id\":3,\"name\":\"Ford\"}"), true);
 
 		// SPR-16166: top-level JSON values
-		testTokenize(asList("\"foo", "bar\""),singletonList("\"foobar\""), true);
+		testTokenize(asList("\"foo", "bar\""), singletonList("\"foobar\""), true);
 
-		testTokenize(asList("12", "34"),singletonList("1234"), true);
+		testTokenize(asList("12", "34"), singletonList("1234"), true);
 
-		testTokenize(asList("12.", "34"),singletonList("12.34"), true);
+		testTokenize(asList("12.", "34"), singletonList("12.34"), true);
 
 		// SPR-16407
 		testTokenize(asList("[1", ",2,", "3]"), asList("1", "2", "3"), true);
@@ -213,8 +213,7 @@ public class Jackson2TokenizerTests extends AbstractLeakCheckingTestCase {
 					try {
 						TreeNode root = this.objectMapper.readTree(tokenBuffer.asParser());
 						return this.objectMapper.writeValueAsString(root);
-					}
-					catch (IOException ex) {
+					} catch (IOException ex) {
 						throw new UncheckedIOException(ex);
 					}
 				});
@@ -244,8 +243,7 @@ public class Jackson2TokenizerTests extends AbstractLeakCheckingTestCase {
 		public void accept(String s) {
 			try {
 				JSONAssert.assertEquals(this.expected, s, true);
-			}
-			catch (JSONException ex) {
+			} catch (JSONException ex) {
 				throw new RuntimeException(ex);
 			}
 		}

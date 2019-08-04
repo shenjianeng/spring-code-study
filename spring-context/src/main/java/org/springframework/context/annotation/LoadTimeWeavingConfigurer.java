@@ -29,9 +29,9 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * is selected when this interface is not used.
  *
  * @author Chris Beams
- * @since 3.1
  * @see LoadTimeWeavingConfiguration
  * @see EnableLoadTimeWeaving
+ * @since 3.1
  */
 public interface LoadTimeWeavingConfigurer {
 

@@ -70,14 +70,14 @@ class ServletServerHttpRequest extends AbstractServerHttpRequest {
 	private final byte[] buffer;
 
 	public ServletServerHttpRequest(HttpServletRequest request, AsyncContext asyncContext,
-			String servletPath, DataBufferFactory bufferFactory, int bufferSize)
+									String servletPath, DataBufferFactory bufferFactory, int bufferSize)
 			throws IOException, URISyntaxException {
 
 		this(createDefaultHttpHeaders(request), request, asyncContext, servletPath, bufferFactory, bufferSize);
 	}
 
 	public ServletServerHttpRequest(HttpHeaders headers, HttpServletRequest request, AsyncContext asyncContext,
-			String servletPath, DataBufferFactory bufferFactory, int bufferSize)
+									String servletPath, DataBufferFactory bufferFactory, int bufferSize)
 			throws IOException, URISyntaxException {
 
 		super(initUri(request), request.getContextPath() + servletPath, initHeaders(headers, request));
@@ -202,6 +202,7 @@ class ServletServerHttpRequest extends AbstractServerHttpRequest {
 	/**
 	 * Read from the request body InputStream and return a DataBuffer.
 	 * Invoked only when {@link ServletInputStream#isReady()} returns "true".
+	 *
 	 * @return a DataBuffer with data read, or {@link #EOF_BUFFER} if the input
 	 * stream returned -1, or null if 0 bytes were read.
 	 */

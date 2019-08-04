@@ -43,8 +43,7 @@ public class AnnotationLazyInitMBeanTests {
 			assertNotNull(server.getObjectInstance(oname));
 			String name = (String) server.getAttribute(oname, "Name");
 			assertEquals("Invalid name returned", "TEST", name);
-		}
-		finally {
+		} finally {
 			ctx.close();
 		}
 	}
@@ -76,8 +75,7 @@ public class AnnotationLazyInitMBeanTests {
 			assertNotNull(server.getObjectInstance(oname));
 			name = (String) server.getAttribute(oname, "Name");
 			assertEquals("Invalid name returned", "Juergen Hoeller", name);
-		}
-		finally {
+		} finally {
 			System.clearProperty("domain");
 			ctx.close();
 		}
@@ -93,8 +91,7 @@ public class AnnotationLazyInitMBeanTests {
 			assertNotNull(server.getObjectInstance(oname));
 			String name = (String) server.getAttribute(oname, "Name");
 			assertNull(name);
-		}
-		finally {
+		} finally {
 			ctx.close();
 		}
 	}

@@ -38,8 +38,8 @@ import static org.junit.Assert.*;
  *
  * @author Ivo Smid
  * @author Chris Beams
- * @since 3.2
  * @see OpPlus
+ * @since 3.2
  */
 public class OpPlusTests {
 

@@ -77,9 +77,9 @@ public class JsonbHttpMessageConverterTests {
 		assertEquals("Foo", result.getString());
 		assertEquals(42, result.getNumber());
 		assertEquals(42F, result.getFraction(), 0F);
-		assertArrayEquals(new String[] {"Foo", "Bar"}, result.getArray());
+		assertArrayEquals(new String[]{"Foo", "Bar"}, result.getArray());
 		assertTrue(result.isBool());
-		assertArrayEquals(new byte[] {0x1, 0x2}, result.getBytes());
+		assertArrayEquals(new byte[]{0x1, 0x2}, result.getBytes());
 	}
 
 	@Test
@@ -101,11 +101,11 @@ public class JsonbHttpMessageConverterTests {
 		assertEquals(array, result.get("array"));
 		assertEquals(Boolean.TRUE, result.get("bool"));
 		byte[] bytes = new byte[2];
-		List<Number> resultBytes = (ArrayList<Number>)result.get("bytes");
+		List<Number> resultBytes = (ArrayList<Number>) result.get("bytes");
 		for (int i = 0; i < 2; i++) {
 			bytes[i] = resultBytes.get(i).byteValue();
 		}
-		assertArrayEquals(new byte[] {0x1, 0x2}, bytes);
+		assertArrayEquals(new byte[]{0x1, 0x2}, bytes);
 	}
 
 	@Test
@@ -115,9 +115,9 @@ public class JsonbHttpMessageConverterTests {
 		body.setString("Foo");
 		body.setNumber(42);
 		body.setFraction(42F);
-		body.setArray(new String[] {"Foo", "Bar"});
+		body.setArray(new String[]{"Foo", "Bar"});
 		body.setBool(true);
-		body.setBytes(new byte[] {0x1, 0x2});
+		body.setBytes(new byte[]{0x1, 0x2});
 		this.converter.write(body, null, outputMessage);
 		Charset utf8 = StandardCharsets.UTF_8;
 		String result = outputMessage.getBodyAsString(utf8);
@@ -138,9 +138,9 @@ public class JsonbHttpMessageConverterTests {
 		body.setString("Foo");
 		body.setNumber(42);
 		body.setFraction(42F);
-		body.setArray(new String[] {"Foo", "Bar"});
+		body.setArray(new String[]{"Foo", "Bar"});
 		body.setBool(true);
-		body.setBytes(new byte[] {0x1, 0x2});
+		body.setBytes(new byte[]{0x1, 0x2});
 		this.converter.write(body, MyBase.class, null, outputMessage);
 		Charset utf8 = StandardCharsets.UTF_8;
 		String result = outputMessage.getBodyAsString(utf8);
@@ -189,9 +189,9 @@ public class JsonbHttpMessageConverterTests {
 		assertEquals("Foo", result.getString());
 		assertEquals(42, result.getNumber());
 		assertEquals(42F, result.getFraction(), 0F);
-		assertArrayEquals(new String[] {"Foo", "Bar"}, result.getArray());
+		assertArrayEquals(new String[]{"Foo", "Bar"}, result.getArray());
 		assertTrue(result.isBool());
-		assertArrayEquals(new byte[] {0x1, 0x2}, result.getBytes());
+		assertArrayEquals(new byte[]{0x1, 0x2}, result.getBytes());
 
 		MockHttpOutputMessage outputMessage = new MockHttpOutputMessage();
 		converter.write(results, genericType, new MediaType("application", "json"), outputMessage);
@@ -201,7 +201,8 @@ public class JsonbHttpMessageConverterTests {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void readAndWriteParameterizedType() throws Exception {
-		ParameterizedTypeReference<List<MyBean>> beansList = new ParameterizedTypeReference<List<MyBean>>() {};
+		ParameterizedTypeReference<List<MyBean>> beansList = new ParameterizedTypeReference<List<MyBean>>() {
+		};
 
 		String body = "[{\"bytes\":[1,2],\"array\":[\"Foo\",\"Bar\"]," +
 				"\"number\":42,\"string\":\"Foo\",\"bool\":true,\"fraction\":42.0}]";
@@ -214,9 +215,9 @@ public class JsonbHttpMessageConverterTests {
 		assertEquals("Foo", result.getString());
 		assertEquals(42, result.getNumber());
 		assertEquals(42F, result.getFraction(), 0F);
-		assertArrayEquals(new String[] {"Foo", "Bar"}, result.getArray());
+		assertArrayEquals(new String[]{"Foo", "Bar"}, result.getArray());
 		assertTrue(result.isBool());
-		assertArrayEquals(new byte[] {0x1, 0x2}, result.getBytes());
+		assertArrayEquals(new byte[]{0x1, 0x2}, result.getBytes());
 
 		MockHttpOutputMessage outputMessage = new MockHttpOutputMessage();
 		converter.write(results, beansList.getType(), new MediaType("application", "json"), outputMessage);
@@ -226,8 +227,10 @@ public class JsonbHttpMessageConverterTests {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void writeParameterizedBaseType() throws Exception {
-		ParameterizedTypeReference<List<MyBean>> beansList = new ParameterizedTypeReference<List<MyBean>>() {};
-		ParameterizedTypeReference<List<MyBase>> baseList = new ParameterizedTypeReference<List<MyBase>>() {};
+		ParameterizedTypeReference<List<MyBean>> beansList = new ParameterizedTypeReference<List<MyBean>>() {
+		};
+		ParameterizedTypeReference<List<MyBase>> baseList = new ParameterizedTypeReference<List<MyBase>>() {
+		};
 
 		String body = "[{\"bytes\":[1,2],\"array\":[\"Foo\",\"Bar\"]," +
 				"\"number\":42,\"string\":\"Foo\",\"bool\":true,\"fraction\":42.0}]";
@@ -240,9 +243,9 @@ public class JsonbHttpMessageConverterTests {
 		assertEquals("Foo", result.getString());
 		assertEquals(42, result.getNumber());
 		assertEquals(42F, result.getFraction(), 0F);
-		assertArrayEquals(new String[] {"Foo", "Bar"}, result.getArray());
+		assertArrayEquals(new String[]{"Foo", "Bar"}, result.getArray());
 		assertTrue(result.isBool());
-		assertArrayEquals(new byte[] {0x1, 0x2}, result.getBytes());
+		assertArrayEquals(new byte[]{0x1, 0x2}, result.getBytes());
 
 		MockHttpOutputMessage outputMessage = new MockHttpOutputMessage();
 		converter.write(results, baseList.getType(), new MediaType("application", "json"), outputMessage);

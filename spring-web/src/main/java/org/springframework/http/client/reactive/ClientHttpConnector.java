@@ -37,15 +37,16 @@ public interface ClientHttpConnector {
 	 * Connect to the origin server using the given {@code HttpMethod} and
 	 * {@code URI} and apply the given {@code requestCallback} when the HTTP
 	 * request of the underlying API can be initialized and written to.
-	 * @param method the HTTP request method
-	 * @param uri the HTTP request URI
+	 *
+	 * @param method          the HTTP request method
+	 * @param uri             the HTTP request URI
 	 * @param requestCallback a function that prepares and writes to the request,
-	 * returning a publisher that signals when it's done writing.
-	 * Implementations can return a {@code Mono<Void>} by calling
-	 * {@link ClientHttpRequest#writeWith} or {@link ClientHttpRequest#setComplete}.
+	 *                        returning a publisher that signals when it's done writing.
+	 *                        Implementations can return a {@code Mono<Void>} by calling
+	 *                        {@link ClientHttpRequest#writeWith} or {@link ClientHttpRequest#setComplete}.
 	 * @return publisher for the {@link ClientHttpResponse}
 	 */
 	Mono<ClientHttpResponse> connect(HttpMethod method, URI uri,
-			Function<? super ClientHttpRequest, Mono<Void>> requestCallback);
+									 Function<? super ClientHttpRequest, Mono<Void>> requestCallback);
 
 }

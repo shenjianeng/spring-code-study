@@ -31,9 +31,9 @@ import java.lang.annotation.Target;
  * <p>As of Spring Framework 4.2.4, this annotation is declared as repeatable.
  *
  * @author Rob Harrop
- * @since 1.2
  * @see ManagedOperationParameters#value
  * @see org.springframework.jmx.export.metadata.ManagedOperationParameter
+ * @since 1.2
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

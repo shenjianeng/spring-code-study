@@ -52,19 +52,27 @@ import org.springframework.web.cors.CorsConfiguration;
 @Documented
 public @interface CrossOrigin {
 
-	/** @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues} */
+	/**
+	 * @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues}
+	 */
 	@Deprecated
 	String[] DEFAULT_ORIGINS = {"*"};
 
-	/** @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues} */
+	/**
+	 * @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues}
+	 */
 	@Deprecated
 	String[] DEFAULT_ALLOWED_HEADERS = {"*"};
 
-	/** @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues} */
+	/**
+	 * @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues}
+	 */
 	@Deprecated
 	boolean DEFAULT_ALLOW_CREDENTIALS = false;
 
-	/** @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues} */
+	/**
+	 * @deprecated as of Spring 5.0, in favor of {@link CorsConfiguration#applyPermitDefaultValues}
+	 */
 	@Deprecated
 	long DEFAULT_MAX_AGE = 1800;
 
@@ -88,6 +96,7 @@ public @interface CrossOrigin {
 	 * Consider using the {@code ForwardedHeaderFilter} in order to choose from a
 	 * central place whether to extract and use, or to discard such headers.
 	 * See the Spring Framework reference for more on this filter.
+	 *
 	 * @see #value
 	 */
 	@AliasFor("value")

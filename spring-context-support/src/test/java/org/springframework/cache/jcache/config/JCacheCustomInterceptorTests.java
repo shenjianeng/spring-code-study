@@ -86,12 +86,10 @@ public class JCacheCustomInterceptorTests {
 		try {
 			cs.cacheWithCheckedException("id", true);
 			fail("Should have failed");
-		}
-		catch (RuntimeException e) {
+		} catch (RuntimeException e) {
 			assertNotNull("missing original exception", e.getCause());
 			assertEquals(IOException.class, e.getCause().getClass());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			fail("Wrong exception type " + e);
 		}
 	}
@@ -145,13 +143,11 @@ public class JCacheCustomInterceptorTests {
 		protected Object invokeOperation(CacheOperationInvoker invoker) {
 			try {
 				return super.invokeOperation(invoker);
-			}
-			catch (CacheOperationInvoker.ThrowableWrapper e) {
+			} catch (CacheOperationInvoker.ThrowableWrapper e) {
 				Throwable original = e.getOriginal();
 				if (original.getClass() == UnsupportedOperationException.class) {
 					return 55L;
-				}
-				else {
+				} else {
 					throw new CacheOperationInvoker.ThrowableWrapper(
 							new RuntimeException("wrapping original", original));
 				}

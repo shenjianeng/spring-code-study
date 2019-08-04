@@ -54,21 +54,17 @@ final class LogAdapter {
 				// however, we still prefer Log4j over the plain SLF4J API since
 				// the latter does not have location awareness support.
 				logApi = LogApi.SLF4J_LAL;
-			}
-			else {
+			} else {
 				// Use Log4j 2.x directly, including location awareness support
 				logApi = LogApi.LOG4J;
 			}
-		}
-		else if (isPresent(SLF4J_SPI)) {
+		} else if (isPresent(SLF4J_SPI)) {
 			// Full SLF4J SPI including location awareness support
 			logApi = LogApi.SLF4J_LAL;
-		}
-		else if (isPresent(SLF4J_API)) {
+		} else if (isPresent(SLF4J_API)) {
 			// Minimal SLF4J API without location awareness support
 			logApi = LogApi.SLF4J;
-		}
-		else {
+		} else {
 			// java.util.logging as default
 			logApi = LogApi.JUL;
 		}
@@ -81,6 +77,7 @@ final class LogAdapter {
 
 	/**
 	 * Create an actual {@link Log} instance for the selected API.
+	 *
 	 * @param name the logger name
 	 */
 	public static Log createLog(String name) {
@@ -106,8 +103,7 @@ final class LogAdapter {
 		try {
 			Class.forName(className, false, LogAdapter.class.getClassLoader());
 			return true;
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			return false;
 		}
 	}
@@ -256,12 +252,10 @@ final class LogAdapter {
 				// for message objects in case of "{}" sequences (SPR-16226)
 				if (exception != null) {
 					this.logger.logIfEnabled(FQCN, level, null, (String) message, exception);
-				}
-				else {
+				} else {
 					this.logger.logIfEnabled(FQCN, level, null, (String) message);
 				}
-			}
-			else {
+			} else {
 				this.logger.logIfEnabled(FQCN, level, null, message, exception);
 			}
 		}
@@ -563,8 +557,7 @@ final class LogAdapter {
 				LogRecord rec;
 				if (message instanceof LogRecord) {
 					rec = (LogRecord) message;
-				}
-				else {
+				} else {
 					rec = new LocationResolvingLogRecord(level, String.valueOf(message));
 					rec.setLoggerName(this.name);
 					rec.setResourceBundleName(logger.getResourceBundleName());
@@ -629,8 +622,7 @@ final class LogAdapter {
 				String className = element.getClassName();
 				if (FQCN.equals(className)) {
 					found = true;
-				}
-				else if (found) {
+				} else if (found) {
 					sourceClassName = className;
 					sourceMethodName = element.getMethodName();
 					break;

@@ -55,6 +55,7 @@ public class WebExchangeBindException extends ServerWebInputException implements
 	/**
 	 * Return the BindingResult that this BindException wraps.
 	 * Will typically be a BeanPropertyBindingResult.
+	 *
 	 * @see BeanPropertyBindingResult
 	 */
 	public final BindingResult getBindingResult() {

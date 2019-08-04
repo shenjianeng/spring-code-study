@@ -26,9 +26,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Rob Harrop
- * @since 2.0
  * @see #setLocation
  * @see #setExpression
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public abstract class AbstractExpressionPointcut implements ExpressionPointcut, Serializable {
@@ -50,6 +50,7 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 	/**
 	 * Return location information about the pointcut expression
 	 * if available. This is useful in debugging.
+	 *
 	 * @return location information as a human-readable String,
 	 * or {@code null} if none is available
 	 */
@@ -62,13 +63,11 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 		this.expression = expression;
 		try {
 			onSetExpression(expression);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Fill in location information if possible.
 			if (this.location != null) {
 				throw new IllegalArgumentException("Invalid expression at location [" + this.location + "]: " + ex);
-			}
-			else {
+			} else {
 				throw ex;
 			}
 		}
@@ -78,6 +77,7 @@ public abstract class AbstractExpressionPointcut implements ExpressionPointcut, 
 	 * Called when a new pointcut expression is set.
 	 * The expression should be parsed at this point if possible.
 	 * <p>This implementation is empty.
+	 *
 	 * @param expression expression to set
 	 * @throws IllegalArgumentException if the expression is invalid
 	 * @see #setExpression

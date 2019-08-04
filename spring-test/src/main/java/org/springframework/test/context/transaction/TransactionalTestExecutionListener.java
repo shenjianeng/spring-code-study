@@ -120,7 +120,6 @@ import org.springframework.util.StringUtils;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.transaction.annotation.TransactionManagementConfigurer
  * @see org.springframework.transaction.annotation.Transactional
  * @see org.springframework.test.annotation.Commit
@@ -128,6 +127,7 @@ import org.springframework.util.StringUtils;
  * @see BeforeTransaction
  * @see AfterTransaction
  * @see TestTransaction
+ * @since 2.5
  */
 public class TransactionalTestExecutionListener extends AbstractTestExecutionListener {
 
@@ -153,6 +153,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * <p>Note that if a {@code @BeforeTransaction} method fails, any remaining
 	 * {@code @BeforeTransaction} methods will not be invoked, and a transaction
 	 * will not be started.
+	 *
 	 * @see org.springframework.transaction.annotation.Transactional
 	 * @see #getTransactionManager(TestContext, String)
 	 */
@@ -170,7 +171,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 
 		if (transactionAttribute != null) {
 			transactionAttribute = TestContextTransactionUtils.createDelegatingTransactionAttribute(testContext,
-				transactionAttribute);
+					transactionAttribute);
 
 			if (logger.isDebugEnabled()) {
 				logger.debug("Explicit transaction definition [" + transactionAttribute +
@@ -215,8 +216,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 				if (transactionStatus != null && !transactionStatus.isCompleted()) {
 					txContext.endTransaction();
 				}
-			}
-			finally {
+			} finally {
 				runAfterTransactionMethods(testContext);
 			}
 		}
@@ -228,6 +228,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * fails, however, the caught exception will be rethrown in a wrapped
 	 * {@link RuntimeException}, and the remaining methods will <strong>not</strong>
 	 * be given a chance to execute.
+	 *
 	 * @param testContext the current test context
 	 */
 	protected void runBeforeTransactionMethods(TestContext testContext) throws Exception {
@@ -241,8 +242,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 				ReflectionUtils.makeAccessible(method);
 				method.invoke(testContext.getTestInstance());
 			}
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			if (logger.isErrorEnabled()) {
 				logger.error("Exception encountered while executing @BeforeTransaction methods for test context " +
 						testContext + ".", ex.getTargetException());
@@ -257,6 +257,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * fails, the caught exception will be logged as an error, and the remaining
 	 * methods will be given a chance to execute. After all methods have
 	 * executed, the first caught exception, if any, will be rethrown.
+	 *
 	 * @param testContext the current test context
 	 */
 	protected void runAfterTransactionMethods(TestContext testContext) throws Exception {
@@ -270,16 +271,14 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 				}
 				ReflectionUtils.makeAccessible(method);
 				method.invoke(testContext.getTestInstance());
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				Throwable targetException = ex.getTargetException();
 				if (afterTransactionException == null) {
 					afterTransactionException = targetException;
 				}
 				logger.error("Exception encountered while executing @AfterTransaction method [" + method +
 						"] for test context " + testContext, targetException);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				if (afterTransactionException == null) {
 					afterTransactionException = ex;
 				}
@@ -298,10 +297,11 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * for the supplied {@linkplain TestContext test context} and {@code qualifier}.
 	 * <p>Delegates to {@link #getTransactionManager(TestContext)} if the
 	 * supplied {@code qualifier} is {@code null} or empty.
+	 *
 	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved
-	 * @param qualifier the qualifier for selecting between multiple bean matches;
-	 * may be {@code null} or empty
+	 *                    should be retrieved
+	 * @param qualifier   the qualifier for selecting between multiple bean matches;
+	 *                    may be {@code null} or empty
 	 * @return the transaction manager to use, or {@code null} if not found
 	 * @throws BeansException if an error occurs while retrieving the transaction manager
 	 * @see #getTransactionManager(TestContext)
@@ -316,8 +316,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 				BeanFactory bf = testContext.getApplicationContext().getAutowireCapableBeanFactory();
 
 				return BeanFactoryAnnotationUtils.qualifiedBeanOfType(bf, PlatformTransactionManager.class, qualifier);
-			}
-			catch (RuntimeException ex) {
+			} catch (RuntimeException ex) {
 				if (logger.isWarnEnabled()) {
 					logger.warn(String.format(
 							"Caught exception while retrieving transaction manager with qualifier '%s' for test context %s",
@@ -336,13 +335,14 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * to use for the supplied {@linkplain TestContext test context}.
 	 * <p>The default implementation simply delegates to
 	 * {@link TestContextTransactionUtils#retrieveTransactionManager}.
+	 *
 	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved
+	 *                    should be retrieved
 	 * @return the transaction manager to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named transaction manager
+	 * @throws BeansException        if an error occurs while retrieving an explicitly
+	 *                               named transaction manager
 	 * @throws IllegalStateException if more than one TransactionManagementConfigurer
-	 * exists in the ApplicationContext
+	 *                               exists in the ApplicationContext
 	 * @see #getTransactionManager(TestContext, String)
 	 */
 	@Nullable
@@ -355,8 +355,9 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * supplied {@linkplain TestContext test context}.
 	 * <p>Supports {@link Rollback @Rollback} or {@link Commit @Commit} at the
 	 * class-level.
+	 *
 	 * @param testContext the test context for which the default rollback flag
-	 * should be retrieved
+	 *                    should be retrieved
 	 * @return the <em>default rollback</em> flag for the supplied test context
 	 * @throws Exception if an error occurs while determining the default rollback flag
 	 */
@@ -384,8 +385,9 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * {@linkplain #isDefaultRollback(TestContext) default rollback} flag and a
 	 * possible method-level override via the {@link Rollback @Rollback}
 	 * annotation.
+	 *
 	 * @param testContext the test context for which the rollback flag
-	 * should be retrieved
+	 *                    should be retrieved
 	 * @return the <em>rollback</em> flag for the supplied test context
 	 * @throws Exception if an error occurs while determining the rollback flag
 	 */
@@ -401,8 +403,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 						rollbackOverride, rollback, testContext));
 			}
 			rollback = rollbackOverride;
-		}
-		else {
+		} else {
 			if (logger.isDebugEnabled()) {
 				logger.debug(String.format(
 						"No method-level @Rollback override: using default rollback [%s] for test context %s.",
@@ -417,7 +418,8 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 	 * which are annotated with the supplied {@code annotationType} but
 	 * which are not <em>shadowed</em> by methods overridden in subclasses.
 	 * <p>Default methods on interfaces are also detected.
-	 * @param clazz the class for which to retrieve the annotated methods
+	 *
+	 * @param clazz          the class for which to retrieve the annotated methods
 	 * @param annotationType the annotation type for which to search
 	 * @return all annotated methods in the supplied class and its superclasses
 	 * as well as annotated interface default methods

@@ -46,9 +46,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see SpringExtension
  * @see ComposedSpringExtensionTests
+ * @since 5.0
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -186,7 +186,7 @@ class SpringExtensionTests {
 
 	@Test
 	void junitAndSpringMethodInjectionCombined(@Autowired Cat kittyCat, TestInfo testInfo, ApplicationContext context,
-			TestReporter testReporter) {
+											   TestReporter testReporter) {
 
 		assertNotNull(testInfo, "TestInfo should have been injected by JUnit");
 		assertNotNull(testReporter, "TestReporter should have been injected by JUnit");

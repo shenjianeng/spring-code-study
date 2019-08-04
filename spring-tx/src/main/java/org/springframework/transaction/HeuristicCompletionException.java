@@ -70,8 +70,9 @@ public class HeuristicCompletionException extends TransactionException {
 
 	/**
 	 * Constructor for HeuristicCompletionException.
+	 *
 	 * @param outcomeState the outcome state of the transaction
-	 * @param cause the root cause from the transaction API in use
+	 * @param cause        the root cause from the transaction API in use
 	 */
 	public HeuristicCompletionException(int outcomeState, Throwable cause) {
 		super("Heuristic completion: outcome state is " + getStateString(outcomeState), cause);
@@ -81,6 +82,7 @@ public class HeuristicCompletionException extends TransactionException {
 	/**
 	 * Return the outcome state of the transaction state,
 	 * as one of the constants in this class.
+	 *
 	 * @see #STATE_UNKNOWN
 	 * @see #STATE_COMMITTED
 	 * @see #STATE_ROLLED_BACK

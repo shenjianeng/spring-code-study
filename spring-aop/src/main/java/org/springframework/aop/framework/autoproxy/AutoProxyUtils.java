@@ -28,8 +28,8 @@ import org.springframework.util.StringUtils;
  * Mainly for internal use within the framework.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see AbstractAutoProxyCreator
+ * @since 2.0.3
  */
 public abstract class AutoProxyUtils {
 
@@ -40,6 +40,7 @@ public abstract class AutoProxyUtils {
 	 * <p>Proxy factories can set this attribute if they built a target class proxy
 	 * for a specific bean, and want to enforce that bean can always be cast
 	 * to its target class (even if AOP advices get applied through auto-proxying).
+	 *
 	 * @see #shouldProxyTargetClass
 	 */
 	public static final String PRESERVE_TARGET_CLASS_ATTRIBUTE =
@@ -49,8 +50,9 @@ public abstract class AutoProxyUtils {
 	 * Bean definition attribute that indicates the original target class of an
 	 * auto-proxied bean, e.g. to be used for the introspection of annotations
 	 * on the target class behind an interface-based proxy.
-	 * @since 4.2.3
+	 *
 	 * @see #determineTargetClass
+	 * @since 4.2.3
 	 */
 	public static final String ORIGINAL_TARGET_CLASS_ATTRIBUTE =
 			Conventions.getQualifiedAttributeName(AutoProxyUtils.class, "originalTargetClass");
@@ -61,8 +63,9 @@ public abstract class AutoProxyUtils {
 	 * class rather than its interfaces. Checks the
 	 * {@link #PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
 	 * of the corresponding bean definition.
+	 *
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
-	 * @param beanName the name of the bean
+	 * @param beanName    the name of the bean
 	 * @return whether the given bean should be proxied with its target class
 	 */
 	public static boolean shouldProxyTargetClass(
@@ -78,11 +81,12 @@ public abstract class AutoProxyUtils {
 	/**
 	 * Determine the original target class for the specified bean, if possible,
 	 * otherwise falling back to a regular {@code getType} lookup.
+	 *
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
-	 * @param beanName the name of the bean
+	 * @param beanName    the name of the bean
 	 * @return the original target class as stored in the bean definition, if any
-	 * @since 4.2.3
 	 * @see org.springframework.beans.factory.BeanFactory#getType(String)
+	 * @since 4.2.3
 	 */
 	@Nullable
 	public static Class<?> determineTargetClass(
@@ -103,8 +107,9 @@ public abstract class AutoProxyUtils {
 
 	/**
 	 * Expose the given target class for the specified bean, if possible.
+	 *
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
-	 * @param beanName the name of the bean
+	 * @param beanName    the name of the bean
 	 * @param targetClass the corresponding target class
 	 * @since 4.2.3
 	 */
@@ -120,10 +125,11 @@ public abstract class AutoProxyUtils {
 	 * Determine whether the given bean name indicates an "original instance"
 	 * according to {@link AutowireCapableBeanFactory#ORIGINAL_INSTANCE_SUFFIX},
 	 * skipping any proxy attempts for it.
-	 * @param beanName the name of the bean
+	 *
+	 * @param beanName  the name of the bean
 	 * @param beanClass the corresponding bean class
-	 * @since 5.1
 	 * @see AutowireCapableBeanFactory#ORIGINAL_INSTANCE_SUFFIX
+	 * @since 5.1
 	 */
 	static boolean isOriginalInstance(String beanName, Class<?> beanClass) {
 		if (!StringUtils.hasLength(beanName) || beanName.length() !=

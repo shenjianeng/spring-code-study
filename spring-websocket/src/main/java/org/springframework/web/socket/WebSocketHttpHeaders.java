@@ -62,6 +62,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 	/**
 	 * Create an instance that wraps the given pre-existing HttpHeaders and also
 	 * propagate all changes to it.
+	 *
 	 * @param headers the HTTP headers to wrap
 	 */
 	public WebSocketHttpHeaders(HttpHeaders headers) {
@@ -85,6 +86,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Sets the (new) value of the {@code Sec-WebSocket-Accept} header.
+	 *
 	 * @param secWebSocketAccept the value of the header
 	 */
 	public void setSecWebSocketAccept(@Nullable String secWebSocketAccept) {
@@ -93,6 +95,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Returns the value of the {@code Sec-WebSocket-Accept} header.
+	 *
 	 * @return the value of the header
 	 */
 	@Nullable
@@ -102,14 +105,14 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Returns the value of the {@code Sec-WebSocket-Extensions} header.
+	 *
 	 * @return the value of the header
 	 */
 	public List<WebSocketExtension> getSecWebSocketExtensions() {
 		List<String> values = get(SEC_WEBSOCKET_EXTENSIONS);
 		if (CollectionUtils.isEmpty(values)) {
 			return Collections.emptyList();
-		}
-		else {
+		} else {
 			List<WebSocketExtension> result = new ArrayList<>(values.size());
 			for (String value : values) {
 				result.addAll(WebSocketExtension.parseExtensions(value));
@@ -120,6 +123,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Sets the (new) value(s) of the {@code Sec-WebSocket-Extensions} header.
+	 *
 	 * @param extensions the values for the header
 	 */
 	public void setSecWebSocketExtensions(List<WebSocketExtension> extensions) {
@@ -132,6 +136,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Sets the (new) value of the {@code Sec-WebSocket-Key} header.
+	 *
 	 * @param secWebSocketKey the value of the header
 	 */
 	public void setSecWebSocketKey(@Nullable String secWebSocketKey) {
@@ -140,6 +145,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Returns the value of the {@code Sec-WebSocket-Key} header.
+	 *
 	 * @return the value of the header
 	 */
 	@Nullable
@@ -149,6 +155,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Sets the (new) value of the {@code Sec-WebSocket-Protocol} header.
+	 *
 	 * @param secWebSocketProtocol the value of the header
 	 */
 	public void setSecWebSocketProtocol(String secWebSocketProtocol) {
@@ -157,6 +164,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Sets the (new) value of the {@code Sec-WebSocket-Protocol} header.
+	 *
 	 * @param secWebSocketProtocols the value of the header
 	 */
 	public void setSecWebSocketProtocol(List<String> secWebSocketProtocols) {
@@ -165,23 +173,23 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Returns the value of the {@code Sec-WebSocket-Key} header.
+	 *
 	 * @return the value of the header
 	 */
 	public List<String> getSecWebSocketProtocol() {
 		List<String> values = get(SEC_WEBSOCKET_PROTOCOL);
 		if (CollectionUtils.isEmpty(values)) {
 			return Collections.emptyList();
-		}
-		else if (values.size() == 1) {
+		} else if (values.size() == 1) {
 			return getValuesAsList(SEC_WEBSOCKET_PROTOCOL);
-		}
-		else {
+		} else {
 			return values;
 		}
 	}
 
 	/**
 	 * Sets the (new) value of the {@code Sec-WebSocket-Version} header.
+	 *
 	 * @param secWebSocketVersion the value of the header
 	 */
 	public void setSecWebSocketVersion(@Nullable String secWebSocketVersion) {
@@ -190,6 +198,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Returns the value of the {@code Sec-WebSocket-Version} header.
+	 *
 	 * @return the value of the header
 	 */
 	@Nullable
@@ -202,6 +211,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Return the first header value for the given header name, if any.
+	 *
 	 * @param headerName the header name
 	 * @return the first header value; or {@code null}
 	 */
@@ -213,6 +223,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Add the given, single header value under the given name.
+	 *
 	 * @param headerName  the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported
@@ -226,6 +237,7 @@ public class WebSocketHttpHeaders extends HttpHeaders {
 
 	/**
 	 * Set the given, single header value under the given name.
+	 *
 	 * @param headerName  the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported

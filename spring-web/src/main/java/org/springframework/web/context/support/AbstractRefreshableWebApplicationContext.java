@@ -72,28 +72,36 @@ import org.springframework.web.context.ServletContextAware;
  * (for example, {@link org.springframework.context.support.GenericApplicationContext}).
  *
  * @author Juergen Hoeller
- * @since 1.1.3
  * @see #loadBeanDefinitions
  * @see org.springframework.web.context.ConfigurableWebApplicationContext#setConfigLocations
  * @see org.springframework.ui.context.ThemeSource
  * @see XmlWebApplicationContext
+ * @since 1.1.3
  */
 public abstract class AbstractRefreshableWebApplicationContext extends AbstractRefreshableConfigApplicationContext
 		implements ConfigurableWebApplicationContext, ThemeSource {
 
-	/** Servlet context that this context runs in. */
+	/**
+	 * Servlet context that this context runs in.
+	 */
 	@Nullable
 	private ServletContext servletContext;
 
-	/** Servlet config that this context runs in, if any. */
+	/**
+	 * Servlet config that this context runs in, if any.
+	 */
 	@Nullable
 	private ServletConfig servletConfig;
 
-	/** Namespace of this context, or {@code null} if root. */
+	/**
+	 * Namespace of this context, or {@code null} if root.
+	 */
 	@Nullable
 	private String namespace;
 
-	/** the ThemeSource for this ApplicationContext. */
+	/**
+	 * the ThemeSource for this ApplicationContext.
+	 */
 	@Nullable
 	private ThemeSource themeSource;
 
@@ -176,6 +184,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 
 	/**
 	 * This implementation supports file paths beneath the root of the ServletContext.
+	 *
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -186,6 +195,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 
 	/**
 	 * This implementation supports pattern matching in unexpanded WARs too.
+	 *
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override

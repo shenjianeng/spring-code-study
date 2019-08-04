@@ -25,8 +25,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
  *
  * @author Chris Beams
  * @author Sam Brannen
- * @since 3.2
  * @see org.springframework.mock.env.MockPropertySource
+ * @since 3.2
  */
 public class MockEnvironment extends AbstractEnvironment {
 
@@ -51,6 +51,7 @@ public class MockEnvironment extends AbstractEnvironment {
 	/**
 	 * Convenient synonym for {@link #setProperty} that returns the current instance.
 	 * Useful for method chaining and fluent-style use.
+	 *
 	 * @return this {@link MockEnvironment} instance
 	 * @see MockPropertySource#withProperty
 	 */

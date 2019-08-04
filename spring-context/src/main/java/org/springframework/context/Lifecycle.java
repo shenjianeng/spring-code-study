@@ -41,11 +41,11 @@ package org.springframework.context;
  * application context's startup and shutdown phases.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see SmartLifecycle
  * @see ConfigurableApplicationContext
  * @see org.springframework.jms.listener.AbstractMessageListenerContainer
  * @see org.springframework.scheduling.quartz.SchedulerFactoryBean
+ * @since 2.0
  */
 public interface Lifecycle {
 
@@ -54,6 +54,7 @@ public interface Lifecycle {
 	 * <p>Should not throw an exception if the component is already running.
 	 * <p>In the case of a container, this will propagate the start signal to all
 	 * components that apply.
+	 *
 	 * @see SmartLifecycle#isAutoStartup()
 	 */
 	void start();
@@ -70,6 +71,7 @@ public interface Lifecycle {
 	 * <p>Should not throw an exception if the component is not running (not started yet).
 	 * <p>In the case of a container, this will propagate the stop signal to all components
 	 * that apply.
+	 *
 	 * @see SmartLifecycle#stop(Runnable)
 	 * @see org.springframework.beans.factory.DisposableBean#destroy()
 	 */
@@ -79,6 +81,7 @@ public interface Lifecycle {
 	 * Check whether this component is currently running.
 	 * <p>In the case of a container, this will return {@code true} only if <i>all</i>
 	 * components that apply are currently running.
+	 *
 	 * @return whether the component is currently running
 	 */
 	boolean isRunning();

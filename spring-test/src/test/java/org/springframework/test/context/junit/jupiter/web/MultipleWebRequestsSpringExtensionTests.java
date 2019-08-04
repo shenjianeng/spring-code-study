@@ -41,10 +41,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see SpringExtension
  * @see SpringJUnitWebConfig
  * @see org.springframework.test.context.junit.jupiter.web.WebSpringExtensionTests
+ * @since 5.0
  */
 @SpringJUnitWebConfig(WebConfig.class)
 class MultipleWebRequestsSpringExtensionTests {
@@ -54,21 +54,21 @@ class MultipleWebRequestsSpringExtensionTests {
 	@BeforeEach
 	void setUpMockMvc(WebApplicationContext wac) {
 		this.mockMvc = webAppContextSetup(wac)
-			.alwaysExpect(status().isOk())
-			.alwaysExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
-			.build();
+				.alwaysExpect(status().isOk())
+				.alwaysExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
+				.build();
 	}
 
 	@Test
 	void getPerson42() throws Exception {
 		this.mockMvc.perform(get("/person/42").accept(MediaType.APPLICATION_JSON))
-			.andExpect(jsonPath("$.name", is("Dilbert")));
+				.andExpect(jsonPath("$.name", is("Dilbert")));
 	}
 
 	@Test
 	void getPerson99() throws Exception {
 		this.mockMvc.perform(get("/person/99").accept(MediaType.APPLICATION_JSON))
-			.andExpect(jsonPath("$.name", is("Wally")));
+				.andExpect(jsonPath("$.name", is("Wally")));
 	}
 
 }

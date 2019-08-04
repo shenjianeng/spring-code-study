@@ -156,7 +156,7 @@ public class ConsumesRequestConditionTests {
 
 	@Test
 	public void parseConsumesAndHeaders() {
-		String[] consumes = new String[] {"text/plain"};
+		String[] consumes = new String[]{"text/plain"};
 		String[] headers = new String[]{"foo=bar", "content-type=application/xml,application/pdf"};
 		ConsumesRequestCondition condition = new ConsumesRequestCondition(consumes, headers);
 

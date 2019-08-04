@@ -58,6 +58,7 @@ public class AsyncSupportConfigurer {
 	 * <p>By default only a {@link SimpleAsyncTaskExecutor} is used. However when
 	 * using the above two use cases, it's recommended to configure an executor
 	 * backed by a thread pool such as {@link ThreadPoolTaskExecutor}.
+	 *
 	 * @param taskExecutor the task executor instance to use by default
 	 */
 	public AsyncSupportConfigurer setTaskExecutor(AsyncTaskExecutor taskExecutor) {
@@ -72,6 +73,7 @@ public class AsyncSupportConfigurer {
 	 * for further processing of the concurrently produced result.
 	 * <p>If this value is not set, the default timeout of the underlying
 	 * implementation is used, e.g. 10 seconds on Tomcat with Servlet 3.
+	 *
 	 * @param timeout the timeout value in milliseconds
 	 */
 	public AsyncSupportConfigurer setDefaultTimeout(long timeout) {
@@ -83,6 +85,7 @@ public class AsyncSupportConfigurer {
 	 * Configure lifecycle interceptors with callbacks around concurrent request
 	 * execution that starts when a controller returns a
 	 * {@link java.util.concurrent.Callable}.
+	 *
 	 * @param interceptors the interceptors to register
 	 */
 	public AsyncSupportConfigurer registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
@@ -93,6 +96,7 @@ public class AsyncSupportConfigurer {
 	/**
 	 * Configure lifecycle interceptors with callbacks around concurrent request
 	 * execution that starts when a controller returns a {@link DeferredResult}.
+	 *
 	 * @param interceptors the interceptors to register
 	 */
 	public AsyncSupportConfigurer registerDeferredResultInterceptors(

@@ -55,9 +55,9 @@ public interface StompWebSocketEndpointRegistration {
 	 * (means that all origins are allowed). By default, only same origin requests are
 	 * allowed (empty list).
 	 *
-	 * @since 4.1.2
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
 	 * @see <a href="https://github.com/sockjs/sockjs-client#supported-transports-by-browser-html-served-from-http-or-https">SockJS supported transports by browser</a>
+	 * @since 4.1.2
 	 */
 	StompWebSocketEndpointRegistration setAllowedOrigins(String... origins);
 

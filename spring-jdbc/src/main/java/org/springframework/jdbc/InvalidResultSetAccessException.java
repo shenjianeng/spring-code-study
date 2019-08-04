@@ -29,9 +29,9 @@ import org.springframework.lang.Nullable;
  * has been specified. Also thrown by disconnected SqlRowSets.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see BadSqlGrammarException
  * @see org.springframework.jdbc.support.rowset.SqlRowSet
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class InvalidResultSetAccessException extends InvalidDataAccessResourceUsageException {
@@ -42,9 +42,10 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * Constructor for InvalidResultSetAccessException.
+	 *
 	 * @param task name of current task
-	 * @param sql the offending SQL statement
-	 * @param ex the root cause
+	 * @param sql  the offending SQL statement
+	 * @param ex   the root cause
 	 */
 	public InvalidResultSetAccessException(String task, String sql, SQLException ex) {
 		super(task + "; invalid ResultSet access for SQL [" + sql + "]", ex);
@@ -53,6 +54,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * Constructor for InvalidResultSetAccessException.
+	 *
 	 * @param ex the root cause
 	 */
 	public InvalidResultSetAccessException(SQLException ex) {
@@ -70,6 +72,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * Return the SQL that caused the problem.
+	 *
 	 * @return the offending SQL, if known
 	 */
 	@Nullable

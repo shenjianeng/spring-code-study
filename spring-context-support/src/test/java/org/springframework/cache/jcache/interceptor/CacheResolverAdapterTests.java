@@ -67,8 +67,7 @@ public class CacheResolverAdapterTests extends AbstractJCacheTests {
 		javax.cache.Cache cache;
 		if (cacheName == null) {
 			cache = null;
-		}
-		else {
+		} else {
 			cache = mock(javax.cache.Cache.class);
 			given(cache.getName()).willReturn(cacheName);
 		}
@@ -83,7 +82,7 @@ public class CacheResolverAdapterTests extends AbstractJCacheTests {
 				new DefaultCacheMethodDetails<>(method, cacheAnnotation, "test");
 		CacheResultOperation operation = new CacheResultOperation(methodDetails,
 				defaultCacheResolver, defaultKeyGenerator, defaultExceptionCacheResolver);
-		return new DefaultCacheInvocationContext<>(operation, new Sample(), new Object[] {"id"});
+		return new DefaultCacheInvocationContext<>(operation, new Sample(), new Object[]{"id"});
 	}
 
 

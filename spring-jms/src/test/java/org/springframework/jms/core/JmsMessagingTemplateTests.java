@@ -117,7 +117,7 @@ public class JmsMessagingTemplateTests {
 	}
 
 	private void assertPayloadConverter(JmsMessagingTemplate messagingTemplate,
-			MessageConverter messageConverter) {
+										MessageConverter messageConverter) {
 		MessageConverter jmsMessageConverter = messagingTemplate.getJmsMessageConverter();
 		assertNotNull(jmsMessageConverter);
 		assertEquals(MessagingMessageConverter.class, jmsMessageConverter.getClass());
@@ -127,7 +127,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void send() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		Message<String> message = createTextMessage();
 
 		this.messagingTemplate.send(destination, message);
@@ -146,7 +147,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void sendDefaultDestination() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 		Message<String> message = createTextMessage();
 
@@ -188,7 +190,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertAndSendPayload() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 
 		this.messagingTemplate.convertAndSend(destination, "my Payload");
 		verify(this.jmsTemplate).send(eq(destination), this.messageCreator.capture());
@@ -206,7 +209,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertAndSendDefaultDestination() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 
 		this.messagingTemplate.convertAndSend("my Payload");
@@ -251,7 +255,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertAndSendPayloadAndHeaders() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		Map<String, Object> headers = new HashMap<>();
 		headers.put("foo", "bar");
 
@@ -272,7 +277,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void receive() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		javax.jms.Message jmsMessage = createJmsTextMessage();
 		given(this.jmsTemplate.receive(destination)).willReturn(jmsMessage);
 
@@ -293,7 +299,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void receiveDefaultDestination() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 		javax.jms.Message jmsMessage = createJmsTextMessage();
 		given(this.jmsTemplate.receive(destination)).willReturn(jmsMessage);
@@ -322,7 +329,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void receiveAndConvert() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		javax.jms.Message jmsMessage = createJmsTextMessage("my Payload");
 		given(this.jmsTemplate.receive(destination)).willReturn(jmsMessage);
 
@@ -343,7 +351,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void receiveAndConvertDefaultDestination() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 		javax.jms.Message jmsMessage = createJmsTextMessage("my Payload");
 		given(this.jmsTemplate.receive(destination)).willReturn(jmsMessage);
@@ -394,7 +403,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void sendAndReceive() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		Message<String> request = createTextMessage();
 		javax.jms.Message replyJmsMessage = createJmsTextMessage();
 		given(this.jmsTemplate.sendAndReceive(eq(destination), any())).willReturn(replyJmsMessage);
@@ -417,7 +427,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void sendAndReceiveDefaultDestination() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 		Message<String> request = createTextMessage();
 		javax.jms.Message replyJmsMessage = createJmsTextMessage();
@@ -450,7 +461,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertSendAndReceivePayload() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		javax.jms.Message replyJmsMessage = createJmsTextMessage("My reply");
 		given(this.jmsTemplate.sendAndReceive(eq(destination), any())).willReturn(replyJmsMessage);
 
@@ -471,7 +483,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertSendAndReceiveDefaultDestination() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		this.messagingTemplate.setDefaultDestination(destination);
 		javax.jms.Message replyJmsMessage = createJmsTextMessage("My reply");
 		given(this.jmsTemplate.sendAndReceive(eq(destination), any())).willReturn(replyJmsMessage);
@@ -534,7 +547,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertDestinationResolutionExceptionOnSend() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		willThrow(DestinationResolutionException.class).given(this.jmsTemplate).send(eq(destination), any());
 
 		this.thrown.expect(org.springframework.messaging.core.DestinationResolutionException.class);
@@ -543,7 +557,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertDestinationResolutionExceptionOnReceive() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		willThrow(DestinationResolutionException.class).given(this.jmsTemplate).receive(destination);
 
 		this.thrown.expect(org.springframework.messaging.core.DestinationResolutionException.class);
@@ -584,7 +599,8 @@ public class JmsMessagingTemplateTests {
 
 	@Test
 	public void convertInvalidDestinationExceptionOnSendAndReceive() {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		willThrow(InvalidDestinationException.class).given(this.jmsTemplate).sendAndReceive(eq(destination), any());
 
 		this.thrown.expect(org.springframework.messaging.core.DestinationResolutionException.class);
@@ -614,8 +630,7 @@ public class JmsMessagingTemplateTests {
 			StubTextMessage jmsMessage = new StubTextMessage(payload);
 			jmsMessage.setStringProperty("foo", "bar");
 			return jmsMessage;
-		}
-		catch (JMSException e) {
+		} catch (JMSException e) {
 			throw new IllegalStateException("Should not happen", e);
 		}
 	}
@@ -630,8 +645,7 @@ public class JmsMessagingTemplateTests {
 			TextMessage jmsMessage = createTextMessage(messageCreator);
 			assertEquals("Wrong body message", "Hello", jmsMessage.getText());
 			assertEquals("Invalid foo property", "bar", jmsMessage.getStringProperty("foo"));
-		}
-		catch (JMSException e) {
+		} catch (JMSException e) {
 			throw new IllegalStateException("Wrong text message", e);
 		}
 	}

@@ -88,8 +88,7 @@ public class JettyWebSocketTestServer implements WebSocketTestServer {
 			if (this.contextHandler.isRunning()) {
 				this.contextHandler.stop();
 			}
-		}
-		finally {
+		} finally {
 			if (this.jettyServer.isRunning()) {
 				this.jettyServer.setStopTimeout(5000);
 				this.jettyServer.stop();

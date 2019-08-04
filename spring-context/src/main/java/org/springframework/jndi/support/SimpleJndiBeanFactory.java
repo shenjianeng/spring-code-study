@@ -56,19 +56,25 @@ import org.springframework.lang.Nullable;
  * in particular if BeanFactory-style type checking is required.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.beans.factory.support.DefaultListableBeanFactory
  * @see org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
+ * @since 2.5
  */
 public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFactory {
 
-	/** JNDI names of resources that are known to be shareable, i.e. can be cached */
+	/**
+	 * JNDI names of resources that are known to be shareable, i.e. can be cached
+	 */
 	private final Set<String> shareableResources = new HashSet<>();
 
-	/** Cache of shareable singleton objects: bean name to bean instance. */
+	/**
+	 * Cache of shareable singleton objects: bean name to bean instance.
+	 */
 	private final Map<String, Object> singletonObjects = new HashMap<>();
 
-	/** Cache of the types of nonshareable resources: bean name to bean type. */
+	/**
+	 * Cache of the types of nonshareable resources: bean name to bean type.
+	 */
 	private final Map<String, Class<?>> resourceTypes = new HashMap<>();
 
 
@@ -80,8 +86,9 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	/**
 	 * Add the name of a shareable JNDI resource,
 	 * which this factory is allowed to cache once obtained.
+	 *
 	 * @param shareableResource the JNDI name
-	 * (typically within the "java:comp/env/" namespace)
+	 *                          (typically within the "java:comp/env/" namespace)
 	 */
 	public void addShareableResource(String shareableResource) {
 		this.shareableResources.add(shareableResource);
@@ -90,8 +97,9 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	/**
 	 * Set a list of names of shareable JNDI resources,
 	 * which this factory is allowed to cache once obtained.
+	 *
 	 * @param shareableResources the JNDI names
-	 * (typically within the "java:comp/env/" namespace)
+	 *                           (typically within the "java:comp/env/" namespace)
 	 */
 	public void setShareableResources(String... shareableResources) {
 		Collections.addAll(this.shareableResources, shareableResources);
@@ -113,18 +121,14 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 		try {
 			if (isSingleton(name)) {
 				return doGetSingleton(name, requiredType);
-			}
-			else {
+			} else {
 				return lookup(name, requiredType);
 			}
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			throw new NoSuchBeanDefinitionException(name, "not found in JNDI environment");
-		}
-		catch (TypeMismatchNamingException ex) {
+		} catch (TypeMismatchNamingException ex) {
 			throw new BeanNotOfRequiredTypeException(name, ex.getRequiredType(), ex.getActualType());
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			throw new BeanDefinitionStoreException("JNDI environment", name, "JNDI lookup failed", ex);
 		}
 	}
@@ -159,30 +163,30 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 			public T getObject() throws BeansException {
 				return getBean(requiredType);
 			}
+
 			@Override
 			public T getObject(Object... args) throws BeansException {
 				return getBean(requiredType, args);
 			}
+
 			@Override
 			@Nullable
 			public T getIfAvailable() throws BeansException {
 				try {
 					return getBean(requiredType);
-				}
-				catch (NoUniqueBeanDefinitionException ex) {
+				} catch (NoUniqueBeanDefinitionException ex) {
 					throw ex;
-				}
-				catch (NoSuchBeanDefinitionException ex) {
+				} catch (NoSuchBeanDefinitionException ex) {
 					return null;
 				}
 			}
+
 			@Override
 			@Nullable
 			public T getIfUnique() throws BeansException {
 				try {
 					return getBean(requiredType);
-				}
-				catch (NoSuchBeanDefinitionException ex) {
+				} catch (NoSuchBeanDefinitionException ex) {
 					return null;
 				}
 			}
@@ -203,8 +207,7 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 		try {
 			doGetType(name);
 			return true;
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			return false;
 		}
 	}
@@ -236,11 +239,9 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	public Class<?> getType(String name) throws NoSuchBeanDefinitionException {
 		try {
 			return doGetType(name);
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			throw new NoSuchBeanDefinitionException(name, "not found in JNDI environment");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			return null;
 		}
 	}
@@ -270,8 +271,7 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	private Class<?> doGetType(String name) throws NamingException {
 		if (isSingleton(name)) {
 			return doGetSingleton(name, null).getClass();
-		}
-		else {
+		} else {
 			synchronized (this.resourceTypes) {
 				Class<?> type = this.resourceTypes.get(name);
 				if (type == null) {

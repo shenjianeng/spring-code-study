@@ -74,6 +74,7 @@ public @interface SessionAttributes {
 	 * The <em>session attribute names</em> may or may not match the model attribute
 	 * names. Applications should therefore not rely on the session attribute
 	 * names but rather operate on the model only.
+	 *
 	 * @since 4.2
 	 */
 	@AliasFor("value")

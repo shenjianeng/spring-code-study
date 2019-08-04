@@ -56,8 +56,8 @@ public class CronTriggerTests {
 	@Parameters(name = "date [{0}], time zone [{1}]")
 	public static List<Object[]> getParameters() {
 		List<Object[]> list = new ArrayList<>();
-		list.add(new Object[] { new Date(), TimeZone.getTimeZone("PST") });
-		list.add(new Object[] { new Date(), TimeZone.getTimeZone("CET") });
+		list.add(new Object[]{new Date(), TimeZone.getTimeZone("PST")});
+		list.add(new Object[]{new Date(), TimeZone.getTimeZone("CET")});
 		return list;
 	}
 

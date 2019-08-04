@@ -110,7 +110,7 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 	}
 
 	private Mono<?> buildEvent(List<String> lines, ResolvableType valueType, boolean shouldWrap,
-			Map<String, Object> hints) {
+							   Map<String, Object> hints) {
 
 		ServerSentEvent.Builder<Object> sseBuilder = shouldWrap ? ServerSentEvent.builder() : null;
 		StringBuilder data = null;
@@ -124,14 +124,11 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 			if (shouldWrap) {
 				if (line.startsWith("id:")) {
 					sseBuilder.id(line.substring(3).trim());
-				}
-				else if (line.startsWith("event:")) {
+				} else if (line.startsWith("event:")) {
 					sseBuilder.event(line.substring(6).trim());
-				}
-				else if (line.startsWith("retry:")) {
+				} else if (line.startsWith("retry:")) {
 					sseBuilder.retry(Duration.ofMillis(Long.valueOf(line.substring(6).trim())));
-				}
-				else if (line.startsWith(":")) {
+				} else if (line.startsWith(":")) {
 					comment = (comment != null ? comment : new StringBuilder());
 					comment.append(line.substring(1).trim()).append("\n");
 				}
@@ -148,8 +145,7 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 				sseBuilder.data(o);
 				return sseBuilder.build();
 			});
-		}
-		else {
+		} else {
 			return decodedData;
 		}
 	}

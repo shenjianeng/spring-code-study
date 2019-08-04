@@ -100,8 +100,7 @@ public class HttpEntityArgumentResolverTests {
 		try {
 			this.resolver.supportsParameter(this.testMethod.arg(Mono.class, httpEntityType(String.class)));
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"HttpEntityArgumentResolver doesn't support reactive type wrapper"));
@@ -348,6 +347,7 @@ public class HttpEntityArgumentResolverTests {
 			HttpEntity<Flowable<String>> flowableBody,
 			HttpEntity<CompletableFuture<String>> completableFutureBody,
 			RequestEntity<String> requestEntity,
-			Mono<HttpEntity<String>> httpEntityMono) {}
+			Mono<HttpEntity<String>> httpEntityMono) {
+	}
 
 }

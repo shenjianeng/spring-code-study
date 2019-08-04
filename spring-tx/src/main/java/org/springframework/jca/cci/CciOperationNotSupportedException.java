@@ -31,8 +31,9 @@ public class CciOperationNotSupportedException extends InvalidDataAccessResource
 
 	/**
 	 * Constructor for CciOperationNotSupportedException.
+	 *
 	 * @param msg message
-	 * @param ex the root ResourceException cause
+	 * @param ex  the root ResourceException cause
 	 */
 	public CciOperationNotSupportedException(String msg, ResourceException ex) {
 		super(msg, ex);

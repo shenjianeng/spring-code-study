@@ -72,7 +72,7 @@ public class SetValueTests extends AbstractExpressionTests {
 		setValue("arrayContainer.floats[1]", 3.0f);
 		setValue("arrayContainer.booleans[1]", false);
 		setValue("arrayContainer.doubles[1]", 3.4d);
-		setValue("arrayContainer.shorts[1]", (short)3);
+		setValue("arrayContainer.shorts[1]", (short) 3);
 		setValue("arrayContainer.longs[1]", 3L);
 		setValue("arrayContainer.bytes[1]", (byte) 3);
 		setValue("arrayContainer.chars[1]", (char) 3);
@@ -86,14 +86,13 @@ public class SetValueTests extends AbstractExpressionTests {
 		// PROPERTYORFIELDREFERENCE
 		// Non existent field (or property):
 		e = parser.parseExpression("arrayContainer.wibble");
-		assertFalse("Should not be writable!",e.isWritable(lContext));
+		assertFalse("Should not be writable!", e.isWritable(lContext));
 
 		e = parser.parseExpression("arrayContainer.wibble.foo");
 		try {
-			assertFalse("Should not be writable!",e.isWritable(lContext));
+			assertFalse("Should not be writable!", e.isWritable(lContext));
 			fail("Should have had an error because wibble does not really exist");
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 //			org.springframework.expression.spel.SpelEvaluationException: EL1008E:(pos 15): Property or field 'wibble' cannot be found on object of type 'org.springframework.expression.spel.testresources.ArrayContainer' - maybe not public?
 //					at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:225)
 			// success!
@@ -102,29 +101,27 @@ public class SetValueTests extends AbstractExpressionTests {
 		// VARIABLE
 		// the variable does not exist (but that is OK, we should be writable)
 		e = parser.parseExpression("#madeup1");
-		assertTrue("Should be writable!",e.isWritable(lContext));
+		assertTrue("Should be writable!", e.isWritable(lContext));
 
 		e = parser.parseExpression("#madeup2.bar"); // compound expression
-		assertFalse("Should not be writable!",e.isWritable(lContext));
+		assertFalse("Should not be writable!", e.isWritable(lContext));
 
 		// INDEXER
 		// non existent indexer (wibble made up)
 		e = parser.parseExpression("arrayContainer.wibble[99]");
 		try {
-			assertFalse("Should not be writable!",e.isWritable(lContext));
+			assertFalse("Should not be writable!", e.isWritable(lContext));
 			fail("Should have had an error because wibble does not really exist");
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			// success!
 		}
 
 		// non existent indexer (index via a string)
 		e = parser.parseExpression("arrayContainer.ints['abc']");
 		try {
-			assertFalse("Should not be writable!",e.isWritable(lContext));
+			assertFalse("Should not be writable!", e.isWritable(lContext));
 			fail("Should have had an error because wibble does not really exist");
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			// success!
 		}
 	}
@@ -177,7 +174,7 @@ public class SetValueTests extends AbstractExpressionTests {
 
 	@Test
 	public void testSetMapElements() {
-		setValue("testMap['montag']","lundi");
+		setValue("testMap['montag']", "lundi");
 	}
 
 	@Test
@@ -200,7 +197,7 @@ public class SetValueTests extends AbstractExpressionTests {
 		StandardEvaluationContext eContext = TestScenarioCreator.getTestEvaluationContext();
 		Expression e = parse("publicName='Andy'");
 		assertFalse(e.isWritable(eContext));
-		assertEquals("Andy",e.getValue(eContext));
+		assertEquals("Andy", e.getValue(eContext));
 	}
 
 	/*
@@ -217,19 +214,19 @@ public class SetValueTests extends AbstractExpressionTests {
 
 		// All keys should be strings
 		Set<?> ks = parse("mapOfStringToBoolean.keySet()").getValue(eContext, Set.class);
-		for (Object o: ks) {
-			assertEquals(String.class,o.getClass());
+		for (Object o : ks) {
+			assertEquals(String.class, o.getClass());
 		}
 
 		// All values should be booleans
 		Collection<?> vs = parse("mapOfStringToBoolean.values()").getValue(eContext, Collection.class);
-		for (Object o: vs) {
+		for (Object o : vs) {
 			assertEquals(Boolean.class, o.getClass());
 		}
 
 		// One final test check coercion on the key for a map lookup
 		Object o = e.getValue(eContext);
-		assertEquals(Boolean.TRUE,o);
+		assertEquals(Boolean.TRUE, o);
 	}
 
 
@@ -252,12 +249,10 @@ public class SetValueTests extends AbstractExpressionTests {
 			StandardEvaluationContext lContext = TestScenarioCreator.getTestEvaluationContext();
 			e.setValue(lContext, value);
 			fail("expected an error");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			pe.printStackTrace();
 			fail("Unexpected Exception: " + pe.getMessage());
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			// success!
 		}
 	}
@@ -274,9 +269,8 @@ public class SetValueTests extends AbstractExpressionTests {
 			StandardEvaluationContext lContext = TestScenarioCreator.getTestEvaluationContext();
 			assertTrue("Expression is not writeable but should be", e.isWritable(lContext));
 			e.setValue(lContext, value);
-			assertEquals("Retrieved value was not equal to set value", value, e.getValue(lContext,value.getClass()));
-		}
-		catch (EvaluationException | ParseException ex) {
+			assertEquals("Retrieved value was not equal to set value", value, e.getValue(lContext, value.getClass()));
+		} catch (EvaluationException | ParseException ex) {
 			ex.printStackTrace();
 			fail("Unexpected Exception: " + ex.getMessage());
 		}
@@ -301,11 +295,10 @@ public class SetValueTests extends AbstractExpressionTests {
 			Object a = expectedValue;
 			Object b = e.getValue(lContext);
 			if (!a.equals(b)) {
-				fail("Not the same: ["+a+"] type="+a.getClass()+"  ["+b+"] type="+b.getClass());
+				fail("Not the same: [" + a + "] type=" + a.getClass() + "  [" + b + "] type=" + b.getClass());
 //				assertEquals("Retrieved value was not equal to set value", expectedValue, e.getValue(lContext));
 			}
-		}
-		catch (EvaluationException | ParseException ex) {
+		} catch (EvaluationException | ParseException ex) {
 			ex.printStackTrace();
 			fail("Unexpected Exception: " + ex.getMessage());
 		}

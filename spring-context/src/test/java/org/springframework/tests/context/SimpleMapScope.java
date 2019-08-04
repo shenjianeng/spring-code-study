@@ -75,7 +75,7 @@ public class SimpleMapScope implements Scope, Serializable {
 	}
 
 	public void close() {
-		for (Iterator<Runnable> it = this.callbacks.iterator(); it.hasNext();) {
+		for (Iterator<Runnable> it = this.callbacks.iterator(); it.hasNext(); ) {
 			Runnable runnable = it.next();
 			runnable.run();
 		}

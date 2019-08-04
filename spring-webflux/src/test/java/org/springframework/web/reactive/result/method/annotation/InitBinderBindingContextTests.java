@@ -44,6 +44,7 @@ import static org.junit.Assert.assertSame;
 
 /**
  * Unit tests for {@link InitBinderBindingContext}.
+ *
  * @author Rossen Stoyanchev
  */
 public class InitBinderBindingContextTests {
@@ -144,7 +145,7 @@ public class InitBinderBindingContextTests {
 			dataBinder.setDisallowedFields("id");
 		}
 
-		@InitBinder(value="foo")
+		@InitBinder(value = "foo")
 		public void initBinderWithAttributeName(WebDataBinder dataBinder) {
 			dataBinder.setDisallowedFields("id");
 		}

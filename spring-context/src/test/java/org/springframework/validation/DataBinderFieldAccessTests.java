@@ -79,8 +79,7 @@ public class DataBinderFieldAccessTests {
 		try {
 			binder.bind(pvs);
 			fail("Should have thrown NotWritablePropertyException");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			// expected
 		}
 	}
@@ -98,8 +97,7 @@ public class DataBinderFieldAccessTests {
 		try {
 			binder.close();
 			fail("Should have thrown BindException");
-		}
-		catch (BindException ex) {
+		} catch (BindException ex) {
 			assertTrue("changed name correctly", rod.getName().equals("Rod"));
 			//assertTrue("changed age correctly", rod.getAge() == 32);
 
@@ -161,6 +159,7 @@ public class DataBinderFieldAccessTests {
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(new TestBean(text, 0));
 			}
+
 			@Override
 			public String getAsText() {
 				return ((TestBean) getValue()).getName();
@@ -175,8 +174,7 @@ public class DataBinderFieldAccessTests {
 		try {
 			binder.close();
 			fail("Should have thrown BindException");
-		}
-		catch (BindException ex) {
+		} catch (BindException ex) {
 			assertTrue("changed name correctly", rod.getName().equals("Rod"));
 			//assertTrue("changed age correctly", rod.getAge() == 32);
 

@@ -32,8 +32,8 @@ import org.xml.sax.Locator;
  * SAX {@code ContentHandler} that transforms callback calls to DOM {@code Node}s.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see org.w3c.dom.Node
+ * @since 3.0
  */
 class DomContentHandler implements ContentHandler {
 
@@ -46,14 +46,14 @@ class DomContentHandler implements ContentHandler {
 
 	/**
 	 * Create a new instance of the {@code DomContentHandler} with the given node.
+	 *
 	 * @param node the node to publish events to
 	 */
 	DomContentHandler(Node node) {
 		this.node = node;
 		if (node instanceof Document) {
 			this.document = (Document) node;
-		}
-		else {
+		} else {
 			this.document = node.getOwnerDocument();
 		}
 	}
@@ -62,8 +62,7 @@ class DomContentHandler implements ContentHandler {
 	private Node getParent() {
 		if (!this.elements.isEmpty()) {
 			return this.elements.get(this.elements.size() - 1);
-		}
-		else {
+		} else {
 			return this.node;
 		}
 	}
@@ -96,8 +95,7 @@ class DomContentHandler implements ContentHandler {
 		Node lastChild = parent.getLastChild();
 		if (lastChild != null && lastChild.getNodeType() == Node.TEXT_NODE) {
 			((Text) lastChild).appendData(data);
-		}
-		else {
+		} else {
 			Text text = this.document.createTextNode(data);
 			parent.appendChild(text);
 		}

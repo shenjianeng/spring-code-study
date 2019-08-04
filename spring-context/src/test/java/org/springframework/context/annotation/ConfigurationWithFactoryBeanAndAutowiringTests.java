@@ -142,7 +142,7 @@ public class ConfigurationWithFactoryBeanAndAutowiringTests {
 		@Override
 		@SuppressWarnings("unchecked")
 		public Class<T> getObjectType() {
-			return (Class<T>)obj.getClass();
+			return (Class<T>) obj.getClass();
 		}
 
 		@Override

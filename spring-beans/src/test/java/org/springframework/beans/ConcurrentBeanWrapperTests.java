@@ -65,8 +65,7 @@ public class ConcurrentBeanWrapperTests {
 			while (!set.isEmpty() && ex == null) {
 				try {
 					wait();
-				}
-				catch (InterruptedException e) {
+				} catch (InterruptedException e) {
 					logger.info(e.toString());
 				}
 				logger.info(set.size() + " threads still active.");
@@ -84,7 +83,7 @@ public class ConcurrentBeanWrapperTests {
 
 		assertTrue("The System properties must not be empty", p.size() != 0);
 
-		for (Iterator<?> i = p.entrySet().iterator(); i.hasNext();) {
+		for (Iterator<?> i = p.entrySet().iterator(); i.hasNext(); ) {
 			i.next();
 			if (Math.random() > 0.9) {
 				i.remove();
@@ -94,8 +93,7 @@ public class ConcurrentBeanWrapperTests {
 		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 		try {
 			p.store(buffer, null);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			// ByteArrayOutputStream does not throw
 			// any IOException
 		}
@@ -121,11 +119,9 @@ public class ConcurrentBeanWrapperTests {
 				for (int i = 0; i < 100; i++) {
 					performSet();
 				}
-			}
-			catch (Throwable e) {
+			} catch (Throwable e) {
 				test.ex = e;
-			}
-			finally {
+			} finally {
 				synchronized (test) {
 					test.set.remove(this);
 					test.notifyAll();

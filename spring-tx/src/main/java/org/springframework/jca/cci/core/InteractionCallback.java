@@ -35,13 +35,13 @@ import org.springframework.lang.Nullable;
  * written code, it is strongly recommended to use CciTemplate's more specific
  * {@code execute} variants.
  *
+ * @param <T> the result type
  * @author Thierry Templier
  * @author Juergen Hoeller
- * @since 1.2
- * @param <T> the result type
  * @see CciTemplate#execute(InteractionCallback)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, javax.resource.cci.Record)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator, RecordExtractor)
+ * @since 1.2
  */
 @FunctionalInterface
 public interface InteractionCallback<T> {
@@ -60,14 +60,15 @@ public interface InteractionCallback<T> {
 	 * support for single step actions: see the {@code CciTemplate.execute}
 	 * variants. A thrown RuntimeException is treated as application exception:
 	 * it gets propagated to the caller of the template.
-	 * @param interaction active CCI Interaction
+	 *
+	 * @param interaction       active CCI Interaction
 	 * @param connectionFactory the CCI ConnectionFactory that the Connection was
-	 * created with (gives access to RecordFactory and ResourceAdapterMetaData)
+	 *                          created with (gives access to RecordFactory and ResourceAdapterMetaData)
 	 * @return a result object, or {@code null} if none
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
-	 * @throws SQLException if thrown by a ResultSet method, to be auto-converted
-	 * to a DataAccessException
+	 * @throws ResourceException   if thrown by a CCI method, to be auto-converted
+	 *                             to a DataAccessException
+	 * @throws SQLException        if thrown by a ResultSet method, to be auto-converted
+	 *                             to a DataAccessException
 	 * @throws DataAccessException in case of custom exceptions
 	 * @see javax.resource.cci.ConnectionFactory#getRecordFactory()
 	 * @see javax.resource.cci.ConnectionFactory#getMetaData()

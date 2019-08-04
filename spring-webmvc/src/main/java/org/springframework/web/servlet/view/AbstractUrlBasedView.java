@@ -42,6 +42,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 	/**
 	 * Create a new AbstractUrlBasedView with the given URL.
+	 *
 	 * @param url the URL to forward to
 	 */
 	protected AbstractUrlBasedView(String url) {
@@ -84,6 +85,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 	/**
 	 * Check whether the underlying resource that the configured URL points to
 	 * actually exists.
+	 *
 	 * @param locale the desired Locale that we're looking for
 	 * @return {@code true} if the resource exists (or is assumed to exist);
 	 * {@code false} if we know that it does not exist

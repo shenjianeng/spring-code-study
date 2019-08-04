@@ -32,6 +32,7 @@ public class MissingServletRequestParameterException extends ServletRequestBindi
 
 	/**
 	 * Constructor for MissingServletRequestParameterException.
+	 *
 	 * @param parameterName the name of the missing parameter
 	 * @param parameterType the expected type of the missing parameter
 	 */

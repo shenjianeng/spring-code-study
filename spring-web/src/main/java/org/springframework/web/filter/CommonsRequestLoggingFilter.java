@@ -24,13 +24,13 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2.5
  * @see #setIncludeQueryString
  * @see #setBeforeMessagePrefix
  * @see #setBeforeMessageSuffix
  * @see #setAfterMessagePrefix
  * @see #setAfterMessageSuffix
  * @see org.apache.commons.logging.Log#debug(Object)
+ * @since 1.2.5
  */
 public class CommonsRequestLoggingFilter extends AbstractRequestLoggingFilter {
 

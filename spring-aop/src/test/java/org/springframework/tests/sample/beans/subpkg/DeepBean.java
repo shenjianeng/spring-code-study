@@ -21,9 +21,8 @@ import org.springframework.aop.aspectj.AspectJExpressionPointcutTests;
 /**
  * Used for testing pointcut matching.
  *
- * @see AspectJExpressionPointcutTests#testWithinRootAndSubpackages()
- *
  * @author Chris Beams
+ * @see AspectJExpressionPointcutTests#testWithinRootAndSubpackages()
  */
 public class DeepBean {
 	public void aMethod(String foo) {

@@ -39,10 +39,10 @@ import org.springframework.core.annotation.AliasFor;
  * workflow for a controller, consider using {@link SessionAttributes} instead.
  *
  * @author Rossen Stoyanchev
- * @since 4.3
  * @see RequestMapping
  * @see SessionAttributes
  * @see RequestAttribute
+ * @since 4.3
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

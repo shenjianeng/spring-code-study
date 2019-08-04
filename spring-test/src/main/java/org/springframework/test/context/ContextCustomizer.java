@@ -31,9 +31,9 @@ import org.springframework.context.ConfigurableApplicationContext;
  *
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 4.3
  * @see ContextCustomizerFactory
  * @see org.springframework.test.context.support.AbstractContextLoader#customizeContext
+ * @since 4.3
  */
 @FunctionalInterface
 public interface ContextCustomizer {
@@ -42,7 +42,8 @@ public interface ContextCustomizer {
 	 * Customize the supplied {@code ConfigurableApplicationContext} <em>after</em>
 	 * bean definitions have been loaded into the context but <em>before</em> the
 	 * context has been refreshed.
-	 * @param context the context to customize
+	 *
+	 * @param context      the context to customize
 	 * @param mergedConfig the merged context configuration
 	 */
 	void customizeContext(ConfigurableApplicationContext context, MergedContextConfiguration mergedConfig);

@@ -47,6 +47,7 @@ public interface StompEndpointRegistry {
 
 	/**
 	 * Configure a handler for customizing or handling STOMP ERROR frames to clients.
+	 *
 	 * @param errorHandler the error handler
 	 * @since 4.2
 	 */

@@ -187,7 +187,7 @@ public class ServletModelAttributeMethodProcessorTests {
 		assertNull(processor.resolveArgument(
 				testBeanWithoutStringConstructorModelAttr, mavContainer, webRequest, binderFactory));
 
-		Optional<TestBean> testBean =(Optional<TestBean>) processor.resolveArgument(
+		Optional<TestBean> testBean = (Optional<TestBean>) processor.resolveArgument(
 				testBeanWithOptionalModelAttr, mavContainer, webRequest, binderFactory);
 		assertFalse(testBean.isPresent());
 	}

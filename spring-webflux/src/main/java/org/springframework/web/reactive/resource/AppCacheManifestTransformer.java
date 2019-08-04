@@ -63,8 +63,8 @@ import org.springframework.web.server.ServerWebExchange;
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @since 5.0
  * @see <a href="https://html.spec.whatwg.org/multipage/browsers.html#offline">HTML5 offline applications spec</a>
+ * @since 5.0
  */
 public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 
@@ -101,7 +101,7 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 
 	@Override
 	public Mono<Resource> transform(ServerWebExchange exchange, Resource inputResource,
-			ResourceTransformerChain chain) {
+									ResourceTransformerChain chain) {
 
 		return chain.transform(exchange, inputResource)
 				.flatMap(outputResource -> {
@@ -123,7 +123,7 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 	}
 
 	private Mono<? extends Resource> transform(String content, Resource resource,
-			ResourceTransformerChain chain, ServerWebExchange exchange) {
+											   ResourceTransformerChain chain, ServerWebExchange exchange) {
 
 		if (!content.startsWith(MANIFEST_HEADER)) {
 			if (logger.isTraceEnabled()) {
@@ -149,14 +149,13 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 		try {
 			byte[] bytes = toWrite.getBytes(DEFAULT_CHARSET);
 			out.write(bytes);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw Exceptions.propagate(ex);
 		}
 	}
 
 	private Mono<String> processLine(LineInfo info, ServerWebExchange exchange,
-			Resource resource, ResourceTransformerChain chain) {
+									 Resource resource, ResourceTransformerChain chain) {
 
 		if (!info.isLink()) {
 			return Mono.just(info.getLine());
@@ -187,8 +186,7 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 				LineInfo current = new LineInfo(line, this.previous);
 				sink.next(current);
 				this.previous = current;
-			}
-			else {
+			} else {
 				sink.complete();
 			}
 		}
@@ -214,8 +212,7 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 		private static boolean initCacheSectionFlag(String line, @Nullable LineInfo previousLine) {
 			if (MANIFEST_SECTION_HEADERS.contains(line.trim())) {
 				return line.trim().equals(CACHE_HEADER);
-			}
-			else if (previousLine != null) {
+			} else if (previousLine != null) {
 				return previousLine.isCacheSection();
 			}
 			throw new IllegalStateException(

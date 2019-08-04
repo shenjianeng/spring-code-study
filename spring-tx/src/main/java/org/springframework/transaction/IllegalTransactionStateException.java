@@ -29,6 +29,7 @@ public class IllegalTransactionStateException extends TransactionUsageException 
 
 	/**
 	 * Constructor for IllegalTransactionStateException.
+	 *
 	 * @param msg the detail message
 	 */
 	public IllegalTransactionStateException(String msg) {
@@ -37,7 +38,8 @@ public class IllegalTransactionStateException extends TransactionUsageException 
 
 	/**
 	 * Constructor for IllegalTransactionStateException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */
 	public IllegalTransactionStateException(String msg, Throwable cause) {

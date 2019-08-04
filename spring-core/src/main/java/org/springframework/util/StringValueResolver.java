@@ -23,16 +23,17 @@ import org.springframework.lang.Nullable;
  * Used by {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#resolveAliases
  * @see org.springframework.beans.factory.config.BeanDefinitionVisitor#BeanDefinitionVisitor(StringValueResolver)
  * @see org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
+ * @since 2.5
  */
 @FunctionalInterface
 public interface StringValueResolver {
 
 	/**
 	 * Resolve the given String value, for example parsing placeholders.
+	 *
 	 * @param strVal the original String value (never {@code null})
 	 * @return the resolved String value (may be {@code null} when resolved to a null
 	 * value), possibly the original String value itself (in case of no placeholders

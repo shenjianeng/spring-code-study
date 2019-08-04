@@ -25,7 +25,7 @@ import org.springframework.util.StopWatch;
 
 /**
  * Benchmarks for introductions.
- *
+ * <p>
  * NOTE: No assertions!
  *
  * @author Rod Johnson
@@ -36,7 +36,9 @@ public class IntroductionBenchmarkTests {
 
 	private static final int EXPECTED_COMPARE = 13;
 
-	/** Increase this if you want meaningful results! */
+	/**
+	 * Increase this if you want meaningful results!
+	 */
 	private static final int INVOCATIONS = 100000;
 
 

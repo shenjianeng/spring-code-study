@@ -25,10 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * "produces" conditions.
  *
  * @author Rossen Stoyanchev
- * @since 3.1
- *
  * @see RequestMapping#consumes()
  * @see RequestMapping#produces()
+ * @since 3.1
  */
 public interface MediaTypeExpression {
 

@@ -33,12 +33,12 @@ import org.springframework.util.ClassUtils;
  * is backed by a {@link Map}.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see Annotation
  * @see AliasFor
  * @see AbstractAliasAwareAnnotationAttributeExtractor
  * @see DefaultAnnotationAttributeExtractor
  * @see AnnotationUtils#synthesizeAnnotation(Map, Class, AnnotatedElement)
+ * @since 4.2
  */
 class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttributeExtractor<Map<String, Object>> {
 
@@ -47,13 +47,14 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 	 * <p>The supplied map must contain a key-value pair for every attribute
 	 * defined in the supplied {@code annotationType} that is not aliased or
 	 * does not have a default value.
-	 * @param attributes the map of annotation attributes; never {@code null}
-	 * @param annotationType the type of annotation to synthesize; never {@code null}
+	 *
+	 * @param attributes       the map of annotation attributes; never {@code null}
+	 * @param annotationType   the type of annotation to synthesize; never {@code null}
 	 * @param annotatedElement the element that is annotated with the annotation
-	 * of the supplied type; may be {@code null} if unknown
+	 *                         of the supplied type; may be {@code null} if unknown
 	 */
 	MapAnnotationAttributeExtractor(Map<String, Object> attributes, Class<? extends Annotation> annotationType,
-			@Nullable AnnotatedElement annotatedElement) {
+									@Nullable AnnotatedElement annotatedElement) {
 
 		super(annotationType, annotatedElement, enrichAndValidateAttributes(attributes, annotationType));
 	}
@@ -164,7 +165,7 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 
 				Assert.isTrue(converted, () -> String.format(
 						"Attributes map %s returned a value of type [%s] for attribute '%s', " +
-						"but a value of type [%s] is required as defined by annotation type [%s].",
+								"but a value of type [%s] is required as defined by annotation type [%s].",
 						attributes, actualReturnType.getName(), attributeName, requiredReturnType.getName(),
 						annotationType.getName()));
 			}

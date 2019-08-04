@@ -31,8 +31,8 @@ import org.springframework.util.Assert;
  * <p>This is an SPI class, not to be used directly by applications.
  *
  * @author Juergen Hoeller
- * @since 14.05.2003
  * @see RmiServiceExporter
+ * @since 14.05.2003
  */
 class RmiInvocationWrapper implements RmiInvocationHandler {
 
@@ -43,8 +43,9 @@ class RmiInvocationWrapper implements RmiInvocationHandler {
 
 	/**
 	 * Create a new RmiInvocationWrapper for the given object.
+	 *
 	 * @param wrappedObject the object to wrap with an RmiInvocationHandler
-	 * @param rmiExporter the RMI exporter to handle the actual invocation
+	 * @param rmiExporter   the RMI exporter to handle the actual invocation
 	 */
 	public RmiInvocationWrapper(Object wrappedObject, RmiBasedExporter rmiExporter) {
 		Assert.notNull(wrappedObject, "Object to wrap is required");
@@ -56,6 +57,7 @@ class RmiInvocationWrapper implements RmiInvocationHandler {
 
 	/**
 	 * Exposes the exporter's service interface, if any, as target interface.
+	 *
 	 * @see RmiBasedExporter#getServiceInterface()
 	 */
 	@Override
@@ -67,12 +69,13 @@ class RmiInvocationWrapper implements RmiInvocationHandler {
 
 	/**
 	 * Delegates the actual invocation handling to the RMI exporter.
+	 *
 	 * @see RmiBasedExporter#invoke(org.springframework.remoting.support.RemoteInvocation, Object)
 	 */
 	@Override
 	@Nullable
 	public Object invoke(RemoteInvocation invocation)
-		throws RemoteException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+			throws RemoteException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
 		return this.rmiExporter.invoke(invocation, this.wrappedObject);
 	}

@@ -212,14 +212,14 @@ public class WebSocketHandlerRegistrationTests {
 
 		@Override
 		protected void addSockJsServiceMapping(List<Mapping> mappings, SockJsService sockJsService,
-				WebSocketHandler wsHandler, String pathPattern) {
+											   WebSocketHandler wsHandler, String pathPattern) {
 
 			mappings.add(new Mapping(wsHandler, pathPattern, sockJsService));
 		}
 
 		@Override
 		protected void addWebSocketHandlerMapping(List<Mapping> mappings, WebSocketHandler handler,
-				HandshakeHandler handshakeHandler, HandshakeInterceptor[] interceptors, String path) {
+												  HandshakeHandler handshakeHandler, HandshakeInterceptor[] interceptors, String path) {
 
 			mappings.add(new Mapping(handler, path, handshakeHandler, interceptors));
 		}

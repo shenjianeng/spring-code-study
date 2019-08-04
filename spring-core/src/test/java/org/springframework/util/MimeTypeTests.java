@@ -298,7 +298,7 @@ public class MimeTypeTests {
 		String s = String.join(",", mimeTypes);
 		List<MimeType> actual = MimeTypeUtils.parseMimeTypes(s);
 		assertEquals(mimeTypes.length, actual.size());
-		for (int i=0; i < mimeTypes.length; i++) {
+		for (int i = 0; i < mimeTypes.length; i++) {
 			assertEquals(mimeTypes[i], actual.get(i).toString());
 		}
 	}
@@ -356,6 +356,7 @@ public class MimeTypeTests {
 
 	/**
 	 * SPR-13157
+	 *
 	 * @since 4.2
 	 */
 	@Test

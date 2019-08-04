@@ -43,8 +43,8 @@ import static org.junit.Assert.*;
  * <p>Simultaneously tests for method-level overrides via {@code @SqlConfig}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see MultipleDataSourcesAndTransactionManagersTransactionalSqlScriptsTests
+ * @since 4.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -96,19 +96,19 @@ public class MultipleDataSourcesAndTransactionManagersSqlScriptsTests {
 		@Bean
 		public DataSource dataSource1() {
 			return new EmbeddedDatabaseBuilder()//
-			.setName("database1")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
-			.build();
+					.setName("database1")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
+					.build();
 		}
 
 		@Bean
 		public DataSource dataSource2() {
 			return new EmbeddedDatabaseBuilder()//
-			.setName("database2")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
-			.build();
+					.setName("database2")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
+					.build();
 		}
 
 	}

@@ -99,8 +99,7 @@ public class MarshallingHttpMessageConverterTests {
 		try {
 			converter.read(String.class, inputMessage);
 			fail("Should have thrown HttpMessageNotReadableException");
-		}
-		catch (HttpMessageNotReadableException ex) {
+		} catch (HttpMessageNotReadableException ex) {
 			assertTrue(ex.getCause() instanceof TypeMismatchException);
 		}
 	}
@@ -119,8 +118,7 @@ public class MarshallingHttpMessageConverterTests {
 		try {
 			converter.read(Object.class, inputMessage);
 			fail("HttpMessageNotReadableException should be thrown");
-		}
-		catch (HttpMessageNotReadableException e) {
+		} catch (HttpMessageNotReadableException e) {
 			assertTrue("Invalid exception hierarchy", e.getCause() == ex);
 		}
 	}
@@ -153,8 +151,7 @@ public class MarshallingHttpMessageConverterTests {
 			MarshallingHttpMessageConverter converter = new MarshallingHttpMessageConverter(marshaller);
 			converter.write(body, null, outputMessage);
 			fail("HttpMessageNotWritableException should be thrown");
-		}
-		catch (HttpMessageNotWritableException e) {
+		} catch (HttpMessageNotWritableException e) {
 			assertTrue("Invalid exception hierarchy", e.getCause() == ex);
 		}
 	}

@@ -76,13 +76,14 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 
 	/**
 	 * Class constructor with a default resolution mode flag.
-	 * @param adapterRegistry for adapting to other reactive types from and to Mono
+	 *
+	 * @param adapterRegistry      for adapting to other reactive types from and to Mono
 	 * @param useDefaultResolution if "true", non-simple method arguments and
-	 * return values are considered model attributes with or without a
-	 * {@code @ModelAttribute} annotation present.
+	 *                             return values are considered model attributes with or without a
+	 *                             {@code @ModelAttribute} annotation present.
 	 */
 	public ModelAttributeMethodArgumentResolver(ReactiveAdapterRegistry adapterRegistry,
-			boolean useDefaultResolution) {
+												boolean useDefaultResolution) {
 
 		super(adapterRegistry);
 		this.useDefaultResolution = useDefaultResolution;
@@ -93,8 +94,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	public boolean supportsParameter(MethodParameter parameter) {
 		if (parameter.hasParameterAnnotation(ModelAttribute.class)) {
 			return true;
-		}
-		else if (this.useDefaultResolution) {
+		} else if (this.useDefaultResolution) {
 			return checkParameterType(parameter, type -> !BeanUtils.isSimpleProperty(type));
 		}
 		return false;
@@ -136,8 +136,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 						if (adapter != null) {
 							return adapter.fromPublisher(errors.hasErrors() ?
 									Mono.error(new WebExchangeBindException(parameter, errors)) : valueMono);
-						}
-						else {
+						} else {
 							if (errors.hasErrors() && !hasErrorsArgument(parameter)) {
 								throw new WebExchangeBindException(parameter, errors);
 							}
@@ -148,7 +147,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	}
 
 	private Mono<?> prepareAttributeMono(String attributeName, ResolvableType attributeType,
-			BindingContext context, ServerWebExchange exchange) {
+										 BindingContext context, ServerWebExchange exchange) {
 
 		Object attribute = context.getModel().asMap().get(attributeName);
 
@@ -164,8 +163,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 		if (adapter != null) {
 			Assert.isTrue(!adapter.isMultiValue(), "Data binding only supports single-value async types");
 			return Mono.from(adapter.toPublisher(attribute));
-		}
-		else {
+		} else {
 			return Mono.justOrEmpty(attribute);
 		}
 	}
@@ -201,12 +199,10 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 			Constructor<?>[] ctors = clazz.getConstructors();
 			if (ctors.length == 1) {
 				ctor = ctors[0];
-			}
-			else {
+			} else {
 				try {
 					ctor = clazz.getDeclaredConstructor();
-				}
-				catch (NoSuchMethodException ex) {
+				} catch (NoSuchMethodException ex) {
 					throw new IllegalStateException("No primary or default constructor found for " + clazz, ex);
 				}
 			}
@@ -215,7 +211,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	}
 
 	private Mono<?> constructAttribute(Constructor<?> ctor, String attributeName,
-			BindingContext context, ServerWebExchange exchange) {
+									   BindingContext context, ServerWebExchange exchange) {
 
 		if (ctor.getParameterCount() == 0) {
 			// A single default constructor -> clearly a standard JavaBeans arrangement.
@@ -252,8 +248,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 				MethodParameter methodParam = new MethodParameter(ctor, i);
 				if (value == null && methodParam.isOptional()) {
 					args[i] = (methodParam.getParameterType() == Optional.class ? Optional.empty() : null);
-				}
-				else {
+				} else {
 					args[i] = binder.convertIfNecessary(value, paramTypes[i], methodParam);
 				}
 			}
@@ -273,10 +268,9 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 			if (validatedAnn != null || ann.annotationType().getSimpleName().startsWith("Valid")) {
 				Object hints = (validatedAnn != null ? validatedAnn.value() : AnnotationUtils.getValue(ann));
 				if (hints != null) {
-					Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[] {hints});
+					Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[]{hints});
 					binder.validate(validationHints);
-				}
-				else {
+				} else {
 					binder.validate();
 				}
 			}

@@ -44,10 +44,14 @@ import org.springframework.util.Assert;
  */
 public class PreparedStatementCreatorFactory {
 
-	/** The SQL, which won't change when the parameters change. */
+	/**
+	 * The SQL, which won't change when the parameters change.
+	 */
 	private final String sql;
 
-	/** List of SqlParameter objects (may not be {@code null}). */
+	/**
+	 * List of SqlParameter objects (may not be {@code null}).
+	 */
 	private final List<SqlParameter> declaredParameters;
 
 	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY;
@@ -63,6 +67,7 @@ public class PreparedStatementCreatorFactory {
 	/**
 	 * Create a new factory. Will need to add parameters via the
 	 * {@link #addParameter} method or have no parameters.
+	 *
 	 * @param sql the SQL statement to execute
 	 */
 	public PreparedStatementCreatorFactory(String sql) {
@@ -72,7 +77,8 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Create a new factory with the given SQL and JDBC types.
-	 * @param sql the SQL statement to execute
+	 *
+	 * @param sql   the SQL statement to execute
 	 * @param types int array of JDBC types
 	 */
 	public PreparedStatementCreatorFactory(String sql, int... types) {
@@ -82,7 +88,8 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Create a new factory with the given SQL and parameters.
-	 * @param sql the SQL statement to execute
+	 *
+	 * @param sql                the SQL statement to execute
 	 * @param declaredParameters list of {@link SqlParameter} objects
 	 */
 	public PreparedStatementCreatorFactory(String sql, List<SqlParameter> declaredParameters) {
@@ -93,6 +100,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return the SQL statement to execute.
+	 *
 	 * @since 5.1.3
 	 */
 	public final String getSql() {
@@ -102,6 +110,7 @@ public class PreparedStatementCreatorFactory {
 	/**
 	 * Add a new declared parameter.
 	 * <p>Order of parameter addition is significant.
+	 *
 	 * @param param the parameter to add to the list of declared parameters
 	 */
 	public void addParameter(SqlParameter param) {
@@ -110,6 +119,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Set whether to use prepared statements that return a specific type of ResultSet.
+	 *
 	 * @param resultSetType the ResultSet type
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
@@ -143,6 +153,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return a new PreparedStatementSetter for the given parameters.
+	 *
 	 * @param params list of parameters (may be {@code null})
 	 */
 	public PreparedStatementSetter newPreparedStatementSetter(@Nullable List<?> params) {
@@ -151,6 +162,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return a new PreparedStatementSetter for the given parameters.
+	 *
 	 * @param params the parameter array (may be {@code null})
 	 */
 	public PreparedStatementSetter newPreparedStatementSetter(@Nullable Object[] params) {
@@ -159,6 +171,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return a new PreparedStatementCreator for the given parameters.
+	 *
 	 * @param params list of parameters (may be {@code null})
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(@Nullable List<?> params) {
@@ -167,6 +180,7 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return a new PreparedStatementCreator for the given parameters.
+	 *
 	 * @param params the parameter array (may be {@code null})
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(@Nullable Object[] params) {
@@ -175,9 +189,10 @@ public class PreparedStatementCreatorFactory {
 
 	/**
 	 * Return a new PreparedStatementCreator for the given parameters.
+	 *
 	 * @param sqlToUse the actual SQL statement to use (if different from
-	 * the factory's, for example because of named parameter expanding)
-	 * @param params the parameter array (may be {@code null})
+	 *                 the factory's, for example because of named parameter expanding)
+	 * @param params   the parameter array (may be {@code null})
 	 */
 	public PreparedStatementCreator newPreparedStatementCreator(String sqlToUse, @Nullable Object[] params) {
 		return new PreparedStatementCreatorImpl(
@@ -210,15 +225,14 @@ public class PreparedStatementCreatorFactory {
 					Object param = parameters.get(i);
 					if (param instanceof SqlParameterValue) {
 						names.add(((SqlParameterValue) param).getName());
-					}
-					else {
+					} else {
 						names.add("Parameter #" + i);
 					}
 				}
 				if (names.size() != declaredParameters.size()) {
 					throw new InvalidDataAccessApiUsageException(
 							"SQL [" + sql + "]: given " + names.size() +
-							" parameters but expected " + declaredParameters.size());
+									" parameters but expected " + declaredParameters.size());
 				}
 			}
 		}
@@ -229,17 +243,14 @@ public class PreparedStatementCreatorFactory {
 			if (generatedKeysColumnNames != null || returnGeneratedKeys) {
 				if (generatedKeysColumnNames != null) {
 					ps = con.prepareStatement(this.actualSql, generatedKeysColumnNames);
-				}
-				else {
+				} else {
 					ps = con.prepareStatement(this.actualSql, PreparedStatement.RETURN_GENERATED_KEYS);
 				}
-			}
-			else if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
+			} else if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
 				ps = con.prepareStatement(this.actualSql);
-			}
-			else {
+			} else {
 				ps = con.prepareStatement(this.actualSql, resultSetType,
-					updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
+						updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
 			}
 			setValues(ps);
 			return ps;
@@ -258,12 +269,11 @@ public class PreparedStatementCreatorFactory {
 					SqlParameterValue paramValue = (SqlParameterValue) in;
 					in = paramValue.getValue();
 					declaredParameter = paramValue;
-				}
-				else {
+				} else {
 					if (declaredParameters.size() <= i) {
 						throw new InvalidDataAccessApiUsageException(
 								"SQL [" + sql + "]: unable to access parameter number " + (i + 1) +
-								" given only " + declaredParameters.size() + " parameters");
+										" given only " + declaredParameters.size() + " parameters");
 
 					}
 					declaredParameter = declaredParameters.get(i);
@@ -276,13 +286,11 @@ public class PreparedStatementCreatorFactory {
 							for (Object argValue : valueArray) {
 								StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, argValue);
 							}
-						}
-						else {
+						} else {
 							StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, entry);
 						}
 					}
-				}
-				else {
+				} else {
 					StatementCreatorUtils.setParameterValue(ps, sqlColIndx++, declaredParameter, in);
 				}
 			}

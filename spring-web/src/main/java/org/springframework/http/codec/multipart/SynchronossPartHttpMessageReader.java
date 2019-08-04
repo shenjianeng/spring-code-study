@@ -69,9 +69,9 @@ import org.springframework.util.Assert;
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
- * @since 5.0
  * @see <a href="https://github.com/synchronoss/nio-multipart">Synchronoss NIO Multipart</a>
  * @see MultipartHttpMessageReader
+ * @since 5.0
  */
 public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implements HttpMessageReader<Part> {
 
@@ -125,7 +125,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 		private final PartBodyStreamStorageFactory streamStorageFactory;
 
 		SynchronossPartGenerator(ReactiveHttpInputMessage inputMessage, DataBufferFactory bufferFactory,
-				PartBodyStreamStorageFactory streamStorageFactory) {
+								 PartBodyStreamStorageFactory streamStorageFactory) {
 
 			this.inputMessage = inputMessage;
 			this.bufferFactory = bufferFactory;
@@ -153,26 +153,22 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 				buffer.read(resultBytes);
 				try {
 					parser.write(resultBytes);
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					listener.onError("Exception thrown providing input to the parser", ex);
-				}
-				finally {
+				} finally {
 					DataBufferUtils.release(buffer);
 				}
 			}, ex -> {
 				try {
 					listener.onError("Request body input error", ex);
 					parser.close();
-				}
-				catch (IOException ex2) {
+				} catch (IOException ex2) {
 					listener.onError("Exception thrown while closing the parser", ex2);
 				}
 			}, () -> {
 				try {
 					parser.close();
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					listener.onError("Exception thrown while closing the parser", ex);
 				}
 			});
@@ -216,12 +212,10 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 			String filename = MultipartUtils.getFileName(httpHeaders);
 			if (filename != null) {
 				return new SynchronossFilePart(httpHeaders, filename, storage, this.bufferFactory);
-			}
-			else if (MultipartUtils.isFormField(httpHeaders, this.context)) {
+			} else if (MultipartUtils.isFormField(httpHeaders, this.context)) {
 				String value = MultipartUtils.readFormParameterValue(storage, httpHeaders);
 				return new SynchronossFormFieldPart(httpHeaders, this.bufferFactory, value);
-			}
-			else {
+			} else {
 				return new SynchronossPart(httpHeaders, storage, this.bufferFactory);
 			}
 		}
@@ -341,23 +335,19 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 					}
 					totalWritten += written;
 				}
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				return Mono.error(ex);
-			}
-			finally {
+			} finally {
 				if (input != null) {
 					try {
 						input.close();
-					}
-					catch (IOException ignored) {
+					} catch (IOException ignored) {
 					}
 				}
 				if (output != null) {
 					try {
 						output.close();
-					}
-					catch (IOException ignored) {
+					} catch (IOException ignored) {
 					}
 				}
 			}

@@ -60,7 +60,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 	@Override
 	@SuppressWarnings("resource")
 	public boolean processRequest(@Nullable CorsConfiguration config, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+								  HttpServletResponse response) throws IOException {
 
 		if (!CorsUtils.isCorsRequest(request)) {
 			return true;
@@ -83,8 +83,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 			if (preFlightRequest) {
 				rejectRequest(serverResponse);
 				return false;
-			}
-			else {
+			} else {
 				return true;
 			}
 		}
@@ -95,8 +94,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 	private boolean responseHasCors(ServerHttpResponse response) {
 		try {
 			return (response.getHeaders().getAccessControlAllowOrigin() != null);
-		}
-		catch (NullPointerException npe) {
+		} catch (NullPointerException npe) {
 			// SPR-11919 and https://issues.jboss.org/browse/WFLY-3474
 			return false;
 		}
@@ -116,7 +114,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 	 * Handle the given request.
 	 */
 	protected boolean handleInternal(ServerHttpRequest request, ServerHttpResponse response,
-			CorsConfiguration config, boolean preFlightRequest) throws IOException {
+									 CorsConfiguration config, boolean preFlightRequest) throws IOException {
 
 		String requestOrigin = request.getHeaders().getOrigin();
 		String allowOrigin = checkOrigin(config, requestOrigin);

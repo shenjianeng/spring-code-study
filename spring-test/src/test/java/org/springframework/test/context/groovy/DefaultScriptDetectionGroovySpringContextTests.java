@@ -32,8 +32,8 @@ import static org.junit.Assert.*;
  * Groovy script (as opposed to a default XML config file).
  *
  * @author Sam Brannen
- * @since 4.1
  * @see DefaultScriptDetectionGroovySpringContextTestsContext
+ * @since 4.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 // Config loaded from DefaultScriptDetectionGroovySpringContextTestsContext.groovy

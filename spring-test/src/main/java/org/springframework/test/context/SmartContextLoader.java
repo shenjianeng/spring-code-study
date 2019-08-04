@@ -64,11 +64,11 @@ import org.springframework.context.ApplicationContext;
  * </ul>
  *
  * @author Sam Brannen
- * @since 3.1
  * @see ContextConfiguration
  * @see ActiveProfiles
  * @see ContextConfigurationAttributes
  * @see MergedContextConfiguration
+ * @since 3.1
  */
 public interface SmartContextLoader extends ContextLoader {
 
@@ -86,6 +86,7 @@ public interface SmartContextLoader extends ContextLoader {
 	 * {@link ContextConfigurationAttributes}. Consequently, leaving the
 	 * {@code locations} or {@code classes} property empty signals that
 	 * this {@code SmartContextLoader} was not able to generate or detect defaults.
+	 *
 	 * @param configAttributes the context configuration attributes to process
 	 */
 	void processContextConfiguration(ContextConfigurationAttributes configAttributes);
@@ -111,8 +112,9 @@ public interface SmartContextLoader extends ContextLoader {
 	 * instances will be automatically closed on JVM shutdown. This allows for
 	 * freeing of external resources held by beans within the context (e.g.,
 	 * temporary files).
+	 *
 	 * @param mergedConfig the merged context configuration to use to load the
-	 * application context
+	 *                     application context
 	 * @return a new application context
 	 * @throws Exception if context loading failed
 	 * @see #processContextConfiguration(ContextConfigurationAttributes)

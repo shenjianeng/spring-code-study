@@ -35,9 +35,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 4.2
  * @see #setLenient
  * @see #setRoundingMode
+ * @since 4.2
  */
 public class CurrencyStyleFormatter extends AbstractNumberFormatter {
 
@@ -79,6 +79,7 @@ public class CurrencyStyleFormatter extends AbstractNumberFormatter {
 	/**
 	 * Specify the pattern to use to format number values.
 	 * If not specified, the default DecimalFormat pattern is used.
+	 *
 	 * @see java.text.DecimalFormat#applyPattern(String)
 	 */
 	public void setPattern(String pattern) {
@@ -91,8 +92,7 @@ public class CurrencyStyleFormatter extends AbstractNumberFormatter {
 		BigDecimal decimal = (BigDecimal) super.parse(text, locale);
 		if (this.roundingMode != null) {
 			decimal = decimal.setScale(this.fractionDigits, this.roundingMode);
-		}
-		else {
+		} else {
 			decimal = decimal.setScale(this.fractionDigits);
 		}
 		return decimal;

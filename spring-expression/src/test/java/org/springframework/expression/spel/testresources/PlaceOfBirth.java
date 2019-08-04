@@ -13,21 +13,24 @@ public class PlaceOfBirth {
 	 * country - but as it is just a test object, it is ok.
 	 */
 	@Override
-	public String toString() {return city;}
+	public String toString() {
+		return city;
+	}
 
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String s) {
 		this.city = s;
 	}
 
 	public PlaceOfBirth(String string) {
-		this.city=string;
+		this.city = string;
 	}
 
 	public int doubleIt(int i) {
-		return i*2;
+		return i * 2;
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class PlaceOfBirth {
 		if (!(o instanceof PlaceOfBirth)) {
 			return false;
 		}
-		PlaceOfBirth oPOB = (PlaceOfBirth)o;
+		PlaceOfBirth oPOB = (PlaceOfBirth) o;
 		return (city.equals(oPOB.city));
 	}
 

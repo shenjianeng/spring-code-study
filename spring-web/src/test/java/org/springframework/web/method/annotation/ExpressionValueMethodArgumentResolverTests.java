@@ -98,7 +98,7 @@ public class ExpressionValueMethodArgumentResolverTests {
 	}
 
 	public void params(@Value("#{systemProperties.systemProperty}") int param1,
-			@Value("#{request.contextPath}") String param2, String notSupported) {
+					   @Value("#{request.contextPath}") String param2, String notSupported) {
 	}
 
 }

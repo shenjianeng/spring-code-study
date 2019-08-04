@@ -213,15 +213,13 @@ public class AsyncAnnotationBeanPostProcessorTests {
 	}
 
 	private void assertFutureWithException(Future<Object> result,
-			TestableAsyncUncaughtExceptionHandler exceptionHandler) {
+										   TestableAsyncUncaughtExceptionHandler exceptionHandler) {
 
 		try {
 			result.get();
-		}
-		catch (InterruptedException ex) {
+		} catch (InterruptedException ex) {
 			fail("Should not have failed with InterruptedException: " + ex);
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			// expected
 			assertEquals("Wrong exception cause", UnsupportedOperationException.class, ex.getCause().getClass());
 		}
@@ -261,8 +259,7 @@ public class AsyncAnnotationBeanPostProcessorTests {
 		try {
 			testBean.failWithVoid();
 			exceptionHandler.assertCalledWith(m, UnsupportedOperationException.class);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			fail("No unexpected exception should have been received");
 		}
 	}
@@ -334,8 +331,7 @@ public class AsyncAnnotationBeanPostProcessorTests {
 		public void await(long timeout) {
 			try {
 				this.latch.await(timeout, TimeUnit.MILLISECONDS);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				Thread.currentThread().interrupt();
 			}
 		}

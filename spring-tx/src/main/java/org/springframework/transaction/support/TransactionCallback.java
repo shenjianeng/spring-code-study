@@ -28,11 +28,11 @@ import org.springframework.transaction.TransactionStatus;
  * alternative, consider the use of declarative transaction demarcation (e.g. through
  * Spring's {@link org.springframework.transaction.annotation.Transactional} annotation).
  *
+ * @param <T> the result type
  * @author Juergen Hoeller
- * @since 17.03.2003
  * @see TransactionTemplate
  * @see CallbackPreferringPlatformTransactionManager
- * @param <T> the result type
+ * @since 17.03.2003
  */
 @FunctionalInterface
 public interface TransactionCallback<T> {
@@ -47,6 +47,7 @@ public interface TransactionCallback<T> {
 	 * callback is treated as application exception that enforces a rollback. Any such
 	 * exception will be propagated to the caller of the template, unless there is a
 	 * problem rolling back, in which case a TransactionException will be thrown.
+	 *
 	 * @param status associated transaction status
 	 * @return a result object, or {@code null}
 	 * @see TransactionTemplate#execute

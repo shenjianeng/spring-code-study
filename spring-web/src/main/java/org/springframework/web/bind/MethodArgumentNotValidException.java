@@ -36,7 +36,8 @@ public class MethodArgumentNotValidException extends Exception {
 
 	/**
 	 * Constructor for {@link MethodArgumentNotValidException}.
-	 * @param parameter the parameter that failed validation
+	 *
+	 * @param parameter     the parameter that failed validation
 	 * @param bindingResult the results of the validation
 	 */
 	public MethodArgumentNotValidException(MethodParameter parameter, BindingResult bindingResult) {
@@ -62,8 +63,8 @@ public class MethodArgumentNotValidException extends Exception {
 	@Override
 	public String getMessage() {
 		StringBuilder sb = new StringBuilder("Validation failed for argument [")
-			.append(this.parameter.getParameterIndex()).append("] in ")
-			.append(this.parameter.getExecutable().toGenericString());
+				.append(this.parameter.getParameterIndex()).append("] in ")
+				.append(this.parameter.getExecutable().toGenericString());
 		if (this.bindingResult.getErrorCount() > 1) {
 			sb.append(" with ").append(this.bindingResult.getErrorCount()).append(" errors");
 		}

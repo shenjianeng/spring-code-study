@@ -130,11 +130,9 @@ public abstract class ConnectionManagerSupport implements SmartLifecycle {
 				}
 				try {
 					stopInternal();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					logger.error("Failed to stop WebSocket connection", ex);
-				}
-				finally {
+				} finally {
 					this.running = false;
 				}
 			}

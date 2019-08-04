@@ -39,8 +39,8 @@ import org.springframework.util.Assert;
  * with this adapter acting as an access-only proxy for that target pool.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see java.util.concurrent.ExecutorService
+ * @since 3.0
  */
 public class ExecutorServiceAdapter extends AbstractExecutorService {
 
@@ -49,6 +49,7 @@ public class ExecutorServiceAdapter extends AbstractExecutorService {
 
 	/**
 	 * Create a new ExecutorServiceAdapter, using the given target executor.
+	 *
 	 * @param taskExecutor the target executor to delegate to
 	 */
 	public ExecutorServiceAdapter(TaskExecutor taskExecutor) {

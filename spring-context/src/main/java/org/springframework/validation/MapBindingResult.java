@@ -31,8 +31,8 @@ import org.springframework.util.Assert;
  * Map, for example when invoking a Validator for a Map object.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see java.util.Map
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class MapBindingResult extends AbstractBindingResult implements Serializable {
@@ -42,7 +42,8 @@ public class MapBindingResult extends AbstractBindingResult implements Serializa
 
 	/**
 	 * Create a new MapBindingResult instance.
-	 * @param target the target Map to bind onto
+	 *
+	 * @param target     the target Map to bind onto
 	 * @param objectName the name of the target object
 	 */
 	public MapBindingResult(Map<?, ?> target, String objectName) {

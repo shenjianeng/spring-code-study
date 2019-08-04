@@ -38,7 +38,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Rossen Stoyanchev
  */
-public class HttpSendingTransportHandlerTests  extends AbstractHttpRequestTests {
+public class HttpSendingTransportHandlerTests extends AbstractHttpRequestTests {
 
 	private WebSocketHandler webSocketHandler;
 

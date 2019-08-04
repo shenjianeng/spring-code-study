@@ -82,7 +82,8 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	/**
 	 * Determine the transaction attribute for this method invocation.
 	 * <p>Defaults to the class's transaction attribute if no method attribute is found.
-	 * @param method the method for the current invocation (never {@code null})
+	 *
+	 * @param method      the method for the current invocation (never {@code null})
 	 * @param targetClass the target class for this invocation (may be {@code null})
 	 * @return a TransactionAttribute for this method, or {@code null} if the method
 	 * is not transactional
@@ -102,19 +103,16 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 			// or an actual transaction attribute.
 			if (cached == NULL_TRANSACTION_ATTRIBUTE) {
 				return null;
-			}
-			else {
+			} else {
 				return cached;
 			}
-		}
-		else {
+		} else {
 			// We need to work it out.
 			TransactionAttribute txAttr = computeTransactionAttribute(method, targetClass);
 			// Put it in the cache.
 			if (txAttr == null) {
 				this.attributeCache.put(cacheKey, NULL_TRANSACTION_ATTRIBUTE);
-			}
-			else {
+			} else {
 				String methodIdentification = ClassUtils.getQualifiedMethodName(method, targetClass);
 				if (txAttr instanceof DefaultTransactionAttribute) {
 					((DefaultTransactionAttribute) txAttr).setDescriptor(methodIdentification);
@@ -132,7 +130,8 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	 * Determine a cache key for the given method and target class.
 	 * <p>Must not produce same key for overloaded methods.
 	 * Must produce same key for different instances of the same method.
-	 * @param method the method (never {@code null})
+	 *
+	 * @param method      the method (never {@code null})
 	 * @param targetClass the target class (may be {@code null})
 	 * @return the cache key (never {@code null})
 	 */
@@ -144,8 +143,9 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	 * Same signature as {@link #getTransactionAttribute}, but doesn't cache the result.
 	 * {@link #getTransactionAttribute} is effectively a caching decorator for this method.
 	 * <p>As of 4.1.8, this method can be overridden.
-	 * @since 4.1.8
+	 *
 	 * @see #getTransactionAttribute
+	 * @since 4.1.8
 	 */
 	@Nullable
 	protected TransactionAttribute computeTransactionAttribute(Method method, @Nullable Class<?> targetClass) {
@@ -190,6 +190,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	/**
 	 * Subclasses need to implement this to return the transaction attribute for the
 	 * given class, if any.
+	 *
 	 * @param clazz the class to retrieve the attribute for
 	 * @return all transaction attribute associated with this class, or {@code null} if none
 	 */
@@ -199,6 +200,7 @@ public abstract class AbstractFallbackTransactionAttributeSource implements Tran
 	/**
 	 * Subclasses need to implement this to return the transaction attribute for the
 	 * given method, if any.
+	 *
 	 * @param method the method to retrieve the attribute for
 	 * @return all transaction attribute associated with this method, or {@code null} if none
 	 */

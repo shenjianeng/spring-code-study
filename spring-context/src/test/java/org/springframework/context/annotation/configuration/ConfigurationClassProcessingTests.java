@@ -374,7 +374,8 @@ public class ConfigurationClassProcessingTests {
 	@Configuration
 	static class ConfigWithFinalBean {
 
-		public final @Bean TestBean testBean() {
+		public final @Bean
+		TestBean testBean() {
 			return new TestBean();
 		}
 	}
@@ -383,7 +384,8 @@ public class ConfigurationClassProcessingTests {
 	@Configuration
 	static class SimplestPossibleConfig {
 
-		public @Bean String stringBean() {
+		public @Bean
+		String stringBean() {
 			return "foo";
 		}
 	}
@@ -392,11 +394,13 @@ public class ConfigurationClassProcessingTests {
 	@Configuration
 	static class ConfigWithNonSpecificReturnTypes {
 
-		public @Bean Object stringBean() {
+		public @Bean
+		Object stringBean() {
 			return "foo";
 		}
 
-		public @Bean FactoryBean<?> factoryBean() {
+		public @Bean
+		FactoryBean<?> factoryBean() {
 			ListFactoryBean fb = new ListFactoryBean();
 			fb.setSourceList(Arrays.asList("element1", "element2"));
 			return fb;
@@ -407,29 +411,34 @@ public class ConfigurationClassProcessingTests {
 	@Configuration
 	static class ConfigWithPrototypeBean {
 
-		public @Bean TestBean foo() {
+		public @Bean
+		TestBean foo() {
 			TestBean foo = new SpousyTestBean("foo");
 			foo.setSpouse(bar());
 			return foo;
 		}
 
-		public @Bean TestBean bar() {
+		public @Bean
+		TestBean bar() {
 			TestBean bar = new SpousyTestBean("bar");
 			bar.setSpouse(baz());
 			return bar;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean baz() {
 			return new TestBean("baz");
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean adaptive1(InjectionPoint ip) {
 			return new TestBean(ip.getMember().getName());
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean adaptive2(DependencyDescriptor dd) {
 			return new TestBean(dd.getMember().getName());
 		}
@@ -449,12 +458,14 @@ public class ConfigurationClassProcessingTests {
 	@Scope("prototype")
 	static class AdaptiveInjectionPoints {
 
-		@Autowired @Qualifier("adaptive1")
+		@Autowired
+		@Qualifier("adaptive1")
 		public TestBean adaptiveInjectionPoint1;
 
 		public TestBean adaptiveInjectionPoint2;
 
-		@Autowired @Qualifier("adaptive2")
+		@Autowired
+		@Qualifier("adaptive2")
 		public void setAdaptiveInjectionPoint2(TestBean adaptiveInjectionPoint2) {
 			this.adaptiveInjectionPoint2 = adaptiveInjectionPoint2;
 		}

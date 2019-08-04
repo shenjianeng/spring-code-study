@@ -42,8 +42,8 @@ import org.springframework.test.context.MergedContextConfiguration;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 4.2
  * @see ContextCacheUtils#retrieveMaxCacheSize()
+ * @since 4.2
  */
 public interface ContextCache {
 
@@ -55,8 +55,9 @@ public interface ContextCache {
 
 	/**
 	 * The default maximum size of the context cache: {@value}.
-	 * @since 4.3
+	 *
 	 * @see #MAX_CONTEXT_CACHE_SIZE_PROPERTY_NAME
+	 * @since 4.3
 	 */
 	int DEFAULT_MAX_CONTEXT_CACHE_SIZE = 32;
 
@@ -67,14 +68,16 @@ public interface ContextCache {
 	 * <p>Note that implementations of {@code ContextCache} are not required to
 	 * actually support a maximum cache size. Consult the documentation of the
 	 * corresponding implementation for details.
-	 * @since 4.3
+	 *
 	 * @see #DEFAULT_MAX_CONTEXT_CACHE_SIZE
+	 * @since 4.3
 	 */
 	String MAX_CONTEXT_CACHE_SIZE_PROPERTY_NAME = "spring.test.context.cache.maxSize";
 
 
 	/**
 	 * Determine whether there is a cached context for the given key.
+	 *
 	 * @param key the context key (never {@code null})
 	 * @return {@code true} if the cache contains a context with the given key
 	 */
@@ -84,6 +87,7 @@ public interface ContextCache {
 	 * Obtain a cached {@code ApplicationContext} for the given key.
 	 * <p>The {@linkplain #getHitCount() hit} and {@linkplain #getMissCount() miss}
 	 * counts must be updated accordingly.
+	 *
 	 * @param key the context key (never {@code null})
 	 * @return the corresponding {@code ApplicationContext} instance, or {@code null}
 	 * if not found in the cache
@@ -95,7 +99,8 @@ public interface ContextCache {
 	/**
 	 * Explicitly add an {@code ApplicationContext} instance to the cache
 	 * under the given key, potentially honoring a custom eviction policy.
-	 * @param key the context key (never {@code null})
+	 *
+	 * @param key     the context key (never {@code null})
 	 * @param context the {@code ApplicationContext} instance (never {@code null})
 	 */
 	void put(MergedContextConfiguration key, ApplicationContext context);
@@ -110,9 +115,10 @@ public interface ContextCache {
 	 * future interaction with the context.
 	 * <p>In addition, the semantics of the supplied {@code HierarchyMode} must
 	 * be honored. See the Javadoc for {@link HierarchyMode} for details.
-	 * @param key the context key; never {@code null}
+	 *
+	 * @param key           the context key; never {@code null}
 	 * @param hierarchyMode the hierarchy mode; may be {@code null} if the context
-	 * is not part of a hierarchy
+	 *                      is not part of a hierarchy
 	 */
 	void remove(MergedContextConfiguration key, @Nullable HierarchyMode hierarchyMode);
 
@@ -144,6 +150,7 @@ public interface ContextCache {
 
 	/**
 	 * Reset all state maintained by this cache including statistics.
+	 *
 	 * @see #clear()
 	 * @see #clearStatistics()
 	 */

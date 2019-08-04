@@ -75,10 +75,11 @@ public final class CandidateComponentsIndexLoader {
 	 * Load and instantiate the {@link CandidateComponentsIndex} from
 	 * {@value #COMPONENTS_RESOURCE_LOCATION}, using the given class loader. If no
 	 * index is available, return {@code null}.
+	 *
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
 	 * @return the index to use or {@code null} if no index was found
 	 * @throws IllegalArgumentException if any module index cannot
-	 * be loaded or if an error occurs while creating {@link CandidateComponentsIndex}
+	 *                                  be loaded or if an error occurs while creating {@link CandidateComponentsIndex}
 	 */
 	@Nullable
 	public static CandidateComponentsIndex loadIndex(@Nullable ClassLoader classLoader) {
@@ -111,8 +112,7 @@ public final class CandidateComponentsIndexLoader {
 			}
 			int totalCount = result.stream().mapToInt(Properties::size).sum();
 			return (totalCount > 0 ? new CandidateComponentsIndex(result) : null);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException("Unable to load indexes from location [" +
 					COMPONENTS_RESOURCE_LOCATION + "]", ex);
 		}

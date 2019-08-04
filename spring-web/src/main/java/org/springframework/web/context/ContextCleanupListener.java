@@ -34,9 +34,9 @@ import org.springframework.beans.factory.DisposableBean;
  * very end of the web application's shutdown phase.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.web.context.support.ServletContextScope
  * @see ContextLoaderListener
+ * @since 3.0
  */
 public class ContextCleanupListener implements ServletContextListener {
 
@@ -56,6 +56,7 @@ public class ContextCleanupListener implements ServletContextListener {
 	/**
 	 * Find all Spring-internal ServletContext attributes which implement
 	 * {@link DisposableBean} and invoke the destroy method on them.
+	 *
 	 * @param servletContext the ServletContext to check
 	 * @see DisposableBean#destroy()
 	 */
@@ -68,8 +69,7 @@ public class ContextCleanupListener implements ServletContextListener {
 				if (attrValue instanceof DisposableBean) {
 					try {
 						((DisposableBean) attrValue).destroy();
-					}
-					catch (Throwable ex) {
+					} catch (Throwable ex) {
 						if (logger.isWarnEnabled()) {
 							logger.warn("Invocation of destroy method failed on ServletContext " +
 									"attribute with name '" + attrName + "'", ex);

@@ -57,6 +57,7 @@ public class TaskExecutorRegistration {
 	/**
 	 * Create a new {@code TaskExecutorRegistration} for a given
 	 * {@link ThreadPoolTaskExecutor}.
+	 *
 	 * @param taskExecutor the executor to use
 	 */
 	public TaskExecutorRegistration(ThreadPoolTaskExecutor taskExecutor) {

@@ -33,6 +33,7 @@ public interface CacheOperationInvoker {
 	/**
 	 * Invoke the cache operation defined by this instance. Wraps any exception
 	 * that is thrown during the invocation in a {@link ThrowableWrapper}.
+	 *
 	 * @return the result of the operation
 	 * @throws ThrowableWrapper if an error occurred while invoking the operation
 	 */

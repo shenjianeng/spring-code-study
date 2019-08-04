@@ -42,9 +42,9 @@ public class EmbeddedPersonDatabaseTestsConfig {
 	@Bean
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()//
-		.generateUniqueName(true)//
-		.addScript("classpath:/org/springframework/test/jdbc/schema.sql") //
-		.build();
+				.generateUniqueName(true)//
+				.addScript("classpath:/org/springframework/test/jdbc/schema.sql") //
+				.build();
 	}
 
 }

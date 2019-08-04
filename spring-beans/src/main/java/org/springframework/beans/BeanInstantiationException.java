@@ -42,8 +42,9 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Create a new BeanInstantiationException.
+	 *
 	 * @param beanClass the offending bean class
-	 * @param msg the detail message
+	 * @param msg       the detail message
 	 */
 	public BeanInstantiationException(Class<?> beanClass, String msg) {
 		this(beanClass, msg, null);
@@ -51,9 +52,10 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Create a new BeanInstantiationException.
+	 *
 	 * @param beanClass the offending bean class
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg       the detail message
+	 * @param cause     the root cause
 	 */
 	public BeanInstantiationException(Class<?> beanClass, String msg, @Nullable Throwable cause) {
 		super("Failed to instantiate [" + beanClass.getName() + "]: " + msg, cause);
@@ -64,9 +66,10 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Create a new BeanInstantiationException.
+	 *
 	 * @param constructor the offending constructor
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg         the detail message
+	 * @param cause       the root cause
 	 * @since 4.3
 	 */
 	public BeanInstantiationException(Constructor<?> constructor, String msg, @Nullable Throwable cause) {
@@ -78,10 +81,11 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Create a new BeanInstantiationException.
+	 *
 	 * @param constructingMethod the delegate for bean construction purposes
-	 * (typically, but not necessarily, a static factory method)
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 *                           (typically, but not necessarily, a static factory method)
+	 * @param msg                the detail message
+	 * @param cause              the root cause
 	 * @since 4.3
 	 */
 	public BeanInstantiationException(Method constructingMethod, String msg, @Nullable Throwable cause) {
@@ -94,6 +98,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Return the offending bean class (never {@code null}).
+	 *
 	 * @return the class that was to be instantiated
 	 */
 	public Class<?> getBeanClass() {
@@ -102,6 +107,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Return the offending constructor, if known.
+	 *
 	 * @return the constructor in use, or {@code null} in case of a
 	 * factory method or in case of default instantiation
 	 * @since 4.3
@@ -113,6 +119,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 	/**
 	 * Return the delegate for bean construction purposes, if known.
+	 *
 	 * @return the method in use (typically a static factory method),
 	 * or {@code null} in case of constructor-based instantiation
 	 * @since 4.3

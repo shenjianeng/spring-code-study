@@ -83,7 +83,7 @@ public class CookieIntegrationTests extends AbstractHttpHandlerIntegrationTests 
 	// No client side HttpCookie support yet
 	private List<String> splitCookie(String value) {
 		List<String> list = new ArrayList<>();
-		for (String s : value.split(";")){
+		for (String s : value.split(";")) {
 			list.add(s.trim());
 		}
 		return list;

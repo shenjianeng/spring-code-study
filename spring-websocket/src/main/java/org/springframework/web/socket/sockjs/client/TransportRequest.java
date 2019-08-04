@@ -50,6 +50,7 @@ public interface TransportRequest {
 	/**
 	 * Return the headers to add to all other HTTP requests besides the handshake
 	 * request such as XHR receive and send requests.
+	 *
 	 * @since 4.2
 	 */
 	HttpHeaders getHttpRequestHeaders();

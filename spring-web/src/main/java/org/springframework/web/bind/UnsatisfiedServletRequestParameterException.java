@@ -31,8 +31,8 @@ import org.springframework.util.StringUtils;
  * annotation at the {@code @Controller} type level.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.web.bind.annotation.RequestMapping#params()
+ * @since 3.0
  */
 @SuppressWarnings("serial")
 public class UnsatisfiedServletRequestParameterException extends ServletRequestBindingException {
@@ -44,8 +44,9 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * Create a new UnsatisfiedServletRequestParameterException.
+	 *
 	 * @param paramConditions the parameter conditions that have been violated
-	 * @param actualParams the actual parameter Map associated with the ServletRequest
+	 * @param actualParams    the actual parameter Map associated with the ServletRequest
 	 */
 	public UnsatisfiedServletRequestParameterException(String[] paramConditions, Map<String, String[]> actualParams) {
 		super("");
@@ -55,12 +56,13 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * Create a new UnsatisfiedServletRequestParameterException.
+	 *
 	 * @param paramConditions all sets of parameter conditions that have been violated
-	 * @param actualParams the actual parameter Map associated with the ServletRequest
+	 * @param actualParams    the actual parameter Map associated with the ServletRequest
 	 * @since 4.2
 	 */
 	public UnsatisfiedServletRequestParameterException(List<String[]> paramConditions,
-			Map<String, String[]> actualParams) {
+													   Map<String, String[]> actualParams) {
 
 		super("");
 		Assert.notEmpty(paramConditions, "Parameter conditions must not be empty");
@@ -90,6 +92,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 	/**
 	 * Return the parameter conditions that have been violated or the first group
 	 * in case of multiple groups.
+	 *
 	 * @see org.springframework.web.bind.annotation.RequestMapping#params()
 	 */
 	public final String[] getParamConditions() {
@@ -98,8 +101,9 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * Return all parameter condition groups that have been violated.
-	 * @since 4.2
+	 *
 	 * @see org.springframework.web.bind.annotation.RequestMapping#params()
+	 * @since 4.2
 	 */
 	public final List<String[]> getParamConditionGroups() {
 		return this.paramConditions;
@@ -107,6 +111,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	/**
 	 * Return the actual parameter Map associated with the ServletRequest.
+	 *
 	 * @see javax.servlet.ServletRequest#getParameterMap()
 	 */
 	public final Map<String, String[]> getActualParams() {
@@ -116,7 +121,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 	private static String requestParameterMapToString(Map<String, String[]> actualParams) {
 		StringBuilder result = new StringBuilder();
-		for (Iterator<Map.Entry<String, String[]>> it = actualParams.entrySet().iterator(); it.hasNext();) {
+		for (Iterator<Map.Entry<String, String[]>> it = actualParams.entrySet().iterator(); it.hasNext(); ) {
 			Map.Entry<String, String[]> entry = it.next();
 			result.append(entry.getKey()).append('=').append(ObjectUtils.nullSafeToString(entry.getValue()));
 			if (it.hasNext()) {

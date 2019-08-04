@@ -208,16 +208,14 @@ public class ResultSetWrappingRowSetTests {
 		if (arg instanceof String) {
 			given(resultSet.findColumn((String) arg)).willReturn(1);
 			given(rsetMethod.invoke(resultSet, 1)).willReturn(ret).willThrow(new SQLException("test"));
-		}
-		else {
+		} else {
 			given(rsetMethod.invoke(resultSet, arg)).willReturn(ret).willThrow(new SQLException("test"));
 		}
 		rowsetMethod.invoke(rowSet, arg);
 		try {
 			rowsetMethod.invoke(rowSet, arg);
 			fail("InvalidResultSetAccessException should have been thrown");
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			assertEquals(InvalidResultSetAccessException.class, ex.getTargetException().getClass());
 		}
 	}

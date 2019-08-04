@@ -51,7 +51,7 @@ public class WebSocketConfigurationTests extends AbstractWebSocketIntegrationTes
 
 	@Parameters(name = "server [{0}], client [{1}]")
 	public static Iterable<Object[]> arguments() {
-		return Arrays.asList(new Object[][] {
+		return Arrays.asList(new Object[][]{
 				{new JettyWebSocketTestServer(), new JettyWebSocketClient()},
 				{new TomcatWebSocketTestServer(), new StandardWebSocketClient()},
 				{new UndertowTestServer(), new StandardWebSocketClient()}
@@ -61,13 +61,14 @@ public class WebSocketConfigurationTests extends AbstractWebSocketIntegrationTes
 
 	@Override
 	protected Class<?>[] getAnnotatedConfigClasses() {
-		return new Class<?>[] {TestConfig.class};
+		return new Class<?>[]{TestConfig.class};
 	}
 
 	@Test
 	public void registerWebSocketHandler() throws Exception {
 		WebSocketSession session = this.webSocketClient.doHandshake(
-				new AbstractWebSocketHandler() {}, getWsBaseUrl() + "/ws").get();
+				new AbstractWebSocketHandler() {
+				}, getWsBaseUrl() + "/ws").get();
 
 		TestHandler serverHandler = this.wac.getBean(TestHandler.class);
 		assertTrue(serverHandler.connectLatch.await(2, TimeUnit.SECONDS));
@@ -78,7 +79,8 @@ public class WebSocketConfigurationTests extends AbstractWebSocketIntegrationTes
 	@Test
 	public void registerWebSocketHandlerWithSockJS() throws Exception {
 		WebSocketSession session = this.webSocketClient.doHandshake(
-				new AbstractWebSocketHandler() {}, getWsBaseUrl() + "/sockjs/websocket").get();
+				new AbstractWebSocketHandler() {
+				}, getWsBaseUrl() + "/sockjs/websocket").get();
 
 		TestHandler serverHandler = this.wac.getBean(TestHandler.class);
 		assertTrue(serverHandler.connectLatch.await(2, TimeUnit.SECONDS));

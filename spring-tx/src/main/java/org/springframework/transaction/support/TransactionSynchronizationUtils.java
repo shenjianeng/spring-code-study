@@ -32,9 +32,9 @@ import org.springframework.util.ClassUtils;
  * callback methods on all currently registered synchronizations.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see TransactionSynchronization
  * @see TransactionSynchronizationManager#getSynchronizations()
+ * @since 2.0
  */
 public abstract class TransactionSynchronizationUtils {
 
@@ -47,6 +47,7 @@ public abstract class TransactionSynchronizationUtils {
 	/**
 	 * Check whether the given resource transaction managers refers to the given
 	 * (underlying) resource factory.
+	 *
 	 * @see ResourceTransactionManager#getResourceFactory()
 	 * @see org.springframework.core.InfrastructureProxy#getWrappedObject()
 	 */
@@ -57,6 +58,7 @@ public abstract class TransactionSynchronizationUtils {
 	/**
 	 * Unwrap the given resource handle if necessary; otherwise return
 	 * the given handle as-is.
+	 *
 	 * @see org.springframework.core.InfrastructureProxy#getWrappedObject()
 	 */
 	static Object unwrapResourceIfNecessary(Object resource) {
@@ -76,6 +78,7 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * Trigger {@code flush} callbacks on all currently registered synchronizations.
+	 *
 	 * @throws RuntimeException if thrown by a {@code flush} callback
 	 * @see TransactionSynchronization#flush()
 	 */
@@ -87,6 +90,7 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * Trigger {@code beforeCommit} callbacks on all currently registered synchronizations.
+	 *
 	 * @param readOnly whether the transaction is defined as read-only transaction
 	 * @throws RuntimeException if thrown by a {@code beforeCommit} callback
 	 * @see TransactionSynchronization#beforeCommit(boolean)
@@ -99,14 +103,14 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * Trigger {@code beforeCompletion} callbacks on all currently registered synchronizations.
+	 *
 	 * @see TransactionSynchronization#beforeCompletion()
 	 */
 	public static void triggerBeforeCompletion() {
 		for (TransactionSynchronization synchronization : TransactionSynchronizationManager.getSynchronizations()) {
 			try {
 				synchronization.beforeCompletion();
-			}
-			catch (Throwable tsex) {
+			} catch (Throwable tsex) {
 				logger.error("TransactionSynchronization.beforeCompletion threw exception", tsex);
 			}
 		}
@@ -114,6 +118,7 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * Trigger {@code afterCommit} callbacks on all currently registered synchronizations.
+	 *
 	 * @throws RuntimeException if thrown by a {@code afterCommit} callback
 	 * @see TransactionSynchronizationManager#getSynchronizations()
 	 * @see TransactionSynchronization#afterCommit()
@@ -125,6 +130,7 @@ public abstract class TransactionSynchronizationUtils {
 	/**
 	 * Actually invoke the {@code afterCommit} methods of the
 	 * given Spring TransactionSynchronization objects.
+	 *
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @see TransactionSynchronization#afterCommit()
 	 */
@@ -138,8 +144,9 @@ public abstract class TransactionSynchronizationUtils {
 
 	/**
 	 * Trigger {@code afterCompletion} callbacks on all currently registered synchronizations.
+	 *
 	 * @param completionStatus the completion status according to the
-	 * constants in the TransactionSynchronization interface
+	 *                         constants in the TransactionSynchronization interface
 	 * @see TransactionSynchronizationManager#getSynchronizations()
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
@@ -154,23 +161,23 @@ public abstract class TransactionSynchronizationUtils {
 	/**
 	 * Actually invoke the {@code afterCompletion} methods of the
 	 * given Spring TransactionSynchronization objects.
+	 *
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @param completionStatus the completion status according to the
-	 * constants in the TransactionSynchronization interface
+	 *                         constants in the TransactionSynchronization interface
 	 * @see TransactionSynchronization#afterCompletion(int)
 	 * @see TransactionSynchronization#STATUS_COMMITTED
 	 * @see TransactionSynchronization#STATUS_ROLLED_BACK
 	 * @see TransactionSynchronization#STATUS_UNKNOWN
 	 */
 	public static void invokeAfterCompletion(@Nullable List<TransactionSynchronization> synchronizations,
-			int completionStatus) {
+											 int completionStatus) {
 
 		if (synchronizations != null) {
 			for (TransactionSynchronization synchronization : synchronizations) {
 				try {
 					synchronization.afterCompletion(completionStatus);
-				}
-				catch (Throwable tsex) {
+				} catch (Throwable tsex) {
 					logger.error("TransactionSynchronization.afterCompletion threw exception", tsex);
 				}
 			}
@@ -186,8 +193,7 @@ public abstract class TransactionSynchronizationUtils {
 		public static Object unwrapIfNecessary(Object resource) {
 			if (resource instanceof ScopedObject) {
 				return ((ScopedObject) resource).getTargetObject();
-			}
-			else {
+			} else {
 				return resource;
 			}
 		}

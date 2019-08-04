@@ -75,8 +75,8 @@ import org.springframework.util.MultiValueMap;
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see FormHttpMessageWriter
+ * @since 5.0
  */
 public class MultipartHttpMessageWriter extends LoggingCodecSupport
 		implements HttpMessageWriter<MultiValueMap<String, ?>> {
@@ -86,7 +86,9 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-	/** Suppress logging from individual part writers (full map logged at this level). */
+	/**
+	 * Suppress logging from individual part writers (full map logged at this level).
+	 */
 	private static final Map<String, Object> DEFAULT_HINTS = Hints.from(Hints.SUPPRESS_LOGGING_HINT, true);
 
 
@@ -121,11 +123,12 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	 * Constructor with explicit list of writers for serializing parts and a
 	 * writer for plain form data to fall back when no media type is specified
 	 * and the actual map consists of String values only.
+	 *
 	 * @param partWriters the writers for serializing parts
-	 * @param formWriter the fallback writer for form data, {@code null} by default
+	 * @param formWriter  the fallback writer for form data, {@code null} by default
 	 */
 	public MultipartHttpMessageWriter(List<HttpMessageWriter<?>> partWriters,
-			@Nullable  HttpMessageWriter<MultiValueMap<String, String>> formWriter) {
+									  @Nullable HttpMessageWriter<MultiValueMap<String, String>> formWriter) {
 
 		this.partWriters = partWriters;
 		this.formWriter = formWriter;
@@ -144,6 +147,7 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 
 	/**
 	 * Return the configured part writers.
+	 *
 	 * @since 5.0.7
 	 */
 	public List<HttpMessageWriter<?>> getPartWriters() {
@@ -182,15 +186,14 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 
 	@Override
 	public Mono<Void> write(Publisher<? extends MultiValueMap<String, ?>> inputStream,
-			ResolvableType elementType, @Nullable MediaType mediaType, ReactiveHttpOutputMessage outputMessage,
-			Map<String, Object> hints) {
+							ResolvableType elementType, @Nullable MediaType mediaType, ReactiveHttpOutputMessage outputMessage,
+							Map<String, Object> hints) {
 
 		return Mono.from(inputStream)
 				.flatMap(map -> {
 					if (this.formWriter == null || isMultipart(map, mediaType)) {
 						return writeMultipart(map, outputMessage, hints);
-					}
-					else {
+					} else {
 						@SuppressWarnings("unchecked")
 						Mono<MultiValueMap<String, String>> input = Mono.just((MultiValueMap<String, String>) map);
 						return this.formWriter.write(input, elementType, mediaType, outputMessage, hints);
@@ -268,8 +271,7 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 			if (httpEntity instanceof ResolvableTypeProvider) {
 				resolvableType = ((ResolvableTypeProvider) httpEntity).getResolvableType();
 			}
-		}
-		else {
+		} else {
 			body = value;
 		}
 		if (resolvableType == null) {
@@ -279,12 +281,10 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 		if (!outputHeaders.containsKey(HttpHeaders.CONTENT_DISPOSITION)) {
 			if (body instanceof Resource) {
 				outputHeaders.setContentDispositionFormData(name, ((Resource) body).getFilename());
-			}
-			else if (resolvableType.resolve() == Resource.class) {
+			} else if (resolvableType.resolve() == Resource.class) {
 				body = (T) Mono.from((Publisher<?>) body).doOnNext(o -> outputHeaders
 						.setContentDispositionFormData(name, ((Resource) o).getFilename()));
-			}
-			else {
+			} else {
 				outputHeaders.setContentDispositionFormData(name, null);
 			}
 		}
@@ -324,11 +324,11 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	private Mono<DataBuffer> generateBoundaryLine(byte[] boundary, DataBufferFactory bufferFactory) {
 		return Mono.fromCallable(() -> {
 			DataBuffer buffer = bufferFactory.allocateBuffer(boundary.length + 4);
-			buffer.write((byte)'-');
-			buffer.write((byte)'-');
+			buffer.write((byte) '-');
+			buffer.write((byte) '-');
 			buffer.write(boundary);
-			buffer.write((byte)'\r');
-			buffer.write((byte)'\n');
+			buffer.write((byte) '\r');
+			buffer.write((byte) '\n');
 			return buffer;
 		});
 	}
@@ -336,8 +336,8 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	private Mono<DataBuffer> generateNewLine(DataBufferFactory bufferFactory) {
 		return Mono.fromCallable(() -> {
 			DataBuffer buffer = bufferFactory.allocateBuffer(2);
-			buffer.write((byte)'\r');
-			buffer.write((byte)'\n');
+			buffer.write((byte) '\r');
+			buffer.write((byte) '\n');
 			return buffer;
 		});
 	}
@@ -345,13 +345,13 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 	private Mono<DataBuffer> generateLastLine(byte[] boundary, DataBufferFactory bufferFactory) {
 		return Mono.fromCallable(() -> {
 			DataBuffer buffer = bufferFactory.allocateBuffer(boundary.length + 6);
-			buffer.write((byte)'-');
-			buffer.write((byte)'-');
+			buffer.write((byte) '-');
+			buffer.write((byte) '-');
 			buffer.write(boundary);
-			buffer.write((byte)'-');
-			buffer.write((byte)'-');
-			buffer.write((byte)'\r');
-			buffer.write((byte)'\n');
+			buffer.write((byte) '-');
+			buffer.write((byte) '-');
+			buffer.write((byte) '\r');
+			buffer.write((byte) '\n');
 			return buffer;
 		});
 	}
@@ -414,15 +414,15 @@ public class MultipartHttpMessageWriter extends LoggingCodecSupport
 					for (String headerValueString : entry.getValue()) {
 						byte[] headerValue = headerValueString.getBytes(this.charset);
 						buffer.write(headerName);
-						buffer.write((byte)':');
-						buffer.write((byte)' ');
+						buffer.write((byte) ':');
+						buffer.write((byte) ' ');
 						buffer.write(headerValue);
-						buffer.write((byte)'\r');
-						buffer.write((byte)'\n');
+						buffer.write((byte) '\r');
+						buffer.write((byte) '\n');
 					}
 				}
-				buffer.write((byte)'\r');
-				buffer.write((byte)'\n');
+				buffer.write((byte) '\r');
+				buffer.write((byte) '\n');
 				return buffer;
 			});
 		}

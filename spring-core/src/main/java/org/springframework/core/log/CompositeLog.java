@@ -27,8 +27,8 @@ import org.apache.commons.logging.impl.NoOpLog;
  * to the first one for which logging is enabled at the given level.
  *
  * @author Rossen Stoyanchev
- * @since 5.1
  * @see LogDelegateFactory#getCompositeLog
+ * @since 5.1
  */
 final class CompositeLog implements Log {
 
@@ -51,13 +51,14 @@ final class CompositeLog implements Log {
 	/**
 	 * Constructor with list of loggers. For optimal performance, the constructor
 	 * checks and remembers which logger is on for each log category.
+	 *
 	 * @param loggers the loggers to use
 	 */
 	public CompositeLog(List<Log> loggers) {
 		this.fatalLogger = initLogger(loggers, Log::isFatalEnabled);
 		this.errorLogger = initLogger(loggers, Log::isErrorEnabled);
-		this.warnLogger  = initLogger(loggers, Log::isWarnEnabled);
-		this.infoLogger  = initLogger(loggers, Log::isInfoEnabled);
+		this.warnLogger = initLogger(loggers, Log::isWarnEnabled);
+		this.infoLogger = initLogger(loggers, Log::isInfoEnabled);
 		this.debugLogger = initLogger(loggers, Log::isDebugEnabled);
 		this.traceLogger = initLogger(loggers, Log::isTraceEnabled);
 	}

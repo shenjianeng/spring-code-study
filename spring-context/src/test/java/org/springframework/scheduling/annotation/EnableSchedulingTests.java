@@ -186,7 +186,8 @@ public class EnableSchedulingTests {
 
 		@Override
 		public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-			taskRegistrar.addFixedRateTask(() -> {}, 100);
+			taskRegistrar.addFixedRateTask(() -> {
+			}, 100);
 		}
 
 		@Bean
@@ -456,7 +457,7 @@ public class EnableSchedulingTests {
 			ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
 			scheduler.initialize();
 			scheduler.schedule(() -> counter().incrementAndGet(),
-					triggerContext -> new Date(new Date().getTime()+10));
+					triggerContext -> new Date(new Date().getTime() + 10));
 			return scheduler;
 		}
 	}

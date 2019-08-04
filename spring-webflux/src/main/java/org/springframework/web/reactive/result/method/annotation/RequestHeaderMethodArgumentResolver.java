@@ -42,20 +42,21 @@ import org.springframework.web.server.ServerWebInputException;
  * request header values that don't yet match the method parameter type.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see RequestHeaderMapMethodArgumentResolver
+ * @since 5.0
  */
 public class RequestHeaderMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
 	 * Create a new {@link RequestHeaderMethodArgumentResolver} instance.
-	 * @param factory a bean factory to use for resolving {@code ${...}}
-	 * placeholder and {@code #{...}} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to have expressions
+	 *
+	 * @param factory  a bean factory to use for resolving {@code ${...}}
+	 *                 placeholder and {@code #{...}} SpEL expressions in default values;
+	 *                 or {@code null} if default values are not expected to have expressions
 	 * @param registry for checking reactive type wrappers
 	 */
 	public RequestHeaderMethodArgumentResolver(@Nullable ConfigurableBeanFactory factory,
-			ReactiveAdapterRegistry registry) {
+											   ReactiveAdapterRegistry registry) {
 
 		super(factory, registry);
 	}

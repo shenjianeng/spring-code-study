@@ -53,8 +53,9 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 	/**
 	 * Create a new {@link ExecutorSubscribableChannel} instance
 	 * where messages will be sent via the specified executor.
+	 *
 	 * @param executor the executor used to send the message,
-	 * or {@code null} to execute in the callers thread.
+	 *                 or {@code null} to execute in the callers thread.
 	 */
 	public ExecutorSubscribableChannel(@Nullable Executor executor) {
 		this.executor = executor;
@@ -98,8 +99,7 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 			SendTask sendTask = new SendTask(message, handler);
 			if (this.executor == null) {
 				sendTask.run();
-			}
-			else {
+			} else {
 				this.executor.execute(sendTask);
 			}
 		}
@@ -143,16 +143,14 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 				}
 				this.messageHandler.handleMessage(message);
 				triggerAfterMessageHandled(message, null);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				triggerAfterMessageHandled(message, ex);
 				if (ex instanceof MessagingException) {
 					throw (MessagingException) ex;
 				}
 				String description = "Failed to handle " + message + " to " + this + " in " + this.messageHandler;
 				throw new MessageDeliveryException(message, description, ex);
-			}
-			catch (Throwable err) {
+			} catch (Throwable err) {
 				String description = "Failed to handle " + message + " to " + this + " in " + this.messageHandler;
 				MessageDeliveryException ex2 = new MessageDeliveryException(message, description, err);
 				triggerAfterMessageHandled(message, ex2);
@@ -183,8 +181,7 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 				ExecutorChannelInterceptor interceptor = executorInterceptors.get(i);
 				try {
 					interceptor.afterMessageHandled(message, ExecutorSubscribableChannel.this, this.messageHandler, ex);
-				}
-				catch (Throwable ex2) {
+				} catch (Throwable ex2) {
 					logger.error("Exception from afterMessageHandled in " + interceptor, ex2);
 				}
 			}

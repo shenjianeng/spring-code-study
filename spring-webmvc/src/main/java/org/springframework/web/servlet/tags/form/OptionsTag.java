@@ -298,8 +298,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 		Object itemsObject = null;
 		if (items != null) {
 			itemsObject = (items instanceof String ? evaluate("items", items) : items);
-		}
-		else {
+		} else {
 			Class<?> selectTagBoundType = selectTag.getBindStatus().getValueType();
 			if (selectTagBoundType != null && selectTagBoundType.isEnum()) {
 				itemsObject = selectTagBoundType.getEnumConstants();
@@ -353,7 +352,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 		private final String selectName;
 
 		public OptionsWriter(@Nullable String selectName, Object optionSource,
-				@Nullable String valueProperty, @Nullable String labelProperty) {
+							 @Nullable String valueProperty, @Nullable String labelProperty) {
 
 			super(optionSource, getBindStatus(), valueProperty, labelProperty, isHtmlEscape());
 			this.selectName = selectName;

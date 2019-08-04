@@ -41,7 +41,7 @@ class JcaListenerContainerParser extends AbstractListenerContainerParser {
 
 	@Override
 	protected RootBeanDefinition createContainerFactory(String factoryId, Element containerEle, ParserContext parserContext,
-			PropertyValues commonContainerProperties, PropertyValues specificContainerProperties) {
+														PropertyValues commonContainerProperties, PropertyValues specificContainerProperties) {
 
 		RootBeanDefinition factoryDef = new RootBeanDefinition();
 		factoryDef.setBeanClassName("org.springframework.jms.config.DefaultJcaListenerContainerFactory");
@@ -54,7 +54,7 @@ class JcaListenerContainerParser extends AbstractListenerContainerParser {
 
 	@Override
 	protected RootBeanDefinition createContainer(Element containerEle, Element listenerEle, ParserContext parserContext,
-			PropertyValues commonContainerProperties, PropertyValues specificContainerProperties) {
+												 PropertyValues commonContainerProperties, PropertyValues specificContainerProperties) {
 
 		RootBeanDefinition containerDef = new RootBeanDefinition();
 		containerDef.setSource(parserContext.extractSource(containerEle));
@@ -103,8 +103,7 @@ class JcaListenerContainerParser extends AbstractListenerContainerParser {
 			if (!StringUtils.hasText(resourceAdapterBeanName)) {
 				parserContext.getReaderContext().error(
 						"Listener container 'resource-adapter' attribute contains empty value.", containerEle);
-			}
-			else {
+			} else {
 				properties.add("resourceAdapter", new RuntimeBeanReference(resourceAdapterBeanName));
 			}
 		}

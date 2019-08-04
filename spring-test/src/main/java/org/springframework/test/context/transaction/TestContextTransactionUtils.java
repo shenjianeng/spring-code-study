@@ -78,13 +78,14 @@ public abstract class TestContextTransactionUtils {
 	 * <li>Attempt to look up the {@code DataSource} by type and the
 	 * {@linkplain #DEFAULT_DATA_SOURCE_NAME default data source name}.
 	 * </ol>
+	 *
 	 * @param testContext the test context for which the {@code DataSource}
-	 * should be retrieved; never {@code null}
-	 * @param name the name of the {@code DataSource} to retrieve
-	 * (may be {@code null} or <em>empty</em>)
+	 *                    should be retrieved; never {@code null}
+	 * @param name        the name of the {@code DataSource} to retrieve
+	 *                    (may be {@code null} or <em>empty</em>)
 	 * @return the {@code DataSource} to use, or {@code null} if not found
 	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named {@code DataSource}
+	 *                        named {@code DataSource}
 	 */
 	@Nullable
 	public static DataSource retrieveDataSource(TestContext testContext, @Nullable String name) {
@@ -96,8 +97,7 @@ public abstract class TestContextTransactionUtils {
 			if (StringUtils.hasText(name)) {
 				return bf.getBean(name, DataSource.class);
 			}
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			logger.error(String.format("Failed to retrieve DataSource named '%s' for test context %s",
 					name, testContext), ex);
 			throw ex;
@@ -117,16 +117,14 @@ public abstract class TestContextTransactionUtils {
 				try {
 					// look up single bean by type, with support for 'primary' beans
 					return bf.getBean(DataSource.class);
-				}
-				catch (BeansException ex) {
+				} catch (BeansException ex) {
 					logBeansException(testContext, ex, PlatformTransactionManager.class);
 				}
 			}
 
 			// look up by type and default name
 			return bf.getBean(DEFAULT_DATA_SOURCE_NAME, DataSource.class);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			logBeansException(testContext, ex, DataSource.class);
 			return null;
 		}
@@ -150,15 +148,16 @@ public abstract class TestContextTransactionUtils {
 	 * {@linkplain #DEFAULT_TRANSACTION_MANAGER_NAME default transaction manager
 	 * name}.
 	 * </ol>
+	 *
 	 * @param testContext the test context for which the transaction manager
-	 * should be retrieved; never {@code null}
-	 * @param name the name of the transaction manager to retrieve
-	 * (may be {@code null} or <em>empty</em>)
+	 *                    should be retrieved; never {@code null}
+	 * @param name        the name of the transaction manager to retrieve
+	 *                    (may be {@code null} or <em>empty</em>)
 	 * @return the transaction manager to use, or {@code null} if not found
-	 * @throws BeansException if an error occurs while retrieving an explicitly
-	 * named transaction manager
+	 * @throws BeansException        if an error occurs while retrieving an explicitly
+	 *                               named transaction manager
 	 * @throws IllegalStateException if more than one TransactionManagementConfigurer
-	 * exists in the ApplicationContext
+	 *                               exists in the ApplicationContext
 	 */
 	@Nullable
 	public static PlatformTransactionManager retrieveTransactionManager(TestContext testContext, @Nullable String name) {
@@ -170,8 +169,7 @@ public abstract class TestContextTransactionUtils {
 			if (StringUtils.hasText(name)) {
 				return bf.getBean(name, PlatformTransactionManager.class);
 			}
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			logger.error(String.format("Failed to retrieve transaction manager named '%s' for test context %s",
 					name, testContext), ex);
 			throw ex;
@@ -191,8 +189,7 @@ public abstract class TestContextTransactionUtils {
 				try {
 					// Look up single bean by type, with support for 'primary' beans
 					return bf.getBean(PlatformTransactionManager.class);
-				}
-				catch (BeansException ex) {
+				} catch (BeansException ex) {
 					logBeansException(testContext, ex, PlatformTransactionManager.class);
 				}
 
@@ -208,8 +205,7 @@ public abstract class TestContextTransactionUtils {
 
 			// look up by type and default name
 			return bf.getBean(DEFAULT_TRANSACTION_MANAGER_NAME, PlatformTransactionManager.class);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			logBeansException(testContext, ex, PlatformTransactionManager.class);
 			return null;
 		}
@@ -218,7 +214,7 @@ public abstract class TestContextTransactionUtils {
 	private static void logBeansException(TestContext testContext, BeansException ex, Class<?> beanType) {
 		if (logger.isDebugEnabled()) {
 			logger.debug(String.format("Caught exception while retrieving %s for test context %s",
-				beanType.getSimpleName(), testContext), ex);
+					beanType.getSimpleName(), testContext), ex);
 		}
 	}
 
@@ -226,7 +222,8 @@ public abstract class TestContextTransactionUtils {
 	 * Create a delegating {@link TransactionAttribute} for the supplied target
 	 * {@link TransactionAttribute} and {@link TestContext}, using the names of
 	 * the test class and test method to build the name of the transaction.
-	 * @param testContext the {@code TestContext} upon which to base the name
+	 *
+	 * @param testContext     the {@code TestContext} upon which to base the name
 	 * @param targetAttribute the {@code TransactionAttribute} to delegate to
 	 * @return the delegating {@code TransactionAttribute}
 	 */

@@ -111,13 +111,13 @@ class SpringManagedJupiterExtensionTests {
 
 						@Override
 						public boolean supportsParameter(ParameterContext parameterContext,
-								ExtensionContext extensionContext) {
+														 ExtensionContext extensionContext) {
 							return parameterContext.getParameter().getType() == String.class;
 						}
 
 						@Override
 						public Object resolveParameter(ParameterContext parameterContext,
-								ExtensionContext extensionContext) {
+													   ExtensionContext extensionContext) {
 							return parameter;
 						}
 					});

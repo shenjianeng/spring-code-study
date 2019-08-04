@@ -49,8 +49,8 @@ public class DataBufferEncoder extends AbstractEncoder<DataBuffer> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends DataBuffer> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
+								   DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
+								   @Nullable Map<String, Object> hints) {
 
 		Flux<DataBuffer> flux = Flux.from(inputStream);
 

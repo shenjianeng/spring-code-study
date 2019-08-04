@@ -30,10 +30,9 @@ import org.springframework.messaging.Message;
  * <p>See implementation classes and the documentation for example destinations.
  *
  * @author Rossen Stoyanchev
- * @since 4.0
- *
  * @see org.springframework.messaging.simp.user.DefaultUserDestinationResolver
  * @see UserDestinationMessageHandler
+ * @since 4.0
  */
 @FunctionalInterface
 public interface UserDestinationResolver {
@@ -41,6 +40,7 @@ public interface UserDestinationResolver {
 	/**
 	 * Resolve the given message with a user destination to one or more messages
 	 * with actual destinations, one for each active user session.
+	 *
 	 * @param message the message to try to resolve
 	 * @return 0 or more target messages (one for each active session), or
 	 * {@code null} if the source message does not contain a user destination.

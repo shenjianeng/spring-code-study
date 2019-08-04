@@ -40,8 +40,8 @@ public class ImplicitJPArgumentMatchingAtAspectJTests {
 
 	@Aspect
 	static class CounterAtAspectJAspect {
-		@Around(value="execution(* org.springframework.tests.sample.beans.TestBean.*(..)) and this(bean) and args(argument)",
-				argNames="bean,argument")
+		@Around(value = "execution(* org.springframework.tests.sample.beans.TestBean.*(..)) and this(bean) and args(argument)",
+				argNames = "bean,argument")
 		public void increment(ProceedingJoinPoint pjp, TestBean bean, Object argument) throws Throwable {
 			pjp.proceed();
 		}

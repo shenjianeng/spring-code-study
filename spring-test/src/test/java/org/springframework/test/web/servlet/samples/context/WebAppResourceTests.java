@@ -45,8 +45,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("src/test/resources/META-INF/web-resources")
 @ContextHierarchy({
-	@ContextConfiguration("root-context.xml"),
-	@ContextConfiguration("servlet-context.xml")
+		@ContextConfiguration("root-context.xml"),
+		@ContextConfiguration("servlet-context.xml")
 })
 public class WebAppResourceTests {
 
@@ -65,7 +65,7 @@ public class WebAppResourceTests {
 	@Test
 	public void tilesDefinitions() throws Exception {
 		this.mockMvc.perform(get("/"))
-			.andExpect(forwardedUrl("/WEB-INF/layouts/standardLayout.jsp"));
+				.andExpect(forwardedUrl("/WEB-INF/layouts/standardLayout.jsp"));
 	}
 
 	// Resources served via <mvc:resources/>
@@ -73,8 +73,8 @@ public class WebAppResourceTests {
 	@Test
 	public void resourceRequest() throws Exception {
 		this.mockMvc.perform(get("/resources/Spring.js"))
-			.andExpect(content().contentType("application/javascript"))
-			.andExpect(content().string(containsString("Spring={};")));
+				.andExpect(content().contentType("application/javascript"))
+				.andExpect(content().string(containsString("Spring={};")));
 	}
 
 	// Forwarded to the "default" servlet via <mvc:default-servlet-handler/>
@@ -82,8 +82,8 @@ public class WebAppResourceTests {
 	@Test
 	public void resourcesViaDefaultServlet() throws Exception {
 		this.mockMvc.perform(get("/unknown/resource"))
-			.andExpect(handler().handlerType(DefaultServletHttpRequestHandler.class))
-			.andExpect(forwardedUrl("default"));
+				.andExpect(handler().handlerType(DefaultServletHttpRequestHandler.class))
+				.andExpect(forwardedUrl("default"));
 	}
 
 }

@@ -50,7 +50,7 @@ public class StandardWebSocketSession extends AbstractListenerWebSocketSession<S
 	}
 
 	public StandardWebSocketSession(Session session, HandshakeInfo info, DataBufferFactory factory,
-			@Nullable MonoProcessor<Void> completionMono) {
+									@Nullable MonoProcessor<Void> completionMono) {
 
 		super(session, session.getId(), info, factory, completionMono);
 	}
@@ -78,18 +78,14 @@ public class StandardWebSocketSession extends AbstractListenerWebSocketSession<S
 			getSendProcessor().setReadyToSend(false);
 			String text = new String(buffer.array(), StandardCharsets.UTF_8);
 			getDelegate().getAsyncRemote().sendText(text, new SendProcessorCallback());
-		}
-		else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
 			getSendProcessor().setReadyToSend(false);
 			getDelegate().getAsyncRemote().sendBinary(buffer, new SendProcessorCallback());
-		}
-		else if (WebSocketMessage.Type.PING.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PING.equals(message.getType())) {
 			getDelegate().getAsyncRemote().sendPing(buffer);
-		}
-		else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
 			getDelegate().getAsyncRemote().sendPong(buffer);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unexpected message type: " + message.getType());
 		}
 		return true;
@@ -100,8 +96,7 @@ public class StandardWebSocketSession extends AbstractListenerWebSocketSession<S
 		try {
 			CloseReason.CloseCode code = CloseCodes.getCloseCode(status.getCode());
 			getDelegate().close(new CloseReason(code, status.getReason()));
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return Mono.error(ex);
 		}
 		return Mono.empty();
@@ -115,8 +110,7 @@ public class StandardWebSocketSession extends AbstractListenerWebSocketSession<S
 			if (result.isOK()) {
 				getSendProcessor().setReadyToSend(true);
 				getSendProcessor().onWritePossible();
-			}
-			else {
+			} else {
 				getSendProcessor().cancel();
 				getSendProcessor().onError(result.getException());
 			}

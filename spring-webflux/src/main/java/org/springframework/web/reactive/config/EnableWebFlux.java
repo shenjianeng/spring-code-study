@@ -51,7 +51,7 @@ import org.springframework.context.annotation.Import;
  * 	   &#064;Override
  * 	   public void configureMessageWriters(List&lt;HttpMessageWriter&lt;?&gt&gt messageWriters) {
  *         messageWriters.add(new MyHttpMessageWriter());
- * 	   }
+ *       }
  *
  * 	   // ...
  * }
@@ -71,10 +71,10 @@ import org.springframework.context.annotation.Import;
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see WebFluxConfigurer
  * @see WebFluxConfigurationSupport
  * @see DelegatingWebFluxConfiguration
+ * @since 5.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

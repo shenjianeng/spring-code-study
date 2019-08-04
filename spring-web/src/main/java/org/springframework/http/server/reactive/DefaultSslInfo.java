@@ -68,7 +68,7 @@ final class DefaultSslInfo implements SslInfo {
 
 	@Nullable
 	private static String initSessionId(SSLSession session) {
-		byte [] bytes = session.getId();
+		byte[] bytes = session.getId();
 		if (bytes == null) {
 			return null;
 		}
@@ -92,8 +92,7 @@ final class DefaultSslInfo implements SslInfo {
 		Certificate[] certificates;
 		try {
 			certificates = session.getPeerCertificates();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			return null;
 		}
 

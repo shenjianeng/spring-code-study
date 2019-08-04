@@ -24,8 +24,8 @@ package org.springframework.context.annotation;
  * dependencies</em>'.
  *
  * @author Mark Fisher
- * @since 2.5
  * @see ScopeMetadata
+ * @since 2.5
  */
 public enum ScopedProxyMode {
 

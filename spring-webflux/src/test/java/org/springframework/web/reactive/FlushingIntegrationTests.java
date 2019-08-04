@@ -80,8 +80,7 @@ public class FlushingIntegrationTests extends AbstractHttpHandlerIntegrationTest
 					.consumeNextWith(value -> assertEquals(64 * 1024, value.length()))
 					.expectComplete()
 					.verify(Duration.ofSeconds(10L));
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			String os = System.getProperty("os.name").toLowerCase();
 			if (os.contains("windows") && err.getMessage() != null &&
 					err.getMessage().startsWith("VerifySubscriber timed out")) {

@@ -58,8 +58,7 @@ public class SimpSessionScope implements Scope {
 			if (value != null) {
 				simpAttributes.removeAttribute(name);
 				return value;
-			}
-			else {
+			} else {
 				return null;
 			}
 		}

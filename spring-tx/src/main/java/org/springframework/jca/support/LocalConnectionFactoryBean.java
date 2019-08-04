@@ -62,12 +62,12 @@ import org.springframework.lang.Nullable;
  * to drive local transactions.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see #setManagedConnectionFactory
  * @see #setConnectionManager
  * @see javax.resource.cci.ConnectionFactory
  * @see javax.resource.cci.Connection#getLocalTransaction
  * @see org.springframework.jca.cci.connection.CciLocalTransactionManager
+ * @since 1.2
  */
 public class LocalConnectionFactoryBean implements FactoryBean<Object>, InitializingBean {
 
@@ -95,6 +95,7 @@ public class LocalConnectionFactoryBean implements FactoryBean<Object>, Initiali
 	 * Simply inject the corresponding ResourceAdapter instance into its
 	 * "resourceAdapter" bean property in this case, before passing the
 	 * ManagerConnectionFactory into this LocalConnectionFactoryBean.
+	 *
 	 * @see javax.resource.spi.ManagedConnectionFactory#createConnectionFactory()
 	 */
 	public void setManagedConnectionFactory(ManagedConnectionFactory managedConnectionFactory) {
@@ -107,6 +108,7 @@ public class LocalConnectionFactoryBean implements FactoryBean<Object>, Initiali
 	 * <p>A ConnectionManager implementation for local usage is often
 	 * included with a JCA connector. Such an included ConnectionManager
 	 * might be set as default, with no need to explicitly specify one.
+	 *
 	 * @see javax.resource.spi.ManagedConnectionFactory#createConnectionFactory(javax.resource.spi.ConnectionManager)
 	 */
 	public void setConnectionManager(ConnectionManager connectionManager) {
@@ -120,8 +122,7 @@ public class LocalConnectionFactoryBean implements FactoryBean<Object>, Initiali
 		}
 		if (this.connectionManager != null) {
 			this.connectionFactory = this.managedConnectionFactory.createConnectionFactory(this.connectionManager);
-		}
-		else {
+		} else {
 			this.connectionFactory = this.managedConnectionFactory.createConnectionFactory();
 		}
 	}

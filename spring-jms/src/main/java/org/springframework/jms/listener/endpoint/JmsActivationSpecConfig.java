@@ -33,14 +33,16 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 2.5
  * @see JmsActivationSpecFactory
  * @see JmsMessageEndpointManager#setActivationSpecConfig
  * @see javax.resource.spi.ResourceAdapter#endpointActivation
+ * @since 2.5
  */
 public class JmsActivationSpecConfig {
 
-	/** Constants instance for {@code javax.jms.Session}. */
+	/**
+	 * Constants instance for {@code javax.jms.Session}.
+	 */
 	private static final Constants sessionConstants = new Constants(Session.class);
 
 
@@ -102,8 +104,7 @@ public class JmsActivationSpecConfig {
 	public boolean isReplyPubSubDomain() {
 		if (this.replyPubSubDomain != null) {
 			return this.replyPubSubDomain;
-		}
-		else {
+		} else {
 			return isPubSubDomain();
 		}
 	}
@@ -183,6 +184,7 @@ public class JmsActivationSpecConfig {
 	 * (see Spring's {@link StandardJmsActivationSpecFactory}). ActiveMQ also
 	 * supports "SESSION_TRANSACTED" in the form of RA-managed transactions
 	 * (automatically translated by Spring's {@link DefaultJmsActivationSpecFactory}.
+	 *
 	 * @param constantName the name of the {@link Session} acknowledge mode constant
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
@@ -197,6 +199,7 @@ public class JmsActivationSpecConfig {
 
 	/**
 	 * Set the JMS acknowledgement mode to use.
+	 *
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
@@ -227,12 +230,10 @@ public class JmsActivationSpecConfig {
 			int separatorIndex = concurrency.indexOf('-');
 			if (separatorIndex != -1) {
 				setMaxConcurrency(Integer.parseInt(concurrency.substring(separatorIndex + 1, concurrency.length())));
-			}
-			else {
+			} else {
 				setMaxConcurrency(Integer.parseInt(concurrency));
 			}
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			throw new IllegalArgumentException("Invalid concurrency value [" + concurrency + "]: only " +
 					"single maximum integer (e.g. \"5\") and minimum-maximum combo (e.g. \"3-5\") supported. " +
 					"Note that JmsActivationSpecConfig will effectively ignore the minimum value and " +
@@ -272,6 +273,7 @@ public class JmsActivationSpecConfig {
 
 	/**
 	 * Set the {@link MessageConverter} strategy for converting JMS Messages.
+	 *
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {

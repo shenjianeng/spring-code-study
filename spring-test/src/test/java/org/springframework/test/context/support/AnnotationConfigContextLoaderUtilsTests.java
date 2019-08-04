@@ -51,14 +51,14 @@ public class AnnotationConfigContextLoaderUtilsTests {
 	public void detectDefaultConfigurationClassesWithExplicitConfigurationAnnotation() {
 		Class<?>[] configClasses = detectDefaultConfigurationClasses(ExplicitConfigTestCase.class);
 		assertNotNull(configClasses);
-		assertArrayEquals(new Class<?>[] { ExplicitConfigTestCase.Config.class }, configClasses);
+		assertArrayEquals(new Class<?>[]{ExplicitConfigTestCase.Config.class}, configClasses);
 	}
 
 	@Test
 	public void detectDefaultConfigurationClassesWithConfigurationMetaAnnotation() {
 		Class<?>[] configClasses = detectDefaultConfigurationClasses(MetaAnnotatedConfigTestCase.class);
 		assertNotNull(configClasses);
-		assertArrayEquals(new Class<?>[] { MetaAnnotatedConfigTestCase.Config.class }, configClasses);
+		assertArrayEquals(new Class<?>[]{MetaAnnotatedConfigTestCase.Config.class}, configClasses);
 	}
 
 

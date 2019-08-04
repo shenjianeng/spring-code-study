@@ -207,11 +207,11 @@ public class MessageBrokerBeanDefinitionParserTests {
 		DefaultSubscriptionRegistry registry = (DefaultSubscriptionRegistry) brokerMessageHandler.getSubscriptionRegistry();
 		assertEquals("my-selector", registry.getSelectorHeaderName());
 		assertNotNull(brokerMessageHandler.getTaskScheduler());
-		assertArrayEquals(new long[] {15000, 15000}, brokerMessageHandler.getHeartbeatValue());
+		assertArrayEquals(new long[]{15000, 15000}, brokerMessageHandler.getHeartbeatValue());
 		assertTrue(brokerMessageHandler.isPreservePublishOrder());
 
 		List<Class<? extends MessageHandler>> subscriberTypes = Arrays.asList(SimpAnnotationMethodMessageHandler.class,
-						UserDestinationMessageHandler.class, SimpleBrokerMessageHandler.class);
+				UserDestinationMessageHandler.class, SimpleBrokerMessageHandler.class);
 		testChannel("clientInboundChannel", subscriberTypes, 2);
 		testExecutor("clientInboundChannel", Runtime.getRuntime().availableProcessors() * 2, Integer.MAX_VALUE, 60);
 
@@ -224,8 +224,7 @@ public class MessageBrokerBeanDefinitionParserTests {
 		try {
 			this.appContext.getBean("brokerChannelExecutor", ThreadPoolTaskExecutor.class);
 			fail("expected exception");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 
@@ -276,7 +275,7 @@ public class MessageBrokerBeanDefinitionParserTests {
 		assertEquals("spring.io", messageBroker.getVirtualHost());
 		assertEquals(5000, messageBroker.getSystemHeartbeatReceiveInterval());
 		assertEquals(5000, messageBroker.getSystemHeartbeatSendInterval());
-		assertThat(messageBroker.getDestinationPrefixes(), Matchers.containsInAnyOrder("/topic","/queue"));
+		assertThat(messageBroker.getDestinationPrefixes(), Matchers.containsInAnyOrder("/topic", "/queue"));
 		assertTrue(messageBroker.isPreservePublishOrder());
 
 		List<Class<? extends MessageHandler>> subscriberTypes = Arrays.asList(SimpAnnotationMethodMessageHandler.class,
@@ -293,8 +292,7 @@ public class MessageBrokerBeanDefinitionParserTests {
 		try {
 			this.appContext.getBean("brokerChannelExecutor", ThreadPoolTaskExecutor.class);
 			fail("expected exception");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			// expected
 		}
 
@@ -446,17 +444,17 @@ public class MessageBrokerBeanDefinitionParserTests {
 
 
 	private void testChannel(
-			String channelName, List<Class<? extends  MessageHandler>> subscriberTypes, int interceptorCount) {
+			String channelName, List<Class<? extends MessageHandler>> subscriberTypes, int interceptorCount) {
 
 		AbstractSubscribableChannel channel = this.appContext.getBean(channelName, AbstractSubscribableChannel.class);
-		for (Class<? extends  MessageHandler> subscriberType : subscriberTypes) {
+		for (Class<? extends MessageHandler> subscriberType : subscriberTypes) {
 			MessageHandler subscriber = this.appContext.getBean(subscriberType);
 			assertNotNull("No subscription for " + subscriberType, subscriber);
 			assertTrue(channel.hasSubscription(subscriber));
 		}
 		List<ChannelInterceptor> interceptors = channel.getInterceptors();
 		assertEquals(interceptorCount, interceptors.size());
-		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size()-1).getClass());
+		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size() - 1).getClass());
 	}
 
 	private void testExecutor(String channelName, int corePoolSize, int maxPoolSize, int keepAliveSeconds) {

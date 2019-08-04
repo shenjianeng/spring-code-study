@@ -28,9 +28,9 @@ import org.springframework.util.Assert;
  * an equivalent destroy method. Mainly for internal use to assist with initializing and
  * destroying handlers with per-connection lifecycle.
  *
+ * @param <T> the handler type
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the handler type
  */
 public class BeanCreatingHandlerProvider<T> implements BeanFactoryAware {
 
@@ -67,8 +67,7 @@ public class BeanCreatingHandlerProvider<T> implements BeanFactoryAware {
 	public T getHandler() {
 		if (this.beanFactory != null) {
 			return this.beanFactory.createBean(this.handlerType);
-		}
-		else {
+		} else {
 			return BeanUtils.instantiateClass(this.handlerType);
 		}
 	}

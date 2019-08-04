@@ -41,6 +41,7 @@ public class ModelAndViewDefiningException extends ServletException {
 	/**
 	 * Create new ModelAndViewDefiningException with the given ModelAndView,
 	 * typically representing a specific error page.
+	 *
 	 * @param modelAndView the ModelAndView with view to forward to and model to expose
 	 */
 	public ModelAndViewDefiningException(ModelAndView modelAndView) {

@@ -34,8 +34,8 @@ import static org.junit.Assert.*;
  * TestNG-based integration tests for {@link ServletTestExecutionListener}.
  *
  * @author Sam Brannen
- * @since 3.2.9
  * @see org.springframework.test.context.web.ServletTestExecutionListenerJUnitIntegrationTests
+ * @since 3.2.9
  */
 @ContextConfiguration
 @WebAppConfiguration
@@ -73,7 +73,7 @@ public class ServletTestExecutionListenerTestNGIntegrationTests extends Abstract
 
 	private void assertInjectedServletRequestEqualsRequestInRequestContextHolder() {
 		assertEquals("Injected ServletRequest must be stored in the RequestContextHolder", servletRequest,
-			((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());
+				((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest());
 	}
 
 }

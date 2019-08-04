@@ -87,8 +87,7 @@ public class SimpleNamingContextTests {
 		try {
 			context1.lookup("myobject");
 			fail("Should have thrown NameNotFoundException");
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			// expected
 		}
 		assertTrue("Correct Integer registered", context1.lookup("myinteger") == i);
@@ -98,8 +97,7 @@ public class SimpleNamingContextTests {
 		try {
 			context2.lookup("myobject");
 			fail("Should have thrown NameNotFoundException");
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			// expected
 		}
 		assertTrue("Correct Integer registered", context2.lookup("myinteger") == i);
@@ -109,8 +107,7 @@ public class SimpleNamingContextTests {
 		try {
 			context3.lookup("myobject");
 			fail("Should have thrown NameNotFoundException");
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			// expected
 		}
 		assertTrue("Correct Integer registered", context3.lookup("myinteger") == i);
@@ -194,8 +191,7 @@ public class SimpleNamingContextTests {
 			ctx = new InitialContext();
 			ctx.lookup(name);
 			fail("Should have thrown NamingException");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			// expected
 		}
 
@@ -205,8 +201,7 @@ public class SimpleNamingContextTests {
 			ctx = new InitialContext();
 			ctx.lookup(name);
 			fail("Should have thrown NamingException");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			// expected
 		}
 		Object o2 = new Object();

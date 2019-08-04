@@ -25,16 +25,17 @@ import org.springframework.util.MethodInvoker;
  * an arbitrary target method.
  *
  * @author Juergen Hoeller
- * @since 2.5.3
  * @see MethodInvokingJobDetailFactoryBean
+ * @since 2.5.3
  */
 @SuppressWarnings("serial")
 public class JobMethodInvocationFailedException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for JobMethodInvocationFailedException.
+	 *
 	 * @param methodInvoker the MethodInvoker used for reflective invocation
-	 * @param cause the root cause (as thrown from the target method)
+	 * @param cause         the root cause (as thrown from the target method)
 	 */
 	public JobMethodInvocationFailedException(MethodInvoker methodInvoker, Throwable cause) {
 		super("Invocation of method '" + methodInvoker.getTargetMethod() +

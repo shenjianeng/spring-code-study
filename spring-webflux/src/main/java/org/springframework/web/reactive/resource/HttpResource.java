@@ -31,6 +31,7 @@ public interface HttpResource extends Resource {
 	/**
 	 * The HTTP headers to be contributed to the HTTP response
 	 * that serves the current resource.
+	 *
 	 * @return the HTTP response headers
 	 */
 	HttpHeaders getResponseHeaders();

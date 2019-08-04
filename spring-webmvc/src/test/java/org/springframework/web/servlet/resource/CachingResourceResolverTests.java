@@ -124,7 +124,7 @@ public class CachingResourceResolverTests {
 		// 2. Resolve with Accept-Encoding
 
 		request = new MockHttpServletRequest("GET", file);
-		request.addHeader("Accept-Encoding",  "gzip ; a=b  , deflate ,  br  ; c=d ");
+		request.addHeader("Accept-Encoding", "gzip ; a=b  , deflate ,  br  ; c=d ");
 		expected = this.chain.resolveResource(request, file, this.locations);
 
 		cacheKey = resourceKey(file + "+encoding=br,gzip");
@@ -160,7 +160,7 @@ public class CachingResourceResolverTests {
 		this.cache.put(resourceKey("bar.css+encoding=gzip"), gzipped);
 
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "bar.css");
-		assertSame(resource, this.chain.resolveResource(request,"bar.css", this.locations));
+		assertSame(resource, this.chain.resolveResource(request, "bar.css", this.locations));
 
 		request = new MockHttpServletRequest("GET", "bar.css");
 		request.addHeader("Accept-Encoding", "gzip");

@@ -72,6 +72,7 @@ public abstract class SqlCall extends RdbmsOperation {
 	 * Constructor to allow use as a JavaBean.
 	 * A DataSource, SQL and any parameters must be supplied before
 	 * invoking the {@code compile} method and using this object.
+	 *
 	 * @see #setDataSource
 	 * @see #setSql
 	 * @see #compile
@@ -82,7 +83,8 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * Create a new SqlCall object with SQL, but without parameters.
 	 * Must add parameters or settle with none.
-	 * @param ds the DataSource to obtain connections from
+	 *
+	 * @param ds  the DataSource to obtain connections from
 	 * @param sql the SQL to execute
 	 */
 	public SqlCall(DataSource ds, String sql) {
@@ -123,22 +125,21 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * Overridden method to configure the CallableStatementCreatorFactory
 	 * based on our declared parameters.
+	 *
 	 * @see RdbmsOperation#compileInternal()
 	 */
 	@Override
 	protected final void compileInternal() {
 		if (isSqlReadyForUse()) {
 			this.callString = resolveSql();
-		}
-		else {
+		} else {
 			StringBuilder callString = new StringBuilder(32);
 			List<SqlParameter> parameters = getDeclaredParameters();
 			int parameterCount = 0;
 			if (isFunction()) {
 				callString.append("{? = call ").append(resolveSql()).append('(');
 				parameterCount = -1;
-			}
-			else {
+			} else {
 				callString.append("{call ").append(resolveSql()).append('(');
 			}
 			for (SqlParameter parameter : parameters) {
@@ -184,6 +185,7 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * Return a CallableStatementCreator to perform an operation
 	 * with this parameters.
+	 *
 	 * @param inParams parameters. May be {@code null}.
 	 */
 	protected CallableStatementCreator newCallableStatementCreator(@Nullable Map<String, ?> inParams) {
@@ -194,6 +196,7 @@ public abstract class SqlCall extends RdbmsOperation {
 	/**
 	 * Return a CallableStatementCreator to perform an operation
 	 * with the parameters returned from this ParameterMapper.
+	 *
 	 * @param inParamMapper parametermapper. May not be {@code null}.
 	 */
 	protected CallableStatementCreator newCallableStatementCreator(ParameterMapper inParamMapper) {

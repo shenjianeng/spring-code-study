@@ -78,7 +78,7 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 		// Try with Locale.US
 		assertTrue("valid msg from staticMsgSource with default msg passed in returned msg from msg catalog for Locale.US",
 				sac.getMessage("message.format.example2", null, "This is a default msg if not found in MessageSource.", Locale.US)
-				.equals("This is a test message in the message catalog with no args."));
+						.equals("This is a test message in the message catalog with no args."));
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 		// Try with Locale.US
 		assertTrue("bogus msg from staticMsgSource with default msg passed in returned default msg for Locale.US",
 				sac.getMessage("bogus.message", null, "This is a default msg if not found in MessageSource.", Locale.US)
-				.equals("This is a default msg if not found in MessageSource."));
+						.equals("This is a default msg if not found in MessageSource."));
 	}
 
 	/**
@@ -94,13 +94,14 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 	 * The underlying implementation uses a hashMap to cache messageFormats
 	 * once a message has been asked for.  This test is an attempt to
 	 * make sure the cache is being used properly.
+	 *
 	 * @see org.springframework.context.support.AbstractMessageSource for more details.
 	 */
 	@Test
 	public void getMessageWithMessageAlreadyLookedFor() {
 		Object[] arguments = {
-			new Integer(7), new Date(System.currentTimeMillis()),
-			"a disturbance in the Force"
+				new Integer(7), new Date(System.currentTimeMillis()),
+				"a disturbance in the Force"
 		};
 
 		// The first time searching, we don't care about for this test
@@ -113,8 +114,8 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 						contains("there was \"a disturbance in the Force\" on planet 7."));
 
 		Object[] newArguments = {
-			new Integer(8), new Date(System.currentTimeMillis()),
-			"a disturbance in the Force"
+				new Integer(8), new Date(System.currentTimeMillis()),
+				"a disturbance in the Force"
 		};
 
 		// Now msg better be as expected even with different args
@@ -129,8 +130,8 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 	@Test
 	public void getMessageWithNoDefaultPassedInAndFoundInMsgCatalog() {
 		Object[] arguments = {
-			new Integer(7), new Date(System.currentTimeMillis()),
-			"a disturbance in the Force"
+				new Integer(7), new Date(System.currentTimeMillis()),
+				"a disturbance in the Force"
 		};
 
 		/*
@@ -153,7 +154,7 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 		// Try with Locale.US - Use a different test msg that requires no args
 		assertTrue("msg from staticMsgSource for Locale.US that requires no args is as expected",
 				sac.getMessage("message.format.example2", null, Locale.US)
-				.equals("This is a test message in the message catalog with no args."));
+						.equals("This is a test message in the message catalog with no args."));
 	}
 
 	@Test(expected = NoSuchMessageException.class)
@@ -165,22 +166,22 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 	@Test
 	public void messageSourceResolvable() {
 		// first code valid
-		String[] codes1 = new String[] {"message.format.example3", "message.format.example2"};
+		String[] codes1 = new String[]{"message.format.example3", "message.format.example2"};
 		MessageSourceResolvable resolvable1 = new DefaultMessageSourceResolvable(codes1, null, "default");
 		assertTrue("correct message retrieved", MSG_TXT3_US.equals(sac.getMessage(resolvable1, Locale.US)));
 
 		// only second code valid
-		String[] codes2 = new String[] {"message.format.example99", "message.format.example2"};
+		String[] codes2 = new String[]{"message.format.example99", "message.format.example2"};
 		MessageSourceResolvable resolvable2 = new DefaultMessageSourceResolvable(codes2, null, "default");
 		assertTrue("correct message retrieved", MSG_TXT2_US.equals(sac.getMessage(resolvable2, Locale.US)));
 
 		// no code valid, but default given
-		String[] codes3 = new String[] {"message.format.example99", "message.format.example98"};
+		String[] codes3 = new String[]{"message.format.example99", "message.format.example98"};
 		MessageSourceResolvable resolvable3 = new DefaultMessageSourceResolvable(codes3, null, "default");
 		assertTrue("correct message retrieved", "default".equals(sac.getMessage(resolvable3, Locale.US)));
 
 		// no code valid, no default
-		String[] codes4 = new String[] {"message.format.example99", "message.format.example98"};
+		String[] codes4 = new String[]{"message.format.example99", "message.format.example98"};
 		MessageSourceResolvable resolvable4 = new DefaultMessageSourceResolvable(codes4);
 
 		exception.expect(NoSuchMessageException.class);
@@ -234,7 +235,7 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 		parent.addMessage("with.param", Locale.ENGLISH, "put {0} here");
 
 		MessageSourceResolvable resolvable = new DefaultMessageSourceResolvable(
-				new String[] {"with.param"}, new Object[] {new DefaultMessageSourceResolvable("param")});
+				new String[]{"with.param"}, new Object[]{new DefaultMessageSourceResolvable("param")});
 
 		assertEquals("put value here", source.getMessage(resolvable, Locale.ENGLISH));
 	}
@@ -249,7 +250,7 @@ public class StaticMessageSourceTests extends AbstractApplicationContextTests {
 		source.addMessage("with.param", Locale.ENGLISH, "put {0} here");
 
 		MessageSourceResolvable resolvable = new DefaultMessageSourceResolvable(
-				new String[] {"with.param"}, new Object[] {new DefaultMessageSourceResolvable("param")});
+				new String[]{"with.param"}, new Object[]{new DefaultMessageSourceResolvable("param")});
 
 		assertEquals("put value here", source.getMessage(resolvable, Locale.ENGLISH));
 	}

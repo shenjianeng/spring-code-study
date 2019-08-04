@@ -49,7 +49,7 @@ public class HeadersAdaptersTests {
 
 	@Parameterized.Parameters(name = "headers [{0}]")
 	public static Object[][] arguments() {
-		return new Object[][] {
+		return new Object[][]{
 				{CollectionUtils.toMultiValueMap(
 						new LinkedCaseInsensitiveMap<>(8, Locale.ENGLISH))},
 				{new NettyHeadersAdapter(new DefaultHttpHeaders())},

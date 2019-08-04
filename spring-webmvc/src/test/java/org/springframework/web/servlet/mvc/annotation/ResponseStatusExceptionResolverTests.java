@@ -92,8 +92,7 @@ public class ResponseStatusExceptionResolverTests {
 			StatusCodeAndReasonMessageException ex = new StatusCodeAndReasonMessageException();
 			exceptionResolver.resolveException(request, response, null, ex);
 			assertEquals("Invalid status reason", "Gone reason message", response.getErrorMessage());
-		}
-		finally {
+		} finally {
 			LocaleContextHolder.resetLocaleContext();
 		}
 	}

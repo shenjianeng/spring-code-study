@@ -93,6 +93,7 @@ class OkHttp3AsyncClientHttpRequest extends AbstractBufferingAsyncClientHttpRequ
 				public void onResponse(Call call, Response response) {
 					set(new OkHttp3ClientHttpResponse(response));
 				}
+
 				@Override
 				public void onFailure(Call call, IOException ex) {
 					setException(ex);

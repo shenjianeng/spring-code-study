@@ -68,8 +68,7 @@ public class CollectionToCollectionConverterTests {
 		assertTrue(conversionService.canConvert(sourceType, targetType));
 		try {
 			conversionService.convert(list, sourceType, targetType);
-		}
-		catch (ConversionFailedException ex) {
+		} catch (ConversionFailedException ex) {
 			assertTrue(ex.getCause() instanceof ConverterNotFoundException);
 		}
 		conversionService.addConverterFactory(new StringToNumberConverterFactory());

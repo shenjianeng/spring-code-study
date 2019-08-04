@@ -23,13 +23,13 @@ import javax.servlet.http.HttpServletRequest;
  * (and optionally the query string) to the ServletContext log.
  *
  * @author Juergen Hoeller
- * @since 1.2.5
  * @see #setIncludeQueryString
  * @see #setBeforeMessagePrefix
  * @see #setBeforeMessageSuffix
  * @see #setAfterMessagePrefix
  * @see #setAfterMessageSuffix
  * @see javax.servlet.ServletContext#log(String)
+ * @since 1.2.5
  */
 public class ServletContextRequestLoggingFilter extends AbstractRequestLoggingFilter {
 

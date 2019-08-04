@@ -66,8 +66,7 @@ public class UserCredentialsDataSourceAdapterTests {
 		adapter.setCredentialsForCurrentThread("user", "pw");
 		try {
 			assertEquals(connection, adapter.getConnection());
-		}
-		finally {
+		} finally {
 			adapter.removeCredentialsFromCurrentThread();
 		}
 	}

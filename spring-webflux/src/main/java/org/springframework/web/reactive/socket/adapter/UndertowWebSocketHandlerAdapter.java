@@ -85,16 +85,13 @@ public class UndertowWebSocketHandlerAdapter extends AbstractReceiveListener {
 		if (Type.TEXT.equals(type)) {
 			byte[] bytes = ((String) message).getBytes(StandardCharsets.UTF_8);
 			return new WebSocketMessage(Type.TEXT, this.session.bufferFactory().wrap(bytes));
-		}
-		else if (Type.BINARY.equals(type)) {
+		} else if (Type.BINARY.equals(type)) {
 			DataBuffer buffer = this.session.bufferFactory().allocateBuffer().write((ByteBuffer[]) message);
 			return new WebSocketMessage(Type.BINARY, buffer);
-		}
-		else if (Type.PONG.equals(type)) {
+		} else if (Type.PONG.equals(type)) {
 			DataBuffer buffer = this.session.bufferFactory().allocateBuffer().write((ByteBuffer[]) message);
 			return new WebSocketMessage(Type.PONG, buffer);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unexpected message type: " + message);
 		}
 	}

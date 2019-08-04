@@ -27,8 +27,8 @@ import javax.management.ObjectName;
  * generation capabilities.
  *
  * @author Rob Harrop
- * @since 2.0
  * @see MBeanExporter
+ * @since 2.0
  */
 public interface MBeanExportOperations {
 
@@ -37,10 +37,11 @@ public interface MBeanExportOperations {
 	 * Spring will generate a management interface for it. The exact interface generated will
 	 * depend on the implementation and its configuration. This call also generates an
 	 * {@link ObjectName} for the managed resource and returns this to the caller.
+	 *
 	 * @param managedResource the resource to expose via JMX
 	 * @return the {@link ObjectName} under which the resource was exposed
 	 * @throws MBeanExportException if Spring is unable to generate an {@link ObjectName}
-	 * or register the MBean
+	 *                              or register the MBean
 	 */
 	ObjectName registerManagedResource(Object managedResource) throws MBeanExportException;
 
@@ -48,14 +49,16 @@ public interface MBeanExportOperations {
 	 * Register the supplied resource with JMX. If the resource is not a valid MBean already,
 	 * Spring will generate a management interface for it. The exact interface generated will
 	 * depend on the implementation and its configuration.
+	 *
 	 * @param managedResource the resource to expose via JMX
-	 * @param objectName the {@link ObjectName} under which to expose the resource
+	 * @param objectName      the {@link ObjectName} under which to expose the resource
 	 * @throws MBeanExportException if Spring is unable to register the MBean
 	 */
 	void registerManagedResource(Object managedResource, ObjectName objectName) throws MBeanExportException;
 
 	/**
 	 * Remove the specified MBean from the underlying MBeanServer registry.
+	 *
 	 * @param objectName the {@link ObjectName} of the resource to remove
 	 */
 	void unregisterManagedResource(ObjectName objectName);

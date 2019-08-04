@@ -111,7 +111,7 @@ public class DispatcherServletInitializerTests {
 
 		@Override
 		protected String[] getServletMappings() {
-			return new String[] { SERVLET_MAPPING };
+			return new String[]{SERVLET_MAPPING};
 		}
 
 		@Override

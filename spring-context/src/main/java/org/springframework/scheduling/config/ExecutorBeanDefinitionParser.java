@@ -64,17 +64,13 @@ public class ExecutorBeanDefinitionParser extends AbstractSingleBeanDefinitionPa
 		String policyClassName;
 		if (rejectionPolicy.equals("ABORT")) {
 			policyClassName = prefix + "AbortPolicy";
-		}
-		else if (rejectionPolicy.equals("CALLER_RUNS")) {
+		} else if (rejectionPolicy.equals("CALLER_RUNS")) {
 			policyClassName = prefix + "CallerRunsPolicy";
-		}
-		else if (rejectionPolicy.equals("DISCARD")) {
+		} else if (rejectionPolicy.equals("DISCARD")) {
 			policyClassName = prefix + "DiscardPolicy";
-		}
-		else if (rejectionPolicy.equals("DISCARD_OLDEST")) {
+		} else if (rejectionPolicy.equals("DISCARD_OLDEST")) {
 			policyClassName = prefix + "DiscardOldestPolicy";
-		}
-		else {
+		} else {
 			policyClassName = rejectionPolicy;
 		}
 		builder.addPropertyValue("rejectedExecutionHandler", new RootBeanDefinition(policyClassName));

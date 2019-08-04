@@ -53,10 +53,10 @@ import org.springframework.util.ClassUtils;
  * invoker mechanism, check out the {@link DefaultMessageListenerContainer} class.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see #sharedConnectionEnabled()
  * @see #doInitialize()
  * @see #doShutdown()
+ * @since 2.0.3
  */
 public abstract class AbstractJmsListeningContainer extends JmsDestinationAccessor
 		implements BeanNameAware, DisposableBean, SmartLifecycle {
@@ -93,6 +93,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * <p>Note that client IDs need to be unique among all active Connections
 	 * of the underlying JMS provider. Furthermore, a client ID can only be
 	 * assigned if the original ConnectionFactory hasn't already assigned one.
+	 *
 	 * @see javax.jms.Connection#setClientID
 	 * @see #setConnectionFactory
 	 */
@@ -176,6 +177,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * Calls {@link #shutdown()} when the BeanFactory destroys the container instance.
+	 *
 	 * @see #shutdown()
 	 */
 	@Override
@@ -193,6 +195,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * <p>Creates a JMS Connection, starts the {@link javax.jms.Connection}
 	 * (if {@link #setAutoStartup(boolean) "autoStartup"} hasn't been turned off),
 	 * and calls {@link #doInitialize()}.
+	 *
 	 * @throws org.springframework.jms.JmsException if startup failed
 	 */
 	public void initialize() throws JmsException {
@@ -202,8 +205,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 				this.lifecycleMonitor.notifyAll();
 			}
 			doInitialize();
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			synchronized (this.sharedConnectionMonitor) {
 				ConnectionFactoryUtils.releaseConnection(this.sharedConnection, getConnectionFactory(), this.autoStartup);
 				this.sharedConnection = null;
@@ -215,6 +217,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * Stop the shared Connection, call {@link #doShutdown()},
 	 * and close this container.
+	 *
 	 * @throws JmsException if shutdown failed
 	 */
 	public void shutdown() throws JmsException {
@@ -232,8 +235,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 		if (wasRunning && sharedConnectionEnabled()) {
 			try {
 				stopSharedConnection();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				logger.debug("Could not stop JMS Connection on shutdown", ex);
 			}
 		}
@@ -241,11 +243,9 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 		// Shut down the invokers.
 		try {
 			doShutdown();
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			throw convertJmsAccessException(ex);
-		}
-		finally {
+		} finally {
 			if (sharedConnectionEnabled()) {
 				synchronized (this.sharedConnectionMonitor) {
 					ConnectionFactoryUtils.releaseConnection(this.sharedConnection, getConnectionFactory(), false);
@@ -267,6 +267,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * Start this container.
+	 *
 	 * @throws JmsException if starting failed
 	 * @see #doStart
 	 */
@@ -274,14 +275,14 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	public void start() throws JmsException {
 		try {
 			doStart();
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			throw convertJmsAccessException(ex);
 		}
 	}
 
 	/**
 	 * Start the shared Connection, if any, and notify all invoker tasks.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see #startSharedConnection
 	 */
@@ -306,6 +307,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * Stop this container.
+	 *
 	 * @throws JmsException if stopping failed
 	 * @see #doStop
 	 */
@@ -313,14 +315,14 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	public void stop() throws JmsException {
 		try {
 			doStop();
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			throw convertJmsAccessException(ex);
 		}
 	}
 
 	/**
 	 * Notify all invoker tasks and stop the shared Connection, if any.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see #stopSharedConnection
 	 */
@@ -338,6 +340,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * Determine whether this container is currently running,
 	 * that is, whether it has been started and not stopped yet.
+	 *
 	 * @see #start()
 	 * @see #stop()
 	 * @see #runningAllowed()
@@ -371,6 +374,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * which does one immediate attempt and throws an exception if it fails.
 	 * Can be overridden to have a recovery process in place, retrying
 	 * until a Connection can be successfully established.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 */
 	protected void establishSharedConnection() throws JMSException {
@@ -386,6 +390,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * Refresh the shared Connection that this container holds.
 	 * <p>Called on startup and also after an infrastructure exception
 	 * that occurred during invoker setup and/or execution.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 */
 	protected final void refreshSharedConnection() throws JMSException {
@@ -404,6 +409,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * Create a shared Connection for this container.
 	 * <p>The default implementation creates a standard Connection
 	 * and prepares it through {@link #prepareSharedConnection}.
+	 *
 	 * @return the prepared Connection
 	 * @throws JMSException if the creation failed
 	 */
@@ -412,8 +418,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 		try {
 			prepareSharedConnection(con);
 			return con;
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			JmsUtils.closeConnection(con);
 			throw ex;
 		}
@@ -424,6 +429,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * as shared Connection for this container.
 	 * <p>The default implementation sets the specified client id, if any.
 	 * Subclasses can override this to apply further settings.
+	 *
 	 * @param connection the Connection to prepare
 	 * @throws JMSException if the preparation efforts failed
 	 * @see #getClientId()
@@ -437,6 +443,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * Start the shared Connection.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see javax.jms.Connection#start()
 	 */
@@ -446,8 +453,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 			if (this.sharedConnection != null) {
 				try {
 					this.sharedConnection.start();
-				}
-				catch (javax.jms.IllegalStateException ex) {
+				} catch (javax.jms.IllegalStateException ex) {
 					logger.debug("Ignoring Connection start exception - assuming already started: " + ex);
 				}
 			}
@@ -456,6 +462,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 	/**
 	 * Stop the shared Connection.
+	 *
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see javax.jms.Connection#start()
 	 */
@@ -465,8 +472,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 			if (this.sharedConnection != null) {
 				try {
 					this.sharedConnection.stop();
-				}
-				catch (javax.jms.IllegalStateException ex) {
+				} catch (javax.jms.IllegalStateException ex) {
 					logger.debug("Ignoring Connection stop exception - assuming already stopped: " + ex);
 				}
 			}
@@ -476,9 +482,10 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * Return the shared JMS Connection maintained by this container.
 	 * Available after initialization.
+	 *
 	 * @return the shared Connection (never {@code null})
 	 * @throws IllegalStateException if this container does not maintain a
-	 * shared Connection, or if the Connection hasn't been initialized yet
+	 *                               shared Connection, or if the Connection hasn't been initialized yet
 	 * @see #sharedConnectionEnabled()
 	 */
 	protected final Connection getSharedConnection() {
@@ -506,6 +513,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * has been restarted.
 	 * <p>If this container has already been shut down, the task will not
 	 * get rescheduled at all.
+	 *
 	 * @param task the task object to reschedule
 	 * @return whether the task has been rescheduled
 	 * (either immediately or for a restart of this container)
@@ -515,18 +523,15 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 		if (this.running) {
 			try {
 				doRescheduleTask(task);
-			}
-			catch (RuntimeException ex) {
+			} catch (RuntimeException ex) {
 				logRejectedTask(task, ex);
 				this.pausedTasks.add(task);
 			}
 			return true;
-		}
-		else if (this.active) {
+		} else if (this.active) {
 			this.pausedTasks.add(task);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -538,7 +543,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	protected void resumePausedTasks() {
 		synchronized (this.lifecycleMonitor) {
 			if (!this.pausedTasks.isEmpty()) {
-				for (Iterator<?> it = this.pausedTasks.iterator(); it.hasNext();) {
+				for (Iterator<?> it = this.pausedTasks.iterator(); it.hasNext(); ) {
 					Object task = it.next();
 					try {
 						doRescheduleTask(task);
@@ -546,8 +551,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 						if (logger.isDebugEnabled()) {
 							logger.debug("Resumed paused task: " + task);
 						}
-					}
-					catch (RuntimeException ex) {
+					} catch (RuntimeException ex) {
 						logRejectedTask(task, ex);
 						// Keep the task in paused mode...
 					}
@@ -570,6 +574,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * <p>To be implemented by subclasses if they ever call
 	 * {@code rescheduleTaskIfNecessary}.
 	 * This implementation throws an UnsupportedOperationException.
+	 *
 	 * @param task the task object to reschedule
 	 * @see #rescheduleTaskIfNecessary
 	 */
@@ -582,8 +587,9 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * Log a task that has been rejected by {@link #doRescheduleTask}.
 	 * <p>The default implementation simply logs a corresponding message
 	 * at debug level.
+	 *
 	 * @param task the rejected task object
-	 * @param ex the exception thrown from {@link #doRescheduleTask}
+	 * @param ex   the exception thrown from {@link #doRescheduleTask}
 	 */
 	protected void logRejectedTask(Object task, RuntimeException ex) {
 		if (logger.isDebugEnabled()) {
@@ -599,6 +605,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	/**
 	 * Return whether a shared JMS Connection should be maintained
 	 * by this container base class.
+	 *
 	 * @see #getSharedConnection()
 	 */
 	protected abstract boolean sharedConnectionEnabled();
@@ -609,6 +616,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * invoker management process.
 	 * <p>A shared JMS Connection, if any, will already have been
 	 * started at this point.
+	 *
 	 * @throws JMSException if registration failed
 	 * @see #getSharedConnection()
 	 */
@@ -620,6 +628,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 	 * invoker management process.
 	 * <p>A shared JMS Connection, if any, will automatically be closed
 	 * <i>afterwards</i>.
+	 *
 	 * @throws JMSException if shutdown failed
 	 * @see #shutdown()
 	 */
@@ -636,6 +645,7 @@ public abstract class AbstractJmsListeningContainer extends JmsDestinationAccess
 
 		/**
 		 * Create a new SharedConnectionNotInitializedException.
+		 *
 		 * @param msg the detail message
 		 */
 		protected SharedConnectionNotInitializedException(String msg) {

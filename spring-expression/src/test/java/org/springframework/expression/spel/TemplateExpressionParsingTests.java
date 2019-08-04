@@ -41,10 +41,12 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		public String getExpressionPrefix() {
 			return "${";
 		}
+
 		@Override
 		public String getExpressionSuffix() {
 			return "}";
 		}
+
 		@Override
 		public boolean isTemplate() {
 			return true;
@@ -56,10 +58,12 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		public String getExpressionPrefix() {
 			return "#{";
 		}
+
 		@Override
 		public String getExpressionSuffix() {
 			return "}";
 		}
+
 		@Override
 		public boolean isTemplate() {
 			return true;
@@ -108,7 +112,7 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		assertEquals("abc", o.toString());
 
 		expr = parser.parseExpression("abc", DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		o = expr.getValue((Object)null);
+		o = expr.getValue((Object) null);
 		assertEquals("abc", o.toString());
 	}
 
@@ -118,7 +122,7 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		Expression ex = parser.parseExpression("hello ${'world'}", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 		checkString("hello world", ex.getValue());
 		checkString("hello world", ex.getValue(String.class));
-		checkString("hello world", ex.getValue((Object)null, String.class));
+		checkString("hello world", ex.getValue((Object) null, String.class));
 		checkString("hello world", ex.getValue(new Rooty()));
 		checkString("hello world", ex.getValue(new Rooty(), String.class));
 
@@ -134,75 +138,71 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		assertFalse(ex.isWritable(new Rooty()));
 		assertFalse(ex.isWritable(new StandardEvaluationContext(), new Rooty()));
 
-		assertEquals(String.class,ex.getValueType());
-		assertEquals(String.class,ex.getValueType(ctx));
-		assertEquals(String.class,ex.getValueTypeDescriptor().getType());
-		assertEquals(String.class,ex.getValueTypeDescriptor(ctx).getType());
-		assertEquals(String.class,ex.getValueType(new Rooty()));
-		assertEquals(String.class,ex.getValueType(ctx, new Rooty()));
-		assertEquals(String.class,ex.getValueTypeDescriptor(new Rooty()).getType());
-		assertEquals(String.class,ex.getValueTypeDescriptor(ctx, new Rooty()).getType());
+		assertEquals(String.class, ex.getValueType());
+		assertEquals(String.class, ex.getValueType(ctx));
+		assertEquals(String.class, ex.getValueTypeDescriptor().getType());
+		assertEquals(String.class, ex.getValueTypeDescriptor(ctx).getType());
+		assertEquals(String.class, ex.getValueType(new Rooty()));
+		assertEquals(String.class, ex.getValueType(ctx, new Rooty()));
+		assertEquals(String.class, ex.getValueTypeDescriptor(new Rooty()).getType());
+		assertEquals(String.class, ex.getValueTypeDescriptor(ctx, new Rooty()).getType());
 
 		try {
 			ex.setValue(ctx, null);
 			fail();
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			// success
 		}
 		try {
-			ex.setValue((Object)null, null);
+			ex.setValue((Object) null, null);
 			fail();
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			// success
 		}
 		try {
 			ex.setValue(ctx, null, null);
 			fail();
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			// success
 		}
 	}
 
-	static class Rooty {}
+	static class Rooty {
+	}
 
 	@Test
 	public void testNestedExpressions() throws Exception {
 		SpelExpressionParser parser = new SpelExpressionParser();
 		// treat the nested ${..} as a part of the expression
-		Expression ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		String s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
-		assertEquals("hello 4 world",s);
+		Expression ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		String s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
+		assertEquals("hello 4 world", s);
 
 		// not a useful expression but tests nested expression syntax that clashes with template prefix/suffix
-		ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1]==3]} world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		assertEquals(CompositeStringExpression.class,ex.getClass());
-		CompositeStringExpression cse = (CompositeStringExpression)ex;
+		ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1]==3]} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		assertEquals(CompositeStringExpression.class, ex.getClass());
+		CompositeStringExpression cse = (CompositeStringExpression) ex;
 		Expression[] exprs = cse.getExpressions();
-		assertEquals(3,exprs.length);
-		assertEquals("listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1]==3]",exprs[1].getExpressionString());
-		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
-		assertEquals("hello  world",s);
+		assertEquals(3, exprs.length);
+		assertEquals("listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1]==3]", exprs[1].getExpressionString());
+		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
+		assertEquals("hello  world", s);
 
-		ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} ${listOfNumbersUpToTen.$[#this>5]} world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
-		assertEquals("hello 4 10 world",s);
+		ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} ${listOfNumbersUpToTen.$[#this>5]} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
+		assertEquals("hello 4 10 world", s);
 
 		try {
-			ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} ${listOfNumbersUpToTen.$[#this>5] world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
+			ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#this<5]} ${listOfNumbersUpToTen.$[#this>5] world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 			fail("Should have failed");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			assertEquals("No ending suffix '}' for expression starting at character 41: ${listOfNumbersUpToTen.$[#this>5] world", pe.getSimpleMessage());
 		}
 
 		try {
-			ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1==3]} world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
+			ex = parser.parseExpression("hello ${listOfNumbersUpToTen.$[#root.listOfNumbersUpToTen.$[#this%2==1==3]} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 			fail("Should have failed");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			assertEquals("Found closing '}' at position 74 but most recent opening is '[' at position 30", pe.getSimpleMessage());
 		}
 	}
@@ -211,16 +211,16 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 
 	public void testClashingWithSuffixes() throws Exception {
 		// Just wanting to use the prefix or suffix within the template:
-		Expression ex = parser.parseExpression("hello ${3+4} world",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		String s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
+		Expression ex = parser.parseExpression("hello ${3+4} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		String s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
 		assertEquals("hello 7 world", s);
 
-		ex = parser.parseExpression("hello ${3+4} wo${'${'}rld",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
+		ex = parser.parseExpression("hello ${3+4} wo${'${'}rld", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
 		assertEquals("hello 7 wo${rld", s);
 
-		ex = parser.parseExpression("hello ${3+4} wo}rld",DEFAULT_TEMPLATE_PARSER_CONTEXT);
-		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(),String.class);
+		ex = parser.parseExpression("hello ${3+4} wo}rld", DEFAULT_TEMPLATE_PARSER_CONTEXT);
+		s = ex.getValue(TestScenarioCreator.getTestEvaluationContext(), String.class);
 		assertEquals("hello 7 wo}rld", s);
 	}
 
@@ -235,30 +235,27 @@ public class TemplateExpressionParsingTests extends AbstractExpressionTests {
 		try {
 			parser.parseExpression("hello ${'world'", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 			fail("Should have failed");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			assertEquals("No ending suffix '}' for expression starting at character 6: ${'world'", pe.getSimpleMessage());
 			assertEquals("hello ${'world'", pe.getExpressionString());
 		}
 		try {
 			parser.parseExpression("hello ${'wibble'${'world'}", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 			fail("Should have failed");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			assertEquals("No ending suffix '}' for expression starting at character 6: ${'wibble'${'world'}", pe.getSimpleMessage());
 		}
 		try {
 			parser.parseExpression("hello ${} world", DEFAULT_TEMPLATE_PARSER_CONTEXT);
 			fail("Should have failed");
-		}
-		catch (ParseException pe) {
+		} catch (ParseException pe) {
 			assertEquals("No expression defined within delimiter '${}' at character 6", pe.getSimpleMessage());
 		}
 	}
 
 	@Test
 	public void testTemplateParserContext() {
-		TemplateParserContext tpc = new TemplateParserContext("abc","def");
+		TemplateParserContext tpc = new TemplateParserContext("abc", "def");
 		assertEquals("abc", tpc.getExpressionPrefix());
 		assertEquals("def", tpc.getExpressionSuffix());
 		assertTrue(tpc.isTemplate());

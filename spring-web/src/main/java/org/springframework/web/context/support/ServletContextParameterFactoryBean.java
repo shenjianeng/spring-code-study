@@ -33,9 +33,9 @@ import org.springframework.web.context.ServletContextAware;
  * expression to access a specific parameter by name.
  *
  * @author Juergen Hoeller
- * @since 1.2.4
  * @see org.springframework.web.context.WebApplicationContext#CONTEXT_PARAMETERS_BEAN_NAME
  * @see ServletContextAttributeFactoryBean
+ * @since 1.2.4
  */
 public class ServletContextParameterFactoryBean implements FactoryBean<String>, ServletContextAware {
 

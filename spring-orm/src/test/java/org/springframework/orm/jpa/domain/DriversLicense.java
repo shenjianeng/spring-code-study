@@ -21,7 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="DRIVERS_LICENSE")
+@Table(name = "DRIVERS_LICENSE")
 public class DriversLicense {
 
 	@Id

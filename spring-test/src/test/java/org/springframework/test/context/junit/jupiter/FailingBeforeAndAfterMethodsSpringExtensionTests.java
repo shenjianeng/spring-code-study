@@ -108,12 +108,12 @@ class FailingBeforeAndAfterMethodsSpringExtensionTests {
 
 		// @formatter:off
 		assertAll(
-			() -> assertEquals(1, summary.getTestsFoundCount(), () -> name + ": tests found"),
-			() -> assertEquals(0, summary.getTestsSkippedCount(), () -> name + ": tests skipped"),
-			() -> assertEquals(0, summary.getTestsAbortedCount(), () -> name + ": tests aborted"),
-			() -> assertEquals(expectedStartedCount, summary.getTestsStartedCount(), () -> name + ": tests started"),
-			() -> assertEquals(expectedSucceededCount, summary.getTestsSucceededCount(), () -> name + ": tests succeeded"),
-			() -> assertEquals(expectedFailedCount, summary.getTestsFailedCount(), () -> name + ": tests failed")
+				() -> assertEquals(1, summary.getTestsFoundCount(), () -> name + ": tests found"),
+				() -> assertEquals(0, summary.getTestsSkippedCount(), () -> name + ": tests skipped"),
+				() -> assertEquals(0, summary.getTestsAbortedCount(), () -> name + ": tests aborted"),
+				() -> assertEquals(expectedStartedCount, summary.getTestsStartedCount(), () -> name + ": tests started"),
+				() -> assertEquals(expectedSucceededCount, summary.getTestsSucceededCount(), () -> name + ": tests succeeded"),
+				() -> assertEquals(expectedFailedCount, summary.getTestsFailedCount(), () -> name + ": tests failed")
 		);
 		// @formatter:on
 
@@ -124,8 +124,8 @@ class FailingBeforeAndAfterMethodsSpringExtensionTests {
 			Throwable exception = listener.exceptions.get(0);
 			if (!(exception instanceof AssertionFailedError)) {
 				throw new AssertionFailedError(
-					exception.getClass().getName() + " is not an instance of " + AssertionFailedError.class.getName(),
-					exception);
+						exception.getClass().getName() + " is not an instance of " + AssertionFailedError.class.getName(),
+						exception);
 			}
 		}
 	}

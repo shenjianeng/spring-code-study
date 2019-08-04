@@ -28,7 +28,7 @@ import java.util.Collection;
 public class ExceptionTypeFilter extends InstanceFilter<Class<? extends Throwable>> {
 
 	public ExceptionTypeFilter(Collection<? extends Class<? extends Throwable>> includes,
-			Collection<? extends Class<? extends Throwable>> excludes, boolean matchIfEmpty) {
+							   Collection<? extends Class<? extends Throwable>> excludes, boolean matchIfEmpty) {
 
 		super(includes, excludes, matchIfEmpty);
 	}

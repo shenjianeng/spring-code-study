@@ -90,7 +90,8 @@ public class ClassPathFactoryBeanDefinitionScannerTests {
 
 	public static class QualifiedClientBean {
 
-		@Autowired @Qualifier("public")
+		@Autowired
+		@Qualifier("public")
 		public TestBean testBean;
 
 		@Autowired

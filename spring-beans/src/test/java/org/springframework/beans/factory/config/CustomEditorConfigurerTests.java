@@ -49,7 +49,7 @@ public class CustomEditorConfigurerTests {
 		DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
 		CustomEditorConfigurer cec = new CustomEditorConfigurer();
 		final DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.GERMAN);
-		cec.setPropertyEditorRegistrars(new PropertyEditorRegistrar[] {
+		cec.setPropertyEditorRegistrars(new PropertyEditorRegistrar[]{
 				new PropertyEditorRegistrar() {
 					@Override
 					public void registerCustomEditors(PropertyEditorRegistry registry) {
@@ -128,7 +128,7 @@ public class CustomEditorConfigurerTests {
 
 		@Override
 		public void setAsText(String text) {
-			setValue(new String[] {"test"});
+			setValue(new String[]{"test"});
 		}
 	}
 

@@ -45,14 +45,14 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author David Harrigan
  * @author Biju Kunjummen
- * @since 3.1.1
  * @see #scanPackages()
+ * @since 3.1.1
  */
 class ClassPathJaxb2TypeScanner {
 
 	private static final String RESOURCE_PATTERN = "/**/*.class";
 
-	private static final TypeFilter[] JAXB2_TYPE_FILTERS = new TypeFilter[] {
+	private static final TypeFilter[] JAXB2_TYPE_FILTERS = new TypeFilter[]{
 			new AnnotationTypeFilter(XmlRootElement.class, false),
 			new AnnotationTypeFilter(XmlType.class, false),
 			new AnnotationTypeFilter(XmlSeeAlso.class, false),
@@ -74,6 +74,7 @@ class ClassPathJaxb2TypeScanner {
 
 	/**
 	 * Scan the packages for classes marked with JAXB2 annotations.
+	 *
 	 * @throws UncategorizedMappingException in case of errors
 	 */
 	public Class<?>[] scanPackages() throws UncategorizedMappingException {
@@ -95,18 +96,16 @@ class ClassPathJaxb2TypeScanner {
 				}
 			}
 			return ClassUtils.toClassArray(jaxb2Classes);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new UncategorizedMappingException("Failed to scan classpath for unlisted classes", ex);
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			throw new UncategorizedMappingException("Failed to load annotated classes from classpath", ex);
 		}
 	}
 
 	protected boolean isJaxb2Class(MetadataReader reader, MetadataReaderFactory factory) throws IOException {
 		for (TypeFilter filter : JAXB2_TYPE_FILTERS) {
-			if (filter.match(reader, factory) && !reader.getClassMetadata().isInterface() ) {
+			if (filter.match(reader, factory) && !reader.getClassMetadata().isInterface()) {
 				return true;
 			}
 		}

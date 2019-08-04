@@ -62,6 +62,7 @@ public class RequestMappingHandlerMappingTests {
 	private final StaticWebApplicationContext wac = new StaticWebApplicationContext();
 
 	private final RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+
 	{
 		this.handlerMapping.setApplicationContext(wac);
 	}
@@ -134,10 +135,10 @@ public class RequestMappingHandlerMappingTests {
 				value -> "/${pattern}/bar".equals(value) ? "/foo/bar" : value
 		);
 
-		String[] patterns = new String[] { "/foo", "/${pattern}/bar" };
+		String[] patterns = new String[]{"/foo", "/${pattern}/bar"};
 		String[] result = this.handlerMapping.resolveEmbeddedValuesInPatterns(patterns);
 
-		assertArrayEquals(new String[] { "/foo", "/foo/bar" }, result);
+		assertArrayEquals(new String[]{"/foo", "/foo/bar"}, result);
 	}
 
 	@Test
@@ -158,9 +159,9 @@ public class RequestMappingHandlerMappingTests {
 		RequestMappingInfo info = assertComposedAnnotationMapping("postJson", "/postJson", RequestMethod.POST);
 
 		assertEquals(MediaType.APPLICATION_JSON_VALUE,
-			info.getConsumesCondition().getConsumableMediaTypes().iterator().next().toString());
+				info.getConsumesCondition().getConsumableMediaTypes().iterator().next().toString());
 		assertEquals(MediaType.APPLICATION_JSON_VALUE,
-			info.getProducesCondition().getProducibleMediaTypes().iterator().next().toString());
+				info.getProducesCondition().getProducibleMediaTypes().iterator().next().toString());
 	}
 
 	@Test // SPR-14988
@@ -204,7 +205,7 @@ public class RequestMappingHandlerMappingTests {
 	}
 
 	private RequestMappingInfo assertComposedAnnotationMapping(String methodName, String path,
-			RequestMethod requestMethod) throws Exception {
+															   RequestMethod requestMethod) throws Exception {
 
 		Class<?> clazz = ComposedAnnotationController.class;
 		Method method = clazz.getMethod(methodName);

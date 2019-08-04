@@ -54,8 +54,7 @@ public class TransactionalAfterTestMethodSqlScriptsTests extends AbstractTransac
 			try {
 				assertNumUsers(99);
 				fail("Should throw a BadSqlGrammarException after test01, assuming 'drop-schema.sql' was executed");
-			}
-			catch (BadSqlGrammarException e) {
+			} catch (BadSqlGrammarException e) {
 				/* expected */
 			}
 		}
@@ -63,8 +62,8 @@ public class TransactionalAfterTestMethodSqlScriptsTests extends AbstractTransac
 
 	@Test
 	@SqlGroup({//
-	@Sql({ "schema.sql", "data.sql" }),//
-		@Sql(scripts = "drop-schema.sql", executionPhase = AFTER_TEST_METHOD) //
+			@Sql({"schema.sql", "data.sql"}),//
+			@Sql(scripts = "drop-schema.sql", executionPhase = AFTER_TEST_METHOD) //
 	})
 	// test## is required for @FixMethodOrder.
 	public void test01() {
@@ -72,7 +71,7 @@ public class TransactionalAfterTestMethodSqlScriptsTests extends AbstractTransac
 	}
 
 	@Test
-	@Sql({ "schema.sql", "data.sql", "data-add-dogbert.sql" })
+	@Sql({"schema.sql", "data.sql", "data-add-dogbert.sql"})
 	// test## is required for @FixMethodOrder.
 	public void test02() {
 		assertNumUsers(2);

@@ -52,7 +52,7 @@ public class CustomCollectionEditorTests {
 	@Test
 	public void testSunnyDaySetValue() throws Exception {
 		CustomCollectionEditor editor = new CustomCollectionEditor(ArrayList.class);
-		editor.setValue(new int[] {0, 1, 2});
+		editor.setValue(new int[]{0, 1, 2});
 		Object value = editor.getValue();
 		assertNotNull(value);
 		assertTrue(value instanceof ArrayList);
@@ -86,7 +86,7 @@ public class CustomCollectionEditorTests {
 	}
 
 
-	@SuppressWarnings({ "serial", "unused" })
+	@SuppressWarnings({"serial", "unused"})
 	private static final class CollectionTypeWithNoNoArgCtor extends ArrayList<Object> {
 		public CollectionTypeWithNoNoArgCtor(String anArg) {
 		}

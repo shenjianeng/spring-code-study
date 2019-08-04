@@ -42,15 +42,15 @@ import org.springframework.util.Assert;
  * exactly one class argument. Consider the use of a composite interface.
  *
  * @author Sebastien Deleuze
- * @since 4.2
  * @see com.fasterxml.jackson.annotation.JsonView
  * @see com.fasterxml.jackson.databind.ObjectMapper#readerWithView(Class)
+ * @since 4.2
  */
 public class JsonViewRequestBodyAdvice extends RequestBodyAdviceAdapter {
 
 	@Override
 	public boolean supports(MethodParameter methodParameter, Type targetType,
-			Class<? extends HttpMessageConverter<?>> converterType) {
+							Class<? extends HttpMessageConverter<?>> converterType) {
 
 		return (AbstractJackson2HttpMessageConverter.class.isAssignableFrom(converterType) &&
 				methodParameter.getParameterAnnotation(JsonView.class) != null);
@@ -58,7 +58,7 @@ public class JsonViewRequestBodyAdvice extends RequestBodyAdviceAdapter {
 
 	@Override
 	public HttpInputMessage beforeBodyRead(HttpInputMessage inputMessage, MethodParameter methodParameter,
-			Type targetType, Class<? extends HttpMessageConverter<?>> selectedConverterType) throws IOException {
+										   Type targetType, Class<? extends HttpMessageConverter<?>> selectedConverterType) throws IOException {
 
 		JsonView ann = methodParameter.getParameterAnnotation(JsonView.class);
 		Assert.state(ann != null, "No JsonView annotation");

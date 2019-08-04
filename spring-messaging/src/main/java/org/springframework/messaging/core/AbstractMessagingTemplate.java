@@ -25,11 +25,11 @@ import org.springframework.messaging.Message;
  * An extension of {@link AbstractMessageReceivingTemplate} that adds support for
  * request-reply style operations as defined by {@link MessageRequestReplyOperations}.
  *
+ * @param <D> the destination type
  * @author Mark Fisher
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
  * @since 4.0
- * @param <D> the destination type
  */
 public abstract class AbstractMessagingTemplate<D> extends AbstractMessageReceivingTemplate<D>
 		implements MessageRequestReplyOperations<D> {
@@ -81,7 +81,7 @@ public abstract class AbstractMessagingTemplate<D> extends AbstractMessageReceiv
 	@Override
 	@Nullable
 	public <T> T convertSendAndReceive(D destination, Object request, Class<T> targetClass,
-			@Nullable MessagePostProcessor postProcessor) {
+									   @Nullable MessagePostProcessor postProcessor) {
 
 		return convertSendAndReceive(destination, request, null, targetClass, postProcessor);
 	}
@@ -90,7 +90,7 @@ public abstract class AbstractMessagingTemplate<D> extends AbstractMessageReceiv
 	@Override
 	@Nullable
 	public <T> T convertSendAndReceive(D destination, Object request, @Nullable Map<String, Object> headers,
-			Class<T> targetClass, @Nullable MessagePostProcessor postProcessor) {
+									   Class<T> targetClass, @Nullable MessagePostProcessor postProcessor) {
 
 		Message<?> requestMessage = doConvert(request, headers, postProcessor);
 		Message<?> replyMessage = sendAndReceive(destination, requestMessage);

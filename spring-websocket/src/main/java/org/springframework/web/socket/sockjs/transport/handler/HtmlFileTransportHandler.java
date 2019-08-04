@@ -61,18 +61,18 @@ public class HtmlFileTransportHandler extends AbstractHttpSendingTransportHandle
 	static {
 		StringBuilder sb = new StringBuilder(
 				"<!doctype html>\n" +
-				"<html><head>\n" +
-				"  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
-				"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n" +
-				"</head><body><h2>Don't panic!</h2>\n" +
-				"  <script>\n" +
-				"    document.domain = document.domain;\n" +
-				"    var c = parent.%s;\n" +
-				"    c.start();\n" +
-				"    function p(d) {c.message(d);};\n" +
-				"    window.onload = function() {c.stop();};\n" +
-				"  </script>"
-				);
+						"<html><head>\n" +
+						"  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+						"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n" +
+						"</head><body><h2>Don't panic!</h2>\n" +
+						"  <script>\n" +
+						"    document.domain = document.domain;\n" +
+						"    var c = parent.%s;\n" +
+						"    c.start();\n" +
+						"    function p(d) {c.message(d);};\n" +
+						"    window.onload = function() {c.stop();};\n" +
+						"  </script>"
+		);
 
 		while (sb.length() < MINIMUM_PARTIAL_HTML_CONTENT_LENGTH) {
 			sb.append(" ");
@@ -105,15 +105,14 @@ public class HtmlFileTransportHandler extends AbstractHttpSendingTransportHandle
 
 	@Override
 	public void handleRequestInternal(ServerHttpRequest request, ServerHttpResponse response,
-			AbstractHttpSockJsSession sockJsSession) throws SockJsException {
+									  AbstractHttpSockJsSession sockJsSession) throws SockJsException {
 
 		String callback = getCallbackParam(request);
 		if (!StringUtils.hasText(callback)) {
 			response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
 			try {
 				response.getBody().write("\"callback\" parameter required".getBytes(StandardCharsets.UTF_8));
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				sockJsSession.tryCloseWithSockJsTransportError(ex, CloseStatus.SERVER_ERROR);
 				throw new SockJsTransportFailureException("Failed to write to response", sockJsSession.getId(), ex);
 			}
@@ -137,7 +136,7 @@ public class HtmlFileTransportHandler extends AbstractHttpSendingTransportHandle
 	private class HtmlFileStreamingSockJsSession extends StreamingSockJsSession {
 
 		public HtmlFileStreamingSockJsSession(String sessionId, SockJsServiceConfig config,
-				WebSocketHandler wsHandler, Map<String, Object> attributes) {
+											  WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 			super(sessionId, config, wsHandler, attributes);
 		}

@@ -29,9 +29,9 @@ import org.springframework.test.context.transaction.ejb.model.TestEntity;
  *
  * @author Sam Brannen
  * @author Xavier Detant
- * @since 4.0.1
  * @see RequiredEjbTxTestEntityDao
  * @see RequiresNewEjbTxTestEntityDao
+ * @since 4.0.1
  */
 public abstract class AbstractEjbTxTestEntityDao implements TestEntityDao {
 

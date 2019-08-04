@@ -79,7 +79,7 @@ public class OrderComparatorTests {
 	@Test
 	public void compareWithSourceProviderArray() {
 		Comparator<Object> customComparator = this.comparator.withSourceProvider(
-				new TestSourceProvider(5L, new Object[] {new StubOrdered(10), new StubOrdered(-25)}));
+				new TestSourceProvider(5L, new Object[]{new StubOrdered(10), new StubOrdered(-25)}));
 		assertEquals(-1, customComparator.compare(5L, new Object()));
 	}
 

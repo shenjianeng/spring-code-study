@@ -28,5 +28,6 @@ public class ClassWithPrivateAnnotatedMember {
 	}
 
 	@Transactional
-	private void doInTransaction() {}
+	private void doInTransaction() {
+	}
 }

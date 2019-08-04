@@ -34,10 +34,10 @@ public class BrokerAvailabilityEvent extends ApplicationEvent {
 	 * Creates a new {@code BrokerAvailabilityEvent}.
 	 *
 	 * @param brokerAvailable {@code true} if the broker is available, {@code}
-	 * false otherwise
-	 * @param source the component that is acting as the broker, or as a relay
-	 * for an external broker, that has changed availability. Must not be {@code
-	 * null}.
+	 *                        false otherwise
+	 * @param source          the component that is acting as the broker, or as a relay
+	 *                        for an external broker, that has changed availability. Must not be {@code
+	 *                        null}.
 	 */
 	public BrokerAvailabilityEvent(boolean brokerAvailable, Object source) {
 		super(source);

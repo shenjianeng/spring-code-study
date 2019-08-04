@@ -42,10 +42,10 @@ import org.springframework.core.type.AnnotationMetadata;
  * <p>See implementations and associated unit tests for usage examples.
  *
  * @author Chris Beams
- * @since 3.1
  * @see Import
  * @see ImportSelector
  * @see Configuration
+ * @since 3.1
  */
 public interface ImportBeanDefinitionRegistrar {
 
@@ -55,8 +55,9 @@ public interface ImportBeanDefinitionRegistrar {
 	 * <p>Note that {@link BeanDefinitionRegistryPostProcessor} types may <em>not</em> be
 	 * registered here, due to lifecycle constraints related to {@code @Configuration}
 	 * class processing.
+	 *
 	 * @param importingClassMetadata annotation metadata of the importing class
-	 * @param registry current bean definition registry
+	 * @param registry               current bean definition registry
 	 */
 	void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);
 

@@ -44,9 +44,10 @@ public abstract class AbstractCookieValueMethodArgumentResolver extends Abstract
 
 	/**
 	 * Crate a new {@link AbstractCookieValueMethodArgumentResolver} instance.
+	 *
 	 * @param beanFactory a bean factory to use for resolving  ${...}
-	 * placeholder and #{...} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to contain expressions
+	 *                    placeholder and #{...} SpEL expressions in default values;
+	 *                    or {@code null} if default values are not expected to contain expressions
 	 */
 	public AbstractCookieValueMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory) {
 		super(beanFactory);

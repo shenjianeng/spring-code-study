@@ -15,6 +15,7 @@ public class MyThrowsHandler extends MethodCounter implements ThrowsAdvice {
 	public void afterThrowing(Method m, Object[] args, Object target, IOException ex) {
 		count("ioException");
 	}
+
 	public void afterThrowing(RemoteException ex) throws Throwable {
 		count("remoteException");
 	}

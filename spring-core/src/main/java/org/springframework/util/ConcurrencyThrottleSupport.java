@@ -36,12 +36,12 @@ import org.apache.commons.logging.LogFactory;
  * check the javadoc of the concrete class that you're using.
  *
  * @author Juergen Hoeller
- * @since 1.2.5
  * @see #setConcurrencyLimit
  * @see #beforeAccess()
  * @see #afterAccess()
  * @see org.springframework.aop.interceptor.ConcurrencyThrottleInterceptor
  * @see java.io.Serializable
+ * @since 1.2.5
  */
 @SuppressWarnings("serial")
 public abstract class ConcurrencyThrottleSupport implements Serializable {
@@ -57,7 +57,9 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 	public static final int NO_CONCURRENCY = 0;
 
 
-	/** Transient to optimize serialization. */
+	/**
+	 * Transient to optimize serialization.
+	 */
 	protected transient Log logger = LogFactory.getLog(getClass());
 
 	private transient Object monitor = new Object();
@@ -89,6 +91,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * Return whether this throttle is currently active.
+	 *
 	 * @return {@code true} if the concurrency limit for this instance is active
 	 * @see #getConcurrencyLimit()
 	 */
@@ -100,6 +103,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 	/**
 	 * To be invoked before the main execution logic of concrete subclasses.
 	 * <p>This implementation applies the concurrency throttle.
+	 *
 	 * @see #afterAccess()
 	 */
 	protected void beforeAccess() {
@@ -122,8 +126,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 					}
 					try {
 						this.monitor.wait();
-					}
-					catch (InterruptedException ex) {
+					} catch (InterruptedException ex) {
 						// Re-interrupt current thread, to allow other threads to react.
 						Thread.currentThread().interrupt();
 						interrupted = true;
@@ -139,6 +142,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * To be invoked after the main execution logic of concrete subclasses.
+	 *
 	 * @see #beforeAccess()
 	 */
 	protected void afterAccess() {

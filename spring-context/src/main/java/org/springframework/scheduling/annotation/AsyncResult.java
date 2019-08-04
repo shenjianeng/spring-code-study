@@ -38,13 +38,13 @@ import org.springframework.util.concurrent.SuccessCallback;
  * <p>As of Spring 4.2, this class also supports passing execution exceptions back
  * to the caller.
  *
+ * @param <V> the value type
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
- * @since 3.0
- * @param <V> the value type
  * @see Async
  * @see #forValue(Object)
  * @see #forExecutionException(Throwable)
+ * @since 3.0
  */
 public class AsyncResult<V> implements ListenableFuture<V> {
 
@@ -57,6 +57,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * Create a new AsyncResult holder.
+	 *
 	 * @param value the value to pass through
 	 */
 	public AsyncResult(@Nullable V value) {
@@ -65,6 +66,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * Create a new AsyncResult holder.
+	 *
 	 * @param value the value to pass through
 	 */
 	private AsyncResult(@Nullable V value, @Nullable Throwable ex) {
@@ -115,12 +117,10 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 		try {
 			if (this.executionException != null) {
 				failureCallback.onFailure(exposedException(this.executionException));
-			}
-			else {
+			} else {
 				successCallback.onSuccess(this.value);
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			// Ignore
 		}
 	}
@@ -131,8 +131,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 			CompletableFuture<V> completable = new CompletableFuture<>();
 			completable.completeExceptionally(exposedException(this.executionException));
 			return completable;
-		}
-		else {
+		} else {
 			return CompletableFuture.completedFuture(this.value);
 		}
 	}
@@ -140,9 +139,10 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 	/**
 	 * Create a new async result which exposes the given value from {@link Future#get()}.
+	 *
 	 * @param value the value to expose
-	 * @since 4.2
 	 * @see Future#get()
+	 * @since 4.2
 	 */
 	public static <V> ListenableFuture<V> forValue(V value) {
 		return new AsyncResult<>(value, null);
@@ -151,10 +151,11 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 	/**
 	 * Create a new async result which exposes the given exception as an
 	 * {@link ExecutionException} from {@link Future#get()}.
+	 *
 	 * @param ex the exception to expose (either an pre-built {@link ExecutionException}
-	 * or a cause to be wrapped in an {@link ExecutionException})
-	 * @since 4.2
+	 *           or a cause to be wrapped in an {@link ExecutionException})
 	 * @see ExecutionException
+	 * @since 4.2
 	 */
 	public static <V> ListenableFuture<V> forExecutionException(Throwable ex) {
 		return new AsyncResult<>(null, ex);
@@ -163,6 +164,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 	/**
 	 * Determine the exposed exception: either the cause of a given
 	 * {@link ExecutionException}, or the original exception as-is.
+	 *
 	 * @param original the original as given to {@link #forExecutionException}
 	 * @return the exposed exception
 	 */

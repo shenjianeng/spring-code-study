@@ -57,8 +57,7 @@ public class WebApplicationObjectSupportTests {
 		try {
 			wao.getWebApplicationContext();
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}

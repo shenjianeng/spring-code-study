@@ -82,7 +82,7 @@ public class WebClientIntegrationTests {
 
 	@Parameterized.Parameters(name = "webClient [{0}]")
 	public static Object[][] arguments() {
-		return new Object[][] {
+		return new Object[][]{
 				{new JettyClientHttpConnector()},
 				{new ReactorClientHttpConnector()}
 		};
@@ -206,7 +206,8 @@ public class WebClientIntegrationTests {
 		Mono<ValueContainer<Foo>> result = this.webClient.get()
 				.uri("/json").accept(MediaType.APPLICATION_JSON)
 				.retrieve()
-				.bodyToMono(new ParameterizedTypeReference<ValueContainer<Foo>>() {});
+				.bodyToMono(new ParameterizedTypeReference<ValueContainer<Foo>>() {
+				});
 
 		StepVerifier.create(result)
 				.assertNext(valueContainer -> {
@@ -403,7 +404,8 @@ public class WebClientIntegrationTests {
 
 	@Test  // SPR-16246
 	public void shouldSendLargeTextFile() throws IOException {
-		prepareResponse(response -> {});
+		prepareResponse(response -> {
+		});
 
 		Resource resource = new ClassPathResource("largeTextFile.txt", getClass());
 		byte[] expected = Files.readAllBytes(resource.getFile().toPath());
@@ -420,8 +422,7 @@ public class WebClientIntegrationTests {
 			ByteArrayOutputStream actual = new ByteArrayOutputStream();
 			try {
 				request.getBody().copyTo(actual);
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalStateException(ex);
 			}
 			assertEquals(expected.length, actual.size());
@@ -573,7 +574,7 @@ public class WebClientIntegrationTests {
 				.expectErrorSatisfies(throwable -> {
 					assertTrue(throwable instanceof UnknownHttpStatusCodeException);
 					UnknownHttpStatusCodeException ex = (UnknownHttpStatusCodeException) throwable;
-					assertEquals("Unknown status code ["+errorStatus+"]", ex.getMessage());
+					assertEquals("Unknown status code [" + errorStatus + "]", ex.getMessage());
 					assertEquals(errorStatus, ex.getRawStatusCode());
 					assertEquals("", ex.getStatusText());
 					assertEquals(MediaType.TEXT_PLAIN, ex.getHeaders().getContentType());
@@ -641,7 +642,8 @@ public class WebClientIntegrationTests {
 				.uri("/greeting?name=Spring")
 				.retrieve()
 				.onStatus(HttpStatus::is5xxServerError, response -> Mono.just(new MyException("500 error!")))
-				.bodyToMono(new ParameterizedTypeReference<String>() {});
+				.bodyToMono(new ParameterizedTypeReference<String>() {
+				});
 
 		StepVerifier.create(result)
 				.expectError(MyException.class)
@@ -780,8 +782,7 @@ public class WebClientIntegrationTests {
 	private void expectRequest(Consumer<RecordedRequest> consumer) {
 		try {
 			consumer.accept(this.server.takeRequest());
-		}
-		catch (InterruptedException ex) {
+		} catch (InterruptedException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

@@ -59,11 +59,11 @@ import org.springframework.util.CollectionUtils;
  * @author Juergen Hoeller
  * @author Rod Johnson
  * @author Oliver Gierke
- * @since 2.0
  * @see javax.persistence.PersistenceContext
  * @see javax.persistence.PersistenceContextType#TRANSACTION
  * @see org.springframework.orm.jpa.JpaTransactionManager
  * @see ExtendedEntityManagerCreator
+ * @since 2.0
  */
 public abstract class SharedEntityManagerCreator {
 
@@ -92,6 +92,7 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 *
 	 * @param emf the EntityManagerFactory to delegate to.
 	 * @return a shareable transaction EntityManager proxy
 	 */
@@ -101,9 +102,10 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
-	 * @param emf the EntityManagerFactory to delegate to.
+	 *
+	 * @param emf        the EntityManagerFactory to delegate to.
 	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
+	 *                   {@code createEntityManager} call (may be {@code null})
 	 * @return a shareable transaction EntityManager proxy
 	 */
 	public static EntityManager createSharedEntityManager(EntityManagerFactory emf, @Nullable Map<?, ?> properties) {
@@ -112,11 +114,12 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
-	 * @param emf the EntityManagerFactory to delegate to.
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
+	 *
+	 * @param emf                         the EntityManagerFactory to delegate to.
+	 * @param properties                  the properties to be passed into the
+	 *                                    {@code createEntityManager} call (may be {@code null})
 	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
+	 *                                    transactions (according to the JPA 2.1 SynchronizationType rules)
 	 * @return a shareable transaction EntityManager proxy
 	 * @since 4.0
 	 */
@@ -126,16 +129,17 @@ public abstract class SharedEntityManagerCreator {
 		Class<?> emIfc = (emf instanceof EntityManagerFactoryInfo ?
 				((EntityManagerFactoryInfo) emf).getEntityManagerInterface() : EntityManager.class);
 		return createSharedEntityManager(emf, properties, synchronizedWithTransaction,
-				(emIfc == null ? NO_ENTITY_MANAGER_INTERFACES : new Class<?>[] {emIfc}));
+				(emIfc == null ? NO_ENTITY_MANAGER_INTERFACES : new Class<?>[]{emIfc}));
 	}
 
 	/**
 	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
-	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
+	 *
+	 * @param emf                     the EntityManagerFactory to obtain EntityManagers from as needed
+	 * @param properties              the properties to be passed into the
+	 *                                {@code createEntityManager} call (may be {@code null})
 	 * @param entityManagerInterfaces the interfaces to be implemented by the
-	 * EntityManager. Allows the addition or specification of proprietary interfaces.
+	 *                                EntityManager. Allows the addition or specification of proprietary interfaces.
 	 * @return a shareable transactional EntityManager proxy
 	 */
 	public static EntityManager createSharedEntityManager(
@@ -146,18 +150,19 @@ public abstract class SharedEntityManagerCreator {
 
 	/**
 	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
-	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
-	 * @param properties the properties to be passed into the
-	 * {@code createEntityManager} call (may be {@code null})
+	 *
+	 * @param emf                         the EntityManagerFactory to obtain EntityManagers from as needed
+	 * @param properties                  the properties to be passed into the
+	 *                                    {@code createEntityManager} call (may be {@code null})
 	 * @param synchronizedWithTransaction whether to automatically join ongoing
-	 * transactions (according to the JPA 2.1 SynchronizationType rules)
-	 * @param entityManagerInterfaces the interfaces to be implemented by the
-	 * EntityManager. Allows the addition or specification of proprietary interfaces.
+	 *                                    transactions (according to the JPA 2.1 SynchronizationType rules)
+	 * @param entityManagerInterfaces     the interfaces to be implemented by the
+	 *                                    EntityManager. Allows the addition or specification of proprietary interfaces.
 	 * @return a shareable transactional EntityManager proxy
 	 * @since 4.0
 	 */
 	public static EntityManager createSharedEntityManager(EntityManagerFactory emf, @Nullable Map<?, ?> properties,
-			boolean synchronizedWithTransaction, Class<?>... entityManagerInterfaces) {
+														  boolean synchronizedWithTransaction, Class<?>... entityManagerInterfaces) {
 
 		ClassLoader cl = null;
 		if (emf instanceof EntityManagerFactoryInfo) {
@@ -204,8 +209,7 @@ public abstract class SharedEntityManagerCreator {
 		private void initProxyClassLoader() {
 			if (this.targetFactory instanceof EntityManagerFactoryInfo) {
 				this.proxyClassLoader = ((EntityManagerFactoryInfo) this.targetFactory).getBeanClassLoader();
-			}
-			else {
+			} else {
 				this.proxyClassLoader = this.targetFactory.getClass().getClassLoader();
 			}
 		}
@@ -218,47 +222,38 @@ public abstract class SharedEntityManagerCreator {
 			if (method.getName().equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of EntityManager proxy.
 				return hashCode();
-			}
-			else if (method.getName().equals("toString")) {
+			} else if (method.getName().equals("toString")) {
 				// Deliver toString without touching a target EntityManager.
 				return "Shared EntityManager proxy for target factory [" + this.targetFactory + "]";
-			}
-			else if (method.getName().equals("getEntityManagerFactory")) {
+			} else if (method.getName().equals("getEntityManagerFactory")) {
 				// JPA 2.0: return EntityManagerFactory without creating an EntityManager.
 				return this.targetFactory;
-			}
-			else if (method.getName().equals("getCriteriaBuilder") || method.getName().equals("getMetamodel")) {
+			} else if (method.getName().equals("getCriteriaBuilder") || method.getName().equals("getMetamodel")) {
 				// JPA 2.0: return EntityManagerFactory's CriteriaBuilder/Metamodel (avoid creation of EntityManager)
 				try {
 					return EntityManagerFactory.class.getMethod(method.getName()).invoke(this.targetFactory);
-				}
-				catch (InvocationTargetException ex) {
+				} catch (InvocationTargetException ex) {
 					throw ex.getTargetException();
 				}
-			}
-			else if (method.getName().equals("unwrap")) {
+			} else if (method.getName().equals("unwrap")) {
 				// JPA 2.0: handle unwrap method - could be a proxy match.
 				Class<?> targetClass = (Class<?>) args[0];
 				if (targetClass != null && targetClass.isInstance(proxy)) {
 					return proxy;
 				}
-			}
-			else if (method.getName().equals("isOpen")) {
+			} else if (method.getName().equals("isOpen")) {
 				// Handle isOpen method: always return true.
 				return true;
-			}
-			else if (method.getName().equals("close")) {
+			} else if (method.getName().equals("close")) {
 				// Handle close method: suppress, not valid.
 				return null;
-			}
-			else if (method.getName().equals("getTransaction")) {
+			} else if (method.getName().equals("getTransaction")) {
 				throw new IllegalStateException(
 						"Not allowed to create transaction on shared EntityManager - " +
-						"use Spring transactions or EJB CMT instead");
+								"use Spring transactions or EJB CMT instead");
 			}
 
 			// Determine current EntityManager: either the transactional one
@@ -272,8 +267,7 @@ public abstract class SharedEntityManagerCreator {
 					throw new IllegalStateException("No transactional EntityManager available");
 				}
 				return target;
-			}
-			else if (method.getName().equals("unwrap")) {
+			} else if (method.getName().equals("unwrap")) {
 				Class<?> targetClass = (Class<?>) args[0];
 				if (targetClass == null) {
 					return (target != null ? target : proxy);
@@ -283,8 +277,7 @@ public abstract class SharedEntityManagerCreator {
 					throw new IllegalStateException("No transactional EntityManager available");
 				}
 				// Still perform unwrap call on target EntityManager.
-			}
-			else if (transactionRequiringMethods.contains(method.getName())) {
+			} else if (transactionRequiringMethods.contains(method.getName())) {
 				// We need a transactional target now, according to the JPA spec.
 				// Otherwise, the operation would get accepted but remain unflushed...
 				if (target == null || (!TransactionSynchronizationManager.isActualTransactionActive() &&
@@ -314,17 +307,14 @@ public abstract class SharedEntityManagerCreator {
 						result = Proxy.newProxyInstance(this.proxyClassLoader, ifcs,
 								new DeferredQueryInvocationHandler(query, target));
 						isNewEm = false;
-					}
-					else {
+					} else {
 						EntityManagerFactoryUtils.applyTransactionTimeout(query, this.targetFactory);
 					}
 				}
 				return result;
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
-			}
-			finally {
+			} finally {
 				if (isNewEm) {
 					EntityManagerFactoryUtils.closeEntityManager(target);
 				}
@@ -369,22 +359,18 @@ public abstract class SharedEntityManagerCreator {
 			if (method.getName().equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of EntityManager proxy.
 				return hashCode();
-			}
-			else if (method.getName().equals("unwrap")) {
+			} else if (method.getName().equals("unwrap")) {
 				// Handle JPA 2.0 unwrap method - could be a proxy match.
 				Class<?> targetClass = (Class<?>) args[0];
 				if (targetClass == null) {
 					return this.target;
-				}
-				else if (targetClass.isInstance(proxy)) {
+				} else if (targetClass.isInstance(proxy)) {
 					return proxy;
 				}
-			}
-			else if (method.getName().equals("getOutputParameterValue")) {
+			} else if (method.getName().equals("getOutputParameterValue")) {
 				if (this.entityManager == null) {
 					Object key = args[0];
 					if (this.outputParameters == null || !this.outputParameters.containsKey(key)) {
@@ -409,11 +395,9 @@ public abstract class SharedEntityManagerCreator {
 					this.outputParameters.put(args[0], null);
 				}
 				return (retVal == this.target ? proxy : retVal);
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
-			}
-			finally {
+			} finally {
 				if (queryTerminatingMethods.contains(method.getName())) {
 					// Actual execution of the query: close the EntityManager right
 					// afterwards, since that was the only reason we kept it open.
@@ -424,12 +408,10 @@ public abstract class SharedEntityManagerCreator {
 								Object key = entry.getKey();
 								if (key instanceof Integer) {
 									entry.setValue(storedProc.getOutputParameterValue((Integer) key));
-								}
-								else {
+								} else {
 									entry.setValue(storedProc.getOutputParameterValue(key.toString()));
 								}
-							}
-							catch (IllegalArgumentException ex) {
+							} catch (IllegalArgumentException ex) {
 								entry.setValue(ex);
 							}
 						}

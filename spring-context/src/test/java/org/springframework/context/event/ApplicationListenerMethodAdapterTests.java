@@ -479,7 +479,7 @@ public class ApplicationListenerMethodAdapterTests extends AbstractApplicationEv
 	}
 
 
-	@SuppressWarnings({ "serial" })
+	@SuppressWarnings({"serial"})
 	static class PayloadStringTestEvent extends PayloadTestEvent<Long, String> {
 
 		public PayloadStringTestEvent(Object source, String payload, Long something) {

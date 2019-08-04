@@ -40,6 +40,7 @@ public final class SpringVersion {
 	/**
 	 * Return the full version string of the present Spring codebase,
 	 * or {@code null} if it cannot be determined.
+	 *
 	 * @see Package#getImplementationVersion()
 	 */
 	@Nullable

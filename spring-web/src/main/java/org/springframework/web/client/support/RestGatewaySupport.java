@@ -29,13 +29,15 @@ import org.springframework.web.client.RestTemplate;
  * <p>Requires a {@link ClientHttpRequestFactory} or a {@link RestTemplate} instance to be set.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see #setRestTemplate
  * @see org.springframework.web.client.RestTemplate
+ * @since 3.0
  */
 public class RestGatewaySupport {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private RestTemplate restTemplate;
@@ -50,6 +52,7 @@ public class RestGatewaySupport {
 
 	/**
 	 * Construct a new instance of the {@link RestGatewaySupport}, with the given {@link ClientHttpRequestFactory}.
+	 *
 	 * @see RestTemplate#RestTemplate(ClientHttpRequestFactory)
 	 */
 	public RestGatewaySupport(ClientHttpRequestFactory requestFactory) {

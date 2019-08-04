@@ -86,14 +86,14 @@ public class MockMvcClientHttpRequestFactoryTests {
 
 	@EnableWebMvc
 	@Configuration
-	@ComponentScan(basePackageClasses=MockMvcClientHttpRequestFactoryTests.class)
+	@ComponentScan(basePackageClasses = MockMvcClientHttpRequestFactoryTests.class)
 	static class MyWebConfig implements WebMvcConfigurer {
 	}
 
 	@Controller
 	static class MyController {
 
-		@RequestMapping(value="/foo", method=RequestMethod.GET)
+		@RequestMapping(value = "/foo", method = RequestMethod.GET)
 		@ResponseBody
 		public String handle() {
 			return "bar";

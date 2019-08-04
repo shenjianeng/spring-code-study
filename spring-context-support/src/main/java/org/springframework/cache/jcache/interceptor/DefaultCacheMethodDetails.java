@@ -27,9 +27,9 @@ import javax.cache.annotation.CacheMethodDetails;
 /**
  * The default {@link CacheMethodDetails} implementation.
  *
+ * @param <A> the annotation type
  * @author Stephane Nicoll
  * @since 4.1
- * @param <A> the annotation type
  */
 class DefaultCacheMethodDetails<A extends Annotation> implements CacheMethodDetails<A> {
 

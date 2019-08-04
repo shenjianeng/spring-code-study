@@ -135,9 +135,9 @@ import java.lang.annotation.Target;
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Sam Brannen
- * @since 3.2.2
  * @see ContextConfiguration
  * @see org.springframework.context.ApplicationContext
+ * @since 3.2.2
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

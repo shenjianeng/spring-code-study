@@ -125,8 +125,7 @@ public class CandidateComponentsIndexer implements Processor {
 		if (!metadata.getItems().isEmpty()) {
 			try {
 				this.metadataStore.writeMetadata(metadata);
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalStateException("Failed to write metadata", ex);
 			}
 		}

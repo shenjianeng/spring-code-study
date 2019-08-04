@@ -31,6 +31,7 @@ public interface EventListenerFactory {
 
 	/**
 	 * Specify if this factory supports the specified {@link Method}.
+	 *
 	 * @param method an {@link EventListener} annotated method
 	 * @return {@code true} if this factory supports the specified method
 	 */
@@ -38,9 +39,10 @@ public interface EventListenerFactory {
 
 	/**
 	 * Create an {@link ApplicationListener} for the specified method.
+	 *
 	 * @param beanName the name of the bean
-	 * @param type the target type of the instance
-	 * @param method the {@link EventListener} annotated method
+	 * @param type     the target type of the instance
+	 * @param method   the {@link EventListener} annotated method
 	 * @return an application listener, suitable to invoke the specified method
 	 */
 	ApplicationListener<?> createApplicationListener(String beanName, Class<?> type, Method method);

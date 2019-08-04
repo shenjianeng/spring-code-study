@@ -77,8 +77,7 @@ public class SortedResourcesFactoryBean extends AbstractFactoryBean<Resource[]> 
 			resources.sort((r1, r2) -> {
 				try {
 					return r1.getURL().toString().compareTo(r2.getURL().toString());
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					return 0;
 				}
 			});

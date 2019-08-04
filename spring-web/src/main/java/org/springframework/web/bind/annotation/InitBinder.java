@@ -38,9 +38,9 @@ import java.lang.annotation.Target;
  * or {@link java.util.Locale}, allowing to register context-specific editors.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.web.bind.WebDataBinder
  * @see org.springframework.web.context.request.WebRequest
+ * @since 2.5
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

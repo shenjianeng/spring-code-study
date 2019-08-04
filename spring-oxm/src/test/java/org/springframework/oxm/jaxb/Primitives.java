@@ -54,7 +54,7 @@ public class Primitives {
 	}
 
 	public JAXBElement<byte[]> primitiveByteArray() {
-		return new JAXBElement<>(NAME, byte[].class, new byte[] {42});
+		return new JAXBElement<>(NAME, byte[].class, new byte[]{42});
 	}
 
 

@@ -191,7 +191,7 @@ public class MatrixVariablesMapMethodArgumentResolverTests {
 			String stringArg,
 			@MatrixVariable Map<String, String> map,
 			@MatrixVariable MultiValueMap<String, String> multivalueMap,
-			@MatrixVariable(pathVar="cars") MultiValueMap<String, String> mapForPathVar,
+			@MatrixVariable(pathVar = "cars") MultiValueMap<String, String> mapForPathVar,
 			@MatrixVariable("name") Map<String, String> mapWithName) {
 	}
 

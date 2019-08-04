@@ -26,8 +26,8 @@ import org.springframework.core.MethodParameter;
  * declared on the method parameter.
  *
  * @author Rossen Stoyanchev
- * @since 4.2
  * @see MissingMatrixVariableException
+ * @since 4.2
  */
 @SuppressWarnings("serial")
 public class MissingPathVariableException extends ServletRequestBindingException {
@@ -39,8 +39,9 @@ public class MissingPathVariableException extends ServletRequestBindingException
 
 	/**
 	 * Constructor for MissingPathVariableException.
+	 *
 	 * @param variableName the name of the missing path variable
-	 * @param parameter the method parameter
+	 * @param parameter    the method parameter
 	 */
 	public MissingPathVariableException(String variableName, MethodParameter parameter) {
 		super("");

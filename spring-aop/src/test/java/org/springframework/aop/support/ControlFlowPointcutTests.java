@@ -104,9 +104,11 @@ public class ControlFlowPointcutTests {
 		int getAge(ITestBean proxied) {
 			return proxied.getAge();
 		}
+
 		int nomatch(ITestBean proxied) {
 			return proxied.getAge();
 		}
+
 		void set(ITestBean proxied) {
 			proxied.setAge(5);
 		}

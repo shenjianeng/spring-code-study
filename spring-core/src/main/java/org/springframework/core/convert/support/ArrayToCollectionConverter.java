@@ -77,8 +77,7 @@ final class ArrayToCollectionConverter implements ConditionalGenericConverter {
 				Object sourceElement = Array.get(source, i);
 				target.add(sourceElement);
 			}
-		}
-		else {
+		} else {
 			for (int i = 0; i < length; i++) {
 				Object sourceElement = Array.get(source, i);
 				Object targetElement = this.conversionService.convert(sourceElement,

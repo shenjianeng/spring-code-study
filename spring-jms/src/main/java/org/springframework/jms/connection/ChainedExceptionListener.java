@@ -32,7 +32,9 @@ import org.springframework.util.Assert;
  */
 public class ChainedExceptionListener implements ExceptionListener {
 
-	/** List of ExceptionListeners. */
+	/**
+	 * List of ExceptionListeners.
+	 */
 	private final List<ExceptionListener> delegates = new ArrayList<>(2);
 
 

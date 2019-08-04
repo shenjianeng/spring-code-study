@@ -28,9 +28,9 @@ import org.springframework.util.Assert;
  * how a message code list is built for an {@code ObjectError}.
  *
  * @author Juergen Hoeller
- * @since 10.03.2003
  * @see FieldError
  * @see DefaultMessageCodesResolver
+ * @since 10.03.2003
  */
 @SuppressWarnings("serial")
 public class ObjectError extends DefaultMessageSourceResolvable {
@@ -43,7 +43,8 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 	/**
 	 * Create a new instance of the ObjectError class.
-	 * @param objectName the name of the affected object
+	 *
+	 * @param objectName     the name of the affected object
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public ObjectError(String objectName, String defaultMessage) {
@@ -52,9 +53,10 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 	/**
 	 * Create a new instance of the ObjectError class.
-	 * @param objectName the name of the affected object
-	 * @param codes the codes to be used to resolve this message
-	 * @param arguments	the array of arguments to be used to resolve this message
+	 *
+	 * @param objectName     the name of the affected object
+	 * @param codes          the codes to be used to resolve this message
+	 * @param arguments      the array of arguments to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public ObjectError(
@@ -79,6 +81,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
 	 * <p>Note that any such source object is being stored as transient:
 	 * that is, it won't be part of a serialized error representation.
+	 *
 	 * @param source the source object
 	 * @since 5.0.4
 	 */
@@ -96,16 +99,16 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * <p>The cause of the outermost exception will be introspected as well,
 	 * e.g. the underlying conversion exception or exception thrown from a setter
 	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
+	 *
 	 * @return the source object of the given type
 	 * @throws IllegalArgumentException if no such source object is available
-	 * (i.e. none specified or not available anymore after deserialization)
+	 *                                  (i.e. none specified or not available anymore after deserialization)
 	 * @since 5.0.4
 	 */
 	public <T> T unwrap(Class<T> sourceType) {
 		if (sourceType.isInstance(this.source)) {
 			return sourceType.cast(this.source);
-		}
-		else if (this.source instanceof Throwable) {
+		} else if (this.source instanceof Throwable) {
 			Throwable cause = ((Throwable) this.source).getCause();
 			if (sourceType.isInstance(cause)) {
 				return sourceType.cast(cause);
@@ -121,6 +124,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	 * <p>The cause of the outermost exception will be introspected as well,
 	 * e.g. the underlying conversion exception or exception thrown from a setter
 	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
+	 *
 	 * @return whether this error has been caused by a source object of the given type
 	 * @since 5.0.4
 	 */

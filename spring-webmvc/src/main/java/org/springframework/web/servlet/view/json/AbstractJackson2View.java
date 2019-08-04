@@ -154,7 +154,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+										   HttpServletResponse response) throws Exception {
 
 		ByteArrayOutputStream temporaryStream = null;
 		OutputStream stream;
@@ -162,8 +162,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 		if (this.updateContentLength) {
 			temporaryStream = createTemporaryOutputStream();
 			stream = temporaryStream;
-		}
-		else {
+		} else {
 			stream = response.getOutputStream();
 		}
 
@@ -177,7 +176,8 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * Filter and optionally wrap the model in {@link MappingJacksonValue} container.
-	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
+	 *
+	 * @param model   the model, as passed on to {@link #renderMergedOutputModel}
 	 * @param request current HTTP request
 	 * @return the wrapped or unwrapped value to be rendered
 	 */
@@ -200,6 +200,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * Write the actual JSON content to the stream.
+	 *
 	 * @param stream the output stream to use
 	 * @param object the value to be rendered, as returned from {@link #filterModel}
 	 * @throws IOException if writing failed
@@ -240,6 +241,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	/**
 	 * Filter out undesired attributes from the given model.
 	 * The return value can be either another {@link Map} or a single value object.
+	 *
 	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
 	 * @return the value to be rendered
 	 */
@@ -247,16 +249,18 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 	/**
 	 * Write a prefix before the main content.
+	 *
 	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param object    the object to write to the output message.
 	 */
 	protected void writePrefix(JsonGenerator generator, Object object) throws IOException {
 	}
 
 	/**
 	 * Write a suffix after the main content.
+	 *
 	 * @param generator the generator to use for writing content.
-	 * @param object the object to write to the output message.
+	 * @param object    the object to write to the output message.
 	 */
 	protected void writeSuffix(JsonGenerator generator, Object object) throws IOException {
 	}

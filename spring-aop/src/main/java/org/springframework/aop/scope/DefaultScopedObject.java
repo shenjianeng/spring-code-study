@@ -30,9 +30,9 @@ import org.springframework.util.Assert;
  * {@link ConfigurableBeanFactory#destroyScopedBean(String)}).
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory#getBean
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory#destroyScopedBean
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class DefaultScopedObject implements ScopedObject, Serializable {
@@ -44,7 +44,8 @@ public class DefaultScopedObject implements ScopedObject, Serializable {
 
 	/**
 	 * Creates a new instance of the {@link DefaultScopedObject} class.
-	 * @param beanFactory the {@link ConfigurableBeanFactory} that holds the scoped target object
+	 *
+	 * @param beanFactory    the {@link ConfigurableBeanFactory} that holds the scoped target object
 	 * @param targetBeanName the name of the target bean
 	 */
 	public DefaultScopedObject(ConfigurableBeanFactory beanFactory, String targetBeanName) {

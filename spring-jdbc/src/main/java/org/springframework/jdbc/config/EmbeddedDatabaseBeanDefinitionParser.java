@@ -38,8 +38,8 @@ import org.springframework.util.StringUtils;
  * @author Oliver Gierke
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @since 3.0
  * @see DatabasePopulatorConfigUtils
+ * @since 3.0
  */
 class EmbeddedDatabaseBeanDefinitionParser extends AbstractBeanDefinitionParser {
 

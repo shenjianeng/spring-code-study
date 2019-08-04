@@ -116,8 +116,7 @@ public class RequestScopeTests {
 
 			this.beanFactory.getBean(name);
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.contains(BeanCurrentlyInCreationException.class));
 		}
 	}

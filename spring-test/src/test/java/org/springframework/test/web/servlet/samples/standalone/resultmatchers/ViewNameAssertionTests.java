@@ -47,8 +47,8 @@ public class ViewNameAssertionTests {
 	@Test
 	public void testEqualTo() throws Exception {
 		this.mockMvc.perform(get("/"))
-			.andExpect(view().name("mySpecialView"))
-			.andExpect(view().name(equalTo("mySpecialView")));
+				.andExpect(view().name("mySpecialView"))
+				.andExpect(view().name(equalTo("mySpecialView")));
 	}
 
 	@Test

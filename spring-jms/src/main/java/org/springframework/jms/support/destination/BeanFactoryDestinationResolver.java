@@ -33,8 +33,8 @@ import org.springframework.util.Assert;
  * expecting them to be of type {@code javax.jms.Destination}.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.beans.factory.BeanFactory
+ * @since 2.5
  */
 public class BeanFactoryDestinationResolver implements DestinationResolver, BeanFactoryAware {
 
@@ -45,6 +45,7 @@ public class BeanFactoryDestinationResolver implements DestinationResolver, Bean
 	/**
 	 * Create a new instance of the {@link BeanFactoryDestinationResolver} class.
 	 * <p>The BeanFactory to access must be set via {@code setBeanFactory}.
+	 *
 	 * @see #setBeanFactory
 	 */
 	public BeanFactoryDestinationResolver() {
@@ -57,6 +58,7 @@ public class BeanFactoryDestinationResolver implements DestinationResolver, Bean
 	 * replaced by the {@link BeanFactory} that creates it (c.f. the
 	 * {@link BeanFactoryAware} contract). So only use this constructor if you
 	 * are using this class outside the context of a Spring IoC container.
+	 *
 	 * @param beanFactory the bean factory to be used to lookup {@link javax.jms.Destination Destination}
 	 */
 	public BeanFactoryDestinationResolver(BeanFactory beanFactory) {
@@ -78,8 +80,7 @@ public class BeanFactoryDestinationResolver implements DestinationResolver, Bean
 		Assert.state(this.beanFactory != null, "BeanFactory is required");
 		try {
 			return this.beanFactory.getBean(destinationName, Destination.class);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			throw new DestinationResolutionException(
 					"Failed to look up Destination bean with name '" + destinationName + "'", ex);
 		}

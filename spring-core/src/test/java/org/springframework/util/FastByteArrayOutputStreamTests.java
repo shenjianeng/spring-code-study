@@ -35,9 +35,11 @@ public class FastByteArrayOutputStreamTests {
 
 	private static final int INITIAL_CAPACITY = 256;
 
-	private final FastByteArrayOutputStream os = new FastByteArrayOutputStream(INITIAL_CAPACITY);;
+	private final FastByteArrayOutputStream os = new FastByteArrayOutputStream(INITIAL_CAPACITY);
+	;
 
-	private final byte[] helloBytes = "Hello World".getBytes(StandardCharsets.UTF_8);;
+	private final byte[] helloBytes = "Hello World".getBytes(StandardCharsets.UTF_8);
+	;
 
 
 	@Test
@@ -62,7 +64,7 @@ public class FastByteArrayOutputStreamTests {
 			this.os.write(1);
 		}
 		assertEquals(10, this.os.size());
-		assertArrayEquals(this.os.toByteArray(), new byte[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
+		assertArrayEquals(this.os.toByteArray(), new byte[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1});
 	}
 
 	@Test
@@ -134,7 +136,7 @@ public class FastByteArrayOutputStreamTests {
 
 	@Test
 	public void getInputStreamReadBytePromotion() throws Exception {
-		byte[] bytes = new byte[] { -1 };
+		byte[] bytes = new byte[]{-1};
 		this.os.write(bytes);
 		InputStream inputStream = this.os.getInputStream();
 		ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
@@ -199,7 +201,7 @@ public class FastByteArrayOutputStreamTests {
 	public void updateMessageDigestManyBuffers() throws Exception {
 		StringBuilder builder = new StringBuilder("\"0");
 		// filling at least one 256 buffer
-		for ( int i = 0; i < 30; i++) {
+		for (int i = 0; i < 30; i++) {
 			this.os.write(this.helloBytes);
 		}
 		InputStream inputStream = this.os.getInputStream();

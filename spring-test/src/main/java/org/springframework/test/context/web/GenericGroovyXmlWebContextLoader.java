@@ -27,10 +27,10 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * {@code "-context.xml"} and {@code "Context.groovy"}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see GroovyBeanDefinitionReader
  * @see GenericXmlWebContextLoader
  * @see AnnotationConfigWebContextLoader
+ * @since 4.1
  */
 public class GenericGroovyXmlWebContextLoader extends GenericXmlWebContextLoader {
 
@@ -38,13 +38,14 @@ public class GenericGroovyXmlWebContextLoader extends GenericXmlWebContextLoader
 	 * Load bean definitions into the supplied {@link GenericWebApplicationContext context}
 	 * from the locations in the supplied {@code WebMergedContextConfiguration} using a
 	 * {@link GroovyBeanDefinitionReader}.
-	 * @param context the context into which the bean definitions should be loaded
+	 *
+	 * @param context         the context into which the bean definitions should be loaded
 	 * @param webMergedConfig the merged context configuration
 	 * @see AbstractGenericWebContextLoader#loadBeanDefinitions
 	 */
 	@Override
 	protected void loadBeanDefinitions(GenericWebApplicationContext context,
-			WebMergedContextConfiguration webMergedConfig) {
+									   WebMergedContextConfiguration webMergedConfig) {
 		new GroovyBeanDefinitionReader(context).loadBeanDefinitions(webMergedConfig.getLocations());
 	}
 
@@ -54,15 +55,16 @@ public class GenericGroovyXmlWebContextLoader extends GenericXmlWebContextLoader
 	 */
 	@Override
 	protected String[] getResourceSuffixes() {
-		return new String[] { super.getResourceSuffix(), "Context.groovy" };
+		return new String[]{super.getResourceSuffix(), "Context.groovy"};
 	}
 
 	/**
 	 * {@code GenericGroovyXmlWebContextLoader} supports both Groovy and XML
 	 * resource types for detection of defaults. Consequently, this method
 	 * is not supported.
-	 * @see #getResourceSuffixes()
+	 *
 	 * @throws UnsupportedOperationException in this implementation
+	 * @see #getResourceSuffixes()
 	 */
 	@Override
 	protected String getResourceSuffix() {

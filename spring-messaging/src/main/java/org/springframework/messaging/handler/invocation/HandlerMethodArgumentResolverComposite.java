@@ -53,6 +53,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 
 	/**
 	 * Add the given {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
+	 *
 	 * @since 4.3
 	 */
 	public HandlerMethodArgumentResolverComposite addResolvers(
@@ -104,6 +105,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	 * Iterate over registered
 	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
 	 * and invoke the one that supports it.
+	 *
 	 * @throws IllegalArgumentException if no suitable argument resolver is found
 	 */
 	@Override

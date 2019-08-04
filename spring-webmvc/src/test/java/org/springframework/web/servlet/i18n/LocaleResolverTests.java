@@ -77,8 +77,7 @@ public class LocaleResolverTests {
 			// check new locale
 			locale = localeResolver.resolveLocale(request);
 			assertEquals(Locale.GERMANY, locale);
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			if (shouldSet) {
 				fail("should be able to set Locale");
 			}
@@ -90,8 +89,7 @@ public class LocaleResolverTests {
 			LocaleContext localeContext = localeContextResolver.resolveLocaleContext(request);
 			if (shouldSet) {
 				assertEquals(Locale.GERMANY, localeContext.getLocale());
-			}
-			else {
+			} else {
 				assertEquals(Locale.UK, localeContext.getLocale());
 			}
 			assertTrue(localeContext instanceof TimeZoneAwareLocaleContext);
@@ -111,8 +109,7 @@ public class LocaleResolverTests {
 				assertEquals(Locale.US, localeContext.getLocale());
 				if (localeContextResolver instanceof AbstractLocaleContextResolver) {
 					assertEquals(((TimeZoneAwareLocaleContext) localeContext).getTimeZone(), TimeZone.getTimeZone("GMT+1"));
-				}
-				else {
+				} else {
 					assertNull(((TimeZoneAwareLocaleContext) localeContext).getTimeZone());
 				}
 
@@ -134,8 +131,7 @@ public class LocaleResolverTests {
 					((AbstractLocaleContextResolver) localeContextResolver).setDefaultLocale(Locale.GERMANY);
 					assertEquals(Locale.GERMANY, localeContext.getLocale());
 				}
-			}
-			catch (UnsupportedOperationException ex) {
+			} catch (UnsupportedOperationException ex) {
 				if (shouldSet) {
 					fail("should be able to set Locale");
 				}

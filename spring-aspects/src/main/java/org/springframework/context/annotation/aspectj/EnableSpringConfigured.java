@@ -36,8 +36,8 @@ import org.springframework.context.annotation.Import;
  * {@link org.springframework.context.annotation.EnableLoadTimeWeaving @EnableLoadTimeWeaving}.
  *
  * @author Chris Beams
- * @since 3.1
  * @see org.springframework.context.annotation.EnableLoadTimeWeaving
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

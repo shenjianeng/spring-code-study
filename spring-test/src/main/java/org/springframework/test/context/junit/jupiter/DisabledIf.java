@@ -52,10 +52,10 @@ import org.springframework.core.annotation.AliasFor;
  *
  * @author Sam Brannen
  * @author Tadaya Tsuyukubo
- * @since 5.0
  * @see SpringExtension
  * @see EnabledIf
  * @see org.junit.jupiter.api.Disabled
+ * @since 5.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -62,7 +62,7 @@ public class AfterReturningAdviceBindingTests {
 		assertTrue(AopUtils.isAopProxy(testBeanProxy));
 
 		// we need the real target too, not just the proxy...
-		this.testBeanTarget = (TestBean) ((Advised)testBeanProxy).getTargetSource().getTarget();
+		this.testBeanTarget = (TestBean) ((Advised) testBeanProxy).getTargetSource().getTarget();
 	}
 
 
@@ -81,7 +81,7 @@ public class AfterReturningAdviceBindingTests {
 	@Test
 	public void testOneIntAndOneObjectArgs() {
 		testBeanProxy.setAge(5);
-		verify(mockCollaborator).oneIntAndOneObject(5,this.testBeanProxy);
+		verify(mockCollaborator).oneIntAndOneObject(5, this.testBeanProxy);
 	}
 
 	@Test
@@ -179,10 +179,15 @@ final class AfterReturningAdviceBindingTestAspect extends AdviceBindingTestAspec
 	interface AfterReturningAdviceBindingCollaborator extends AdviceBindingCollaborator {
 
 		void oneString(String s);
+
 		void oneTestBeanArg(TestBean b);
+
 		void testBeanArrayArg(ITestBean[] b);
+
 		void objectMatchNoArgs();
+
 		void stringMatchNoArgs();
+
 		void oneInt(int result);
 	}
 

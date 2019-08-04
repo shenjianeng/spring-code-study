@@ -41,7 +41,7 @@ import org.springframework.web.method.ControllerAdviceBean;
 public class WebSocketAnnotationMethodMessageHandler extends SimpAnnotationMethodMessageHandler {
 
 	public WebSocketAnnotationMethodMessageHandler(SubscribableChannel clientInChannel,
-			MessageChannel clientOutChannel, SimpMessageSendingOperations brokerTemplate) {
+												   MessageChannel clientOutChannel, SimpMessageSendingOperations brokerTemplate) {
 
 		super(clientInChannel, clientOutChannel, brokerTemplate);
 	}

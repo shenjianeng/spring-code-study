@@ -64,8 +64,7 @@ public class ContextNamespaceHandlerTests {
 					"contextNamespaceHandlerTests-system.xml", getClass());
 			assertEquals("spam", applicationContext.getBean("string"));
 			assertEquals("none", applicationContext.getBean("fallback"));
-		}
-		finally {
+		} finally {
 			if (value != null) {
 				System.setProperty("foo", value);
 			}
@@ -102,8 +101,7 @@ public class ContextNamespaceHandlerTests {
 			assertEquals("bar", applicationContext.getBean("foo"));
 			assertEquals("foo", applicationContext.getBean("bar"));
 			assertEquals("maps", applicationContext.getBean("spam"));
-		}
-		finally {
+		} finally {
 			System.clearProperty("properties");
 		}
 	}
@@ -112,16 +110,15 @@ public class ContextNamespaceHandlerTests {
 	public void propertyPlaceholderLocationWithSystemPropertyForMultipleLocations() {
 		System.setProperty("properties",
 				"classpath*:/org/springframework/context/config/test-*.properties," +
-				"classpath*:/org/springframework/context/config/empty-*.properties," +
-				"classpath*:/org/springframework/context/config/missing-*.properties");
+						"classpath*:/org/springframework/context/config/empty-*.properties," +
+						"classpath*:/org/springframework/context/config/missing-*.properties");
 		try {
 			ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 					"contextNamespaceHandlerTests-location-placeholder.xml", getClass());
 			assertEquals("bar", applicationContext.getBean("foo"));
 			assertEquals("foo", applicationContext.getBean("bar"));
 			assertEquals("maps", applicationContext.getBean("spam"));
-		}
-		finally {
+		} finally {
 			System.clearProperty("properties");
 		}
 	}
@@ -132,8 +129,7 @@ public class ContextNamespaceHandlerTests {
 			new ClassPathXmlApplicationContext(
 					"contextNamespaceHandlerTests-location-placeholder.xml", getClass());
 			fail("Should have thrown FatalBeanException");
-		}
-		catch (FatalBeanException ex) {
+		} catch (FatalBeanException ex) {
 			Throwable cause = ex.getRootCause();
 			assertTrue(cause instanceof IllegalArgumentException);
 			assertEquals("Could not resolve placeholder 'foo' in value \"${foo}\"", cause.getMessage());

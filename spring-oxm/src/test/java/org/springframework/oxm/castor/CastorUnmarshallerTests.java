@@ -48,15 +48,15 @@ public class CastorUnmarshallerTests extends AbstractUnmarshallerTests<CastorMar
 	 */
 	protected static final String EXTRA_ATTRIBUTES_STRING =
 			"<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
-			"<tns:flight status=\"canceled\"><tns:number>42</tns:number></tns:flight></tns:flights>";
+					"<tns:flight status=\"canceled\"><tns:number>42</tns:number></tns:flight></tns:flights>";
 
 	/**
 	 * Represents the xml with additional element that is not mapped in Castor config.
 	 */
 	protected static final String EXTRA_ELEMENTS_STRING =
 			"<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
-			"<tns:flight><tns:number>42</tns:number><tns:date>2011-06-14</tns:date>" +
-			"</tns:flight></tns:flights>";
+					"<tns:flight><tns:number>42</tns:number><tns:date>2011-06-14</tns:date>" +
+					"</tns:flight></tns:flights>";
 
 
 	@Override
@@ -183,7 +183,7 @@ public class CastorUnmarshallerTests extends AbstractUnmarshallerTests<CastorMar
 	@Test
 	public void clearCollectionsFalse() throws Exception {
 		Flights flights = new Flights();
-		flights.setFlight(new Flight[] {new Flight(), null});
+		flights.setFlight(new Flight[]{new Flight(), null});
 		unmarshaller.setRootObject(flights);
 		unmarshaller.setClearCollections(false);
 		Object result = unmarshalFlights();

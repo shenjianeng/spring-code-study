@@ -37,12 +37,14 @@ public interface ExchangeStrategies {
 
 	/**
 	 * Return {@link HttpMessageReader HttpMessageReaders} to read and decode the response body with.
+	 *
 	 * @return the message readers
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
 	 * Return {@link HttpMessageWriter HttpMessageWriters} to write and encode the request body with.
+	 *
 	 * @return the message writers
 	 */
 	List<HttpMessageWriter<?>> messageWriters();
@@ -84,6 +86,7 @@ public interface ExchangeStrategies {
 
 		/**
 		 * Customize the list of client-side HTTP message readers and writers.
+		 *
 		 * @param consumer the consumer to customize the codecs
 		 * @return this builder
 		 */
@@ -91,6 +94,7 @@ public interface ExchangeStrategies {
 
 		/**
 		 * Builds the {@link ExchangeStrategies}.
+		 *
 		 * @return the built strategies
 		 */
 		ExchangeStrategies build();

@@ -33,6 +33,7 @@ public abstract class ContextCacheUtils {
 	 * property named {@code spring.test.context.cache.maxSize}.
 	 * <p>Falls back to the value of the {@link ContextCache#DEFAULT_MAX_CONTEXT_CACHE_SIZE}
 	 * if no such property has been set or if the property is not an integer.
+	 *
 	 * @return the maximum size of the context cache
 	 * @see ContextCache#MAX_CONTEXT_CACHE_SIZE_PROPERTY_NAME
 	 */
@@ -42,8 +43,7 @@ public abstract class ContextCacheUtils {
 			if (StringUtils.hasText(maxSize)) {
 				return Integer.parseInt(maxSize.trim());
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			// ignore
 		}
 

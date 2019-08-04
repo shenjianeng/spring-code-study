@@ -39,7 +39,7 @@ public class MapDataSourceLookupTests {
 
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void getDataSourcesReturnsUnmodifiableMap() throws Exception {
 		MapDataSourceLookup lookup = new MapDataSourceLookup();
 		Map dataSources = lookup.getDataSources();
@@ -88,7 +88,7 @@ public class MapDataSourceLookupTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void getDataSourceWhereSuppliedMapHasNonDataSourceTypeUnderSpecifiedKey() throws Exception {
 		Map dataSources = new HashMap();
 		dataSources.put(DATA_SOURCE_NAME, new Object());

@@ -18,8 +18,8 @@ package org.springframework.core.type;
 
 /**
  * @author Chris Beams
- * @since 3.1
  * @see AbstractClassMetadataMemberClassTests
+ * @since 3.1
  */
 public class StandardClassMetadataMemberClassTests
 		extends AbstractClassMetadataMemberClassTests {

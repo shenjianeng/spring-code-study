@@ -66,6 +66,7 @@ public class InterceptorRegistration {
 
 	/**
 	 * List-based variant of {@link #addPathPatterns(String...)}.
+	 *
 	 * @since 5.0.3
 	 */
 	public InterceptorRegistration addPathPatterns(List<String> patterns) {
@@ -82,6 +83,7 @@ public class InterceptorRegistration {
 
 	/**
 	 * List-based variant of {@link #excludePathPatterns(String...)}.
+	 *
 	 * @since 5.0.3
 	 */
 	public InterceptorRegistration excludePathPatterns(List<String> patterns) {
@@ -102,9 +104,10 @@ public class InterceptorRegistration {
 
 	/**
 	 * Specify an order position to be used. Default is 0.
+	 *
 	 * @since 4.3.23
 	 */
-	public InterceptorRegistration order(int order){
+	public InterceptorRegistration order(int order) {
 		this.order = order;
 		return this;
 	}

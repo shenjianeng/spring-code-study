@@ -45,6 +45,7 @@ public class Spr8808Tests {
 }
 
 @Configuration
-@ComponentScan(basePackageClasses=Spr8808Tests.class) // scan *this* package
+@ComponentScan(basePackageClasses = Spr8808Tests.class)
+		// scan *this* package
 class Config {
 }

@@ -53,7 +53,6 @@ import org.springframework.core.annotation.AliasFor;
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see SqlConfig
  * @see SqlGroup
  * @see SqlScriptsTestExecutionListener
@@ -61,6 +60,7 @@ import org.springframework.core.annotation.AliasFor;
  * @see org.springframework.test.context.transaction.TransactionalTestExecutionListener
  * @see org.springframework.jdbc.datasource.init.ResourceDatabasePopulator
  * @see org.springframework.jdbc.datasource.init.ScriptUtils
+ * @since 4.1
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -73,6 +73,7 @@ public @interface Sql {
 	 * Alias for {@link #scripts}.
 	 * <p>This attribute may <strong>not</strong> be used in conjunction with
 	 * {@link #scripts}, but it may be used instead of {@link #scripts}.
+	 *
 	 * @see #scripts
 	 * @see #statements
 	 */
@@ -111,6 +112,7 @@ public @interface Sql {
 	 * {@code com.example.MyTest}, the corresponding default script is
 	 * {@code "classpath:com/example/MyTest.testMethod.sql"}.</li>
 	 * </ul>
+	 *
 	 * @see #value
 	 * @see #statements
 	 */
@@ -126,8 +128,9 @@ public @interface Sql {
 	 * statements loaded from resource {@link #scripts}. If you wish to have
 	 * inlined statements executed before scripts, simply declare multiple
 	 * instances of {@code @Sql} on the same class or method.
-	 * @since 4.2
+	 *
 	 * @see #scripts
+	 * @since 4.2
 	 */
 	String[] statements() default {};
 

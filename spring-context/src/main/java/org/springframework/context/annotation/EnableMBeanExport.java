@@ -37,8 +37,8 @@ import org.springframework.jmx.support.RegistrationPolicy;
  * {@code <context:mbean-export/>} element.
  *
  * @author Phillip Webb
- * @since 3.2
  * @see MBeanExportConfiguration
+ * @since 3.2
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

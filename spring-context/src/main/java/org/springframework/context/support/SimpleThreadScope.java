@@ -48,8 +48,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.web.context.request.RequestScope
+ * @since 3.0
  */
 public class SimpleThreadScope implements Scope {
 

@@ -45,8 +45,9 @@ public interface XhrTransport extends Transport, InfoReceiver {
 	/**
 	 * Execute a request to send the message to the server.
 	 * <p>Note that as of 4.2 this method accepts a {@code headers} parameter.
+	 *
 	 * @param transportUrl the URL for sending messages.
-	 * @param message the message to send
+	 * @param message      the message to send
 	 */
 	void executeSendRequest(URI transportUrl, HttpHeaders headers, TextMessage message);
 

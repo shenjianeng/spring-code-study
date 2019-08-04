@@ -39,12 +39,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * Framework</em>.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see ExtendWith
  * @see SpringExtension
  * @see ContextConfiguration
  * @see WebAppConfiguration
  * @see org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+ * @since 5.0
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration

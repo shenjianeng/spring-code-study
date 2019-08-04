@@ -69,8 +69,7 @@ public class JamonPerformanceMonitorInterceptorTests {
 		try {
 			interceptor.invokeUnderTrace(mi, log);
 			fail("Must have propagated the IllegalArgumentException");
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 
 		assertEquals("Monitors must exist for the method invocation and 2 exceptions",

@@ -255,7 +255,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/multipartfile", method = RequestMethod.POST)
 		public String processMultipartFile(@RequestParam(required = false) MultipartFile file,
-				@RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
+										   @RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
 
 			if (file != null) {
 				model.addAttribute("fileContent", file.getBytes());
@@ -269,7 +269,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/multipartfilearray", method = RequestMethod.POST)
 		public String processMultipartFileArray(@RequestParam(required = false) MultipartFile[] file,
-				@RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
+												@RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
 
 			if (file != null && file.length > 0) {
 				byte[] content = file[0].getBytes();
@@ -285,7 +285,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/multipartfilelist", method = RequestMethod.POST)
 		public String processMultipartFileList(@RequestParam(required = false) List<MultipartFile> file,
-				@RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
+											   @RequestPart(required = false) Map<String, String> json, Model model) throws IOException {
 
 			if (file != null && !file.isEmpty()) {
 				byte[] content = file.get(0).getBytes();
@@ -301,7 +301,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/optionalfile", method = RequestMethod.POST)
 		public String processOptionalFile(@RequestParam Optional<MultipartFile> file,
-				@RequestPart Map<String, String> json, Model model) throws IOException {
+										  @RequestPart Map<String, String> json, Model model) throws IOException {
 
 			if (file.isPresent()) {
 				model.addAttribute("fileContent", file.get().getBytes());
@@ -313,7 +313,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/optionalfilearray", method = RequestMethod.POST)
 		public String processOptionalFileArray(@RequestParam Optional<MultipartFile[]> file,
-				@RequestPart Map<String, String> json, Model model) throws IOException {
+											   @RequestPart Map<String, String> json, Model model) throws IOException {
 
 			if (file.isPresent()) {
 				byte[] content = file.get()[0].getBytes();
@@ -327,7 +327,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/optionalfilelist", method = RequestMethod.POST)
 		public String processOptionalFileList(@RequestParam Optional<List<MultipartFile>> file,
-				@RequestPart Map<String, String> json, Model model) throws IOException {
+											  @RequestPart Map<String, String> json, Model model) throws IOException {
 
 			if (file.isPresent()) {
 				byte[] content = file.get().get(0).getBytes();
@@ -341,7 +341,7 @@ public class MultipartControllerTests {
 
 		@RequestMapping(value = "/part", method = RequestMethod.POST)
 		public String processPart(@RequestParam Part part,
-				@RequestPart Map<String, String> json, Model model) throws IOException {
+								  @RequestPart Map<String, String> json, Model model) throws IOException {
 
 			model.addAttribute("fileContent", part.getInputStream());
 			model.addAttribute("jsonContent", json);
@@ -361,7 +361,7 @@ public class MultipartControllerTests {
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-				FilterChain filterChain) throws IOException, ServletException {
+										FilterChain filterChain) throws IOException, ServletException {
 
 			request = new HttpServletRequestWrapper(request);
 			filterChain.doFilter(request, response);

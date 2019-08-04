@@ -62,13 +62,14 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 
 	/**
 	 * Constructor.
-	 * @param userRegistry the registry with local and remote user registry information
-	 * @param brokerTemplate template for broadcasting local registry information
+	 *
+	 * @param userRegistry         the registry with local and remote user registry information
+	 * @param brokerTemplate       template for broadcasting local registry information
 	 * @param broadcastDestination the destination to broadcast to
-	 * @param scheduler the task scheduler to use
+	 * @param scheduler            the task scheduler to use
 	 */
 	public UserRegistryMessageHandler(MultiServerUserRegistry userRegistry,
-			SimpMessagingTemplate brokerTemplate, String broadcastDestination, TaskScheduler scheduler) {
+									  SimpMessagingTemplate brokerTemplate, String broadcastDestination, TaskScheduler scheduler) {
 
 		Assert.notNull(userRegistry, "'userRegistry' is required");
 		Assert.notNull(brokerTemplate, "'brokerTemplate' is required");
@@ -93,6 +94,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 	 * Configure the amount of time (in milliseconds) before a remote user
 	 * registry snapshot is considered expired.
 	 * <p>By default this is set to 20 seconds (value of 20000).
+	 *
 	 * @param milliseconds the expiration period in milliseconds
 	 */
 	@SuppressWarnings("unused")
@@ -113,10 +115,9 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 		if (event.isBrokerAvailable()) {
 			long delay = getRegistryExpirationPeriod() / 2;
 			this.scheduledFuture = this.scheduler.scheduleWithFixedDelay(this.schedulerTask, delay);
-		}
-		else {
+		} else {
 			ScheduledFuture<?> future = this.scheduledFuture;
-			if (future != null ){
+			if (future != null) {
 				future.cancel(true);
 				this.scheduledFuture = null;
 			}
@@ -140,8 +141,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 				accessor.setLeaveMutable(true);
 				Object payload = userRegistry.getLocalRegistryDto();
 				brokerTemplate.convertAndSend(getBroadcastDestination(), payload, accessor.getMessageHeaders());
-			}
-			finally {
+			} finally {
 				userRegistry.purgeExpiredRegistries();
 			}
 		}

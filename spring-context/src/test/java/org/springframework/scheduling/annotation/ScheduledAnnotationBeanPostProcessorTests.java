@@ -199,7 +199,7 @@ public class ScheduledAnnotationBeanPostProcessorTests {
 	}
 
 	private void severalFixedRates(StaticApplicationContext context,
-			BeanDefinition processorDefinition, BeanDefinition targetDefinition) {
+								   BeanDefinition processorDefinition, BeanDefinition targetDefinition) {
 
 		context.registerBeanDefinition("postProcessor", processorDefinition);
 		context.registerBeanDefinition("target", targetDefinition);

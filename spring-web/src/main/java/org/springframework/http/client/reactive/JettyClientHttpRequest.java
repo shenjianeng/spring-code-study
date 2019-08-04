@@ -44,8 +44,8 @@ import org.springframework.util.Assert;
  * {@link ClientHttpRequest} implementation for the Jetty ReactiveStreams HTTP client.
  *
  * @author Sebastien Deleuze
- * @since 5.1
  * @see <a href="https://github.com/jetty-project/jetty-reactive-httpclient">Jetty ReactiveStreams HttpClient</a>
+ * @since 5.1
  */
 class JettyClientHttpRequest extends AbstractClientHttpRequest {
 

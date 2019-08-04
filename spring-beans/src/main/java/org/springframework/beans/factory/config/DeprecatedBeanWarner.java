@@ -43,6 +43,7 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	 * getting interpreted as log category according to the logger's configuration.
 	 * <p>This can be specified to not log into the category of this warner class but rather
 	 * into a specific named category.
+	 *
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)
 	 * @see java.util.logging.Logger#getLogger(String)
 	 */
@@ -74,8 +75,9 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 
 	/**
 	 * Logs a warning for a bean annotated with {@link Deprecated @Deprecated}.
-	 * @param beanName the name of the deprecated bean
-	 * @param beanType the user-specified type of the deprecated bean
+	 *
+	 * @param beanName       the name of the deprecated bean
+	 * @param beanType       the user-specified type of the deprecated bean
 	 * @param beanDefinition the definition of the deprecated bean
 	 */
 	protected void logDeprecatedBean(String beanName, Class<?> beanType, BeanDefinition beanDefinition) {
@@ -96,6 +98,7 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	/**
 	 * Actually write to the underlying log.
 	 * <p>The default implementations logs the message at "warn" level.
+	 *
 	 * @param message the message to write
 	 */
 	protected void writeToLog(String message) {

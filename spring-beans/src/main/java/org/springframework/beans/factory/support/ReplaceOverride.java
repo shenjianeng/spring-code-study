@@ -43,7 +43,8 @@ public class ReplaceOverride extends MethodOverride {
 
 	/**
 	 * Construct a new ReplaceOverride.
-	 * @param methodName the name of the method to override
+	 *
+	 * @param methodName             the name of the method to override
 	 * @param methodReplacerBeanName the bean name of the MethodReplacer
 	 */
 	public ReplaceOverride(String methodName, String methodReplacerBeanName) {
@@ -63,6 +64,7 @@ public class ReplaceOverride extends MethodOverride {
 	/**
 	 * Add a fragment of a class string, like "Exception"
 	 * or "java.lang.Exc", to identify a parameter type.
+	 *
 	 * @param identifier a substring of the fully qualified class name
 	 */
 	public void addTypeIdentifier(String identifier) {

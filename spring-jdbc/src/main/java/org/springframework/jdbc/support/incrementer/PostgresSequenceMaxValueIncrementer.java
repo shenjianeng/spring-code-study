@@ -31,6 +31,7 @@ public class PostgresSequenceMaxValueIncrementer extends AbstractSequenceMaxValu
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -39,7 +40,8 @@ public class PostgresSequenceMaxValueIncrementer extends AbstractSequenceMaxValu
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public PostgresSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {

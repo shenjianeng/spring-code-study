@@ -92,7 +92,7 @@ public class DelegatingNavigationHandlerTests {
 
 		@Override
 		public void handleNavigation(FacesContext facesContext, @Nullable String fromAction,
-				@Nullable String outcome, @Nullable NavigationHandler originalNavigationHandler) {
+									 @Nullable String outcome, @Nullable NavigationHandler originalNavigationHandler) {
 
 			lastFromAction = fromAction;
 			lastOutcome = outcome;

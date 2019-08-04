@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(classes = EmptyDatabaseConfig.class)
-@Sql({ "schema.sql", "data.sql" })
+@Sql({"schema.sql", "data.sql"})
 @DirtiesContext
 public class NonTransactionalSqlScriptsTests {
 
@@ -69,7 +69,7 @@ public class NonTransactionalSqlScriptsTests {
 
 	protected void assertNumUsers(int expected) {
 		assertEquals("Number of rows in the 'user' table.", expected,
-			JdbcTestUtils.countRowsInTable(jdbcTemplate, "user"));
+				JdbcTestUtils.countRowsInTable(jdbcTemplate, "user"));
 	}
 
 }

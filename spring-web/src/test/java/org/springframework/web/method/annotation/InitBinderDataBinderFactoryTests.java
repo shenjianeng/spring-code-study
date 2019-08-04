@@ -143,7 +143,7 @@ public class InitBinderDataBinderFactoryTests {
 			dataBinder.setDisallowedFields("id");
 		}
 
-		@InitBinder(value="foo")
+		@InitBinder(value = "foo")
 		public void initBinderWithAttributeName(WebDataBinder dataBinder) {
 			dataBinder.setDisallowedFields("id");
 		}

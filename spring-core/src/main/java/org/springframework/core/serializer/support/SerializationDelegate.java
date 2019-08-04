@@ -44,6 +44,7 @@ public class SerializationDelegate implements Serializer<Object>, Deserializer<O
 	/**
 	 * Create a {@code SerializationDelegate} with a default serializer/deserializer
 	 * for the given {@code ClassLoader}.
+	 *
 	 * @see DefaultDeserializer
 	 * @see DefaultDeserializer#DefaultDeserializer(ClassLoader)
 	 */
@@ -54,7 +55,8 @@ public class SerializationDelegate implements Serializer<Object>, Deserializer<O
 
 	/**
 	 * Create a {@code SerializationDelegate} with the given serializer/deserializer.
-	 * @param serializer the {@link Serializer} to use (never {@code null)}
+	 *
+	 * @param serializer   the {@link Serializer} to use (never {@code null)}
 	 * @param deserializer the {@link Deserializer} to use (never {@code null)}
 	 */
 	public SerializationDelegate(Serializer<Object> serializer, Deserializer<Object> deserializer) {

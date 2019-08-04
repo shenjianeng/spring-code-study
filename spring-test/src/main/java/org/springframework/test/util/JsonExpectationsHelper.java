@@ -34,10 +34,11 @@ public class JsonExpectationsHelper {
 	 * are "similar" - i.e. they contain the same attribute-value pairs
 	 * regardless of formatting with a lenient checking (extensible, and non-strict
 	 * array ordering).
+	 *
 	 * @param expected the expected JSON content
-	 * @param actual the actual JSON content
-	 * @since 4.1
+	 * @param actual   the actual JSON content
 	 * @see #assertJsonEqual(String, String, boolean)
+	 * @since 4.1
 	 */
 	public void assertJsonEqual(String expected, String actual) throws Exception {
 		assertJsonEqual(expected, actual, false);
@@ -52,9 +53,10 @@ public class JsonExpectationsHelper {
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
 	 * </ul>
+	 *
 	 * @param expected the expected JSON content
-	 * @param actual the actual JSON content
-	 * @param strict enables strict checking
+	 * @param actual   the actual JSON content
+	 * @param strict   enables strict checking
 	 * @since 4.2
 	 */
 	public void assertJsonEqual(String expected, String actual, boolean strict) throws Exception {
@@ -66,10 +68,11 @@ public class JsonExpectationsHelper {
 	 * are "not similar" - i.e. they contain different attribute-value pairs
 	 * regardless of formatting with a lenient checking (extensible, and non-strict
 	 * array ordering).
+	 *
 	 * @param expected the expected JSON content
-	 * @param actual the actual JSON content
-	 * @since 4.1
+	 * @param actual   the actual JSON content
 	 * @see #assertJsonNotEqual(String, String, boolean)
+	 * @since 4.1
 	 */
 	public void assertJsonNotEqual(String expected, String actual) throws Exception {
 		assertJsonNotEqual(expected, actual, false);
@@ -84,9 +87,10 @@ public class JsonExpectationsHelper {
 	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
 	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
 	 * </ul>
+	 *
 	 * @param expected the expected JSON content
-	 * @param actual the actual JSON content
-	 * @param strict enables strict checking
+	 * @param actual   the actual JSON content
+	 * @param strict   enables strict checking
 	 * @since 4.2
 	 */
 	public void assertJsonNotEqual(String expected, String actual, boolean strict) throws Exception {

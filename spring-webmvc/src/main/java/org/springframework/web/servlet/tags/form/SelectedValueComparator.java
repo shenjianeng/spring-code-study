@@ -74,8 +74,7 @@ abstract class SelectedValueComparator {
 		}
 		if (actualValue != null) {
 			boundValue = actualValue;
-		}
-		else if (boundValue == null) {
+		} else if (boundValue == null) {
 			return false;
 		}
 
@@ -85,11 +84,9 @@ abstract class SelectedValueComparator {
 		if (candidateValue != null) {
 			if (boundValue.getClass().isArray()) {
 				selected = collectionCompare(CollectionUtils.arrayToList(boundValue), candidateValue, bindStatus);
-			}
-			else if (boundValue instanceof Collection) {
+			} else if (boundValue instanceof Collection) {
 				selected = collectionCompare((Collection<?>) boundValue, candidateValue, bindStatus);
-			}
-			else if (boundValue instanceof Map) {
+			} else if (boundValue instanceof Map) {
 				selected = mapCompare((Map<?, ?>) boundValue, candidateValue, bindStatus);
 			}
 		}
@@ -105,8 +102,7 @@ abstract class SelectedValueComparator {
 			if (boundCollection.contains(candidateValue)) {
 				return true;
 			}
-		}
-		catch (ClassCastException ex) {
+		} catch (ClassCastException ex) {
 			// Probably from a TreeSet - ignore.
 		}
 		return exhaustiveCollectionCompare(boundCollection, candidateValue, bindStatus);
@@ -117,8 +113,7 @@ abstract class SelectedValueComparator {
 			if (boundMap.containsKey(candidateValue)) {
 				return true;
 			}
-		}
-		catch (ClassCastException ex) {
+		} catch (ClassCastException ex) {
 			// Probably from a TreeMap - ignore.
 		}
 		return exhaustiveCollectionCompare(boundMap.keySet(), candidateValue, bindStatus);
@@ -145,7 +140,7 @@ abstract class SelectedValueComparator {
 	}
 
 	private static boolean exhaustiveCompare(@Nullable Object boundValue, @Nullable Object candidate,
-			@Nullable PropertyEditor editor, @Nullable Map<PropertyEditor, Object> convertedValueCache) {
+											 @Nullable PropertyEditor editor, @Nullable Map<PropertyEditor, Object> convertedValueCache) {
 
 		String candidateDisplayString = ValueFormatter.getDisplayString(candidate, editor, false);
 		if (boundValue != null && boundValue.getClass().isEnum()) {
@@ -158,8 +153,7 @@ abstract class SelectedValueComparator {
 			if (enumLabelAsString.equals(candidateDisplayString)) {
 				return true;
 			}
-		}
-		else if (ObjectUtils.getDisplayString(boundValue).equals(candidateDisplayString)) {
+		} else if (ObjectUtils.getDisplayString(boundValue).equals(candidateDisplayString)) {
 			return true;
 		}
 
@@ -169,8 +163,7 @@ abstract class SelectedValueComparator {
 			Object candidateAsValue;
 			if (convertedValueCache != null && convertedValueCache.containsKey(editor)) {
 				candidateAsValue = convertedValueCache.get(editor);
-			}
-			else {
+			} else {
 				editor.setAsText(candidateAsString);
 				candidateAsValue = editor.getValue();
 				if (convertedValueCache != null) {

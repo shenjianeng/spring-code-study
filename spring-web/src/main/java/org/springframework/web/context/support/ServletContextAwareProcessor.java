@@ -35,9 +35,9 @@ import org.springframework.web.context.ServletContextAware;
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
- * @since 12.03.2004
  * @see org.springframework.web.context.ServletContextAware
  * @see org.springframework.web.context.support.XmlWebApplicationContext#postProcessBeanFactory
+ * @since 12.03.2004
  */
 public class ServletContextAwareProcessor implements BeanPostProcessor {
 

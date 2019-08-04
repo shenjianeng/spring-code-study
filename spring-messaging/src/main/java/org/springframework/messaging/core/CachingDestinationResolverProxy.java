@@ -29,11 +29,11 @@ import org.springframework.util.Assert;
  * if the destination resolving process is expensive (e.g. the destination has to be
  * resolved through an external system) and the resolution results are stable anyway.
  *
+ * @param <D> the destination type
  * @author Agim Emruli
  * @author Juergen Hoeller
- * @since 4.1
- * @param <D> the destination type
  * @see DestinationResolver#resolveDestination
+ * @since 4.1
  */
 public class CachingDestinationResolverProxy<D> implements DestinationResolver<D>, InitializingBean {
 
@@ -53,6 +53,7 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 	/**
 	 * Create a new CachingDestinationResolverProxy using the given target
 	 * DestinationResolver to actually resolve destinations.
+	 *
 	 * @param targetDestinationResolver the target DestinationResolver to delegate to
 	 */
 	public CachingDestinationResolverProxy(DestinationResolver<D> targetDestinationResolver) {
@@ -79,10 +80,11 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 	/**
 	 * Resolves and caches destinations if successfully resolved by the target
 	 * DestinationResolver implementation.
+	 *
 	 * @param name the destination name to be resolved
 	 * @return the currently resolved destination or an already cached destination
 	 * @throws DestinationResolutionException if the target DestinationResolver
-	 * reports an error during destination resolution
+	 *                                        reports an error during destination resolution
 	 */
 	@Override
 	public D resolveDestination(String name) throws DestinationResolutionException {

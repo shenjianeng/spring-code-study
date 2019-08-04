@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
  * A holder for a thread-local user {@link DateTimeContext}.
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see org.springframework.context.i18n.LocaleContextHolder
+ * @since 4.0
  */
 public final class DateTimeContextHolder {
 
@@ -48,20 +48,21 @@ public final class DateTimeContextHolder {
 
 	/**
 	 * Associate the given DateTimeContext with the current thread.
+	 *
 	 * @param dateTimeContext the current DateTimeContext,
-	 * or {@code null} to reset the thread-bound context
+	 *                        or {@code null} to reset the thread-bound context
 	 */
 	public static void setDateTimeContext(@Nullable DateTimeContext dateTimeContext) {
 		if (dateTimeContext == null) {
 			resetDateTimeContext();
-		}
-		else {
+		} else {
 			dateTimeContextHolder.set(dateTimeContext);
 		}
 	}
 
 	/**
 	 * Return the DateTimeContext associated with the current thread, if any.
+	 *
 	 * @return the current DateTimeContext, or {@code null} if none
 	 */
 	@Nullable
@@ -72,9 +73,10 @@ public final class DateTimeContextHolder {
 
 	/**
 	 * Obtain a DateTimeFormatter with user-specific settings applied to the given base Formatter.
+	 *
 	 * @param formatter the base formatter that establishes default formatting rules
-	 * (generally user independent)
-	 * @param locale the current user locale (may be {@code null} if not known)
+	 *                  (generally user independent)
+	 * @param locale    the current user locale (may be {@code null} if not known)
 	 * @return the user-specific DateTimeFormatter
 	 */
 	public static DateTimeFormatter getFormatter(DateTimeFormatter formatter, @Nullable Locale locale) {

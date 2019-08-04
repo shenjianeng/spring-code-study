@@ -34,6 +34,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link ContentNegotiationConfigurer} tests.
+ *
  * @author Rossen Stoyanchev
  */
 public class ContentNegotiationConfigurerTests {

@@ -51,6 +51,7 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 	 * {@link io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory
 	 * WebSocketServerHandshakerFactory} in Netty.
 	 * <p>By default set to 65536 (64K).
+	 *
 	 * @param maxFramePayloadLength the max length for frames.
 	 * @since 5.1
 	 */
@@ -60,6 +61,7 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 
 	/**
 	 * Return the configured max length for frames.
+	 *
 	 * @since 5.1
 	 */
 	public int getMaxFramePayloadLength() {
@@ -69,7 +71,7 @@ public class ReactorNettyRequestUpgradeStrategy implements RequestUpgradeStrateg
 
 	@Override
 	public Mono<Void> upgrade(ServerWebExchange exchange, WebSocketHandler handler,
-			@Nullable String subProtocol, Supplier<HandshakeInfo> handshakeInfoFactory) {
+							  @Nullable String subProtocol, Supplier<HandshakeInfo> handshakeInfoFactory) {
 
 		ServerHttpResponse response = exchange.getResponse();
 		HttpServerResponse reactorResponse = ((AbstractServerHttpResponse) response).getNativeResponse();

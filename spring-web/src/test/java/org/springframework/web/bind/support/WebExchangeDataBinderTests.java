@@ -207,13 +207,12 @@ public class WebExchangeDataBinderTests {
 
 		assertEquals("bar", bean.getName());
 		assertEquals(Arrays.asList("123", "abc"), bean.getSomeList());
-		assertArrayEquals(new String[] {"dec", "456"}, bean.getSomeArray());
+		assertArrayEquals(new String[]{"dec", "456"}, bean.getSomeArray());
 		assertEquals("foo.txt", bean.getPart().filename());
 		assertEquals(2, bean.getSomePartList().size());
 		assertEquals("foo.txt", bean.getSomePartList().get(0).filename());
 		assertEquals("spring.png", bean.getSomePartList().get(1).filename());
 	}
-
 
 
 	private ServerWebExchange exchange(MultiValueMap<String, String> formData) {

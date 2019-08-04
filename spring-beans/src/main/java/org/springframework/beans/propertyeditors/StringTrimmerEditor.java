@@ -40,8 +40,9 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new StringTrimmerEditor.
+	 *
 	 * @param emptyAsNull {@code true} if an empty String is to be
-	 * transformed into {@code null}
+	 *                    transformed into {@code null}
 	 */
 	public StringTrimmerEditor(boolean emptyAsNull) {
 		this.charsToDelete = null;
@@ -50,11 +51,12 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new StringTrimmerEditor.
+	 *
 	 * @param charsToDelete a set of characters to delete, in addition to
-	 * trimming an input String. Useful for deleting unwanted line breaks:
-	 * e.g. "\r\n\f" will delete all new lines and line feeds in a String.
-	 * @param emptyAsNull {@code true} if an empty String is to be
-	 * transformed into {@code null}
+	 *                      trimming an input String. Useful for deleting unwanted line breaks:
+	 *                      e.g. "\r\n\f" will delete all new lines and line feeds in a String.
+	 * @param emptyAsNull   {@code true} if an empty String is to be
+	 *                      transformed into {@code null}
 	 */
 	public StringTrimmerEditor(String charsToDelete, boolean emptyAsNull) {
 		this.charsToDelete = charsToDelete;
@@ -66,16 +68,14 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 	public void setAsText(@Nullable String text) {
 		if (text == null) {
 			setValue(null);
-		}
-		else {
+		} else {
 			String value = text.trim();
 			if (this.charsToDelete != null) {
 				value = StringUtils.deleteAny(value, this.charsToDelete);
 			}
 			if (this.emptyAsNull && "".equals(value)) {
 				setValue(null);
-			}
-			else {
+			} else {
 				setValue(value);
 			}
 		}

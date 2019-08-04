@@ -65,7 +65,6 @@ import org.springframework.util.Assert;
  * any given DataSource or SessionFactory, respectively.
  *
  * @author Juergen Hoeller
- * @since 02.06.2003
  * @see #isSynchronizationActive
  * @see #registerSynchronization
  * @see TransactionSynchronization
@@ -73,6 +72,7 @@ import org.springframework.util.Assert;
  * @see org.springframework.transaction.jta.JtaTransactionManager
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager
  * @see org.springframework.jdbc.datasource.DataSourceUtils#getConnection
+ * @since 02.06.2003
  */
 public abstract class TransactionSynchronizationManager {
 
@@ -105,6 +105,7 @@ public abstract class TransactionSynchronizationManager {
 	 * Return all resources that are bound to the current thread.
 	 * <p>Mainly for debugging purposes. Resource managers should always invoke
 	 * {@code hasResource} for a specific resource key that they are interested in.
+	 *
 	 * @return a Map with resource keys (usually the resource factory) and resource
 	 * values (usually the active resource object), or an empty Map if there are
 	 * currently no resources bound
@@ -117,6 +118,7 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Check if there is a resource for the given key bound to the current thread.
+	 *
 	 * @param key the key to check (usually the resource factory)
 	 * @return if there is a value bound to the current thread
 	 * @see ResourceTransactionManager#getResourceFactory()
@@ -129,6 +131,7 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Retrieve a resource for the given key that is bound to the current thread.
+	 *
 	 * @param key the key to check (usually the resource factory)
 	 * @return a value bound to the current thread (usually the active
 	 * resource object), or {@code null} if none
@@ -169,7 +172,8 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Bind the given resource for the given key to the current thread.
-	 * @param key the key to bind the value to (usually the resource factory)
+	 *
+	 * @param key   the key to bind the value to (usually the resource factory)
 	 * @param value the value to bind (usually the active resource object)
 	 * @throws IllegalStateException if there is already a value bound to the thread
 	 * @see ResourceTransactionManager#getResourceFactory()
@@ -200,6 +204,7 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Unbind a resource for the given key from the current thread.
+	 *
 	 * @param key the key to unbind (usually the resource factory)
 	 * @return the previously bound value (usually the active resource object)
 	 * @throws IllegalStateException if there is no value bound to the thread
@@ -217,6 +222,7 @@ public abstract class TransactionSynchronizationManager {
 
 	/**
 	 * Unbind a resource for the given key from the current thread.
+	 *
 	 * @param key the key to unbind (usually the resource factory)
 	 * @return the previously bound value, or {@code null} if none bound
 	 */
@@ -259,6 +265,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Return if transaction synchronization is active for the current thread.
 	 * Can be called before register to avoid unnecessary instance creation.
+	 *
 	 * @see #registerSynchronization
 	 */
 	public static boolean isSynchronizationActive() {
@@ -268,6 +275,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Activate transaction synchronization for the current thread.
 	 * Called by a transaction manager on transaction begin.
+	 *
 	 * @throws IllegalStateException if synchronization is already active
 	 */
 	public static void initSynchronization() throws IllegalStateException {
@@ -284,6 +292,7 @@ public abstract class TransactionSynchronizationManager {
 	 * <p>Note that synchronizations can implement the
 	 * {@link org.springframework.core.Ordered} interface.
 	 * They will be executed in an order according to their order value (if any).
+	 *
 	 * @param synchronization the synchronization object to register
 	 * @throws IllegalStateException if transaction synchronization is not active
 	 * @see org.springframework.core.Ordered
@@ -302,6 +311,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Return an unmodifiable snapshot list of all registered synchronizations
 	 * for the current thread.
+	 *
 	 * @return unmodifiable List of TransactionSynchronization instances
 	 * @throws IllegalStateException if synchronization is not active
 	 * @see TransactionSynchronization
@@ -316,8 +326,7 @@ public abstract class TransactionSynchronizationManager {
 		// might register further synchronizations.
 		if (synchs.isEmpty()) {
 			return Collections.emptyList();
-		}
-		else {
+		} else {
 			// Sort lazily here, not in registerSynchronization.
 			List<TransactionSynchronization> sortedSynchs = new ArrayList<>(synchs);
 			AnnotationAwareOrderComparator.sort(sortedSynchs);
@@ -328,6 +337,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Deactivate transaction synchronization for the current thread.
 	 * Called by the transaction manager on transaction cleanup.
+	 *
 	 * @throws IllegalStateException if synchronization is not active
 	 */
 	public static void clearSynchronization() throws IllegalStateException {
@@ -346,6 +356,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose the name of the current transaction, if any.
 	 * Called by the transaction manager on transaction begin and on cleanup.
+	 *
 	 * @param name the name of the transaction, or {@code null} to reset it
 	 * @see org.springframework.transaction.TransactionDefinition#getName()
 	 */
@@ -357,6 +368,7 @@ public abstract class TransactionSynchronizationManager {
 	 * Return the name of the current transaction, or {@code null} if none set.
 	 * To be called by resource management code for optimizations per use case,
 	 * for example to optimize fetch strategies for specific named transactions.
+	 *
 	 * @see org.springframework.transaction.TransactionDefinition#getName()
 	 */
 	@Nullable
@@ -367,8 +379,9 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose a read-only flag for the current transaction.
 	 * Called by the transaction manager on transaction begin and on cleanup.
+	 *
 	 * @param readOnly {@code true} to mark the current transaction
-	 * as read-only; {@code false} to reset such a read-only marker
+	 *                 as read-only; {@code false} to reset such a read-only marker
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly()
 	 */
 	public static void setCurrentTransactionReadOnly(boolean readOnly) {
@@ -384,6 +397,7 @@ public abstract class TransactionSynchronizationManager {
 	 * to suppress change detection on commit. The present method is meant
 	 * to be used for earlier read-only checks, for example to set the
 	 * flush mode of a Hibernate Session to "FlushMode.NEVER" upfront.
+	 *
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly()
 	 * @see TransactionSynchronization#beforeCommit(boolean)
 	 */
@@ -394,9 +408,10 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose an isolation level for the current transaction.
 	 * Called by the transaction manager on transaction begin and on cleanup.
+	 *
 	 * @param isolationLevel the isolation level to expose, according to the
-	 * JDBC Connection constants (equivalent to the corresponding Spring
-	 * TransactionDefinition constants), or {@code null} to reset it
+	 *                       JDBC Connection constants (equivalent to the corresponding Spring
+	 *                       TransactionDefinition constants), or {@code null} to reset it
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
 	 * @see java.sql.Connection#TRANSACTION_REPEATABLE_READ
@@ -415,6 +430,7 @@ public abstract class TransactionSynchronizationManager {
 	 * Return the isolation level for the current transaction, if any.
 	 * To be called by resource management code when preparing a newly
 	 * created resource (for example, a JDBC Connection).
+	 *
 	 * @return the currently exposed isolation level, according to the
 	 * JDBC Connection constants (equivalent to the corresponding Spring
 	 * TransactionDefinition constants), or {@code null} if none
@@ -436,8 +452,9 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Expose whether there currently is an actual transaction active.
 	 * Called by the transaction manager on transaction begin and on cleanup.
+	 *
 	 * @param active {@code true} to mark the current thread as being associated
-	 * with an actual transaction; {@code false} to reset that marker
+	 *               with an actual transaction; {@code false} to reset that marker
 	 */
 	public static void setActualTransactionActive(boolean active) {
 		actualTransactionActive.set(active ? Boolean.TRUE : null);
@@ -452,6 +469,7 @@ public abstract class TransactionSynchronizationManager {
 	 * resource transaction; also on PROPAGATION_SUPPORTS) and an actual
 	 * transaction being active (with backing resource transaction;
 	 * on PROPAGATION_REQUIRED, PROPAGATION_REQUIRES_NEW, etc).
+	 *
 	 * @see #isSynchronizationActive()
 	 */
 	public static boolean isActualTransactionActive() {
@@ -462,6 +480,7 @@ public abstract class TransactionSynchronizationManager {
 	/**
 	 * Clear the entire transaction synchronization state for the current thread:
 	 * registered synchronizations as well as the various transaction characteristics.
+	 *
 	 * @see #clearSynchronization()
 	 * @see #setCurrentTransactionName
 	 * @see #setCurrentTransactionReadOnly

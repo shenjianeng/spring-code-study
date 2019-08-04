@@ -37,6 +37,7 @@ public interface ValueRef {
 	/**
 	 * Returns the value this ValueRef points to, it should not require expression
 	 * component re-evaluation.
+	 *
 	 * @return the value
 	 */
 	TypedValue getValue();
@@ -44,12 +45,14 @@ public interface ValueRef {
 	/**
 	 * Sets the value this ValueRef points to, it should not require expression component
 	 * re-evaluation.
+	 *
 	 * @param newValue the new value
 	 */
 	void setValue(@Nullable Object newValue);
 
 	/**
 	 * Indicates whether calling setValue(Object) is supported.
+	 *
 	 * @return true if setValue() is supported for this value reference.
 	 */
 	boolean isWritable();

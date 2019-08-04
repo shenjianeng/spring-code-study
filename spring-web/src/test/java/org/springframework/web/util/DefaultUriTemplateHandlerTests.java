@@ -51,7 +51,7 @@ public class DefaultUriTemplateHandlerTests {
 		assertEquals("http://localhost:8080/context/myapiresource", actual.toString());
 	}
 
-	@Test	// SPR-14147
+	@Test    // SPR-14147
 	public void defaultUriVariables() throws Exception {
 		Map<String, String> defaultVars = new HashMap<>(2);
 		defaultVars.put("host", "api.example.com");
@@ -132,7 +132,7 @@ public class DefaultUriTemplateHandlerTests {
 		assertEquals("https://www.example.com/user/john%3Bdoe/dashboard", actual.toString());
 	}
 
-	@Test	// SPR-14147
+	@Test    // SPR-14147
 	public void strictEncodingAndDefaultUriVariables() throws Exception {
 		Map<String, String> defaultVars = new HashMap<>(1);
 		defaultVars.put("host", "www.example.com");

@@ -42,10 +42,10 @@ import org.springframework.lang.Nullable;
  * <p>Subclasses can be constructed providing SQL, parameter types
  * and a DataSource. SQL will often vary between subclasses.
  *
+ * @param <T> the result type
  * @author Rod Johnson
  * @author Thomas Risberg
  * @author Jean-Pierre Pawlak
- * @param <T> the result type
  * @see org.springframework.jdbc.object.MappingSqlQuery
  * @see org.springframework.jdbc.object.SqlQuery
  */
@@ -59,7 +59,8 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 	/**
 	 * Convenient constructor with DataSource and SQL string.
-	 * @param ds the DataSource to use to get connections
+	 *
+	 * @param ds  the DataSource to use to get connections
 	 * @param sql the SQL to run
 	 */
 	public MappingSqlQueryWithParameters(DataSource ds, String sql) {
@@ -79,17 +80,18 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 	/**
 	 * Subclasses must implement this method to convert each row
 	 * of the ResultSet into an object of the result type.
-	 * @param rs the ResultSet we're working through
-	 * @param rowNum row number (from 0) we're up to
+	 *
+	 * @param rs         the ResultSet we're working through
+	 * @param rowNum     row number (from 0) we're up to
 	 * @param parameters to the query (passed to the execute() method).
-	 * Subclasses are rarely interested in these.
-	 * It can be {@code null} if there are no parameters.
-	 * @param context passed to the execute() method.
-	 * It can be {@code null} if no contextual information is need.
+	 *                   Subclasses are rarely interested in these.
+	 *                   It can be {@code null} if there are no parameters.
+	 * @param context    passed to the execute() method.
+	 *                   It can be {@code null} if no contextual information is need.
 	 * @return an object of the result type
 	 * @throws SQLException if there's an error extracting data.
-	 * Subclasses can simply not catch SQLExceptions, relying on the
-	 * framework to clean up.
+	 *                      Subclasses can simply not catch SQLExceptions, relying on the
+	 *                      framework to clean up.
 	 */
 	@Nullable
 	protected abstract T mapRow(ResultSet rs, int rowNum, @Nullable Object[] parameters, @Nullable Map<?, ?> context)

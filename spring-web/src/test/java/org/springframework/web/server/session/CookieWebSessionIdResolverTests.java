@@ -27,6 +27,7 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit tests for {@link CookieWebSessionIdResolver}.
+ *
  * @author Rossen Stoyanchev
  */
 public class CookieWebSessionIdResolverTests {

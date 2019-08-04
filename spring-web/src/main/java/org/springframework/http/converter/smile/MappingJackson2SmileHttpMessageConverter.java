@@ -54,6 +54,7 @@ public class MappingJackson2SmileHttpMessageConverter extends AbstractJackson2Ht
 	 * Construct a new {@code MappingJackson2SmileHttpMessageConverter} with a custom {@link ObjectMapper}
 	 * (must be configured with a {@code SmileFactory} instance).
 	 * You can use {@link Jackson2ObjectMapperBuilder} to build it easily.
+	 *
 	 * @see Jackson2ObjectMapperBuilder#smile()
 	 */
 	public MappingJackson2SmileHttpMessageConverter(ObjectMapper objectMapper) {

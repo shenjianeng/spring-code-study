@@ -74,6 +74,7 @@ public interface ITestBean extends AgeHolder {
 
 	/**
 	 * Increment the age by one.
+	 *
 	 * @return the previous age
 	 */
 	int haveBirthday();

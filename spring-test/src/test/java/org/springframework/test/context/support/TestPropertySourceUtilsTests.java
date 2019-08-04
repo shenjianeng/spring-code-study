@@ -48,9 +48,9 @@ public class TestPropertySourceUtilsTests {
 
 	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
-	private static final String[] KEY_VALUE_PAIR = new String[] {"key = value"};
+	private static final String[] KEY_VALUE_PAIR = new String[]{"key = value"};
 
-	private static final String[] FOO_LOCATIONS = new String[] {"classpath:/foo.properties"};
+	private static final String[] FOO_LOCATIONS = new String[]{"classpath:/foo.properties"};
 
 
 	@Rule
@@ -232,7 +232,7 @@ public class TestPropertySourceUtilsTests {
 
 
 	private static void assertMergedTestPropertySources(Class<?> testClass, String[] expectedLocations,
-			String[] expectedProperties) {
+														String[] expectedProperties) {
 
 		MergedTestPropertySources mergedPropertySources = buildMergedTestPropertySources(testClass);
 		assertNotNull(mergedPropertySources);
@@ -263,14 +263,14 @@ public class TestPropertySourceUtilsTests {
 	static class ValuePropertySources {
 	}
 
-	@TestPropertySource(locations = { "/foo1.xml", "/foo2.xml" }, properties = { "k1a=v1a", "k1b: v1b" })
+	@TestPropertySource(locations = {"/foo1.xml", "/foo2.xml"}, properties = {"k1a=v1a", "k1b: v1b"})
 	static class LocationsAndPropertiesPropertySources {
 	}
 
 	static class InheritedPropertySources extends LocationsAndPropertiesPropertySources {
 	}
 
-	@TestPropertySource(locations = { "/bar1.xml", "/bar2.xml" }, properties = { "k2a v2a", "k2b: v2b" })
+	@TestPropertySource(locations = {"/bar1.xml", "/bar2.xml"}, properties = {"k2a v2a", "k2b: v2b"})
 	static class ExtendedPropertySources extends LocationsAndPropertiesPropertySources {
 	}
 

@@ -121,8 +121,7 @@ public class SockJsSessionTests extends AbstractSockJsSessionTests<TestSockJsSes
 		try {
 			sockJsSession.delegateMessages(msg1, msg2, msg3);
 			fail("expected exception");
-		}
-		catch (SockJsMessageDeliveryException ex) {
+		} catch (SockJsMessageDeliveryException ex) {
 			assertEquals(Collections.singletonList(msg3), ex.getUndeliveredMessages());
 			verify(this.webSocketHandler).afterConnectionEstablished(sockJsSession);
 			verify(this.webSocketHandler).handleMessage(sockJsSession, new TextMessage(msg1));
@@ -240,8 +239,7 @@ public class SockJsSessionTests extends AbstractSockJsSessionTests<TestSockJsSes
 		try {
 			this.session.writeFrame(SockJsFrame.openFrame());
 			fail("expected exception");
-		}
-		catch (SockJsTransportFailureException ex) {
+		} catch (SockJsTransportFailureException ex) {
 			assertEquals(CloseStatus.SERVER_ERROR, this.session.getCloseStatus());
 			verify(this.webSocketHandler).afterConnectionClosed(this.session, CloseStatus.SERVER_ERROR);
 		}

@@ -31,9 +31,9 @@ import org.springframework.util.ReflectionUtils;
  * to a given target Map type.
  *
  * @author Juergen Hoeller
- * @since 2.0.1
  * @see java.util.Map
  * @see java.util.SortedMap
+ * @since 2.0.1
  */
 public class CustomMapEditor extends PropertyEditorSupport {
 
@@ -46,8 +46,9 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new CustomMapEditor for the given target type,
 	 * keeping an incoming {@code null} as-is.
+	 *
 	 * @param mapType the target type, which needs to be a
-	 * sub-interface of Map or a concrete Map class
+	 *                sub-interface of Map or a concrete Map class
 	 * @see java.util.Map
 	 * @see java.util.HashMap
 	 * @see java.util.TreeMap
@@ -67,10 +68,11 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	 * value will be created.
 	 * <p>The default Map implementations are: TreeMap for SortedMap,
 	 * and LinkedHashMap for Map.
-	 * @param mapType the target type, which needs to be a
-	 * sub-interface of Map or a concrete Map class
+	 *
+	 * @param mapType        the target type, which needs to be a
+	 *                       sub-interface of Map or a concrete Map class
 	 * @param nullAsEmptyMap ap whether to convert an incoming {@code null}
-	 * value to an empty Map (of the appropriate type)
+	 *                       value to an empty Map (of the appropriate type)
 	 * @see java.util.Map
 	 * @see java.util.TreeMap
 	 * @see java.util.LinkedHashMap
@@ -102,19 +104,16 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	public void setValue(@Nullable Object value) {
 		if (value == null && this.nullAsEmptyMap) {
 			super.setValue(createMap(this.mapType, 0));
-		}
-		else if (value == null || (this.mapType.isInstance(value) && !alwaysCreateNewMap())) {
+		} else if (value == null || (this.mapType.isInstance(value) && !alwaysCreateNewMap())) {
 			// Use the source value as-is, as it matches the target type.
 			super.setValue(value);
-		}
-		else if (value instanceof Map) {
+		} else if (value instanceof Map) {
 			// Convert Map elements.
 			Map<?, ?> source = (Map<?, ?>) value;
 			Map<Object, Object> target = createMap(this.mapType, source.size());
 			source.forEach((key, val) -> target.put(convertKey(key), convertValue(val)));
 			super.setValue(target);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Value cannot be converted to Map: " + value);
 		}
 	}
@@ -122,7 +121,8 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	/**
 	 * Create a Map of the given type, with the given
 	 * initial capacity (if supported by the Map type).
-	 * @param mapType a sub-interface of Map
+	 *
+	 * @param mapType         a sub-interface of Map
 	 * @param initialCapacity the initial capacity
 	 * @return the new Map instance
 	 */
@@ -131,16 +131,13 @@ public class CustomMapEditor extends PropertyEditorSupport {
 		if (!mapType.isInterface()) {
 			try {
 				return ReflectionUtils.accessibleConstructor(mapType).newInstance();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalArgumentException(
 						"Could not instantiate map class: " + mapType.getName(), ex);
 			}
-		}
-		else if (SortedMap.class == mapType) {
+		} else if (SortedMap.class == mapType) {
 			return new TreeMap<>();
-		}
-		else {
+		} else {
 			return new LinkedHashMap<>(initialCapacity);
 		}
 	}
@@ -150,6 +147,7 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	 * even if the type of the passed-in Map already matches.
 	 * <p>Default is "false"; can be overridden to enforce creation of a
 	 * new Map, for example to convert elements in any case.
+	 *
 	 * @see #convertKey
 	 * @see #convertValue
 	 */
@@ -166,6 +164,7 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	 * This is by default not the case if the type of the passed-in Map
 	 * already matches. Override {@link #alwaysCreateNewMap()} to
 	 * enforce creating a new Map in every case.
+	 *
 	 * @param key the source key
 	 * @return the key to be used in the target Map
 	 * @see #alwaysCreateNewMap
@@ -183,6 +182,7 @@ public class CustomMapEditor extends PropertyEditorSupport {
 	 * This is by default not the case if the type of the passed-in Map
 	 * already matches. Override {@link #alwaysCreateNewMap()} to
 	 * enforce creating a new Map in every case.
+	 *
 	 * @param value the source value
 	 * @return the value to be used in the target Map
 	 * @see #alwaysCreateNewMap

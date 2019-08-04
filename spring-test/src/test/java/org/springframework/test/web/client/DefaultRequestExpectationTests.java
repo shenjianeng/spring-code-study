@@ -34,6 +34,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 /**
  * Unit tests for {@link DefaultRequestExpectation}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DefaultRequestExpectationTests {
@@ -85,9 +86,8 @@ public class DefaultRequestExpectationTests {
 	@SuppressWarnings("deprecation")
 	private ClientHttpRequest createRequest(HttpMethod method, String url) {
 		try {
-			return new org.springframework.mock.http.client.MockAsyncClientHttpRequest(method,  new URI(url));
-		}
-		catch (URISyntaxException ex) {
+			return new org.springframework.mock.http.client.MockAsyncClientHttpRequest(method, new URI(url));
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

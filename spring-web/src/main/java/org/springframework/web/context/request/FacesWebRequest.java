@@ -38,6 +38,7 @@ public class FacesWebRequest extends FacesRequestAttributes implements NativeWeb
 
 	/**
 	 * Create a new FacesWebRequest adapter for the given FacesContext.
+	 *
 	 * @param facesContext the current FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */

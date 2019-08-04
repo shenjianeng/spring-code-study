@@ -49,6 +49,7 @@ import static org.mockito.Mockito.mock;
 
 /**
  * {@code @ControllerAdvice} related tests for {@link RequestMappingHandlerAdapter}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ControllerAdviceTests {
@@ -133,7 +134,7 @@ public class ControllerAdviceTests {
 	}
 
 	private HandlerResult handle(RequestMappingHandlerAdapter adapter,
-			Object controller, String methodName) throws Exception {
+								 Object controller, String methodName) throws Exception {
 
 		Method method = controller.getClass().getMethod(methodName);
 		HandlerMethod handlerMethod = new HandlerMethod(controller, method);

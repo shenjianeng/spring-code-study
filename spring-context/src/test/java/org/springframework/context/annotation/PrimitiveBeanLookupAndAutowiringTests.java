@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * Prior to these changes, an attempt to lookup or inject a bean of type boolean would
  * fail because all spring beans are Objects, regardless of initial type due to the way
  * that ObjectFactory works.
- *
+ * <p>
  * Now these attempts to lookup or inject primitive types work, thanks to simple changes
  * in AbstractBeanFactory using ClassUtils#isAssignable methods instead of the built-in
  * Class#isAssignableFrom. The former takes into account primitives and their object
@@ -93,13 +93,17 @@ public class PrimitiveBeanLookupAndAutowiringTests {
 
 
 	static class AutowiredComponent {
-		@Autowired boolean b;
-		@Autowired int i;
+		@Autowired
+		boolean b;
+		@Autowired
+		int i;
 	}
 
 
 	static class ResourceComponent {
-		@Resource boolean b;
-		@Autowired int i;
+		@Resource
+		boolean b;
+		@Autowired
+		int i;
 	}
 }

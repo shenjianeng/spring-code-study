@@ -64,7 +64,7 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 
 
 	public GenericTypeAwarePropertyDescriptor(Class<?> beanClass, String propertyName,
-			@Nullable Method readMethod, @Nullable Method writeMethod, Class<?> propertyEditorClass)
+											  @Nullable Method readMethod, @Nullable Method writeMethod, Class<?> propertyEditorClass)
 			throws IntrospectionException {
 
 		super(propertyName, null, null);
@@ -108,8 +108,7 @@ final class GenericTypeAwarePropertyDescriptor extends PropertyDescriptor {
 
 		if (this.readMethod != null) {
 			this.propertyType = GenericTypeResolver.resolveReturnType(this.readMethod, this.beanClass);
-		}
-		else if (this.writeMethodParameter != null) {
+		} else if (this.writeMethodParameter != null) {
 			this.propertyType = this.writeMethodParameter.getParameterType();
 		}
 

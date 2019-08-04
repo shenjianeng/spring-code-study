@@ -49,10 +49,10 @@ import org.springframework.web.server.ServerWebExchange;
 /**
  * Default {@link EntityResponse.Builder} implementation.
  *
+ * @param <T> a self reference to the builder type
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 5.0
- * @param <T> a self reference to the builder type
  */
 class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T> {
 
@@ -210,8 +210,8 @@ class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T> {
 
 
 		public DefaultEntityResponse(int statusCode, HttpHeaders headers,
-				MultiValueMap<String, ResponseCookie> cookies, T entity,
-				BodyInserter<T, ? super ServerHttpResponse> inserter, Map<String, Object> hints) {
+									 MultiValueMap<String, ResponseCookie> cookies, T entity,
+									 BodyInserter<T, ? super ServerHttpResponse> inserter, Map<String, Object> hints) {
 
 			super(statusCode, headers, cookies, hints);
 			this.entity = entity;
@@ -235,10 +235,12 @@ class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T> {
 				public List<HttpMessageWriter<?>> messageWriters() {
 					return context.messageWriters();
 				}
+
 				@Override
 				public Optional<ServerHttpRequest> serverRequest() {
 					return Optional.of(exchange.getRequest());
 				}
+
 				@Override
 				public Map<String, Object> hints() {
 					hints.put(Hints.LOG_PREFIX_HINT, exchange.getLogPrefix());

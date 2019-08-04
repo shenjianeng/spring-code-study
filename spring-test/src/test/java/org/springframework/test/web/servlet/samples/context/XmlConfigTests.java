@@ -45,8 +45,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration("src/test/resources/META-INF/web-resources")
 @ContextHierarchy({
-	@ContextConfiguration("root-context.xml"),
-	@ContextConfiguration("servlet-context.xml")
+		@ContextConfiguration("root-context.xml"),
+		@ContextConfiguration("servlet-context.xml")
 })
 public class XmlConfigTests {
 
@@ -68,16 +68,16 @@ public class XmlConfigTests {
 	@Test
 	public void person() throws Exception {
 		this.mockMvc.perform(get("/person/5").accept(MediaType.APPLICATION_JSON))
-			.andDo(print())
-			.andExpect(status().isOk())
-			.andExpect(content().string("{\"name\":\"Joe\",\"someDouble\":0.0,\"someBoolean\":false}"));
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().string("{\"name\":\"Joe\",\"someDouble\":0.0,\"someBoolean\":false}"));
 	}
 
 	@Test
 	public void tilesDefinitions() throws Exception {
 		this.mockMvc.perform(get("/"))//
-		.andExpect(status().isOk())//
-		.andExpect(forwardedUrl("/WEB-INF/layouts/standardLayout.jsp"));
+				.andExpect(status().isOk())//
+				.andExpect(forwardedUrl("/WEB-INF/layouts/standardLayout.jsp"));
 	}
 
 }

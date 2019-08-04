@@ -34,8 +34,8 @@ import javax.xml.stream.events.StartElement;
  * that wraps an {@link XMLEventWriter}.
  *
  * @author Arjen Poutsma
- * @since 3.0.5
  * @see StaxUtils#createEventStreamWriter(javax.xml.stream.XMLEventWriter, javax.xml.stream.XMLEventFactory)
+ * @since 3.0.5
  */
 class XMLEventStreamWriter implements XMLStreamWriter {
 

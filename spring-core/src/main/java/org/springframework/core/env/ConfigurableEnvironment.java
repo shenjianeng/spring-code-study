@@ -54,7 +54,7 @@ import java.util.Map;
  * MockPropertySource mockEnvVars = new MockPropertySource().withProperty("xyz", "myValue");
  * propertySources.replace(StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME, mockEnvVars);
  * </pre>
- *
+ * <p>
  * When an {@link Environment} is being used by an {@code ApplicationContext}, it is
  * important that any such {@code PropertySource} manipulations be performed
  * <em>before</em> the context's {@link
@@ -65,9 +65,9 @@ import java.util.Map;
  * placeholder configurers}.
  *
  * @author Chris Beams
- * @since 3.1
  * @see StandardEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
+ * @since 3.1
  */
 public interface ConfigurableEnvironment extends Environment, ConfigurablePropertyResolver {
 
@@ -78,6 +78,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * <p>Any existing active profiles will be replaced with the given arguments; call
 	 * with zero arguments to clear the current set of active profiles. Use
 	 * {@link #addActiveProfile} to add a profile while preserving the existing set.
+	 *
 	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
 	 * @see #addActiveProfile
 	 * @see #setDefaultProfiles
@@ -88,6 +89,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 
 	/**
 	 * Add a profile to the current set of active profiles.
+	 *
 	 * @throws IllegalArgumentException if the profile is null, empty or whitespace-only
 	 * @see #setActiveProfiles
 	 */
@@ -96,6 +98,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	/**
 	 * Specify the set of profiles to be made active by default if no other profiles
 	 * are explicitly made active through {@link #setActiveProfiles}.
+	 *
 	 * @throws IllegalArgumentException if any profile is null, empty or whitespace-only
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
 	 */
@@ -114,6 +117,7 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * certain user-defined property sources have search precedence over default property
 	 * sources such as the set of system properties or the set of system environment
 	 * variables.
+	 *
 	 * @see AbstractEnvironment#customizePropertySources
 	 */
 	MutablePropertySources getPropertySources();
@@ -162,9 +166,10 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	 * the parent environment occurring after the call to {@code merge} will not be
 	 * reflected in the child. Therefore, care should be taken to configure parent
 	 * property sources and profile information prior to calling {@code merge}.
+	 *
 	 * @param parent the environment to merge with
-	 * @since 3.1.2
 	 * @see org.springframework.context.support.AbstractApplicationContext#setParent
+	 * @since 3.1.2
 	 */
 	void merge(ConfigurableEnvironment parent);
 

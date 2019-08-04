@@ -33,6 +33,7 @@ public interface ExpressionParser {
 	 *     3 + 4
 	 *     name.firstName
 	 * </pre>
+	 *
 	 * @param expressionString the raw expression string to parse
 	 * @return an evaluator for the parsed expression
 	 * @throws ParseException an exception occurred during parsing
@@ -46,8 +47,9 @@ public interface ExpressionParser {
 	 *     3 + 4
 	 *     name.firstName
 	 * </pre>
+	 *
 	 * @param expressionString the raw expression string to parse
-	 * @param context a context for influencing this expression parsing routine (optional)
+	 * @param context          a context for influencing this expression parsing routine (optional)
 	 * @return an evaluator for the parsed expression
 	 * @throws ParseException an exception occurred during parsing
 	 */

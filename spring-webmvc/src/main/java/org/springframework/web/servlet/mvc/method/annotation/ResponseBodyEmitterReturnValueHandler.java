@@ -76,14 +76,15 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 
 	/**
 	 * Complete constructor with pluggable "reactive" type support.
+	 *
 	 * @param messageConverters converters to write emitted objects with
-	 * @param registry for reactive return value type support
-	 * @param executor for blocking I/O writes of items emitted from reactive types
-	 * @param manager for detecting streaming media types
+	 * @param registry          for reactive return value type support
+	 * @param executor          for blocking I/O writes of items emitted from reactive types
+	 * @param manager           for detecting streaming media types
 	 * @since 5.0
 	 */
 	public ResponseBodyEmitterReturnValueHandler(List<HttpMessageConverter<?>> messageConverters,
-			ReactiveAdapterRegistry registry, TaskExecutor executor, ContentNegotiationManager manager) {
+												 ReactiveAdapterRegistry registry, TaskExecutor executor, ContentNegotiationManager manager) {
 
 		Assert.notEmpty(messageConverters, "HttpMessageConverter List must not be empty");
 		this.messageConverters = messageConverters;
@@ -104,7 +105,7 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 	@Override
 	@SuppressWarnings("resource")
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);
@@ -134,8 +135,7 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 		ResponseBodyEmitter emitter;
 		if (returnValue instanceof ResponseBodyEmitter) {
 			emitter = (ResponseBodyEmitter) returnValue;
-		}
-		else {
+		} else {
 			emitter = this.reactiveHandler.handleValue(returnValue, returnType, mavContainer, webRequest);
 			if (emitter == null) {
 				// Not streaming: write headers without committing response..

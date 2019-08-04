@@ -34,9 +34,9 @@ import org.springframework.test.context.TestContextManager;
  * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see #evaluate()
  * @see RunBeforeTestExecutionCallbacks
+ * @since 5.0
  */
 public class RunAfterTestExecutionCallbacks extends Statement {
 
@@ -51,15 +51,16 @@ public class RunAfterTestExecutionCallbacks extends Statement {
 
 	/**
 	 * Construct a new {@code RunAfterTestExecutionCallbacks} statement.
-	 * @param next the next {@code Statement} in the execution chain
-	 * @param testInstance the current test instance (never {@code null})
-	 * @param testMethod the test method which has just been executed on the
-	 * test instance
+	 *
+	 * @param next               the next {@code Statement} in the execution chain
+	 * @param testInstance       the current test instance (never {@code null})
+	 * @param testMethod         the test method which has just been executed on the
+	 *                           test instance
 	 * @param testContextManager the TestContextManager upon which to call
-	 * {@code afterTestExecution()}
+	 *                           {@code afterTestExecution()}
 	 */
 	public RunAfterTestExecutionCallbacks(Statement next, Object testInstance, Method testMethod,
-			TestContextManager testContextManager) {
+										  TestContextManager testContextManager) {
 
 		this.next = next;
 		this.testInstance = testInstance;
@@ -82,16 +83,14 @@ public class RunAfterTestExecutionCallbacks extends Statement {
 		List<Throwable> errors = new ArrayList<>();
 		try {
 			this.next.evaluate();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			testException = ex;
 			errors.add(ex);
 		}
 
 		try {
 			this.testContextManager.afterTestExecution(this.testInstance, this.testMethod, testException);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			errors.add(ex);
 		}
 

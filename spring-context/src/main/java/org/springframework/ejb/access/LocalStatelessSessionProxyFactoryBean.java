@@ -45,21 +45,25 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Colin Sampaleanu
- * @since 09.05.2003
  * @see AbstractSlsbInvokerInterceptor#setLookupHomeOnStartup
  * @see AbstractSlsbInvokerInterceptor#setCacheHome
+ * @since 09.05.2003
  */
 public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInterceptor
 		implements FactoryBean<Object>, BeanClassLoaderAware {
 
-	/** The business interface of the EJB we're proxying. */
+	/**
+	 * The business interface of the EJB we're proxying.
+	 */
 	@Nullable
 	private Class<?> businessInterface;
 
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
-	/** EJBLocalObject. */
+	/**
+	 * EJBLocalObject.
+	 */
 	@Nullable
 	private Object proxy;
 
@@ -68,6 +72,7 @@ public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInter
 	 * Set the business interface of the EJB we're proxying.
 	 * This will normally be a super-interface of the EJB local component interface.
 	 * Using a business methods interface is a best practice when implementing EJBs.
+	 *
 	 * @param businessInterface set the business interface of the EJB
 	 */
 	public void setBusinessInterface(@Nullable Class<?> businessInterface) {

@@ -129,7 +129,6 @@ public class ConfigurationClassAspectIntegrationTests {
 	}
 
 
-
 	@Configuration
 	@EnableAspectJAutoProxy
 	public static class Application {

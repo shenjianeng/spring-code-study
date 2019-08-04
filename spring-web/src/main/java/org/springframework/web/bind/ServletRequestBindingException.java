@@ -34,6 +34,7 @@ public class ServletRequestBindingException extends NestedServletException {
 
 	/**
 	 * Constructor for ServletRequestBindingException.
+	 *
 	 * @param msg the detail message
 	 */
 	public ServletRequestBindingException(String msg) {
@@ -42,7 +43,8 @@ public class ServletRequestBindingException extends NestedServletException {
 
 	/**
 	 * Constructor for ServletRequestBindingException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public ServletRequestBindingException(String msg, Throwable cause) {

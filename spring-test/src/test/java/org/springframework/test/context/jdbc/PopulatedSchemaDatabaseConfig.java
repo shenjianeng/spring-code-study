@@ -43,9 +43,9 @@ public class PopulatedSchemaDatabaseConfig {
 	@Bean
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()//
-		.setName("populated-sql-scripts-test-db")//
-		.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql") //
-		.build();
+				.setName("populated-sql-scripts-test-db")//
+				.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql") //
+				.build();
 	}
 
 	@Bean

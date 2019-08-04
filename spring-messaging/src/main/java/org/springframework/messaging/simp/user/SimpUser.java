@@ -40,6 +40,7 @@ public interface SimpUser {
 
 	/**
 	 * Look up the session for the given id.
+	 *
 	 * @param sessionId the session id
 	 * @return the matching session, or {@code null} if none found
 	 */
@@ -49,6 +50,7 @@ public interface SimpUser {
 	/**
 	 * Return the sessions for the user.
 	 * The returned set is a copy and will never be modified.
+	 *
 	 * @return a set of session ids, or an empty set if none
 	 */
 	Set<SimpSession> getSessions();

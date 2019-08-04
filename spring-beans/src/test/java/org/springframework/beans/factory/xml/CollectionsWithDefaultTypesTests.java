@@ -69,7 +69,7 @@ public class CollectionsWithDefaultTypesTests {
 		assertMap(bean.getSomeMap());
 	}
 
-	private void assertMap(Map<?,?> map) {
+	private void assertMap(Map<?, ?> map) {
 		for (Map.Entry entry : map.entrySet()) {
 			assertEquals("Key type is incorrect", Integer.class, entry.getKey().getClass());
 			assertEquals("Value type is incorrect", Boolean.class, entry.getValue().getClass());

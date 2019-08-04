@@ -102,8 +102,7 @@ public class JmsNamespaceHandlerTests {
 		for (DefaultMessageListenerContainer container : containers.values()) {
 			if (container.getConnectionFactory().equals(defaultConnectionFactory)) {
 				defaultConnectionFactoryCount++;
-			}
-			else if (container.getConnectionFactory().equals(explicitConnectionFactory)) {
+			} else if (container.getConnectionFactory().equals(explicitConnectionFactory)) {
 				explicitConnectionFactoryCount++;
 			}
 		}
@@ -172,7 +171,7 @@ public class JmsNamespaceHandlerTests {
 		JmsMessageEndpointManager container =
 				factory.createListenerContainer(createDummyEndpoint());
 		assertEquals("explicit resource adapter not set",
-				context.getBean("testResourceAdapter"),container.getResourceAdapter());
+				context.getBean("testResourceAdapter"), container.getResourceAdapter());
 		assertEquals("explicit message converter not set",
 				context.getBean("testMessageConverter"), container.getActivationSpecConfig().getMessageConverter());
 		assertEquals("Wrong pub/sub", true, container.isPubSubDomain());
@@ -309,10 +308,10 @@ public class JmsNamespaceHandlerTests {
 		assertTrue("Parser should have registered a component named 'listener3'",
 				context.containsComponentDefinition("listener3"));
 		assertTrue("Parser should have registered a component named '"
-				+ DefaultMessageListenerContainer.class.getName() + "#0'",
+						+ DefaultMessageListenerContainer.class.getName() + "#0'",
 				context.containsComponentDefinition(DefaultMessageListenerContainer.class.getName() + "#0"));
 		assertTrue("Parser should have registered a component named '"
-				+ JmsMessageEndpointManager.class.getName() + "#0'",
+						+ JmsMessageEndpointManager.class.getName() + "#0'",
 				context.containsComponentDefinition(JmsMessageEndpointManager.class.getName() + "#0"));
 		assertTrue("Parser should have registered a component named 'testJmsFactory",
 				context.containsComponentDefinition("testJmsFactory"));
@@ -358,7 +357,7 @@ public class JmsNamespaceHandlerTests {
 	private long getRecoveryInterval(String containerBeanName) {
 		BackOff backOff = getBackOff(containerBeanName);
 		assertEquals(FixedBackOff.class, backOff.getClass());
-		return ((FixedBackOff)backOff).getInterval();
+		return ((FixedBackOff) backOff).getInterval();
 	}
 
 	private int getPhase(String containerBeanName) {
@@ -416,8 +415,7 @@ public class JmsNamespaceHandlerTests {
 							return true;
 						}
 					}
-				}
-				else {
+				} else {
 					if (cd.getName().equals(name)) {
 						return true;
 					}

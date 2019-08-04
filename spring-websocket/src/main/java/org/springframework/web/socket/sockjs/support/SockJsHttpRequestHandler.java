@@ -62,7 +62,8 @@ public class SockJsHttpRequestHandler
 
 	/**
 	 * Create a new SockJsHttpRequestHandler.
-	 * @param sockJsService the SockJS service
+	 *
+	 * @param sockJsService    the SockJS service
 	 * @param webSocketHandler the websocket handler
 	 */
 	public SockJsHttpRequestHandler(SockJsService sockJsService, WebSocketHandler webSocketHandler) {
@@ -131,8 +132,7 @@ public class SockJsHttpRequestHandler
 
 		try {
 			this.sockJsService.handleRequest(request, response, getSockJsPath(servletRequest), this.webSocketHandler);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new SockJsException("Uncaught failure in SockJS request, uri=" + request.getURI(), ex);
 		}
 	}

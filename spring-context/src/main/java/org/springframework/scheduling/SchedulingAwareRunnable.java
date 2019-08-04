@@ -28,11 +28,11 @@ package org.springframework.scheduling;
  * as appropriately as they are able to.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see commonj.work.Work
  * @see org.springframework.core.task.TaskExecutor
  * @see SchedulingTaskExecutor
  * @see org.springframework.scheduling.commonj.WorkManagerTaskExecutor
+ * @since 2.0
  */
 public interface SchedulingAwareRunnable extends Runnable {
 

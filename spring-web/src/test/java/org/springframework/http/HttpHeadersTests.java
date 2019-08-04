@@ -262,8 +262,7 @@ public class HttpHeadersTests {
 			headers.setDate(date);
 			assertEquals("Invalid Date header", "Thu, 18 Dec 2008 10:20:00 GMT", headers.getFirst("date"));
 			assertEquals("Invalid Date header", date, headers.getDate());
-		}
-		finally {
+		} finally {
 			Locale.setDefault(defaultLocale);
 		}
 	}
@@ -490,7 +489,7 @@ public class HttpHeadersTests {
 
 	@Test
 	public void contentLanguageSerialized() {
-		headers.set(HttpHeaders.CONTENT_LANGUAGE,  "de, en_CA");
+		headers.set(HttpHeaders.CONTENT_LANGUAGE, "de, en_CA");
 		assertEquals("Expected one (first) locale", Locale.GERMAN, headers.getContentLanguage());
 	}
 

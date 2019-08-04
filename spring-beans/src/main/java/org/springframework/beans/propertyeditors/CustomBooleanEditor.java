@@ -33,8 +33,8 @@ import org.springframework.util.StringUtils;
  * {@code binder.registerCustomEditor} calls.
  *
  * @author Juergen Hoeller
- * @since 10.06.2003
  * @see org.springframework.validation.DataBinder#registerCustomEditor
+ * @since 10.06.2003
  */
 public class CustomBooleanEditor extends PropertyEditorSupport {
 
@@ -94,6 +94,7 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	 * <p>The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as null value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
+	 *
 	 * @param allowEmpty if empty strings should be allowed
 	 */
 	public CustomBooleanEditor(boolean allowEmpty) {
@@ -106,13 +107,14 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	 * <p>The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as null value.
 	 * Else, an IllegalArgumentException gets thrown in that case.
-	 * @param trueString the String value that represents true:
-	 * for example, "true" (VALUE_TRUE), "on" (VALUE_ON),
-	 * "yes" (VALUE_YES) or some custom value
+	 *
+	 * @param trueString  the String value that represents true:
+	 *                    for example, "true" (VALUE_TRUE), "on" (VALUE_ON),
+	 *                    "yes" (VALUE_YES) or some custom value
 	 * @param falseString the String value that represents false:
-	 * for example, "false" (VALUE_FALSE), "off" (VALUE_OFF),
-	 * "no" (VALUE_NO) or some custom value
-	 * @param allowEmpty if empty strings should be allowed
+	 *                    for example, "false" (VALUE_FALSE), "off" (VALUE_OFF),
+	 *                    "no" (VALUE_NO) or some custom value
+	 * @param allowEmpty  if empty strings should be allowed
 	 * @see #VALUE_TRUE
 	 * @see #VALUE_FALSE
 	 * @see #VALUE_ON
@@ -133,24 +135,19 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 		if (this.allowEmpty && !StringUtils.hasLength(input)) {
 			// Treat empty String as null value.
 			setValue(null);
-		}
-		else if (this.trueString != null && this.trueString.equalsIgnoreCase(input)) {
+		} else if (this.trueString != null && this.trueString.equalsIgnoreCase(input)) {
 			setValue(Boolean.TRUE);
-		}
-		else if (this.falseString != null && this.falseString.equalsIgnoreCase(input)) {
+		} else if (this.falseString != null && this.falseString.equalsIgnoreCase(input)) {
 			setValue(Boolean.FALSE);
-		}
-		else if (this.trueString == null &&
+		} else if (this.trueString == null &&
 				(VALUE_TRUE.equalsIgnoreCase(input) || VALUE_ON.equalsIgnoreCase(input) ||
 						VALUE_YES.equalsIgnoreCase(input) || VALUE_1.equals(input))) {
 			setValue(Boolean.TRUE);
-		}
-		else if (this.falseString == null &&
+		} else if (this.falseString == null &&
 				(VALUE_FALSE.equalsIgnoreCase(input) || VALUE_OFF.equalsIgnoreCase(input) ||
 						VALUE_NO.equalsIgnoreCase(input) || VALUE_0.equals(input))) {
 			setValue(Boolean.FALSE);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Invalid boolean value [" + text + "]");
 		}
 	}
@@ -159,11 +156,9 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	public String getAsText() {
 		if (Boolean.TRUE.equals(getValue())) {
 			return (this.trueString != null ? this.trueString : VALUE_TRUE);
-		}
-		else if (Boolean.FALSE.equals(getValue())) {
+		} else if (Boolean.FALSE.equals(getValue())) {
 			return (this.falseString != null ? this.falseString : VALUE_FALSE);
-		}
-		else {
+		} else {
 			return "";
 		}
 	}

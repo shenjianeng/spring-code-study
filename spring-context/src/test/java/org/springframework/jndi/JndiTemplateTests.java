@@ -68,8 +68,7 @@ public class JndiTemplateTests {
 		try {
 			jt.lookup(name);
 			fail("Should have thrown NamingException");
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			// Ok
 		}
 		verify(context).close();
@@ -91,8 +90,7 @@ public class JndiTemplateTests {
 		try {
 			jt.lookup(name);
 			fail("Should have thrown NamingException");
-		}
-		catch (NameNotFoundException ex) {
+		} catch (NameNotFoundException ex) {
 			// Ok
 		}
 		verify(context).close();
@@ -115,8 +113,7 @@ public class JndiTemplateTests {
 		try {
 			jt.lookup(name, String.class);
 			fail("Should have thrown TypeMismatchNamingException");
-		}
-		catch (TypeMismatchNamingException ex) {
+		} catch (TypeMismatchNamingException ex) {
 			// Ok
 		}
 		verify(context).close();

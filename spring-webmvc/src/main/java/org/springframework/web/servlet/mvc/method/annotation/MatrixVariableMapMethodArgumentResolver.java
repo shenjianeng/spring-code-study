@@ -61,7 +61,7 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 	@Override
 	@Nullable
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
+								  NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
 		@SuppressWarnings("unchecked")
 		Map<String, MultiValueMap<String, String>> matrixVariables =
@@ -83,8 +83,7 @@ public class MatrixVariableMapMethodArgumentResolver implements HandlerMethodArg
 				return Collections.emptyMap();
 			}
 			map.putAll(mapForPathVariable);
-		}
-		else {
+		} else {
 			for (MultiValueMap<String, String> vars : matrixVariables.values()) {
 				vars.forEach((name, values) -> {
 					for (String value : values) {

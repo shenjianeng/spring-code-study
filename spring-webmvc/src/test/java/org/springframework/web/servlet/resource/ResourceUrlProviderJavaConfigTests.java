@@ -114,8 +114,8 @@ public class ResourceUrlProviderJavaConfigTests {
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/resources/**")
-				.addResourceLocations("classpath:org/springframework/web/servlet/resource/test/")
-				.resourceChain(true).addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
+					.addResourceLocations("classpath:org/springframework/web/servlet/resource/test/")
+					.resourceChain(true).addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
 		}
 	}
 

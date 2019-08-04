@@ -57,8 +57,7 @@ class CachePutInterceptor extends AbstractKeyCacheInterceptor<CachePutOperation,
 				cacheValue(context, value);
 			}
 			return result;
-		}
-		catch (CacheOperationInvoker.ThrowableWrapper ex) {
+		} catch (CacheOperationInvoker.ThrowableWrapper ex) {
 			Throwable original = ex.getOriginal();
 			if (!earlyPut && operation.getExceptionTypeFilter().match(original.getClass())) {
 				cacheValue(context, value);

@@ -40,9 +40,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
- * @since 2.0.3
  * @see javax.management.MBeanServer
  * @see MBeanServerFactoryBean
+ * @since 2.0.3
  */
 public class WebSphereMBeanServerFactoryBean implements FactoryBean<MBeanServer>, InitializingBean {
 
@@ -68,15 +68,12 @@ public class WebSphereMBeanServerFactoryBean implements FactoryBean<MBeanServer>
 			Object mbeanFactory = getMBeanFactoryMethod.invoke(null);
 			Method getMBeanServerMethod = mbeanFactory.getClass().getMethod(GET_MBEAN_SERVER_METHOD);
 			this.mbeanServer = (MBeanServer) getMBeanServerMethod.invoke(mbeanFactory);
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			throw new MBeanServerNotFoundException("Could not find WebSphere's AdminServiceFactory class", ex);
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			throw new MBeanServerNotFoundException(
 					"WebSphere's AdminServiceFactory.getMBeanFactory/getMBeanServer method failed", ex.getTargetException());
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new MBeanServerNotFoundException(
 					"Could not access WebSphere's AdminServiceFactory.getMBeanFactory/getMBeanServer method", ex);
 		}

@@ -97,10 +97,12 @@ class DefaultClientResponse implements ClientResponse {
 			public List<HttpMessageReader<?>> messageReaders() {
 				return strategies.messageReaders();
 			}
+
 			@Override
 			public Optional<ServerHttpResponse> serverResponse() {
 				return Optional.empty();
 			}
+
 			@Override
 			public Map<String, Object> hints() {
 				return Hints.from(Hints.LOG_PREFIX_HINT, logPrefix);

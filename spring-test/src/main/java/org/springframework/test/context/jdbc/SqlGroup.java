@@ -35,8 +35,8 @@ import java.lang.annotation.Target;
  * <em>composed annotations</em>.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see Sql
+ * @since 4.1
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

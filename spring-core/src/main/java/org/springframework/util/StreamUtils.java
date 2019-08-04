@@ -40,8 +40,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @author Brian Clozel
- * @since 3.2.2
  * @see FileCopyUtils
+ * @since 3.2.2
  */
 public abstract class StreamUtils {
 
@@ -56,6 +56,7 @@ public abstract class StreamUtils {
 	/**
 	 * Copy the contents of the given InputStream into a new byte array.
 	 * Leaves the stream open when done.
+	 *
 	 * @param in the stream to copy from (may be {@code null} or empty)
 	 * @return the new byte array that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -73,6 +74,7 @@ public abstract class StreamUtils {
 	/**
 	 * Copy the contents of the given InputStream into a String.
 	 * Leaves the stream open when done.
+	 *
 	 * @param in the InputStream to copy from (may be {@code null} or empty)
 	 * @return the String that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -95,7 +97,8 @@ public abstract class StreamUtils {
 	/**
 	 * Copy the contents of the given byte array to the given OutputStream.
 	 * Leaves the stream open when done.
-	 * @param in the byte array to copy from
+	 *
+	 * @param in  the byte array to copy from
 	 * @param out the OutputStream to copy to
 	 * @throws IOException in case of I/O errors
 	 */
@@ -109,9 +112,10 @@ public abstract class StreamUtils {
 	/**
 	 * Copy the contents of the given String to the given output OutputStream.
 	 * Leaves the stream open when done.
-	 * @param in the String to copy from
+	 *
+	 * @param in      the String to copy from
 	 * @param charset the Charset
-	 * @param out the OutputStream to copy to
+	 * @param out     the OutputStream to copy to
 	 * @throws IOException in case of I/O errors
 	 */
 	public static void copy(String in, Charset charset, OutputStream out) throws IOException {
@@ -127,7 +131,8 @@ public abstract class StreamUtils {
 	/**
 	 * Copy the contents of the given InputStream to the given OutputStream.
 	 * Leaves both streams open when done.
-	 * @param in the InputStream to copy from
+	 *
+	 * @param in  the InputStream to copy from
 	 * @param out the OutputStream to copy to
 	 * @return the number of bytes copied
 	 * @throws IOException in case of I/O errors
@@ -152,10 +157,11 @@ public abstract class StreamUtils {
 	 * <p>If the specified range exceeds the length of the InputStream, this copies
 	 * up to the end of the stream and returns the actual number of copied bytes.
 	 * <p>Leaves both streams open when done.
-	 * @param in the InputStream to copy from
-	 * @param out the OutputStream to copy to
+	 *
+	 * @param in    the InputStream to copy from
+	 * @param out   the OutputStream to copy to
 	 * @param start the position to start copying from
-	 * @param end the position to end copying
+	 * @param end   the position to end copying
 	 * @return the number of bytes copied
 	 * @throws IOException in case of I/O errors
 	 * @since 4.3
@@ -175,12 +181,10 @@ public abstract class StreamUtils {
 			int bytesRead = in.read(buffer);
 			if (bytesRead == -1) {
 				break;
-			}
-			else if (bytesRead <= bytesToCopy) {
+			} else if (bytesRead <= bytesToCopy) {
 				out.write(buffer, 0, bytesRead);
 				bytesToCopy -= bytesRead;
-			}
-			else {
+			} else {
 				out.write(buffer, 0, (int) bytesToCopy);
 				bytesToCopy = 0;
 			}
@@ -191,6 +195,7 @@ public abstract class StreamUtils {
 	/**
 	 * Drain the remaining content of the given InputStream.
 	 * Leaves the InputStream open when done.
+	 *
 	 * @param in the InputStream to drain
 	 * @return the number of bytes read
 	 * @throws IOException in case of I/O errors
@@ -209,6 +214,7 @@ public abstract class StreamUtils {
 
 	/**
 	 * Return an efficient empty {@link InputStream}.
+	 *
 	 * @return a {@link ByteArrayInputStream} based on an empty byte array
 	 * @since 4.2.2
 	 */
@@ -219,6 +225,7 @@ public abstract class StreamUtils {
 	/**
 	 * Return a variant of the given {@link InputStream} where calling
 	 * {@link InputStream#close() close()} has no effect.
+	 *
 	 * @param in the InputStream to decorate
 	 * @return a version of the InputStream that ignores calls to close
 	 */
@@ -230,6 +237,7 @@ public abstract class StreamUtils {
 	/**
 	 * Return a variant of the given {@link OutputStream} where calling
 	 * {@link OutputStream#close() close()} has no effect.
+	 *
 	 * @param out the OutputStream to decorate
 	 * @return a version of the OutputStream that ignores calls to close
 	 */

@@ -284,6 +284,7 @@ public class ResourceHttpRequestHandlerTests {
 			public String getMimeType(String filePath) {
 				return "foo/bar";
 			}
+
 			@Override
 			public String getVirtualServerName() {
 				return "";
@@ -671,11 +672,9 @@ public class ResourceHttpRequestHandlerTests {
 		public String getMimeType(String filePath) {
 			if (filePath.endsWith(".css")) {
 				return "text/css";
-			}
-			else if (filePath.endsWith(".js")) {
+			} else if (filePath.endsWith(".js")) {
 				return "text/javascript";
-			}
-			else {
+			} else {
 				return super.getMimeType(filePath);
 			}
 		}

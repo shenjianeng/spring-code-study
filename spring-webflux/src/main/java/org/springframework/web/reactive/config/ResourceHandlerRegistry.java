@@ -69,6 +69,7 @@ public class ResourceHandlerRegistry {
 	/**
 	 * Create a new resource handler registry for the given resource loader
 	 * (typically an application context).
+	 *
 	 * @param resourceLoader the resource loader to use
 	 */
 	public ResourceHandlerRegistry(ResourceLoader resourceLoader) {
@@ -78,13 +79,13 @@ public class ResourceHandlerRegistry {
 	/**
 	 * Configure the {@link ResourceUrlProvider} that can be used by
 	 * {@link org.springframework.web.reactive.resource.ResourceTransformer} instances.
+	 *
 	 * @param resourceUrlProvider the resource URL provider to use
 	 * @since 5.0.11
 	 */
 	public void setResourceUrlProvider(@Nullable ResourceUrlProvider resourceUrlProvider) {
 		this.resourceUrlProvider = resourceUrlProvider;
 	}
-
 
 
 	/**
@@ -94,6 +95,7 @@ public class ResourceHandlerRegistry {
 	 * <p>Patterns like {@code "/static/**"} or {@code "/css/{filename:\\w+\\.css}"}
 	 * are allowed. See {@link org.springframework.web.util.pattern.PathPattern}
 	 * for more details on the syntax.
+	 *
 	 * @return a {@link ResourceHandlerRegistration} to use to further configure
 	 * the registered resource handler
 	 */
@@ -145,8 +147,7 @@ public class ResourceHandlerRegistry {
 				});
 				try {
 					handler.afterPropertiesSet();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new BeanInitializationException("Failed to init ResourceHttpRequestHandler", ex);
 				}
 				urlMap.put(pathPattern, handler);

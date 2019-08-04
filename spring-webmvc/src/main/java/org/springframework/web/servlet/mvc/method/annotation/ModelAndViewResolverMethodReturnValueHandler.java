@@ -79,7 +79,7 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 
 		if (this.mavResolvers != null) {
 			for (ModelAndViewResolver mavResolver : this.mavResolvers) {
@@ -102,8 +102,7 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 		// No suitable ModelAndViewResolver...
 		if (this.modelAttributeProcessor.supportsReturnType(returnType)) {
 			this.modelAttributeProcessor.handleReturnValue(returnValue, returnType, mavContainer, webRequest);
-		}
-		else {
+		} else {
 			throw new UnsupportedOperationException("Unexpected return type: " +
 					returnType.getParameterType().getName() + " in method: " + returnType.getMethod());
 		}

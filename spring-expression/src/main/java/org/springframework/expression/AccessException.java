@@ -27,6 +27,7 @@ public class AccessException extends Exception {
 
 	/**
 	 * Create an AccessException with a specific message.
+	 *
 	 * @param message the message
 	 */
 	public AccessException(String message) {
@@ -35,8 +36,9 @@ public class AccessException extends Exception {
 
 	/**
 	 * Create an AccessException with a specific message and cause.
+	 *
 	 * @param message the message
-	 * @param cause the cause
+	 * @param cause   the cause
 	 */
 	public AccessException(String message, Exception cause) {
 		super(message, cause);

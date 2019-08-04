@@ -132,7 +132,7 @@ public class ConventionsTests {
 
 	private static MethodParameter getMethodParameter(Class<?> parameterType) {
 		Method method = ClassUtils.getMethod(TestBean.class, "handle", (Class<?>[]) null);
-		for (int i=0; i < method.getParameterCount(); i++) {
+		for (int i = 0; i < method.getParameterCount(); i++) {
 			if (parameterType.equals(method.getParameterTypes()[i])) {
 				return new MethodParameter(method, i);
 			}
@@ -153,23 +153,38 @@ public class ConventionsTests {
 	private static class TestBean {
 
 		public void handle(TestObject to,
-				List<TestObject> toList, Set<TestObject> toSet,
-				Mono<TestObject> toMono, Flux<TestObject> toFlux,
-				Single<TestObject> toSingle, Observable<TestObject> toObservable) { }
+						   List<TestObject> toList, Set<TestObject> toSet,
+						   Mono<TestObject> toMono, Flux<TestObject> toFlux,
+						   Single<TestObject> toSingle, Observable<TestObject> toObservable) {
+		}
 
-		public TestObject handleTo() { return null; }
+		public TestObject handleTo() {
+			return null;
+		}
 
-		public List<TestObject> handleToList() { return null; }
+		public List<TestObject> handleToList() {
+			return null;
+		}
 
-		public Set<TestObject> handleToSet() { return null; }
+		public Set<TestObject> handleToSet() {
+			return null;
+		}
 
-		public Mono<TestObject> handleToMono() { return null; }
+		public Mono<TestObject> handleToMono() {
+			return null;
+		}
 
-		public Flux<TestObject> handleToFlux() { return null; }
+		public Flux<TestObject> handleToFlux() {
+			return null;
+		}
 
-		public Single<TestObject> handleToSingle() { return null; }
+		public Single<TestObject> handleToSingle() {
+			return null;
+		}
 
-		public Observable<TestObject> handleToObservable() { return null; }
+		public Observable<TestObject> handleToObservable() {
+			return null;
+		}
 
 	}
 

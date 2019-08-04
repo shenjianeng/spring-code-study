@@ -73,8 +73,7 @@ public class ServletContextSupportTests {
 		try {
 			wac.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof IllegalStateException);
 			assertTrue(ex.getCause().getMessage().contains("myAttr"));
@@ -112,8 +111,7 @@ public class ServletContextSupportTests {
 		try {
 			wac.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof IllegalStateException);
 			assertTrue(ex.getCause().getMessage().contains("myParam"));

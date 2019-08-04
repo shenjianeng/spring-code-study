@@ -29,13 +29,14 @@ import org.springframework.lang.Nullable;
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 4.1
  * @see BasicOperation#getCacheNames()
+ * @since 4.1
  */
 public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
 	 * Construct a new {@code SimpleCacheResolver}.
+	 *
 	 * @see #setCacheManager
 	 */
 	public SimpleCacheResolver() {
@@ -43,6 +44,7 @@ public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
 	 * Construct a new {@code SimpleCacheResolver} for the given {@link CacheManager}.
+	 *
 	 * @param cacheManager the CacheManager to use
 	 */
 	public SimpleCacheResolver(CacheManager cacheManager) {
@@ -58,6 +60,7 @@ public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
 	 * Return a {@code SimpleCacheResolver} for the given {@link CacheManager}.
+	 *
 	 * @param cacheManager the CacheManager (potentially {@code null})
 	 * @return the SimpleCacheResolver ({@code null} if the CacheManager was {@code null})
 	 * @since 5.1

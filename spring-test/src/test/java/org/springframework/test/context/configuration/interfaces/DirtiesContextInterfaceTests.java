@@ -63,7 +63,7 @@ public class DirtiesContextInterfaceTests {
 	public void verifyDirtiesContextBehavior() throws Exception {
 		runTestClassAndAssertStats(ClassLevelDirtiesContextWithCleanMethodsAndDefaultModeTestCase.class, 1);
 		assertContextCacheStatistics("after class-level @DirtiesContext with clean test method and default class mode",
-			0, cacheHits.get(), cacheMisses.incrementAndGet());
+				0, cacheHits.get(), cacheMisses.incrementAndGet());
 	}
 
 	private void runTestClassAndAssertStats(Class<?> testClass, int expectedTestCount) throws Exception {

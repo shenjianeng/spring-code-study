@@ -33,6 +33,7 @@ public class DB2MainframeSequenceMaxValueIncrementer extends AbstractSequenceMax
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -41,7 +42,8 @@ public class DB2MainframeSequenceMaxValueIncrementer extends AbstractSequenceMax
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public DB2MainframeSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {

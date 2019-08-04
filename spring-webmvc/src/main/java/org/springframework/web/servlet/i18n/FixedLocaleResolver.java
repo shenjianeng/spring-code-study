@@ -34,15 +34,16 @@ import org.springframework.lang.Nullable;
  * locale and time zone cannot be changed.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #setDefaultLocale
  * @see #setDefaultTimeZone
+ * @since 1.1
  */
 public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * Create a default FixedLocaleResolver, exposing a configured default
 	 * locale (or the JVM's default locale as fallback).
+	 *
 	 * @see #setDefaultLocale
 	 * @see #setDefaultTimeZone
 	 */
@@ -52,6 +53,7 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * Create a FixedLocaleResolver that exposes the given locale.
+	 *
 	 * @param locale the locale to expose
 	 */
 	public FixedLocaleResolver(Locale locale) {
@@ -60,7 +62,8 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 
 	/**
 	 * Create a FixedLocaleResolver that exposes the given locale and time zone.
-	 * @param locale the locale to expose
+	 *
+	 * @param locale   the locale to expose
 	 * @param timeZone the time zone to expose
 	 */
 	public FixedLocaleResolver(Locale locale, TimeZone timeZone) {
@@ -86,6 +89,7 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 			public Locale getLocale() {
 				return getDefaultLocale();
 			}
+
 			@Override
 			public TimeZone getTimeZone() {
 				return getDefaultTimeZone();
@@ -94,8 +98,8 @@ public class FixedLocaleResolver extends AbstractLocaleContextResolver {
 	}
 
 	@Override
-	public void setLocaleContext( HttpServletRequest request, @Nullable HttpServletResponse response,
-			@Nullable LocaleContext localeContext) {
+	public void setLocaleContext(HttpServletRequest request, @Nullable HttpServletResponse response,
+								 @Nullable LocaleContext localeContext) {
 
 		throw new UnsupportedOperationException("Cannot change fixed locale - use a different locale resolution strategy");
 	}

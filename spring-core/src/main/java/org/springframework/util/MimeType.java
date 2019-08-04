@@ -47,8 +47,8 @@ import org.springframework.lang.Nullable;
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
  * @author Sam Brannen
- * @since 4.0
  * @see MimeTypeUtils
+ * @since 4.0
  */
 public class MimeType implements Comparable<MimeType>, Serializable {
 
@@ -108,6 +108,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * Create a new {@code MimeType} for the given primary type.
 	 * <p>The {@linkplain #getSubtype() subtype} is set to <code>"&#42;"</code>,
 	 * and the parameters are empty.
+	 *
 	 * @param type the primary type
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
 	 */
@@ -118,7 +119,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Create a new {@code MimeType} for the given primary type and subtype.
 	 * <p>The parameters are empty.
-	 * @param type the primary type
+	 *
+	 * @param type    the primary type
 	 * @param subtype the subtype
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
 	 */
@@ -128,7 +130,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Create a new {@code MimeType} for the given type, subtype, and character set.
-	 * @param type the primary type
+	 *
+	 * @param type    the primary type
 	 * @param subtype the subtype
 	 * @param charset the character set
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
@@ -140,7 +143,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Copy-constructor that copies the type, subtype, parameters of the given {@code MimeType},
 	 * and allows to set the specified character set.
-	 * @param other the other MimeType
+	 *
+	 * @param other   the other MimeType
 	 * @param charset the character set
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
 	 * @since 4.3
@@ -152,7 +156,8 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Copy-constructor that copies the type and subtype of the given {@code MimeType},
 	 * and allows for different parameter.
-	 * @param other the other MimeType
+	 *
+	 * @param other      the other MimeType
 	 * @param parameters the parameters (may be {@code null})
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
 	 */
@@ -162,8 +167,9 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Create a new {@code MimeType} for the given type, subtype, and parameters.
-	 * @param type the primary type
-	 * @param subtype the subtype
+	 *
+	 * @param type       the primary type
+	 * @param subtype    the subtype
 	 * @param parameters the parameters (may be {@code null})
 	 * @throws IllegalArgumentException if any of the parameters contains illegal characters
 	 */
@@ -181,8 +187,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 				map.put(attribute, value);
 			});
 			this.parameters = Collections.unmodifiableMap(map);
-		}
-		else {
+		} else {
 			this.parameters = Collections.emptyMap();
 		}
 	}
@@ -190,11 +195,12 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Checks the given token string for illegal characters, as defined in RFC 2616,
 	 * section 2.2.
+	 *
 	 * @throws IllegalArgumentException in case of illegal characters
 	 * @see <a href="https://tools.ietf.org/html/rfc2616#section-2.2">HTTP 1.1, section 2.2</a>
 	 */
 	private void checkToken(String token) {
-		for (int i = 0; i < token.length(); i++ ) {
+		for (int i = 0; i < token.length(); i++) {
 			char ch = token.charAt(i);
 			if (!TOKEN.get(ch)) {
 				throw new IllegalArgumentException("Invalid token character '" + ch + "' in token \"" + token + "\"");
@@ -209,8 +215,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 		if (PARAM_CHARSET.equals(attribute)) {
 			value = unquote(value);
 			Charset.forName(value);
-		}
-		else if (!isQuotedString(value)) {
+		} else if (!isQuotedString(value)) {
 			checkToken(value);
 		}
 	}
@@ -218,8 +223,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	private boolean isQuotedString(String s) {
 		if (s.length() < 2) {
 			return false;
-		}
-		else {
+		} else {
 			return ((s.startsWith("\"") && s.endsWith("\"")) || (s.startsWith("'") && s.endsWith("'")));
 		}
 	}
@@ -240,6 +244,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * Indicates whether the {@linkplain #getSubtype() subtype} is the wildcard
 	 * character <code>&#42;</code> or the wildcard character followed by a suffix
 	 * (e.g. <code>&#42;+xml</code>).
+	 *
 	 * @return whether the subtype is a wildcard
 	 */
 	public boolean isWildcardSubtype() {
@@ -249,6 +254,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Indicates whether this MIME Type is concrete, i.e. whether neither the type
 	 * nor the subtype is a wildcard character <code>&#42;</code>.
+	 *
 	 * @return whether this MIME Type is concrete
 	 */
 	public boolean isConcrete() {
@@ -271,6 +277,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Return the character set, as indicated by a {@code charset} parameter, if any.
+	 *
 	 * @return the character set, or {@code null} if not available
 	 * @since 4.3
 	 */
@@ -282,6 +289,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Return a generic parameter value, given a parameter name.
+	 *
 	 * @param name the parameter name
 	 * @return the parameter value, or {@code null} if not present
 	 */
@@ -292,6 +300,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Return all generic parameter values.
+	 *
 	 * @return a read-only map (possibly empty, never {@code null})
 	 */
 	public Map<String, String> getParameters() {
@@ -303,6 +312,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * <p>For instance, {@code text/*} includes {@code text/plain} and {@code text/html},
 	 * and {@code application/*+xml} includes {@code application/soap+xml}, etc.
 	 * This method is <b>not</b> symmetric.
+	 *
 	 * @param other the reference MIME Type with which to compare
 	 * @return {@code true} if this MIME Type includes the given MIME Type;
 	 * {@code false} otherwise
@@ -314,8 +324,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 		if (isWildcardType()) {
 			// */* includes anything
 			return true;
-		}
-		else if (getType().equals(other.getType())) {
+		} else if (getType().equals(other.getType())) {
 			if (getSubtype().equals(other.getSubtype())) {
 				return true;
 			}
@@ -324,8 +333,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 				int thisPlusIdx = getSubtype().lastIndexOf('+');
 				if (thisPlusIdx == -1) {
 					return true;
-				}
-				else {
+				} else {
 					// application/*+xml includes application/soap+xml
 					int otherPlusIdx = other.getSubtype().lastIndexOf('+');
 					if (otherPlusIdx != -1) {
@@ -347,6 +355,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * <p>For instance, {@code text/*} is compatible with {@code text/plain},
 	 * {@code text/html}, and vice versa. In effect, this method is similar to
 	 * {@link #includes}, except that it <b>is</b> symmetric.
+	 *
 	 * @param other the reference MIME Type with which to compare
 	 * @return {@code true} if this MIME Type is compatible with the given MIME Type;
 	 * {@code false} otherwise
@@ -357,8 +366,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 		}
 		if (isWildcardType() || other.isWildcardType()) {
 			return true;
-		}
-		else if (getType().equals(other.getType())) {
+		} else if (getType().equals(other.getType())) {
 			if (getSubtype().equals(other.getSubtype())) {
 				return true;
 			}
@@ -368,8 +376,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 				int otherPlusIdx = other.getSubtype().lastIndexOf('+');
 				if (thisPlusIdx == -1 && otherPlusIdx == -1) {
 					return true;
-				}
-				else if (thisPlusIdx != -1 && otherPlusIdx != -1) {
+				} else if (thisPlusIdx != -1 && otherPlusIdx != -1) {
 					String thisSubtypeNoSuffix = getSubtype().substring(0, thisPlusIdx);
 					String otherSubtypeNoSuffix = other.getSubtype().substring(0, otherPlusIdx);
 					String thisSubtypeSuffix = getSubtype().substring(thisPlusIdx + 1);
@@ -387,6 +394,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	/**
 	 * Similar to {@link #equals(Object)} but based on the type and subtype
 	 * only, i.e. ignoring parameters.
+	 *
 	 * @param other the other mime type to compare to
 	 * @return whether the two mime types have the same type and subtype
 	 * @since 5.1.4
@@ -402,6 +410,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * Unlike {@link Collection#contains(Object)} which relies on
 	 * {@link MimeType#equals(Object)}, this method only checks the type and the
 	 * subtype, but otherwise ignores parameters.
+	 *
 	 * @param mimeTypes the list of mime types to perform the check against
 	 * @return whether the list contains the given mime type
 	 * @since 5.1.4
@@ -434,6 +443,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * Determine if the parameters in this {@code MimeType} and the supplied
 	 * {@code MimeType} are equal, performing case-insensitive comparisons
 	 * for {@link Charset Charsets}.
+	 *
 	 * @since 4.2
 	 */
 	private boolean parametersAreEqual(MimeType other) {
@@ -450,8 +460,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 				if (!ObjectUtils.nullSafeEquals(getCharset(), other.getCharset())) {
 					return false;
 				}
-			}
-			else if (!ObjectUtils.nullSafeEquals(entry.getValue(), other.parameters.get(key))) {
+			} else if (!ObjectUtils.nullSafeEquals(entry.getValue(), other.parameters.get(key))) {
 				return false;
 			}
 		}
@@ -492,6 +501,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 
 	/**
 	 * Compares this MIME Type to another alphabetically.
+	 *
 	 * @param other the MIME Type to compare to
 	 * @see MimeTypeUtils#sortBySpecificity(List)
 	 */
@@ -539,8 +549,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 						return comp;
 					}
 				}
-			}
-			else {
+			} else {
 				String thisValue = getParameters().get(thisAttribute);
 				String otherValue = other.getParameters().get(otherAttribute);
 				if (otherValue == null) {
@@ -561,6 +570,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * Parse the given String value into a {@code MimeType} object,
 	 * with this method name following the 'valueOf' naming convention
 	 * (as supported by {@link org.springframework.core.convert.ConversionService}.
+	 *
 	 * @see MimeTypeUtils#parseMimeType(String)
 	 */
 	public static MimeType valueOf(String value) {
@@ -585,24 +595,18 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 		public int compare(T mimeType1, T mimeType2) {
 			if (mimeType1.isWildcardType() && !mimeType2.isWildcardType()) {  // */* < audio/*
 				return 1;
-			}
-			else if (mimeType2.isWildcardType() && !mimeType1.isWildcardType()) {  // audio/* > */*
+			} else if (mimeType2.isWildcardType() && !mimeType1.isWildcardType()) {  // audio/* > */*
 				return -1;
-			}
-			else if (!mimeType1.getType().equals(mimeType2.getType())) {  // audio/basic == text/html
+			} else if (!mimeType1.getType().equals(mimeType2.getType())) {  // audio/basic == text/html
 				return 0;
-			}
-			else {  // mediaType1.getType().equals(mediaType2.getType())
+			} else {  // mediaType1.getType().equals(mediaType2.getType())
 				if (mimeType1.isWildcardSubtype() && !mimeType2.isWildcardSubtype()) {  // audio/* < audio/basic
 					return 1;
-				}
-				else if (mimeType2.isWildcardSubtype() && !mimeType1.isWildcardSubtype()) {  // audio/basic > audio/*
+				} else if (mimeType2.isWildcardSubtype() && !mimeType1.isWildcardSubtype()) {  // audio/basic > audio/*
 					return -1;
-				}
-				else if (!mimeType1.getSubtype().equals(mimeType2.getSubtype())) {  // audio/basic == audio/wave
+				} else if (!mimeType1.getSubtype().equals(mimeType2.getSubtype())) {  // audio/basic == audio/wave
 					return 0;
-				}
-				else {  // mediaType2.getSubtype().equals(mediaType2.getSubtype())
+				} else {  // mediaType2.getSubtype().equals(mediaType2.getSubtype())
 					return compareParameters(mimeType1, mimeType2);
 				}
 			}

@@ -224,7 +224,7 @@ public class ClientSockJsSessionTests {
 
 
 		protected TestClientSockJsSession(TransportRequest request, WebSocketHandler handler,
-				SettableListenableFuture<WebSocketSession> connectFuture) {
+										  SettableListenableFuture<WebSocketSession> connectFuture) {
 			super(request, handler, connectFuture);
 		}
 

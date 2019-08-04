@@ -34,9 +34,9 @@ import java.lang.annotation.Target;
  * declarations of {@code @BootstrapWith}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see BootstrapContext
  * @see TestContextBootstrapper
+ * @since 4.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

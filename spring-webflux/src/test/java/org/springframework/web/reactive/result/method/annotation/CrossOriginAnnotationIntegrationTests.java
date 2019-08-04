@@ -144,11 +144,11 @@ public class CrossOriginAnnotationIntegrationTests extends AbstractRequestMappin
 
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 		assertEquals("https://site1.com", entity.getHeaders().getAccessControlAllowOrigin());
-		assertArrayEquals(new HttpMethod[] {HttpMethod.GET},
+		assertArrayEquals(new HttpMethod[]{HttpMethod.GET},
 				entity.getHeaders().getAccessControlAllowMethods().toArray());
-		assertArrayEquals(new String[] {"header1", "header2"},
+		assertArrayEquals(new String[]{"header1", "header2"},
 				entity.getHeaders().getAccessControlAllowHeaders().toArray());
-		assertArrayEquals(new String[] {"header3", "header4"},
+		assertArrayEquals(new String[]{"header3", "header4"},
 				entity.getHeaders().getAccessControlExposeHeaders().toArray());
 		assertFalse(entity.getHeaders().getAccessControlAllowCredentials());
 		assertEquals(123, entity.getHeaders().getAccessControlMaxAge());
@@ -199,9 +199,9 @@ public class CrossOriginAnnotationIntegrationTests extends AbstractRequestMappin
 
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 		assertEquals("https://site1.com", entity.getHeaders().getAccessControlAllowOrigin());
-		assertArrayEquals(new HttpMethod[] {HttpMethod.GET},
+		assertArrayEquals(new HttpMethod[]{HttpMethod.GET},
 				entity.getHeaders().getAccessControlAllowMethods().toArray());
-		assertArrayEquals(new String[] {"header1"},
+		assertArrayEquals(new String[]{"header1"},
 				entity.getHeaders().getAccessControlAllowHeaders().toArray());
 		assertTrue(entity.getHeaders().getAccessControlAllowCredentials());
 	}
@@ -213,7 +213,7 @@ public class CrossOriginAnnotationIntegrationTests extends AbstractRequestMappin
 
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 		assertEquals("https://site1.com", entity.getHeaders().getAccessControlAllowOrigin());
-		assertArrayEquals(new HttpMethod[] {HttpMethod.GET},
+		assertArrayEquals(new HttpMethod[]{HttpMethod.GET},
 				entity.getHeaders().getAccessControlAllowMethods().toArray());
 		assertTrue(entity.getHeaders().getAccessControlAllowCredentials());
 	}
@@ -227,7 +227,8 @@ public class CrossOriginAnnotationIntegrationTests extends AbstractRequestMappin
 	}
 
 
-	@RestController @SuppressWarnings("unused")
+	@RestController
+	@SuppressWarnings("unused")
 	private static class MethodLevelController {
 
 		@GetMapping("/no")
@@ -274,13 +275,13 @@ public class CrossOriginAnnotationIntegrationTests extends AbstractRequestMappin
 		}
 
 		@CrossOrigin(
-				origins = { "https://site1.com", "https://site2.com" },
-				allowedHeaders = { "header1", "header2" },
-				exposedHeaders = { "header3", "header4" },
+				origins = {"https://site1.com", "https://site2.com"},
+				allowedHeaders = {"header1", "header2"},
+				exposedHeaders = {"header3", "header4"},
 				methods = RequestMethod.GET,
 				maxAge = 123,
 				allowCredentials = "false")
-		@RequestMapping(path = "/customized", method = { RequestMethod.GET, RequestMethod.POST })
+		@RequestMapping(path = "/customized", method = {RequestMethod.GET, RequestMethod.POST})
 		public String customized() {
 			return "customized";
 		}

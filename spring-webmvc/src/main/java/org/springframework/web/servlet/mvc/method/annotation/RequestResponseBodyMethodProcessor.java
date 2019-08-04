@@ -77,7 +77,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	 * {@code ResponseBodyAdvice}.
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
-			@Nullable ContentNegotiationManager manager) {
+											  @Nullable ContentNegotiationManager manager) {
 
 		super(converters, manager);
 	}
@@ -86,10 +86,11 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	 * Complete constructor for resolving {@code @RequestBody} method arguments.
 	 * For handling {@code @ResponseBody} consider also providing a
 	 * {@code ContentNegotiationManager}.
+	 *
 	 * @since 4.2
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
-			@Nullable List<Object> requestResponseBodyAdvice) {
+											  @Nullable List<Object> requestResponseBodyAdvice) {
 
 		super(converters, null, requestResponseBodyAdvice);
 	}
@@ -99,7 +100,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	 * {@code @ResponseBody}.
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
-			@Nullable ContentNegotiationManager manager, @Nullable List<Object> requestResponseBodyAdvice) {
+											  @Nullable ContentNegotiationManager manager, @Nullable List<Object> requestResponseBodyAdvice) {
 
 		super(converters, manager, requestResponseBodyAdvice);
 	}
@@ -118,13 +119,14 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 
 	/**
 	 * Throws MethodArgumentNotValidException if validation fails.
+	 *
 	 * @throws HttpMessageNotReadableException if {@link RequestBody#required()}
-	 * is {@code true} and there is no body content or if there is no suitable
-	 * converter to read the content with.
+	 *                                         is {@code true} and there is no body content or if there is no suitable
+	 *                                         converter to read the content with.
 	 */
 	@Override
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
+								  NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
 		parameter = parameter.nestedIfOptional();
 		Object arg = readWithMessageConverters(webRequest, parameter, parameter.getNestedGenericParameterType());
@@ -148,7 +150,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 
 	@Override
 	protected <T> Object readWithMessageConverters(NativeWebRequest webRequest, MethodParameter parameter,
-			Type paramType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
+												   Type paramType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
 
 		HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
 		Assert.state(servletRequest != null, "No HttpServletRequest");
@@ -169,7 +171,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest)
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest)
 			throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
 
 		mavContainer.setRequestHandled(true);

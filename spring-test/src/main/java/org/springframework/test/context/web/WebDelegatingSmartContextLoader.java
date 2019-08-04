@@ -28,20 +28,20 @@ import org.springframework.util.ClassUtils;
  * Groovy is present on the classpath) and an {@link AnnotationConfigWebContextLoader}.
  *
  * @author Sam Brannen
- * @since 3.2
  * @see SmartContextLoader
  * @see AbstractDelegatingSmartContextLoader
  * @see GenericXmlWebContextLoader
  * @see AnnotationConfigWebContextLoader
+ * @since 3.2
  */
 public class WebDelegatingSmartContextLoader extends AbstractDelegatingSmartContextLoader {
 
 	private static final String GROOVY_XML_WEB_CONTEXT_LOADER_CLASS_NAME = "org.springframework.test.context.web.GenericGroovyXmlWebContextLoader";
 
 	private static final boolean groovyPresent = ClassUtils.isPresent("groovy.lang.Closure",
-		WebDelegatingSmartContextLoader.class.getClassLoader())
+			WebDelegatingSmartContextLoader.class.getClassLoader())
 			&& ClassUtils.isPresent(GROOVY_XML_WEB_CONTEXT_LOADER_CLASS_NAME,
-				WebDelegatingSmartContextLoader.class.getClassLoader());
+			WebDelegatingSmartContextLoader.class.getClassLoader());
 
 	private final SmartContextLoader xmlLoader;
 	private final SmartContextLoader annotationConfigLoader;
@@ -51,15 +51,13 @@ public class WebDelegatingSmartContextLoader extends AbstractDelegatingSmartCont
 		if (groovyPresent) {
 			try {
 				Class<?> loaderClass = ClassUtils.forName(GROOVY_XML_WEB_CONTEXT_LOADER_CLASS_NAME,
-					WebDelegatingSmartContextLoader.class.getClassLoader());
+						WebDelegatingSmartContextLoader.class.getClassLoader());
 				this.xmlLoader = (SmartContextLoader) BeanUtils.instantiateClass(loaderClass);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalStateException("Failed to enable support for Groovy scripts; "
 						+ "could not load class: " + GROOVY_XML_WEB_CONTEXT_LOADER_CLASS_NAME, ex);
 			}
-		}
-		else {
+		} else {
 			this.xmlLoader = new GenericXmlWebContextLoader();
 		}
 

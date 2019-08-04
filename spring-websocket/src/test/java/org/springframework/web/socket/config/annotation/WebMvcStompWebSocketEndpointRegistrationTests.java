@@ -64,7 +64,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void minimalRegistration() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		MultiValueMap<HttpRequestHandler, String> mappings = registration.getMappings();
 		assertEquals(1, mappings.size());
@@ -78,7 +78,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void allowedOrigins() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		registration.setAllowedOrigins();
 
@@ -94,7 +94,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void sameOrigin() {
 		WebMvcStompWebSocketEndpointRegistration registration = new WebMvcStompWebSocketEndpointRegistration(
-				new String[] {"/foo"}, this.handler, this.scheduler);
+				new String[]{"/foo"}, this.handler, this.scheduler);
 
 		registration.setAllowedOrigins();
 
@@ -110,27 +110,27 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void allowedOriginsWithSockJsService() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		String origin = "https://mydomain.com";
 		registration.setAllowedOrigins(origin).withSockJS();
 
 		MultiValueMap<HttpRequestHandler, String> mappings = registration.getMappings();
 		assertEquals(1, mappings.size());
-		SockJsHttpRequestHandler requestHandler = (SockJsHttpRequestHandler)mappings.entrySet().iterator().next().getKey();
+		SockJsHttpRequestHandler requestHandler = (SockJsHttpRequestHandler) mappings.entrySet().iterator().next().getKey();
 		assertNotNull(requestHandler.getSockJsService());
-		DefaultSockJsService sockJsService = (DefaultSockJsService)requestHandler.getSockJsService();
+		DefaultSockJsService sockJsService = (DefaultSockJsService) requestHandler.getSockJsService();
 		assertTrue(sockJsService.getAllowedOrigins().contains(origin));
 		assertFalse(sockJsService.shouldSuppressCors());
 
 		registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 		registration.withSockJS().setAllowedOrigins(origin);
 		mappings = registration.getMappings();
 		assertEquals(1, mappings.size());
-		requestHandler = (SockJsHttpRequestHandler)mappings.entrySet().iterator().next().getKey();
+		requestHandler = (SockJsHttpRequestHandler) mappings.entrySet().iterator().next().getKey();
 		assertNotNull(requestHandler.getSockJsService());
-		sockJsService = (DefaultSockJsService)requestHandler.getSockJsService();
+		sockJsService = (DefaultSockJsService) requestHandler.getSockJsService();
 		assertTrue(sockJsService.getAllowedOrigins().contains(origin));
 		assertFalse(sockJsService.shouldSuppressCors());
 	}
@@ -138,22 +138,22 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test  // SPR-12283
 	public void disableCorsWithSockJsService() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		registration.withSockJS().setSupressCors(true);
 
 		MultiValueMap<HttpRequestHandler, String> mappings = registration.getMappings();
 		assertEquals(1, mappings.size());
-		SockJsHttpRequestHandler requestHandler = (SockJsHttpRequestHandler)mappings.entrySet().iterator().next().getKey();
+		SockJsHttpRequestHandler requestHandler = (SockJsHttpRequestHandler) mappings.entrySet().iterator().next().getKey();
 		assertNotNull(requestHandler.getSockJsService());
-		DefaultSockJsService sockJsService = (DefaultSockJsService)requestHandler.getSockJsService();
+		DefaultSockJsService sockJsService = (DefaultSockJsService) requestHandler.getSockJsService();
 		assertTrue(sockJsService.shouldSuppressCors());
 	}
 
 	@Test
 	public void handshakeHandlerAndInterceptor() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		DefaultHandshakeHandler handshakeHandler = new DefaultHandshakeHandler();
 		HttpSessionHandshakeInterceptor interceptor = new HttpSessionHandshakeInterceptor();
@@ -177,7 +177,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void handshakeHandlerAndInterceptorWithAllowedOrigins() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		DefaultHandshakeHandler handshakeHandler = new DefaultHandshakeHandler();
 		HttpSessionHandshakeInterceptor interceptor = new HttpSessionHandshakeInterceptor();
@@ -201,7 +201,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void handshakeHandlerInterceptorWithSockJsService() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		DefaultHandshakeHandler handshakeHandler = new DefaultHandshakeHandler();
 		HttpSessionHandshakeInterceptor interceptor = new HttpSessionHandshakeInterceptor();
@@ -231,7 +231,7 @@ public class WebMvcStompWebSocketEndpointRegistrationTests {
 	@Test
 	public void handshakeHandlerInterceptorWithSockJsServiceAndAllowedOrigins() {
 		WebMvcStompWebSocketEndpointRegistration registration =
-				new WebMvcStompWebSocketEndpointRegistration(new String[] {"/foo"}, this.handler, this.scheduler);
+				new WebMvcStompWebSocketEndpointRegistration(new String[]{"/foo"}, this.handler, this.scheduler);
 
 		DefaultHandshakeHandler handshakeHandler = new DefaultHandshakeHandler();
 		HttpSessionHandshakeInterceptor interceptor = new HttpSessionHandshakeInterceptor();

@@ -76,8 +76,7 @@ public class WebClientDataBufferAllocatingTests extends AbstractDataBufferAlloca
 			ByteBufAllocator allocator = ((NettyDataBufferFactory) bufferFactory).getByteBufAllocator();
 			return new ReactorClientHttpConnector(this.factory, httpClient ->
 					httpClient.tcpConfiguration(tcpClient -> tcpClient.option(ChannelOption.ALLOCATOR, allocator)));
-		}
-		else {
+		} else {
 			return new ReactorClientHttpConnector();
 		}
 	}
@@ -87,7 +86,6 @@ public class WebClientDataBufferAllocatingTests extends AbstractDataBufferAlloca
 		waitForDataBufferRelease(Duration.ofSeconds(2));
 		this.factory.destroy();
 	}
-
 
 
 	@Test
@@ -117,7 +115,8 @@ public class WebClientDataBufferAllocatingTests extends AbstractDataBufferAlloca
 		Mono<Map<String, String>> mono = this.webClient.get()
 				.uri("/sample").accept(MediaType.APPLICATION_JSON)
 				.retrieve()
-				.bodyToMono(new ParameterizedTypeReference<Map<String, String>>() {});
+				.bodyToMono(new ParameterizedTypeReference<Map<String, String>>() {
+				});
 
 		StepVerifier.create(mono).expectError(UnsupportedMediaTypeException.class).verify(Duration.ofSeconds(3));
 		assertEquals(1, this.server.getRequestCount());
@@ -157,7 +156,7 @@ public class WebClientDataBufferAllocatingTests extends AbstractDataBufferAlloca
 
 
 	private void testOnStatus(Throwable expected,
-			Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
+							  Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
 
 		HttpStatus errorStatus = HttpStatus.BAD_GATEWAY;
 

@@ -240,22 +240,22 @@ public class DateFormattingTests {
 
 		private Long millisAnnotated;
 
-		@DateTimeFormat(style="S-")
+		@DateTimeFormat(style = "S-")
 		private Calendar calendarAnnotated;
 
-		@DateTimeFormat(style="S-")
+		@DateTimeFormat(style = "S-")
 		private Date dateAnnotated;
 
-		@DateTimeFormat(pattern="M/d/yy h:mm")
+		@DateTimeFormat(pattern = "M/d/yy h:mm")
 		private Date dateAnnotatedPattern;
 
-		@DateTimeFormat(iso=ISO.DATE)
+		@DateTimeFormat(iso = ISO.DATE)
 		private Date isoDate;
 
-		@DateTimeFormat(iso=ISO.TIME)
+		@DateTimeFormat(iso = ISO.TIME)
 		private Date isoTime;
 
-		@DateTimeFormat(iso=ISO.DATE_TIME)
+		@DateTimeFormat(iso = ISO.DATE_TIME)
 		private Date isoDateTime;
 
 		private final List<SimpleDateBean> children = new ArrayList<>();
@@ -268,12 +268,12 @@ public class DateFormattingTests {
 			this.millis = millis;
 		}
 
-		@DateTimeFormat(style="S-")
+		@DateTimeFormat(style = "S-")
 		public Long getMillisAnnotated() {
 			return millisAnnotated;
 		}
 
-		public void setMillisAnnotated(@DateTimeFormat(style="S-") Long millisAnnotated) {
+		public void setMillisAnnotated(@DateTimeFormat(style = "S-") Long millisAnnotated) {
 			this.millisAnnotated = millisAnnotated;
 		}
 

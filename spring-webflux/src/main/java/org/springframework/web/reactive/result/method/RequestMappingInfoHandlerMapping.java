@@ -59,8 +59,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 	static {
 		try {
 			HTTP_OPTIONS_HANDLE_METHOD = HttpOptionsHandler.class.getMethod("handle");
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			// Should never happen
 			throw new IllegalStateException("No handler for HTTP OPTIONS", ex);
 		}
@@ -71,6 +70,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 	 * Check if the given RequestMappingInfo matches the current request and
 	 * return a (potentially new) instance with conditions that match the
 	 * current request -- for example with a subset of URL patterns.
+	 *
 	 * @return an info in case of a match; or {@code null} otherwise.
 	 */
 	@Override
@@ -88,13 +88,14 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 	/**
 	 * Expose URI template variables, matrix variables, and producible media types in the request.
+	 *
 	 * @see HandlerMapping#URI_TEMPLATE_VARIABLES_ATTRIBUTE
 	 * @see HandlerMapping#MATRIX_VARIABLES_ATTRIBUTE
 	 * @see HandlerMapping#PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE
 	 */
 	@Override
 	protected void handleMatch(RequestMappingInfo info, HandlerMethod handlerMethod,
-			ServerWebExchange exchange) {
+							   ServerWebExchange exchange) {
 
 		super.handleMatch(info, handlerMethod, exchange);
 
@@ -109,8 +110,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 			bestPattern = getPathPatternParser().parse(lookupPath.value());
 			uriVariables = Collections.emptyMap();
 			matrixVariables = Collections.emptyMap();
-		}
-		else {
+		} else {
 			bestPattern = patterns.iterator().next();
 			PathPattern.PathMatchInfo result = bestPattern.matchAndExtract(lookupPath);
 			Assert.notNull(result, () ->
@@ -133,17 +133,18 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 	/**
 	 * Iterate all RequestMappingInfos once again, look if any match by URL at
 	 * least and raise exceptions accordingly.
-	 * @throws MethodNotAllowedException for matches by URL but not by HTTP method
+	 *
+	 * @throws MethodNotAllowedException           for matches by URL but not by HTTP method
 	 * @throws UnsupportedMediaTypeStatusException if there are matches by URL
-	 * and HTTP method but not by consumable media types
-	 * @throws NotAcceptableStatusException if there are matches by URL and HTTP
-	 * method but not by producible media types
-	 * @throws ServerWebInputException if there are matches by URL and HTTP
-	 * method but not by query parameter conditions
+	 *                                             and HTTP method but not by consumable media types
+	 * @throws NotAcceptableStatusException        if there are matches by URL and HTTP
+	 *                                             method but not by producible media types
+	 * @throws ServerWebInputException             if there are matches by URL and HTTP
+	 *                                             method but not by query parameter conditions
 	 */
 	@Override
 	protected HandlerMethod handleNoMatch(Set<RequestMappingInfo> infos,
-			ServerWebExchange exchange) throws Exception {
+										  ServerWebExchange exchange) throws Exception {
 
 		PartialMatchHelper helper = new PartialMatchHelper(infos, exchange);
 
@@ -168,8 +169,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 			MediaType contentType;
 			try {
 				contentType = request.getHeaders().getContentType();
-			}
-			catch (InvalidMediaTypeException ex) {
+			} catch (InvalidMediaTypeException ex) {
 				throw new UnsupportedMediaTypeStatusException(ex.getMessage());
 			}
 			throw new UnsupportedMediaTypeStatusException(contentType, new ArrayList<>(mediaTypes));
@@ -304,7 +304,8 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 
 			/**
 			 * Create a new {@link PartialMatch} instance.
-			 * @param info the RequestMappingInfo that matches the URL path
+			 *
+			 * @param info     the RequestMappingInfo that matches the URL path
 			 * @param exchange the current exchange
 			 */
 			public PartialMatch(RequestMappingInfo info, ServerWebExchange exchange) {
@@ -360,8 +361,7 @@ public abstract class RequestMappingInfoHandlerMapping extends AbstractHandlerMe
 				return EnumSet.allOf(HttpMethod.class).stream()
 						.filter(method -> method != HttpMethod.TRACE)
 						.collect(Collectors.toSet());
-			}
-			else {
+			} else {
 				Set<HttpMethod> result = new LinkedHashSet<>(declaredMethods);
 				if (result.contains(HttpMethod.GET)) {
 					result.add(HttpMethod.HEAD);

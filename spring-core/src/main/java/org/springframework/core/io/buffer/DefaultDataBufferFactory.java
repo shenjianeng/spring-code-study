@@ -33,6 +33,7 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * The default capacity when none is specified.
+	 *
 	 * @see #DefaultDataBufferFactory()
 	 * @see #DefaultDataBufferFactory(boolean)
 	 */
@@ -55,8 +56,9 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 	 * Creates a new {@code DefaultDataBufferFactory}, indicating whether direct
 	 * buffers should be created by {@link #allocateBuffer()} and
 	 * {@link #allocateBuffer(int)}.
+	 *
 	 * @param preferDirect {@code true} if direct buffers are to be preferred;
-	 * {@code false} otherwise
+	 *                     {@code false} otherwise
 	 */
 	public DefaultDataBufferFactory(boolean preferDirect) {
 		this(preferDirect, DEFAULT_INITIAL_CAPACITY);
@@ -67,8 +69,9 @@ public class DefaultDataBufferFactory implements DataBufferFactory {
 	 * buffers should be created by {@link #allocateBuffer()} and
 	 * {@link #allocateBuffer(int)}, and what the capacity is to be used for
 	 * {@link #allocateBuffer()}.
+	 *
 	 * @param preferDirect {@code true} if direct buffers are to be preferred;
-	 * {@code false} otherwise
+	 *                     {@code false} otherwise
 	 */
 	public DefaultDataBufferFactory(boolean preferDirect, int defaultInitialCapacity) {
 		Assert.isTrue(defaultInitialCapacity > 0, "'defaultInitialCapacity' should be larger than 0");

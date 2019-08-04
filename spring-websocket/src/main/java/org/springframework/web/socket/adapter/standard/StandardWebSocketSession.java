@@ -75,30 +75,32 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 
 	/**
 	 * Constructor for a standard WebSocket session.
-	 * @param headers the headers of the handshake request
-	 * @param attributes attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
-	 * @param localAddress the address on which the request was received
+	 *
+	 * @param headers       the headers of the handshake request
+	 * @param attributes    attributes from the HTTP handshake to associate with the WebSocket
+	 *                      session; the provided attributes are copied, the original map is not used.
+	 * @param localAddress  the address on which the request was received
 	 * @param remoteAddress the address of the remote client
 	 */
 	public StandardWebSocketSession(@Nullable HttpHeaders headers, @Nullable Map<String, Object> attributes,
-			@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress) {
+									@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress) {
 
 		this(headers, attributes, localAddress, remoteAddress, null);
 	}
 
 	/**
 	 * Constructor that associates a user with the WebSocket session.
-	 * @param headers the headers of the handshake request
-	 * @param attributes attributes from the HTTP handshake to associate with the WebSocket session
-	 * @param localAddress the address on which the request was received
+	 *
+	 * @param headers       the headers of the handshake request
+	 * @param attributes    attributes from the HTTP handshake to associate with the WebSocket session
+	 * @param localAddress  the address on which the request was received
 	 * @param remoteAddress the address of the remote client
-	 * @param user the user associated with the session; if {@code null} we'll
-	 * fallback on the user available in the underlying WebSocket session
+	 * @param user          the user associated with the session; if {@code null} we'll
+	 *                      fallback on the user available in the underlying WebSocket session
 	 */
 	public StandardWebSocketSession(@Nullable HttpHeaders headers, @Nullable Map<String, Object> attributes,
-			@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress,
-			@Nullable Principal user) {
+									@Nullable InetSocketAddress localAddress, @Nullable InetSocketAddress remoteAddress,
+									@Nullable Principal user) {
 
 		super(attributes);
 		this.id = idGenerator.generateId().toString();
@@ -198,8 +200,7 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 				this.extensions.add(new StandardToWebSocketExtensionAdapter(standardExtension));
 			}
 			this.extensions = Collections.unmodifiableList(this.extensions);
-		}
-		else {
+		} else {
 			this.extensions = Collections.emptyList();
 		}
 

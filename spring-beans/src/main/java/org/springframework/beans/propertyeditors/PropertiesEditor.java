@@ -44,6 +44,7 @@ public class PropertiesEditor extends PropertyEditorSupport {
 	/**
 	 * Convert {@link String} into {@link Properties}, considering it as
 	 * properties content.
+	 *
 	 * @param text the text to be so converted
 	 */
 	@Override
@@ -53,8 +54,7 @@ public class PropertiesEditor extends PropertyEditorSupport {
 			try {
 				// Must use the ISO-8859-1 encoding because Properties.load(stream) expects it.
 				props.load(new ByteArrayInputStream(text.getBytes(StandardCharsets.ISO_8859_1)));
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				// Should never happen.
 				throw new IllegalArgumentException(
 						"Failed to parse [" + text + "] into Properties", ex);
@@ -72,8 +72,7 @@ public class PropertiesEditor extends PropertyEditorSupport {
 			Properties props = new Properties();
 			props.putAll((Map<?, ?>) value);
 			super.setValue(props);
-		}
-		else {
+		} else {
 			super.setValue(value);
 		}
 	}

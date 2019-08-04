@@ -91,8 +91,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			createAccessor(null);
 			fail("Must throw an exception when constructed with null object");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -242,8 +241,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.getPropertyValue("address.country.name");
 			fail("Should have failed to get value with null intermediate path");
-		}
-		catch (NullValueInNestedPathException e) {
+		} catch (NullValueInNestedPathException e) {
 			assertEquals("address", e.getPropertyName());
 			assertEquals(Person.class, e.getBeanClass());
 		}
@@ -277,8 +275,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.getPropertyValue("foo");
 			fail("Should have failed to get an unknown property.");
-		}
-		catch (NotReadablePropertyException e) {
+		} catch (NotReadablePropertyException e) {
 			assertEquals(Simple.class, e.getBeanClass());
 			assertEquals("foo", e.getPropertyName());
 		}
@@ -385,8 +382,7 @@ public abstract class AbstractPropertyAccessorTests {
 		AbstractPropertyAccessor accessor = createAccessor(target);
 		try {
 			accessor.getPropertyValue("spouse.bla");
-		}
-		catch (NotReadablePropertyException ex) {
+		} catch (NotReadablePropertyException ex) {
 			assertTrue(ex.getMessage().contains(TestBean.class.getName()));
 		}
 	}
@@ -400,8 +396,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValue("address.country.name", "UK");
 			fail("Should have failed to set value with intermediate null value");
-		}
-		catch (NullValueInNestedPathException e) {
+		} catch (NullValueInNestedPathException e) {
 			assertEquals("address.country", e.getPropertyName());
 			assertEquals(Person.class, e.getBeanClass());
 		}
@@ -415,8 +410,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValue("spouse.age", new Integer(31));
 			fail("Shouldn't have succeeded with null path");
-		}
-		catch (NullValueInNestedPathException ex) {
+		} catch (NullValueInNestedPathException ex) {
 			// expected
 			assertTrue("it was the spouse property that was null, not " + ex.getPropertyName(),
 					ex.getPropertyName().equals("spouse"));
@@ -487,8 +481,7 @@ public abstract class AbstractPropertyAccessorTests {
 			// Check its unchanged
 			assertTrue("age is OK", target.getAge() == age);
 			assertTrue("name is OK", name.equals(target.getName()));
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			fail("Shouldn't throw exception when everything is valid");
 		}
 	}
@@ -510,8 +503,7 @@ public abstract class AbstractPropertyAccessorTests {
 			assertTrue("Name property should have changed", target.getName().equals(newName));
 			assertTrue("Touchy property should have changed", target.getTouchy().equals(newTouchy));
 			assertTrue("Age property should have changed", target.getAge() == newAge);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			fail("Shouldn't throw exception when everything is valid");
 		}
 	}
@@ -530,8 +522,7 @@ public abstract class AbstractPropertyAccessorTests {
 			assertTrue("Name property should have changed", target.getName().equals(newName));
 			assertTrue("Touchy property should have changed", target.getTouchy().equals(newTouchy));
 			assertTrue("Age property should have changed", target.getAge() == newAge);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			fail("Shouldn't throw exception when everything is valid");
 		}
 	}
@@ -546,8 +537,7 @@ public abstract class AbstractPropertyAccessorTests {
 			Object bwAge = accessor.getPropertyValue("age");
 			assertTrue("Age is an integer", bwAge instanceof Integer);
 			assertTrue("Bean wrapper must pick up changes", (int) bwAge == newAge);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			fail("Shouldn't throw exception when everything is valid");
 		}
 	}
@@ -611,15 +601,14 @@ public abstract class AbstractPropertyAccessorTests {
 			public void setValue(Object value) {
 				if (value instanceof String[]) {
 					setValue(StringUtils.arrayToDelimitedString(((String[]) value), "-"));
-				}
-				else {
+				} else {
 					super.setValue(value != null ? value : "");
 				}
 			}
 		});
-		accessor.setPropertyValue("name", new String[] {});
+		accessor.setPropertyValue("name", new String[]{});
 		assertEquals("", target.getName());
-		accessor.setPropertyValue("name", new String[] {"a1", "b2"});
+		accessor.setPropertyValue("name", new String[]{"a1", "b2"});
 		assertEquals("a1-b2", target.getName());
 		accessor.setPropertyValue("name", null);
 		assertEquals("", target.getName());
@@ -652,8 +641,7 @@ public abstract class AbstractPropertyAccessorTests {
 			accessor.setPropertyValue("float2", "8.1");
 			accessor.setPropertyValue("double2", "6.1");
 			accessor.setPropertyValue("bigDecimal", "4.0");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			fail("Should not throw BeansException: " + ex.getMessage());
 		}
 
@@ -686,8 +674,7 @@ public abstract class AbstractPropertyAccessorTests {
 			accessor.setPropertyValue("float2", new Double(8.1));
 			accessor.setPropertyValue("double2", new BigDecimal(6.1));
 			accessor.setPropertyValue("bigDecimal", new Float(4.0));
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			fail("Should not throw BeansException: " + ex.getMessage());
 		}
 
@@ -771,8 +758,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValue("autowire", "NHERITED");
 			fail("Should have thrown TypeMismatchException");
-		}
-		catch (TypeMismatchException ex) {
+		} catch (TypeMismatchException ex) {
 			// expected
 		}
 	}
@@ -816,7 +802,7 @@ public abstract class AbstractPropertyAccessorTests {
 		PropsTester target = new PropsTester();
 		AbstractPropertyAccessor accessor = createAccessor(target);
 
-		accessor.setPropertyValue("stringArray", new String[] {"foo", "fi", "fi", "fum"});
+		accessor.setPropertyValue("stringArray", new String[]{"foo", "fi", "fi", "fum"});
 		assertTrue("stringArray length = 4", target.stringArray.length == 4);
 		assertTrue("correct values", target.stringArray[0].equals("foo") && target.stringArray[1].equals("fi") &&
 				target.stringArray[2].equals("fi") && target.stringArray[3].equals("fum"));
@@ -859,7 +845,7 @@ public abstract class AbstractPropertyAccessorTests {
 			}
 		});
 
-		accessor.setPropertyValue("stringArray", new String[] {"4foo", "7fi", "6fi", "5fum"});
+		accessor.setPropertyValue("stringArray", new String[]{"4foo", "7fi", "6fi", "5fum"});
 		assertTrue("stringArray length = 4", target.stringArray.length == 4);
 		assertTrue("correct values", target.stringArray[0].equals("foo") && target.stringArray[1].equals("fi") &&
 				target.stringArray[2].equals("fi") && target.stringArray[3].equals("fum"));
@@ -928,12 +914,12 @@ public abstract class AbstractPropertyAccessorTests {
 		PropsTester target = new PropsTester();
 		AbstractPropertyAccessor accessor = createAccessor(target);
 
-		accessor.setPropertyValue("intArray", new int[] {4, 5, 2, 3});
+		accessor.setPropertyValue("intArray", new int[]{4, 5, 2, 3});
 		assertTrue("intArray length = 4", target.intArray.length == 4);
 		assertTrue("correct values", target.intArray[0] == 4 && target.intArray[1] == 5 &&
 				target.intArray[2] == 2 && target.intArray[3] == 3);
 
-		accessor.setPropertyValue("intArray", new String[] {"4", "5", "2", "3"});
+		accessor.setPropertyValue("intArray", new String[]{"4", "5", "2", "3"});
 		assertTrue("intArray length = 4", target.intArray.length == 4);
 		assertTrue("correct values", target.intArray[0] == 4 && target.intArray[1] == 5 &&
 				target.intArray[2] == 2 && target.intArray[3] == 3);
@@ -961,7 +947,7 @@ public abstract class AbstractPropertyAccessorTests {
 		assertTrue("correct values", result.contains(new Integer(4)) && result.contains(new Integer(5)) &&
 				result.contains(new Integer(3)));
 
-		accessor.setPropertyValue("intArray", new Integer[] {1});
+		accessor.setPropertyValue("intArray", new Integer[]{1});
 		assertTrue("intArray length = 4", target.intArray.length == 1);
 		assertTrue("correct values", target.intArray[0] == 1);
 
@@ -969,7 +955,7 @@ public abstract class AbstractPropertyAccessorTests {
 		assertTrue("intArray length = 4", target.intArray.length == 1);
 		assertTrue("correct values", target.intArray[0] == 1);
 
-		accessor.setPropertyValue("intArray", new String[] {"1"});
+		accessor.setPropertyValue("intArray", new String[]{"1"});
 		assertTrue("intArray length = 4", target.intArray.length == 1);
 		assertTrue("correct values", target.intArray[0] == 1);
 
@@ -989,12 +975,12 @@ public abstract class AbstractPropertyAccessorTests {
 			}
 		});
 
-		accessor.setPropertyValue("intArray", new int[] {4, 5, 2, 3});
+		accessor.setPropertyValue("intArray", new int[]{4, 5, 2, 3});
 		assertTrue("intArray length = 4", target.intArray.length == 4);
 		assertTrue("correct values", target.intArray[0] == 4 && target.intArray[1] == 5 &&
 				target.intArray[2] == 2 && target.intArray[3] == 3);
 
-		accessor.setPropertyValue("intArray", new String[] {"3", "4", "1", "2"});
+		accessor.setPropertyValue("intArray", new String[]{"3", "4", "1", "2"});
 		assertTrue("intArray length = 4", target.intArray.length == 4);
 		assertTrue("correct values", target.intArray[0] == 4 && target.intArray[1] == 5 &&
 				target.intArray[2] == 2 && target.intArray[3] == 3);
@@ -1003,7 +989,7 @@ public abstract class AbstractPropertyAccessorTests {
 		assertTrue("intArray length = 4", target.intArray.length == 1);
 		assertTrue("correct values", target.intArray[0] == 1);
 
-		accessor.setPropertyValue("intArray", new String[] {"0"});
+		accessor.setPropertyValue("intArray", new String[]{"0"});
 		assertTrue("intArray length = 4", target.intArray.length == 1);
 		assertTrue("correct values", target.intArray[0] == 1);
 
@@ -1026,7 +1012,7 @@ public abstract class AbstractPropertyAccessorTests {
 	public void setPrimitiveArrayProperty() {
 		PrimitiveArrayBean target = new PrimitiveArrayBean();
 		AbstractPropertyAccessor accessor = createAccessor(target);
-		accessor.setPropertyValue("array", new String[] {"1", "2"});
+		accessor.setPropertyValue("array", new String[]{"1", "2"});
 		assertEquals(2, target.getArray().length);
 		assertEquals(1, target.getArray()[0]);
 		assertEquals(2, target.getArray()[1]);
@@ -1162,11 +1148,11 @@ public abstract class AbstractPropertyAccessorTests {
 		ArrayToObject target = new ArrayToObject();
 		AbstractPropertyAccessor accessor = createAccessor(target);
 
-		Object[] array = new Object[] {"1", "2"};
+		Object[] array = new Object[]{"1", "2"};
 		accessor.setPropertyValue("object", array);
 		assertThat(target.getObject(), equalTo((Object) array));
 
-		array = new Object[] {"1"};
+		array = new Object[]{"1"};
 		accessor.setPropertyValue("object", array);
 		assertThat(target.getObject(), equalTo((Object) array));
 	}
@@ -1255,16 +1241,16 @@ public abstract class AbstractPropertyAccessorTests {
 		AbstractPropertyAccessor accessor = createAccessor(target);
 		Collection<Integer> coll = new HashSet<>();
 		coll.add(0);
-		accessor.setPropertyValue("collection", new int[] {0});
+		accessor.setPropertyValue("collection", new int[]{0});
 		List<Integer> set = new LinkedList<>();
 		set.add(1);
-		accessor.setPropertyValue("set", new int[] {1});
+		accessor.setPropertyValue("set", new int[]{1});
 		List<Integer> sortedSet = new ArrayList<>();
 		sortedSet.add(2);
-		accessor.setPropertyValue("sortedSet", new int[] {2});
+		accessor.setPropertyValue("sortedSet", new int[]{2});
 		Set<Integer> list = new HashSet<>();
 		list.add(3);
-		accessor.setPropertyValue("list", new int[] {3});
+		accessor.setPropertyValue("list", new int[]{3});
 		assertEquals(1, target.getCollection().size());
 		assertTrue(target.getCollection().containsAll(coll));
 		assertEquals(1, target.getSet().size());
@@ -1402,8 +1388,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValues(pvs);
 			fail("Should have thrown TypeMismatchException");
-		}
-		catch (PropertyBatchUpdateException ex) {
+		} catch (PropertyBatchUpdateException ex) {
 			PropertyAccessException pae = ex.getPropertyAccessException("map[key2]");
 			assertTrue(pae instanceof TypeMismatchException);
 		}
@@ -1481,8 +1466,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValue("name1", "value");
 			fail("Should have failed to set an unknown property.");
-		}
-		catch (NotWritablePropertyException e) {
+		} catch (NotWritablePropertyException e) {
 			assertEquals(Simple.class, e.getBeanClass());
 			assertEquals("name1", e.getPropertyName());
 			assertEquals("Invalid number of possible matches", 1, e.getPossibleMatches().length);
@@ -1498,8 +1482,7 @@ public abstract class AbstractPropertyAccessorTests {
 		try {
 			accessor.setPropertyValue("foo", "value");
 			fail("Should have failed to set an unknown property.");
-		}
-		catch (NotWritablePropertyException e) {
+		} catch (NotWritablePropertyException e) {
 			assertEquals(Simple.class, e.getBeanClass());
 			assertEquals("foo", e.getPropertyName());
 		}
@@ -1514,8 +1497,7 @@ public abstract class AbstractPropertyAccessorTests {
 			PropertyValue value = new PropertyValue("foo", "value");
 			value.setOptional(true);
 			accessor.setPropertyValue(value);
-		}
-		catch (NotWritablePropertyException e) {
+		} catch (NotWritablePropertyException e) {
 			fail("Should not have failed to set an unknown optional property.");
 		}
 	}
@@ -1536,8 +1518,7 @@ public abstract class AbstractPropertyAccessorTests {
 			AbstractPropertyAccessor accessor = createAccessor(target);
 			accessor.setPropertyValue("age", "foobar");
 			fail("Should throw exception on type mismatch");
-		}
-		catch (TypeMismatchException ex) {
+		} catch (TypeMismatchException ex) {
 			// expected
 		}
 	}
@@ -1549,11 +1530,9 @@ public abstract class AbstractPropertyAccessorTests {
 			AbstractPropertyAccessor accessor = createAccessor(target);
 			accessor.setPropertyValue("age", "");
 			fail("Should throw exception on type mismatch");
-		}
-		catch (TypeMismatchException ex) {
+		} catch (TypeMismatchException ex) {
 			// expected
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			fail("Shouldn't throw exception other than Type mismatch");
 		}
 	}
@@ -1581,8 +1560,7 @@ public abstract class AbstractPropertyAccessorTests {
 			// Don't ignore: should fail
 			accessor.setPropertyValues(pvs, false);
 			fail("Shouldn't have ignored invalid updates");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			// OK: but which exception??
 		}
 	}
@@ -2254,8 +2232,7 @@ public abstract class AbstractPropertyAccessorTests {
 		public V put(K key, V value) {
 			if (this.frozen) {
 				throw new UnsupportedOperationException();
-			}
-			else {
+			} else {
 				return super.put(key, value);
 			}
 		}

@@ -42,6 +42,7 @@ public class ConversionServiceExposingInterceptor extends HandlerInterceptorAdap
 
 	/**
 	 * Creates a new {@link ConversionServiceExposingInterceptor}.
+	 *
 	 * @param conversionService the conversion service to export to request scope when this interceptor is invoked
 	 */
 	public ConversionServiceExposingInterceptor(ConversionService conversionService) {

@@ -101,7 +101,7 @@ public class ImportBeanDefinitionRegistrarTests {
 
 		@Override
 		public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata,
-				BeanDefinitionRegistry registry) {
+											BeanDefinitionRegistry registry) {
 		}
 	}
 

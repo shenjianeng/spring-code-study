@@ -49,8 +49,7 @@ public class GlassFishRequestUpgradeStrategy extends AbstractTyrusRequestUpgrade
 			Class<?> type = classLoader.loadClass("org.glassfish.tyrus.servlet.TyrusServletWriter");
 			constructor = type.getDeclaredConstructor(TyrusHttpUpgradeHandler.class);
 			ReflectionUtils.makeAccessible(constructor);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException("No compatible Tyrus version found", ex);
 		}
 	}
@@ -58,7 +57,7 @@ public class GlassFishRequestUpgradeStrategy extends AbstractTyrusRequestUpgrade
 
 	@Override
 	protected void handleSuccess(HttpServletRequest request, HttpServletResponse response,
-			UpgradeInfo upgradeInfo, TyrusUpgradeResponse upgradeResponse) throws IOException, ServletException {
+								 UpgradeInfo upgradeInfo, TyrusUpgradeResponse upgradeResponse) throws IOException, ServletException {
 
 		TyrusHttpUpgradeHandler handler = request.upgrade(TyrusHttpUpgradeHandler.class);
 		Writer servletWriter = newServletWriter(handler);
@@ -72,8 +71,7 @@ public class GlassFishRequestUpgradeStrategy extends AbstractTyrusRequestUpgrade
 	private Writer newServletWriter(TyrusHttpUpgradeHandler handler) {
 		try {
 			return (Writer) constructor.newInstance(handler);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HandshakeFailureException("Failed to instantiate TyrusServletWriter", ex);
 		}
 	}

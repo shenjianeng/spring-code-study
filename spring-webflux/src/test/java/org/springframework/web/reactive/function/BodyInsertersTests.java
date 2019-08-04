@@ -102,10 +102,12 @@ public class BodyInsertersTests {
 			public List<HttpMessageWriter<?>> messageWriters() {
 				return messageWriters;
 			}
+
 			@Override
 			public Optional<ServerHttpRequest> serverRequest() {
 				return Optional.empty();
 			}
+
 			@Override
 			public Map<String, Object> hints() {
 				return hints;
@@ -375,7 +377,8 @@ public class BodyInsertersTests {
 	}
 
 
-	interface SafeToSerialize {}
+	interface SafeToSerialize {
+	}
 
 
 	@SuppressWarnings("unused")

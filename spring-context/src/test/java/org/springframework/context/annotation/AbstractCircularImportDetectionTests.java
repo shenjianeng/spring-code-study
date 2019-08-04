@@ -41,12 +41,11 @@ public abstract class AbstractCircularImportDetectionTests {
 		boolean threw = false;
 		try {
 			newParser().parse(loadAsConfigurationSource(A.class), "A");
-		}
-		catch (BeanDefinitionParsingException ex) {
+		} catch (BeanDefinitionParsingException ex) {
 			assertTrue("Wrong message. Got: " + ex.getMessage(),
 					ex.getMessage().contains(
-						"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.B' " +
-						"to import class 'AbstractCircularImportDetectionTests.A'"));
+							"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.B' " +
+									"to import class 'AbstractCircularImportDetectionTests.A'"));
 			threw = true;
 		}
 		assertTrue(threw);
@@ -57,12 +56,11 @@ public abstract class AbstractCircularImportDetectionTests {
 		boolean threw = false;
 		try {
 			newParser().parse(loadAsConfigurationSource(X.class), "X");
-		}
-		catch (BeanDefinitionParsingException ex) {
+		} catch (BeanDefinitionParsingException ex) {
 			assertTrue("Wrong message. Got: " + ex.getMessage(),
 					ex.getMessage().contains(
-						"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.Z2' " +
-						"to import class 'AbstractCircularImportDetectionTests.Z'"));
+							"Illegal attempt by @Configuration class 'AbstractCircularImportDetectionTests.Z2' " +
+									"to import class 'AbstractCircularImportDetectionTests.Z'"));
 			threw = true;
 		}
 		assertTrue(threw);

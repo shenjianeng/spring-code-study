@@ -42,6 +42,7 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeA
 
 	/**
 	 * Create a new MethodBeforeAdviceInterceptor for the given advice.
+	 *
 	 * @param advice the MethodBeforeAdvice to wrap
 	 */
 	public MethodBeforeAdviceInterceptor(MethodBeforeAdvice advice) {

@@ -68,7 +68,7 @@ public class BasicAuthorizationInterceptorTests {
 		SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
 		ClientHttpRequest request = requestFactory.createRequest(new URI("https://example.com"), HttpMethod.GET);
 		ClientHttpRequestExecution execution = mock(ClientHttpRequestExecution.class);
-		byte[] body = new byte[] {};
+		byte[] body = new byte[]{};
 		new BasicAuthorizationInterceptor("spring", "boot").intercept(request, body,
 				execution);
 		verify(execution).execute(request, body);

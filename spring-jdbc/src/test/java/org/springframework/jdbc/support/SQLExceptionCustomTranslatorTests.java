@@ -38,8 +38,8 @@ public class SQLExceptionCustomTranslatorTests {
 	private static SQLErrorCodes ERROR_CODES = new SQLErrorCodes();
 
 	static {
-		ERROR_CODES.setBadSqlGrammarCodes(new String[] { "1" });
-		ERROR_CODES.setDataAccessResourceFailureCodes(new String[] { "2" });
+		ERROR_CODES.setBadSqlGrammarCodes(new String[]{"1"});
+		ERROR_CODES.setDataAccessResourceFailureCodes(new String[]{"2"});
 		ERROR_CODES.setCustomSqlExceptionTranslatorClass(CustomSqlExceptionTranslator.class);
 	}
 

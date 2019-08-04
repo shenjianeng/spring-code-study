@@ -79,8 +79,7 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 	public final Properties getObject() throws IOException {
 		if (this.singleton) {
 			return this.singletonInstance;
-		}
-		else {
+		} else {
 			return createProperties();
 		}
 	}
@@ -97,6 +96,7 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 	 * plain merged Properties instance.
 	 * <p>Invoked on initialization of this FactoryBean in case of a
 	 * shared singleton; else, on each {@link #getObject()} call.
+	 *
 	 * @return the object returned by this factory
 	 * @throws IOException if an exception occurred during properties loading
 	 * @see #mergeProperties()

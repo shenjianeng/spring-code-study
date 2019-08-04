@@ -38,6 +38,7 @@ public final class LocalTimeParser implements Parser<LocalTime> {
 
 	/**
 	 * Create a new DateTimeParser.
+	 *
 	 * @param formatter the Joda DateTimeFormatter instance
 	 */
 	public LocalTimeParser(DateTimeFormatter formatter) {

@@ -30,12 +30,12 @@ import org.springframework.util.ObjectUtils;
  * that transparently enforce attribute alias semantics for annotation
  * attributes that are annotated with {@link AliasFor @AliasFor}.
  *
- * @author Sam Brannen
- * @since 4.2
  * @param <S> the type of source supported by this extractor
+ * @author Sam Brannen
  * @see Annotation
  * @see AliasFor
  * @see AnnotationUtils#synthesizeAnnotation(Annotation, Object)
+ * @since 4.2
  */
 abstract class AbstractAliasAwareAnnotationAttributeExtractor<S> implements AnnotationAttributeExtractor<S> {
 
@@ -51,10 +51,11 @@ abstract class AbstractAliasAwareAnnotationAttributeExtractor<S> implements Anno
 
 	/**
 	 * Construct a new {@code AbstractAliasAwareAnnotationAttributeExtractor}.
-	 * @param annotationType the annotation type to synthesize; never {@code null}
+	 *
+	 * @param annotationType   the annotation type to synthesize; never {@code null}
 	 * @param annotatedElement the element that is annotated with the annotation
-	 * of the supplied type; may be {@code null} if unknown
-	 * @param source the underlying source of annotation attributes; never {@code null}
+	 *                         of the supplied type; may be {@code null} if unknown
+	 * @param source           the underlying source of annotation attributes; never {@code null}
 	 */
 	AbstractAliasAwareAnnotationAttributeExtractor(
 			Class<? extends Annotation> annotationType, @Nullable Object annotatedElement, S source) {
@@ -102,7 +103,7 @@ abstract class AbstractAliasAwareAnnotationAttributeExtractor<S> implements Anno
 					String elementName = (this.annotatedElement != null ? this.annotatedElement.toString() : "unknown element");
 					throw new AnnotationConfigurationException(String.format(
 							"In annotation [%s] declared on %s and synthesized from [%s], attribute '%s' and its " +
-							"alias '%s' are present with values of [%s] and [%s], but only one is permitted.",
+									"alias '%s' are present with values of [%s] and [%s], but only one is permitted.",
 							this.annotationType.getName(), elementName, this.source, attributeName, aliasName,
 							ObjectUtils.nullSafeToString(attributeValue), ObjectUtils.nullSafeToString(aliasValue)));
 				}

@@ -46,6 +46,7 @@ public class SimpMessageTypeMessageCondition extends AbstractMessageCondition<Si
 
 	/**
 	 * A constructor accepting a message type.
+	 *
 	 * @param messageType the message type to match messages to
 	 */
 	public SimpMessageTypeMessageCondition(SimpMessageType messageType) {
@@ -86,11 +87,9 @@ public class SimpMessageTypeMessageCondition extends AbstractMessageCondition<Si
 		if (actual != null) {
 			if (actual.equals(this.messageType) && actual.equals(other.getMessageType())) {
 				return 0;
-			}
-			else if (actual.equals(this.messageType)) {
+			} else if (actual.equals(this.messageType)) {
 				return -1;
-			}
-			else if (actual.equals(other.getMessageType())) {
+			} else if (actual.equals(other.getMessageType())) {
 				return 1;
 			}
 		}

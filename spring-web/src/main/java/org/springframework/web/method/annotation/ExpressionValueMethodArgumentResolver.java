@@ -43,9 +43,10 @@ public class ExpressionValueMethodArgumentResolver extends AbstractNamedValueMet
 
 	/**
 	 * Create a new {@link ExpressionValueMethodArgumentResolver} instance.
+	 *
 	 * @param beanFactory a bean factory to use for resolving  ${...}
-	 * placeholder and #{...} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to contain expressions
+	 *                    placeholder and #{...} SpEL expressions in default values;
+	 *                    or {@code null} if default values are not expected to contain expressions
 	 */
 	public ExpressionValueMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory) {
 		super(beanFactory);

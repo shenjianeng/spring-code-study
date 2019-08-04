@@ -65,8 +65,7 @@ public class ThrowsAdviceInterceptorTests {
 		try {
 			ti.invoke(mi);
 			fail();
-		}
-		catch (Exception caught) {
+		} catch (Exception caught) {
 			assertEquals(ex, caught);
 		}
 		assertEquals(0, th.getCalls());
@@ -84,8 +83,7 @@ public class ThrowsAdviceInterceptorTests {
 		try {
 			ti.invoke(mi);
 			fail();
-		}
-		catch (Exception caught) {
+		} catch (Exception caught) {
 			assertEquals(ex, caught);
 		}
 		assertEquals(1, th.getCalls());
@@ -103,8 +101,7 @@ public class ThrowsAdviceInterceptorTests {
 		try {
 			ti.invoke(mi);
 			fail();
-		}
-		catch (Exception caught) {
+		} catch (Exception caught) {
 			assertEquals(ex, caught);
 		}
 		assertEquals(1, th.getCalls());
@@ -132,8 +129,7 @@ public class ThrowsAdviceInterceptorTests {
 		try {
 			ti.invoke(mi);
 			fail();
-		}
-		catch (Throwable caught) {
+		} catch (Throwable caught) {
 			assertEquals(t, caught);
 		}
 		assertEquals(1, th.getCalls());
@@ -153,7 +149,9 @@ public class ThrowsAdviceInterceptorTests {
 			count("remoteException");
 		}
 
-		/** Not valid, wrong number of arguments */
+		/**
+		 * Not valid, wrong number of arguments
+		 */
 		public void afterThrowing(Method m, Exception ex) throws Throwable {
 			throw new UnsupportedOperationException("Shouldn't be called");
 		}

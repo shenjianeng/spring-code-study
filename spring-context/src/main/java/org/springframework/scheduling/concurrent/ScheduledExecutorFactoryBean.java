@@ -62,13 +62,13 @@ import org.springframework.util.ObjectUtils;
  * property to "true".
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setPoolSize
  * @see #setRemoveOnCancelPolicy
  * @see #setThreadFactory
  * @see ScheduledExecutorTask
  * @see java.util.concurrent.ScheduledExecutorService
  * @see java.util.concurrent.ScheduledThreadPoolExecutor
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
@@ -102,6 +102,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * Register a list of ScheduledExecutorTask objects with the ScheduledExecutorService
 	 * that this FactoryBean creates. Depending on each ScheduledExecutorTask's settings,
 	 * it will be registered via one of ScheduledExecutorService's schedule methods.
+	 *
 	 * @see java.util.concurrent.ScheduledExecutorService#schedule(java.lang.Runnable, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
@@ -126,6 +127,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * {@link java.util.concurrent.ScheduledExecutorService}.
 	 * Switch this flag to "true" for exception-proof execution of each task,
 	 * continuing scheduled execution as in the case of successful execution.
+	 *
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate
 	 */
 	public void setContinueScheduledExecutionAfterException(boolean continueScheduledExecutionAfterException) {
@@ -138,6 +140,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * <p>Default is "false", exposing the raw executor as bean reference.
 	 * Switch this flag to "true" to strictly prevent clients from
 	 * modifying the executor's configuration.
+	 *
 	 * @see java.util.concurrent.Executors#unconfigurableScheduledExecutorService
 	 */
 	public void setExposeUnconfigurableExecutor(boolean exposeUnconfigurableExecutor) {
@@ -155,8 +158,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 		if (this.removeOnCancelPolicy) {
 			if (executor instanceof ScheduledThreadPoolExecutor) {
 				((ScheduledThreadPoolExecutor) executor).setRemoveOnCancelPolicy(true);
-			}
-			else {
+			} else {
 				logger.debug("Could not apply remove-on-cancel policy - not a ScheduledThreadPoolExecutor");
 			}
 		}
@@ -177,8 +179,9 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * Create a new {@link ScheduledExecutorService} instance.
 	 * <p>The default implementation creates a {@link ScheduledThreadPoolExecutor}.
 	 * Can be overridden in subclasses to provide custom {@link ScheduledExecutorService} instances.
-	 * @param poolSize the specified pool size
-	 * @param threadFactory the ThreadFactory to use
+	 *
+	 * @param poolSize                 the specified pool size
+	 * @param threadFactory            the ThreadFactory to use
 	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
 	 * @return a new ScheduledExecutorService instance
 	 * @see #afterPropertiesSet()
@@ -193,7 +196,8 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	/**
 	 * Register the specified {@link ScheduledExecutorTask ScheduledExecutorTasks}
 	 * on the given {@link ScheduledExecutorService}.
-	 * @param tasks the specified ScheduledExecutorTasks (never empty)
+	 *
+	 * @param tasks    the specified ScheduledExecutorTasks (never empty)
 	 * @param executor the ScheduledExecutorService to register the tasks on.
 	 */
 	protected void registerTasks(ScheduledExecutorTask[] tasks, ScheduledExecutorService executor) {
@@ -201,12 +205,10 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 			Runnable runnable = getRunnableToSchedule(task);
 			if (task.isOneTimeTask()) {
 				executor.schedule(runnable, task.getDelay(), task.getTimeUnit());
-			}
-			else {
+			} else {
 				if (task.isFixedRate()) {
 					executor.scheduleAtFixedRate(runnable, task.getDelay(), task.getPeriod(), task.getTimeUnit());
-				}
-				else {
+				} else {
 					executor.scheduleWithFixedDelay(runnable, task.getDelay(), task.getPeriod(), task.getTimeUnit());
 				}
 			}
@@ -221,6 +223,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	 * Exception according to the
 	 * {@link #setContinueScheduledExecutionAfterException "continueScheduledExecutionAfterException"}
 	 * flag.
+	 *
 	 * @param task the ScheduledExecutorTask to schedule
 	 * @return the actual Runnable to schedule (may be a decorator)
 	 */

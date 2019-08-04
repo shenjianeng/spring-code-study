@@ -40,7 +40,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *
  *     // various &#064;Bean definitions
  * }</pre>
- *
+ * <p>
  * This enables detection of @{@link Scheduled} annotations on any Spring-managed
  * bean in the container. For example, given a class {@code MyTask}
  *
@@ -54,7 +54,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *         // task execution logic
  *     }
  * }</pre>
- *
+ * <p>
  * the following configuration would ensure that {@code MyTask.work()} is called
  * once every 1000 ms:
  *
@@ -68,7 +68,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *         return new MyTask();
  *     }
  * }</pre>
- *
+ * <p>
  * Alternatively, if {@code MyTask} were annotated with {@code @Component}, the
  * following configuration would ensure that its {@code @Scheduled} method is
  * invoked at the desired interval:
@@ -79,7 +79,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * &#064;ComponentScan(basePackages="com.myco.tasks")
  * public class AppConfig {
  * }</pre>
- *
+ * <p>
  * Methods annotated with {@code @Scheduled} may even be declared directly within
  * {@code @Configuration} classes:
  *
@@ -179,7 +179,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *
  * &lt;/beans&gt;
  * </pre>
- *
+ * <p>
  * The examples are equivalent save that in XML a <em>fixed-rate</em> period is used
  * instead of a custom <em>{@code Trigger}</em> implementation; this is because the
  * {@code task:} namespace {@code scheduled} cannot easily expose such support. This is
@@ -194,13 +194,13 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see Scheduled
  * @see SchedulingConfiguration
  * @see SchedulingConfigurer
  * @see ScheduledTaskRegistrar
  * @see Trigger
  * @see ScheduledAnnotationBeanPostProcessor
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

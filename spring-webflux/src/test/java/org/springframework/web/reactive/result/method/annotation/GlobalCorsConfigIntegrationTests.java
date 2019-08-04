@@ -43,7 +43,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 /**
- *
  * Integration tests with {@code @RequestMapping} handler methods and global
  * CORS configuration.
  *
@@ -91,8 +90,7 @@ public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingInte
 		try {
 			performGet("/cors-restricted", this.headers, String.class);
 			fail();
-		}
-		catch (HttpClientErrorException e) {
+		} catch (HttpClientErrorException e) {
 			assertEquals(HttpStatus.FORBIDDEN, e.getStatusCode());
 		}
 	}
@@ -129,8 +127,7 @@ public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingInte
 			this.headers.add(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "GET");
 			performOptions("/cors-restricted", this.headers, String.class);
 			fail();
-		}
-		catch (HttpClientErrorException e) {
+		} catch (HttpClientErrorException e) {
 			assertEquals(HttpStatus.FORBIDDEN, e.getStatusCode());
 		}
 	}
@@ -141,8 +138,7 @@ public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingInte
 			this.headers.add(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "GET");
 			performOptions("/welcome", this.headers, String.class);
 			fail();
-		}
-		catch (HttpClientErrorException e) {
+		} catch (HttpClientErrorException e) {
 			assertEquals(HttpStatus.FORBIDDEN, e.getStatusCode());
 		}
 	}
@@ -186,7 +182,8 @@ public class GlobalCorsConfigIntegrationTests extends AbstractRequestMappingInte
 		}
 	}
 
-	@RestController @SuppressWarnings("unused")
+	@RestController
+	@SuppressWarnings("unused")
 	static class TestController {
 
 		@GetMapping("/welcome")

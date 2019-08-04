@@ -54,7 +54,7 @@ public class SimpleConfigTests {
 	}
 
 	public String[] getConfigLocations() {
-		return new String[] {"simpleConfigTests.xml"};
+		return new String[]{"simpleConfigTests.xml"};
 	}
 
 }

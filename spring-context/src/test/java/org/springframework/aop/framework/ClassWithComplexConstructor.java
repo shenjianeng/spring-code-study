@@ -29,7 +29,8 @@ public class ClassWithComplexConstructor {
 
 	private final Dependency dependency;
 
-	@Autowired ClassWithComplexConstructor selfReference;
+	@Autowired
+	ClassWithComplexConstructor selfReference;
 
 	@Autowired
 	public ClassWithComplexConstructor(Dependency dependency) {

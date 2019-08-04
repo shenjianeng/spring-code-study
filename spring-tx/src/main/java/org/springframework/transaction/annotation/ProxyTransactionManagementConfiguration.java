@@ -30,9 +30,9 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
  * necessary to enable proxy-based annotation-driven transaction management.
  *
  * @author Chris Beams
- * @since 3.1
  * @see EnableTransactionManagement
  * @see TransactionManagementConfigurationSelector
+ * @since 3.1
  */
 @Configuration
 public class ProxyTransactionManagementConfiguration extends AbstractTransactionManagementConfiguration {

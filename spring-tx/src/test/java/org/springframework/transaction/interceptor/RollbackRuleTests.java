@@ -66,7 +66,7 @@ public class RollbackRuleTests {
 		RollbackRuleAttribute rr = new RollbackRuleAttribute(java.lang.Throwable.class.getName());
 		assertTrue(rr.getDepth(new MyRuntimeException("")) > 0);
 		assertTrue(rr.getDepth(new IOException()) > 0);
-		assertTrue(rr.getDepth(new FatalBeanException(null,null)) > 0);
+		assertTrue(rr.getDepth(new FatalBeanException(null, null)) > 0);
 		assertTrue(rr.getDepth(new RuntimeException()) > 0);
 	}
 

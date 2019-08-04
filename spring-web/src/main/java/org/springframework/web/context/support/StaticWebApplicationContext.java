@@ -120,6 +120,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * The {@link StaticWebApplicationContext} class does not support this method.
+	 *
 	 * @throws UnsupportedOperationException <b>always</b>
 	 */
 	@Override
@@ -129,6 +130,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * The {@link StaticWebApplicationContext} class does not support this method.
+	 *
 	 * @throws UnsupportedOperationException <b>always</b>
 	 */
 	@Override
@@ -157,6 +159,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * This implementation supports file paths beneath the root of the ServletContext.
+	 *
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -167,6 +170,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 	/**
 	 * This implementation supports pattern matching in unexpanded WARs too.
+	 *
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override

@@ -102,8 +102,8 @@ import org.springframework.util.StringUtils;
  * @author Rob Harrop
  * @author Rick Evans
  * @author Juergen Hoeller
- * @since 2.0
  * @see Conventions#attributeNameToPropertyName(String)
+ * @since 2.0
  */
 public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
@@ -119,6 +119,7 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * <p>The {@link #extractPropertyName(String)} method is used to
 	 * reconcile the name of an attribute with the name of a JavaBean
 	 * property.
+	 *
 	 * @param element the XML element being parsed
 	 * @param builder used to define the {@code BeanDefinition}
 	 * @see #extractPropertyName(String)
@@ -143,7 +144,8 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * turned into a corresponding bean property value.
 	 * <p>The default implementation considers any attribute as eligible,
 	 * except for the "id" attribute and namespace declaration attributes.
-	 * @param attribute the XML attribute to check
+	 *
+	 * @param attribute     the XML attribute to check
 	 * @param parserContext the {@code ParserContext}
 	 * @see #isEligibleAttribute(String)
 	 */
@@ -158,8 +160,9 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * turned into a corresponding bean property value.
 	 * <p>The default implementation considers any attribute as eligible,
 	 * except for the "id" attribute.
+	 *
 	 * @param attributeName the attribute name taken straight from the
-	 * XML element being parsed (never {@code null})
+	 *                      XML element being parsed (never {@code null})
 	 */
 	protected boolean isEligibleAttribute(String attributeName) {
 		return !ID_ATTRIBUTE.equals(attributeName);
@@ -174,8 +177,9 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * conventions. For example for a class with a setter method
 	 * '{@code setBingoHallFavourite(String)}', the name returned had
 	 * better be '{@code bingoHallFavourite}' (with that exact casing).
+	 *
 	 * @param attributeName the attribute name taken straight from the
-	 * XML element being parsed (never {@code null})
+	 *                      XML element being parsed (never {@code null})
 	 * @return the extracted JavaBean property name (must never be {@code null})
 	 */
 	protected String extractPropertyName(String attributeName) {
@@ -186,8 +190,9 @@ public abstract class AbstractSimpleBeanDefinitionParser extends AbstractSingleB
 	 * Hook method that derived classes can implement to inspect/change a
 	 * bean definition after parsing is complete.
 	 * <p>The default implementation does nothing.
+	 *
 	 * @param beanDefinition the parsed (and probably totally defined) bean definition being built
-	 * @param element the XML element that was the source of the bean definition's metadata
+	 * @param element        the XML element that was the source of the bean definition's metadata
 	 */
 	protected void postProcess(BeanDefinitionBuilder beanDefinition, Element element) {
 	}

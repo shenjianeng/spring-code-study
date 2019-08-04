@@ -125,7 +125,7 @@ public class Jaxb2RootElementHttpMessageConverterTests {
 	@Test
 	public void readXmlRootElementExternalEntityDisabled() throws Exception {
 		Resource external = new ClassPathResource("external.txt", getClass());
-		String content =  "<!DOCTYPE root SYSTEM \"https://192.168.28.42/1.jsp\" [" +
+		String content = "<!DOCTYPE root SYSTEM \"https://192.168.28.42/1.jsp\" [" +
 				"  <!ELEMENT external ANY >\n" +
 				"  <!ENTITY ext SYSTEM \"" + external.getURI() + "\" >]>" +
 				"  <rootElement><external>&ext;</external></rootElement>";
@@ -139,7 +139,7 @@ public class Jaxb2RootElementHttpMessageConverterTests {
 	@Test
 	public void readXmlRootElementExternalEntityEnabled() throws Exception {
 		Resource external = new ClassPathResource("external.txt", getClass());
-		String content =  "<!DOCTYPE root [" +
+		String content = "<!DOCTYPE root [" +
 				"  <!ELEMENT external ANY >\n" +
 				"  <!ENTITY ext SYSTEM \"" + external.getURI() + "\" >]>" +
 				"  <rootElement><external>&ext;</external></rootElement>";
@@ -225,7 +225,7 @@ public class Jaxb2RootElementHttpMessageConverterTests {
 
 		private Type type = new Type();
 
-		@XmlElement(required=false)
+		@XmlElement(required = false)
 		public String external;
 
 		public Type getType() {

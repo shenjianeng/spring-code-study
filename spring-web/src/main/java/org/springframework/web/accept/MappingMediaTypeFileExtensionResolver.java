@@ -104,6 +104,7 @@ public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExten
 
 	/**
 	 * Use this method for a reverse lookup from extension to MediaType.
+	 *
 	 * @return a MediaType for the key, or {@code null} if none found
 	 */
 	@Nullable

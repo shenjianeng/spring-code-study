@@ -78,7 +78,6 @@ import org.springframework.util.ReflectionUtils;
  * helper for older Hibernate 3.x/4.x data access code in existing applications.</b>
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see #setSessionFactory
  * @see HibernateCallback
  * @see Session
@@ -86,6 +85,7 @@ import org.springframework.util.ReflectionUtils;
  * @see HibernateTransactionManager
  * @see org.springframework.orm.hibernate5.support.OpenSessionInViewFilter
  * @see org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor
+ * @since 4.2
  */
 public class HibernateTemplate implements HibernateOperations, InitializingBean {
 
@@ -99,8 +99,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		try {
 			createQueryMethod = Session.class.getMethod("createQuery", String.class);
 			getNamedQueryMethod = Session.class.getMethod("getNamedQuery", String.class);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalStateException("Incompatible Hibernate Session API", ex);
 		}
 	}
@@ -136,6 +135,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * Create a new HibernateTemplate instance.
+	 *
 	 * @param sessionFactory the SessionFactory to create Sessions with
 	 */
 	public HibernateTemplate(SessionFactory sessionFactory) {
@@ -148,7 +148,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * Set the Hibernate SessionFactory that should be used to create
 	 * Hibernate Sessions.
 	 */
-	public void setSessionFactory(@Nullable  SessionFactory sessionFactory) {
+	public void setSessionFactory(@Nullable SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
@@ -163,6 +163,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * Obtain the SessionFactory for actual use.
+	 *
 	 * @return the SessionFactory (never {@code null})
 	 * @throws IllegalStateException in case of no SessionFactory set
 	 * @since 5.0
@@ -180,10 +181,11 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * operation and correspondingly disabled at the end of the operation.
 	 * This will work for newly opened Sessions as well as for existing
 	 * Sessions (for example, within a transaction).
+	 *
 	 * @see #enableFilters(Session)
 	 * @see Session#enableFilter(String)
 	 */
-	public void setFilterNames(@Nullable  String... filterNames) {
+	public void setFilterNames(@Nullable String... filterNames) {
 		this.filterNames = filterNames;
 	}
 
@@ -201,6 +203,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * <p>Default is "false": a Session proxy will be returned, suppressing
 	 * {@code close} calls and automatically applying query cache
 	 * settings and transaction timeouts.
+	 *
 	 * @see HibernateCallback
 	 * @see Session
 	 * @see #setCacheQueries
@@ -226,6 +229,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * <p>Default is "true", for fail-fast behavior when attempting write operations
 	 * within a read-only transaction. Turn this off to allow save/update/delete
 	 * on a Session with flush mode MANUAL.
+	 *
 	 * @see #checkWriteOperationAllowed
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly
 	 */
@@ -248,6 +252,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * queries through find methods).
 	 * <p>To specify the query region to be used for queries cached
 	 * by this template, set the "queryCacheRegion" property.
+	 *
 	 * @see #setQueryCacheRegion
 	 * @see org.hibernate.Query#setCacheable
 	 * @see Criteria#setCacheable
@@ -269,6 +274,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * created by this template (including all queries through find methods).
 	 * <p>The cache region will not take effect unless queries created by this
 	 * template are configured to be cached via the "cacheQueries" property.
+	 *
 	 * @see #setCacheQueries
 	 * @see org.hibernate.Query#setCacheRegion
 	 * @see Criteria#setCacheRegion
@@ -341,6 +347,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * native {@link Session}.
 	 * <p>This execute variant overrides the template-wide
 	 * {@link #isExposeNativeSession() "exposeNativeSession"} setting.
+	 *
 	 * @param action callback object that specifies the Hibernate action
 	 * @return a result object returned by the action, or {@code null}
 	 * @throws DataAccessException in case of Hibernate errors
@@ -352,9 +359,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * Execute the action specified by the given action object within a Session.
-	 * @param action callback object that specifies the Hibernate action
+	 *
+	 * @param action               callback object that specifies the Hibernate action
 	 * @param enforceNativeSession whether to enforce exposure of the native
-	 * Hibernate Session to callback code
+	 *                             Hibernate Session to callback code
 	 * @return a result object returned by the action, or {@code null}
 	 * @throws DataAccessException in case of Hibernate errors
 	 */
@@ -367,8 +375,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		boolean isNew = false;
 		try {
 			session = obtainSessionFactory().getCurrentSession();
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			logger.debug("Could not retrieve pre-bound Hibernate session", ex);
 		}
 		if (session == null) {
@@ -382,25 +389,20 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 			Session sessionToExpose =
 					(enforceNativeSession || isExposeNativeSession() ? session : createSessionProxy(session));
 			return action.doInHibernate(sessionToExpose);
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			throw SessionFactoryUtils.convertHibernateAccessException(ex);
-		}
-		catch (PersistenceException ex) {
+		} catch (PersistenceException ex) {
 			if (ex.getCause() instanceof HibernateException) {
 				throw SessionFactoryUtils.convertHibernateAccessException((HibernateException) ex.getCause());
 			}
 			throw ex;
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			// Callback code threw application exception...
 			throw ex;
-		}
-		finally {
+		} finally {
 			if (isNew) {
 				SessionFactoryUtils.closeSession(session);
-			}
-			else {
+			} else {
 				disableFilters(session);
 			}
 		}
@@ -409,6 +411,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * Create a close-suppressing proxy for the given Hibernate Session.
 	 * The proxy also prepares returned Query and Criteria objects.
+	 *
 	 * @param session the Hibernate Session to create a proxy for
 	 * @return the Session proxy
 	 * @see Session#close()
@@ -417,12 +420,13 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 */
 	protected Session createSessionProxy(Session session) {
 		return (Session) Proxy.newProxyInstance(
-				session.getClass().getClassLoader(), new Class<?>[] {Session.class},
+				session.getClass().getClassLoader(), new Class<?>[]{Session.class},
 				new CloseSuppressingInvocationHandler(session));
 	}
 
 	/**
 	 * Enable the specified filters on the given Session.
+	 *
 	 * @param session the current Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#enableFilter(String)
@@ -438,6 +442,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * Disable the specified filters on the given Session.
+	 *
 	 * @param session the current Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#disableFilter(String)
@@ -470,8 +475,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		return executeWithNativeSession(session -> {
 			if (lockMode != null) {
 				return session.get(entityClass, id, new LockOptions(lockMode));
-			}
-			else {
+			} else {
 				return session.get(entityClass, id);
 			}
 		});
@@ -491,8 +495,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		return executeWithNativeSession(session -> {
 			if (lockMode != null) {
 				return session.get(entityName, id, new LockOptions(lockMode));
-			}
-			else {
+			} else {
 				return session.get(entityName, id);
 			}
 		});
@@ -510,8 +513,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		return nonNull(executeWithNativeSession(session -> {
 			if (lockMode != null) {
 				return session.load(entityClass, id, new LockOptions(lockMode));
-			}
-			else {
+			} else {
 				return session.load(entityClass, id);
 			}
 		}));
@@ -529,8 +531,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		return nonNull(executeWithNativeSession(session -> {
 			if (lockMode != null) {
 				return session.load(entityName, id, new LockOptions(lockMode));
-			}
-			else {
+			} else {
 				return session.load(entityName, id);
 			}
 		}));
@@ -566,8 +567,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 		executeWithNativeSession(session -> {
 			if (lockMode != null) {
 				session.refresh(entity, new LockOptions(lockMode));
-			}
-			else {
+			} else {
 				session.refresh(entity);
 			}
 			return null;
@@ -593,8 +593,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	public void initialize(Object proxy) throws DataAccessException {
 		try {
 			Hibernate.initialize(proxy);
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			throw SessionFactoryUtils.convertHibernateAccessException(ex);
 		}
 	}
@@ -916,7 +915,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	public List<?> findByNamedParam(String queryString, String paramName, Object value)
 			throws DataAccessException {
 
-		return findByNamedParam(queryString, new String[] {paramName}, new Object[] {value});
+		return findByNamedParam(queryString, new String[]{paramName}, new Object[]{value});
 	}
 
 	@Deprecated
@@ -981,7 +980,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	public List<?> findByNamedQueryAndNamedParam(String queryName, String paramName, Object value)
 			throws DataAccessException {
 
-		return findByNamedQueryAndNamedParam(queryName, new String[] {paramName}, new Object[] {value});
+		return findByNamedQueryAndNamedParam(queryName, new String[]{paramName}, new Object[]{value});
 	}
 
 	@Deprecated
@@ -1049,8 +1048,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	public void closeIterator(Iterator<?> it) throws DataAccessException {
 		try {
 			Hibernate.close(it);
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			throw SessionFactoryUtils.convertHibernateAccessException(ex);
 		}
 	}
@@ -1083,6 +1081,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	 * Check whether write operations are allowed on the given Session.
 	 * <p>Default implementation throws an InvalidDataAccessApiUsageException in
 	 * case of {@code FlushMode.MANUAL}. Can be overridden in subclasses.
+	 *
 	 * @param session current Hibernate Session
 	 * @throws InvalidDataAccessApiUsageException if write operations are not allowed
 	 * @see #setCheckWriteOperations
@@ -1092,14 +1091,15 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	protected void checkWriteOperationAllowed(Session session) throws InvalidDataAccessApiUsageException {
 		if (isCheckWriteOperations() && SessionFactoryUtils.getFlushMode(session).lessThan(FlushMode.COMMIT)) {
 			throw new InvalidDataAccessApiUsageException(
-					"Write operations are not allowed in read-only mode (FlushMode.MANUAL): "+
-					"Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition.");
+					"Write operations are not allowed in read-only mode (FlushMode.MANUAL): " +
+							"Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from transaction definition.");
 		}
 	}
 
 	/**
 	 * Prepare the given Criteria object, applying cache settings and/or
 	 * a transaction timeout.
+	 *
 	 * @param criteria the Criteria object to prepare
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
@@ -1128,6 +1128,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * Prepare the given Query object, applying cache settings and/or
 	 * a transaction timeout.
+	 *
 	 * @param queryObject the Query object to prepare
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
@@ -1156,9 +1157,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 	/**
 	 * Apply the given name parameter to the given Query object.
+	 *
 	 * @param queryObject the Query object
-	 * @param paramName the name of the parameter
-	 * @param value the value of the parameter
+	 * @param paramName   the name of the parameter
+	 * @param value       the value of the parameter
 	 * @throws HibernateException if thrown by the Query object
 	 */
 	@Deprecated
@@ -1168,11 +1170,9 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 		if (value instanceof Collection) {
 			queryObject.setParameterList(paramName, (Collection<?>) value);
-		}
-		else if (value instanceof Object[]) {
+		} else if (value instanceof Object[]) {
 			queryObject.setParameterList(paramName, (Object[]) value);
-		}
-		else {
+		} else {
 			queryObject.setParameter(paramName, value);
 		}
 	}
@@ -1193,6 +1193,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	/**
 	 * Invocation handler that suppresses close calls on Hibernate Sessions.
 	 * Also prepares returned Query and Criteria objects.
+	 *
 	 * @see Session#close
 	 */
 	private class CloseSuppressingInvocationHandler implements InvocationHandler {
@@ -1212,12 +1213,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 			if (method.getName().equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of Session proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (method.getName().equals("close")) {
+			} else if (method.getName().equals("close")) {
 				// Handle close method: suppress, not valid.
 				return null;
 			}
@@ -1230,14 +1229,12 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 				// Applies to createQuery, getNamedQuery, createCriteria.
 				if (retVal instanceof Criteria) {
 					prepareCriteria(((Criteria) retVal));
-				}
-				else if (retVal instanceof org.hibernate.Query) {
+				} else if (retVal instanceof org.hibernate.Query) {
 					prepareQuery(((org.hibernate.Query) retVal));
 				}
 
 				return retVal;
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

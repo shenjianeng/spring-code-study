@@ -44,6 +44,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 
 	/**
 	 * Get the singleton {@link DerbyEmbeddedDatabaseConfigurer} instance.
+	 *
 	 * @return the configurer instance
 	 */
 	public static synchronized DerbyEmbeddedDatabaseConfigurer getInstance() {
@@ -73,8 +74,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 		try {
 			new EmbeddedDriver().connect(
 					String.format(URL_TEMPLATE, databaseName, "drop=true"), new Properties());
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			// Error code that indicates successful shutdown
 			if (!"08006".equals(ex.getSQLState())) {
 				LogFactory.getLog(getClass()).warn("Could not shut down embedded Derby database", ex);

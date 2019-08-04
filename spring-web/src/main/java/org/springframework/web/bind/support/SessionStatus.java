@@ -26,9 +26,9 @@ package org.springframework.web.bind.support;
  * annotation).
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.web.bind.annotation.RequestMapping
  * @see org.springframework.web.bind.annotation.SessionAttributes
+ * @since 2.5
  */
 public interface SessionStatus {
 

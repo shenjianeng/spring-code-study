@@ -135,8 +135,8 @@ public class RequestHeaderMapMethodArgumentResolverTests {
 
 
 	public void params(@RequestHeader Map<?, ?> param1,
-			@RequestHeader MultiValueMap<?, ?> param2, @RequestHeader HttpHeaders param3,
-			Map<?, ?> unsupported) {
+					   @RequestHeader MultiValueMap<?, ?> param2, @RequestHeader HttpHeaders param3,
+					   Map<?, ?> unsupported) {
 	}
 
 }

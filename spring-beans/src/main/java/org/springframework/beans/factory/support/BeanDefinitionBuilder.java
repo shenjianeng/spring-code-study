@@ -45,6 +45,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link GenericBeanDefinition}.
+	 *
 	 * @param beanClassName the class name for the bean that the definition is being created for
 	 */
 	public static BeanDefinitionBuilder genericBeanDefinition(String beanClassName) {
@@ -55,6 +56,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link GenericBeanDefinition}.
+	 *
 	 * @param beanClass the {@code Class} of the bean that the definition is being created for
 	 */
 	public static BeanDefinitionBuilder genericBeanDefinition(Class<?> beanClass) {
@@ -65,7 +67,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link GenericBeanDefinition}.
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
+	 *
+	 * @param beanClass        the {@code Class} of the bean that the definition is being created for
 	 * @param instanceSupplier a callback for creating an instance of the bean
 	 * @since 5.0
 	 */
@@ -78,6 +81,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link RootBeanDefinition}.
+	 *
 	 * @param beanClassName the class name for the bean that the definition is being created for
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(String beanClassName) {
@@ -86,7 +90,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link RootBeanDefinition}.
-	 * @param beanClassName the class name for the bean that the definition is being created for
+	 *
+	 * @param beanClassName     the class name for the bean that the definition is being created for
 	 * @param factoryMethodName the name of the method to use to construct the bean instance
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(String beanClassName, @Nullable String factoryMethodName) {
@@ -98,6 +103,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link RootBeanDefinition}.
+	 *
 	 * @param beanClass the {@code Class} of the bean that the definition is being created for
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(Class<?> beanClass) {
@@ -106,7 +112,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link RootBeanDefinition}.
-	 * @param beanClass the {@code Class} of the bean that the definition is being created for
+	 *
+	 * @param beanClass         the {@code Class} of the bean that the definition is being created for
 	 * @param factoryMethodName the name of the method to use to construct the bean instance
 	 */
 	public static BeanDefinitionBuilder rootBeanDefinition(Class<?> beanClass, @Nullable String factoryMethodName) {
@@ -118,6 +125,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Create a new {@code BeanDefinitionBuilder} used to construct a {@link ChildBeanDefinition}.
+	 *
 	 * @param parentName the name of the parent bean
 	 */
 	public static BeanDefinitionBuilder childBeanDefinition(String parentName) {
@@ -145,6 +153,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Return the current BeanDefinition object in its raw (unvalidated) form.
+	 *
 	 * @see #getBeanDefinition()
 	 */
 	public AbstractBeanDefinition getRawBeanDefinition() {
@@ -180,8 +189,9 @@ public final class BeanDefinitionBuilder {
 	/**
 	 * Set the name of a non-static factory method to use for this definition,
 	 * including the bean name of the factory instance to call the method on.
+	 *
 	 * @param factoryMethod the name of the factory method
-	 * @param factoryBean the name of the bean to call the specified factory method on
+	 * @param factoryBean   the name of the bean to call the specified factory method on
 	 * @since 4.3.6
 	 */
 	public BeanDefinitionBuilder setFactoryMethodOnBean(String factoryMethod, String factoryBean) {
@@ -202,6 +212,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Add a reference to a named bean as a constructor arg.
+	 *
 	 * @see #addConstructorArgValue(Object)
 	 */
 	public BeanDefinitionBuilder addConstructorArgReference(String beanName) {
@@ -220,7 +231,8 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Add a reference to the specified bean name under the property specified.
-	 * @param name the name of the property to add the reference to
+	 *
+	 * @param name     the name of the property to add the reference to
 	 * @param beanName the name of the bean being referenced
 	 */
 	public BeanDefinitionBuilder addPropertyReference(String name, String beanName) {
@@ -247,6 +259,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Set the scope of this definition.
+	 *
 	 * @see org.springframework.beans.factory.config.BeanDefinition#SCOPE_SINGLETON
 	 * @see org.springframework.beans.factory.config.BeanDefinition#SCOPE_PROTOTYPE
 	 */
@@ -294,8 +307,7 @@ public final class BeanDefinitionBuilder {
 	public BeanDefinitionBuilder addDependsOn(String beanName) {
 		if (this.beanDefinition.getDependsOn() == null) {
 			this.beanDefinition.setDependsOn(beanName);
-		}
-		else {
+		} else {
 			String[] added = ObjectUtils.addObjectToArray(this.beanDefinition.getDependsOn(), beanName);
 			this.beanDefinition.setDependsOn(added);
 		}
@@ -312,6 +324,7 @@ public final class BeanDefinitionBuilder {
 
 	/**
 	 * Apply the given customizers to the underlying bean definition.
+	 *
 	 * @since 5.0
 	 */
 	public BeanDefinitionBuilder applyCustomizers(BeanDefinitionCustomizer... customizers) {

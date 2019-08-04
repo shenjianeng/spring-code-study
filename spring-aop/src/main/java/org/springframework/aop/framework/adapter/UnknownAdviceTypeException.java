@@ -32,6 +32,7 @@ public class UnknownAdviceTypeException extends IllegalArgumentException {
 	 * Create a new UnknownAdviceTypeException for the given advice object.
 	 * Will create a message text that says that the object is neither a
 	 * subinterface of Advice nor an Advisor.
+	 *
 	 * @param advice the advice object of unknown type
 	 */
 	public UnknownAdviceTypeException(Object advice) {
@@ -41,6 +42,7 @@ public class UnknownAdviceTypeException extends IllegalArgumentException {
 
 	/**
 	 * Create a new UnknownAdviceTypeException with the given message.
+	 *
 	 * @param message the message text
 	 */
 	public UnknownAdviceTypeException(String message) {

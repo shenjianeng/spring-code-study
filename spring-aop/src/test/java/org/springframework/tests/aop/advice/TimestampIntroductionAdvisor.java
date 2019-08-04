@@ -21,7 +21,6 @@ import org.springframework.aop.support.DelegatingIntroductionInterceptor;
 import org.springframework.tests.aop.interceptor.TimestampIntroductionInterceptor;
 
 /**
- *
  * @author Rod Johnson
  */
 @SuppressWarnings("serial")

@@ -43,7 +43,7 @@ public class CaffeineCacheTests extends AbstractValueAdaptingCacheTests<Caffeine
 		cache = new CaffeineCache(CACHE_NAME, nativeCache);
 		com.github.benmanes.caffeine.cache.Cache<Object, Object> nativeCacheNoNull
 				= Caffeine.newBuilder().build();
-		cacheNoNull =  new CaffeineCache(CACHE_NAME_NO_NULL, nativeCacheNoNull, false);
+		cacheNoNull = new CaffeineCache(CACHE_NAME_NO_NULL, nativeCacheNoNull, false);
 	}
 
 	@Override

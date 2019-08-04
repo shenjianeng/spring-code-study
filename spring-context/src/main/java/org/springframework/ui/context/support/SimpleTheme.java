@@ -36,7 +36,8 @@ public class SimpleTheme implements Theme {
 
 	/**
 	 * Create a SimpleTheme.
-	 * @param name the name of the theme
+	 *
+	 * @param name          the name of the theme
 	 * @param messageSource the MessageSource that resolves theme messages
 	 */
 	public SimpleTheme(String name, MessageSource messageSource) {

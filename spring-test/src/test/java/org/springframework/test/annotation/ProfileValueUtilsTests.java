@@ -48,24 +48,24 @@ public class ProfileValueUtilsTests {
 
 	private void assertClassIsEnabled(Class<?> testClass) throws Exception {
 		assertTrue("Test class [" + testClass + "] should be enabled.",
-			ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
+				ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
 	}
 
 	private void assertClassIsDisabled(Class<?> testClass) throws Exception {
 		assertFalse("Test class [" + testClass + "] should be disabled.",
-			ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
+				ProfileValueUtils.isTestEnabledInThisEnvironment(testClass));
 	}
 
 	private void assertMethodIsEnabled(String methodName, Class<?> testClass) throws Exception {
 		Method testMethod = testClass.getMethod(methodName);
 		assertTrue("Test method [" + testMethod + "] should be enabled.",
-			ProfileValueUtils.isTestEnabledInThisEnvironment(testMethod, testClass));
+				ProfileValueUtils.isTestEnabledInThisEnvironment(testMethod, testClass));
 	}
 
 	private void assertMethodIsDisabled(String methodName, Class<?> testClass) throws Exception {
 		Method testMethod = testClass.getMethod(methodName);
 		assertFalse("Test method [" + testMethod + "] should be disabled.",
-			ProfileValueUtils.isTestEnabledInThisEnvironment(testMethod, testClass));
+				ProfileValueUtils.isTestEnabledInThisEnvironment(testMethod, testClass));
 	}
 
 	private void assertMethodIsEnabled(ProfileValueSource profileValueSource, String methodName, Class<?> testClass)
@@ -194,7 +194,7 @@ public class ProfileValueUtilsTests {
 	}
 
 	@SuppressWarnings("unused")
-	@IfProfileValue(name = NAME, values = { "foo", VALUE, "bar" })
+	@IfProfileValue(name = NAME, values = {"foo", VALUE, "bar"})
 	private static class EnabledAnnotatedMultiValue {
 
 		public void nonAnnotatedMethod() {
@@ -226,7 +226,7 @@ public class ProfileValueUtilsTests {
 	}
 
 	@SuppressWarnings("unused")
-	@IfProfileValue(name = NAME, values = { "foo", "bar" })
+	@IfProfileValue(name = NAME, values = {"foo", "bar"})
 	private static class DisabledAnnotatedMultiValue {
 
 		public void nonAnnotatedMethod() {

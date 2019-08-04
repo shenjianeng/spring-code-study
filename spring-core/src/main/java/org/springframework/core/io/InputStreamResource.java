@@ -36,11 +36,11 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @since 28.12.2003
  * @see ByteArrayResource
  * @see ClassPathResource
  * @see FileSystemResource
  * @see UrlResource
+ * @since 28.12.2003
  */
 public class InputStreamResource extends AbstractResource {
 
@@ -53,6 +53,7 @@ public class InputStreamResource extends AbstractResource {
 
 	/**
 	 * Create a new InputStreamResource.
+	 *
 	 * @param inputStream the InputStream to use
 	 */
 	public InputStreamResource(InputStream inputStream) {
@@ -61,6 +62,7 @@ public class InputStreamResource extends AbstractResource {
 
 	/**
 	 * Create a new InputStreamResource.
+	 *
 	 * @param inputStream the InputStream to use
 	 * @param description where the InputStream comes from
 	 */

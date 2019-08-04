@@ -54,7 +54,7 @@ abstract class AbstractContextConfigurationUtilsTests {
 	static final String[] EMPTY_STRING_ARRAY = new String[0];
 
 	static final Set<Class<? extends ApplicationContextInitializer<?>>>
-			EMPTY_INITIALIZER_CLASSES = Collections.<Class<? extends ApplicationContextInitializer<?>>> emptySet();
+			EMPTY_INITIALIZER_CLASSES = Collections.<Class<? extends ApplicationContextInitializer<?>>>emptySet();
 
 
 	MergedContextConfiguration buildMergedContextConfiguration(Class<?> testClass) {
@@ -65,8 +65,8 @@ abstract class AbstractContextConfigurationUtilsTests {
 	}
 
 	void assertAttributes(ContextConfigurationAttributes attributes, Class<?> expectedDeclaringClass,
-			String[] expectedLocations, Class<?>[] expectedClasses,
-			Class<? extends ContextLoader> expectedContextLoaderClass, boolean expectedInheritLocations) {
+						  String[] expectedLocations, Class<?>[] expectedClasses,
+						  Class<? extends ContextLoader> expectedContextLoaderClass, boolean expectedInheritLocations) {
 
 		assertEquals("declaring class", expectedDeclaringClass, attributes.getDeclaringClass());
 		assertArrayEquals("locations", expectedLocations, attributes.getLocations());
@@ -76,8 +76,8 @@ abstract class AbstractContextConfigurationUtilsTests {
 	}
 
 	void assertMergedConfig(MergedContextConfiguration mergedConfig, Class<?> expectedTestClass,
-			String[] expectedLocations, Class<?>[] expectedClasses,
-			Class<? extends ContextLoader> expectedContextLoaderClass) {
+							String[] expectedLocations, Class<?>[] expectedClasses,
+							Class<? extends ContextLoader> expectedContextLoaderClass) {
 
 		assertMergedConfig(mergedConfig, expectedTestClass, expectedLocations, expectedClasses,
 				EMPTY_INITIALIZER_CLASSES, expectedContextLoaderClass);
@@ -100,8 +100,7 @@ abstract class AbstractContextConfigurationUtilsTests {
 		assertNotNull(mergedConfig.getActiveProfiles());
 		if (expectedContextLoaderClass == null) {
 			assertNull(mergedConfig.getContextLoader());
-		}
-		else {
+		} else {
 			assertEquals(expectedContextLoaderClass, mergedConfig.getContextLoader().getClass());
 		}
 		assertNotNull(mergedConfig.getContextInitializerClasses());

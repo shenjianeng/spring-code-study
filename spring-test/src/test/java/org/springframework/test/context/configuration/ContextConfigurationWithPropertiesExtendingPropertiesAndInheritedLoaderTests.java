@@ -33,9 +33,9 @@ import static org.junit.Assert.*;
  * {@link ContextConfiguration &#064;ContextConfiguration}.
  *
  * @author Sam Brannen
- * @since 3.0
  * @see PropertiesBasedSpringJUnit4ClassRunnerAppCtxTests
  * @see ContextConfigurationWithPropertiesExtendingPropertiesTests
+ * @since 3.0
  */
 @ContextConfiguration
 public class ContextConfigurationWithPropertiesExtendingPropertiesAndInheritedLoaderTests extends

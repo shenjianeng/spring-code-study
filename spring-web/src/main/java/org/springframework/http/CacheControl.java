@@ -42,11 +42,11 @@ import org.springframework.util.StringUtils;
  *
  * @author Brian Clozel
  * @author Juergen Hoeller
- * @since 4.2
  * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2">rfc7234 section 5.2.2</a>
  * @see <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching">
  * HTTP caching - Google developers reference</a>
  * @see <a href="https://www.mnot.net/cache_docs/">Mark Nottingham's cache documentation</a>
+ * @since 4.2
  */
 public class CacheControl {
 
@@ -75,6 +75,7 @@ public class CacheControl {
 
 	/**
 	 * Create an empty CacheControl instance.
+	 *
 	 * @see #empty()
 	 */
 	protected CacheControl() {
@@ -85,6 +86,7 @@ public class CacheControl {
 	 * Return an empty directive.
 	 * <p>This is well suited for using other optional directives without "max-age",
 	 * "no-cache" or "no-store".
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 */
 	public static CacheControl empty() {
@@ -100,8 +102,9 @@ public class CacheControl {
 	 * <p>In order to prevent caches to reuse the cached response even when it has
 	 * become stale (i.e. the "max-age" delay is passed), the "must-revalidate"
 	 * directive should be set ({@link #mustRevalidate()}
+	 *
 	 * @param maxAge the maximum time the response should be cached
-	 * @param unit the time unit of the {@code maxAge} argument
+	 * @param unit   the time unit of the {@code maxAge} argument
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.8">rfc7234 section 5.2.2.8</a>
 	 */
@@ -120,6 +123,7 @@ public class CacheControl {
 	 * and the server responding with "304 - Not Modified" status.
 	 * <p>In order to disable caching and minimize requests/responses exchanges,
 	 * the {@link #noStore()} directive should be used instead of {@code #noCache()}.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">rfc7234 section 5.2.2.2</a>
 	 */
@@ -133,6 +137,7 @@ public class CacheControl {
 	 * Add a "no-store" directive.
 	 * <p>This directive is well suited for preventing caches (browsers and proxies)
 	 * to cache the content of responses.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">rfc7234 section 5.2.2.3</a>
 	 */
@@ -148,6 +153,7 @@ public class CacheControl {
 	 * <p>This directive indicates that once it has become stale, a cache MUST NOT
 	 * use the response to satisfy subsequent requests without successful validation
 	 * on the origin server.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">rfc7234 section 5.2.2.1</a>
 	 */
@@ -161,6 +167,7 @@ public class CacheControl {
 	 * <p>This directive indicates that intermediaries (caches and others) should
 	 * not transform the response content. This can be useful to force caches and
 	 * CDNs not to automatically gzip or optimize the response content.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.4">rfc7234 section 5.2.2.4</a>
 	 */
@@ -174,6 +181,7 @@ public class CacheControl {
 	 * <p>This directive indicates that any cache MAY store the response,
 	 * even if the response would normally be non-cacheable or cacheable
 	 * only within a private cache.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.5">rfc7234 section 5.2.2.5</a>
 	 */
@@ -186,6 +194,7 @@ public class CacheControl {
 	 * Add a "private" directive.
 	 * <p>This directive indicates that the response message is intended
 	 * for a single user and MUST NOT be stored by a shared cache.
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.6">rfc7234 section 5.2.2.6</a>
 	 */
@@ -198,6 +207,7 @@ public class CacheControl {
 	 * Add a "proxy-revalidate" directive.
 	 * <p>This directive has the same meaning as the "must-revalidate" directive,
 	 * except that it does not apply to private caches (i.e. browsers, HTTP clients).
+	 *
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.7">rfc7234 section 5.2.2.7</a>
 	 */
@@ -210,8 +220,9 @@ public class CacheControl {
 	 * Add an "s-maxage" directive.
 	 * <p>This directive indicates that, in shared caches, the maximum age specified
 	 * by this directive overrides the maximum age specified by other directives.
+	 *
 	 * @param sMaxAge the maximum time the response should be cached
-	 * @param unit the time unit of the {@code sMaxAge} argument
+	 * @param unit    the time unit of the {@code sMaxAge} argument
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.9">rfc7234 section 5.2.2.9</a>
 	 */
@@ -227,8 +238,9 @@ public class CacheControl {
 	 * If a cached response is served stale due to the presence of this extension,
 	 * the cache SHOULD attempt to revalidate it while still serving stale responses
 	 * (i.e. without blocking).
+	 *
 	 * @param staleWhileRevalidate the maximum time the response should be used while being revalidated
-	 * @param unit the time unit of the {@code staleWhileRevalidate} argument
+	 * @param unit                 the time unit of the {@code staleWhileRevalidate} argument
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-3">rfc5861 section 3</a>
 	 */
@@ -241,8 +253,9 @@ public class CacheControl {
 	 * Add a "stale-if-error" directive.
 	 * <p>This directive indicates that when an error is encountered, a cached stale response
 	 * MAY be used to satisfy the request, regardless of other freshness information.
+	 *
 	 * @param staleIfError the maximum time the response should be used when errors are encountered
-	 * @param unit the time unit of the {@code staleIfError} argument
+	 * @param unit         the time unit of the {@code staleIfError} argument
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc5861#section-4">rfc5861 section 4</a>
 	 */
@@ -254,6 +267,7 @@ public class CacheControl {
 
 	/**
 	 * Return the "Cache-Control" header value, if any.
+	 *
 	 * @return the header value, or {@code null} if no directive was added
 	 */
 	@Nullable
@@ -264,6 +278,7 @@ public class CacheControl {
 
 	/**
 	 * Return the "Cache-Control" header value.
+	 *
 	 * @return the header value (potentially empty)
 	 */
 	private String toHeaderValue() {

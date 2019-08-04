@@ -42,8 +42,8 @@ import org.springframework.web.util.HtmlUtils;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 5.0
  * @see RequestContext#getBindStatus
+ * @since 5.0
  */
 public class BindStatus {
 
@@ -85,10 +85,11 @@ public class BindStatus {
 
 	/**
 	 * Create a new BindStatus instance, representing a field or object status.
+	 *
 	 * @param requestContext the current RequestContext
-	 * @param path the bean and property path for which values and errors
-	 * will be resolved (e.g. "customer.address.street")
-	 * @param htmlEscape whether to HTML-escape error messages and string values
+	 * @param path           the bean and property path for which values and errors
+	 *                       will be resolved (e.g. "customer.address.street")
+	 * @param htmlEscape     whether to HTML-escape error messages and string values
 	 * @throws IllegalStateException if no corresponding Errors object found
 	 */
 	public BindStatus(RequestContext requestContext, String path, boolean htmlEscape) throws IllegalStateException {
@@ -103,8 +104,7 @@ public class BindStatus {
 			// property not set, only the object itself
 			beanName = path;
 			this.expression = null;
-		}
-		else {
+		} else {
 			beanName = path.substring(0, dotPos);
 			this.expression = path.substring(dotPos + 1);
 		}
@@ -118,11 +118,9 @@ public class BindStatus {
 			if (this.expression != null) {
 				if ("*".equals(this.expression)) {
 					this.objectErrors = this.errors.getAllErrors();
-				}
-				else if (this.expression.endsWith("*")) {
+				} else if (this.expression.endsWith("*")) {
 					this.objectErrors = this.errors.getFieldErrors(this.expression);
-				}
-				else {
+				} else {
 					this.objectErrors = this.errors.getFieldErrors(this.expression);
 					this.value = this.errors.getFieldValue(this.expression);
 					this.valueType = this.errors.getFieldType(this.expression);
@@ -130,19 +128,15 @@ public class BindStatus {
 						this.bindingResult = (BindingResult) this.errors;
 						this.actualValue = this.bindingResult.getRawFieldValue(this.expression);
 						this.editor = this.bindingResult.findEditor(this.expression, null);
-					}
-					else {
+					} else {
 						this.actualValue = this.value;
 					}
 				}
-			}
-			else {
+			} else {
 				this.objectErrors = this.errors.getGlobalErrors();
 			}
 			this.errorCodes = initErrorCodes(this.objectErrors);
-		}
-
-		else {
+		} else {
 			// No BindingResult available as request attribute:
 			// Probably forwarded directly to a form view.
 			// Let's do the best we can: extract a plain target if appropriate.
@@ -150,7 +144,7 @@ public class BindStatus {
 			if (target == null) {
 				throw new IllegalStateException(
 						"Neither BindingResult nor plain target object for bean name '" +
-						beanName + "' available as request attribute");
+								beanName + "' available as request attribute");
 			}
 			if (this.expression != null && !"*".equals(this.expression) && !this.expression.endsWith("*")) {
 				BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(target);
@@ -289,6 +283,7 @@ public class BindStatus {
 	/**
 	 * Return an error message string, concatenating all messages
 	 * separated by the given delimiter.
+	 *
 	 * @param delimiter separator string, e.g. ", " or "<br>"
 	 * @return the error message string
 	 */
@@ -307,8 +302,7 @@ public class BindStatus {
 					ObjectError error = this.objectErrors.get(i);
 					this.errorMessages[i] = this.requestContext.getMessage(error, this.htmlEscape);
 				}
-			}
-			else {
+			} else {
 				this.errorMessages = new String[0];
 			}
 		}
@@ -318,6 +312,7 @@ public class BindStatus {
 	/**
 	 * Return the Errors instance (typically a BindingResult) that this
 	 * bind status is currently associated with.
+	 *
 	 * @return the current Errors instance, or {@code null} if none
 	 * @see org.springframework.validation.BindingResult
 	 */
@@ -329,6 +324,7 @@ public class BindStatus {
 	/**
 	 * Return the PropertyEditor for the property that this bind status
 	 * is currently bound to.
+	 *
 	 * @return the current PropertyEditor, or {@code null} if none
 	 */
 	@Nullable
@@ -339,6 +335,7 @@ public class BindStatus {
 	/**
 	 * Find a PropertyEditor for the given value class, associated with
 	 * the property that this bound status is currently bound to.
+	 *
 	 * @param valueClass the value class that an editor is needed for
 	 * @return the associated PropertyEditor, or {@code null} if none
 	 */

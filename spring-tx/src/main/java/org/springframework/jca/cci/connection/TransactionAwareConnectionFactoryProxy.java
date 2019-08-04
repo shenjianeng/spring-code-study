@@ -59,17 +59,18 @@ import org.springframework.lang.Nullable;
  * be cast to a native CCI Connection type or to a connection pool implementation type.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see javax.resource.cci.ConnectionFactory#getConnection
  * @see javax.resource.cci.Connection#close
  * @see ConnectionFactoryUtils#doGetConnection
  * @see ConnectionFactoryUtils#doReleaseConnection
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class TransactionAwareConnectionFactoryProxy extends DelegatingConnectionFactory {
 
 	/**
 	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 *
 	 * @see #setTargetConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy() {
@@ -77,6 +78,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 	/**
 	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 *
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
@@ -88,6 +90,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	/**
 	 * Delegate to ConnectionFactoryUtils for automatically participating in Spring-managed
 	 * transactions. Throws the original ResourceException, if any.
+	 *
 	 * @return a transactional Connection if any, a new one else
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#doGetConnection
 	 */
@@ -101,8 +104,9 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	/**
 	 * Wrap the given Connection with a proxy that delegates every method call to it
 	 * but delegates {@code close} calls to ConnectionFactoryUtils.
+	 *
 	 * @param target the original Connection to wrap
-	 * @param cf the ConnectionFactory that the Connection came from
+	 * @param cf     the ConnectionFactory that the Connection came from
 	 * @return the wrapped Connection
 	 * @see javax.resource.cci.Connection#close()
 	 * @see ConnectionFactoryUtils#doReleaseConnection
@@ -110,7 +114,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	protected Connection getTransactionAwareConnectionProxy(Connection target, ConnectionFactory cf) {
 		return (Connection) Proxy.newProxyInstance(
 				Connection.class.getClassLoader(),
-				new Class<?>[] {Connection.class},
+				new Class<?>[]{Connection.class},
 				new TransactionAwareInvocationHandler(target, cf));
 	}
 
@@ -138,18 +142,15 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 			if (method.getName().equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of Connection proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (method.getName().equals("getLocalTransaction")) {
+			} else if (method.getName().equals("getLocalTransaction")) {
 				if (ConnectionFactoryUtils.isConnectionTransactional(this.target, this.connectionFactory)) {
 					throw new javax.resource.spi.IllegalStateException(
 							"Local transaction handling not allowed within a managed transaction");
 				}
-			}
-			else if (method.getName().equals("close")) {
+			} else if (method.getName().equals("close")) {
 				// Handle close method: only close if not within a transaction.
 				ConnectionFactoryUtils.doReleaseConnection(this.target, this.connectionFactory);
 				return null;
@@ -158,8 +159,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 			// Invoke method on target Connection.
 			try {
 				return method.invoke(this.target, args);
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

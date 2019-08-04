@@ -99,8 +99,7 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 		if (this.errors != null && this.errors.hasErrors()) {
 			this.pageContext.setAttribute(ERRORS_VARIABLE_NAME, this.errors, PageContext.REQUEST_SCOPE);
 			return EVAL_BODY_INCLUDE;
-		}
-		else {
+		} else {
 			return SKIP_BODY;
 		}
 	}

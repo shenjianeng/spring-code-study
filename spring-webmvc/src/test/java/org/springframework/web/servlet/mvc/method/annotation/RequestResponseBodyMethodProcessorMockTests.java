@@ -162,8 +162,7 @@ public class RequestResponseBodyMethodProcessorMockTests {
 		try {
 			testResolveArgumentWithValidation(new SimpleBean(null));
 			fail("Expected exception");
-		}
-		catch (MethodArgumentNotValidException e) {
+		} catch (MethodArgumentNotValidException e) {
 			assertEquals("simpleBean", e.getBindingResult().getObjectName());
 			assertEquals(1, e.getBindingResult().getErrorCount());
 			assertNotNull(e.getBindingResult().getFieldError("name"));
@@ -452,7 +451,7 @@ public class RequestResponseBodyMethodProcessorMockTests {
 
 		@Override
 		public WebDataBinder createBinder(NativeWebRequest webRequest, @Nullable Object target,
-				String objectName) throws Exception {
+										  String objectName) throws Exception {
 
 			LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
 			validator.afterPropertiesSet();

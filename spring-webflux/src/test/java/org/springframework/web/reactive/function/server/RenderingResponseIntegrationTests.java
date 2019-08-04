@@ -143,7 +143,7 @@ public class RenderingResponseIntegrationTests extends AbstractRouterFunctionInt
 
 		@Override
 		public Mono<Void> render(@Nullable Map<String, ?> model, @Nullable MediaType contentType,
-				ServerWebExchange exchange) {
+								 ServerWebExchange exchange) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("name=").append(this.name).append('\n');
 			for (Map.Entry<String, ?> entry : model.entrySet()) {

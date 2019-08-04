@@ -85,8 +85,7 @@ public class FieldRetrievingFactoryBeanTests {
 		fr.setTargetField("TRANSACTION_SERIALIZABLE");
 		try {
 			fr.afterPropertiesSet();
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 
@@ -96,8 +95,7 @@ public class FieldRetrievingFactoryBeanTests {
 		fr.setTargetClass(Connection.class);
 		try {
 			fr.afterPropertiesSet();
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 
@@ -107,8 +105,7 @@ public class FieldRetrievingFactoryBeanTests {
 		fr.setTargetObject(new PublicFieldHolder());
 		try {
 			fr.afterPropertiesSet();
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 

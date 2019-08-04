@@ -318,7 +318,7 @@ public class MockHttpServletResponseTests {
 	@SuppressWarnings("deprecation")
 	public void modifyStatusMessageAfterSendError() throws IOException {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
-		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Server Error");
+		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Server Error");
 		assertEquals(HttpServletResponse.SC_NOT_FOUND, response.getStatus());
 	}
 
@@ -349,7 +349,7 @@ public class MockHttpServletResponseTests {
 		response.addCookie(mockCookie);
 
 		assertEquals("SESSION=123; Path=/; Domain=example.com; Max-Age=0; " +
-				"Expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure; HttpOnly; SameSite=Lax",
+						"Expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure; HttpOnly; SameSite=Lax",
 				response.getHeader(HttpHeaders.SET_COOKIE));
 	}
 

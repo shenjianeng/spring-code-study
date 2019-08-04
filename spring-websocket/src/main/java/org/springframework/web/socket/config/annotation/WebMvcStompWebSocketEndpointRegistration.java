@@ -131,14 +131,12 @@ public class WebMvcStompWebSocketEndpointRegistration implements StompWebSocketE
 				SockJsHttpRequestHandler handler = new SockJsHttpRequestHandler(sockJsService, this.webSocketHandler);
 				mappings.add(handler, pattern);
 			}
-		}
-		else {
+		} else {
 			for (String path : this.paths) {
 				WebSocketHttpRequestHandler handler;
 				if (this.handshakeHandler != null) {
 					handler = new WebSocketHttpRequestHandler(this.webSocketHandler, this.handshakeHandler);
-				}
-				else {
+				} else {
 					handler = new WebSocketHttpRequestHandler(this.webSocketHandler);
 				}
 				HandshakeInterceptor[] interceptors = getInterceptors();

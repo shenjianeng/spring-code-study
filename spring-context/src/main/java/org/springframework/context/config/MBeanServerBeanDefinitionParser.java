@@ -39,8 +39,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
- * @since 2.5
  * @see org.springframework.jmx.export.annotation.AnnotationMBeanExporter
+ * @since 2.5
  */
 class MBeanServerBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
@@ -93,11 +93,9 @@ class MBeanServerBeanDefinitionParser extends AbstractBeanDefinitionParser {
 			RootBeanDefinition bd = new RootBeanDefinition(JndiObjectFactoryBean.class);
 			bd.getPropertyValues().add("jndiName", "java:comp/env/jmx/runtime");
 			return bd;
-		}
-		else if (webspherePresent) {
+		} else if (webspherePresent) {
 			return new RootBeanDefinition(WebSphereMBeanServerFactoryBean.class);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

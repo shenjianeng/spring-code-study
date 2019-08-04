@@ -27,8 +27,8 @@ import org.springframework.lang.Nullable;
  * {@code org.springframework.dao} exceptions.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see SessionFactoryUtils#convertHibernateAccessException
+ * @since 4.2
  */
 @SuppressWarnings("serial")
 public class HibernateSystemException extends UncategorizedDataAccessException {
@@ -36,6 +36,7 @@ public class HibernateSystemException extends UncategorizedDataAccessException {
 	/**
 	 * Create a new HibernateSystemException,
 	 * wrapping an arbitrary HibernateException.
+	 *
 	 * @param cause the HibernateException thrown
 	 */
 	public HibernateSystemException(@Nullable HibernateException cause) {

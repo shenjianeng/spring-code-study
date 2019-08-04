@@ -135,8 +135,7 @@ public class HeaderAssertionTests {
 					.andExpect(header().longValue("X-Custom-Header", 99L));
 
 			fail(ERROR_MESSAGE);
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			if (ERROR_MESSAGE.equals(err.getMessage())) {
 				throw err;
 			}
@@ -188,8 +187,7 @@ public class HeaderAssertionTests {
 					.andExpect(matcher);
 
 			fail(ERROR_MESSAGE);
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			if (ERROR_MESSAGE.equals(err.getMessage())) {
 				throw err;
 			}

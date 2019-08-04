@@ -87,8 +87,8 @@ import org.springframework.messaging.Message;
  * the controller <i>interface</i> rather than on the implementation class.
  *
  * @author Rossen Stoyanchev
- * @since 4.0
  * @see org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler
+ * @since 4.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

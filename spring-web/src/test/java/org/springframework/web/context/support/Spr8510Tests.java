@@ -33,8 +33,8 @@ import static org.junit.Assert.*;
  * configuration use cases, e.g. with Spring 3.1's WebApplicationInitializer.
  *
  * @author Chris Beams
- * @since 3.1
  * @see org.springframework.web.context.ContextLoaderTests
+ * @since 3.1
  */
 public class Spr8510Tests {
 
@@ -49,8 +49,7 @@ public class Spr8510Tests {
 		try {
 			cll.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			// assert that an attempt was made to load the correct XML
 			assertTrue(t.getMessage(), t.getMessage().endsWith(
 					"Could not open ServletContext resource [/programmatic.xml]"));
@@ -76,8 +75,7 @@ public class Spr8510Tests {
 		try {
 			cll.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			// assert that an attempt was made to load the correct XML
 			assertTrue(t.getMessage(), t.getMessage().endsWith(
 					"Could not open ServletContext resource [/from-init-param.xml]"));
@@ -100,8 +98,7 @@ public class Spr8510Tests {
 		try {
 			cll.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			// assert that an attempt was made to load the correct XML
 			assertTrue(t.getMessage().endsWith(
 					"Could not open ServletContext resource [/from-init-param.xml]"));
@@ -116,7 +113,7 @@ public class Spr8510Tests {
 		XmlWebApplicationContext ctx = new XmlWebApplicationContext() {
 			@Override
 			protected String[] getDefaultConfigLocations() {
-				return new String[] { "/WEB-INF/custom.xml" };
+				return new String[]{"/WEB-INF/custom.xml"};
 			}
 		};
 		//ctx.setConfigLocation("programmatic.xml"); // nothing set programmatically
@@ -128,8 +125,7 @@ public class Spr8510Tests {
 		try {
 			cll.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			// assert that an attempt was made to load the correct XML
 			System.out.println(t.getMessage());
 			assertTrue(t.getMessage().endsWith(
@@ -154,8 +150,7 @@ public class Spr8510Tests {
 		try {
 			cll.contextInitialized(new ServletContextEvent(sc));
 			fail("expected exception");
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			// assert that an attempt was made to load the correct XML
 			System.out.println(t.getMessage());
 			assertTrue(t.getMessage().endsWith(

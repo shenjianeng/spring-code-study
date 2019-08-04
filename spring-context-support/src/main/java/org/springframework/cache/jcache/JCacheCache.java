@@ -43,6 +43,7 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * Create a {@code JCacheCache} instance.
+	 *
 	 * @param jcache backing JCache Cache instance
 	 */
 	public JCacheCache(Cache<Object, Object> jcache) {
@@ -51,7 +52,8 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 
 	/**
 	 * Create a {@code JCacheCache} instance.
-	 * @param jcache backing JCache Cache instance
+	 *
+	 * @param jcache          backing JCache Cache instance
 	 * @param allowNullValues whether to accept and convert null values for this cache
 	 */
 	public JCacheCache(Cache<Object, Object> jcache, boolean allowNullValues) {
@@ -82,8 +84,7 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 	public <T> T get(Object key, Callable<T> valueLoader) {
 		try {
 			return this.cache.invoke(key, new ValueLoaderEntryProcessor<T>(), valueLoader);
-		}
-		catch (EntryProcessorException ex) {
+		} catch (EntryProcessorException ex) {
 			throw new ValueRetrievalException(key, valueLoader, ex.getCause());
 		}
 	}
@@ -120,13 +121,11 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 			Callable<T> valueLoader = (Callable<T>) arguments[0];
 			if (entry.exists()) {
 				return (T) fromStoreValue(entry.getValue());
-			}
-			else {
+			} else {
 				T value;
 				try {
 					value = valueLoader.call();
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					throw new EntryProcessorException("Value loader '" + valueLoader + "' failed " +
 							"to compute value for key '" + entry.getKey() + "'", ex);
 				}

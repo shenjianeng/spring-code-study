@@ -52,6 +52,7 @@ import org.springframework.cglib.core.internal.CustomizerRegistry;
  * <b>Note:</b>
  * <code>hashCode</code> equality between two keys <code>key1</code> and <code>key2</code> is only guaranteed if
  * <code>key1.equals(key2)</code> <i>and</i> the keys were produced by the same factory.
+ *
  * @version $Id: KeyFactory.java,v 1.26 2006/03/05 02:43:19 herbyderby Exp $
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
@@ -112,6 +113,7 @@ abstract public class KeyFactory {
 				e.invoke_virtual(Constants.TYPE_CLASS, GET_NAME);
 			}
 		}
+
 		public Type getOutType(int index, Type type) {
 			if (type.equals(Constants.TYPE_CLASS)) {
 				return Constants.TYPE_STRING;
@@ -165,7 +167,7 @@ abstract public class KeyFactory {
 	}
 
 	public static KeyFactory create(ClassLoader loader, Class keyInterface, KeyFactoryCustomizer customizer,
-			List<KeyFactoryCustomizer> next) {
+									List<KeyFactoryCustomizer> next) {
 		Generator gen = new Generator();
 		gen.setInterface(keyInterface);
 		// SPRING PATCH BEGIN

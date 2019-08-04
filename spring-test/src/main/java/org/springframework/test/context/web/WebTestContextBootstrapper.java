@@ -47,8 +47,7 @@ public class WebTestContextBootstrapper extends DefaultTestContextBootstrapper {
 	protected Class<? extends ContextLoader> getDefaultContextLoaderClass(Class<?> testClass) {
 		if (AnnotatedElementUtils.hasAnnotation(testClass, WebAppConfiguration.class)) {
 			return WebDelegatingSmartContextLoader.class;
-		}
-		else {
+		} else {
 			return super.getDefaultContextLoaderClass(testClass);
 		}
 	}
@@ -65,8 +64,7 @@ public class WebTestContextBootstrapper extends DefaultTestContextBootstrapper {
 				AnnotatedElementUtils.findMergedAnnotation(mergedConfig.getTestClass(), WebAppConfiguration.class);
 		if (webAppConfiguration != null) {
 			return new WebMergedContextConfiguration(mergedConfig, webAppConfiguration.value());
-		}
-		else {
+		} else {
 			return mergedConfig;
 		}
 	}

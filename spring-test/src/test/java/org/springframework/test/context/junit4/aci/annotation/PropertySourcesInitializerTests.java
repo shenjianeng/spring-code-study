@@ -77,7 +77,7 @@ public class PropertySourcesInitializerTests {
 		@Override
 		public void initialize(ConfigurableApplicationContext applicationContext) {
 			applicationContext.getEnvironment().getPropertySources().addFirst(
-				new MockPropertySource().withProperty("enigma", "foo"));
+					new MockPropertySource().withProperty("enigma", "foo"));
 		}
 	}
 

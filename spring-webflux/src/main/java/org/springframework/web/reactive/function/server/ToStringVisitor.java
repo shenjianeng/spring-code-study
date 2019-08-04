@@ -76,7 +76,7 @@ class ToStringVisitor implements RouterFunctions.Visitor, RequestPredicates.Visi
 	}
 
 	private void indent() {
-		for (int i=0; i < this.indent; i++) {
+		for (int i = 0; i < this.indent; i++) {
 			this.builder.append(' ');
 		}
 	}
@@ -88,8 +88,7 @@ class ToStringVisitor implements RouterFunctions.Visitor, RequestPredicates.Visi
 	public void method(Set<HttpMethod> methods) {
 		if (methods.size() == 1) {
 			this.builder.append(methods.iterator().next());
-		}
-		else {
+		} else {
 			this.builder.append(methods);
 		}
 	}

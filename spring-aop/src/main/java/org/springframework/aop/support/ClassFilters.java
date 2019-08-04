@@ -28,14 +28,15 @@ import org.springframework.util.ObjectUtils;
  * @author Rod Johnson
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 11.11.2003
  * @see MethodMatchers
  * @see Pointcuts
+ * @since 11.11.2003
  */
 public abstract class ClassFilters {
 
 	/**
 	 * Match all classes that <i>either</i> (or both) of the given ClassFilters matches.
+	 *
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
 	 * @return a distinct ClassFilter that matches all classes that either
@@ -44,11 +45,12 @@ public abstract class ClassFilters {
 	public static ClassFilter union(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
 		Assert.notNull(cf2, "Second ClassFilter must not be null");
-		return new UnionClassFilter(new ClassFilter[] {cf1, cf2});
+		return new UnionClassFilter(new ClassFilter[]{cf1, cf2});
 	}
 
 	/**
 	 * Match all classes that <i>either</i> (or all) of the given ClassFilters matches.
+	 *
 	 * @param classFilters the ClassFilters to match
 	 * @return a distinct ClassFilter that matches all classes that either
 	 * of the given ClassFilter matches
@@ -60,6 +62,7 @@ public abstract class ClassFilters {
 
 	/**
 	 * Match all classes that <i>both</i> of the given ClassFilters match.
+	 *
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
 	 * @return a distinct ClassFilter that matches all classes that both
@@ -68,11 +71,12 @@ public abstract class ClassFilters {
 	public static ClassFilter intersection(ClassFilter cf1, ClassFilter cf2) {
 		Assert.notNull(cf1, "First ClassFilter must not be null");
 		Assert.notNull(cf2, "Second ClassFilter must not be null");
-		return new IntersectionClassFilter(new ClassFilter[] {cf1, cf2});
+		return new IntersectionClassFilter(new ClassFilter[]{cf1, cf2});
 	}
 
 	/**
 	 * Match all classes that <i>all</i> of the given ClassFilters match.
+	 *
 	 * @param classFilters the ClassFilters to match
 	 * @return a distinct ClassFilter that matches all classes that both
 	 * of the given ClassFilter match

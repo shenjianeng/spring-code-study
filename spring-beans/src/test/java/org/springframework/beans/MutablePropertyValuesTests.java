@@ -121,8 +121,7 @@ public class MutablePropertyValuesTests extends AbstractPropertyValuesTests {
 		try {
 			it.remove();
 			fail("Should have thrown UnsupportedOperationException");
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			// expected
 		}
 		assertFalse(it.hasNext());

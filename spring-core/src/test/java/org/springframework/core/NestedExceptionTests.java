@@ -34,7 +34,8 @@ public class NestedExceptionTests {
 	public void nestedRuntimeExceptionWithNoRootCause() {
 		String mesg = "mesg of mine";
 		// Making a class abstract doesn't _really_ prevent instantiation :-)
-		NestedRuntimeException nex = new NestedRuntimeException(mesg) {};
+		NestedRuntimeException nex = new NestedRuntimeException(mesg) {
+		};
 		assertNull(nex.getCause());
 		assertEquals(nex.getMessage(), mesg);
 
@@ -53,7 +54,8 @@ public class NestedExceptionTests {
 		String rootCauseMsg = "this is the obscure message of the root cause";
 		Exception rootCause = new Exception(rootCauseMsg);
 		// Making a class abstract doesn't _really_ prevent instantiation :-)
-		NestedRuntimeException nex = new NestedRuntimeException(myMessage, rootCause) {};
+		NestedRuntimeException nex = new NestedRuntimeException(myMessage, rootCause) {
+		};
 		assertEquals(nex.getCause(), rootCause);
 		assertTrue(nex.getMessage().contains(myMessage));
 		assertTrue(nex.getMessage().endsWith(rootCauseMsg));
@@ -72,7 +74,8 @@ public class NestedExceptionTests {
 	public void nestedCheckedExceptionWithNoRootCause() {
 		String mesg = "mesg of mine";
 		// Making a class abstract doesn't _really_ prevent instantiation :-)
-		NestedCheckedException nex = new NestedCheckedException(mesg) {};
+		NestedCheckedException nex = new NestedCheckedException(mesg) {
+		};
 		assertNull(nex.getCause());
 		assertEquals(nex.getMessage(), mesg);
 
@@ -91,7 +94,8 @@ public class NestedExceptionTests {
 		String rootCauseMsg = "this is the obscure message of the root cause";
 		Exception rootCause = new Exception(rootCauseMsg);
 		// Making a class abstract doesn't _really_ prevent instantiation :-)
-		NestedCheckedException nex = new NestedCheckedException(myMessage, rootCause) {};
+		NestedCheckedException nex = new NestedCheckedException(myMessage, rootCause) {
+		};
 		assertEquals(nex.getCause(), rootCause);
 		assertTrue(nex.getMessage().contains(myMessage));
 		assertTrue(nex.getMessage().endsWith(rootCauseMsg));

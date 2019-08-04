@@ -105,8 +105,7 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 	public void start() {
 		try {
 			this.client.start();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException("Failed to start Jetty WebSocketClient", ex);
 		}
 	}
@@ -115,8 +114,7 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 	public void stop() {
 		try {
 			this.client.stop();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			logger.error("Failed to stop Jetty WebSocketClient", ex);
 		}
 	}
@@ -129,7 +127,7 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 	@Override
 	public ListenableFuture<WebSocketSession> doHandshake(WebSocketHandler webSocketHandler,
-			String uriTemplate, Object... uriVars) {
+														  String uriTemplate, Object... uriVars) {
 
 		UriComponents uriComponents = UriComponentsBuilder.fromUriString(uriTemplate).buildAndExpand(uriVars).encode();
 		return doHandshake(webSocketHandler, null, uriComponents.toUri());
@@ -137,8 +135,8 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 	@Override
 	public ListenableFuture<WebSocketSession> doHandshakeInternal(WebSocketHandler wsHandler,
-			HttpHeaders headers, final URI uri, List<String> protocols,
-			List<WebSocketExtension> extensions,  Map<String, Object> attributes) {
+																  HttpHeaders headers, final URI uri, List<String> protocols,
+																  List<WebSocketExtension> extensions, Map<String, Object> attributes) {
 
 		final ClientUpgradeRequest request = new ClientUpgradeRequest();
 		request.setSubProtocols(protocols);
@@ -161,8 +159,7 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 		if (this.taskExecutor != null) {
 			return this.taskExecutor.submitListenable(connectTask);
-		}
-		else {
+		} else {
 			ListenableFutureTask<WebSocketSession> task = new ListenableFutureTask<>(connectTask);
 			task.run();
 			return task;

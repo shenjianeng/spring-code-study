@@ -165,7 +165,6 @@ public class PagedListHolderTests {
 	}
 
 
-
 	public static class MockFilter {
 
 		private String name = "";

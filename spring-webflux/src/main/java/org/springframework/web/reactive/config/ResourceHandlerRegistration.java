@@ -51,9 +51,10 @@ public class ResourceHandlerRegistration {
 
 	/**
 	 * Create a {@link ResourceHandlerRegistration} instance.
+	 *
 	 * @param resourceLoader a resource loader for turning a String location
-	 * into a {@link Resource}
-	 * @param pathPatterns one or more resource URL path patterns
+	 *                       into a {@link Resource}
+	 * @param pathPatterns   one or more resource URL path patterns
 	 */
 	public ResourceHandlerRegistration(ResourceLoader resourceLoader, String... pathPatterns) {
 		Assert.notNull(resourceLoader, "ResourceLoader is required");
@@ -74,6 +75,7 @@ public class ResourceHandlerRegistration {
 	 * be served both from the web application root and from any JAR on the
 	 * classpath that contains a {@code /META-INF/public-web-resources/} directory,
 	 * with resources in the web application root taking precedence.
+	 *
 	 * @return the same {@link ResourceHandlerRegistration} instance, for
 	 * chained method invocation
 	 */
@@ -85,6 +87,7 @@ public class ResourceHandlerRegistration {
 	/**
 	 * Specify the {@link CacheControl} which should be used
 	 * by the resource handler.
+	 *
 	 * @param cacheControl the CacheControl configuration to use
 	 * @return the same {@link ResourceHandlerRegistration} instance, for
 	 * chained method invocation
@@ -100,9 +103,10 @@ public class ResourceHandlerRegistration {
 	 * <p>If this method is not invoked, by default only a simple
 	 * {@code PathResourceResolver} is used in order to match URL paths to
 	 * resources under the configured locations.
+	 *
 	 * @param cacheResources whether to cache the result of resource resolution;
-	 * setting this to "true" is recommended for production (and "false" for
-	 * development, especially when applying a version strategy)
+	 *                       setting this to "true" is recommended for production (and "false" for
+	 *                       development, especially when applying a version strategy)
 	 * @return the same {@link ResourceHandlerRegistration} instance, for
 	 * chained method invocation
 	 */
@@ -117,14 +121,15 @@ public class ResourceHandlerRegistration {
 	 * <p>If this method is not invoked, by default only a simple
 	 * {@code PathResourceResolver} is used in order to match URL paths to
 	 * resources under the configured locations.
+	 *
 	 * @param cacheResources whether to cache the result of resource resolution;
-	 * setting this to "true" is recommended for production (and "false" for
-	 * development, especially when applying a version strategy
-	 * @param cache the cache to use for storing resolved and transformed resources;
-	 * by default a {@link org.springframework.cache.concurrent.ConcurrentMapCache}
-	 * is used. Since Resources aren't serializable and can be dependent on the
-	 * application host, one should not use a distributed cache but rather an
-	 * in-memory cache.
+	 *                       setting this to "true" is recommended for production (and "false" for
+	 *                       development, especially when applying a version strategy
+	 * @param cache          the cache to use for storing resolved and transformed resources;
+	 *                       by default a {@link org.springframework.cache.concurrent.ConcurrentMapCache}
+	 *                       is used. Since Resources aren't serializable and can be dependent on the
+	 *                       application host, one should not use a distributed cache but rather an
+	 *                       in-memory cache.
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 */
 	public ResourceChainRegistration resourceChain(boolean cacheResources, Cache cache) {

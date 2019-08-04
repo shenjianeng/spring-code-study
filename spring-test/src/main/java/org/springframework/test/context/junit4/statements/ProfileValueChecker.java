@@ -35,10 +35,10 @@ import org.springframework.util.Assert;
  *
  * @author Sam Brannen
  * @author Philippe Marschall
- * @since 4.2
  * @see #evaluate()
  * @see IfProfileValue
  * @see ProfileValueUtils
+ * @since 4.2
  */
 public class ProfileValueChecker extends Statement {
 
@@ -52,11 +52,12 @@ public class ProfileValueChecker extends Statement {
 
 	/**
 	 * Construct a new {@code ProfileValueChecker} statement.
-	 * @param next the next {@code Statement} in the execution chain;
-	 * never {@code null}
-	 * @param testClass the test class to check; never {@code null}
+	 *
+	 * @param next       the next {@code Statement} in the execution chain;
+	 *                   never {@code null}
+	 * @param testClass  the test class to check; never {@code null}
 	 * @param testMethod the test method to check; may be {@code null} if
-	 * this {@code ProfileValueChecker} is being applied at the class level
+	 *                   this {@code ProfileValueChecker} is being applied at the class level
 	 */
 	public ProfileValueChecker(Statement next, Class<?> testClass, @Nullable Method testMethod) {
 		Assert.notNull(next, "The next statement must not be null");
@@ -77,10 +78,11 @@ public class ProfileValueChecker extends Statement {
 	 * <p>If a test is not enabled, this method will abort further evaluation
 	 * of the execution chain with a failed assumption; otherwise, this method
 	 * will simply evaluate the next {@link Statement} in the execution chain.
+	 *
+	 * @throws AssumptionViolatedException if the test is disabled
+	 * @throws Throwable                   if evaluation of the next statement fails
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Method, Class)
-	 * @throws AssumptionViolatedException if the test is disabled
-	 * @throws Throwable if evaluation of the next statement fails
 	 */
 	@Override
 	public void evaluate() throws Throwable {
@@ -91,8 +93,7 @@ public class ProfileValueChecker extends Statement {
 						"Profile configured via [%s] is not enabled in this environment for test class [%s].",
 						ann, this.testClass.getName()));
 			}
-		}
-		else {
+		} else {
 			if (!ProfileValueUtils.isTestEnabledInThisEnvironment(this.testMethod, this.testClass)) {
 				throw new AssumptionViolatedException(String.format(
 						"Profile configured via @IfProfileValue is not enabled in this environment for test method [%s].",

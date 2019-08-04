@@ -32,10 +32,10 @@ import org.springframework.lang.Nullable;
  * will use the carried encoding and FileTypeMap unless explicitly overridden.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see JavaMailSenderImpl#createMimeMessage()
  * @see MimeMessageHelper#getDefaultEncoding(javax.mail.internet.MimeMessage)
  * @see MimeMessageHelper#getDefaultFileTypeMap(javax.mail.internet.MimeMessage)
+ * @since 1.2
  */
 class SmartMimeMessage extends MimeMessage {
 
@@ -48,8 +48,9 @@ class SmartMimeMessage extends MimeMessage {
 
 	/**
 	 * Create a new SmartMimeMessage.
-	 * @param session the JavaMail Session to create the message for
-	 * @param defaultEncoding the default encoding, or {@code null} if none
+	 *
+	 * @param session            the JavaMail Session to create the message for
+	 * @param defaultEncoding    the default encoding, or {@code null} if none
 	 * @param defaultFileTypeMap the default FileTypeMap, or {@code null} if none
 	 */
 	public SmartMimeMessage(

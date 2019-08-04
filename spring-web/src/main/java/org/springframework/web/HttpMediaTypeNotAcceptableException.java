@@ -31,6 +31,7 @@ public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException 
 
 	/**
 	 * Create a new HttpMediaTypeNotAcceptableException.
+	 *
 	 * @param message the exception message
 	 */
 	public HttpMediaTypeNotAcceptableException(String message) {
@@ -39,6 +40,7 @@ public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException 
 
 	/**
 	 * Create a new HttpMediaTypeNotSupportedException.
+	 *
 	 * @param supportedMediaTypes the list of supported media types
 	 */
 	public HttpMediaTypeNotAcceptableException(List<MediaType> supportedMediaTypes) {

@@ -52,8 +52,9 @@ public class ClassArrayEditor extends PropertyEditorSupport {
 	/**
 	 * Create a default {@code ClassArrayEditor}, using the given
 	 * {@code ClassLoader}.
+	 *
 	 * @param classLoader the {@code ClassLoader} to use
-	 * (or pass {@code null} for the thread context {@code ClassLoader})
+	 *                    (or pass {@code null} for the thread context {@code ClassLoader})
 	 */
 	public ClassArrayEditor(@Nullable ClassLoader classLoader) {
 		this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
@@ -70,8 +71,7 @@ public class ClassArrayEditor extends PropertyEditorSupport {
 				classes[i] = ClassUtils.resolveClassName(className, this.classLoader);
 			}
 			setValue(classes);
-		}
-		else {
+		} else {
 			setValue(null);
 		}
 	}

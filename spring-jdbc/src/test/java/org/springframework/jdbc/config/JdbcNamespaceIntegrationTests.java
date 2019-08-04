@@ -77,7 +77,7 @@ public class JdbcNamespaceIntegrationTests {
 	@Test
 	public void createWithAnonymousDataSourceAndDefaultDatabaseName() throws Exception {
 		assertCorrectSetupForSingleDataSource("jdbc-config-db-name-default-and-anonymous-datasource.xml",
-			(url) -> url.endsWith(DEFAULT_DATABASE_NAME));
+				(url) -> url.endsWith(DEFAULT_DATABASE_NAME));
 	}
 
 	@Test
@@ -119,8 +119,7 @@ public class JdbcNamespaceIntegrationTests {
 			context.getBean(DataSourceInitializer.class).destroy();
 			expected.expect(BadSqlGrammarException.class); // Table has been dropped
 			assertNumRowsInTestTable(template, 1);
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -135,8 +134,7 @@ public class JdbcNamespaceIntegrationTests {
 			context.getBean(EmbeddedDatabaseFactoryBean.class).destroy();
 			expected.expect(BadSqlGrammarException.class); // Table has been dropped
 			assertNumRowsInTestTable(template, 1);
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -151,8 +149,7 @@ public class JdbcNamespaceIntegrationTests {
 			context.getBean(EmbeddedDatabaseFactoryBean.class).destroy();
 			expected.expect(BadSqlGrammarException.class); // Table has been dropped
 			assertNumRowsInTestTable(template, 1);
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -161,7 +158,7 @@ public class JdbcNamespaceIntegrationTests {
 	public void multipleDataSourcesHaveDifferentDatabaseNames() throws Exception {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader(factory).loadBeanDefinitions(new ClassPathResource(
-			"jdbc-config-multiple-datasources.xml", getClass()));
+				"jdbc-config-multiple-datasources.xml", getClass()));
 		assertBeanPropertyValueOf("databaseName", "firstDataSource", factory);
 		assertBeanPropertyValueOf("databaseName", "secondDataSource", factory);
 	}
@@ -205,8 +202,7 @@ public class JdbcNamespaceIntegrationTests {
 				AbstractDriverBasedDataSource adbDataSource = (AbstractDriverBasedDataSource) dataSource;
 				assertThat(adbDataSource.getUrl(), containsString(dataSourceName));
 			}
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -219,8 +215,7 @@ public class JdbcNamespaceIntegrationTests {
 			assertTrue(dataSource instanceof AbstractDriverBasedDataSource);
 			AbstractDriverBasedDataSource adbDataSource = (AbstractDriverBasedDataSource) dataSource;
 			assertTrue(urlPredicate.test(adbDataSource.getUrl()));
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}

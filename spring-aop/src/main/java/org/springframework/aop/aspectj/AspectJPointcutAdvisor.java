@@ -44,6 +44,7 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 
 	/**
 	 * Create a new AspectJPointcutAdvisor for the given advice.
+	 *
 	 * @param advice the AbstractAspectJAdvice to wrap
 	 */
 	public AspectJPointcutAdvisor(AbstractAspectJAdvice advice) {
@@ -61,8 +62,7 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 	public int getOrder() {
 		if (this.order != null) {
 			return this.order;
-		}
-		else {
+		} else {
 			return this.advice.getOrder();
 		}
 	}
@@ -84,8 +84,9 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 
 	/**
 	 * Return the name of the aspect (bean) in which the advice was declared.
-	 * @since 4.3.15
+	 *
 	 * @see AbstractAspectJAdvice#getAspectName()
+	 * @since 4.3.15
 	 */
 	public String getAspectName() {
 		return this.advice.getAspectName();

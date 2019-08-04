@@ -47,9 +47,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Costin Leau
  * @author Juergen Hoeller
- * @since 3.1
  * @see #setFallbackToNoOpCache
  * @see org.springframework.cache.concurrent.ConcurrentMapCacheManager#setCacheNames
+ * @since 3.1
  */
 public class CompositeCacheManager implements CacheManager, InitializingBean {
 
@@ -67,6 +67,7 @@ public class CompositeCacheManager implements CacheManager, InitializingBean {
 
 	/**
 	 * Construct a CompositeCacheManager from the given delegate CacheManagers.
+	 *
 	 * @param cacheManagers the CacheManagers to delegate to
 	 */
 	public CompositeCacheManager(CacheManager... cacheManagers) {

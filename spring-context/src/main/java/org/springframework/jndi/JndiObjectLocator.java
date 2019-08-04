@@ -40,12 +40,12 @@ import org.springframework.util.StringUtils;
  * initialization of the locator before the JNDI object is available.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #setJndiName
  * @see #setJndiTemplate
  * @see #setJndiEnvironment
  * @see #setResourceRef
  * @see #lookup()
+ * @since 1.1
  */
 public abstract class JndiObjectLocator extends JndiLocatorSupport implements InitializingBean {
 
@@ -59,6 +59,7 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 	/**
 	 * Specify the JNDI name to look up. If it doesn't begin with "java:comp/env/"
 	 * this prefix is added automatically if "resourceRef" is set to "true".
+	 *
 	 * @param jndiName the JNDI name to look up
 	 * @see #setResourceRef
 	 */
@@ -101,9 +102,10 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 
 	/**
 	 * Perform the actual JNDI lookup for this locator's target resource.
+	 *
 	 * @return the located target object
 	 * @throws NamingException if the JNDI lookup failed or if the
-	 * located JNDI object is not assignable to the expected type
+	 *                         located JNDI object is not assignable to the expected type
 	 * @see #setJndiName
 	 * @see #setExpectedType
 	 * @see #lookup(String, Class)

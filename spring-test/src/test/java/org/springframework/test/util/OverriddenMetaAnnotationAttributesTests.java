@@ -34,8 +34,8 @@ import static org.springframework.test.util.MetaAnnotationUtils.*;
  * <p>See <a href="https://jira.spring.io/browse/SPR-10181">SPR-10181</a>.
  *
  * @author Sam Brannen
- * @since 4.0
  * @see MetaAnnotationUtilsTests
+ * @since 4.0
  */
 public class OverriddenMetaAnnotationAttributesTests {
 
@@ -43,7 +43,7 @@ public class OverriddenMetaAnnotationAttributesTests {
 	public void contextConfigurationValue() throws Exception {
 		Class<MetaValueConfigTestCase> declaringClass = MetaValueConfigTestCase.class;
 		AnnotationDescriptor<ContextConfiguration> descriptor = findAnnotationDescriptor(declaringClass,
-			ContextConfiguration.class);
+				ContextConfiguration.class);
 		assertNotNull(descriptor);
 		assertEquals(declaringClass, descriptor.getRootDeclaringClass());
 		assertEquals(MetaValueConfig.class, descriptor.getComposedAnnotationType());
@@ -52,14 +52,14 @@ public class OverriddenMetaAnnotationAttributesTests {
 		assertEquals(MetaValueConfig.class, descriptor.getComposedAnnotationType());
 
 		// direct access to annotation value:
-		assertArrayEquals(new String[] { "foo.xml" }, descriptor.getAnnotation().value());
+		assertArrayEquals(new String[]{"foo.xml"}, descriptor.getAnnotation().value());
 	}
 
 	@Test
 	public void overriddenContextConfigurationValue() throws Exception {
 		Class<?> declaringClass = OverriddenMetaValueConfigTestCase.class;
 		AnnotationDescriptor<ContextConfiguration> descriptor = findAnnotationDescriptor(declaringClass,
-			ContextConfiguration.class);
+				ContextConfiguration.class);
 		assertNotNull(descriptor);
 		assertEquals(declaringClass, descriptor.getRootDeclaringClass());
 		assertEquals(MetaValueConfig.class, descriptor.getComposedAnnotationType());
@@ -68,7 +68,7 @@ public class OverriddenMetaAnnotationAttributesTests {
 		assertEquals(MetaValueConfig.class, descriptor.getComposedAnnotationType());
 
 		// direct access to annotation value:
-		assertArrayEquals(new String[] { "foo.xml" }, descriptor.getAnnotation().value());
+		assertArrayEquals(new String[]{"foo.xml"}, descriptor.getAnnotation().value());
 
 		// overridden attribute:
 		AnnotationAttributes attributes = descriptor.getAnnotationAttributes();
@@ -76,14 +76,14 @@ public class OverriddenMetaAnnotationAttributesTests {
 		// NOTE: we would like to be able to override the 'value' attribute; however,
 		// Spring currently does not allow overrides for the 'value' attribute.
 		// See SPR-11393 for related discussions.
-		assertArrayEquals(new String[] { "foo.xml" }, attributes.getStringArray("value"));
+		assertArrayEquals(new String[]{"foo.xml"}, attributes.getStringArray("value"));
 	}
 
 	@Test
 	public void contextConfigurationLocationsAndInheritLocations() throws Exception {
 		Class<MetaLocationsConfigTestCase> declaringClass = MetaLocationsConfigTestCase.class;
 		AnnotationDescriptor<ContextConfiguration> descriptor = findAnnotationDescriptor(declaringClass,
-			ContextConfiguration.class);
+				ContextConfiguration.class);
 		assertNotNull(descriptor);
 		assertEquals(declaringClass, descriptor.getRootDeclaringClass());
 		assertEquals(MetaLocationsConfig.class, descriptor.getComposedAnnotationType());
@@ -92,7 +92,7 @@ public class OverriddenMetaAnnotationAttributesTests {
 		assertEquals(MetaLocationsConfig.class, descriptor.getComposedAnnotationType());
 
 		// direct access to annotation attributes:
-		assertArrayEquals(new String[] { "foo.xml" }, descriptor.getAnnotation().locations());
+		assertArrayEquals(new String[]{"foo.xml"}, descriptor.getAnnotation().locations());
 		assertFalse(descriptor.getAnnotation().inheritLocations());
 	}
 
@@ -100,7 +100,7 @@ public class OverriddenMetaAnnotationAttributesTests {
 	public void overriddenContextConfigurationLocationsAndInheritLocations() throws Exception {
 		Class<?> declaringClass = OverriddenMetaLocationsConfigTestCase.class;
 		AnnotationDescriptor<ContextConfiguration> descriptor = findAnnotationDescriptor(declaringClass,
-			ContextConfiguration.class);
+				ContextConfiguration.class);
 		assertNotNull(descriptor);
 		assertEquals(declaringClass, descriptor.getRootDeclaringClass());
 		assertEquals(MetaLocationsConfig.class, descriptor.getComposedAnnotationType());
@@ -109,12 +109,12 @@ public class OverriddenMetaAnnotationAttributesTests {
 		assertEquals(MetaLocationsConfig.class, descriptor.getComposedAnnotationType());
 
 		// direct access to annotation attributes:
-		assertArrayEquals(new String[] { "foo.xml" }, descriptor.getAnnotation().locations());
+		assertArrayEquals(new String[]{"foo.xml"}, descriptor.getAnnotation().locations());
 		assertFalse(descriptor.getAnnotation().inheritLocations());
 
 		// overridden attributes:
 		AnnotationAttributes attributes = descriptor.getAnnotationAttributes();
-		assertArrayEquals(new String[] { "bar.xml" }, attributes.getStringArray("locations"));
+		assertArrayEquals(new String[]{"bar.xml"}, attributes.getStringArray("locations"));
 		assertTrue(attributes.getBoolean("inheritLocations"));
 	}
 

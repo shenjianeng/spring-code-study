@@ -102,12 +102,11 @@ public class ResourceBundleMessageSourceTests {
 		String basepath = "org/springframework/context/support/";
 		String[] basenames;
 		if (reloadable) {
-			basenames = new String[] {
+			basenames = new String[]{
 					"classpath:" + basepath + "messages",
 					"classpath:" + basepath + "more-messages"};
-		}
-		else {
-			basenames = new String[] {
+		} else {
+			basenames = new String[]{
 					basepath + "messages",
 					basepath + "more-messages"};
 		}
@@ -143,22 +142,21 @@ public class ResourceBundleMessageSourceTests {
 		LocaleContextHolder.setLocale(new Locale("DE", "at"));
 		try {
 			assertEquals("nochricht2", accessor.getMessage("code2"));
-		}
-		finally {
+		} finally {
 			LocaleContextHolder.setLocale(null);
 		}
 
 		assertEquals("message3", ac.getMessage("code3", null, Locale.ENGLISH));
 		MessageSourceResolvable resolvable = new DefaultMessageSourceResolvable("code3");
 		assertEquals("message3", ac.getMessage(resolvable, Locale.ENGLISH));
-		resolvable = new DefaultMessageSourceResolvable(new String[] {"code4", "code3"});
+		resolvable = new DefaultMessageSourceResolvable(new String[]{"code4", "code3"});
 		assertEquals("message3", ac.getMessage(resolvable, Locale.ENGLISH));
 
 		assertEquals("message3", ac.getMessage("code3", null, Locale.ENGLISH));
-		resolvable = new DefaultMessageSourceResolvable(new String[] {"code4", "code3"});
+		resolvable = new DefaultMessageSourceResolvable(new String[]{"code4", "code3"});
 		assertEquals("message3", ac.getMessage(resolvable, Locale.ENGLISH));
 
-		Object[] args = new Object[] {"Hello", new DefaultMessageSourceResolvable(new String[] {"code1"})};
+		Object[] args = new Object[]{"Hello", new DefaultMessageSourceResolvable(new String[]{"code1"})};
 		assertEquals("Hello, message1", ac.getMessage("hello", args, Locale.ENGLISH));
 
 		// test default message without and with args
@@ -179,24 +177,22 @@ public class ResourceBundleMessageSourceTests {
 		assertEquals("Hello, default", ac.getMessage(resolvable, Locale.ENGLISH));
 
 		// test message args
-		assertEquals("Arg1, Arg2", ac.getMessage("hello", new Object[] {"Arg1", "Arg2"}, Locale.ENGLISH));
+		assertEquals("Arg1, Arg2", ac.getMessage("hello", new Object[]{"Arg1", "Arg2"}, Locale.ENGLISH));
 		assertEquals("{0}, {1}", ac.getMessage("hello", null, Locale.ENGLISH));
 
 		if (alwaysUseMessageFormat) {
 			assertEquals("I'm", ac.getMessage("escaped", null, Locale.ENGLISH));
-		}
-		else {
+		} else {
 			assertEquals("I''m", ac.getMessage("escaped", null, Locale.ENGLISH));
 		}
-		assertEquals("I'm", ac.getMessage("escaped", new Object[] {"some arg"}, Locale.ENGLISH));
+		assertEquals("I'm", ac.getMessage("escaped", new Object[]{"some arg"}, Locale.ENGLISH));
 
 		try {
 			assertEquals("code4", ac.getMessage("code4", null, Locale.GERMAN));
 			if (!useCodeAsDefaultMessage) {
 				fail("Should have thrown NoSuchMessageException");
 			}
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			if (useCodeAsDefaultMessage) {
 				fail("Should have returned code as default message");
 			}
@@ -208,7 +204,7 @@ public class ResourceBundleMessageSourceTests {
 		GenericApplicationContext ac = new GenericApplicationContext();
 		ac.refresh();
 		assertEquals("default", ac.getMessage("code1", null, "default", Locale.ENGLISH));
-		assertEquals("default value", ac.getMessage("code1", new Object[] {"value"}, "default {0}", Locale.ENGLISH));
+		assertEquals("default value", ac.getMessage("code1", new Object[]{"value"}, "default {0}", Locale.ENGLISH));
 	}
 
 	@Test
@@ -219,7 +215,7 @@ public class ResourceBundleMessageSourceTests {
 		ac.setParent(parent);
 		ac.refresh();
 		assertEquals("default", ac.getMessage("code1", null, "default", Locale.ENGLISH));
-		assertEquals("default value", ac.getMessage("code1", new Object[] {"value"}, "default {0}", Locale.ENGLISH));
+		assertEquals("default value", ac.getMessage("code1", new Object[]{"value"}, "default {0}", Locale.ENGLISH));
 	}
 
 	@Test
@@ -230,7 +226,7 @@ public class ResourceBundleMessageSourceTests {
 		ac.setParent(parent);
 		ac.refresh();
 		assertEquals("default", ac.getMessage("code1", null, "default", Locale.ENGLISH));
-		assertEquals("default value", ac.getMessage("code1", new Object[] {"value"}, "default {0}", Locale.ENGLISH));
+		assertEquals("default value", ac.getMessage("code1", new Object[]{"value"}, "default {0}", Locale.ENGLISH));
 	}
 
 	@Test
@@ -241,7 +237,7 @@ public class ResourceBundleMessageSourceTests {
 		ac.setParent(parent);
 		ac.refresh();
 		assertEquals("default", ac.getMessage("code1", null, "default", Locale.ENGLISH));
-		assertEquals("default value", ac.getMessage("code1", new Object[] {"value"}, "default {0}", Locale.ENGLISH));
+		assertEquals("default value", ac.getMessage("code1", new Object[]{"value"}, "default {0}", Locale.ENGLISH));
 	}
 
 	@Test
@@ -278,8 +274,7 @@ public class ResourceBundleMessageSourceTests {
 		try {
 			ms.getMessage("code1", null, Locale.ENGLISH);
 			fail("Should have thrown NoSuchMessageException");
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			// expected
 		}
 	}
@@ -330,8 +325,8 @@ public class ResourceBundleMessageSourceTests {
 		ms.setBasename("org/springframework/context/support/messages");
 		assertEquals("message1", ms.getMessage("code1", null, Locale.ENGLISH));
 		assertEquals("nachricht2", ms.getMessage("code2", null, Locale.GERMAN));
-		assertEquals("Do not do this", ms.getMessage("warning", new Object[] {"this"}, Locale.ENGLISH));
-		assertEquals("Do not do that", ms.getMessage("warning", new Object[] {"that"}, Locale.GERMAN));
+		assertEquals("Do not do this", ms.getMessage("warning", new Object[]{"this"}, Locale.ENGLISH));
+		assertEquals("Do not do that", ms.getMessage("warning", new Object[]{"that"}, Locale.GERMAN));
 	}
 
 	@Test
@@ -363,8 +358,7 @@ public class ResourceBundleMessageSourceTests {
 		try {
 			ms.getMessage("code1", null, Locale.ENGLISH);
 			fail("Should have thrown NoSuchMessageException");
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			// expected
 		}
 	}
@@ -380,8 +374,7 @@ public class ResourceBundleMessageSourceTests {
 		try {
 			ms.getMessage("code1", null, Locale.ENGLISH);
 			fail("Should have thrown NoSuchMessageException");
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			// expected
 		}
 	}

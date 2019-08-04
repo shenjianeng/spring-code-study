@@ -35,9 +35,9 @@ import org.springframework.util.ObjectUtils;
  * to receive {@link javax.management.Notification Notifications}.
  *
  * @author Juergen Hoeller
- * @since 2.5.2
  * @see org.springframework.jmx.export.NotificationListenerBean
  * @see org.springframework.jmx.access.NotificationListenerRegistrar
+ * @since 2.5.2
  */
 public class NotificationListenerHolder {
 
@@ -92,6 +92,7 @@ public class NotificationListenerHolder {
 	 * Set the (arbitrary) object that will be 'handed back' as-is by an
 	 * {@link javax.management.NotificationBroadcaster} when notifying
 	 * any {@link javax.management.NotificationListener}.
+	 *
 	 * @param handback the handback object (can be {@code null})
 	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
@@ -103,6 +104,7 @@ public class NotificationListenerHolder {
 	 * Return the (arbitrary) object that will be 'handed back' as-is by an
 	 * {@link javax.management.NotificationBroadcaster} when notifying
 	 * any {@link javax.management.NotificationListener}.
+	 *
 	 * @return the handback object (may be {@code null})
 	 * @see javax.management.NotificationListener#handleNotification(javax.management.Notification, Object)
 	 */
@@ -116,6 +118,7 @@ public class NotificationListenerHolder {
 	 * that the encapsulated {@link #getNotificationFilter() NotificationFilter}
 	 * will be registered with to listen for {@link javax.management.Notification Notifications}.
 	 * Can be specified as {@code ObjectName} instance or as {@code String}.
+	 *
 	 * @see #setMappedObjectNames
 	 */
 	public void setMappedObjectName(@Nullable Object mappedObjectName) {
@@ -128,6 +131,7 @@ public class NotificationListenerHolder {
 	 * that the encapsulated {@link #getNotificationFilter() NotificationFilter}
 	 * will be registered with to listen for {@link javax.management.Notification Notifications}.
 	 * Can be specified as {@code ObjectName} instances or as {@code String}s.
+	 *
 	 * @see #setMappedObjectName
 	 */
 	public void setMappedObjectNames(Object... mappedObjectNames) {
@@ -138,6 +142,7 @@ public class NotificationListenerHolder {
 	 * Return the list of {@link javax.management.ObjectName} String representations for
 	 * which the encapsulated {@link #getNotificationFilter() NotificationFilter} will
 	 * be registered as a listener for {@link javax.management.Notification Notifications}.
+	 *
 	 * @throws MalformedObjectNameException if an {@code ObjectName} is malformed
 	 */
 	@Nullable

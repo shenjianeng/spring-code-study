@@ -51,6 +51,7 @@ public class RedirectAttributesModelMap extends ModelMap implements RedirectAttr
 
 	/**
 	 * Constructor with a DataBinder.
+	 *
 	 * @param dataBinder used to format attribute values as Strings
 	 */
 	public RedirectAttributesModelMap(@Nullable DataBinder dataBinder) {

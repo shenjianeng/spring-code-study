@@ -160,8 +160,7 @@ public class BridgeMethodResolverTests {
 			if ("getFor".equals(method.getName()) && !method.getParameterTypes()[0].equals(Integer.class)) {
 				if (method.getReturnType().equals(Object.class)) {
 					bridgeMethod = method;
-				}
-				else {
+				} else {
 					bridgedMethod = method;
 				}
 			}
@@ -251,7 +250,7 @@ public class BridgeMethodResolverTests {
 		Method bridgedMethod = MegaMessageProducerImpl.class.getDeclaredMethod("receive", MegaMessageEvent.class);
 		assertFalse(bridgedMethod.isBridge());
 
-		Method bridgeMethod  = MegaMessageProducerImpl.class.getDeclaredMethod("receive", MegaEvent.class);
+		Method bridgeMethod = MegaMessageProducerImpl.class.getDeclaredMethod("receive", MegaEvent.class);
 		assertTrue(bridgeMethod.isBridge());
 
 		assertEquals(bridgedMethod, BridgeMethodResolver.findBridgedMethod(bridgeMethod));
@@ -314,7 +313,7 @@ public class BridgeMethodResolverTests {
 	}
 
 	private void doTestHierarchyResolution(Class<?> clazz) throws Exception {
-		for (Method method : clazz.getDeclaredMethods()){
+		for (Method method : clazz.getDeclaredMethods()) {
 			Method bridged = BridgeMethodResolver.findBridgedMethod(method);
 			Method expected = clazz.getMethod("test", FooEntity.class);
 			assertEquals(expected, bridged);
@@ -1139,7 +1138,7 @@ public class BridgeMethodResolverTests {
 	}
 
 
-	private static class Other<S,E> {
+	private static class Other<S, E> {
 	}
 
 

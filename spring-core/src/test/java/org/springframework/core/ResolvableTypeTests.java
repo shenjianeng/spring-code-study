@@ -278,12 +278,12 @@ public class ResolvableTypeTests {
 		Method method = Methods.class.getMethod("list1");
 		MethodParameter methodParameter = MethodParameter.forExecutable(method, -1);
 		ResolvableType type = ResolvableType.forMethodParameter(methodParameter);
-		assertThat(((MethodParameter)type.getSource()).getMethod(), equalTo(method));
+		assertThat(((MethodParameter) type.getSource()).getMethod(), equalTo(method));
 
 		method = Methods.class.getMethod("list2");
 		methodParameter = MethodParameter.forExecutable(method, -1);
 		type = ResolvableType.forMethodParameter(methodParameter);
-		assertThat(((MethodParameter)type.getSource()).getMethod(), equalTo(method));
+		assertThat(((MethodParameter) type.getSource()).getMethod(), equalTo(method));
 	}
 
 	@Test
@@ -444,7 +444,7 @@ public class ResolvableTypeTests {
 		}
 		assertThat(interfaces.toString(), equalTo(
 				"[java.io.Serializable, java.lang.Cloneable, " +
-				"java.util.List<java.lang.CharSequence>, java.util.RandomAccess]"));
+						"java.util.List<java.lang.CharSequence>, java.util.RandomAccess]"));
 	}
 
 	@Test
@@ -905,7 +905,8 @@ public class ResolvableTypeTests {
 	public void resolveTypeVariableFromDeclaredParameterizedTypeReference() throws Exception {
 		Type sourceType = Methods.class.getMethod("charSequenceReturn").getGenericReturnType();
 		ResolvableType reflectiveType = ResolvableType.forType(sourceType);
-		ResolvableType declaredType = ResolvableType.forType(new ParameterizedTypeReference<List<CharSequence>>() {});
+		ResolvableType declaredType = ResolvableType.forType(new ParameterizedTypeReference<List<CharSequence>>() {
+		});
 		assertEquals(reflectiveType, declaredType);
 	}
 

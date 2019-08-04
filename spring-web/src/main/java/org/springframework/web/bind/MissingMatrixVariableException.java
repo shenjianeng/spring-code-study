@@ -24,8 +24,8 @@ import org.springframework.core.MethodParameter;
  * method is not present among the matrix variables extracted from the URL.
  *
  * @author Juergen Hoeller
- * @since 5.1
  * @see MissingPathVariableException
+ * @since 5.1
  */
 @SuppressWarnings("serial")
 public class MissingMatrixVariableException extends ServletRequestBindingException {
@@ -37,8 +37,9 @@ public class MissingMatrixVariableException extends ServletRequestBindingExcepti
 
 	/**
 	 * Constructor for MissingMatrixVariableException.
+	 *
 	 * @param variableName the name of the missing matrix variable
-	 * @param parameter the method parameter
+	 * @param parameter    the method parameter
 	 */
 	public MissingMatrixVariableException(String variableName, MethodParameter parameter) {
 		super("");

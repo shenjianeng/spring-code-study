@@ -28,6 +28,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 
 /**
  * Unit tests for {@link ParamsRequestCondition}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ParamsRequestConditionTests {

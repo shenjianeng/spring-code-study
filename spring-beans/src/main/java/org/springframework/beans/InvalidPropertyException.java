@@ -35,9 +35,10 @@ public class InvalidPropertyException extends FatalBeanException {
 
 	/**
 	 * Create a new InvalidPropertyException.
-	 * @param beanClass the offending bean class
+	 *
+	 * @param beanClass    the offending bean class
 	 * @param propertyName the offending property
-	 * @param msg the detail message
+	 * @param msg          the detail message
 	 */
 	public InvalidPropertyException(Class<?> beanClass, String propertyName, String msg) {
 		this(beanClass, propertyName, msg, null);
@@ -45,10 +46,11 @@ public class InvalidPropertyException extends FatalBeanException {
 
 	/**
 	 * Create a new InvalidPropertyException.
-	 * @param beanClass the offending bean class
+	 *
+	 * @param beanClass    the offending bean class
 	 * @param propertyName the offending property
-	 * @param msg the detail message
-	 * @param cause the root cause
+	 * @param msg          the detail message
+	 * @param cause        the root cause
 	 */
 	public InvalidPropertyException(Class<?> beanClass, String propertyName, String msg, @Nullable Throwable cause) {
 		super("Invalid property '" + propertyName + "' of bean class [" + beanClass.getName() + "]: " + msg, cause);

@@ -44,7 +44,7 @@ public class ComparableComparatorTests {
 		assertTrue(c.compare(s1, s2) < 0);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Test
 	public void shouldNeedComparable() {
 		Comparator c = new ComparableComparator();

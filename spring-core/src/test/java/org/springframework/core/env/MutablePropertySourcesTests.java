@@ -105,8 +105,7 @@ public class MutablePropertySourcesTests {
 		try {
 			sources.addAfter(bogusPS, new MockPropertySource("h"));
 			fail("expected non-existent PropertySource exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTrue(ex.getMessage().contains("does not exist"));
 		}
 
@@ -127,24 +126,21 @@ public class MutablePropertySourcesTests {
 		try {
 			sources.replace(bogusPS, new MockPropertySource("bogus-replaced"));
 			fail("expected non-existent PropertySource exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTrue(ex.getMessage().contains("does not exist"));
 		}
 
 		try {
 			sources.addBefore("b", new MockPropertySource("b"));
 			fail("expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTrue(ex.getMessage().contains("cannot be added relative to itself"));
 		}
 
 		try {
 			sources.addAfter("b", new MockPropertySource("b"));
 			fail("expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTrue(ex.getMessage().contains("cannot be added relative to itself"));
 		}
 	}
@@ -167,8 +163,7 @@ public class MutablePropertySourcesTests {
 		try {
 			it.remove();
 			fail("Should have thrown UnsupportedOperationException");
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			// expected
 		}
 		assertFalse(it.hasNext());

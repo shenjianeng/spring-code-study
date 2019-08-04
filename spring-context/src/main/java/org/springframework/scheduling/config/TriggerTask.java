@@ -24,9 +24,9 @@ import org.springframework.util.Assert;
  * according to a given {@link Trigger}.
  *
  * @author Chris Beams
- * @since 3.2
  * @see ScheduledTaskRegistrar#addTriggerTask(TriggerTask)
  * @see org.springframework.scheduling.TaskScheduler#schedule(Runnable, Trigger)
+ * @since 3.2
  */
 public class TriggerTask extends Task {
 
@@ -35,8 +35,9 @@ public class TriggerTask extends Task {
 
 	/**
 	 * Create a new {@link TriggerTask}.
+	 *
 	 * @param runnable the underlying task to execute
-	 * @param trigger specifies when the task should be executed
+	 * @param trigger  specifies when the task should be executed
 	 */
 	public TriggerTask(Runnable runnable, Trigger trigger) {
 		super(runnable);

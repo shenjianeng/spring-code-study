@@ -56,8 +56,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanInitializationException");
-		}
-		catch (BeanInitializationException ex) {
+		} catch (BeanInitializationException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof FileNotFoundException);
 			// slight hack for Linux/Unix systems
@@ -81,8 +80,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanInitializationException");
-		}
-		catch (BeanInitializationException ex) {
+		} catch (BeanInitializationException ex) {
 			// expected
 			assertTrue(ex.getCause() instanceof FileNotFoundException);
 			// slight hack for Linux/Unix systems
@@ -110,8 +108,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanInitializationException");
-		}
-		catch (BeanInitializationException ex) {
+		} catch (BeanInitializationException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("myprop"));
 		}
@@ -129,8 +126,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}
@@ -147,8 +143,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}
@@ -165,8 +160,7 @@ public class PropertyResourceConfigurerIntegrationTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 			ex.printStackTrace();
 		}

@@ -36,6 +36,7 @@ public abstract class RemoteInvocationUtils {
 	 * of the stack trace as well. What we can do here is to update the
 	 * {@code StackTraceElement} array with the current client-side stack
 	 * trace, provided that we run on JDK 1.4+.
+	 *
 	 * @param ex the exception to update
 	 * @see Throwable#getStackTrace()
 	 * @see Throwable#setStackTrace(StackTraceElement[])

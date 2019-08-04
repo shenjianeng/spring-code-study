@@ -35,6 +35,7 @@ public interface NativeWebSocketSession extends WebSocketSession {
 
 	/**
 	 * Return the underlying native WebSocketSession, if available.
+	 *
 	 * @param requiredType the required type of the session
 	 * @return the native session of the required type,
 	 * or {@code null} if not available

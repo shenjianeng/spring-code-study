@@ -34,9 +34,10 @@ public class CleanupFailureDataAccessException extends NonTransientDataAccessExc
 
 	/**
 	 * Constructor for CleanupFailureDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the underlying data access API,
-	 * such as JDBC
+	 *              such as JDBC
 	 */
 	public CleanupFailureDataAccessException(String msg, Throwable cause) {
 		super(msg, cause);

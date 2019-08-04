@@ -47,7 +47,7 @@ public class BeanNameUrlHandlerMappingTests {
 		MockServletContext sc = new MockServletContext("");
 		wac = new XmlWebApplicationContext();
 		wac.setServletContext(sc);
-		wac.setConfigLocations(new String[] {CONF});
+		wac.setConfigLocations(new String[]{CONF});
 		wac.refresh();
 	}
 
@@ -195,8 +195,7 @@ public class BeanNameUrlHandlerMappingTests {
 		try {
 			hm.registerHandler("/mypath/welcome.html", new Object());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}

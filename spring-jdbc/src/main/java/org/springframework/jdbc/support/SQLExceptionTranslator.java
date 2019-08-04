@@ -45,9 +45,10 @@ public interface SQLExceptionTranslator {
 	 * APIs as well. That said, a {@code getRootCause() instanceof SQLException}
 	 * check (and subsequent cast) is considered reliable when expecting JDBC-based
 	 * access to have happened.
+	 *
 	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (if known)
-	 * @param ex the offending {@code SQLException}
+	 * @param sql  the SQL query or update that caused the problem (if known)
+	 * @param ex   the offending {@code SQLException}
 	 * @return the DataAccessException wrapping the {@code SQLException},
 	 * or {@code null} if no translation could be applied
 	 * (in a custom translator; the default translators always throw an

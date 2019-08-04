@@ -115,8 +115,7 @@ public class AnnotatedEndpointConnectionManager extends ConnectionManagerSupport
 				}
 				this.session = this.webSocketContainer.connectToServer(endpointToUse, getUri());
 				logger.info("Successfully connected to WebSocket");
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				logger.error("Failed to connect to WebSocket", ex);
 			}
 		});
@@ -129,8 +128,7 @@ public class AnnotatedEndpointConnectionManager extends ConnectionManagerSupport
 			if (session != null && session.isOpen()) {
 				session.close();
 			}
-		}
-		finally {
+		} finally {
 			this.session = null;
 		}
 	}

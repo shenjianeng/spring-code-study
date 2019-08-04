@@ -51,8 +51,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 		if (shouldRender()) {
 			exposeAttributes();
 			return EVAL_BODY_BUFFERED;
-		}
-		else {
+		} else {
 			return SKIP_BODY;
 		}
 	}
@@ -61,6 +60,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 	 * If {@link #shouldRender rendering}, flush any buffered
 	 * {@link BodyContent} or, if no {@link BodyContent} is supplied,
 	 * {@link #renderDefaultContent render the default content}.
+	 *
 	 * @return a {@link javax.servlet.jsp.tagext.Tag#EVAL_PAGE} result
 	 */
 	@Override
@@ -69,8 +69,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 			Assert.state(this.tagWriter != null, "No TagWriter set");
 			if (this.bodyContent != null && StringUtils.hasText(this.bodyContent.getString())) {
 				renderFromBodyContent(this.bodyContent, this.tagWriter);
-			}
-			else {
+			} else {
 				renderDefaultContent(this.tagWriter);
 			}
 		}
@@ -140,8 +139,7 @@ public abstract class AbstractHtmlElementBodyTag extends AbstractHtmlElementTag 
 	protected void flushBufferedBodyContent(BodyContent bodyContent) throws JspException {
 		try {
 			bodyContent.writeOut(bodyContent.getEnclosingWriter());
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new JspException("Unable to write buffered body content.", ex);
 		}
 	}

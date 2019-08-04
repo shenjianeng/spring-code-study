@@ -63,7 +63,7 @@ import org.springframework.util.StringUtils;
  *     PropertySource<?> ps = new SimpleCommandLinePropertySource(args);
  *     // ...
  * }</pre>
- *
+ * <p>
  * See {@link CommandLinePropertySource} for complete general usage examples.
  *
  * <h3>Beyond the basics</h3>
@@ -74,15 +74,16 @@ import org.springframework.util.StringUtils;
  * choice!
  *
  * @author Chris Beams
- * @since 3.1
  * @see CommandLinePropertySource
  * @see JOptCommandLinePropertySource
+ * @since 3.1
  */
 public class SimpleCommandLinePropertySource extends CommandLinePropertySource<CommandLineArgs> {
 
 	/**
 	 * Create a new {@code SimpleCommandLinePropertySource} having the default name
 	 * and backed by the given {@code String[]} of command line arguments.
+	 *
 	 * @see CommandLinePropertySource#COMMAND_LINE_PROPERTY_SOURCE_NAME
 	 * @see CommandLinePropertySource#CommandLinePropertySource(Object)
 	 */

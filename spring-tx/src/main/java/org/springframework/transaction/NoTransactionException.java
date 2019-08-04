@@ -30,6 +30,7 @@ public class NoTransactionException extends TransactionUsageException {
 
 	/**
 	 * Constructor for NoTransactionException.
+	 *
 	 * @param msg the detail message
 	 */
 	public NoTransactionException(String msg) {
@@ -38,7 +39,8 @@ public class NoTransactionException extends TransactionUsageException {
 
 	/**
 	 * Constructor for NoTransactionException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */
 	public NoTransactionException(String msg, Throwable cause) {

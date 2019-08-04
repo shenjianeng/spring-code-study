@@ -97,8 +97,7 @@ public class HandlersBeanDefinitionParserTests {
 				assertTrue(handshakeHandler instanceof DefaultHandshakeHandler);
 				assertFalse(handler.getHandshakeInterceptors().isEmpty());
 				assertTrue(handler.getHandshakeInterceptors().get(0) instanceof OriginHandshakeInterceptor);
-			}
-			else {
+			} else {
 				assertThat(shm.getUrlMap().keySet(), contains("/test"));
 				WebSocketHttpRequestHandler handler = (WebSocketHttpRequestHandler) shm.getUrlMap().get("/test");
 				assertNotNull(handler);
@@ -278,7 +277,7 @@ class TestHandshakeHandler implements HandshakeHandler {
 
 	@Override
 	public boolean doHandshake(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) {
+							   WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 		return false;
 	}
@@ -293,14 +292,14 @@ class FooTestInterceptor implements HandshakeInterceptor {
 
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) {
+								   WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 		return false;
 	}
 
 	@Override
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler wsHandler, Exception exception) {
+							   WebSocketHandler wsHandler, Exception exception) {
 	}
 }
 
@@ -309,7 +308,7 @@ class BarTestInterceptor extends FooTestInterceptor {
 }
 
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 class TestTaskScheduler implements TaskScheduler {
 
 	@Override

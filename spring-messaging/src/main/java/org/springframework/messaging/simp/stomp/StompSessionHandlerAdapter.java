@@ -58,7 +58,7 @@ public abstract class StompSessionHandlerAdapter implements StompSessionHandler 
 	 */
 	@Override
 	public void handleException(StompSession session, @Nullable StompCommand command,
-			StompHeaders headers, byte[] payload, Throwable exception) {
+								StompHeaders headers, byte[] payload, Throwable exception) {
 	}
 
 	/**

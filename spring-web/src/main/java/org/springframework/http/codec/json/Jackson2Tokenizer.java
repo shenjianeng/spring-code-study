@@ -84,11 +84,9 @@ final class Jackson2Tokenizer {
 		try {
 			this.inputFeeder.feedInput(bytes, 0, bytes.length);
 			return parseTokenBufferFlux();
-		}
-		catch (JsonProcessingException ex) {
+		} catch (JsonProcessingException ex) {
 			return Flux.error(new DecodingException("JSON decoding error: " + ex.getOriginalMessage(), ex));
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return Flux.error(ex);
 		}
 	}
@@ -97,11 +95,9 @@ final class Jackson2Tokenizer {
 		this.inputFeeder.endOfInput();
 		try {
 			return parseTokenBufferFlux();
-		}
-		catch (JsonProcessingException ex) {
+		} catch (JsonProcessingException ex) {
 			return Flux.error(new DecodingException("JSON decoding error: " + ex.getOriginalMessage(), ex));
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return Flux.error(ex);
 		}
 	}
@@ -119,8 +115,7 @@ final class Jackson2Tokenizer {
 			updateDepth(token);
 			if (!this.tokenizeArrayElements) {
 				processTokenNormal(token, result);
-			}
-			else {
+			} else {
 				processTokenArray(token, result);
 			}
 		}
@@ -174,15 +169,16 @@ final class Jackson2Tokenizer {
 
 	/**
 	 * Tokenize the given {@code Flux<DataBuffer>} into {@code Flux<TokenBuffer>}.
-	 * @param dataBuffers the source data buffers
-	 * @param jsonFactory the factory to use
-	 * @param objectMapper the current mapper instance
+	 *
+	 * @param dataBuffers           the source data buffers
+	 * @param jsonFactory           the factory to use
+	 * @param objectMapper          the current mapper instance
 	 * @param tokenizeArrayElements if {@code true} and the "top level" JSON object is
-	 * an array, each element is returned individually immediately after it is received
+	 *                              an array, each element is returned individually immediately after it is received
 	 * @return the resulting token buffers
 	 */
 	public static Flux<TokenBuffer> tokenize(Flux<DataBuffer> dataBuffers, JsonFactory jsonFactory,
-			ObjectMapper objectMapper, boolean tokenizeArrayElements) {
+											 ObjectMapper objectMapper, boolean tokenizeArrayElements) {
 
 		try {
 			JsonParser parser = jsonFactory.createNonBlockingByteArrayParser();
@@ -193,8 +189,7 @@ final class Jackson2Tokenizer {
 			}
 			Jackson2Tokenizer tokenizer = new Jackson2Tokenizer(parser, context, tokenizeArrayElements);
 			return dataBuffers.flatMap(tokenizer::tokenize, Flux::error, tokenizer::endOfInput);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return Flux.error(ex);
 		}
 	}

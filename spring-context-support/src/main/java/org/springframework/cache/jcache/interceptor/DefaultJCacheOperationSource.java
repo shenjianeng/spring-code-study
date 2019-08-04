@@ -69,6 +69,7 @@ public class DefaultJCacheOperationSource extends AnnotationJCacheOperationSourc
 
 	/**
 	 * Construct a new {@code DefaultJCacheOperationSource} with the default key generator.
+	 *
 	 * @see SimpleKeyGenerator
 	 */
 	public DefaultJCacheOperationSource() {
@@ -79,6 +80,7 @@ public class DefaultJCacheOperationSource extends AnnotationJCacheOperationSourc
 	 * Construct a new {@code DefaultJCacheOperationSource} with the given cache manager,
 	 * cache resolver and key generator suppliers, applying the corresponding default
 	 * if a supplier is not resolvable.
+	 *
 	 * @since 5.1
 	 */
 	public DefaultJCacheOperationSource(
@@ -175,12 +177,10 @@ public class DefaultJCacheOperationSource extends AnnotationJCacheOperationSourc
 		Assert.state(this.beanFactory != null, () -> "BeanFactory required for resolution of [" + type + "]");
 		try {
 			return this.beanFactory.getBean(type);
-		}
-		catch (NoUniqueBeanDefinitionException ex) {
+		} catch (NoUniqueBeanDefinitionException ex) {
 			throw new IllegalStateException("No unique [" + type.getName() + "] bean found in application context - " +
 					"mark one as primary, or declare a more specific implementation type for your cache", ex);
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("No bean of type [" + type.getName() + "] found in application context", ex);
 			}
@@ -193,13 +193,11 @@ public class DefaultJCacheOperationSource extends AnnotationJCacheOperationSourc
 			Assert.state(this.beanFactory != null, "BeanFactory required for default CacheManager resolution");
 			try {
 				this.cacheManager = SingletonSupplier.of(this.beanFactory.getBean(CacheManager.class));
-			}
-			catch (NoUniqueBeanDefinitionException ex) {
-				throw new IllegalStateException("No unique bean of type CacheManager found. "+
+			} catch (NoUniqueBeanDefinitionException ex) {
+				throw new IllegalStateException("No unique bean of type CacheManager found. " +
 						"Mark one as primary or declare a specific CacheManager to use.");
-			}
-			catch (NoSuchBeanDefinitionException ex) {
-				throw new IllegalStateException("No bean of type CacheManager found. Register a CacheManager "+
+			} catch (NoSuchBeanDefinitionException ex) {
+				throw new IllegalStateException("No bean of type CacheManager found. Register a CacheManager " +
 						"bean or remove the @EnableCaching annotation from your configuration.");
 			}
 		}

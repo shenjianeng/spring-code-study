@@ -36,8 +36,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
- * @since 2.5
  * @see org.springframework.jmx.export.annotation.AnnotationMBeanExporter
+ * @since 2.5
  */
 class MBeanExportBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
@@ -75,8 +75,7 @@ class MBeanExportBeanDefinitionParser extends AbstractBeanDefinitionParser {
 		String serverBeanName = element.getAttribute(SERVER_ATTRIBUTE);
 		if (StringUtils.hasText(serverBeanName)) {
 			builder.addPropertyReference("server", serverBeanName);
-		}
-		else {
+		} else {
 			AbstractBeanDefinition specialServer = MBeanServerBeanDefinitionParser.findServerForSpecialEnvironment();
 			if (specialServer != null) {
 				builder.addPropertyValue("server", specialServer);
@@ -87,8 +86,7 @@ class MBeanExportBeanDefinitionParser extends AbstractBeanDefinitionParser {
 		RegistrationPolicy registrationPolicy = RegistrationPolicy.FAIL_ON_EXISTING;
 		if (REGISTRATION_IGNORE_EXISTING.equals(registration)) {
 			registrationPolicy = RegistrationPolicy.IGNORE_EXISTING;
-		}
-		else if (REGISTRATION_REPLACE_EXISTING.equals(registration)) {
+		} else if (REGISTRATION_REPLACE_EXISTING.equals(registration)) {
 			registrationPolicy = RegistrationPolicy.REPLACE_EXISTING;
 		}
 		builder.addPropertyValue("registrationPolicy", registrationPolicy);

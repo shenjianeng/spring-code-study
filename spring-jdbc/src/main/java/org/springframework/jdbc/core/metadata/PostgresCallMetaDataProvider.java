@@ -68,8 +68,7 @@ public class PostgresCallMetaDataProvider extends GenericCallMetaDataProvider {
 	public SqlParameter createDefaultOutParameter(String parameterName, CallParameterMetaData meta) {
 		if (meta.getSqlType() == Types.OTHER && "refcursor".equals(meta.getTypeName())) {
 			return new SqlOutParameter(parameterName, getRefCursorSqlType(), new ColumnMapRowMapper());
-		}
-		else {
+		} else {
 			return super.createDefaultOutParameter(parameterName, meta);
 		}
 	}

@@ -21,8 +21,8 @@ package org.springframework.context;
  * process such as lifecycle management.
  *
  * @author Mark Fisher
- * @since 3.0
  * @see SmartLifecycle
+ * @since 3.0
  */
 public interface Phased {
 

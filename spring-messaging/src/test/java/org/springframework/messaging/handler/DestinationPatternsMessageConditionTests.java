@@ -40,7 +40,7 @@ public class DestinationPatternsMessageConditionTests {
 	@Test
 	public void prependSlashWithCustomPathSeparator() {
 		DestinationPatternsMessageCondition c =
-				new DestinationPatternsMessageCondition(new String[] {"foo"}, new AntPathMatcher("."));
+				new DestinationPatternsMessageCondition(new String[]{"foo"}, new AntPathMatcher("."));
 
 		assertEquals("Pre-pending should be disabled when not using '/' as path separator",
 				"foo", c.getPatterns().iterator().next());

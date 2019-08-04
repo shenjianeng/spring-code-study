@@ -34,12 +34,12 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @since 4.2
  * @see #mockMvcSetup(MockMvc)
  * @see #webAppContextSetup(WebApplicationContext)
  * @see #webAppContextSetup(WebApplicationContext, MockMvcConfigurer)
  * @see #withDelegate(WebClient)
  * @see #build()
+ * @since 4.2
  */
 public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<MockMvcWebClientBuilder> {
 
@@ -63,6 +63,7 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	/**
 	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
 	 * {@link MockMvc} instance.
+	 *
 	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
 	 * @return the MockMvcWebClientBuilder to customize
 	 */
@@ -74,8 +75,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	/**
 	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
 	 * {@link WebApplicationContext}.
+	 *
 	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from; never {@code null}
+	 *                instance from; never {@code null}
 	 * @return the MockMvcWebClientBuilder to customize
 	 */
 	public static MockMvcWebClientBuilder webAppContextSetup(WebApplicationContext context) {
@@ -86,8 +88,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	/**
 	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
 	 * {@link WebApplicationContext} and {@link MockMvcConfigurer}.
-	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
-	 * instance from; never {@code null}
+	 *
+	 * @param context    the {@code WebApplicationContext} to create a {@link MockMvc}
+	 *                   instance from; never {@code null}
 	 * @param configurer the {@code MockMvcConfigurer} to apply; never {@code null}
 	 * @return the MockMvcWebClientBuilder to customize
 	 */
@@ -101,8 +104,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	 * Supply the {@code WebClient} that the client {@linkplain #build built}
 	 * by this builder should delegate to when processing
 	 * non-{@linkplain WebRequestMatcher matching} requests.
+	 *
 	 * @param webClient the {@code WebClient} to delegate to for requests
-	 * that do not match; never {@code null}
+	 *                  that do not match; never {@code null}
 	 * @return this builder for further customization
 	 * @see #build()
 	 */
@@ -121,6 +125,7 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	 * <p>If a {@linkplain #withDelegate delegate} has been explicitly configured,
 	 * it will be used; otherwise, a default {@code WebClient} will be configured
 	 * as the delegate.
+	 *
 	 * @return the {@code WebClient} to use
 	 * @see #withDelegate(WebClient)
 	 */

@@ -27,8 +27,8 @@ import org.springframework.format.Formatter;
  * following JSR-310's parsing rules for a Year.
  *
  * @author Juergen Hoeller
- * @since 5.0.4
  * @see Year#parse
+ * @since 5.0.4
  */
 class YearFormatter implements Formatter<Year> {
 

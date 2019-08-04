@@ -28,19 +28,20 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 15.04.2003
  * @see TransactionInterceptor#setTransactionAttributeSource
  * @see TransactionProxyFactoryBean#setTransactionAttributeSource
  * @see org.springframework.transaction.annotation.AnnotationTransactionAttributeSource
+ * @since 15.04.2003
  */
 public interface TransactionAttributeSource {
 
 	/**
 	 * Return the transaction attribute for the given method,
 	 * or {@code null} if the method is non-transactional.
-	 * @param method the method to introspect
+	 *
+	 * @param method      the method to introspect
 	 * @param targetClass the target class (may be {@code null},
-	 * in which case the declaring class of the method must be used)
+	 *                    in which case the declaring class of the method must be used)
 	 * @return the matching transaction attribute, or {@code null} if none found
 	 */
 	@Nullable

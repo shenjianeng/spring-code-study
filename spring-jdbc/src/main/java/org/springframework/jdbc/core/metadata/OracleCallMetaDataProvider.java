@@ -75,8 +75,7 @@ public class OracleCallMetaDataProvider extends GenericCallMetaDataProvider {
 	public SqlParameter createDefaultOutParameter(String parameterName, CallParameterMetaData meta) {
 		if (meta.getSqlType() == Types.OTHER && REF_CURSOR_NAME.equals(meta.getTypeName())) {
 			return new SqlOutParameter(parameterName, getRefCursorSqlType(), new ColumnMapRowMapper());
-		}
-		else {
+		} else {
 			return super.createDefaultOutParameter(parameterName, meta);
 		}
 	}

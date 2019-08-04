@@ -68,6 +68,7 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 	/**
 	 * Create a AspectJPrecedenceComparator, using the given Comparator
 	 * for comparing {@link org.springframework.aop.Advisor} instances.
+	 *
 	 * @param advisorComparator the Comparator to use for Advisors
 	 */
 	public AspectJPrecedenceComparator(Comparator<? super Advisor> advisorComparator) {
@@ -96,25 +97,20 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 				// advice1 was declared before advice2
 				// so advice1 has lower precedence
 				return LOWER_PRECEDENCE;
-			}
-			else if (adviceDeclarationOrderDelta == 0) {
+			} else if (adviceDeclarationOrderDelta == 0) {
 				return SAME_PRECEDENCE;
-			}
-			else {
+			} else {
 				return HIGHER_PRECEDENCE;
 			}
-		}
-		else {
+		} else {
 			// the advice declared first has higher precedence
 			if (adviceDeclarationOrderDelta < 0) {
 				// advice1 was declared before advice2
 				// so advice1 has higher precedence
 				return HIGHER_PRECEDENCE;
-			}
-			else if (adviceDeclarationOrderDelta == 0) {
+			} else if (adviceDeclarationOrderDelta == 0) {
 				return SAME_PRECEDENCE;
-			}
-			else {
+			} else {
 				return LOWER_PRECEDENCE;
 			}
 		}
@@ -139,11 +135,10 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 
 	private int getAspectDeclarationOrder(Advisor anAdvisor) {
 		AspectJPrecedenceInformation precedenceInfo =
-			AspectJAopUtils.getAspectJPrecedenceInformationFor(anAdvisor);
+				AspectJAopUtils.getAspectJPrecedenceInformationFor(anAdvisor);
 		if (precedenceInfo != null) {
 			return precedenceInfo.getDeclarationOrder();
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}

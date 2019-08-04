@@ -32,8 +32,8 @@ import org.springframework.http.MediaType;
  * This can be overridden through the {@link #setSupportedMediaTypes supportedMediaTypes} property.
  *
  * @author Arjen Poutsma
- * @since 3.0.2
  * @see Channel
+ * @since 3.0.2
  */
 public class RssChannelHttpMessageConverter extends AbstractWireFeedHttpMessageConverter<Channel> {
 

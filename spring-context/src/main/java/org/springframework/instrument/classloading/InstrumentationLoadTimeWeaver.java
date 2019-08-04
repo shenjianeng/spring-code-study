@@ -44,8 +44,8 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see InstrumentationSavingAgent
+ * @since 2.0
  */
 public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
@@ -72,6 +72,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * Create a new InstrumentationLoadTimeWeaver for the given ClassLoader.
+	 *
 	 * @param classLoader the ClassLoader that registered transformers are supposed to apply to
 	 */
 	public InstrumentationLoadTimeWeaver(@Nullable ClassLoader classLoader) {
@@ -129,6 +130,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * Check whether an Instrumentation instance is available for the current VM.
+	 *
 	 * @see #getInstrumentation()
 	 */
 	public static boolean isInstrumentationAvailable() {
@@ -137,6 +139,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 
 	/**
 	 * Obtain the Instrumentation instance for the current VM, if available.
+	 *
 	 * @return the Instrumentation instance, or {@code null} if none found
 	 * @see #isInstrumentationAvailable()
 	 */
@@ -144,8 +147,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 	private static Instrumentation getInstrumentation() {
 		if (AGENT_CLASS_PRESENT) {
 			return InstrumentationAccessor.getInstrumentation();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -182,7 +184,7 @@ public class InstrumentationLoadTimeWeaver implements LoadTimeWeaver {
 		@Override
 		@Nullable
 		public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-				ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+								ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
 			if (this.targetClassLoader != loader) {
 				return null;

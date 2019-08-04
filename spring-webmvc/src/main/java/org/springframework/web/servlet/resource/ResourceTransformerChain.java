@@ -39,7 +39,8 @@ public interface ResourceTransformerChain {
 
 	/**
 	 * Transform the given resource.
-	 * @param request the current request
+	 *
+	 * @param request  the current request
 	 * @param resource the candidate resource to transform
 	 * @return the transformed or the same resource, never {@code null}
 	 * @throws IOException if transformation fails

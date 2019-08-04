@@ -47,9 +47,10 @@ public class SimpleTriggerContext implements TriggerContext {
 
 	/**
 	 * Create a SimpleTriggerContext with the given time values.
+	 *
 	 * @param lastScheduledExecutionTime last <i>scheduled</i> execution time
-	 * @param lastActualExecutionTime last <i>actual</i> execution time
-	 * @param lastCompletionTime last completion time
+	 * @param lastActualExecutionTime    last <i>actual</i> execution time
+	 * @param lastCompletionTime         last completion time
 	 */
 	public SimpleTriggerContext(Date lastScheduledExecutionTime, Date lastActualExecutionTime, Date lastCompletionTime) {
 		this.lastScheduledExecutionTime = lastScheduledExecutionTime;
@@ -60,9 +61,10 @@ public class SimpleTriggerContext implements TriggerContext {
 
 	/**
 	 * Update this holder's state with the latest time values.
- 	 * @param lastScheduledExecutionTime last <i>scheduled</i> execution time
-	 * @param lastActualExecutionTime last <i>actual</i> execution time
-	 * @param lastCompletionTime last completion time
+	 *
+	 * @param lastScheduledExecutionTime last <i>scheduled</i> execution time
+	 * @param lastActualExecutionTime    last <i>actual</i> execution time
+	 * @param lastCompletionTime         last completion time
 	 */
 	public void update(Date lastScheduledExecutionTime, Date lastActualExecutionTime, Date lastCompletionTime) {
 		this.lastScheduledExecutionTime = lastScheduledExecutionTime;

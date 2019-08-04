@@ -67,22 +67,22 @@ public class FailingBeforeAndAfterMethodsTestNGTests {
 
 	@Parameters(name = "{0}")
 	public static Object[][] testData() {
-		return new Object[][] {
-			{ AlwaysFailingBeforeTestClassTestCase.class.getSimpleName(), 1, 0, 0, 1 },
-			{ AlwaysFailingAfterTestClassTestCase.class.getSimpleName(), 1, 1, 0, 1 },
-			{ AlwaysFailingPrepareTestInstanceTestCase.class.getSimpleName(), 1, 0, 0, 1 },
-			{ AlwaysFailingBeforeTestMethodTestCase.class.getSimpleName(), 1, 0, 0, 1 },
-			{ AlwaysFailingBeforeTestExecutionTestCase.class.getSimpleName(), 1, 0, 1, 0 },
-			{ AlwaysFailingAfterTestExecutionTestCase.class.getSimpleName(), 1, 0, 1, 0 },
-			{ AlwaysFailingAfterTestMethodTestCase.class.getSimpleName(), 1, 1, 0, 1 },
-			{ FailingBeforeTransactionTestCase.class.getSimpleName(), 1, 0, 0, 1 },
-			{ FailingAfterTransactionTestCase.class.getSimpleName(), 1, 1, 0, 1 }
+		return new Object[][]{
+				{AlwaysFailingBeforeTestClassTestCase.class.getSimpleName(), 1, 0, 0, 1},
+				{AlwaysFailingAfterTestClassTestCase.class.getSimpleName(), 1, 1, 0, 1},
+				{AlwaysFailingPrepareTestInstanceTestCase.class.getSimpleName(), 1, 0, 0, 1},
+				{AlwaysFailingBeforeTestMethodTestCase.class.getSimpleName(), 1, 0, 0, 1},
+				{AlwaysFailingBeforeTestExecutionTestCase.class.getSimpleName(), 1, 0, 1, 0},
+				{AlwaysFailingAfterTestExecutionTestCase.class.getSimpleName(), 1, 0, 1, 0},
+				{AlwaysFailingAfterTestMethodTestCase.class.getSimpleName(), 1, 1, 0, 1},
+				{FailingBeforeTransactionTestCase.class.getSimpleName(), 1, 0, 0, 1},
+				{FailingAfterTransactionTestCase.class.getSimpleName(), 1, 1, 0, 1}
 		};
 	}
 
 
 	public FailingBeforeAndAfterMethodsTestNGTests(String testClassName, int expectedTestStartCount,
-			int expectedTestSuccessCount, int expectedFailureCount, int expectedFailedConfigurationsCount) throws Exception {
+												   int expectedTestSuccessCount, int expectedFailureCount, int expectedFailedConfigurationsCount) throws Exception {
 
 		this.clazz = ClassUtils.forName(getClass().getName() + "." + testClassName, getClass().getClassLoader());
 		this.expectedTestStartCount = expectedTestStartCount;
@@ -98,7 +98,7 @@ public class FailingBeforeAndAfterMethodsTestNGTests {
 		TrackingTestNGTestListener listener = new TrackingTestNGTestListener();
 		TestNG testNG = new TestNG();
 		testNG.addListener((ITestNGListener) listener);
-		testNG.setTestClasses(new Class<?>[] {this.clazz});
+		testNG.setTestClasses(new Class<?>[]{this.clazz});
 		testNG.setVerbose(0);
 		testNG.run();
 

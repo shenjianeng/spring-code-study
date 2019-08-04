@@ -112,7 +112,7 @@ public class HttpSockJsSessionTests extends AbstractSockJsSessionTests<TestAbstr
 
 
 		public TestAbstractHttpSockJsSession(SockJsServiceConfig config, WebSocketHandler handler,
-				Map<String, Object> attributes) {
+											 Map<String, Object> attributes) {
 
 			super("1", config, handler, attributes);
 		}
@@ -149,8 +149,7 @@ public class HttpSockJsSessionTests extends AbstractSockJsSessionTests<TestAbstr
 		protected synchronized void writeFrameInternal(SockJsFrame frame) throws IOException {
 			if (this.exceptionOnWriteFrame != null) {
 				throw this.exceptionOnWriteFrame;
-			}
-			else {
+			} else {
 				super.writeFrameInternal(frame);
 			}
 		}

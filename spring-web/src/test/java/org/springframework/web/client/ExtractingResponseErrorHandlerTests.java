@@ -97,8 +97,7 @@ public class ExtractingResponseErrorHandlerTests {
 		try {
 			this.errorHandler.handleError(this.response);
 			fail("MyRestClientException expected");
-		}
-		catch (MyRestClientException ex) {
+		} catch (MyRestClientException ex) {
 			assertEquals("bar", ex.getFoo());
 		}
 	}
@@ -117,8 +116,7 @@ public class ExtractingResponseErrorHandlerTests {
 		try {
 			this.errorHandler.handleError(this.response);
 			fail("MyRestClientException expected");
-		}
-		catch (MyRestClientException ex) {
+		} catch (MyRestClientException ex) {
 			assertEquals("bar", ex.getFoo());
 		}
 	}
@@ -137,8 +135,7 @@ public class ExtractingResponseErrorHandlerTests {
 		try {
 			this.errorHandler.handleError(this.response);
 			fail("HttpClientErrorException expected");
-		}
-		catch (HttpClientErrorException ex) {
+		} catch (HttpClientErrorException ex) {
 			assertEquals(HttpStatus.NOT_FOUND, ex.getStatusCode());
 			assertArrayEquals(body, ex.getResponseBodyAsByteArray());
 		}

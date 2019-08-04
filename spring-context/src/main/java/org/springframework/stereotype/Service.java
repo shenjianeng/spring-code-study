@@ -37,9 +37,9 @@ import org.springframework.core.annotation.AliasFor;
  * allowing for implementation classes to be autodetected through classpath scanning.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see Component
  * @see Repository
+ * @since 2.5
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -50,6 +50,7 @@ public @interface Service {
 	/**
 	 * The value may indicate a suggestion for a logical component name,
 	 * to be turned into a Spring bean in case of an autodetected component.
+	 *
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 */
 	@AliasFor(annotation = Component.class)

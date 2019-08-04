@@ -38,6 +38,7 @@ public class FilteringWebHandler extends WebHandlerDecorator {
 
 	/**
 	 * Constructor.
+	 *
 	 * @param filters the chain of filters
 	 */
 	public FilteringWebHandler(WebHandler handler, List<WebFilter> filters) {

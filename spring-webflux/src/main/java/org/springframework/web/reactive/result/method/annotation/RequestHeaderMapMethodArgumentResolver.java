@@ -38,8 +38,8 @@ import org.springframework.web.server.ServerWebExchange;
  * values for a header, not only the first one.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see RequestHeaderMethodArgumentResolver
+ * @since 5.0
  */
 public class RequestHeaderMapMethodArgumentResolver extends HandlerMethodArgumentResolverSupport
 		implements SyncHandlerMethodArgumentResolver {

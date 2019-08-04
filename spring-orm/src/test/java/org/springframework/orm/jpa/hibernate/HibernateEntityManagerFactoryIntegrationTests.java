@@ -42,7 +42,7 @@ public class HibernateEntityManagerFactoryIntegrationTests extends AbstractConta
 
 	@Override
 	protected String[] getConfigLocations() {
-		return new String[] {"/org/springframework/orm/jpa/hibernate/hibernate-manager.xml",
+		return new String[]{"/org/springframework/orm/jpa/hibernate/hibernate-manager.xml",
 				"/org/springframework/orm/jpa/memdb.xml", "/org/springframework/orm/jpa/inject.xml"};
 	}
 

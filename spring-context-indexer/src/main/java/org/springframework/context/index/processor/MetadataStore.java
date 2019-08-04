@@ -44,8 +44,7 @@ class MetadataStore {
 	public CandidateComponentsMetadata readMetadata() {
 		try {
 			return readMetadata(getMetadataResource().openInputStream());
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// Failed to read metadata -> ignore.
 			return null;
 		}
@@ -63,8 +62,7 @@ class MetadataStore {
 	private CandidateComponentsMetadata readMetadata(InputStream in) throws IOException {
 		try {
 			return PropertiesMarshaller.read(in);
-		}
-		finally {
+		} finally {
 			in.close();
 		}
 	}

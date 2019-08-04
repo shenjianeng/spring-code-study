@@ -39,6 +39,7 @@ public class WebSphereLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new instance of the {@link WebSphereLoadTimeWeaver} class using
 	 * the default {@link ClassLoader class loader}.
+	 *
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	public WebSphereLoadTimeWeaver() {
@@ -48,6 +49,7 @@ public class WebSphereLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new instance of the {@link WebSphereLoadTimeWeaver} class using
 	 * the supplied {@link ClassLoader}.
+	 *
 	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
 	 */
 	public WebSphereLoadTimeWeaver(@Nullable ClassLoader classLoader) {

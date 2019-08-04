@@ -21,6 +21,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
  * {@link NamespaceHandler} for JDBC configuration namespace.
+ *
  * @author Oliver Gierke
  * @author Dave Syer
  */

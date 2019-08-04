@@ -51,7 +51,8 @@ public abstract class AbstractClassMetadataMemberClassTests {
 	}
 
 	public static class L0_b {
-		public static class L1 { }
+		public static class L1 {
+		}
 	}
 
 
@@ -63,7 +64,8 @@ public abstract class AbstractClassMetadataMemberClassTests {
 	}
 
 	public static class L0_c {
-		private static class L1 { }
+		private static class L1 {
+		}
 	}
 
 

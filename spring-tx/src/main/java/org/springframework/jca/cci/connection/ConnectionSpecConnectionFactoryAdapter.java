@@ -62,8 +62,8 @@ import org.springframework.util.Assert;
  * particular target ConnectionFactory requires it.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see #getConnection
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnectionFactory {
@@ -88,6 +88,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * The given ConnectionSpec will be applied to all subsequent
 	 * {@code getConnection()} calls on this ConnectionFactory proxy.
 	 * <p>This will override any statically specified "connectionSpec" property.
+	 *
 	 * @param spec the ConnectionSpec to apply
 	 * @see #removeConnectionSpecFromCurrentThread
 	 */
@@ -98,6 +99,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	/**
 	 * Remove any ConnectionSpec for this proxy from the current thread.
 	 * A statically specified ConnectionSpec applies again afterwards.
+	 *
 	 * @see #setConnectionSpecForCurrentThread
 	 */
 	public void removeConnectionSpecFromCurrentThread() {
@@ -109,6 +111,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * Determine whether there is currently a thread-bound ConnectionSpec,
 	 * using it if available, falling back to the statically specified
 	 * "connectionSpec" property else.
+	 *
 	 * @see #doGetConnection
 	 */
 	@Override
@@ -116,8 +119,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 		ConnectionSpec threadSpec = this.threadBoundSpec.get();
 		if (threadSpec != null) {
 			return doGetConnection(threadSpec);
-		}
-		else {
+		} else {
 			return doGetConnection(this.connectionSpec);
 		}
 	}
@@ -127,6 +129,7 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	 * method of the target ConnectionFactory, passing in the specified user credentials.
 	 * If the specified username is empty, it will simply delegate to the standard
 	 * {@code getConnection()} method of the target ConnectionFactory.
+	 *
 	 * @param spec the ConnectionSpec to apply
 	 * @return the Connection
 	 * @see javax.resource.cci.ConnectionFactory#getConnection(javax.resource.cci.ConnectionSpec)

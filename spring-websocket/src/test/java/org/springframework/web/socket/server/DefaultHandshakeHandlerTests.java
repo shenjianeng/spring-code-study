@@ -62,7 +62,7 @@ public class DefaultHandshakeHandlerTests extends AbstractHttpRequestTests {
 	@Test
 	public void supportedSubProtocols() {
 		this.handshakeHandler.setSupportedProtocols("stomp", "mqtt");
-		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[] {"13"});
+		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[]{"13"});
 
 		this.servletRequest.setMethod("GET");
 		initHeaders(this.request.getHeaders()).setSecWebSocketProtocol("STOMP");
@@ -80,7 +80,7 @@ public class DefaultHandshakeHandlerTests extends AbstractHttpRequestTests {
 		WebSocketExtension extension1 = new WebSocketExtension("ext1");
 		WebSocketExtension extension2 = new WebSocketExtension("ext2");
 
-		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[] {"13"});
+		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[]{"13"});
 		given(this.upgradeStrategy.getSupportedExtensions(this.request)).willReturn(Collections.singletonList(extension1));
 
 		this.servletRequest.setMethod("GET");
@@ -96,7 +96,7 @@ public class DefaultHandshakeHandlerTests extends AbstractHttpRequestTests {
 
 	@Test
 	public void subProtocolCapableHandler() {
-		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[] {"13"});
+		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[]{"13"});
 
 		this.servletRequest.setMethod("GET");
 		initHeaders(this.request.getHeaders()).setSecWebSocketProtocol("v11.stomp");
@@ -111,7 +111,7 @@ public class DefaultHandshakeHandlerTests extends AbstractHttpRequestTests {
 
 	@Test
 	public void subProtocolCapableHandlerNoMatch() {
-		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[] {"13"});
+		given(this.upgradeStrategy.getSupportedVersions()).willReturn(new String[]{"13"});
 
 		this.servletRequest.setMethod("GET");
 		initHeaders(this.request.getHeaders()).setSecWebSocketProtocol("v10.stomp");

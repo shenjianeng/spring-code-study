@@ -62,10 +62,14 @@ import org.springframework.util.StringUtils;
  */
 public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
-	/** Default maximum number of entries for the destination cache: 1024. */
+	/**
+	 * Default maximum number of entries for the destination cache: 1024.
+	 */
 	public static final int DEFAULT_CACHE_LIMIT = 1024;
 
-	/** Static evaluation context to reuse. */
+	/**
+	 * Static evaluation context to reuse.
+	 */
 	private static final EvaluationContext messageEvalContext =
 			SimpleEvaluationContext.forPropertyAccessors(new SimpMessageHeaderPropertyAccessor()).build();
 
@@ -126,6 +130,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	 * </pre>
 	 * <p>By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
+	 *
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.2
 	 */
@@ -135,6 +140,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
 	/**
 	 * Return the name for the selector header name.
+	 *
 	 * @since 4.2
 	 */
 	@Nullable
@@ -164,8 +170,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 					if (logger.isTraceEnabled()) {
 						logger.trace("Subscription selector: [" + selector + "]");
 					}
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Failed to parse selector: " + selector, ex);
 					}
@@ -226,13 +231,11 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 					if (Boolean.TRUE.equals(expression.getValue(messageEvalContext, message, Boolean.class))) {
 						result.add(sessionId, subId);
 					}
-				}
-				catch (SpelEvaluationException ex) {
+				} catch (SpelEvaluationException ex) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Failed to evaluate selector: " + ex.getMessage());
 					}
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					logger.debug("Failed to evaluate selector", ex);
 				}
 			}
@@ -252,11 +255,15 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	 */
 	private class DestinationCache {
 
-		/** Map from destination to {@code <sessionId, subscriptionId>} for fast look-ups. */
+		/**
+		 * Map from destination to {@code <sessionId, subscriptionId>} for fast look-ups.
+		 */
 		private final Map<String, LinkedMultiValueMap<String, String>> accessCache =
 				new ConcurrentHashMap<>(DEFAULT_CACHE_LIMIT);
 
-		/** Map from destination to {@code <sessionId, subscriptionId>} with locking. */
+		/**
+		 * Map from destination to {@code <sessionId, subscriptionId>} with locking.
+		 */
 		@SuppressWarnings("serial")
 		private final Map<String, LinkedMultiValueMap<String, String>> updateCache =
 				new LinkedHashMap<String, LinkedMultiValueMap<String, String>>(DEFAULT_CACHE_LIMIT, 0.75f, true) {
@@ -265,8 +272,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 						if (size() > getCacheLimit()) {
 							accessCache.remove(eldest.getKey());
 							return true;
-						}
-						else {
+						} else {
 							return false;
 						}
 					}
@@ -323,8 +329,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 						}
 						if (sessionMap.isEmpty()) {
 							destinationsToRemove.add(destination);
-						}
-						else {
+						} else {
 							this.accessCache.put(destination, sessionMap.deepCopy());
 						}
 					}
@@ -343,8 +348,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 					if (sessionMap.remove(info.getSessionId()) != null) {
 						if (sessionMap.isEmpty()) {
 							destinationsToRemove.add(destination);
-						}
-						else {
+						} else {
 							this.accessCache.put(destination, sessionMap.deepCopy());
 						}
 					}
@@ -381,7 +385,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 		}
 
 		public SessionSubscriptionInfo addSubscription(String sessionId, String subscriptionId,
-				String destination, @Nullable Expression selectorExpression) {
+													   String destination, @Nullable Expression selectorExpression) {
 
 			SessionSubscriptionInfo info = this.sessions.get(sessionId);
 			if (info == null) {
@@ -532,7 +536,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
 		@Override
 		public Class<?>[] getSpecificTargetClasses() {
-			return new Class<?>[] {Message.class, MessageHeaders.class};
+			return new Class<?>[]{Message.class, MessageHeaders.class};
 		}
 
 		@Override
@@ -545,23 +549,20 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 			Object value;
 			if (target instanceof Message) {
 				value = name.equals("headers") ? ((Message) target).getHeaders() : null;
-			}
-			else if (target instanceof MessageHeaders) {
+			} else if (target instanceof MessageHeaders) {
 				MessageHeaders headers = (MessageHeaders) target;
 				SimpMessageHeaderAccessor accessor =
 						MessageHeaderAccessor.getAccessor(headers, SimpMessageHeaderAccessor.class);
 				Assert.state(accessor != null, "No SimpMessageHeaderAccessor");
 				if ("destination".equalsIgnoreCase(name)) {
 					value = accessor.getDestination();
-				}
-				else {
+				} else {
 					value = accessor.getFirstNativeHeader(name);
 					if (value == null) {
 						value = headers.get(name);
 					}
 				}
-			}
-			else {
+			} else {
 				// Should never happen...
 				throw new IllegalStateException("Expected Message or MessageHeaders.");
 			}

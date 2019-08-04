@@ -107,8 +107,8 @@ public class ResponseEntityTests {
 				.expectStatus().isOk()
 				.expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
 				.expectBodyList(Person.class).value(people -> {
-					MatcherAssert.assertThat(people, hasItem(new Person("Jason")));
-				});
+			MatcherAssert.assertThat(people, hasItem(new Person("Jason")));
+		});
 	}
 
 	@Test
@@ -122,7 +122,8 @@ public class ResponseEntityTests {
 		this.client.get().uri("?map=true")
 				.exchange()
 				.expectStatus().isOk()
-				.expectBody(new ParameterizedTypeReference<Map<String, Person>>() {}).isEqualTo(map);
+				.expectBody(new ParameterizedTypeReference<Map<String, Person>>() {
+				}).isEqualTo(map);
 	}
 
 	@Test

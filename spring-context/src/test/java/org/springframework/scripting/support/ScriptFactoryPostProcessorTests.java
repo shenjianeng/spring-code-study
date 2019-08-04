@@ -90,8 +90,7 @@ public class ScriptFactoryPostProcessorTests {
 		try {
 			new ScriptFactoryPostProcessor().setBeanFactory(mock(BeanFactory.class));
 			fail("Must have thrown exception by this point.");
-		}
-		catch (IllegalStateException expected) {
+		} catch (IllegalStateException expected) {
 		}
 	}
 
@@ -212,8 +211,7 @@ public class ScriptFactoryPostProcessorTests {
 		try {
 			refreshedMessenger.getMessage();
 			fail("Must have thrown an Exception (invalid script)");
-		}
-		catch (FatalBeanException expected) {
+		} catch (FatalBeanException expected) {
 			assertTrue(expected.contains(ScriptCompilationException.class));
 		}
 	}
@@ -271,8 +269,7 @@ public class ScriptFactoryPostProcessorTests {
 	private static void pauseToLetRefreshDelayKickIn(int secondsToPause) {
 		try {
 			Thread.sleep(secondsToPause * 1000);
-		}
-		catch (InterruptedException ignored) {
+		} catch (InterruptedException ignored) {
 		}
 	}
 

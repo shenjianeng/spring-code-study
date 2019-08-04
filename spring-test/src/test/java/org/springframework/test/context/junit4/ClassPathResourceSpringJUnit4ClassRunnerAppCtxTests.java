@@ -25,13 +25,13 @@ import org.springframework.util.ResourceUtils;
  * context.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see SpringJUnit4ClassRunnerAppCtxTests
  * @see #CLASSPATH_CONTEXT_RESOURCE_PATH
  * @see AbsolutePathSpringJUnit4ClassRunnerAppCtxTests
  * @see RelativePathSpringJUnit4ClassRunnerAppCtxTests
+ * @since 2.5
  */
-@ContextConfiguration(locations = { ClassPathResourceSpringJUnit4ClassRunnerAppCtxTests.CLASSPATH_CONTEXT_RESOURCE_PATH })
+@ContextConfiguration(locations = {ClassPathResourceSpringJUnit4ClassRunnerAppCtxTests.CLASSPATH_CONTEXT_RESOURCE_PATH})
 public class ClassPathResourceSpringJUnit4ClassRunnerAppCtxTests extends SpringJUnit4ClassRunnerAppCtxTests {
 
 	/**

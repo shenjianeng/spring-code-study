@@ -29,6 +29,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link ForwardedHeaderTransformer}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ForwardedHeaderTransformerTests {

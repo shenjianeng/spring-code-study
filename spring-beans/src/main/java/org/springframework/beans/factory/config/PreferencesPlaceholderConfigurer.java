@@ -38,10 +38,10 @@ import org.springframework.lang.Nullable;
  * Uses the respective root node if not specified.
  *
  * @author Juergen Hoeller
- * @since 16.02.2004
  * @see #setSystemTreePath
  * @see #setUserTreePath
  * @see java.util.prefs.Preferences
+ * @since 16.02.2004
  */
 public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigurer implements InitializingBean {
 
@@ -113,8 +113,9 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 
 	/**
 	 * Resolve the given path and key against the given Preferences.
-	 * @param path the preferences path (placeholder part before '/')
-	 * @param key the preferences key (placeholder part after '/')
+	 *
+	 * @param path        the preferences path (placeholder part before '/')
+	 * @param key         the preferences key (placeholder part after '/')
 	 * @param preferences the Preferences to resolve against
 	 * @return the value for the placeholder, or {@code null} if none found
 	 */
@@ -125,16 +126,13 @@ public class PreferencesPlaceholderConfigurer extends PropertyPlaceholderConfigu
 			try {
 				if (preferences.nodeExists(path)) {
 					return preferences.node(path).get(key, null);
-				}
-				else {
+				} else {
 					return null;
 				}
-			}
-			catch (BackingStoreException ex) {
+			} catch (BackingStoreException ex) {
 				throw new BeanDefinitionStoreException("Cannot access specified node path [" + path + "]", ex);
 			}
-		}
-		else {
+		} else {
 			return preferences.get(key, null);
 		}
 	}

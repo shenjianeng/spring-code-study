@@ -36,6 +36,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
  * Samples tests that demonstrate applying ServerWebExchange initialization.
+ *
  * @author Rossen Stoyanchev
  */
 public class ExchangeMutatorTests {
@@ -115,8 +116,8 @@ public class ExchangeMutatorTests {
 
 		@Override
 		public void afterConfigurerAdded(WebTestClient.Builder builder,
-				@Nullable WebHttpHandlerBuilder httpHandlerBuilder,
-				@Nullable ClientHttpConnector connector) {
+										 @Nullable WebHttpHandlerBuilder httpHandlerBuilder,
+										 @Nullable ClientHttpConnector connector) {
 
 			Assert.notNull(httpHandlerBuilder, "Not a mock server");
 			httpHandlerBuilder.filters(filters -> {

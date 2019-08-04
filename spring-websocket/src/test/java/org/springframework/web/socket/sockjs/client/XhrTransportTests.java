@@ -135,8 +135,8 @@ public class XhrTransportTests {
 
 		@Override
 		protected void connectInternal(TransportRequest request, WebSocketHandler handler, URI receiveUrl,
-				HttpHeaders handshakeHeaders, XhrClientSockJsSession session,
-				SettableListenableFuture<WebSocketSession> connectFuture) {
+									   HttpHeaders handshakeHeaders, XhrClientSockJsSession session,
+									   SettableListenableFuture<WebSocketSession> connectFuture) {
 
 			this.actualHandshakeHeaders = handshakeHeaders;
 			this.actualSession = session;

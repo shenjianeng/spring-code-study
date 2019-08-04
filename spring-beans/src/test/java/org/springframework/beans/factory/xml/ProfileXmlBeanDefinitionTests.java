@@ -58,7 +58,7 @@ public class ProfileXmlBeanDefinitionTests {
 	private static final String NULL_ACTIVE = null;
 	private static final String UNKNOWN_ACTIVE = "unknown";
 	private static final String[] NONE_ACTIVE = new String[0];
-	private static final String[] MULTI_ACTIVE = new String[] { PROD_ACTIVE, DEV_ACTIVE };
+	private static final String[] MULTI_ACTIVE = new String[]{PROD_ACTIVE, DEV_ACTIVE};
 
 	private static final String TARGET_BEAN = "foo";
 
@@ -195,7 +195,7 @@ public class ProfileXmlBeanDefinitionTests {
 			@Override
 			public void describeTo(Description desc) {
 				desc.appendText("a BeanDefinitionRegistry containing bean named ")
-					.appendValue(beanName);
+						.appendValue(beanName);
 			}
 
 			@Override

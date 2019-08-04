@@ -42,7 +42,8 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 
 	/**
 	 * Create a new ArgTypePreparedStatementSetter for the given arguments.
-	 * @param args the arguments to set
+	 *
+	 * @param args     the arguments to set
 	 * @param argTypes the corresponding SQL types of the arguments
 	 */
 	public ArgumentTypePreparedStatementSetter(@Nullable Object[] args, @Nullable int[] argTypes) {
@@ -70,14 +71,12 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 								doSetValue(ps, parameterPosition, this.argTypes[i], argValue);
 								parameterPosition++;
 							}
-						}
-						else {
+						} else {
 							doSetValue(ps, parameterPosition, this.argTypes[i], entry);
 							parameterPosition++;
 						}
 					}
-				}
-				else {
+				} else {
 					doSetValue(ps, parameterPosition, this.argTypes[i], arg);
 					parameterPosition++;
 				}
@@ -88,10 +87,11 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 	/**
 	 * Set the value for the prepared statement's specified parameter position using the passed in
 	 * value and type. This method can be overridden by sub-classes if needed.
-	 * @param ps the PreparedStatement
+	 *
+	 * @param ps                the PreparedStatement
 	 * @param parameterPosition index of the parameter position
-	 * @param argType the argument type
-	 * @param argValue the argument value
+	 * @param argType           the argument type
+	 * @param argValue          the argument value
 	 * @throws SQLException if thrown by PreparedStatement methods
 	 */
 	protected void doSetValue(PreparedStatement ps, int parameterPosition, int argType, Object argValue)

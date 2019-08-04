@@ -49,12 +49,14 @@ public interface WebSocketSession {
 
 	/**
 	 * Return a {@code DataBuffer} Factory to create message payloads.
+	 *
 	 * @return the buffer factory for the session
 	 */
 	DataBufferFactory bufferFactory();
 
 	/**
 	 * Return the map with attributes associated with the WebSocket session.
+	 *
 	 * @return a Map with the session attributes (never {@code null})
 	 * @since 5.1
 	 */
@@ -91,6 +93,7 @@ public interface WebSocketSession {
 
 	/**
 	 * Close the WebSocket session with the given status.
+	 *
 	 * @param status the close status
 	 */
 	Mono<Void> close(CloseStatus status);

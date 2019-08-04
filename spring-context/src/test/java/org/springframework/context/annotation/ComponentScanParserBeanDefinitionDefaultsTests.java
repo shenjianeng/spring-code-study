@@ -121,8 +121,7 @@ public class ComponentScanParserBeanDefinitionDefaultsTests {
 		try {
 			context.refresh();
 			fail("expected exception due to multiple matches for byType autowiring");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		} catch (UnsatisfiedDependencyException ex) {
 			// expected
 		}
 	}

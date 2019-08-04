@@ -118,7 +118,9 @@ public class MockRestServiceServerTests {
 		MockRestServiceServer server = MockRestServiceServer.bindTo(this.restTemplate).build();
 
 		server.expect(requestTo("/some-service/some-endpoint"))
-				.andRespond(request -> { throw new SocketException("pseudo network error"); });
+				.andRespond(request -> {
+					throw new SocketException("pseudo network error");
+				});
 
 		server.expect(requestTo("/reporting-service/report-error"))
 				.andExpect(method(POST)).andRespond(withSuccess());
@@ -126,8 +128,7 @@ public class MockRestServiceServerTests {
 		try {
 			this.restTemplate.getForEntity("/some-service/some-endpoint", String.class);
 			fail("Expected exception");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			this.restTemplate.postForEntity("/reporting-service/report-error", ex.toString(), String.class);
 		}
 

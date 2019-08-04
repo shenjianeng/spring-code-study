@@ -32,13 +32,14 @@ import org.springframework.jdbc.support.JdbcUtils;
  * a database sequence. Subclasses need to provide the database-specific SQL to use.
  *
  * @author Juergen Hoeller
- * @since 26.02.2004
  * @see #getSequenceQuery
+ * @since 26.02.2004
  */
 public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFieldMaxValueIncrementer {
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -47,7 +48,8 @@ public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFi
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public AbstractSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {
@@ -69,15 +71,12 @@ public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFi
 			rs = stmt.executeQuery(getSequenceQuery());
 			if (rs.next()) {
 				return rs.getLong(1);
-			}
-			else {
+			} else {
 				throw new DataAccessResourceFailureException("Sequence query did not return a result");
 			}
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			throw new DataAccessResourceFailureException("Could not obtain sequence value", ex);
-		}
-		finally {
+		} finally {
 			JdbcUtils.closeResultSet(rs);
 			JdbcUtils.closeStatement(stmt);
 			DataSourceUtils.releaseConnection(con, getDataSource());

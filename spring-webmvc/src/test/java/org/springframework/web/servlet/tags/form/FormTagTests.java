@@ -219,8 +219,7 @@ public class FormTagTests extends AbstractHtmlElementTagTests {
 			tag.setModelAttribute(null);
 			tag.doStartTag();
 			fail("Must not be able to have a command name that resolves to null");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -234,7 +233,7 @@ public class FormTagTests extends AbstractHtmlElementTagTests {
 		request.setQueryString(xssQueryString);
 		tag.doStartTag();
 		assertEquals("<form id=\"command\" action=\"/my/form?foo=bar&amp;stuff=&quot;&gt;&lt;" +
-						"script&gt;alert(&#39;XSS!&#39;)&lt;/script&gt;\" method=\"post\">", getOutput());
+				"script&gt;alert(&#39;XSS!&#39;)&lt;/script&gt;\" method=\"post\">", getOutput());
 	}
 
 	@Test

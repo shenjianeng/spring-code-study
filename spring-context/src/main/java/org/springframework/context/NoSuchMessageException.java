@@ -28,7 +28,8 @@ public class NoSuchMessageException extends RuntimeException {
 
 	/**
 	 * Create a new exception.
-	 * @param code code that could not be resolved for given locale
+	 *
+	 * @param code   code that could not be resolved for given locale
 	 * @param locale locale that was used to search for the code within
 	 */
 	public NoSuchMessageException(String code, Locale locale) {
@@ -37,6 +38,7 @@ public class NoSuchMessageException extends RuntimeException {
 
 	/**
 	 * Create a new exception.
+	 *
 	 * @param code code that could not be resolved for given locale
 	 */
 	public NoSuchMessageException(String code) {

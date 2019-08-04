@@ -34,9 +34,9 @@ import org.springframework.util.Base64Utils;
  *
  * @author Juergen Hoeller
  * @author Roy Clarkson
- * @since 4.1
  * @see GsonFactoryBean#setBase64EncodeByteArrays
  * @see org.springframework.util.Base64Utils
+ * @since 4.1
  */
 public abstract class GsonBuilderUtils {
 

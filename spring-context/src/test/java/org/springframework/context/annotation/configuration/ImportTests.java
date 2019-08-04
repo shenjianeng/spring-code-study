@@ -322,9 +322,11 @@ public class ImportTests {
 
 	@Configuration
 	@Import(NonConfigAnnotated.class)
-	static class ConfigAnnotated { }
+	static class ConfigAnnotated {
+	}
 
-	static class NonConfigAnnotated { }
+	static class NonConfigAnnotated {
+	}
 
 	// ------------------------------------------------------------------------
 
@@ -344,11 +346,13 @@ public class ImportTests {
 	}
 
 	@Configuration("config-a")
-	static class A { }
+	static class A {
+	}
 
 	@Configuration("config-b")
 	@Import(A.class)
-	static class B { }
+	static class B {
+	}
 
 	@Test
 	public void testProcessImports() {

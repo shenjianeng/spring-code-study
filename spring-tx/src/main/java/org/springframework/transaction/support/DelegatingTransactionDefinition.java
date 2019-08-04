@@ -39,6 +39,7 @@ public abstract class DelegatingTransactionDefinition implements TransactionDefi
 
 	/**
 	 * Create a DelegatingTransactionAttribute for the given target attribute.
+	 *
 	 * @param targetDefinition the target TransactionAttribute to delegate to
 	 */
 	public DelegatingTransactionDefinition(TransactionDefinition targetDefinition) {

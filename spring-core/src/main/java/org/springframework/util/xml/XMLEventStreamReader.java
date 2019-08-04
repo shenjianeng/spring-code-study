@@ -37,8 +37,8 @@ import org.springframework.lang.Nullable;
  * allows one to create a event reader from a stream reader, but not vice-versa.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see StaxUtils#createEventStreamReader(javax.xml.stream.XMLEventReader)
+ * @since 3.0
  */
 class XMLEventStreamReader extends AbstractXMLStreamReader {
 
@@ -57,11 +57,9 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public QName getName() {
 		if (this.event.isStartElement()) {
 			return this.event.asStartElement().getName();
-		}
-		else if (this.event.isEndElement()) {
+		} else if (this.event.isEndElement()) {
 			return this.event.asEndElement().getName();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -81,8 +79,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public String getVersion() {
 		if (this.event.isStartDocument()) {
 			return ((StartDocument) this.event).getVersion();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -96,8 +93,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public boolean isStandalone() {
 		if (this.event.isStartDocument()) {
 			return ((StartDocument) this.event).isStandalone();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -106,8 +102,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public boolean standaloneSet() {
 		if (this.event.isStartDocument()) {
 			return ((StartDocument) this.event).standaloneSet();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -128,8 +123,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public String getPITarget() {
 		if (this.event.isProcessingInstruction()) {
 			return ((ProcessingInstruction) this.event).getTarget();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -138,8 +132,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public String getPIData() {
 		if (this.event.isProcessingInstruction()) {
 			return ((ProcessingInstruction) this.event).getData();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -153,11 +146,9 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public String getText() {
 		if (this.event.isCharacters()) {
 			return this.event.asCharacters().getData();
-		}
-		else if (this.event.getEventType() == XMLEvent.COMMENT) {
+		} else if (this.event.getEventType() == XMLEvent.COMMENT) {
 			return ((Comment) this.event).getText();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -203,8 +194,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 			Attribute attribute = (Attribute) attributes.next();
 			if (count == index) {
 				return attribute;
-			}
-			else {
+			} else {
 				count++;
 			}
 		}
@@ -215,8 +205,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 	public NamespaceContext getNamespaceContext() {
 		if (this.event.isStartElement()) {
 			return this.event.asStartElement().getNamespaceContext();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 	}
@@ -227,11 +216,9 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 		Iterator namespaces;
 		if (this.event.isStartElement()) {
 			namespaces = this.event.asStartElement().getNamespaces();
-		}
-		else if (this.event.isEndElement()) {
+		} else if (this.event.isEndElement()) {
 			namespaces = this.event.asEndElement().getNamespaces();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 		return countIterator(namespaces);
@@ -252,11 +239,9 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 		Iterator namespaces;
 		if (this.event.isStartElement()) {
 			namespaces = this.event.asStartElement().getNamespaces();
-		}
-		else if (this.event.isEndElement()) {
+		} else if (this.event.isEndElement()) {
 			namespaces = this.event.asEndElement().getNamespaces();
-		}
-		else {
+		} else {
 			throw new IllegalStateException();
 		}
 		int count = 0;
@@ -264,8 +249,7 @@ class XMLEventStreamReader extends AbstractXMLStreamReader {
 			Namespace namespace = (Namespace) namespaces.next();
 			if (count == index) {
 				return namespace;
-			}
-			else {
+			} else {
 				count++;
 			}
 		}

@@ -40,9 +40,9 @@ import org.springframework.cache.CacheManager;
  *
  * @author Costin Leau
  * @author Juergen Hoeller
- * @since 3.1
  * @see org.springframework.aop.framework.ProxyFactoryBean
  * @see CacheInterceptor
+ * @since 3.1
  */
 @SuppressWarnings("serial")
 public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
@@ -55,6 +55,7 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 
 	/**
 	 * Set one or more sources to find cache operations.
+	 *
 	 * @see CacheInterceptor#setCacheOperationSources
 	 */
 	public void setCacheOperationSources(CacheOperationSource... cacheOperationSources) {
@@ -65,8 +66,9 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	 * Set the default {@link KeyGenerator} that this cache aspect should delegate to
 	 * if no specific key generator has been set for the operation.
 	 * <p>The default is a {@link SimpleKeyGenerator}.
-	 * @since 5.0.3
+	 *
 	 * @see CacheInterceptor#setKeyGenerator
+	 * @since 5.0.3
 	 */
 	public void setKeyGenerator(KeyGenerator keyGenerator) {
 		this.cacheInterceptor.setKeyGenerator(keyGenerator);
@@ -77,8 +79,9 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	 * to if no specific cache resolver has been set for the operation.
 	 * <p>The default resolver resolves the caches against their names and the
 	 * default cache manager.
-	 * @since 5.0.3
+	 *
 	 * @see CacheInterceptor#setCacheResolver
+	 * @since 5.0.3
 	 */
 	public void setCacheResolver(CacheResolver cacheResolver) {
 		this.cacheInterceptor.setCacheResolver(cacheResolver);
@@ -87,8 +90,9 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	/**
 	 * Set the {@link CacheManager} to use to create a default {@link CacheResolver}.
 	 * Replace the current {@link CacheResolver}, if any.
-	 * @since 5.0.3
+	 *
 	 * @see CacheInterceptor#setCacheManager
+	 * @since 5.0.3
 	 */
 	public void setCacheManager(CacheManager cacheManager) {
 		this.cacheInterceptor.setCacheManager(cacheManager);
@@ -98,6 +102,7 @@ public class CacheProxyFactoryBean extends AbstractSingletonProxyFactoryBean
 	 * Set a pointcut, i.e. a bean that triggers conditional invocation of the
 	 * {@link CacheInterceptor} depending on the method and attributes passed.
 	 * <p>Note: Additional interceptors are always invoked.
+	 *
 	 * @see #setPreInterceptors
 	 * @see #setPostInterceptors
 	 */

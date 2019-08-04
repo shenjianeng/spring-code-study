@@ -47,7 +47,7 @@ public abstract class StompClientSupport {
 	@Nullable
 	private TaskScheduler taskScheduler;
 
-	private long[] defaultHeartbeat = new long[] {10000, 10000};
+	private long[] defaultHeartbeat = new long[]{10000, 10000};
 
 	private long receiptTimeLimit = TimeUnit.SECONDS.toMillis(15);
 
@@ -57,6 +57,7 @@ public abstract class StompClientSupport {
 	 * and outgoing messages to and from {@code byte[]} based on object type
 	 * and the "content-type" header.
 	 * <p>By default, {@link SimpleMessageConverter} is configured.
+	 *
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -98,6 +99,7 @@ public abstract class StompClientSupport {
 	 * <p>By default this is set to "10000,10000" but subclasses may override
 	 * that default and for example set it to "0,0" if they require a
 	 * TaskScheduler to be configured first.
+	 *
 	 * @param heartbeat the value for the CONNECT "heart-beat" header
 	 * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#Heart-beating">
 	 * https://stomp.github.io/stomp-specification-1.2.html#Heart-beating</a>
@@ -145,8 +147,9 @@ public abstract class StompClientSupport {
 
 	/**
 	 * Factory method for create and configure a new session.
+	 *
 	 * @param connectHeaders headers for the STOMP CONNECT frame
-	 * @param handler the handler for the STOMP session
+	 * @param handler        the handler for the STOMP session
 	 * @return the created session
 	 */
 	protected ConnectionHandlingStompSession createSession(
@@ -163,6 +166,7 @@ public abstract class StompClientSupport {
 	/**
 	 * Further initialize the StompHeaders, for example setting the heart-beat
 	 * header if necessary.
+	 *
 	 * @param connectHeaders the headers to modify
 	 * @return the modified headers
 	 */

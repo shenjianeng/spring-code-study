@@ -55,8 +55,7 @@ class RecursiveAnnotationArrayVisitor extends AbstractRecursiveAnnotationVisitor
 		Object existingValue = this.attributes.get(this.attributeName);
 		if (existingValue != null) {
 			newValue = ObjectUtils.addObjectToArray((Object[]) existingValue, newValue);
-		}
-		else {
+		} else {
 			Class<?> arrayClass = newValue.getClass();
 			if (Enum.class.isAssignableFrom(arrayClass)) {
 				while (arrayClass.getSuperclass() != null && !arrayClass.isEnum()) {
@@ -82,8 +81,7 @@ class RecursiveAnnotationArrayVisitor extends AbstractRecursiveAnnotationVisitor
 	public void visitEnd() {
 		if (!this.allNestedAttributes.isEmpty()) {
 			this.attributes.put(this.attributeName, this.allNestedAttributes.toArray(new AnnotationAttributes[0]));
-		}
-		else if (!this.attributes.containsKey(this.attributeName)) {
+		} else if (!this.attributes.containsKey(this.attributeName)) {
 			Class<? extends Annotation> annotationType = this.attributes.annotationType();
 			if (annotationType != null) {
 				try {
@@ -95,8 +93,7 @@ class RecursiveAnnotationArrayVisitor extends AbstractRecursiveAnnotationVisitor
 						}
 						this.attributes.put(this.attributeName, Array.newInstance(elementType, 0));
 					}
-				}
-				catch (NoSuchMethodException ex) {
+				} catch (NoSuchMethodException ex) {
 					// Corresponding attribute method not found: cannot expose empty array.
 				}
 			}

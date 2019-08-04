@@ -35,8 +35,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 4.1
  * @see JCacheConfigurer
+ * @since 4.1
  */
 @Configuration
 public class AbstractJCacheConfiguration extends AbstractCachingConfiguration {

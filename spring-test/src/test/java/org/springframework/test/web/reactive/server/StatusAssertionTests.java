@@ -33,6 +33,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link StatusAssertions}.
+ *
  * @author Rossen Stoyanchev
  */
 public class StatusAssertionTests {
@@ -48,16 +49,14 @@ public class StatusAssertionTests {
 		try {
 			assertions.isEqualTo(HttpStatus.REQUEST_TIMEOUT);
 			fail("Wrong status expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 
 		try {
 			assertions.isEqualTo(408);
 			fail("Wrong status value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -72,8 +71,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.reasonEquals("Request Timeout");
 			fail("Wrong reason expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -88,8 +86,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.is2xxSuccessful();
 			fail("Wrong series expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -104,8 +101,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.is5xxServerError();
 			fail("Wrong series expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -120,8 +116,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.is2xxSuccessful();
 			fail("Wrong series expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -136,8 +131,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.is2xxSuccessful();
 			fail("Wrong series expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -152,8 +146,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.is2xxSuccessful();
 			fail("Wrong series expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -169,8 +162,7 @@ public class StatusAssertionTests {
 		try {
 			assertions.value(equalTo(200));
 			fail("Wrong status expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}

@@ -76,11 +76,11 @@ import org.springframework.util.Assert;
  *
  * @author Sam Brannen
  * @author Philippe Marschall
- * @since 4.2
  * @see #apply(Statement, Description)
  * @see SpringMethodRule
  * @see org.springframework.test.context.TestContextManager
  * @see org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+ * @since 4.2
  */
 public class SpringClassRule implements TestRule {
 
@@ -105,7 +105,8 @@ public class SpringClassRule implements TestRule {
 	 * non-matching {@code @IfProfileValue} annotation from running altogether,
 	 * even skipping the execution of {@code beforeTestClass()} methods
 	 * in {@code TestExecutionListeners}.
-	 * @param base the base {@code Statement} that this rule should be applied to
+	 *
+	 * @param base        the base {@code Statement} that this rule should be applied to
 	 * @param description a {@code Description} of the current test execution
 	 * @return a statement that wraps the supplied {@code base} with class-level
 	 * features of the Spring TestContext Framework
@@ -133,6 +134,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code RunBeforeTestClassCallbacks} statement.
+	 *
 	 * @see RunBeforeTestClassCallbacks
 	 */
 	private Statement withBeforeTestClassCallbacks(Statement next, TestContextManager testContextManager) {
@@ -141,6 +143,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code RunAfterTestClassCallbacks} statement.
+	 *
 	 * @see RunAfterTestClassCallbacks
 	 */
 	private Statement withAfterTestClassCallbacks(Statement next, TestContextManager testContextManager) {
@@ -149,6 +152,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code ProfileValueChecker} statement.
+	 *
 	 * @see ProfileValueChecker
 	 */
 	private Statement withProfileValueCheck(Statement next, Class<?> testClass) {
@@ -157,6 +161,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * Wrap the supplied {@link Statement} with a {@code TestContextManagerCacheEvictor} statement.
+	 *
 	 * @see TestContextManagerCacheEvictor
 	 */
 	private Statement withTestContextManagerCacheEviction(Statement next, Class<?> testClass) {
@@ -165,6 +170,7 @@ public class SpringClassRule implements TestRule {
 
 	/**
 	 * Get the {@link TestContextManager} associated with the supplied test class.
+	 *
 	 * @param testClass the test class to be managed; never {@code null}
 	 */
 	static TestContextManager getTestContextManager(Class<?> testClass) {
@@ -188,8 +194,7 @@ public class SpringClassRule implements TestRule {
 		public void evaluate() throws Throwable {
 			try {
 				this.next.evaluate();
-			}
-			finally {
+			} finally {
 				testContextManagerCache.remove(this.testClass);
 			}
 		}

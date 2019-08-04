@@ -34,8 +34,9 @@ public interface Profiles {
 	/**
 	 * Test if this {@code Profiles} instance <em>matches</em> against the given
 	 * active profiles predicate.
+	 *
 	 * @param activeProfiles predicate that tests whether a given profile is
-	 * currently active
+	 *                       currently active
 	 */
 	boolean matches(Predicate<String> activeProfiles);
 
@@ -59,6 +60,7 @@ public interface Profiles {
 	 * without using parentheses. For example {@code "a & b | c"} is not a valid
 	 * expression; it must be expressed as {@code "(a & b) | c"} or
 	 * {@code "a & (b | c)"}.
+	 *
 	 * @param profiles the <em>profile strings</em> to include
 	 * @return a new {@link Profiles} instance
 	 */

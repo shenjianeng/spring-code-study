@@ -32,8 +32,8 @@ import org.springframework.util.Assert;
  *
  * @author Costin Leau
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.beans.factory.BeanFactory
+ * @since 2.0
  */
 public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactoryAware {
 
@@ -44,6 +44,7 @@ public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactor
 	/**
 	 * Create a new instance of the {@link BeanFactoryDataSourceLookup} class.
 	 * <p>The BeanFactory to access must be set via {@code setBeanFactory}.
+	 *
 	 * @see #setBeanFactory
 	 */
 	public BeanFactoryDataSourceLookup() {
@@ -56,6 +57,7 @@ public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactor
 	 * replaced by the {@link BeanFactory} that creates it (c.f. the
 	 * {@link BeanFactoryAware} contract). So only use this constructor if you
 	 * are using this class outside the context of a Spring IoC container.
+	 *
 	 * @param beanFactory the bean factory to be used to lookup {@link DataSource DataSources}
 	 */
 	public BeanFactoryDataSourceLookup(BeanFactory beanFactory) {
@@ -75,8 +77,7 @@ public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactor
 		Assert.state(this.beanFactory != null, "BeanFactory is required");
 		try {
 			return this.beanFactory.getBean(dataSourceName, DataSource.class);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			throw new DataSourceLookupFailureException(
 					"Failed to look up DataSource bean with name '" + dataSourceName + "'", ex);
 		}

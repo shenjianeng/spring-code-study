@@ -41,15 +41,14 @@ public class JsonPathRequestMatchersTests {
 			"'emptyString': '',              " + //
 			"'emptyArray':  [],              " + //
 			"'emptyMap':    {}               " + //
-	"}";
+			"}";
 
 	private static final MockClientHttpRequest request = new MockClientHttpRequest();
 
 	static {
 		try {
 			request.getBody().write(REQUEST_CONTENT.getBytes());
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
 	}

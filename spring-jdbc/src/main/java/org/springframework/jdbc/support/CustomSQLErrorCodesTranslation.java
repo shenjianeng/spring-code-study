@@ -26,8 +26,8 @@ import org.springframework.util.StringUtils;
  * thrown for the list of error codes specified in the errorCodes property.
  *
  * @author Thomas Risberg
- * @since 1.1
  * @see SQLErrorCodeSQLExceptionTranslator
+ * @since 1.1
  */
 public class CustomSQLErrorCodesTranslation {
 

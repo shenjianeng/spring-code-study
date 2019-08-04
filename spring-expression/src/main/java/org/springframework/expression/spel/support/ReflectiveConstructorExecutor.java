@@ -46,8 +46,7 @@ public class ReflectiveConstructorExecutor implements ConstructorExecutor {
 		if (ctor.isVarArgs()) {
 			Class<?>[] paramTypes = ctor.getParameterTypes();
 			this.varargsPosition = paramTypes.length - 1;
-		}
-		else {
+		} else {
 			this.varargsPosition = null;
 		}
 	}
@@ -63,8 +62,7 @@ public class ReflectiveConstructorExecutor implements ConstructorExecutor {
 			}
 			ReflectionUtils.makeAccessible(this.ctor);
 			return new TypedValue(this.ctor.newInstance(arguments));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new AccessException("Problem invoking constructor: " + this.ctor, ex);
 		}
 	}

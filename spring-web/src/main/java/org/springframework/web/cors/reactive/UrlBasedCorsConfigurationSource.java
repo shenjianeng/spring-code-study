@@ -47,6 +47,7 @@ public class UrlBasedCorsConfigurationSource implements CorsConfigurationSource 
 	/**
 	 * Construct a new {@code UrlBasedCorsConfigurationSource} instance with default
 	 * {@code PathPatternParser}.
+	 *
 	 * @since 5.0.6
 	 */
 	public UrlBasedCorsConfigurationSource() {

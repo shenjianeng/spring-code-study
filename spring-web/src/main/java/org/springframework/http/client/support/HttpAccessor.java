@@ -38,13 +38,15 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
- * @since 3.0
  * @see ClientHttpRequestFactory
  * @see org.springframework.web.client.RestTemplate
+ * @since 3.0
  */
 public abstract class HttpAccessor {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = HttpLogging.forLogName(getClass());
 
 	private ClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
@@ -56,6 +58,7 @@ public abstract class HttpAccessor {
 	 * HTTP libraries ({@link java.net.HttpURLConnection}).
 	 * <p><b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
 	 * Configure the Apache HttpComponents or OkHttp request factory to enable PATCH.</b>
+	 *
 	 * @see #createRequest(URI, HttpMethod)
 	 * @see SimpleClientHttpRequestFactory
 	 * @see org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFactory
@@ -76,7 +79,8 @@ public abstract class HttpAccessor {
 
 	/**
 	 * Create a new {@link ClientHttpRequest} via this template's {@link ClientHttpRequestFactory}.
-	 * @param url the URL to connect to
+	 *
+	 * @param url    the URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc)
 	 * @return the created request
 	 * @throws IOException in case of I/O errors

@@ -49,12 +49,12 @@ import org.springframework.context.annotation.Import;
  * 	   &#064;Override
  * 	   public void addFormatters(FormatterRegistry formatterRegistry) {
  *         formatterRegistry.addConverter(new MyConverter());
- * 	   }
+ *       }
  *
  * 	   &#064;Override
  * 	   public void configureMessageConverters(List&lt;HttpMessageConverter&lt;?&gt;&gt; converters) {
  *         converters.add(new MyHttpMessageConverter());
- * 	   }
+ *       }
  *
  * }
  * </pre>
@@ -76,24 +76,24 @@ import org.springframework.context.annotation.Import;
  * public class MyConfiguration extends WebMvcConfigurationSupport {
  *
  * 	   &#064;Override
- *	   public void addFormatters(FormatterRegistry formatterRegistry) {
+ * 	   public void addFormatters(FormatterRegistry formatterRegistry) {
  *         formatterRegistry.addConverter(new MyConverter());
- *	   }
+ *       }
  *
- *	   &#064;Bean
- *	   public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+ * 	   &#064;Bean
+ * 	   public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
  *         // Create or delegate to "super" to create and
  *         // customize properties of RequestMappingHandlerAdapter
- *	   }
+ *       }
  * }
  * </pre>
  *
  * @author Dave Syer
  * @author Rossen Stoyanchev
- * @since 3.1
  * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurer
  * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport
  * @see org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration
+ * @since 3.1
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

@@ -49,7 +49,7 @@ public class MockMvcBuilderMethodChainTests {
 	public void chainMultiple() {
 		MockMvcBuilders
 				.webAppContextSetup(wac)
-				.addFilter(new CharacterEncodingFilter() )
+				.addFilter(new CharacterEncodingFilter())
 				.defaultRequest(get("/").contextPath("/mywebapp"))
 				.build();
 	}

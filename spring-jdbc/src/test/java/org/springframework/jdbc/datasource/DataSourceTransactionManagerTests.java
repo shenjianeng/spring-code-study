@@ -55,7 +55,7 @@ import static org.mockito.BDDMockito.*;
  * @author Juergen Hoeller
  * @since 04.07.2003
  */
-public class DataSourceTransactionManagerTests  {
+public class DataSourceTransactionManagerTests {
 
 	private DataSource ds;
 
@@ -142,13 +142,11 @@ public class DataSourceTransactionManagerTests  {
 				try {
 					if (createStatement) {
 						tCon.createStatement();
-					}
-					else {
+					} else {
 						tCon.getWarnings();
 						tCon.clearWarnings();
 					}
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 			}
@@ -165,39 +163,38 @@ public class DataSourceTransactionManagerTests  {
 		}
 		if (createStatement) {
 			verify(con, times(2)).close();
-		}
-		else {
+		} else {
 			verify(con).close();
 		}
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitTrue() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitTrue() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(true, false, false);
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitFalse() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitFalse() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(false, false, false);
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitTrueAndLazyConnection() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitTrueAndLazyConnection() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(true, true, false);
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitFalseAndLazyConnection() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitFalseAndLazyConnection() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(false, true, false);
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitTrueAndLazyConnectionAndCreateStatement() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitTrueAndLazyConnectionAndCreateStatement() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(true, true, true);
 	}
 
 	@Test
-	public void testTransactionRollbackWithAutoCommitFalseAndLazyConnectionAndCreateStatement() throws Exception  {
+	public void testTransactionRollbackWithAutoCommitFalseAndLazyConnectionAndCreateStatement() throws Exception {
 		doTestTransactionRollbackRestoringAutoCommit(false, true, true);
 	}
 
@@ -231,8 +228,7 @@ public class DataSourceTransactionManagerTests  {
 					if (createStatement) {
 						try {
 							con.createStatement();
-						}
-						catch (SQLException ex) {
+						} catch (SQLException ex) {
 							throw new UncategorizedSQLException("", "", ex);
 						}
 					}
@@ -240,8 +236,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown RuntimeException");
-		}
-		catch (RuntimeException ex2) {
+		} catch (RuntimeException ex2) {
 			// expected
 			assertTrue("Correct exception thrown", ex2.equals(ex));
 		}
@@ -257,8 +252,7 @@ public class DataSourceTransactionManagerTests  {
 		}
 		if (createStatement) {
 			verify(con, times(2)).close();
-		}
-		else {
+		} else {
 			verify(con).close();
 		}
 	}
@@ -285,13 +279,11 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown RuntimeException");
-		}
-		catch (RuntimeException ex2) {
+		} catch (RuntimeException ex2) {
 			// expected
 			assertTrue("Synchronization not active", !TransactionSynchronizationManager.isSynchronizationActive());
 			assertEquals("Correct exception thrown", ex, ex2);
-		}
-		finally {
+		} finally {
 			TransactionSynchronizationManager.unbindResource(ds);
 		}
 
@@ -349,16 +341,14 @@ public class DataSourceTransactionManagerTests  {
 			tm.commit(ts);
 
 			fail("Should have thrown UnexpectedRollbackException");
-		}
-		catch (UnexpectedRollbackException ex) {
+		} catch (UnexpectedRollbackException ex) {
 			// expected
 			if (!outerTransactionBoundaryReached) {
 				tm.rollback(ts);
 			}
 			if (failEarly) {
 				assertFalse(outerTransactionBoundaryReached);
-			}
-			else {
+			} else {
 				assertTrue(outerTransactionBoundaryReached);
 			}
 		}
@@ -399,8 +389,7 @@ public class DataSourceTransactionManagerTests  {
 			});
 
 			fail("Should have thrown IllegalTransactionStateException");
-		}
-		catch (IllegalTransactionStateException ex) {
+		} catch (IllegalTransactionStateException ex) {
 			// expected
 		}
 
@@ -438,8 +427,7 @@ public class DataSourceTransactionManagerTests  {
 			});
 
 			fail("Should have thrown IllegalTransactionStateException");
-		}
-		catch (IllegalTransactionStateException ex) {
+		} catch (IllegalTransactionStateException ex) {
 			// expected
 		}
 
@@ -568,8 +556,7 @@ public class DataSourceTransactionManagerTests  {
 			tm.commit(ts);
 
 			fail("Should have thrown UnexpectedRollbackException");
-		}
-		catch (UnexpectedRollbackException ex) {
+		} catch (UnexpectedRollbackException ex) {
 			// expected
 		}
 
@@ -703,8 +690,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown CannotCreateTransactionException");
-		}
-		catch (CannotCreateTransactionException ex) {
+		} catch (CannotCreateTransactionException ex) {
 			assertSame(failure, ex.getCause());
 		}
 
@@ -772,8 +758,7 @@ public class DataSourceTransactionManagerTests  {
 					fail("Should have thrown IllegalTransactionStateException");
 				}
 			});
-		}
-		catch (IllegalTransactionStateException ex) {
+		} catch (IllegalTransactionStateException ex) {
 			// expected
 		}
 
@@ -819,8 +804,7 @@ public class DataSourceTransactionManagerTests  {
 		final Connection con2 = mock(Connection.class);
 		given(ds.getConnection()).willReturn(con1, con2);
 
-		final
-		TransactionTemplate tt = new TransactionTemplate(tm);
+		final TransactionTemplate tt = new TransactionTemplate(tm);
 		tt.setPropagationBehavior(TransactionDefinition.PROPAGATION_SUPPORTS);
 		assertTrue("Hasn't thread connection", !TransactionSynchronizationManager.hasResource(ds));
 		assertTrue("Synchronization not active", !TransactionSynchronizationManager.isSynchronizationActive());
@@ -940,15 +924,13 @@ public class DataSourceTransactionManagerTests  {
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
 					try {
 						Thread.sleep(1500);
-					}
-					catch (InterruptedException ex) {
+					} catch (InterruptedException ex) {
 					}
 					try {
 						Connection con = DataSourceUtils.getConnection(ds);
 						PreparedStatement ps = con.prepareStatement("some SQL statement");
 						DataSourceUtils.applyTransactionTimeout(ps, ds);
-					}
-					catch (SQLException ex) {
+					} catch (SQLException ex) {
 						throw new DataAccessResourceFailureException("", ex);
 					}
 				}
@@ -956,12 +938,10 @@ public class DataSourceTransactionManagerTests  {
 			if (timeout <= 1) {
 				fail("Should have thrown TransactionTimedOutException");
 			}
-		}
-		catch (TransactionTimedOutException ex) {
+		} catch (TransactionTimedOutException ex) {
 			if (timeout <= 1) {
 				// expected
-			}
-			else {
+			} else {
 				throw ex;
 			}
 		}
@@ -970,8 +950,7 @@ public class DataSourceTransactionManagerTests  {
 		if (timeout > 1) {
 			verify(ps).setQueryTimeout(timeout - 1);
 			verify(con).commit();
-		}
-		else {
+		} else {
 			verify(con).rollback();
 		}
 		InOrder ordered = inOrder(con);
@@ -1000,8 +979,7 @@ public class DataSourceTransactionManagerTests  {
 					assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 					// should be ignored
 					dsProxy.getConnection().close();
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 			}
@@ -1033,8 +1011,7 @@ public class DataSourceTransactionManagerTests  {
 					assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 					// should be ignored
 					dsProxy.getConnection().close();
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 
@@ -1047,8 +1024,7 @@ public class DataSourceTransactionManagerTests  {
 							assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 							// should be ignored
 							dsProxy.getConnection().close();
-						}
-						catch (SQLException ex) {
+						} catch (SQLException ex) {
 							throw new UncategorizedSQLException("", "", ex);
 						}
 					}
@@ -1058,8 +1034,7 @@ public class DataSourceTransactionManagerTests  {
 					assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 					// should be ignored
 					dsProxy.getConnection().close();
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 			}
@@ -1092,8 +1067,7 @@ public class DataSourceTransactionManagerTests  {
 					assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 					// should be ignored
 					dsProxy.getConnection().close();
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 
@@ -1106,8 +1080,7 @@ public class DataSourceTransactionManagerTests  {
 							assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 							// should be ignored
 							dsProxy.getConnection().close();
-						}
-						catch (SQLException ex) {
+						} catch (SQLException ex) {
 							throw new UncategorizedSQLException("", "", ex);
 						}
 					}
@@ -1117,8 +1090,7 @@ public class DataSourceTransactionManagerTests  {
 					assertEquals(con, ((ConnectionProxy) dsProxy.getConnection()).getTargetConnection());
 					// should be ignored
 					dsProxy.getConnection().close();
-				}
-				catch (SQLException ex) {
+				} catch (SQLException ex) {
 					throw new UncategorizedSQLException("", "", ex);
 				}
 			}
@@ -1148,8 +1120,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown CannotCreateTransactionException");
-		}
-		catch (CannotCreateTransactionException ex) {
+		} catch (CannotCreateTransactionException ex) {
 			// expected
 		}
 
@@ -1170,8 +1141,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown TransactionSystemException");
-		}
-		catch (TransactionSystemException ex) {
+		} catch (TransactionSystemException ex) {
 			// expected
 		}
 
@@ -1193,8 +1163,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown TransactionSystemException");
-		}
-		catch (TransactionSystemException ex) {
+		} catch (TransactionSystemException ex) {
 			// expected
 		}
 
@@ -1217,8 +1186,7 @@ public class DataSourceTransactionManagerTests  {
 				}
 			});
 			fail("Should have thrown TransactionSystemException");
-		}
-		catch (TransactionSystemException ex) {
+		} catch (TransactionSystemException ex) {
 			// expected
 		}
 
@@ -1418,8 +1386,7 @@ public class DataSourceTransactionManagerTests  {
 						}
 					});
 					fail("Should have thrown IllegalStateException");
-				}
-				catch (IllegalStateException ex) {
+				} catch (IllegalStateException ex) {
 					// expected
 				}
 				assertTrue("Is new transaction", status.isNewTransaction());
@@ -1476,8 +1443,7 @@ public class DataSourceTransactionManagerTests  {
 						}
 					});
 					fail("Should have thrown UnexpectedRollbackException");
-				}
-				catch (UnexpectedRollbackException ex) {
+				} catch (UnexpectedRollbackException ex) {
 					// expected
 				}
 				assertTrue("Is new transaction", status.isNewTransaction());
@@ -1655,8 +1621,7 @@ public class DataSourceTransactionManagerTests  {
 		public void afterCompletion(int status) {
 			try {
 				doAfterCompletion(status);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				this.afterCompletionException = ex;
 			}
 		}

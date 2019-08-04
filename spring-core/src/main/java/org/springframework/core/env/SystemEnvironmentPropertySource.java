@@ -45,7 +45,7 @@ import org.springframework.util.Assert;
  * environment variables. The following is not allowable under Bash:
  *
  * <pre class="code">spring.profiles.active=p1 java -classpath ... MyApp</pre>
- *
+ * <p>
  * However, the following syntax is permitted and is also more conventional:
  *
  * <pre class="code">SPRING_PROFILES_ACTIVE=p1 java -classpath ... MyApp</pre>
@@ -58,10 +58,10 @@ import org.springframework.util.Assert;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see StandardEnvironment
  * @see AbstractEnvironment#getSystemEnvironment()
  * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
+ * @since 3.1
  */
 public class SystemEnvironmentPropertySource extends MapPropertySource {
 

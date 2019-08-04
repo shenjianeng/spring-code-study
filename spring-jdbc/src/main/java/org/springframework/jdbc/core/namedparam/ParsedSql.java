@@ -43,6 +43,7 @@ public class ParsedSql {
 
 	/**
 	 * Create a new instance of the {@link ParsedSql} class.
+	 *
 	 * @param originalSql the SQL statement that is being (or is to be) parsed
 	 */
 	ParsedSql(String originalSql) {
@@ -59,13 +60,14 @@ public class ParsedSql {
 
 	/**
 	 * Add a named parameter parsed from this SQL statement.
+	 *
 	 * @param parameterName the name of the parameter
-	 * @param startIndex the start index in the original SQL String
-	 * @param endIndex the end index in the original SQL String
+	 * @param startIndex    the start index in the original SQL String
+	 * @param endIndex      the end index in the original SQL String
 	 */
 	void addNamedParameter(String parameterName, int startIndex, int endIndex) {
 		this.parameterNames.add(parameterName);
-		this.parameterIndexes.add(new int[] {startIndex, endIndex});
+		this.parameterIndexes.add(new int[]{startIndex, endIndex});
 	}
 
 	/**
@@ -78,8 +80,9 @@ public class ParsedSql {
 
 	/**
 	 * Return the parameter indexes for the specified parameter.
+	 *
 	 * @param parameterPosition the position of the parameter
-	 * (as index in the parameter names List)
+	 *                          (as index in the parameter names List)
 	 * @return the start index and end index, combined into
 	 * a int array of length 2
 	 */

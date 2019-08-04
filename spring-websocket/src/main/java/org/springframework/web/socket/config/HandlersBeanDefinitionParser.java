@@ -78,8 +78,7 @@ class HandlersBeanDefinitionParser implements BeanDefinitionParser {
 		HandlerMappingStrategy strategy;
 		if (sockJsService != null) {
 			strategy = new SockJsHandlerMappingStrategy(sockJsService);
-		}
-		else {
+		} else {
 			RuntimeBeanReference handler = WebSocketNamespaceUtils.registerHandshakeHandler(element, context, source);
 			Element interceptElem = DomUtils.getChildElementByTagName(element, "handshake-interceptors");
 			ManagedList<Object> interceptors = WebSocketNamespaceUtils.parseBeanSubElements(interceptElem, context);

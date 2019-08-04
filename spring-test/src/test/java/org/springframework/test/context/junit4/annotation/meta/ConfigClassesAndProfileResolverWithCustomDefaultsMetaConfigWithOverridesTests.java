@@ -67,6 +67,6 @@ class DevResolver implements ActiveProfilesResolver {
 		// test class is passed to this method as opposed to a "*Config" class which would
 		// imply that we likely have been passed the 'declaringClass' instead of the
 		// 'rootDeclaringClass'.
-		return testClass.getName().endsWith("Tests") ? new String[] { "dev" } : new String[] {};
+		return testClass.getName().endsWith("Tests") ? new String[]{"dev"} : new String[]{};
 	}
 }

@@ -39,7 +39,7 @@ public abstract class StreamingSockJsSession extends AbstractHttpSockJsSession {
 
 
 	public StreamingSockJsSession(String sessionId, SockJsServiceConfig config,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) {
+								  WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 		super(sessionId, config, wsHandler, attributes);
 	}
@@ -47,6 +47,7 @@ public abstract class StreamingSockJsSession extends AbstractHttpSockJsSession {
 
 	/**
 	 * Get the prelude to write to the response before any other data.
+	 *
 	 * @since 4.2
 	 */
 	protected abstract byte[] getPrelude(ServerHttpRequest request);
@@ -54,7 +55,7 @@ public abstract class StreamingSockJsSession extends AbstractHttpSockJsSession {
 
 	@Override
 	protected void handleRequestInternal(ServerHttpRequest request, ServerHttpResponse response,
-			boolean initialRequest) throws IOException {
+										 boolean initialRequest) throws IOException {
 
 		byte[] prelude = getPrelude(request);
 		response.getBody().write(prelude);

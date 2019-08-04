@@ -44,6 +44,7 @@ public abstract class StaticMethodMatcherPointcutAdvisor extends StaticMethodMat
 	/**
 	 * Create a new StaticMethodMatcherPointcutAdvisor,
 	 * expecting bean-style configuration.
+	 *
 	 * @see #setAdvice
 	 */
 	public StaticMethodMatcherPointcutAdvisor() {
@@ -51,6 +52,7 @@ public abstract class StaticMethodMatcherPointcutAdvisor extends StaticMethodMat
 
 	/**
 	 * Create a new StaticMethodMatcherPointcutAdvisor for the given advice.
+	 *
 	 * @param advice the Advice to use
 	 */
 	public StaticMethodMatcherPointcutAdvisor(Advice advice) {

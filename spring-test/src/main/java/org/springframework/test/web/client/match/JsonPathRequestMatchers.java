@@ -48,11 +48,12 @@ public class JsonPathRequestMatchers {
 	 * Protected constructor.
 	 * <p>Use {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
 	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
+	 *
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
-	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param args       arguments to parameterize the {@code JsonPath} expression with,
+	 *                   using formatting specifiers defined in {@link String#format(String, Object...)}
 	 */
-	protected JsonPathRequestMatchers(String expression, Object ... args) {
+	protected JsonPathRequestMatchers(String expression, Object... args) {
 		this.jsonPathHelper = new JsonPathExpectationsHelper(expression, args);
 	}
 
@@ -76,6 +77,7 @@ public class JsonPathRequestMatchers {
 	 * against.
 	 * <p>This can be useful for matching numbers reliably &mdash; for example,
 	 * to coerce an integer into a double.
+	 *
 	 * @since 4.3.3
 	 */
 	public <T> RequestMatcher value(final Matcher<T> matcher, final Class<T> targetType) {
@@ -139,9 +141,10 @@ public class JsonPathRequestMatchers {
 	 * <p>If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is not <em>empty</em>.
-	 * @since 5.0.3
+	 *
 	 * @see #exists()
 	 * @see #isNotEmpty()
+	 * @since 5.0.3
 	 */
 	public RequestMatcher hasJsonPath() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -159,9 +162,10 @@ public class JsonPathRequestMatchers {
 	 * <p>If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is <em>empty</em>.
-	 * @since 5.0.3
+	 *
 	 * @see #doesNotExist()
 	 * @see #isEmpty()
+	 * @since 5.0.3
 	 */
 	public RequestMatcher doesNotHaveJsonPath() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -177,10 +181,11 @@ public class JsonPathRequestMatchers {
 	 * assert that an empty value exists at the given path.
 	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
-	 * @since 4.2.1
+	 *
 	 * @see #isNotEmpty()
 	 * @see #exists()
 	 * @see #doesNotExist()
+	 * @since 4.2.1
 	 */
 	public RequestMatcher isEmpty() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -196,10 +201,11 @@ public class JsonPathRequestMatchers {
 	 * assert that a non-empty value exists at the given path.
 	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
-	 * @since 4.2.1
+	 *
 	 * @see #isEmpty()
 	 * @see #exists()
 	 * @see #doesNotExist()
+	 * @since 4.2.1
 	 */
 	public RequestMatcher isNotEmpty() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -213,6 +219,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that the result is a {@link String}.
+	 *
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isString() {
@@ -227,6 +234,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that the result is a {@link Boolean}.
+	 *
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isBoolean() {
@@ -241,6 +249,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that the result is a {@link Number}.
+	 *
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isNumber() {
@@ -268,6 +277,7 @@ public class JsonPathRequestMatchers {
 	/**
 	 * Evaluate the JSON path expression against the request content and
 	 * assert that the result is a {@link java.util.Map}.
+	 *
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isMap() {
@@ -282,6 +292,7 @@ public class JsonPathRequestMatchers {
 
 	/**
 	 * Abstract base class for {@code JsonPath}-based {@link RequestMatcher RequestMatchers}.
+	 *
 	 * @see #matchInternal
 	 */
 	private abstract static class AbstractJsonPathRequestMatcher implements RequestMatcher {
@@ -291,8 +302,7 @@ public class JsonPathRequestMatchers {
 			try {
 				MockClientHttpRequest mockRequest = (MockClientHttpRequest) request;
 				matchInternal(mockRequest);
-			}
-			catch (ParseException ex) {
+			} catch (ParseException ex) {
 				throw new AssertionError("Failed to parse JSON request content", ex);
 			}
 		}

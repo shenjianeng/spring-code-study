@@ -39,7 +39,7 @@ import org.springframework.util.MultiValueMap;
  * Builder for the body of a multipart request, producing
  * {@code MultiValueMap<String, HttpEntity>}, which can be provided to the
  * {@code WebClient} through the {@code syncBody} method.
- *
+ * <p>
  * Examples:
  * <pre class="code">
  *
@@ -71,8 +71,8 @@ import org.springframework.util.MultiValueMap;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @since 5.0.2
  * @see <a href="https://tools.ietf.org/html/rfc7578">RFC 7578</a>
+ * @since 5.0.2
  */
 public final class MultipartBodyBuilder {
 
@@ -95,6 +95,7 @@ public final class MultipartBodyBuilder {
 	 * <li>HttpEntity -- part content and headers although generally it's
 	 * easier to add headers through the returned builder</li>
 	 * </ul>
+	 *
 	 * @param name the name of the part to add
 	 * @param part the part data
 	 * @return builder that allows for further customization of part headers
@@ -105,8 +106,9 @@ public final class MultipartBodyBuilder {
 
 	/**
 	 * Variant of {@link #part(String, Object)} that also accepts a MediaType.
-	 * @param name the name of the part to add
-	 * @param part the part data
+	 *
+	 * @param name        the name of the part to add
+	 * @param part        the part data
 	 * @param contentType the media type to help with encoding the part
 	 * @return builder that allows for further customization of part headers
 	 */
@@ -114,7 +116,7 @@ public final class MultipartBodyBuilder {
 		Assert.hasLength(name, "'name' must not be empty");
 		Assert.notNull(part, "'part' must not be null");
 
-		if (part instanceof PublisherEntity<?,?>) {
+		if (part instanceof PublisherEntity<?, ?>) {
 			PublisherPartBuilder<?, ?> builder = new PublisherPartBuilder<>((PublisherEntity<?, ?>) part);
 			if (contentType != null) {
 				builder.header(HttpHeaders.CONTENT_TYPE, contentType.toString());
@@ -129,8 +131,7 @@ public final class MultipartBodyBuilder {
 			partBody = ((HttpEntity<?>) part).getBody();
 			partHeaders = new HttpHeaders();
 			partHeaders.putAll(((HttpEntity<?>) part).getHeaders());
-		}
-		else {
+		} else {
 			partBody = part;
 		}
 
@@ -151,8 +152,9 @@ public final class MultipartBodyBuilder {
 
 	/**
 	 * Add a part from {@link Publisher} content.
-	 * @param name the name of the part to add
-	 * @param publisher the part contents
+	 *
+	 * @param name         the name of the part to add
+	 * @param publisher    the part contents
 	 * @param elementClass the type of elements contained in the publisher
 	 * @return builder that allows for further customization of part headers
 	 */
@@ -170,8 +172,9 @@ public final class MultipartBodyBuilder {
 	/**
 	 * Variant of {@link #asyncPart(String, Publisher, Class)} with a
 	 * {@link ParameterizedTypeReference} for the element type information.
-	 * @param name the name of the part to add
-	 * @param publisher the part contents
+	 *
+	 * @param name          the name of the part to add
+	 * @param publisher     the part contents
 	 * @param typeReference the type of elements contained in the publisher
 	 * @return builder that allows for further customization of part headers
 	 */
@@ -209,7 +212,8 @@ public final class MultipartBodyBuilder {
 
 		/**
 		 * Add part header values.
-		 * @param headerName the part header name
+		 *
+		 * @param headerName   the part header name
 		 * @param headerValues the part header value(s)
 		 * @return this builder
 		 * @see HttpHeaders#addAll(String, List)
@@ -218,6 +222,7 @@ public final class MultipartBodyBuilder {
 
 		/**
 		 * Manipulate the part headers through the given consumer.
+		 *
 		 * @param headersConsumer consumer to manipulate the part headers with
 		 * @return this builder
 		 */
@@ -296,11 +301,12 @@ public final class MultipartBodyBuilder {
 	 * Specialization of {@link HttpEntity} for use with a
 	 * {@link Publisher}-based body, for which we also need to keep track of
 	 * the element type.
+	 *
 	 * @param <T> the type contained in the publisher
 	 * @param <P> the publisher
 	 */
 	static final class PublisherEntity<T, P extends Publisher<T>> extends HttpEntity<P>
-			implements ResolvableTypeProvider  {
+			implements ResolvableTypeProvider {
 
 		private final ResolvableType resolvableType;
 

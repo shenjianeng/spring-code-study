@@ -57,6 +57,7 @@ public interface HandlerAdapter {
 	 * <p>{@code
 	 * return (handler instanceof MyHandler);
 	 * }
+	 *
 	 * @param handler handler object to check
 	 * @return whether or not this object can use the given handler
 	 */
@@ -65,14 +66,15 @@ public interface HandlerAdapter {
 	/**
 	 * Use the given handler to handle this request.
 	 * The workflow that is required may vary widely.
-	 * @param request current HTTP request
+	 *
+	 * @param request  current HTTP request
 	 * @param response current HTTP response
-	 * @param handler handler to use. This object must have previously been passed
-	 * to the {@code supports} method of this interface, which must have
-	 * returned {@code true}.
-	 * @throws Exception in case of errors
+	 * @param handler  handler to use. This object must have previously been passed
+	 *                 to the {@code supports} method of this interface, which must have
+	 *                 returned {@code true}.
 	 * @return a ModelAndView object with the name of the view and the required
 	 * model data, or {@code null} if the request has been handled directly
+	 * @throws Exception in case of errors
 	 */
 	@Nullable
 	ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
@@ -80,6 +82,7 @@ public interface HandlerAdapter {
 	/**
 	 * Same contract as for HttpServlet's {@code getLastModified} method.
 	 * Can simply return -1 if there's no support in the handler class.
+	 *
 	 * @param request current HTTP request
 	 * @param handler handler to use
 	 * @return the lastModified value for the given handler

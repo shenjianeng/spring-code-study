@@ -23,8 +23,8 @@ import org.springframework.jmx.JmxException;
  * MBeanServerConnection.
  *
  * @author Juergen Hoeller
- * @since 2.5.6
  * @see MBeanClientInterceptor
+ * @since 2.5.6
  */
 @SuppressWarnings("serial")
 public class MBeanConnectFailureException extends JmxException {
@@ -32,7 +32,8 @@ public class MBeanConnectFailureException extends JmxException {
 	/**
 	 * Create a new {@code MBeanConnectFailureException}
 	 * with the specified error message and root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public MBeanConnectFailureException(String msg, Throwable cause) {

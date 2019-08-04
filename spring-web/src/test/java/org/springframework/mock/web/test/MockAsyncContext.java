@@ -52,7 +52,7 @@ public class MockAsyncContext implements AsyncContext {
 	@Nullable
 	private String dispatchedPath;
 
-	private long timeout = 10 * 1000L;	// 10 seconds is Tomcat's default
+	private long timeout = 10 * 1000L;    // 10 seconds is Tomcat's default
 
 	private final List<Runnable> dispatchHandlers = new ArrayList<>();
 
@@ -68,8 +68,7 @@ public class MockAsyncContext implements AsyncContext {
 		synchronized (this) {
 			if (this.dispatchedPath == null) {
 				this.dispatchHandlers.add(handler);
-			}
-			else {
+			} else {
 				handler.run();
 			}
 		}
@@ -123,8 +122,7 @@ public class MockAsyncContext implements AsyncContext {
 		for (AsyncListener listener : this.listeners) {
 			try {
 				listener.onComplete(new AsyncEvent(this, this.request, this.response));
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalStateException("AsyncListener failure", ex);
 			}
 		}
@@ -162,6 +160,7 @@ public class MockAsyncContext implements AsyncContext {
 	 * {@link org.springframework.web.context.request.async.DeferredResult DeferredResult}
 	 * or on
 	 * {@link org.springframework.web.servlet.mvc.method.annotation.SseEmitter SseEmitter}.
+	 *
 	 * @param timeout the timeout value to use.
 	 * @see AsyncContext#setTimeout(long)
 	 */

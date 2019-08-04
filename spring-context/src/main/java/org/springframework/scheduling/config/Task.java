@@ -33,6 +33,7 @@ public class Task {
 
 	/**
 	 * Create a new {@code Task}.
+	 *
 	 * @param runnable the underlying task to execute
 	 */
 	public Task(Runnable runnable) {

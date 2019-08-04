@@ -27,8 +27,8 @@ import static org.junit.Assert.*;
  * Unit tests for {@link ResourceDatabasePopulator}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see AbstractDatabasePopulatorTests
+ * @since 4.1
  */
 public class ResourceDatabasePopulatorTests {
 

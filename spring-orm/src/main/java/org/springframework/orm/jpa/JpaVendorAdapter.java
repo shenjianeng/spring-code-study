@@ -32,8 +32,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
- * @since 2.0
  * @see AbstractEntityManagerFactoryBean#setJpaVendorAdapter
+ * @since 2.0
  */
 public interface JpaVendorAdapter {
 
@@ -46,6 +46,7 @@ public interface JpaVendorAdapter {
 	 * Return the name of the persistence provider's root package
 	 * (e.g. "oracle.toplink.essentials"). Will be used for
 	 * excluding provider classes from temporary class overriding.
+	 *
 	 * @since 2.5.2
 	 */
 	@Nullable
@@ -69,12 +70,13 @@ public interface JpaVendorAdapter {
 	 * Java SE style bootstrapping via {@link javax.persistence.Persistence}
 	 * (i.e. {@link LocalEntityManagerFactoryBean}), the parameter-less
 	 * {@link #getJpaPropertyMap()} variant will be called directly.
+	 *
 	 * @param pui the PersistenceUnitInfo for the current persistence unit
 	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
 	 * facilities, or an empty Map if there are no properties to expose
-	 * @since 4.3.13
 	 * @see PersistenceUnitInfo#getTransactionType()
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory(PersistenceUnitInfo, Map)
+	 * @since 4.3.13
 	 */
 	default Map<String, ?> getJpaPropertyMap(PersistenceUnitInfo pui) {
 		return getJpaPropertyMap();
@@ -86,6 +88,7 @@ public interface JpaVendorAdapter {
 	 * <p>Note that there might be further JPA properties defined on the
 	 * EntityManagerFactory bean, which might potentially override individual
 	 * JPA property values specified here.
+	 *
 	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
 	 * facilities, or an empty Map if there are no properties to expose
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String, Map)
@@ -109,6 +112,7 @@ public interface JpaVendorAdapter {
 	 * <p>If the provider does not offer any EntityManagerFactory extensions,
 	 * the adapter should simply return the standard
 	 * {@link javax.persistence.EntityManagerFactory} class here.
+	 *
 	 * @since 2.5.2
 	 */
 	default Class<? extends EntityManagerFactory> getEntityManagerFactoryInterface() {

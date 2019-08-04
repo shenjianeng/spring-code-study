@@ -67,8 +67,7 @@ public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecode
 					try {
 						byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
 						assertEquals("foobar", new String(bytes));
-					}
-					catch (IOException e) {
+					} catch (IOException e) {
 						fail(e.getMessage());
 					}
 				})
@@ -87,8 +86,7 @@ public class ResourceDecoderTests extends AbstractDecoderTestCase<ResourceDecode
 					try {
 						byte[] bytes = StreamUtils.copyToByteArray(resource.getInputStream());
 						assertEquals("foobar", new String(bytes));
-					}
-					catch (IOException e) {
+					} catch (IOException e) {
 						fail(e.getMessage());
 					}
 				})

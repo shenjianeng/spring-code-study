@@ -45,7 +45,7 @@ import org.springframework.web.servlet.support.RequestContext;
  * &lt;bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"&gt;
  *   &lt;property name="basename" value="messages"/&gt;
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * Every view name returned from a handler will be translated to a JSP
  * resource (for example: "myView" -> "/WEB-INF/jsp/myView.jsp"), using
  * this view class to enable explicit JSTL support.
@@ -69,11 +69,11 @@ import org.springframework.web.servlet.support.RequestContext;
  * expressions in a JSP 2.0 page.
  *
  * @author Juergen Hoeller
- * @since 27.02.2003
  * @see org.springframework.web.servlet.support.JstlUtils#exposeLocalizationContext
  * @see InternalResourceViewResolver
  * @see org.springframework.context.support.ResourceBundleMessageSource
  * @see org.springframework.context.support.ReloadableResourceBundleMessageSource
+ * @since 27.02.2003
  */
 public class JstlView extends InternalResourceView {
 
@@ -83,6 +83,7 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * Constructor for use as a bean.
+	 *
 	 * @see #setUrl
 	 */
 	public JstlView() {
@@ -90,6 +91,7 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * Create a new JstlView with the given URL.
+	 *
 	 * @param url the URL to forward to
 	 */
 	public JstlView(String url) {
@@ -98,10 +100,11 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * Create a new JstlView with the given URL.
-	 * @param url the URL to forward to
+	 *
+	 * @param url           the URL to forward to
 	 * @param messageSource the MessageSource to expose to JSTL tags
-	 * (will be wrapped with a JSTL-aware MessageSource that is aware of JSTL's
-	 * {@code javax.servlet.jsp.jstl.fmt.localizationContext} context-param)
+	 *                      (will be wrapped with a JSTL-aware MessageSource that is aware of JSTL's
+	 *                      {@code javax.servlet.jsp.jstl.fmt.localizationContext} context-param)
 	 * @see JstlUtils#getJstlAwareMessageSource
 	 */
 	public JstlView(String url, MessageSource messageSource) {
@@ -114,6 +117,7 @@ public class JstlView extends InternalResourceView {
 	 * Wraps the MessageSource with a JSTL-aware MessageSource that is aware
 	 * of JSTL's {@code javax.servlet.jsp.jstl.fmt.localizationContext}
 	 * context-param.
+	 *
 	 * @see JstlUtils#getJstlAwareMessageSource
 	 */
 	@Override
@@ -126,14 +130,14 @@ public class JstlView extends InternalResourceView {
 
 	/**
 	 * Exposes a JSTL LocalizationContext for Spring's locale and MessageSource.
+	 *
 	 * @see JstlUtils#exposeLocalizationContext
 	 */
 	@Override
 	protected void exposeHelpers(HttpServletRequest request) throws Exception {
 		if (this.messageSource != null) {
 			JstlUtils.exposeLocalizationContext(request, this.messageSource);
-		}
-		else {
+		} else {
 			JstlUtils.exposeLocalizationContext(new RequestContext(request, getServletContext()));
 		}
 	}

@@ -70,14 +70,15 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * Constructor with a {@link ConversionService} and a {@link BeanFactory}.
-	 * @param cs conversion service for converting values to match the
-	 * target method parameter type
+	 *
+	 * @param cs          conversion service for converting values to match the
+	 *                    target method parameter type
 	 * @param beanFactory a bean factory to use for resolving {@code ${...}} placeholder
-	 * and {@code #{...}} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
+	 *                    and {@code #{...}} SpEL expressions in default values, or {@code null} if default
+	 *                    values are not expected to contain expressions
 	 */
 	protected AbstractNamedValueMethodArgumentResolver(ConversionService cs,
-			@Nullable ConfigurableBeanFactory beanFactory) {
+													   @Nullable ConfigurableBeanFactory beanFactory) {
 
 		this.conversionService = (cs != null ? cs : DefaultConversionService.getSharedInstance());
 		this.configurableBeanFactory = beanFactory;
@@ -101,13 +102,11 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 		if (arg == null) {
 			if (namedValueInfo.defaultValue != null) {
 				arg = resolveStringValue(namedValueInfo.defaultValue);
-			}
-			else if (namedValueInfo.required && !nestedParameter.isOptional()) {
+			} else if (namedValueInfo.required && !nestedParameter.isOptional()) {
 				handleMissingValue(namedValueInfo.name, nestedParameter, message);
 			}
 			arg = handleNullValue(namedValueInfo.name, arg, nestedParameter.getNestedParameterType());
-		}
-		else if ("".equals(arg) && namedValueInfo.defaultValue != null) {
+		} else if ("".equals(arg) && namedValueInfo.defaultValue != null) {
 			arg = resolveStringValue(namedValueInfo.defaultValue);
 		}
 
@@ -136,6 +135,7 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	/**
 	 * Create the {@link NamedValueInfo} object for the given method parameter. Implementations typically
 	 * retrieve the method annotation by means of {@link MethodParameter#getParameterAnnotation(Class)}.
+	 *
 	 * @param parameter the method parameter
 	 * @return the named value information
 	 */
@@ -175,9 +175,10 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * Resolves the given parameter type and value name into an argument value.
+	 *
 	 * @param parameter the method parameter to resolve to an argument value
-	 * @param message the current request
-	 * @param name the name of the value being resolved
+	 * @param message   the current request
+	 * @param name      the name of the value being resolved
 	 * @return the resolved argument. May be {@code null}
 	 * @throws Exception in case of errors
 	 */
@@ -189,9 +190,10 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 	 * Invoked when a named value is required, but
 	 * {@link #resolveArgumentInternal(MethodParameter, Message, String)} returned {@code null} and
 	 * there is no default value. Subclasses typically throw an exception in this case.
-	 * @param name the name for the value
+	 *
+	 * @param name      the name for the value
 	 * @param parameter the method parameter
-	 * @param message the message being processed
+	 * @param message   the message being processed
 	 */
 	protected abstract void handleMissingValue(String name, MethodParameter parameter, Message<?> message);
 
@@ -203,8 +205,7 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 		if (value == null) {
 			if (Boolean.TYPE.equals(paramType)) {
 				return Boolean.FALSE;
-			}
-			else if (paramType.isPrimitive()) {
+			} else if (paramType.isPrimitive()) {
 				throw new IllegalStateException("Optional " + paramType + " parameter '" + name +
 						"' is present but cannot be translated into a null value due to being " +
 						"declared as a primitive type. Consider declaring it as object wrapper " +
@@ -216,10 +217,11 @@ public abstract class AbstractNamedValueMethodArgumentResolver implements Handle
 
 	/**
 	 * Invoked after a value is resolved.
-	 * @param arg the resolved argument value
-	 * @param name the argument name
+	 *
+	 * @param arg       the resolved argument value
+	 * @param name      the argument name
 	 * @param parameter the argument parameter type
-	 * @param message the message
+	 * @param message   the message
 	 */
 	protected void handleResolvedValue(Object arg, String name, MethodParameter parameter, Message<?> message) {
 	}

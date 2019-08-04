@@ -108,8 +108,8 @@ public class AnnotationBeanNameGeneratorTests {
 	}
 
 	/**
-	 * @since 4.0.1
 	 * @see https://jira.spring.io/browse/SPR-11360
+	 * @since 4.0.1
 	 */
 	@Test
 	public void generateBeanNameFromComposedControllerAnnotationWithoutName() {
@@ -121,8 +121,8 @@ public class AnnotationBeanNameGeneratorTests {
 	}
 
 	/**
-	 * @since 4.0.1
 	 * @see https://jira.spring.io/browse/SPR-11360
+	 * @since 4.0.1
 	 */
 	@Test
 	public void generateBeanNameFromComposedControllerAnnotationWithBlankName() {
@@ -134,14 +134,14 @@ public class AnnotationBeanNameGeneratorTests {
 	}
 
 	/**
-	 * @since 4.0.1
 	 * @see https://jira.spring.io/browse/SPR-11360
+	 * @since 4.0.1
 	 */
 	@Test
 	public void generateBeanNameFromComposedControllerAnnotationWithStringValue() {
 		BeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(
-			ComposedControllerAnnotationWithStringValue.class);
+				ComposedControllerAnnotationWithStringValue.class);
 		String beanName = this.beanNameGenerator.generateBeanName(bd, registry);
 		assertEquals("restController", beanName);
 	}

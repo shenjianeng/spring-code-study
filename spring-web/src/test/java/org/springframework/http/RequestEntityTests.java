@@ -154,7 +154,8 @@ public class RequestEntityTests {
 	public void types() throws URISyntaxException {
 		URI url = new URI("https://example.com");
 		List<String> body = Arrays.asList("foo", "bar");
-		ParameterizedTypeReference<?> typeReference = new ParameterizedTypeReference<List<String>>() {};
+		ParameterizedTypeReference<?> typeReference = new ParameterizedTypeReference<List<String>>() {
+		};
 
 		RequestEntity<?> entity = RequestEntity.post(url).body(body, typeReference.getType());
 		assertEquals(typeReference.getType(), entity.getType());

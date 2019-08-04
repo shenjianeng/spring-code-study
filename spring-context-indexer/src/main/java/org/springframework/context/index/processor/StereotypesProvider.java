@@ -31,6 +31,7 @@ interface StereotypesProvider {
 
 	/**
 	 * Return the stereotypes that are present on the given {@link Element}.
+	 *
 	 * @param element the element to handle
 	 * @return the stereotypes or an empty set if none were found
 	 */

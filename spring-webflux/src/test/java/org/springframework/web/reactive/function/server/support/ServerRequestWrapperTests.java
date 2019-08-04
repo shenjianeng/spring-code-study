@@ -158,7 +158,8 @@ public class ServerRequestWrapperTests {
 	@Test
 	public void bodyToMonoParameterizedTypeReference() {
 		Mono<String> result = Mono.just("foo");
-		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {};
+		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {
+		};
 		when(mockRequest.bodyToMono(reference)).thenReturn(result);
 
 		assertSame(result, wrapper.bodyToMono(reference));
@@ -175,7 +176,8 @@ public class ServerRequestWrapperTests {
 	@Test
 	public void bodyToFluxParameterizedTypeReference() {
 		Flux<String> result = Flux.just("foo");
-		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {};
+		ParameterizedTypeReference<String> reference = new ParameterizedTypeReference<String>() {
+		};
 		when(mockRequest.bodyToFlux(reference)).thenReturn(result);
 
 		assertSame(result, wrapper.bodyToFlux(reference));

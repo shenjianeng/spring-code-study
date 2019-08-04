@@ -37,6 +37,7 @@ public class BeanFactoryResolver implements BeanResolver {
 
 	/**
 	 * Create a new {@link BeanFactoryResolver} for the given factory.
+	 *
 	 * @param beanFactory the {@link BeanFactory} to resolve bean names against
 	 */
 	public BeanFactoryResolver(BeanFactory beanFactory) {
@@ -49,8 +50,7 @@ public class BeanFactoryResolver implements BeanResolver {
 	public Object resolve(EvaluationContext context, String beanName) throws AccessException {
 		try {
 			return this.beanFactory.getBean(beanName);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			throw new AccessException("Could not resolve bean reference against BeanFactory", ex);
 		}
 	}

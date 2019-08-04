@@ -117,7 +117,7 @@ public class ProducesRequestConditionTests {
 		RequestedContentTypeResolver resolver = builder.build();
 
 		ProducesRequestCondition none = new ProducesRequestCondition(new String[0], null, resolver);
-		ProducesRequestCondition html = new ProducesRequestCondition(new String[] {"text/html"}, null, resolver);
+		ProducesRequestCondition html = new ProducesRequestCondition(new String[]{"text/html"}, null, resolver);
 
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/").header("Accept", "*/*"));
 
@@ -297,7 +297,7 @@ public class ProducesRequestConditionTests {
 
 	@Test
 	public void instantiateWithProducesAndHeaderConditions() {
-		String[] produces = new String[] {"text/plain"};
+		String[] produces = new String[]{"text/plain"};
 		String[] headers = new String[]{"foo=bar", "accept=application/xml,application/pdf"};
 		ProducesRequestCondition condition = new ProducesRequestCondition(produces, headers);
 

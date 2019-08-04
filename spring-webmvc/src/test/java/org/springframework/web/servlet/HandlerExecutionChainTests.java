@@ -50,7 +50,7 @@ public class HandlerExecutionChainTests {
 	@Before
 	public void setup() {
 		this.request = new MockHttpServletRequest();
-		this.response= new MockHttpServletResponse() ;
+		this.response = new MockHttpServletResponse();
 
 		this.handler = new Object();
 		this.chain = new HandlerExecutionChain(this.handler);
@@ -128,8 +128,7 @@ public class HandlerExecutionChainTests {
 
 		try {
 			this.chain.applyPreHandle(request, response);
-		}
-		catch (Exception actual) {
+		} catch (Exception actual) {
 			assertSame(ex, actual);
 		}
 		this.chain.triggerAfterCompletion(this.request, this.response, ex);

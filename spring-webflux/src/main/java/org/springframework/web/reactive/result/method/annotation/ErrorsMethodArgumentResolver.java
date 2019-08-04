@@ -58,11 +58,9 @@ public class ErrorsMethodArgumentResolver extends HandlerMethodArgumentResolverS
 		Object errors = getErrors(parameter, context);
 		if (Mono.class.isAssignableFrom(errors.getClass())) {
 			return ((Mono<?>) errors).cast(Object.class);
-		}
-		else if (Errors.class.isAssignableFrom(errors.getClass())) {
+		} else if (Errors.class.isAssignableFrom(errors.getClass())) {
 			return Mono.just(errors);
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Unexpected Errors/BindingResult type: " + errors.getClass().getName());
 		}
 	}

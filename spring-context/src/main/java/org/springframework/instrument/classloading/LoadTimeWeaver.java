@@ -27,14 +27,15 @@ import java.lang.instrument.ClassFileTransformer;
  *
  * @author Rod Johnson
  * @author Costin Leau
- * @since 2.0
  * @see java.lang.instrument.ClassFileTransformer
+ * @since 2.0
  */
 public interface LoadTimeWeaver {
 
 	/**
 	 * Add a {@code ClassFileTransformer} to be applied by this
 	 * {@code LoadTimeWeaver}.
+	 *
 	 * @param transformer the {@code ClassFileTransformer} to add
 	 */
 	void addTransformer(ClassFileTransformer transformer);
@@ -45,6 +46,7 @@ public interface LoadTimeWeaver {
 	 * {@link ClassFileTransformer ClassFileTransformers}.
 	 * <p>May be the current {@code ClassLoader}, or a {@code ClassLoader}
 	 * created by this {@link LoadTimeWeaver} instance.
+	 *
 	 * @return the {@code ClassLoader} which will expose
 	 * instrumented classes according to the registered transformers
 	 */
@@ -55,6 +57,7 @@ public interface LoadTimeWeaver {
 	 * loaded and inspected without affecting the parent {@code ClassLoader}.
 	 * <p>Should <i>not</i> return the same instance of the {@link ClassLoader}
 	 * returned from an invocation of {@link #getInstrumentableClassLoader()}.
+	 *
 	 * @return a temporary throwaway {@code ClassLoader}; should return
 	 * a new instance for each call, with no existing state
 	 */

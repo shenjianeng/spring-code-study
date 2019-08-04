@@ -80,7 +80,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 	 * {@code ResponseBodyAdvice}.
 	 */
 	public RequestPartMethodArgumentResolver(List<HttpMessageConverter<?>> messageConverters,
-			List<Object> requestResponseBodyAdvice) {
+											 List<Object> requestResponseBodyAdvice) {
 
 		super(messageConverters, requestResponseBodyAdvice);
 	}
@@ -100,8 +100,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 	public boolean supportsParameter(MethodParameter parameter) {
 		if (parameter.hasParameterAnnotation(RequestPart.class)) {
 			return true;
-		}
-		else {
+		} else {
 			if (parameter.hasParameterAnnotation(RequestParam.class)) {
 				return false;
 			}
@@ -112,7 +111,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 	@Override
 	@Nullable
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
-			NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
+								  NativeWebRequest request, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
 		HttpServletRequest servletRequest = request.getNativeRequest(HttpServletRequest.class);
 		Assert.state(servletRequest != null, "No HttpServletRequest");
@@ -127,8 +126,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 		Object mpArg = MultipartResolutionDelegate.resolveMultipartArgument(name, parameter, servletRequest);
 		if (mpArg != MultipartResolutionDelegate.UNRESOLVABLE) {
 			arg = mpArg;
-		}
-		else {
+		} else {
 			try {
 				HttpInputMessage inputMessage = new RequestPartServletServerHttpRequest(servletRequest, name);
 				arg = readWithMessageConverters(inputMessage, parameter, parameter.getNestedGenericParameterType());
@@ -144,8 +142,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 						mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, binder.getBindingResult());
 					}
 				}
-			}
-			catch (MissingServletRequestPartException | MultipartException ex) {
+			} catch (MissingServletRequestPartException | MultipartException ex) {
 				if (isRequired) {
 					throw ex;
 				}
@@ -155,8 +152,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 		if (arg == null && isRequired) {
 			if (!MultipartResolutionDelegate.isMultipartRequest(servletRequest)) {
 				throw new MultipartException("Current request is not a multipart request");
-			}
-			else {
+			} else {
 				throw new MissingServletRequestPartException(name);
 			}
 		}

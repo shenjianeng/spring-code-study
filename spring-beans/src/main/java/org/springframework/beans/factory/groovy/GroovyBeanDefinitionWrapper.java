@@ -141,11 +141,9 @@ class GroovyBeanDefinitionWrapper extends GroovyObjectSupport {
 		}
 		if (obj instanceof String) {
 			this.parentName = (String) obj;
-		}
-		else if (obj instanceof RuntimeBeanReference) {
+		} else if (obj instanceof RuntimeBeanReference) {
 			this.parentName = ((RuntimeBeanReference) obj).getBeanName();
-		}
-		else if (obj instanceof GroovyBeanDefinitionWrapper) {
+		} else if (obj instanceof GroovyBeanDefinitionWrapper) {
 			this.parentName = ((GroovyBeanDefinitionWrapper) obj).getBeanName();
 		}
 		getBeanDefinition().setParentName(this.parentName);
@@ -165,8 +163,7 @@ class GroovyBeanDefinitionWrapper extends GroovyObjectSupport {
 	public Object getProperty(String property) {
 		if (this.definitionWrapper.isReadableProperty(property)) {
 			return this.definitionWrapper.getPropertyValue(property);
-		}
-		else if (dynamicProperties.contains(property)) {
+		} else if (dynamicProperties.contains(property)) {
 			return null;
 		}
 		return super.getProperty(property);
@@ -176,20 +173,16 @@ class GroovyBeanDefinitionWrapper extends GroovyObjectSupport {
 	public void setProperty(String property, Object newValue) {
 		if (PARENT.equals(property)) {
 			setParent(newValue);
-		}
-		else {
+		} else {
 			AbstractBeanDefinition bd = getBeanDefinition();
 			if (AUTOWIRE.equals(property)) {
 				if ("byName".equals(newValue)) {
 					bd.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_NAME);
-				}
-				else if ("byType".equals(newValue)) {
+				} else if ("byType".equals(newValue)) {
 					bd.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
-				}
-				else if ("constructor".equals(newValue)) {
+				} else if ("constructor".equals(newValue)) {
 					bd.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR);
-				}
-				else if (Boolean.TRUE.equals(newValue)) {
+				} else if (Boolean.TRUE.equals(newValue)) {
 					bd.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_NAME);
 				}
 			}
@@ -230,11 +223,9 @@ class GroovyBeanDefinitionWrapper extends GroovyObjectSupport {
 			else if (SINGLETON.equals(property)) {
 				bd.setScope(Boolean.TRUE.equals(newValue) ?
 						BeanDefinition.SCOPE_SINGLETON : BeanDefinition.SCOPE_PROTOTYPE);
-			}
-			else if (this.definitionWrapper.isWritableProperty(property)) {
+			} else if (this.definitionWrapper.isWritableProperty(property)) {
 				this.definitionWrapper.setPropertyValue(property, newValue);
-			}
-			else {
+			} else {
 				super.setProperty(property, newValue);
 			}
 		}

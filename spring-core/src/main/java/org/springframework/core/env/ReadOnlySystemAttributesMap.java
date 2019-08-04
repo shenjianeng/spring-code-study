@@ -46,7 +46,8 @@ abstract class ReadOnlySystemAttributesMap implements Map<String, String> {
 
 	/**
 	 * Returns the value to which the specified key is mapped, or {@code null} if this map
- 	 * contains no mapping for the key.
+	 * contains no mapping for the key.
+	 *
 	 * @param key the name of the system attribute to retrieve
 	 * @throws IllegalArgumentException if given key is non-String
 	 */

@@ -53,12 +53,12 @@ import org.springframework.lang.Nullable;
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @author David Boden
- * @since 1.2
  * @see #includeOperation
  * @see #includeReadAttribute
  * @see #includeWriteAttribute
  * @see #populateAttributeDescriptor
  * @see #populateOperationDescriptor
+ * @since 1.2
  */
 public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBeanInfoAssembler {
 
@@ -100,6 +100,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * Lowest visibility, used for operations that correspond to
 	 * accessors or mutators for attributes.
+	 *
 	 * @see #FIELD_VISIBILITY
 	 */
 	protected static final int ATTRIBUTE_OPERATION_VISIBILITY = 4;
@@ -203,6 +204,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * to use the default; a value of {@code 0} indicates to "always cache"
 	 * and will be translated to {@code Integer.MAX_VALUE}; a positive
 	 * value indicates the number of cache seconds.
+	 *
 	 * @see org.springframework.jmx.export.metadata.AbstractJmxAttribute#setCurrencyTimeLimit
 	 * @see #applyCurrencyTimeLimit(javax.management.Descriptor, int)
 	 */
@@ -250,6 +252,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * the specified interface list should start with your management interface in
 	 * this case, with all other interfaces following. In general, consider exposing
 	 * your target bean directly or a CGLIB proxy for it instead.
+	 *
 	 * @see #getClassForDescriptor(Object)
 	 */
 	public void setExposeClassDescriptor(boolean exposeClassDescriptor) {
@@ -287,9 +290,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * the chance to vote on the inclusion of both the accessor and mutator.
 	 * If a particular accessor or mutator is voted for inclusion, the appropriate
 	 * metadata is assembled and passed to the subclass for descriptor population.
+	 *
 	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param beanKey     the key associated with the MBean in the beans map
+	 *                    of the {@code MBeanExporter}
 	 * @return the attribute metadata
 	 * @throws JMException in case of errors
 	 * @see #populateAttributeDescriptor
@@ -342,9 +346,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * or mutator of an attribute that is included in the management interface, then
 	 * the corresponding operation is exposed with the &quot;role&quot; descriptor
 	 * field set to the appropriate value.
+	 *
 	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param beanKey     the key associated with the MBean in the beans map
+	 *                    of the {@code MBeanExporter}
 	 * @return the operation metadata
 	 * @see #populateOperationDescriptor
 	 */
@@ -364,15 +369,14 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 			ModelMBeanOperationInfo info = null;
 			PropertyDescriptor pd = BeanUtils.findPropertyForMethod(method);
 			if (pd != null && ((method.equals(pd.getReadMethod()) && includeReadAttribute(method, beanKey)) ||
-						(method.equals(pd.getWriteMethod()) && includeWriteAttribute(method, beanKey)))) {
+					(method.equals(pd.getWriteMethod()) && includeWriteAttribute(method, beanKey)))) {
 				// Attributes need to have their methods exposed as
 				// operations to the JMX server as well.
 				info = createModelMBeanOperationInfo(method, pd.getName(), beanKey);
 				Descriptor desc = info.getDescriptor();
 				if (method.equals(pd.getReadMethod())) {
 					desc.setField(FIELD_ROLE, ROLE_GETTER);
-				}
-				else {
+				} else {
 					desc.setField(FIELD_ROLE, ROLE_SETTER);
 				}
 				desc.setField(FIELD_VISIBILITY, ATTRIBUTE_OPERATION_VISIBILITY);
@@ -405,24 +409,24 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * Creates an instance of {@code ModelMBeanOperationInfo} for the
 	 * given method. Populates the parameter info for the operation.
-	 * @param method the {@code Method} to create a {@code ModelMBeanOperationInfo} for
-	 * @param name the logical name for the operation (method name or property name);
-	 * not used by the default implementation but possibly by subclasses
+	 *
+	 * @param method  the {@code Method} to create a {@code ModelMBeanOperationInfo} for
+	 * @param name    the logical name for the operation (method name or property name);
+	 *                not used by the default implementation but possibly by subclasses
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return the {@code ModelMBeanOperationInfo}
 	 */
 	protected ModelMBeanOperationInfo createModelMBeanOperationInfo(Method method, String name, String beanKey) {
 		MBeanParameterInfo[] params = getOperationParameters(method, beanKey);
 		if (params.length == 0) {
 			return new ModelMBeanOperationInfo(getOperationDescription(method, beanKey), method);
-		}
-		else {
+		} else {
 			return new ModelMBeanOperationInfo(method.getName(),
-				getOperationDescription(method, beanKey),
-				getOperationParameters(method, beanKey),
-				method.getReturnType().getName(),
-				MBeanOperationInfo.UNKNOWN);
+					getOperationDescription(method, beanKey),
+					getOperationParameters(method, beanKey),
+					method.getReturnType().getName(),
+					MBeanOperationInfo.UNKNOWN);
 		}
 	}
 
@@ -431,6 +435,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * Only applied when the "exposeClassDescriptor" property is "true".
 	 * <p>The default implementation returns the first implemented interface
 	 * for a JDK proxy, and the target class else.
+	 *
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @return the class to expose in the descriptor field "class"
 	 * @see #setExposeClassDescriptor
@@ -447,9 +452,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * Allows subclasses to vote on the inclusion of a particular attribute accessor.
-	 * @param method the accessor {@code Method}
+	 *
+	 * @param method  the accessor {@code Method}
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return {@code true} if the accessor should be included in the management interface,
 	 * otherwise {@code false}
 	 */
@@ -457,9 +463,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * Allows subclasses to vote on the inclusion of a particular attribute mutator.
-	 * @param method the mutator {@code Method}.
+	 *
+	 * @param method  the mutator {@code Method}.
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return {@code true} if the mutator should be included in the management interface,
 	 * otherwise {@code false}
 	 */
@@ -467,9 +474,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 
 	/**
 	 * Allows subclasses to vote on the inclusion of a particular operation.
-	 * @param method the operation method
+	 *
+	 * @param method  the operation method
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return whether the operation should be included in the management interface
 	 */
 	protected abstract boolean includeOperation(Method method, String beanKey);
@@ -478,9 +486,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * Get the description for a particular attribute.
 	 * <p>The default implementation returns a description for the operation
 	 * that is the name of corresponding {@code Method}.
+	 *
 	 * @param propertyDescriptor the PropertyDescriptor for the attribute
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param beanKey            the key associated with the MBean in the beans map
+	 *                           of the {@code MBeanExporter}
 	 * @return the description for the attribute
 	 */
 	protected String getAttributeDescription(PropertyDescriptor propertyDescriptor, String beanKey) {
@@ -491,9 +500,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * Get the description for a particular operation.
 	 * <p>The default implementation returns a description for the operation
 	 * that is the name of corresponding {@code Method}.
-	 * @param method the operation method
+	 *
+	 * @param method  the operation method
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return the description for the operation
 	 */
 	protected String getOperationDescription(Method method, String beanKey) {
@@ -503,9 +513,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * Create parameter info for the given method.
 	 * <p>The default implementation returns an empty array of {@code MBeanParameterInfo}.
-	 * @param method the {@code Method} to get the parameter information for
+	 *
+	 * @param method  the {@code Method} to get the parameter information for
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @return the {@code MBeanParameterInfo} array
 	 */
 	protected MBeanParameterInfo[] getOperationParameters(Method method, String beanKey) {
@@ -528,10 +539,11 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * Allows subclasses to add extra fields to the {@code Descriptor} for an MBean.
 	 * <p>The default implementation sets the {@code currencyTimeLimit} field to
 	 * the specified "defaultCurrencyTimeLimit", if any (by default none).
-	 * @param descriptor the {@code Descriptor} for the MBean resource.
+	 *
+	 * @param descriptor  the {@code Descriptor} for the MBean resource.
 	 * @param managedBean the bean instance (might be an AOP proxy)
-	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 * @param beanKey     the key associated with the MBean in the beans map
+	 *                    of the {@code MBeanExporter}
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -545,11 +557,12 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * particular attribute.
 	 * <p>The default implementation sets the {@code currencyTimeLimit} field to
 	 * the specified "defaultCurrencyTimeLimit", if any (by default none).
-	 * @param desc the attribute descriptor
-	 * @param getter the accessor method for the attribute
-	 * @param setter the mutator method for the attribute
+	 *
+	 * @param desc    the attribute descriptor
+	 * @param getter  the accessor method for the attribute
+	 * @param setter  the mutator method for the attribute
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -564,10 +577,11 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * particular operation.
 	 * <p>The default implementation sets the {@code currencyTimeLimit} field to
 	 * the specified "defaultCurrencyTimeLimit", if any (by default none).
-	 * @param desc the operation descriptor
-	 * @param method the method corresponding to the operation
+	 *
+	 * @param desc    the operation descriptor
+	 * @param method  the method corresponding to the operation
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
 	 */
@@ -578,6 +592,7 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	/**
 	 * Set the {@code currencyTimeLimit} field to the specified
 	 * "defaultCurrencyTimeLimit", if any (by default none).
+	 *
 	 * @param desc the JMX attribute or operation descriptor
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 */
@@ -593,7 +608,8 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 	 * turns a value of {@code 0} into {@code Integer.MAX_VALUE} ("always cache")
 	 * and sets the "defaultCurrencyTimeLimit" (if any, indicating "never cache") in case of
 	 * a value {@code <0}. This follows the recommendation in the JMX 1.2 specification.
-	 * @param desc the JMX attribute or operation descriptor
+	 *
+	 * @param desc              the JMX attribute or operation descriptor
 	 * @param currencyTimeLimit the "currencyTimeLimit" value to apply
 	 * @see #setDefaultCurrencyTimeLimit(Integer)
 	 * @see #applyDefaultCurrencyTimeLimit(javax.management.Descriptor)
@@ -602,12 +618,10 @@ public abstract class AbstractReflectiveMBeanInfoAssembler extends AbstractMBean
 		if (currencyTimeLimit > 0) {
 			// number of cache seconds
 			desc.setField(FIELD_CURRENCY_TIME_LIMIT, Integer.toString(currencyTimeLimit));
-		}
-		else if (currencyTimeLimit == 0) {
+		} else if (currencyTimeLimit == 0) {
 			// "always cache"
 			desc.setField(FIELD_CURRENCY_TIME_LIMIT, Integer.toString(Integer.MAX_VALUE));
-		}
-		else {
+		} else {
 			// "never cache"
 			applyDefaultCurrencyTimeLimit(desc);
 		}

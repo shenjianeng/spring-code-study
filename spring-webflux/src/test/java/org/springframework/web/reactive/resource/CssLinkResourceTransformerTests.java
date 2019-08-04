@@ -167,8 +167,8 @@ public class CssLinkResourceTransformerTests {
 		Resource css = getResource("empty_url_function.css");
 		String expected =
 				".fooStyle {\n" +
-				"\tbackground: transparent url() no-repeat left top;\n" +
-				"}";
+						"\tbackground: transparent url() no-repeat left top;\n" +
+						"}";
 
 		StepVerifier.create(this.transformerChain.transform(exchange, css)
 				.cast(TransformedResource.class))

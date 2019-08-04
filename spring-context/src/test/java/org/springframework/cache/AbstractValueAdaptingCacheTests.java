@@ -26,7 +26,7 @@ import org.springframework.cache.support.AbstractValueAdaptingCache;
  * @author Stephane Nicoll
  */
 public abstract class AbstractValueAdaptingCacheTests<T extends AbstractValueAdaptingCache>
-		extends AbstractCacheTests<T>  {
+		extends AbstractCacheTests<T> {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();

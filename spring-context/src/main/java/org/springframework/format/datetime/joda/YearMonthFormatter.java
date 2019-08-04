@@ -28,8 +28,8 @@ import org.springframework.format.Formatter;
  * following Joda-Time's parsing rules for a YearMonth.
  *
  * @author Juergen Hoeller
- * @since 4.2.4
  * @see YearMonth#parse
+ * @since 4.2.4
  */
 class YearMonthFormatter implements Formatter<YearMonth> {
 

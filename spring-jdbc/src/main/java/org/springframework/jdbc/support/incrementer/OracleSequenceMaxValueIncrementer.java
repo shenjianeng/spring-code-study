@@ -30,6 +30,7 @@ public class OracleSequenceMaxValueIncrementer extends AbstractSequenceMaxValueI
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -38,7 +39,8 @@ public class OracleSequenceMaxValueIncrementer extends AbstractSequenceMaxValueI
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public OracleSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {

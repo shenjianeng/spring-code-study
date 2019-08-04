@@ -28,10 +28,10 @@ import org.springframework.lang.Nullable;
  * <p>Since Spring 4.1 this implementation is able to traverse nested fields.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see DataBinder#getBindingResult()
  * @see DataBinder#initDirectFieldAccess()
  * @see BeanPropertyBindingResult
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
@@ -47,7 +47,8 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 	/**
 	 * Create a new DirectFieldBindingResult instance.
-	 * @param target the target object to bind onto
+	 *
+	 * @param target     the target object to bind onto
 	 * @param objectName the name of the target object
 	 */
 	public DirectFieldBindingResult(@Nullable Object target, String objectName) {
@@ -56,8 +57,9 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 	/**
 	 * Create a new DirectFieldBindingResult instance.
-	 * @param target the target object to bind onto
-	 * @param objectName the name of the target object
+	 *
+	 * @param target              the target object to bind onto
+	 * @param objectName          the name of the target object
 	 * @param autoGrowNestedPaths whether to "auto-grow" a nested path that contains a null value
 	 */
 	public DirectFieldBindingResult(@Nullable Object target, String objectName, boolean autoGrowNestedPaths) {
@@ -76,6 +78,7 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 	/**
 	 * Returns the DirectFieldAccessor that this instance uses.
 	 * Creates a new one if none existed before.
+	 *
 	 * @see #createDirectFieldAccessor()
 	 */
 	@Override
@@ -90,6 +93,7 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 	/**
 	 * Create a new DirectFieldAccessor for the underlying target object.
+	 *
 	 * @see #getTarget()
 	 */
 	protected ConfigurablePropertyAccessor createDirectFieldAccessor() {

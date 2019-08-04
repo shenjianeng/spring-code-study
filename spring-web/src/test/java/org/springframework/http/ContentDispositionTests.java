@@ -23,6 +23,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import org.springframework.util.ReflectionUtils;
@@ -146,11 +147,11 @@ public class ContentDispositionTests {
 				"encodeHeaderFieldParam", String.class, Charset.class);
 		ReflectionUtils.makeAccessible(encode);
 
-		String result = (String)ReflectionUtils.invokeMethod(encode, null, "test.txt",
+		String result = (String) ReflectionUtils.invokeMethod(encode, null, "test.txt",
 				StandardCharsets.US_ASCII);
 		assertEquals("test.txt", result);
 
-		result = (String)ReflectionUtils.invokeMethod(encode, null, "中文.txt", StandardCharsets.UTF_8);
+		result = (String) ReflectionUtils.invokeMethod(encode, null, "中文.txt", StandardCharsets.UTF_8);
 		assertEquals("UTF-8''%E4%B8%AD%E6%96%87.txt", result);
 	}
 
@@ -168,10 +169,10 @@ public class ContentDispositionTests {
 				"decodeHeaderFieldParam", String.class);
 		ReflectionUtils.makeAccessible(decode);
 
-		String result = (String)ReflectionUtils.invokeMethod(decode, null, "test.txt");
+		String result = (String) ReflectionUtils.invokeMethod(decode, null, "test.txt");
 		assertEquals("test.txt", result);
 
-		result = (String)ReflectionUtils.invokeMethod(decode, null, "UTF-8''%E4%B8%AD%E6%96%87.txt");
+		result = (String) ReflectionUtils.invokeMethod(decode, null, "UTF-8''%E4%B8%AD%E6%96%87.txt");
 		assertEquals("中文.txt", result);
 	}
 

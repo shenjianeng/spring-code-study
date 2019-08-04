@@ -39,9 +39,9 @@ import org.springframework.lang.Nullable;
  * on the classpath and is automatically registered if that library is present.
  *
  * @author Brian Clozel
- * @since 4.2
  * @see org.springframework.web.servlet.config.annotation.ResourceChainRegistration
  * @see <a href="https://www.webjars.org">webjars.org</a>
+ * @since 4.2
  */
 public class WebJarsResourceResolver extends AbstractResourceResolver {
 
@@ -63,6 +63,7 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 	/**
 	 * Create a {@code WebJarsResourceResolver} with a custom {@code WebJarAssetLocator} instance,
 	 * e.g. with a custom index.
+	 *
 	 * @since 4.3
 	 */
 	public WebJarsResourceResolver(WebJarAssetLocator webJarAssetLocator) {
@@ -72,7 +73,7 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Resource resolveResourceInternal(@Nullable HttpServletRequest request, String requestPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+											   List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		Resource resolved = chain.resolveResource(request, requestPath, locations);
 		if (resolved == null) {
@@ -86,7 +87,7 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected String resolveUrlPathInternal(String resourceUrlPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+											List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		String path = chain.resolveUrlPath(resourceUrlPath, locations);
 		if (path == null) {

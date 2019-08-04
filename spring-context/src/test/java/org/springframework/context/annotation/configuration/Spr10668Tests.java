@@ -59,8 +59,10 @@ public class Spr10668Tests {
 	}
 
 
-	public interface MyComponent {}
+	public interface MyComponent {
+	}
 
-	public static class MyComponentImpl implements MyComponent {}
+	public static class MyComponentImpl implements MyComponent {
+	}
 
 }

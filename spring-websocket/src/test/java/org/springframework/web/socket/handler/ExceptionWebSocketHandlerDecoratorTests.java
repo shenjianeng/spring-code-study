@@ -54,7 +54,7 @@ public class ExceptionWebSocketHandlerDecoratorTests {
 	public void afterConnectionEstablished() throws Exception {
 
 		willThrow(new IllegalStateException("error"))
-			.given(this.delegate).afterConnectionEstablished(this.session);
+				.given(this.delegate).afterConnectionEstablished(this.session);
 
 		this.decorator.afterConnectionEstablished(this.session);
 
@@ -67,7 +67,7 @@ public class ExceptionWebSocketHandlerDecoratorTests {
 		TextMessage message = new TextMessage("payload");
 
 		willThrow(new IllegalStateException("error"))
-			.given(this.delegate).handleMessage(this.session, message);
+				.given(this.delegate).handleMessage(this.session, message);
 
 		this.decorator.handleMessage(this.session, message);
 
@@ -80,7 +80,7 @@ public class ExceptionWebSocketHandlerDecoratorTests {
 		Exception exception = new Exception("transport error");
 
 		willThrow(new IllegalStateException("error"))
-			.given(this.delegate).handleTransportError(this.session, exception);
+				.given(this.delegate).handleTransportError(this.session, exception);
 
 		this.decorator.handleTransportError(this.session, exception);
 
@@ -93,7 +93,7 @@ public class ExceptionWebSocketHandlerDecoratorTests {
 		CloseStatus closeStatus = CloseStatus.NORMAL;
 
 		willThrow(new IllegalStateException("error"))
-			.given(this.delegate).afterConnectionClosed(this.session, closeStatus);
+				.given(this.delegate).afterConnectionClosed(this.session, closeStatus);
 
 		this.decorator.afterConnectionClosed(this.session, closeStatus);
 

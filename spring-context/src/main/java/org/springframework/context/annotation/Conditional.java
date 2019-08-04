@@ -53,8 +53,8 @@ import java.lang.annotation.Target;
  *
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 4.0
  * @see Condition
+ * @since 4.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

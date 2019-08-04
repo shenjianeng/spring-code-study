@@ -78,8 +78,7 @@ public class NoOpCacheManagerTests {
 			cache.get(key, () -> {
 				throw new UnsupportedOperationException("Expected exception");
 			});
-		}
-		catch (Cache.ValueRetrievalException ex) {
+		} catch (Cache.ValueRetrievalException ex) {
 			assertNotNull(ex.getCause());
 			assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
 		}

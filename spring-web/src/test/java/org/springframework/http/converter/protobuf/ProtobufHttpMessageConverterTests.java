@@ -70,13 +70,13 @@ public class ProtobufHttpMessageConverterTests {
 
 	@Test
 	public void extensionRegistryInitializerNull() {
-		ProtobufHttpMessageConverter converter = new ProtobufHttpMessageConverter((ExtensionRegistryInitializer)null);
+		ProtobufHttpMessageConverter converter = new ProtobufHttpMessageConverter((ExtensionRegistryInitializer) null);
 		assertNotNull(converter.extensionRegistry);
 	}
 
 	@Test
 	public void extensionRegistryNull() {
-		ProtobufHttpMessageConverter converter = new ProtobufHttpMessageConverter((ExtensionRegistry)null);
+		ProtobufHttpMessageConverter converter = new ProtobufHttpMessageConverter((ExtensionRegistry) null);
 		assertNotNull(converter.extensionRegistry);
 	}
 

@@ -22,6 +22,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,6 +34,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 /**
  * Unit tests for {@link CorsFilter}.
+ *
  * @author Sebastien Deleuze
  */
 public class CorsFilterTests {

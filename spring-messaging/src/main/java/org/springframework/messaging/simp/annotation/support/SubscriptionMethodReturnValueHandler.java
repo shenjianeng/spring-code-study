@@ -69,8 +69,9 @@ public class SubscriptionMethodReturnValueHandler implements HandlerMethodReturn
 
 	/**
 	 * Construct a new SubscriptionMethodReturnValueHandler.
+	 *
 	 * @param template a messaging template to send messages to,
-	 * most likely the "clientOutboundChannel" (must not be {@code null})
+	 *                 most likely the "clientOutboundChannel" (must not be {@code null})
 	 */
 	public SubscriptionMethodReturnValueHandler(MessageSendingOperations<String> template) {
 		Assert.notNull(template, "messagingTemplate must not be null");

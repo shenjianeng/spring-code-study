@@ -20,8 +20,8 @@ package org.springframework.jms;
  * Runtime exception mirroring the JMS InvalidClientIDException.
  *
  * @author Mark Pollack
- * @since 1.1
  * @see javax.jms.InvalidClientIDException
+ * @since 1.1
  */
 @SuppressWarnings("serial")
 public class InvalidClientIDException extends JmsException {

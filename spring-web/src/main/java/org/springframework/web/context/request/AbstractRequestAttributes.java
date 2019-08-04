@@ -27,12 +27,14 @@ import org.springframework.util.Assert;
  * callbacks and for updating accessed session attributes.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #requestCompleted()
+ * @since 2.0
  */
 public abstract class AbstractRequestAttributes implements RequestAttributes {
 
-	/** Map from attribute name String to destruction callback Runnable. */
+	/**
+	 * Map from attribute name String to destruction callback Runnable.
+	 */
 	protected final Map<String, Runnable> requestDestructionCallbacks = new LinkedHashMap<>(8);
 
 	private volatile boolean requestActive = true;
@@ -51,6 +53,7 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Determine whether the original request is still active.
+	 *
 	 * @see #requestCompleted()
 	 */
 	protected final boolean isRequestActive() {
@@ -59,7 +62,8 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Register the given callback as to be executed after request completion.
-	 * @param name the name of the attribute to register the callback for
+	 *
+	 * @param name     the name of the attribute to register the callback for
 	 * @param callback the callback to be executed for destruction
 	 */
 	protected final void registerRequestDestructionCallback(String name, Runnable callback) {
@@ -72,6 +76,7 @@ public abstract class AbstractRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Remove the request destruction callback for the specified attribute, if any.
+	 *
 	 * @param name the name of the attribute to remove the callback for
 	 */
 	protected final void removeRequestDestructionCallback(String name) {

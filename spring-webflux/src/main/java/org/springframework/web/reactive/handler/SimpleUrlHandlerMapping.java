@@ -61,6 +61,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	 * This is the typical way of configuring this HandlerMapping.
 	 * <p>Supports direct URL matches and Ant-style pattern matches. For syntax details,
 	 * see the {@link org.springframework.web.util.pattern.PathPattern} javadoc.
+	 *
 	 * @param mappings properties with URLs as keys and bean names as values
 	 * @see #setUrlMap
 	 */
@@ -73,6 +74,7 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 	 * as values. Convenient for population with bean references.
 	 * <p>Supports direct URL matches and Ant-style pattern matches. For syntax details,
 	 * see the {@link org.springframework.web.util.pattern.PathPattern} javadoc.
+	 *
 	 * @param urlMap map with URLs as keys and beans as values
 	 * @see #setMappings
 	 */
@@ -104,15 +106,15 @@ public class SimpleUrlHandlerMapping extends AbstractUrlHandlerMapping {
 
 	/**
 	 * Register all handlers specified in the URL map for the corresponding paths.
+	 *
 	 * @param urlMap a Map with URL paths as keys and handler beans or bean names as values
-	 * @throws BeansException if a handler couldn't be registered
+	 * @throws BeansException        if a handler couldn't be registered
 	 * @throws IllegalStateException if there is a conflicting handler registered
 	 */
 	protected void registerHandlers(Map<String, Object> urlMap) throws BeansException {
 		if (urlMap.isEmpty()) {
 			logger.trace("No patterns in " + formatMappingName());
-		}
-		else {
+		} else {
 			for (Map.Entry<String, Object> entry : urlMap.entrySet()) {
 				String url = entry.getKey();
 				Object handler = entry.getValue();

@@ -65,9 +65,11 @@ public class SubscriptionMethodReturnValueHandlerTests {
 
 	private SubscriptionMethodReturnValueHandler jsonHandler;
 
-	@Mock private MessageChannel messageChannel;
+	@Mock
+	private MessageChannel messageChannel;
 
-	@Captor private ArgumentCaptor<Message<?>> messageCaptor;
+	@Captor
+	private ArgumentCaptor<Message<?>> messageCaptor;
 
 	private MethodParameter subscribeEventReturnType;
 
@@ -138,7 +140,7 @@ public class SubscriptionMethodReturnValueHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void testHeadersPassedToMessagingTemplate() throws Exception {
 		String sessionId = "sess1";
 		String subscriptionId = "subs1";
@@ -203,12 +205,12 @@ public class SubscriptionMethodReturnValueHandlerTests {
 		return PAYLOAD;
 	}
 
-	@MessageMapping("/handle")	// not needed for the tests but here for completeness
+	@MessageMapping("/handle")    // not needed for the tests but here for completeness
 	public String handle() {
 		return PAYLOAD;
 	}
 
-	@SubscribeMapping("/jsonview")	// not needed for the tests but here for completeness
+	@SubscribeMapping("/jsonview")    // not needed for the tests but here for completeness
 	@JsonView(MyJacksonView1.class)
 	public JacksonViewBean getJsonView() {
 		JacksonViewBean payload = new JacksonViewBean();
@@ -219,8 +221,15 @@ public class SubscriptionMethodReturnValueHandlerTests {
 	}
 
 
-	private interface MyJacksonView1 {};
-	private interface MyJacksonView2 {};
+	private interface MyJacksonView1 {
+	}
+
+	;
+
+	private interface MyJacksonView2 {
+	}
+
+	;
 
 	private static class JacksonViewBean {
 

@@ -31,10 +31,10 @@ import org.springframework.scheduling.config.TaskManagementConfigUtils;
  * @author Chris Beams
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 3.1
  * @see EnableAsync
  * @see org.springframework.scheduling.annotation.AsyncConfigurationSelector
  * @see org.springframework.scheduling.annotation.ProxyAsyncConfiguration
+ * @since 3.1
  */
 @Configuration
 public class AspectJAsyncConfiguration extends AbstractAsyncConfiguration {

@@ -42,6 +42,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 	/**
 	 * Constructor for a 500 error with a reason and an optional cause.
+	 *
 	 * @since 5.0.5
 	 */
 	public ServerErrorException(String reason, @Nullable Throwable cause) {
@@ -52,6 +53,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 	/**
 	 * Constructor for a 500 error with a handler {@link Method} and an optional cause.
+	 *
 	 * @since 5.0.5
 	 */
 	public ServerErrorException(String reason, Method handlerMethod, @Nullable Throwable cause) {
@@ -71,6 +73,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 	/**
 	 * Constructor for a 500 error linked to a specific {@code MethodParameter}.
+	 *
 	 * @deprecated in favor of {@link #ServerErrorException(String, MethodParameter, Throwable)}
 	 */
 	@Deprecated
@@ -80,6 +83,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 	/**
 	 * Constructor for a 500 error with a reason only.
+	 *
 	 * @deprecated in favor of {@link #ServerErrorException(String, Throwable)}
 	 */
 	@Deprecated
@@ -92,6 +96,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 	/**
 	 * Return the handler method associated with the error, if any.
+	 *
 	 * @since 5.0.5
 	 */
 	@Nullable

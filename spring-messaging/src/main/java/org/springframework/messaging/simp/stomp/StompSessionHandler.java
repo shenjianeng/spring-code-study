@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * {@link StompSessionHandlerAdapter}.
  *
  * @author Rossen Stoyanchev
- * @since 4.2
  * @see StompSessionHandlerAdapter
+ * @since 4.2
  */
 public interface StompSessionHandler extends StompFrameHandler {
 
@@ -39,7 +39,8 @@ public interface StompSessionHandler extends StompFrameHandler {
 	 * Invoked when the session is ready to use, i.e. after the underlying
 	 * transport (TCP, WebSocket) is connected and a STOMP CONNECTED frame is
 	 * received from the broker.
-	 * @param session the client STOMP session
+	 *
+	 * @param session          the client STOMP session
 	 * @param connectedHeaders the STOMP CONNECTED frame headers
 	 */
 	void afterConnected(StompSession session, StompHeaders connectedHeaders);
@@ -48,14 +49,15 @@ public interface StompSessionHandler extends StompFrameHandler {
 	 * Handle any exception arising while processing a STOMP frame such as a
 	 * failure to convert the payload or an unhandled exception in the
 	 * application {@code StompFrameHandler}.
-	 * @param session the client STOMP session
-	 * @param command the STOMP command of the frame
-	 * @param headers the headers
-	 * @param payload the raw payload
+	 *
+	 * @param session   the client STOMP session
+	 * @param command   the STOMP command of the frame
+	 * @param headers   the headers
+	 * @param payload   the raw payload
 	 * @param exception the exception
 	 */
 	void handleException(StompSession session, @Nullable StompCommand command,
-			StompHeaders headers, byte[] payload, Throwable exception);
+						 StompHeaders headers, byte[] payload, Throwable exception);
 
 	/**
 	 * Handle a low level transport error which could be an I/O error or a
@@ -65,7 +67,8 @@ public interface StompSessionHandler extends StompFrameHandler {
 	 * ConnectionLostException} will be passed into this method when the
 	 * connection is lost rather than closed normally via
 	 * {@link StompSession#disconnect()}.
-	 * @param session the client STOMP session
+	 *
+	 * @param session   the client STOMP session
 	 * @param exception the exception that occurred
 	 */
 	void handleTransportError(StompSession session, Throwable exception);

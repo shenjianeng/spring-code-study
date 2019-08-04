@@ -144,8 +144,7 @@ public class DefaultJmsListenerContainerFactory
 
 		if (this.cacheLevel != null) {
 			container.setCacheLevel(this.cacheLevel);
-		}
-		else if (this.cacheLevelName != null) {
+		} else if (this.cacheLevelName != null) {
 			container.setCacheLevelName(this.cacheLevelName);
 		}
 
@@ -164,8 +163,7 @@ public class DefaultJmsListenerContainerFactory
 			if (this.recoveryInterval != null) {
 				logger.info("Ignoring recovery interval in DefaultJmsListenerContainerFactory in favor of BackOff");
 			}
-		}
-		else if (this.recoveryInterval != null) {
+		} else if (this.recoveryInterval != null) {
 			container.setRecoveryInterval(this.recoveryInterval);
 		}
 	}

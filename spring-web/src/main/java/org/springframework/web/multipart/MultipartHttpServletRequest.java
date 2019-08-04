@@ -37,7 +37,6 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Trevor D. Cook
- * @since 29.09.2003
  * @see MultipartResolver
  * @see MultipartFile
  * @see javax.servlet.http.HttpServletRequest#getParameter
@@ -45,6 +44,7 @@ import org.springframework.lang.Nullable;
  * @see javax.servlet.http.HttpServletRequest#getParameterMap
  * @see org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest
  * @see org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest
+ * @since 29.09.2003
  */
 public interface MultipartHttpServletRequest extends HttpServletRequest, MultipartRequest {
 

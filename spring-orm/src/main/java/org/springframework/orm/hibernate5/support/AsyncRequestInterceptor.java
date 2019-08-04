@@ -33,7 +33,7 @@ import org.springframework.web.context.request.async.DeferredResultProcessingInt
 /**
  * An interceptor with asynchronous web requests used in OpenSessionInViewFilter and
  * OpenSessionInViewInterceptor.
- *
+ * <p>
  * Ensures the following:
  * 1) The session is bound/unbound when "callable processing" is started
  * 2) The session is closed if an async request times out or an error occurred

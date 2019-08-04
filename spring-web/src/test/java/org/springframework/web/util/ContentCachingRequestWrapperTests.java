@@ -74,8 +74,7 @@ public class ContentCachingRequestWrapperTests {
 		try {
 			FileCopyUtils.copyToByteArray(wrapper.getInputStream());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("3", ex.getMessage());
 		}
 	}

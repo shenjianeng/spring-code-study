@@ -45,8 +45,7 @@ public abstract class AbstractFileNameVersionStrategy implements VersionStrategy
 		if (matcher.find()) {
 			String match = matcher.group(1);
 			return (match.contains("-") ? match.substring(match.lastIndexOf('-') + 1) : match);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

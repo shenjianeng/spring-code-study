@@ -50,6 +50,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * use for providing heartbeat support. Setting this property also sets the
 	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
 	 * <p>By default this is not set.
+	 *
 	 * @since 4.2
 	 */
 	public SimpleBrokerRegistration setTaskScheduler(TaskScheduler taskScheduler) {
@@ -64,6 +65,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
 	 * taskScheduler} in which case the default becomes "10000,10000"
 	 * (in milliseconds).
+	 *
 	 * @since 4.2
 	 */
 	public SimpleBrokerRegistration setHeartbeatValue(long[] heartbeat) {
@@ -82,6 +84,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	 * </pre>
 	 * <p>By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
+	 *
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.3.17
 	 */

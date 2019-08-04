@@ -50,9 +50,9 @@ import java.lang.annotation.Target;
  * {@link Commit @Commit} for a concrete example.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see Commit
  * @see org.springframework.test.context.transaction.TransactionalTestExecutionListener
+ * @since 2.5
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -70,7 +70,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs {
 	static {
 		ClassLoader classLoader = BaseCodecConfigurer.class.getClassLoader();
 		jackson2Present = ClassUtils.isPresent("com.fasterxml.jackson.databind.ObjectMapper", classLoader) &&
-						ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
+				ClassUtils.isPresent("com.fasterxml.jackson.core.JsonGenerator", classLoader);
 		jackson2SmilePresent = ClassUtils.isPresent("com.fasterxml.jackson.dataformat.smile.SmileFactory", classLoader);
 		jaxb2Present = ClassUtils.isPresent("javax.xml.bind.Binder", classLoader);
 		protobufPresent = ClassUtils.isPresent("com.google.protobuf.Message", classLoader);
@@ -222,9 +222,10 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs {
 
 	/**
 	 * Return writers that support specific types.
+	 *
 	 * @param forMultipart whether to returns writers for general use ("false"),
-	 * or for multipart requests only ("true"). Generally the two sets are the
-	 * same except for the multipart writer itself.
+	 *                     or for multipart requests only ("true"). Generally the two sets are the
+	 *                     same except for the multipart writer itself.
 	 */
 	@SuppressWarnings("unchecked")
 	final List<HttpMessageWriter<?>> getTypedWriters(boolean forMultipart) {
@@ -256,9 +257,10 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs {
 
 	/**
 	 * Return Object writers (JSON, XML, SSE).
+	 *
 	 * @param forMultipart whether to returns writers for general use ("false"),
-	 * or for multipart requests only ("true"). Generally the two sets are the
-	 * same except for the multipart writer itself.
+	 *                     or for multipart requests only ("true"). Generally the two sets are the
+	 *                     same except for the multipart writer itself.
 	 */
 	final List<HttpMessageWriter<?>> getObjectWriters(boolean forMultipart) {
 		if (!this.registerDefaults) {

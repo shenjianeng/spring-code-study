@@ -28,8 +28,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 2.0
  * @see BeanWrapper
+ * @since 2.0
  */
 public interface ConfigurablePropertyAccessor extends PropertyAccessor, PropertyEditorRegistry, TypeConverter {
 

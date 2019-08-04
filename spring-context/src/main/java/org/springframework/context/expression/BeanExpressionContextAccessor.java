@@ -59,7 +59,7 @@ public class BeanExpressionContextAccessor implements PropertyAccessor {
 
 	@Override
 	public Class<?>[] getSpecificTargetClasses() {
-		return new Class<?>[] {BeanExpressionContext.class};
+		return new Class<?>[]{BeanExpressionContext.class};
 	}
 
 }

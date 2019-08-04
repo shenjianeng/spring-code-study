@@ -57,16 +57,16 @@ public class FailingBeforeAndAfterMethodsSpringRunnerTests {
 
 	@Parameters(name = "{0}")
 	public static Object[] testCases() {
-		return new Object[] {//
-			AlwaysFailingBeforeTestClassTestCase.class.getSimpleName(),//
-			AlwaysFailingAfterTestClassTestCase.class.getSimpleName(),//
-			AlwaysFailingPrepareTestInstanceTestCase.class.getSimpleName(),//
-			AlwaysFailingBeforeTestMethodTestCase.class.getSimpleName(),//
-			AlwaysFailingBeforeTestExecutionTestCase.class.getSimpleName(), //
-			AlwaysFailingAfterTestExecutionTestCase.class.getSimpleName(), //
-			AlwaysFailingAfterTestMethodTestCase.class.getSimpleName(),//
-			FailingBeforeTransactionTestCase.class.getSimpleName(),//
-			FailingAfterTransactionTestCase.class.getSimpleName() //
+		return new Object[]{//
+				AlwaysFailingBeforeTestClassTestCase.class.getSimpleName(),//
+				AlwaysFailingAfterTestClassTestCase.class.getSimpleName(),//
+				AlwaysFailingPrepareTestInstanceTestCase.class.getSimpleName(),//
+				AlwaysFailingBeforeTestMethodTestCase.class.getSimpleName(),//
+				AlwaysFailingBeforeTestExecutionTestCase.class.getSimpleName(), //
+				AlwaysFailingAfterTestExecutionTestCase.class.getSimpleName(), //
+				AlwaysFailingAfterTestMethodTestCase.class.getSimpleName(),//
+				FailingBeforeTransactionTestCase.class.getSimpleName(),//
+				FailingAfterTransactionTestCase.class.getSimpleName() //
 		};
 	}
 

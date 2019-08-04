@@ -58,7 +58,6 @@ import javax.persistence.spi.PersistenceProvider;
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
- * @since 2.0
  * @see #setJpaProperties
  * @see #setJpaVendorAdapter
  * @see JpaTransactionManager#setEntityManagerFactory
@@ -67,12 +66,14 @@ import javax.persistence.spi.PersistenceProvider;
  * @see org.springframework.orm.jpa.support.SharedEntityManagerBean
  * @see javax.persistence.Persistence#createEntityManagerFactory
  * @see javax.persistence.spi.PersistenceProvider#createEntityManagerFactory
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class LocalEntityManagerFactoryBean extends AbstractEntityManagerFactoryBean {
 
 	/**
 	 * Initialize the EntityManagerFactory for the given configuration.
+	 *
 	 * @throws javax.persistence.PersistenceException in case of JPA initialization errors
 	 */
 	@Override
@@ -87,11 +88,10 @@ public class LocalEntityManagerFactoryBean extends AbstractEntityManagerFactoryB
 			if (emf == null) {
 				throw new IllegalStateException(
 						"PersistenceProvider [" + provider + "] did not return an EntityManagerFactory for name '" +
-						getPersistenceUnitName() + "'");
+								getPersistenceUnitName() + "'");
 			}
 			return emf;
-		}
-		else {
+		} else {
 			// Let JPA perform its standard PersistenceProvider autodetection.
 			return Persistence.createEntityManagerFactory(getPersistenceUnitName(), getJpaPropertyMap());
 		}

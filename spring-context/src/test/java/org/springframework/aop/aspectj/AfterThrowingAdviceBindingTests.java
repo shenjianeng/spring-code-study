@@ -103,9 +103,13 @@ final class AfterThrowingAdviceBindingTestAspect {
 	// working as expected through mocking.
 	public interface AfterThrowingAdviceBindingCollaborator {
 		void noArgs();
+
 		void oneThrowable(Throwable t);
+
 		void oneRuntimeException(RuntimeException re);
+
 		void noArgsOnThrowableMatch();
+
 		void noArgsOnRuntimeExceptionMatch();
 	}
 

@@ -50,9 +50,9 @@ import org.springframework.web.jsf.FacesContextUtils;
  * &lt;/application></pre>
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see SpringBeanFacesELResolver
  * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext
+ * @since 2.5
  */
 public class WebApplicationContextFacesELResolver extends ELResolver {
 
@@ -62,7 +62,9 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 	public static final String WEB_APPLICATION_CONTEXT_VARIABLE_NAME = "webApplicationContext";
 
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
@@ -83,18 +85,15 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 					elContext.setPropertyResolved(true);
 					try {
 						return wac.getBean(beanName);
-					}
-					catch (BeansException ex) {
+					} catch (BeansException ex) {
 						throw new ELException(ex);
 					}
-				}
-				else {
+				} else {
 					// Mimic standard JSF/JSP behavior when base is a Map by returning null.
 					return null;
 				}
 			}
-		}
-		else {
+		} else {
 			if (WEB_APPLICATION_CONTEXT_VARIABLE_NAME.equals(property)) {
 				elContext.setPropertyResolved(true);
 				return getWebApplicationContext(elContext);
@@ -121,18 +120,15 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 					elContext.setPropertyResolved(true);
 					try {
 						return wac.getType(beanName);
-					}
-					catch (BeansException ex) {
+					} catch (BeansException ex) {
 						throw new ELException(ex);
 					}
-				}
-				else {
+				} else {
 					// Mimic standard JSF/JSP behavior when base is a Map by returning null.
 					return null;
 				}
 			}
-		}
-		else {
+		} else {
 			if (WEB_APPLICATION_CONTEXT_VARIABLE_NAME.equals(property)) {
 				elContext.setPropertyResolved(true);
 				return WebApplicationContext.class;
@@ -171,6 +167,7 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 	 * Retrieve the {@link WebApplicationContext} reference to expose.
 	 * <p>The default implementation delegates to {@link FacesContextUtils},
 	 * returning {@code null} if no {@code WebApplicationContext} found.
+	 *
 	 * @param elContext the current JSF ELContext
 	 * @return the Spring web application context
 	 * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext

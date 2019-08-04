@@ -56,26 +56,22 @@ public class AspectJWeaverMessageHandler implements IMessageHandler {
 				logger.debug(makeMessageFor(message));
 				return true;
 			}
-		}
-		else if (messageKind == IMessage.INFO || messageKind == IMessage.WEAVEINFO) {
+		} else if (messageKind == IMessage.INFO || messageKind == IMessage.WEAVEINFO) {
 			if (logger.isInfoEnabled()) {
 				logger.info(makeMessageFor(message));
 				return true;
 			}
-		}
-		else if (messageKind == IMessage.WARNING) {
+		} else if (messageKind == IMessage.WARNING) {
 			if (logger.isWarnEnabled()) {
 				logger.warn(makeMessageFor(message));
 				return true;
 			}
-		}
-		else if (messageKind == IMessage.ERROR) {
+		} else if (messageKind == IMessage.ERROR) {
 			if (logger.isErrorEnabled()) {
 				logger.error(makeMessageFor(message));
 				return true;
 			}
-		}
-		else if (messageKind == IMessage.ABORT) {
+		} else if (messageKind == IMessage.ABORT) {
 			if (logger.isFatalEnabled()) {
 				logger.fatal(makeMessageFor(message));
 				return true;

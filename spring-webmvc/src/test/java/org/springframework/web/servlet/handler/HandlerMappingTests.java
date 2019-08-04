@@ -39,6 +39,7 @@ import org.springframework.web.servlet.support.WebContentGenerator;
 /**
  * Unit tests for
  * {@link org.springframework.web.servlet.handler.HandlerMappingTests}.
+ *
  * @author Brian Clozel
  */
 public class HandlerMappingTests {

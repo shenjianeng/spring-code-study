@@ -29,6 +29,7 @@ public class DataIntegrityViolationException extends NonTransientDataAccessExcep
 
 	/**
 	 * Constructor for DataIntegrityViolationException.
+	 *
 	 * @param msg the detail message
 	 */
 	public DataIntegrityViolationException(String msg) {
@@ -37,7 +38,8 @@ public class DataIntegrityViolationException extends NonTransientDataAccessExcep
 
 	/**
 	 * Constructor for DataIntegrityViolationException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the data access API in use
 	 */
 	public DataIntegrityViolationException(String msg, Throwable cause) {

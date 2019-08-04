@@ -57,7 +57,7 @@ class DefaultResourceTransformerChain implements ResourceTransformerChain {
 	}
 
 	private DefaultResourceTransformerChain initTransformerChain(ResourceResolverChain resolverChain,
-			ArrayList<ResourceTransformer> transformers) {
+																 ArrayList<ResourceTransformer> transformers) {
 
 		DefaultResourceTransformerChain chain = new DefaultResourceTransformerChain(resolverChain, null, null);
 		ListIterator<? extends ResourceTransformer> it = transformers.listIterator(transformers.size());
@@ -68,7 +68,7 @@ class DefaultResourceTransformerChain implements ResourceTransformerChain {
 	}
 
 	public DefaultResourceTransformerChain(ResourceResolverChain resolverChain,
-			@Nullable ResourceTransformer transformer, @Nullable ResourceTransformerChain chain) {
+										   @Nullable ResourceTransformer transformer, @Nullable ResourceTransformerChain chain) {
 
 		Assert.isTrue((transformer == null && chain == null) || (transformer != null && chain != null),
 				"Both transformer and transformer chain must be null, or neither is");

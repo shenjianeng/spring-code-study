@@ -50,9 +50,9 @@ import org.springframework.web.util.WebUtils;
  * representation of uploaded form fields.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see CommonsMultipartFile
  * @see CommonsMultipartResolver
+ * @since 2.0
  */
 public abstract class CommonsFileUploadSupport {
 
@@ -70,6 +70,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Instantiate a new CommonsFileUploadSupport with its
 	 * corresponding FileItemFactory and FileUpload instances.
+	 *
 	 * @see #newFileItemFactory
 	 * @see #newFileUpload
 	 */
@@ -82,6 +83,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Return the underlying {@code org.apache.commons.fileupload.disk.DiskFileItemFactory}
 	 * instance. There is hardly any need to access this.
+	 *
 	 * @return the underlying DiskFileItemFactory instance
 	 */
 	public DiskFileItemFactory getFileItemFactory() {
@@ -91,6 +93,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Return the underlying {@code org.apache.commons.fileupload.FileUpload}
 	 * instance. There is hardly any need to access this.
+	 *
 	 * @return the underlying FileUpload instance
 	 */
 	public FileUpload getFileUpload() {
@@ -100,6 +103,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Set the maximum allowed size (in bytes) before an upload gets rejected.
 	 * -1 indicates no limit (the default).
+	 *
 	 * @param maxUploadSize the maximum upload size allowed
 	 * @see org.apache.commons.fileupload.FileUploadBase#setSizeMax
 	 */
@@ -110,9 +114,10 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Set the maximum allowed size (in bytes) for each individual file before
 	 * an upload gets rejected. -1 indicates no limit (the default).
+	 *
 	 * @param maxUploadSizePerFile the maximum upload size per file
-	 * @since 4.2
 	 * @see org.apache.commons.fileupload.FileUploadBase#setFileSizeMax
+	 * @since 4.2
 	 */
 	public void setMaxUploadSizePerFile(long maxUploadSizePerFile) {
 		this.fileUpload.setFileSizeMax(maxUploadSizePerFile);
@@ -122,6 +127,7 @@ public abstract class CommonsFileUploadSupport {
 	 * Set the maximum allowed size (in bytes) before uploads are written to disk.
 	 * Uploaded files will still be received past this amount, but they will not be
 	 * stored in memory. Default is 10240, according to Commons FileUpload.
+	 *
 	 * @param maxInMemorySize the maximum in memory size allowed
 	 * @see org.apache.commons.fileupload.disk.DiskFileItemFactory#setSizeThreshold
 	 */
@@ -137,6 +143,7 @@ public abstract class CommonsFileUploadSupport {
 	 * encoding will override this setting. This also allows for generically
 	 * overriding the character encoding in a filter that invokes the
 	 * {@code ServletRequest.setCharacterEncoding} method.
+	 *
 	 * @param defaultEncoding the character encoding to use
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding
 	 * @see javax.servlet.ServletRequest#setCharacterEncoding
@@ -149,6 +156,7 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Determine the default encoding to use for parsing requests.
+	 *
 	 * @see #setDefaultEncoding
 	 */
 	protected String getDefaultEncoding() {
@@ -162,6 +170,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Set the temporary directory where uploaded files get stored.
 	 * Default is the servlet container's temporary directory for the web application.
+	 *
 	 * @see org.springframework.web.util.WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE
 	 */
 	public void setUploadTempDir(Resource uploadTempDir) throws IOException {
@@ -174,6 +183,7 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Return the temporary directory where uploaded files get stored.
+	 *
 	 * @see #setUploadTempDir
 	 */
 	protected boolean isUploadTempDirSpecified() {
@@ -186,9 +196,10 @@ public abstract class CommonsFileUploadSupport {
 	 * <p>Default is "false", stripping off path information that may prefix the
 	 * actual filename e.g. from Opera. Switch this to "true" for preserving the
 	 * client-specified filename as-is, including potential path separators.
-	 * @since 4.3.5
+	 *
 	 * @see MultipartFile#getOriginalFilename()
 	 * @see CommonsMultipartFile#setPreserveFilename(boolean)
+	 * @since 4.3.5
 	 */
 	public void setPreserveFilename(boolean preserveFilename) {
 		this.preserveFilename = preserveFilename;
@@ -199,6 +210,7 @@ public abstract class CommonsFileUploadSupport {
 	 * Factory method for a Commons DiskFileItemFactory instance.
 	 * <p>Default implementation returns a standard DiskFileItemFactory.
 	 * Can be overridden to use a custom subclass, e.g. for testing purposes.
+	 *
 	 * @return the new DiskFileItemFactory instance
 	 */
 	protected DiskFileItemFactory newFileItemFactory() {
@@ -208,6 +220,7 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Factory method for a Commons FileUpload instance.
 	 * <p><b>To be implemented by subclasses.</b>
+	 *
 	 * @param fileItemFactory the Commons FileItemFactory to build upon
 	 * @return the Commons FileUpload instance
 	 */
@@ -219,6 +232,7 @@ public abstract class CommonsFileUploadSupport {
 	 * <p>Default implementation returns the shared FileUpload instance
 	 * if the encoding matches, else creates a new FileUpload instance
 	 * with the same configuration other than the desired encoding.
+	 *
 	 * @param encoding the character encoding to use
 	 * @return an appropriate FileUpload instance.
 	 */
@@ -241,8 +255,9 @@ public abstract class CommonsFileUploadSupport {
 	/**
 	 * Parse the given List of Commons FileItems into a Spring MultipartParsingResult,
 	 * containing Spring MultipartFile instances and a Map of multipart parameter.
+	 *
 	 * @param fileItems the Commons FileItems to parse
-	 * @param encoding the encoding to use for form fields
+	 * @param encoding  the encoding to use for form fields
 	 * @return the Spring MultipartParsingResult
 	 * @see CommonsMultipartFile#CommonsMultipartFile(org.apache.commons.fileupload.FileItem)
 	 */
@@ -258,8 +273,7 @@ public abstract class CommonsFileUploadSupport {
 				String partEncoding = determineEncoding(fileItem.getContentType(), encoding);
 				try {
 					value = fileItem.getString(partEncoding);
-				}
-				catch (UnsupportedEncodingException ex) {
+				} catch (UnsupportedEncodingException ex) {
 					if (logger.isWarnEnabled()) {
 						logger.warn("Could not decode multipart item '" + fileItem.getFieldName() +
 								"' with encoding '" + partEncoding + "': using platform default");
@@ -269,16 +283,14 @@ public abstract class CommonsFileUploadSupport {
 				String[] curParam = multipartParameters.get(fileItem.getFieldName());
 				if (curParam == null) {
 					// simple form field
-					multipartParameters.put(fileItem.getFieldName(), new String[] {value});
-				}
-				else {
+					multipartParameters.put(fileItem.getFieldName(), new String[]{value});
+				} else {
 					// array of simple form fields
 					String[] newParam = StringUtils.addStringToArray(curParam, value);
 					multipartParameters.put(fileItem.getFieldName(), newParam);
 				}
 				multipartParameterContentTypes.put(fileItem.getFieldName(), fileItem.getContentType());
-			}
-			else {
+			} else {
 				// multipart file field
 				CommonsMultipartFile file = createMultipartFile(fileItem);
 				multipartFiles.add(file.getName(), file);
@@ -294,11 +306,12 @@ public abstract class CommonsFileUploadSupport {
 
 	/**
 	 * Create a {@link CommonsMultipartFile} wrapper for the given Commons {@link FileItem}.
+	 *
 	 * @param fileItem the Commons FileItem to wrap
 	 * @return the corresponding CommonsMultipartFile (potentially a custom subclass)
-	 * @since 4.3.5
 	 * @see #setPreserveFilename(boolean)
 	 * @see CommonsMultipartFile#setPreserveFilename(boolean)
+	 * @since 4.3.5
 	 */
 	protected CommonsMultipartFile createMultipartFile(FileItem fileItem) {
 		CommonsMultipartFile multipartFile = new CommonsMultipartFile(fileItem);
@@ -310,6 +323,7 @@ public abstract class CommonsFileUploadSupport {
 	 * Cleanup the Spring MultipartFiles created during multipart parsing,
 	 * potentially holding temporary data on disk.
 	 * <p>Deletes the underlying Commons FileItem instances.
+	 *
 	 * @param multipartFiles a Collection of MultipartFile instances
 	 * @see org.apache.commons.fileupload.FileItem#delete()
 	 */
@@ -351,7 +365,7 @@ public abstract class CommonsFileUploadSupport {
 		private final Map<String, String> multipartParameterContentTypes;
 
 		public MultipartParsingResult(MultiValueMap<String, MultipartFile> mpFiles,
-				Map<String, String[]> mpParams, Map<String, String> mpParamContentTypes) {
+									  Map<String, String[]> mpParams, Map<String, String> mpParamContentTypes) {
 
 			this.multipartFiles = mpFiles;
 			this.multipartParameters = mpParams;

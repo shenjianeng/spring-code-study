@@ -25,12 +25,12 @@ import org.springframework.lang.Nullable;
  * {@code Flux<ServerSentEvent>} or {@code Observable<ServerSentEvent>} is the
  * reactive equivalent to Spring MVC's {@code SseEmitter}.
  *
+ * @param <T> the type of data that this event contains
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
- * @since 5.0
- * @param <T> the type of data that this event contains
  * @see ServerSentEventHttpMessageWriter
  * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events W3C recommendation</a>
+ * @since 5.0
  */
 public final class ServerSentEvent<T> {
 
@@ -51,7 +51,7 @@ public final class ServerSentEvent<T> {
 
 
 	private ServerSentEvent(@Nullable String id, @Nullable String event, @Nullable Duration retry,
-			@Nullable String comment, @Nullable T data) {
+							@Nullable String comment, @Nullable T data) {
 
 		this.id = id;
 		this.event = event;
@@ -111,6 +111,7 @@ public final class ServerSentEvent<T> {
 
 	/**
 	 * Return a builder for a {@code SseEvent}.
+	 *
 	 * @param <T> the type of data that this event contains
 	 * @return the builder
 	 */
@@ -120,6 +121,7 @@ public final class ServerSentEvent<T> {
 
 	/**
 	 * Return a builder for a {@code SseEvent}, populated with the give {@linkplain #data() data}.
+	 *
 	 * @param <T> the type of data that this event contains
 	 * @return the builder
 	 */
@@ -137,6 +139,7 @@ public final class ServerSentEvent<T> {
 
 		/**
 		 * Set the value of the {@code id} field.
+		 *
 		 * @param id the value of the id field
 		 * @return {@code this} builder
 		 */
@@ -144,6 +147,7 @@ public final class ServerSentEvent<T> {
 
 		/**
 		 * Set the value of the {@code event} field.
+		 *
 		 * @param event the value of the event field
 		 * @return {@code this} builder
 		 */
@@ -151,6 +155,7 @@ public final class ServerSentEvent<T> {
 
 		/**
 		 * Set the value of the {@code retry} field.
+		 *
 		 * @param retry the value of the retry field
 		 * @return {@code this} builder
 		 */
@@ -159,6 +164,7 @@ public final class ServerSentEvent<T> {
 		/**
 		 * Set SSE comment. If a multi-line comment is provided, it will be turned into multiple
 		 * SSE comment lines as defined in Server-Sent Events W3C recommendation.
+		 *
 		 * @param comment the comment to set
 		 * @return {@code this} builder
 		 */
@@ -169,6 +175,7 @@ public final class ServerSentEvent<T> {
 		 * {@code String}, it will be turned into multiple {@code data} field lines as defined
 		 * in the Server-Sent Events W3C recommendation. If {@code data} is not a String, it will
 		 * be {@linkplain org.springframework.http.codec.json.Jackson2JsonEncoder encoded} into JSON.
+		 *
 		 * @param data the value of the data field
 		 * @return {@code this} builder
 		 */
@@ -176,6 +183,7 @@ public final class ServerSentEvent<T> {
 
 		/**
 		 * Builds the event.
+		 *
 		 * @return the built event
 		 */
 		ServerSentEvent<T> build();

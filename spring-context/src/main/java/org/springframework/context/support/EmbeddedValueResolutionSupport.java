@@ -40,6 +40,7 @@ public class EmbeddedValueResolutionSupport implements EmbeddedValueResolverAwar
 
 	/**
 	 * Resolve the given embedded value through this instance's {@link StringValueResolver}.
+	 *
 	 * @param value the value to resolve
 	 * @return the resolved value, or always the original value if no resolver is available
 	 * @see #setEmbeddedValueResolver

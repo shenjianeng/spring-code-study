@@ -68,6 +68,7 @@ public class RequestedContentTypeResolverBuilder {
 
 	/**
 	 * Add resolver that returns a fixed set of media types.
+	 *
 	 * @param mediaTypes the media types to use
 	 */
 	public void fixedResolver(MediaType... mediaTypes) {
@@ -76,6 +77,7 @@ public class RequestedContentTypeResolverBuilder {
 
 	/**
 	 * Add a custom resolver.
+	 *
 	 * @param resolver the resolver to add
 	 */
 	public void resolver(RequestedContentTypeResolver resolver) {
@@ -117,7 +119,8 @@ public class RequestedContentTypeResolverBuilder {
 		/**
 		 * Configure a mapping between a lookup key (extracted from a query
 		 * parameter value) and a corresponding {@code MediaType}.
-		 * @param key the lookup key
+		 *
+		 * @param key       the lookup key
 		 * @param mediaType the MediaType for that key
 		 */
 		public ParameterResolverConfigurer mediaType(String key, MediaType mediaType) {
@@ -127,6 +130,7 @@ public class RequestedContentTypeResolverBuilder {
 
 		/**
 		 * Map-based variant of {@link #mediaType(String, MediaType)}.
+		 *
 		 * @param mediaTypes the mappings to copy
 		 */
 		public ParameterResolverConfigurer mediaType(Map<String, MediaType> mediaTypes) {

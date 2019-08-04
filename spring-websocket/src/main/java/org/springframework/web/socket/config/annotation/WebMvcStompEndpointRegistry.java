@@ -63,7 +63,7 @@ public class WebMvcStompEndpointRegistry implements StompEndpointRegistry {
 
 
 	public WebMvcStompEndpointRegistry(WebSocketHandler webSocketHandler,
-			WebSocketTransportRegistration transportRegistration, TaskScheduler defaultSockJsTaskScheduler) {
+									   WebSocketTransportRegistration transportRegistration, TaskScheduler defaultSockJsTaskScheduler) {
 
 		Assert.notNull(webSocketHandler, "WebSocketHandler is required ");
 		Assert.notNull(transportRegistration, "WebSocketTransportRegistration is required");

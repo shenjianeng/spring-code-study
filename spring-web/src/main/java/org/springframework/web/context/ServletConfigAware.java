@@ -30,8 +30,8 @@ import org.springframework.beans.factory.Aware;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 2.0
  * @see ServletContextAware
+ * @since 2.0
  */
 public interface ServletConfigAware extends Aware {
 
@@ -41,6 +41,7 @@ public interface ServletConfigAware extends Aware {
 	 * callback like InitializingBean's {@code afterPropertiesSet} or a
 	 * custom init-method. Invoked after ApplicationContextAware's
 	 * {@code setApplicationContext}.
+	 *
 	 * @param servletConfig the {@link ServletConfig} to be used by this object
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext

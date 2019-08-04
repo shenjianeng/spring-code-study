@@ -26,10 +26,10 @@ import org.springframework.core.type.MethodMetadata;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.0
  * @see ConfigurationClass
  * @see ConfigurationClassParser
  * @see ConfigurationClassBeanDefinitionReader
+ * @since 3.0
  */
 final class BeanMethod extends ConfigurationMethod {
 

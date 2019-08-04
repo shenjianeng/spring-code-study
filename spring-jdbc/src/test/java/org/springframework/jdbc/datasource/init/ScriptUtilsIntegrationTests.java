@@ -29,8 +29,8 @@ import static org.springframework.jdbc.datasource.init.ScriptUtils.*;
  * Integration tests for {@link ScriptUtils}.
  *
  * @author Sam Brannen
- * @since 4.0.3
  * @see ScriptUtilsUnitTests
+ * @since 4.0.3
  */
 public class ScriptUtilsIntegrationTests extends AbstractDatabaseInitializationTests {
 

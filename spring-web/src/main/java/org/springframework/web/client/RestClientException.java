@@ -32,6 +32,7 @@ public class RestClientException extends NestedRuntimeException {
 
 	/**
 	 * Construct a new instance of {@code RestClientException} with the given message.
+	 *
 	 * @param msg the message
 	 */
 	public RestClientException(String msg) {
@@ -41,8 +42,9 @@ public class RestClientException extends NestedRuntimeException {
 	/**
 	 * Construct a new instance of {@code RestClientException} with the given message and
 	 * exception.
+	 *
 	 * @param msg the message
-	 * @param ex the exception
+	 * @param ex  the exception
 	 */
 	public RestClientException(String msg, Throwable ex) {
 		super(msg, ex);

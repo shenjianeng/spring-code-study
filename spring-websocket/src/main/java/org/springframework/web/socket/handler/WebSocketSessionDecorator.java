@@ -68,8 +68,7 @@ public class WebSocketSessionDecorator implements WebSocketSession {
 	public static WebSocketSession unwrap(WebSocketSession session) {
 		if (session instanceof WebSocketSessionDecorator) {
 			return ((WebSocketSessionDecorator) session).getLastSession();
-		}
-		else {
+		} else {
 			return session;
 		}
 	}

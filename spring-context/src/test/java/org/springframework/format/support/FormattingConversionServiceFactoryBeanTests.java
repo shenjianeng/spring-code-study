@@ -60,8 +60,7 @@ public class FormattingConversionServiceFactoryBeanTests {
 			assertEquals(15.0, value);
 			value = fcs.convert(15.0, descriptor, TypeDescriptor.valueOf(String.class));
 			assertEquals("15", value);
-		}
-		finally {
+		} finally {
 			LocaleContextHolder.resetLocaleContext();
 		}
 	}
@@ -77,8 +76,7 @@ public class FormattingConversionServiceFactoryBeanTests {
 		try {
 			fcs.convert("15,00", TypeDescriptor.valueOf(String.class), descriptor);
 			fail("This format should not be parseable");
-		}
-		catch (ConversionFailedException ex) {
+		} catch (ConversionFailedException ex) {
 			assertTrue(ex.getCause() instanceof NumberFormatException);
 		}
 	}
@@ -127,8 +125,7 @@ public class FormattingConversionServiceFactoryBeanTests {
 		try {
 			factory.afterPropertiesSet();
 			fail("Expected formatter to be rejected");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}

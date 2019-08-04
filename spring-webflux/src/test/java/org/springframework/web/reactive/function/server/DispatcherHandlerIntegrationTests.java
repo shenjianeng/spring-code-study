@@ -83,7 +83,8 @@ public class DispatcherHandlerIntegrationTests extends AbstractHttpHandlerIntegr
 
 	@Test
 	public void flux() {
-		ParameterizedTypeReference<List<Person>> reference = new ParameterizedTypeReference<List<Person>>() {};
+		ParameterizedTypeReference<List<Person>> reference = new ParameterizedTypeReference<List<Person>>() {
+		};
 		ResponseEntity<List<Person>> result =
 				this.restTemplate
 						.exchange("http://localhost:" + this.port + "/flux", HttpMethod.GET, null, reference);

@@ -44,6 +44,7 @@ import static org.springframework.http.HttpHeaders.ORIGIN;
 
 /**
  * Unit tests for {@link CorsWebFilter}.
+ *
  * @author Sebastien Deleuze
  */
 public class CorsWebFilterTests {

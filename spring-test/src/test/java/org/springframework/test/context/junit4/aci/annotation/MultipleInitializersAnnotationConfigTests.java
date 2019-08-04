@@ -37,8 +37,8 @@ import static org.junit.Assert.*;
  * @since 3.2
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { GlobalConfig.class, DevProfileConfig.class }, initializers = {
-	FooBarAliasInitializer.class, DevProfileInitializer.class })
+@ContextConfiguration(classes = {GlobalConfig.class, DevProfileConfig.class}, initializers = {
+		FooBarAliasInitializer.class, DevProfileInitializer.class})
 public class MultipleInitializersAnnotationConfigTests {
 
 	@Autowired

@@ -37,8 +37,8 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 3.1
  * @see DefaultServletHttpRequestHandler
+ * @since 3.1
  */
 public class DefaultServletHandlerConfigurer {
 
@@ -50,6 +50,7 @@ public class DefaultServletHandlerConfigurer {
 
 	/**
 	 * Create a {@link DefaultServletHandlerConfigurer} instance.
+	 *
 	 * @param servletContext the ServletContext to use.
 	 */
 	public DefaultServletHandlerConfigurer(ServletContext servletContext) {
@@ -63,6 +64,7 @@ public class DefaultServletHandlerConfigurer {
 	 * <p>When this method is used the {@link DefaultServletHttpRequestHandler}
 	 * will try to autodetect the "default" Servlet name. Alternatively, you can
 	 * specify the name of the default Servlet via {@link #enable(String)}.
+	 *
 	 * @see DefaultServletHttpRequestHandler
 	 */
 	public void enable() {
@@ -73,6 +75,7 @@ public class DefaultServletHandlerConfigurer {
 	 * Enable forwarding to the "default" Servlet identified by the given name.
 	 * <p>This is useful when the default Servlet cannot be autodetected,
 	 * for example when it has been manually configured.
+	 *
 	 * @see DefaultServletHttpRequestHandler
 	 */
 	public void enable(@Nullable String defaultServletName) {
@@ -88,6 +91,7 @@ public class DefaultServletHandlerConfigurer {
 	 * Return a handler mapping instance ordered at {@link Integer#MAX_VALUE} containing the
 	 * {@link DefaultServletHttpRequestHandler} instance mapped to {@code "/**"};
 	 * or {@code null} if default servlet handling was not been enabled.
+	 *
 	 * @since 4.3.12
 	 */
 	@Nullable

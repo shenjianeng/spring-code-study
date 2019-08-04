@@ -92,15 +92,16 @@ public class SyncInvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * Invoke the method for the given exchange.
-	 * @param exchange the current exchange
+	 *
+	 * @param exchange       the current exchange
 	 * @param bindingContext the binding context to use
-	 * @param providedArgs optional list of argument values to match by type
+	 * @param providedArgs   optional list of argument values to match by type
 	 * @return a Mono with a {@link HandlerResult}.
 	 * @throws ServerErrorException if method argument resolution or method invocation fails
 	 */
 	@Nullable
 	public HandlerResult invokeForHandlerResult(ServerWebExchange exchange,
-			BindingContext bindingContext, Object... providedArgs) {
+												BindingContext bindingContext, Object... providedArgs) {
 
 		MonoProcessor<HandlerResult> processor = MonoProcessor.create();
 		this.delegate.invoke(exchange, bindingContext, providedArgs).subscribeWith(processor);
@@ -112,8 +113,7 @@ public class SyncInvocableHandlerMethod extends HandlerMethod {
 						new ServerErrorException("Failed to invoke: " + getShortLogMessage(), getMethod(), ex));
 			}
 			return processor.peek();
-		}
-		else {
+		} else {
 			// Should never happen...
 			throw new IllegalStateException(
 					"SyncInvocableHandlerMethod should have completed synchronously.");

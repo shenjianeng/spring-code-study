@@ -85,8 +85,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 			pvs.addPropertyValue(new PropertyValue("touchy", invalidTouchy));
 			accessor.setPropertyValues(pvs);
 			fail("Should throw exception when everything is valid");
-		}
-		catch (PropertyBatchUpdateException ex) {
+		} catch (PropertyBatchUpdateException ex) {
 			assertTrue("Must contain 2 exceptions", ex.getExceptionCount() == 2);
 			// Test validly set property matches
 			assertTrue("Valid set property must stick", target.getName().equals(newName));
@@ -103,8 +102,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 			BeanWrapper accessor = createAccessor(target);
 			accessor.setPropertyValue("ag", "foobar");
 			fail("Should throw exception on invalid property");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			// expected
 			assertEquals(1, ex.getPossibleMatches().length);
 			assertEquals("age", ex.getPossibleMatches()[0]);
@@ -125,8 +123,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 		BeanWrapper bw = createAccessor(target);
 		try {
 			bw.setPropertyValue("names", "Alef");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			assertNotNull("Possible matches not determined", ex.getPossibleMatches());
 			assertEquals("Invalid amount of alternatives", 1, ex.getPossibleMatches().length);
 		}
@@ -138,8 +135,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 		BeanWrapper bw = createAccessor(target);
 		try {
 			bw.setPropertyValue("mystring", "Arjen");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			assertNotNull("Possible matches not determined", ex.getPossibleMatches());
 			assertEquals("Invalid amount of alternatives", 3, ex.getPossibleMatches().length);
 		}
@@ -212,8 +208,7 @@ public class BeanWrapperTests extends AbstractPropertyAccessorTests {
 			BeanWrapper accessor = createAccessor(target);
 			accessor.setPropertyValue("[']", "foobar");
 			fail("Should throw exception on invalid property");
-		}
-		catch (NotWritablePropertyException ex) {
+		} catch (NotWritablePropertyException ex) {
 			assertNull(ex.getPossibleMatches());
 		}
 	}

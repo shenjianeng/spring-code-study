@@ -33,7 +33,8 @@ public class SessionConnectedEvent extends AbstractSubProtocolEvent {
 
 	/**
 	 * Create a new SessionConnectedEvent.
-	 * @param source the component that published the event (never {@code null})
+	 *
+	 * @param source  the component that published the event (never {@code null})
 	 * @param message the connected message (never {@code null})
 	 */
 	public SessionConnectedEvent(Object source, Message<byte[]> message) {

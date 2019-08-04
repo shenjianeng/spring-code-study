@@ -36,6 +36,7 @@ import static org.junit.Assert.assertThat;
 
 /**
  * Tests for {@link HiddenHttpMethodFilter}.
+ *
  * @author Greg Turnquist
  * @author Rossen Stoyanchev
  */

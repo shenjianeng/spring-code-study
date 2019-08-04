@@ -70,8 +70,7 @@ public class DeclareParentsTests {
 		try {
 			testBeanProxy.setName(" ");
 			fail("Should be locked");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}

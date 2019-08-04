@@ -105,8 +105,7 @@ public abstract class AbstractVersionStrategy implements VersionStrategy {
 		public String addVersion(String path, String version) {
 			if (path.startsWith(".")) {
 				return path;
-			}
-			else {
+			} else {
 				return (this.prefix.endsWith("/") || path.startsWith("/") ?
 						this.prefix + path : this.prefix + '/' + path);
 			}
@@ -129,8 +128,7 @@ public abstract class AbstractVersionStrategy implements VersionStrategy {
 			if (matcher.find()) {
 				String match = matcher.group(1);
 				return (match.contains("-") ? match.substring(match.lastIndexOf('-') + 1) : match);
-			}
-			else {
+			} else {
 				return null;
 			}
 		}

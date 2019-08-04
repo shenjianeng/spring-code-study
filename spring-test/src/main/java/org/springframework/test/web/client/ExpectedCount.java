@@ -119,6 +119,7 @@ public final class ExpectedCount {
 
 	/**
 	 * No calls expected at all, i.e. min=0 and max=0.
+	 *
 	 * @since 4.3.6
 	 */
 	public static ExpectedCount never() {

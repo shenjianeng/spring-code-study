@@ -42,11 +42,11 @@ import java.lang.annotation.Target;
  * custom stereotype annotation or a custom group-specific validated annotation.
  *
  * @author Juergen Hoeller
- * @since 3.1
  * @see javax.validation.Validator#validate(Object, Class[])
  * @see org.springframework.validation.SmartValidator#validate(Object, org.springframework.validation.Errors, Object...)
  * @see org.springframework.validation.beanvalidation.SpringValidatorAdapter
  * @see org.springframework.validation.beanvalidation.MethodValidationPostProcessor
+ * @since 3.1
  */
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)

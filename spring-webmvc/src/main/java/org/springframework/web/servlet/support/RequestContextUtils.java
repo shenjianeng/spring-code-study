@@ -52,15 +52,16 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
- * @since 03.03.2003
  * @see RequestContext
  * @see org.springframework.web.servlet.DispatcherServlet
+ * @since 03.03.2003
  */
 public abstract class RequestContextUtils {
 
 	/**
 	 * The name of the bean to use to look up in an implementation of
 	 * {@link RequestDataValueProcessor} has been configured.
+	 *
 	 * @since 4.2.1
 	 */
 	public static final String REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME = "requestDataValueProcessor";
@@ -73,14 +74,15 @@ public abstract class RequestContextUtils {
 	 * be found via the ServletContext or via ContextLoader's current context.
 	 * <p>NOTE: This variant remains compatible with Servlet 2.5, explicitly
 	 * checking a given ServletContext instead of deriving it from the request.
-	 * @param request current HTTP request
+	 *
+	 * @param request        current HTTP request
 	 * @param servletContext current servlet context
 	 * @return the request-specific WebApplicationContext, or the global one
 	 * if no request-specific context has been found, or {@code null} if none
-	 * @since 4.2.1
 	 * @see DispatcherServlet#WEB_APPLICATION_CONTEXT_ATTRIBUTE
 	 * @see WebApplicationContextUtils#getWebApplicationContext(ServletContext)
 	 * @see ContextLoader#getCurrentWebApplicationContext()
+	 * @since 4.2.1
 	 */
 	@Nullable
 	public static WebApplicationContext findWebApplicationContext(
@@ -106,13 +108,14 @@ public abstract class RequestContextUtils {
 	 * be found via the ServletContext or via ContextLoader's current context.
 	 * <p>NOTE: This variant requires Servlet 3.0+ and is generally recommended
 	 * for forward-looking custom user code.
+	 *
 	 * @param request current HTTP request
 	 * @return the request-specific WebApplicationContext, or the global one
 	 * if no request-specific context has been found, or {@code null} if none
-	 * @since 4.2.1
 	 * @see #findWebApplicationContext(HttpServletRequest, ServletContext)
 	 * @see ServletRequest#getServletContext()
 	 * @see ContextLoader#getCurrentWebApplicationContext()
+	 * @since 4.2.1
 	 */
 	@Nullable
 	public static WebApplicationContext findWebApplicationContext(HttpServletRequest request) {
@@ -122,6 +125,7 @@ public abstract class RequestContextUtils {
 	/**
 	 * Return the LocaleResolver that has been bound to the request by the
 	 * DispatcherServlet.
+	 *
 	 * @param request current HTTP request
 	 * @return the current LocaleResolver, or {@code null} if not found
 	 */
@@ -139,6 +143,7 @@ public abstract class RequestContextUtils {
 	 * falling back to the latter if no more specific locale has been found.
 	 * <p>Consider using {@link org.springframework.context.i18n.LocaleContextHolder#getLocale()}
 	 * which will normally be populated with the same Locale.
+	 *
 	 * @param request current HTTP request
 	 * @return the current locale for the given request, either from the
 	 * LocaleResolver or from the plain request itself
@@ -161,6 +166,7 @@ public abstract class RequestContextUtils {
 	 * which will normally be populated with the same TimeZone: That method only
 	 * differs in terms of its fallback to the system time zone if the LocaleResolver
 	 * hasn't provided a specific time zone (instead of this method's {@code null}).
+	 *
 	 * @param request current HTTP request
 	 * @return the current time zone for the given request, either from the
 	 * TimeZoneAwareLocaleResolver or {@code null} if none associated
@@ -182,6 +188,7 @@ public abstract class RequestContextUtils {
 	/**
 	 * Return the ThemeResolver that has been bound to the request by the
 	 * DispatcherServlet.
+	 *
 	 * @param request current HTTP request
 	 * @return the current ThemeResolver, or {@code null} if not found
 	 */
@@ -193,6 +200,7 @@ public abstract class RequestContextUtils {
 	/**
 	 * Return the ThemeSource that has been bound to the request by the
 	 * DispatcherServlet.
+	 *
 	 * @param request current HTTP request
 	 * @return the current ThemeSource
 	 */
@@ -204,6 +212,7 @@ public abstract class RequestContextUtils {
 	/**
 	 * Retrieves the current theme from the given request, using the ThemeResolver
 	 * and ThemeSource bound to the request by the DispatcherServlet.
+	 *
 	 * @param request current HTTP request
 	 * @return the current theme, or {@code null} if not found
 	 * @see #getThemeResolver
@@ -215,14 +224,14 @@ public abstract class RequestContextUtils {
 		if (themeResolver != null && themeSource != null) {
 			String themeName = themeResolver.resolveThemeName(request);
 			return themeSource.getTheme(themeName);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Return read-only "input" flash attributes from request before redirect.
+	 *
 	 * @param request current request
 	 * @return a read-only Map, or {@code null} if not found
 	 * @see FlashMap
@@ -235,6 +244,7 @@ public abstract class RequestContextUtils {
 
 	/**
 	 * Return "output" FlashMap to save attributes for request after redirect.
+	 *
 	 * @param request current request
 	 * @return a {@link FlashMap} instance, never {@code null} within a
 	 * {@code DispatcherServlet}-handled request
@@ -247,6 +257,7 @@ public abstract class RequestContextUtils {
 	 * Return the {@code FlashMapManager} instance to save flash attributes.
 	 * <p>As of 5.0 the convenience method {@link #saveOutputFlashMap} may be
 	 * used to save the "output" FlashMap.
+	 *
 	 * @param request the current request
 	 * @return a {@link FlashMapManager} instance, never {@code null} within a
 	 * {@code DispatcherServlet}-handled request
@@ -260,8 +271,9 @@ public abstract class RequestContextUtils {
 	 * Convenience method that retrieves the {@link #getOutputFlashMap "output"
 	 * FlashMap}, updates it with the path and query params of the target URL,
 	 * and then saves it using the {@link #getFlashMapManager FlashMapManager}.
+	 *
 	 * @param location the target URL for the redirect
-	 * @param request the current request
+	 * @param request  the current request
 	 * @param response the current response
 	 * @since 5.0
 	 */

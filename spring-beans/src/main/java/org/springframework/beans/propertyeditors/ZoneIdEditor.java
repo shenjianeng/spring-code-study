@@ -24,9 +24,9 @@ import java.time.ZoneId;
  * objects. Exposes the {@code TimeZone} ID as a text representation.
  *
  * @author Nicholas Williams
- * @since 4.0
  * @see java.time.ZoneId
  * @see TimeZoneEditor
+ * @since 4.0
  */
 public class ZoneIdEditor extends PropertyEditorSupport {
 

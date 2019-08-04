@@ -111,6 +111,7 @@ public abstract class YamlProcessor {
 
 	/**
 	 * Set locations of YAML {@link Resource resources} to be loaded.
+	 *
 	 * @see ResolutionMethod
 	 */
 	public void setResources(Resource... resources) {
@@ -125,6 +126,7 @@ public abstract class YamlProcessor {
 	 * matches it is passed into the callback, along with its representation as Properties.
 	 * Depending on the {@link #setResolutionMethod(ResolutionMethod)} not all of the
 	 * documents will be parsed.
+	 *
 	 * @param callback a callback to delegate to once matching documents are found
 	 * @see #createYaml()
 	 */
@@ -142,6 +144,7 @@ public abstract class YamlProcessor {
 	 * Create the {@link Yaml} instance to use.
 	 * <p>The default implementation sets the "allowDuplicateKeys" flag to {@code false},
 	 * enabling built-in duplicate key handling in SnakeYAML 1.18+.
+	 *
 	 * @see LoaderOptions#setAllowDuplicateKeys(boolean)
 	 */
 	protected Yaml createYaml() {
@@ -170,8 +173,7 @@ public abstract class YamlProcessor {
 							" from YAML resource: " + resource);
 				}
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			handleProcessError(resource, ex);
 		}
 		return (count > 0);
@@ -204,8 +206,7 @@ public abstract class YamlProcessor {
 			}
 			if (key instanceof CharSequence) {
 				result.put(key.toString(), value);
-			}
-			else {
+			} else {
 				// It has to be a map key in this case
 				result.put("[" + key.toString() + "]", value);
 			}
@@ -257,6 +258,7 @@ public abstract class YamlProcessor {
 	 * or Collection values. Entries from the resulting map retain the same order as the
 	 * source. When called with the Map from a {@link MatchCallback} the result will
 	 * contain the same values as the {@link MatchCallback} Properties.
+	 *
 	 * @param source the source map
 	 * @return a flattened map
 	 * @since 4.1.3
@@ -272,36 +274,31 @@ public abstract class YamlProcessor {
 			if (StringUtils.hasText(path)) {
 				if (key.startsWith("[")) {
 					key = path + key;
-				}
-				else {
+				} else {
 					key = path + '.' + key;
 				}
 			}
 			if (value instanceof String) {
 				result.put(key, value);
-			}
-			else if (value instanceof Map) {
+			} else if (value instanceof Map) {
 				// Need a compound key
 				@SuppressWarnings("unchecked")
 				Map<String, Object> map = (Map<String, Object>) value;
 				buildFlattenedMap(result, map, key);
-			}
-			else if (value instanceof Collection) {
+			} else if (value instanceof Collection) {
 				// Need a compound key
 				@SuppressWarnings("unchecked")
 				Collection<Object> collection = (Collection<Object>) value;
 				if (collection.isEmpty()) {
 					result.put(key, "");
-				}
-				else {
+				} else {
 					int count = 0;
 					for (Object object : collection) {
 						buildFlattenedMap(result, Collections.singletonMap(
 								"[" + (count++) + "]", object), key);
 					}
 				}
-			}
-			else {
+			} else {
 				result.put(key, (value != null ? value : ""));
 			}
 		});
@@ -315,10 +312,11 @@ public abstract class YamlProcessor {
 
 		/**
 		 * Process the given representation of the parsing results.
+		 *
 		 * @param properties the properties to process (as a flattened
-		 * representation with indexed keys in case of a collection or map)
-		 * @param map the result map (preserving the original value structure
-		 * in the YAML document)
+		 *                   representation with indexed keys in case of a collection or map)
+		 * @param map        the result map (preserving the original value structure
+		 *                   in the YAML document)
 		 */
 		void process(Properties properties, Map<String, Object> map);
 	}
@@ -331,6 +329,7 @@ public abstract class YamlProcessor {
 
 		/**
 		 * Test if the given properties match.
+		 *
 		 * @param properties the properties to test
 		 * @return the status of the match
 		 */

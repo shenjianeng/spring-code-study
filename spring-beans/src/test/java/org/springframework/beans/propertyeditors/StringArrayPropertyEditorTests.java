@@ -54,7 +54,7 @@ public class StringArrayPropertyEditorTests {
 
 	@Test
 	public void noTrim() throws Exception {
-		StringArrayPropertyEditor editor = new StringArrayPropertyEditor(",",false,false);
+		StringArrayPropertyEditor editor = new StringArrayPropertyEditor(",", false, false);
 		editor.setAsText("  0,1  , 2 ");
 		Object value = editor.getValue();
 		String[] array = (String[]) value;

@@ -36,10 +36,10 @@ import org.springframework.util.Assert;
  * ad-hoc use against any {@code ConverterRegistry} instance.
  *
  * @author Phillip Webb
- * @since 3.2
  * @see org.springframework.format.datetime.standard.DateTimeFormatterRegistrar
  * @see org.springframework.format.datetime.joda.JodaTimeFormatterRegistrar
  * @see FormatterRegistrar#registerFormatters
+ * @since 3.2
  */
 public class DateFormatterRegistrar implements FormatterRegistrar {
 
@@ -73,6 +73,7 @@ public class DateFormatterRegistrar implements FormatterRegistrar {
 
 	/**
 	 * Add date converters to the specified registry.
+	 *
 	 * @param converterRegistry the registry of converters to add to
 	 */
 	public static void addDateConverters(ConverterRegistry converterRegistry) {

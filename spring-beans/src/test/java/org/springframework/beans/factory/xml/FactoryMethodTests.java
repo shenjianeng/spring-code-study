@@ -79,8 +79,7 @@ public class FactoryMethodTests {
 		try {
 			xbf.getBean("defaultTestBeanWithInvalidDestroyMethod");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 		}
 	}
@@ -96,8 +95,7 @@ public class FactoryMethodTests {
 		try {
 			xbf.getBean("nullWithProperty");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 		}
 	}
@@ -252,8 +250,7 @@ public class FactoryMethodTests {
 		try {
 			xbf.getBean("noMatchPrototype");
 			fail("No static method matched");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// Ok
 		}
 	}
@@ -266,8 +263,7 @@ public class FactoryMethodTests {
 		try {
 			xbf.getBean("invalidPrototype");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("nonExisting(TestBean)"));
 		}
 	}
@@ -280,8 +276,7 @@ public class FactoryMethodTests {
 		try {
 			xbf.getBean("invalidPrototype", new TestBean());
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("nonExisting(TestBean)"));
 		}
 	}

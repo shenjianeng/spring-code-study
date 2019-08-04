@@ -92,6 +92,7 @@ public final class SpelCompiler implements Opcodes {
 	 * if it is compilable before compilation proceeds. The check involves
 	 * visiting all the nodes in the expression Ast and ensuring enough state
 	 * is known about them that bytecode can be generated for them.
+	 *
 	 * @param expression the expression to compile
 	 * @return an instance of the class implementing the compiled expression,
 	 * or {@code null} if compilation is not possible
@@ -106,8 +107,7 @@ public final class SpelCompiler implements Opcodes {
 			if (clazz != null) {
 				try {
 					return ReflectionUtils.accessibleConstructor(clazz).newInstance();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new IllegalStateException("Failed to instantiate CompiledExpression", ex);
 				}
 			}
@@ -126,6 +126,7 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * Generate the class that encapsulates the compiled expression and define it.
 	 * The  generated class will be a subtype of CompiledExpression.
+	 *
 	 * @param expressionToCompile the expression to be compiled
 	 * @return the expression call, or {@code null} if the decision was to opt out of
 	 * compilation during code generation
@@ -150,7 +151,7 @@ public final class SpelCompiler implements Opcodes {
 		// Create getValue() method
 		mv = cw.visitMethod(ACC_PUBLIC, "getValue",
 				"(Ljava/lang/Object;Lorg/springframework/expression/EvaluationContext;)Ljava/lang/Object;", null,
-				new String[ ]{"org/springframework/expression/EvaluationException"});
+				new String[]{"org/springframework/expression/EvaluationException"});
 		mv.visitCode();
 
 		CodeFlow cf = new CodeFlow(className, cw);
@@ -158,8 +159,7 @@ public final class SpelCompiler implements Opcodes {
 		// Ask the expression AST to generate the body of the method
 		try {
 			expressionToCompile.generateCode(mv, cf);
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug(expressionToCompile.getClass().getSimpleName() +
 						".generateCode opted out of compilation: " + ex.getMessage());
@@ -190,7 +190,8 @@ public final class SpelCompiler implements Opcodes {
 	 * because they anchor compiled classes in memory and prevent GC.  If you have expressions
 	 * continually recompiling over time then by replacing the classloader periodically
 	 * at least some of the older variants can be garbage collected.
-	 * @param name name of the class
+	 *
+	 * @param name  name of the class
 	 * @param bytes bytecode for the class
 	 * @return the Class object for the compiled expression
 	 */
@@ -206,6 +207,7 @@ public final class SpelCompiler implements Opcodes {
 	 * Factory method for compiler instances. The returned SpelCompiler will
 	 * attach a class loader as the child of the given class loader and this
 	 * child will be used to load compiled expressions.
+	 *
 	 * @param classLoader the ClassLoader to use as the basis for compilation
 	 * @return a corresponding SpelCompiler instance
 	 */
@@ -225,6 +227,7 @@ public final class SpelCompiler implements Opcodes {
 	 * Request that an attempt is made to compile the specified expression. It may fail if
 	 * components of the expression are not suitable for compilation or the data types
 	 * involved are not suitable for compilation. Used for testing.
+	 *
 	 * @return true if the expression was successfully compiled
 	 */
 	public static boolean compile(Expression expression) {
@@ -234,6 +237,7 @@ public final class SpelCompiler implements Opcodes {
 	/**
 	 * Request to revert to the interpreter for expression evaluation.
 	 * Any compiled form is discarded but can be recreated by later recompiling again.
+	 *
 	 * @param expression the expression
 	 */
 	public static void revertToInterpreted(Expression expression) {

@@ -50,7 +50,7 @@ final class RelativeRedirectResponseWrapper extends HttpServletResponseWrapper {
 
 
 	public static HttpServletResponse wrapIfNecessary(HttpServletResponse response,
-			HttpStatus redirectStatus) {
+													  HttpStatus redirectStatus) {
 
 		RelativeRedirectResponseWrapper wrapper =
 				WebUtils.getNativeResponse(response, RelativeRedirectResponseWrapper.class);

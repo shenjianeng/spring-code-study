@@ -72,8 +72,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			o = parser.parseExpression("list2[3]").getValue(new StandardEvaluationContext(testClass));
 			fail();
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			ee.printStackTrace();
 			// success!
 		}
@@ -202,8 +201,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			expr.getValue();
 			fail("Should have exceeded threshold");
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			SpelEvaluationException see = (SpelEvaluationException) ee;
 			assertEquals(SpelMessage.FLAWED_PATTERN, see.getMessageCode());
 			assertTrue(see.getCause() instanceof IllegalStateException);
@@ -236,8 +234,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			new SpelExpressionParser().parseExpression("placeOfBirth.foo.");
 			fail("Should have failed to parse");
-		}
-		catch (SpelParseException ex) {
+		} catch (SpelParseException ex) {
 			assertEquals(SpelMessage.OOD, ex.getMessageCode());
 			assertEquals(16, ex.getPosition());
 		}
@@ -259,8 +256,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			new SpelExpressionParser().parseRaw("placeOfBirth.23");
 			fail();
-		}
-		catch (SpelParseException spe) {
+		} catch (SpelParseException spe) {
 			assertEquals(SpelMessage.UNEXPECTED_DATA_AFTER_DOT, spe.getMessageCode());
 			assertEquals("23", spe.getInserts()[0]);
 		}
@@ -463,7 +459,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 
 	@Test
 	public void operatorVariants() {
-		SpelExpression e = (SpelExpression)parser.parseExpression("#a < #b");
+		SpelExpression e = (SpelExpression) parser.parseExpression("#a < #b");
 		EvaluationContext ctx = new StandardEvaluationContext();
 		ctx.setVariable("a", (short) 3);
 		ctx.setVariable("b", (short) 6);
@@ -549,8 +545,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			assertFalse(parser.parseExpression("T(List)!=null").getValue(context, Boolean.class));
 			fail("should have failed to find List");
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			// success - List not found
 		}
 		((StandardTypeLocator) context.getTypeLocator()).registerImport("java.util");
@@ -628,8 +623,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			context.registerMethodFilter(String.class, filter);
 			fail("should have failed");
-		}
-		catch (IllegalStateException ise) {
+		} catch (IllegalStateException ise) {
 			assertEquals(
 					"Method filter cannot be set as the reflective method resolver is not in use",
 					ise.getMessage());
@@ -647,33 +641,32 @@ public class EvaluationTests extends AbstractExpressionTests {
 		// Add a new element to the list
 		StandardEvaluationContext ctx = new StandardEvaluationContext(instance);
 		ExpressionParser parser = new SpelExpressionParser(new SpelParserConfiguration(true, true));
-		Expression e =  parser.parseExpression("listOfStrings[++index3]='def'");
+		Expression e = parser.parseExpression("listOfStrings[++index3]='def'");
 		e.getValue(ctx);
-		assertEquals(2,instance.listOfStrings.size());
-		assertEquals("def",instance.listOfStrings.get(1));
+		assertEquals(2, instance.listOfStrings.size());
+		assertEquals("def", instance.listOfStrings.get(1));
 
 		// Check reference beyond end of collection
 		ctx = new StandardEvaluationContext(instance);
 		parser = new SpelExpressionParser(new SpelParserConfiguration(true, true));
-		e =  parser.parseExpression("listOfStrings[0]");
+		e = parser.parseExpression("listOfStrings[0]");
 		String value = e.getValue(ctx, String.class);
-		assertEquals("abc",value);
-		e =  parser.parseExpression("listOfStrings[1]");
+		assertEquals("abc", value);
+		e = parser.parseExpression("listOfStrings[1]");
 		value = e.getValue(ctx, String.class);
-		assertEquals("def",value);
-		e =  parser.parseExpression("listOfStrings[2]");
+		assertEquals("def", value);
+		e = parser.parseExpression("listOfStrings[2]");
 		value = e.getValue(ctx, String.class);
-		assertEquals("",value);
+		assertEquals("", value);
 
 		// Now turn off growing and reference off the end
 		ctx = new StandardEvaluationContext(instance);
 		parser = new SpelExpressionParser(new SpelParserConfiguration(false, false));
-		e =  parser.parseExpression("listOfStrings[3]");
+		e = parser.parseExpression("listOfStrings[3]");
 		try {
 			e.getValue(ctx, String.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.COLLECTION_INDEX_OUT_OF_BOUNDS, see.getMessageCode());
 		}
 	}
@@ -682,15 +675,14 @@ public class EvaluationTests extends AbstractExpressionTests {
 	public void limitCollectionGrowing() {
 		TestClass instance = new TestClass();
 		StandardEvaluationContext ctx = new StandardEvaluationContext(instance);
-		SpelExpressionParser parser = new SpelExpressionParser( new SpelParserConfiguration(true, true, 3));
+		SpelExpressionParser parser = new SpelExpressionParser(new SpelParserConfiguration(true, true, 3));
 		Expression e = parser.parseExpression("foo[2]");
 		e.setValue(ctx, "2");
 		assertThat(instance.getFoo().size(), equalTo(3));
 		e = parser.parseExpression("foo[3]");
 		try {
 			e.setValue(ctx, "3");
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.UNABLE_TO_GROW_COLLECTION, see.getMessageCode());
 			assertThat(instance.getFoo().size(), equalTo(3));
 		}
@@ -702,13 +694,12 @@ public class EvaluationTests extends AbstractExpressionTests {
 		Integer i = 42;
 		StandardEvaluationContext ctx = new StandardEvaluationContext(i);
 		ExpressionParser parser = new SpelExpressionParser(new SpelParserConfiguration(true, true));
-		Expression e =  parser.parseExpression("#this++");
-		assertEquals(42,i.intValue());
+		Expression e = parser.parseExpression("#this++");
+		assertEquals(42, i.intValue());
 		try {
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 	}
@@ -729,17 +720,17 @@ public class EvaluationTests extends AbstractExpressionTests {
 
 		// double
 		e = parser.parseExpression("ddd++");
-		assertEquals(2.0d, helper.ddd,0d);
+		assertEquals(2.0d, helper.ddd, 0d);
 		double return_ddd = e.getValue(ctx, Double.TYPE);
-		assertEquals(2.0d, return_ddd,0d);
-		assertEquals(3.0d, helper.ddd,0d);
+		assertEquals(2.0d, return_ddd, 0d);
+		assertEquals(3.0d, helper.ddd, 0d);
 
 		// float
 		e = parser.parseExpression("fff++");
-		assertEquals(3.0f, helper.fff,0d);
+		assertEquals(3.0f, helper.fff, 0d);
 		float return_fff = e.getValue(ctx, Float.TYPE);
-		assertEquals(3.0f, return_fff,0d);
-		assertEquals(4.0f, helper.fff,0d);
+		assertEquals(3.0f, return_fff, 0d);
+		assertEquals(4.0f, helper.fff, 0d);
 
 		// long
 		e = parser.parseExpression("lll++");
@@ -783,7 +774,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 
 		// double
 		e = parser.parseExpression("++ddd");
-		assertEquals(2.0d, helper.ddd ,0d);
+		assertEquals(2.0d, helper.ddd, 0d);
 		double return_ddd = e.getValue(ctx, Double.TYPE);
 		assertEquals(3.0d, return_ddd, 0d);
 		assertEquals(3.0d, helper.ddd, 0d);
@@ -831,8 +822,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			e.getValue(ctx, Double.TYPE);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.OPERAND_NOT_INCREMENTABLE, see.getMessageCode());
 		}
 
@@ -840,8 +830,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			e.getValue(ctx, Double.TYPE);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.OPERAND_NOT_INCREMENTABLE, see.getMessageCode());
 		}
 	}
@@ -852,19 +841,17 @@ public class EvaluationTests extends AbstractExpressionTests {
 		StandardEvaluationContext ctx = new StandardEvaluationContext(i);
 		ExpressionParser parser = new SpelExpressionParser(new SpelParserConfiguration(true, true));
 		try {
-			Expression e =  parser.parseExpression("++1");
+			Expression e = parser.parseExpression("++1");
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 		try {
-			Expression e =  parser.parseExpression("1++");
+			Expression e = parser.parseExpression("1++");
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 	}
@@ -874,13 +861,12 @@ public class EvaluationTests extends AbstractExpressionTests {
 		Integer i = 42;
 		StandardEvaluationContext ctx = new StandardEvaluationContext(i);
 		ExpressionParser parser = new SpelExpressionParser(new SpelParserConfiguration(true, true));
-		Expression e =  parser.parseExpression("#this--");
+		Expression e = parser.parseExpression("#this--");
 		assertEquals(42, i.intValue());
 		try {
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 	}
@@ -895,23 +881,23 @@ public class EvaluationTests extends AbstractExpressionTests {
 		// BigDecimal
 		e = parser.parseExpression("bd--");
 		assertTrue(new BigDecimal("2").equals(helper.bd));
-		BigDecimal return_bd = e.getValue(ctx,BigDecimal.class);
+		BigDecimal return_bd = e.getValue(ctx, BigDecimal.class);
 		assertTrue(new BigDecimal("2").equals(return_bd));
 		assertTrue(new BigDecimal("1").equals(helper.bd));
 
 		// double
 		e = parser.parseExpression("ddd--");
-		assertEquals(2.0d, helper.ddd,0d);
+		assertEquals(2.0d, helper.ddd, 0d);
 		double return_ddd = e.getValue(ctx, Double.TYPE);
-		assertEquals(2.0d, return_ddd,0d);
-		assertEquals(1.0d, helper.ddd,0d);
+		assertEquals(2.0d, return_ddd, 0d);
+		assertEquals(1.0d, helper.ddd, 0d);
 
 		// float
 		e = parser.parseExpression("fff--");
-		assertEquals(3.0f, helper.fff,0d);
+		assertEquals(3.0f, helper.fff, 0d);
 		float return_fff = e.getValue(ctx, Float.TYPE);
-		assertEquals(3.0f, return_fff,0d);
-		assertEquals(2.0f, helper.fff,0d);
+		assertEquals(3.0f, return_fff, 0d);
+		assertEquals(2.0f, helper.fff, 0d);
 
 		// long
 		e = parser.parseExpression("lll--");
@@ -948,23 +934,23 @@ public class EvaluationTests extends AbstractExpressionTests {
 		// BigDecimal
 		e = parser.parseExpression("--bd");
 		assertTrue(new BigDecimal("2").equals(helper.bd));
-		BigDecimal return_bd = e.getValue(ctx,BigDecimal.class);
+		BigDecimal return_bd = e.getValue(ctx, BigDecimal.class);
 		assertTrue(new BigDecimal("1").equals(return_bd));
 		assertTrue(new BigDecimal("1").equals(helper.bd));
 
 		// double
 		e = parser.parseExpression("--ddd");
-		assertEquals(2.0d, helper.ddd,0d);
+		assertEquals(2.0d, helper.ddd, 0d);
 		double return_ddd = e.getValue(ctx, Double.TYPE);
-		assertEquals(1.0d, return_ddd,0d);
-		assertEquals(1.0d, helper.ddd,0d);
+		assertEquals(1.0d, return_ddd, 0d);
+		assertEquals(1.0d, helper.ddd, 0d);
 
 		// float
 		e = parser.parseExpression("--fff");
-		assertEquals(3.0f, helper.fff,0d);
+		assertEquals(3.0f, helper.fff, 0d);
 		float return_fff = e.getValue(ctx, Float.TYPE);
-		assertEquals(2.0f, return_fff,0d);
-		assertEquals(2.0f, helper.fff,0d);
+		assertEquals(2.0f, return_fff, 0d);
+		assertEquals(2.0f, helper.fff, 0d);
 
 		// long
 		e = parser.parseExpression("--lll");
@@ -986,7 +972,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		// short
 		e = parser.parseExpression("--sss");
 		assertEquals(15, helper.sss);
-		int return_sss = (Integer)e.getValue(ctx);
+		int return_sss = (Integer) e.getValue(ctx);
 		assertEquals(14, return_sss);
 		assertEquals(14, helper.sss);
 	}
@@ -1002,8 +988,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			e.getValue(ctx, Double.TYPE);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.OPERAND_NOT_DECREMENTABLE, see.getMessageCode());
 		}
 
@@ -1011,8 +996,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		try {
 			e.getValue(ctx, Double.TYPE);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.OPERAND_NOT_DECREMENTABLE, see.getMessageCode());
 		}
 	}
@@ -1027,16 +1011,14 @@ public class EvaluationTests extends AbstractExpressionTests {
 			Expression e = parser.parseExpression("--1");
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 		try {
 			Expression e = parser.parseExpression("1--");
 			e.getValue(ctx, Integer.class);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(SpelMessage.NOT_ASSIGNABLE, see.getMessageCode());
 		}
 	}
@@ -1056,13 +1038,13 @@ public class EvaluationTests extends AbstractExpressionTests {
 		assertEquals(4, helper.intArray[2]);
 
 		// index1 is 3 intArray[3] is 4
-		e =  parser.parseExpression("intArray[#root.index1++]--");
+		e = parser.parseExpression("intArray[#root.index1++]--");
 		assertEquals(4, e.getValue(ctx, Integer.class).intValue());
 		assertEquals(4, helper.index1);
 		assertEquals(3, helper.intArray[3]);
 
 		// index1 is 4, intArray[3] is 3
-		e =  parser.parseExpression("intArray[--#root.index1]++");
+		e = parser.parseExpression("intArray[--#root.index1]++");
 		assertEquals(3, e.getValue(ctx, Integer.class).intValue());
 		assertEquals(3, helper.index1);
 		assertEquals(4, helper.intArray[3]);
@@ -1311,7 +1293,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 		e = parser.parseExpression("#wibble=#wibble+#wibble");
 		String s = e.getValue(ctx, String.class);
 		assertEquals("hello worldhello world", s);
-		assertEquals("hello worldhello world",ctx.lookupVariable("wibble"));
+		assertEquals("hello worldhello world", ctx.lookupVariable("wibble"));
 
 		ctx.setVariable("wobble", 3);
 		e = parser.parseExpression("#wobble++");
@@ -1381,8 +1363,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 			SpelUtilities.printAbstractSyntaxTree(System.out, e);
 			e.getValue(eContext);
 			fail();
-		}
-		catch (SpelEvaluationException see) {
+		} catch (SpelEvaluationException see) {
 			assertEquals(messageCode, see.getMessageCode());
 		}
 	}
@@ -1408,7 +1389,7 @@ public class EvaluationTests extends AbstractExpressionTests {
 
 		@Override
 		public MethodExecutor resolve(EvaluationContext context, Object targetObject, String name,
-				List<TypeDescriptor> argumentTypes) throws AccessException {
+									  List<TypeDescriptor> argumentTypes) throws AccessException {
 			return null;
 		}
 	}
@@ -1436,10 +1417,21 @@ public class EvaluationTests extends AbstractExpressionTests {
 		private Map map2;
 		private List<String> foo;
 
-		public Map getMap2() { return this.map2; }
-		public Foo getWibble2() { return this.wibble2; }
-		public List<String> getFoo() { return this.foo; }
-		public void setFoo(List<String> newfoo) { this.foo = newfoo; }
+		public Map getMap2() {
+			return this.map2;
+		}
+
+		public Foo getWibble2() {
+			return this.wibble2;
+		}
+
+		public List<String> getFoo() {
+			return this.foo;
+		}
+
+		public void setFoo(List<String> newfoo) {
+			this.foo = newfoo;
+		}
 	}
 
 
@@ -1447,7 +1439,8 @@ public class EvaluationTests extends AbstractExpressionTests {
 
 		public String bar = "hello";
 
-		public Foo() {}
+		public Foo() {
+		}
 	}
 
 
@@ -1460,10 +1453,10 @@ public class EvaluationTests extends AbstractExpressionTests {
 		public float fff = 3.0f;
 		public long lll = 66666L;
 		public int iii = 42;
-		public short sss = (short)15;
+		public short sss = (short) 15;
 		public Spr9751_2 foo = new Spr9751_2();
 
-		public int[] intArray = new int[]{1,2,3,4,5};
+		public int[] intArray = new int[]{1, 2, 3, 4, 5};
 		public int index1 = 2;
 
 		public Integer[] integerArray;
@@ -1483,10 +1476,11 @@ public class EvaluationTests extends AbstractExpressionTests {
 			listOfStrings.add("abc");
 		}
 
-		public void m() {}
+		public void m() {
+		}
 
 		public static boolean isEven(int i) {
-			return (i%2)==0;
+			return (i % 2) == 0;
 		}
 	}
 

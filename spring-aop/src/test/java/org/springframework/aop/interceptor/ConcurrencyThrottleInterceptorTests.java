@@ -90,8 +90,7 @@ public class ConcurrencyThrottleInterceptorTests {
 		for (int i = 0; i < NR_OF_THREADS / 10; i++) {
 			try {
 				Thread.sleep(5);
-			}
-			catch (InterruptedException ex) {
+			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
 			threads[i] = new ConcurrencyThread(proxy,
@@ -101,8 +100,7 @@ public class ConcurrencyThrottleInterceptorTests {
 		for (int i = 0; i < NR_OF_THREADS; i++) {
 			try {
 				threads[i].join();
-			}
-			catch (InterruptedException ex) {
+			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
 		}
@@ -124,31 +122,25 @@ public class ConcurrencyThrottleInterceptorTests {
 			if (this.ex != null) {
 				try {
 					this.proxy.exceptional(this.ex);
-				}
-				catch (RuntimeException ex) {
+				} catch (RuntimeException ex) {
 					if (ex == this.ex) {
 						logger.debug("Expected exception thrown", ex);
-					}
-					else {
+					} else {
 						// should never happen
 						ex.printStackTrace();
 					}
-				}
-				catch (Error err) {
+				} catch (Error err) {
 					if (err == this.ex) {
 						logger.debug("Expected exception thrown", err);
-					}
-					else {
+					} else {
 						// should never happen
 						ex.printStackTrace();
 					}
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					// should never happen
 					ex.printStackTrace();
 				}
-			}
-			else {
+			} else {
 				for (int i = 0; i < NR_OF_ITERATIONS; i++) {
 					this.proxy.getName();
 				}

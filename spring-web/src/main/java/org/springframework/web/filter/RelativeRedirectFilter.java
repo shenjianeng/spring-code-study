@@ -48,6 +48,7 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 	/**
 	 * Set the default HTTP Status to use for redirects.
 	 * <p>By default this is {@link HttpStatus#SEE_OTHER}.
+	 *
 	 * @param status the 3xx redirect status to use
 	 */
 	public void setRedirectStatus(HttpStatus status) {
@@ -66,7 +67,7 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-			FilterChain filterChain) throws ServletException, IOException {
+									FilterChain filterChain) throws ServletException, IOException {
 
 		response = RelativeRedirectResponseWrapper.wrapIfNecessary(response, this.redirectStatus);
 		filterChain.doFilter(request, response);

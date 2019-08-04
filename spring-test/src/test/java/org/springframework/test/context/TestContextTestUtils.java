@@ -33,7 +33,7 @@ public abstract class TestContextTestUtils {
 	}
 
 	public static TestContext buildTestContext(Class<?> testClass,
-			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
+											   CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
 
 		BootstrapContext bootstrapContext = new DefaultBootstrapContext(testClass, cacheAwareContextLoaderDelegate);
 		TestContextBootstrapper testContextBootstrapper = BootstrapUtils.resolveTestContextBootstrapper(bootstrapContext);

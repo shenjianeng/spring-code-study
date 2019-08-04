@@ -30,8 +30,8 @@ import org.springframework.util.StringUtils;
  * a String argument. Converts empty Strings into null values.
  *
  * @author Juergen Hoeller
- * @since 1.2.3
  * @see javax.mail.internet.InternetAddress
+ * @since 1.2.3
  */
 public class InternetAddressEditor extends PropertyEditorSupport {
 
@@ -40,12 +40,10 @@ public class InternetAddressEditor extends PropertyEditorSupport {
 		if (StringUtils.hasText(text)) {
 			try {
 				setValue(new InternetAddress(text));
-			}
-			catch (AddressException ex) {
+			} catch (AddressException ex) {
 				throw new IllegalArgumentException("Could not parse mail address: " + ex.getMessage());
 			}
-		}
-		else {
+		} else {
 			setValue(null);
 		}
 	}

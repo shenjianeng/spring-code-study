@@ -70,8 +70,7 @@ public abstract class AbstractMBeanServerTests {
 		this.server = MBeanServerFactory.createMBeanServer();
 		try {
 			onSetUp();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			releaseServer();
 			throw ex;
 		}

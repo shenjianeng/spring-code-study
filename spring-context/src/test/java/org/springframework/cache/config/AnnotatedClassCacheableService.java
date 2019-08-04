@@ -203,31 +203,31 @@ public class AnnotatedClassCacheableService implements CacheableService<Object> 
 	// multi annotations
 
 	@Override
-	@Caching(cacheable = { @Cacheable("primary"), @Cacheable("secondary") })
+	@Caching(cacheable = {@Cacheable("primary"), @Cacheable("secondary")})
 	public Object multiCache(Object arg1) {
 		return this.counter.getAndIncrement();
 	}
 
 	@Override
-	@Caching(evict = { @CacheEvict("primary"), @CacheEvict(cacheNames = "secondary", key = "#a0"),  @CacheEvict(cacheNames = "primary", key = "#p0 + 'A'") })
+	@Caching(evict = {@CacheEvict("primary"), @CacheEvict(cacheNames = "secondary", key = "#a0"), @CacheEvict(cacheNames = "primary", key = "#p0 + 'A'")})
 	public Object multiEvict(Object arg1) {
 		return this.counter.getAndIncrement();
 	}
 
 	@Override
-	@Caching(cacheable = { @Cacheable(cacheNames = "primary", key = "#root.methodName") }, evict = { @CacheEvict("secondary") })
+	@Caching(cacheable = {@Cacheable(cacheNames = "primary", key = "#root.methodName")}, evict = {@CacheEvict("secondary")})
 	public Object multiCacheAndEvict(Object arg1) {
 		return this.counter.getAndIncrement();
 	}
 
 	@Override
-	@Caching(cacheable = { @Cacheable(cacheNames = "primary", condition = "#a0 == 3") }, evict = { @CacheEvict("secondary") })
+	@Caching(cacheable = {@Cacheable(cacheNames = "primary", condition = "#a0 == 3")}, evict = {@CacheEvict("secondary")})
 	public Object multiConditionalCacheAndEvict(Object arg1) {
 		return this.counter.getAndIncrement();
 	}
 
 	@Override
-	@Caching(put = { @CachePut("primary"), @CachePut("secondary") })
+	@Caching(put = {@CachePut("primary"), @CachePut("secondary")})
 	public Object multiUpdate(Object arg1) {
 		return arg1;
 	}

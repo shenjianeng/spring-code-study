@@ -56,7 +56,7 @@ public class ParserErrorMessagesTests extends AbstractExpressionTests {
 		// T() can only take an identifier (possibly qualified), not a literal
 		// message ought to say identifier rather than ID
 		parseAndCheckError("null instanceof T('a')", SpelMessage.NOT_EXPECTED_TOKEN, 18,
-				"qualified ID","literal_string");
+				"qualified ID", "literal_string");
 	}
 
 }

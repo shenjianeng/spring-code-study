@@ -155,7 +155,7 @@ public class ImportSelectorTests {
 		ordered.verify(beanFactory).registerBeanDefinition(eq("e"), any());
 		ordered.verify(beanFactory).registerBeanDefinition(eq("c"), any());
 		assertThat(TestImportGroup.instancesCount.get(), equalTo(2));
- 		assertThat(TestImportGroup.imports.size(), equalTo(2));
+		assertThat(TestImportGroup.imports.size(), equalTo(2));
 		assertThat(TestImportGroup.allImports(), hasEntry(
 				is(ParentConfiguration1.class.getName()),
 				IsIterableContainingInOrder.contains(DeferredImportSelector1.class.getName(),
@@ -238,7 +238,7 @@ public class ImportSelectorTests {
 
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-			return new String[] {};
+			return new String[]{};
 		}
 	}
 
@@ -262,7 +262,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { ImportedSelector1.class.getName() };
+			return new String[]{ImportedSelector1.class.getName()};
 		}
 	}
 
@@ -272,7 +272,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { ImportedSelector2.class.getName() };
+			return new String[]{ImportedSelector2.class.getName()};
 		}
 	}
 
@@ -282,7 +282,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportedSelector1.class.getName() };
+			return new String[]{DeferredImportedSelector1.class.getName()};
 		}
 
 		@Override
@@ -298,7 +298,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportedSelector2.class.getName() };
+			return new String[]{DeferredImportedSelector2.class.getName()};
 		}
 	}
 
@@ -362,7 +362,7 @@ public class ImportSelectorTests {
 
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-			return new String[] {IndirectImport.class.getName()};
+			return new String[]{IndirectImport.class.getName()};
 		}
 	}
 
@@ -425,7 +425,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportSelector1.class.getName(), ChildConfiguration1.class.getName() };
+			return new String[]{DeferredImportSelector1.class.getName(), ChildConfiguration1.class.getName()};
 		}
 
 		@Nullable
@@ -446,7 +446,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportSelector2.class.getName(), ChildConfiguration2.class.getName() };
+			return new String[]{DeferredImportSelector2.class.getName(), ChildConfiguration2.class.getName()};
 		}
 
 		@Nullable
@@ -469,7 +469,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportedSelector3.class.getName() };
+			return new String[]{DeferredImportedSelector3.class.getName()};
 		}
 
 		@Nullable
@@ -491,7 +491,7 @@ public class ImportSelectorTests {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
-			return new String[] { DeferredImportSelector2.class.getName() };
+			return new String[]{DeferredImportSelector2.class.getName()};
 		}
 
 		@Nullable
@@ -533,6 +533,7 @@ public class ImportSelectorTests {
 					.collect(Collectors.toMap((entry) -> entry.getKey().getClassName(),
 							Map.Entry::getValue));
 		}
+
 		private final List<Entry> instanceImports = new ArrayList<>();
 
 		@Override

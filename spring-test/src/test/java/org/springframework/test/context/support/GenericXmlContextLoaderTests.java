@@ -28,8 +28,8 @@ import static org.hamcrest.CoreMatchers.*;
  * Unit tests for {@link GenericXmlContextLoader}.
  *
  * @author Sam Brannen
- * @since 4.0.4
  * @see GenericXmlContextLoaderResourceLocationsTests
+ * @since 4.0.4
  */
 public class GenericXmlContextLoaderTests {
 
@@ -46,7 +46,7 @@ public class GenericXmlContextLoaderTests {
 
 		GenericXmlContextLoader loader = new GenericXmlContextLoader();
 		MergedContextConfiguration mergedConfig = new MergedContextConfiguration(getClass(), EMPTY_STRING_ARRAY,
-			new Class<?>[] { getClass() }, EMPTY_STRING_ARRAY, loader);
+				new Class<?>[]{getClass()}, EMPTY_STRING_ARRAY, loader);
 		loader.loadContext(mergedConfig);
 	}
 

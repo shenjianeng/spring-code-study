@@ -35,8 +35,8 @@ import org.springframework.util.Assert;
  * delegate to the target DataSource.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #getConnection
+ * @since 1.1
  */
 public class DelegatingDataSource implements DataSource, InitializingBean {
 
@@ -46,6 +46,7 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 	/**
 	 * Create a new DelegatingDataSource.
+	 *
 	 * @see #setTargetDataSource
 	 */
 	public DelegatingDataSource() {
@@ -53,6 +54,7 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 	/**
 	 * Create a new DelegatingDataSource.
+	 *
 	 * @param targetDataSource the target DataSource
 	 */
 	public DelegatingDataSource(DataSource targetDataSource) {
@@ -77,6 +79,7 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 	/**
 	 * Obtain the target {@code DataSource} for actual use (never {@code null}).
+	 *
 	 * @since 5.0
 	 */
 	protected DataSource obtainTargetDataSource() {

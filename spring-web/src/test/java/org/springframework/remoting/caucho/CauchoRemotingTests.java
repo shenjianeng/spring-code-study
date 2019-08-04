@@ -131,8 +131,7 @@ public class CauchoRemotingTests {
 			assertEquals("tb", proxy.getName());
 			proxy.setName("test");
 			assertEquals("test", proxy.getName());
-		}
-		finally {
+		} finally {
 			server.stop(Integer.MAX_VALUE);
 		}
 	}

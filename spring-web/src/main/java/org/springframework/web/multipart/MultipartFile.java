@@ -37,14 +37,15 @@ import org.springframework.util.FileCopyUtils;
  *
  * @author Juergen Hoeller
  * @author Trevor D. Cook
- * @since 29.09.2003
  * @see org.springframework.web.multipart.MultipartHttpServletRequest
  * @see org.springframework.web.multipart.MultipartResolver
+ * @since 29.09.2003
  */
 public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Return the name of the parameter in the multipart form.
+	 *
 	 * @return the name of the parameter (never {@code null} or empty)
 	 */
 	String getName();
@@ -53,6 +54,7 @@ public interface MultipartFile extends InputStreamSource {
 	 * Return the original filename in the client's filesystem.
 	 * <p>This may contain path information depending on the browser used,
 	 * but it typically will not with any other than Opera.
+	 *
 	 * @return the original filename, or the empty String if no file has been chosen
 	 * in the multipart form, or {@code null} if not defined or not available
 	 * @see org.apache.commons.fileupload.FileItem#getName()
@@ -63,6 +65,7 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Return the content type of the file.
+	 *
 	 * @return the content type, or {@code null} if not defined
 	 * (or no file has been chosen in the multipart form)
 	 */
@@ -77,12 +80,14 @@ public interface MultipartFile extends InputStreamSource {
 
 	/**
 	 * Return the size of the file in bytes.
+	 *
 	 * @return the size of the file, or 0 if empty
 	 */
 	long getSize();
 
 	/**
 	 * Return the contents of the file as an array of bytes.
+	 *
 	 * @return the contents of the file as bytes, or an empty byte array if empty
 	 * @throws IOException in case of access errors (if the temporary store fails)
 	 */
@@ -91,6 +96,7 @@ public interface MultipartFile extends InputStreamSource {
 	/**
 	 * Return an InputStream to read the contents of the file from.
 	 * <p>The user is responsible for closing the returned stream.
+	 *
 	 * @return the contents of the file as stream, or an empty stream if empty
 	 * @throws IOException in case of access errors (if the temporary store fails)
 	 */
@@ -101,6 +107,7 @@ public interface MultipartFile extends InputStreamSource {
 	 * Return a Resource representation of this MultipartFile. This can be used
 	 * as input to the {@code RestTemplate} or the {@code WebClient} to expose
 	 * content length and the filename along with the InputStream.
+	 *
 	 * @return this MultipartFile adapted to the Resource contract
 	 * @since 5.1
 	 */
@@ -121,10 +128,11 @@ public interface MultipartFile extends InputStreamSource {
 	 * destinations specified here (e.g. with Servlet 3.0 multipart handling).
 	 * For absolute destinations, the target file may get renamed/moved from its
 	 * temporary location or newly copied, even if a temporary copy already exists.
+	 *
 	 * @param dest the destination file (typically absolute)
-	 * @throws IOException in case of reading or writing errors
+	 * @throws IOException           in case of reading or writing errors
 	 * @throws IllegalStateException if the file has already been moved
-	 * in the filesystem and is not available anymore for another transfer
+	 *                               in the filesystem and is not available anymore for another transfer
 	 * @see org.apache.commons.fileupload.FileItem#write(File)
 	 * @see javax.servlet.http.Part#write(String)
 	 */
@@ -133,10 +141,11 @@ public interface MultipartFile extends InputStreamSource {
 	/**
 	 * Transfer the received file to the given destination file.
 	 * <p>The default implementation simply copies the file input stream.
-	 * @since 5.1
+	 *
 	 * @see #getInputStream()
 	 * @see #transferTo(File)
- 	 */
+	 * @since 5.1
+	 */
 	default void transferTo(Path dest) throws IOException, IllegalStateException {
 		FileCopyUtils.copy(getInputStream(), Files.newOutputStream(dest));
 	}

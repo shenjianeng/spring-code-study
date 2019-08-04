@@ -42,7 +42,7 @@ abstract class ParserStrategyUtils {
 	 * if implemented by the given object.
 	 */
 	public static void invokeAwareMethods(Object parserStrategyBean, Environment environment,
-			ResourceLoader resourceLoader, BeanDefinitionRegistry registry) {
+										  ResourceLoader resourceLoader, BeanDefinitionRegistry registry) {
 
 		if (parserStrategyBean instanceof Aware) {
 			if (parserStrategyBean instanceof BeanClassLoaderAware) {

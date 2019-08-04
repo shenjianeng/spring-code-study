@@ -55,8 +55,7 @@ public class WebSphereRequestUpgradeStrategy extends AbstractStandardUpgradeStra
 			Class<?> type = loader.loadClass("com.ibm.websphere.wsoc.WsWsocServerContainer");
 			upgradeMethod = type.getMethod("doUpgrade", HttpServletRequest.class,
 					HttpServletResponse.class, ServerEndpointConfig.class, Map.class);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException("No compatible WebSphere version found", ex);
 		}
 	}
@@ -64,12 +63,12 @@ public class WebSphereRequestUpgradeStrategy extends AbstractStandardUpgradeStra
 
 	@Override
 	public String[] getSupportedVersions() {
-		return new String[] {"13"};
+		return new String[]{"13"};
 	}
 
 	@Override
 	public void upgradeInternal(ServerHttpRequest httpRequest, ServerHttpResponse httpResponse,
-			@Nullable String selectedProtocol, List<Extension> selectedExtensions, Endpoint endpoint)
+								@Nullable String selectedProtocol, List<Extension> selectedExtensions, Endpoint endpoint)
 			throws HandshakeFailureException {
 
 		HttpServletRequest request = getHttpServletRequest(httpRequest);
@@ -77,7 +76,7 @@ public class WebSphereRequestUpgradeStrategy extends AbstractStandardUpgradeStra
 
 		StringBuffer requestUrl = request.getRequestURL();
 		String path = request.getRequestURI();  // shouldn't matter
-		Map<String, String> pathParams = Collections.<String, String> emptyMap();
+		Map<String, String> pathParams = Collections.<String, String>emptyMap();
 
 		ServerEndpointRegistration endpointConfig = new ServerEndpointRegistration(path, endpoint);
 		endpointConfig.setSubprotocols(Collections.singletonList(selectedProtocol));
@@ -86,8 +85,7 @@ public class WebSphereRequestUpgradeStrategy extends AbstractStandardUpgradeStra
 		try {
 			ServerContainer container = getContainer(request);
 			upgradeMethod.invoke(container, request, response, endpointConfig, pathParams);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HandshakeFailureException(
 					"Servlet request failed to upgrade to WebSocket for " + requestUrl, ex);
 		}

@@ -166,14 +166,11 @@ public class WebSocketHttpRequestHandler implements HttpRequestHandler, Lifecycl
 			}
 			this.handshakeHandler.doHandshake(request, response, this.wsHandler, attributes);
 			chain.applyAfterHandshake(request, response, null);
-		}
-		catch (HandshakeFailureException ex) {
+		} catch (HandshakeFailureException ex) {
 			failure = ex;
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			failure = new HandshakeFailureException("Uncaught failure for request " + request.getURI(), ex);
-		}
-		finally {
+		} finally {
 			if (failure != null) {
 				chain.applyAfterHandshake(request, response, failure);
 				response.close();

@@ -43,8 +43,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 3.0
  * @see DateTimeFormat
+ * @since 3.0
  */
 public class JodaDateTimeFormatAnnotationFormatterFactory extends EmbeddedValueResolutionSupport
 		implements AnnotationFormatterFactory<DateTimeFormat> {
@@ -80,12 +80,10 @@ public class JodaDateTimeFormatAnnotationFormatterFactory extends EmbeddedValueR
 		DateTimeFormatter formatter = getFormatter(annotation, fieldType);
 		if (ReadablePartial.class.isAssignableFrom(fieldType)) {
 			return new ReadablePartialPrinter(formatter);
-		}
-		else if (ReadableInstant.class.isAssignableFrom(fieldType) || Calendar.class.isAssignableFrom(fieldType)) {
+		} else if (ReadableInstant.class.isAssignableFrom(fieldType) || Calendar.class.isAssignableFrom(fieldType)) {
 			// assumes Calendar->ReadableInstant converter is registered
 			return new ReadableInstantPrinter(formatter);
-		}
-		else {
+		} else {
 			// assumes Date->Long converter is registered
 			return new MillisecondInstantPrinter(formatter);
 		}
@@ -95,22 +93,20 @@ public class JodaDateTimeFormatAnnotationFormatterFactory extends EmbeddedValueR
 	public Parser<?> getParser(DateTimeFormat annotation, Class<?> fieldType) {
 		if (LocalDate.class == fieldType) {
 			return new LocalDateParser(getFormatter(annotation, fieldType));
-		}
-		else if (LocalTime.class == fieldType) {
+		} else if (LocalTime.class == fieldType) {
 			return new LocalTimeParser(getFormatter(annotation, fieldType));
-		}
-		else if (LocalDateTime.class == fieldType) {
+		} else if (LocalDateTime.class == fieldType) {
 			return new LocalDateTimeParser(getFormatter(annotation, fieldType));
-		}
-		else {
+		} else {
 			return new DateTimeParser(getFormatter(annotation, fieldType));
 		}
 	}
 
 	/**
 	 * Factory method used to create a {@link DateTimeFormatter}.
+	 *
 	 * @param annotation the format annotation for the field
-	 * @param fieldType the type of field
+	 * @param fieldType  the type of field
 	 * @return a {@link DateTimeFormatter} instance
 	 * @since 3.2
 	 */

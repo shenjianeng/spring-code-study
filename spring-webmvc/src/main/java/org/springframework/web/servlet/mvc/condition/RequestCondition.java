@@ -28,17 +28,18 @@ import org.springframework.lang.Nullable;
  * to each other via {@link #compareTo(Object, HttpServletRequest)} to determine
  * which is a closer match for a given request.
  *
+ * @param <T> the type of objects that this RequestCondition can be combined
+ *            with and compared to
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @since 3.1
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
  */
 public interface RequestCondition<T> {
 
 	/**
 	 * Combine this condition with another such as conditions from a
 	 * type-level and method-level {@code @RequestMapping} annotation.
+	 *
 	 * @param other the condition to combine with.
 	 * @return a request condition instance that is the result of combining
 	 * the two condition instances.
@@ -55,6 +56,7 @@ public interface RequestCondition<T> {
 	 * from the "Access-Control-Request-Method" header). If a condition cannot
 	 * be matched to a pre-flight request it should return an instance with
 	 * empty content thus not causing a failure to match.
+	 *
 	 * @return a condition instance in case of a match or {@code null} otherwise.
 	 */
 	@Nullable

@@ -86,12 +86,10 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 				ClientHttpResponse response = validateRequestInternal(request);
 				if (response != null) {
 					return response;
-				}
-				else {
+				} else {
 					expectation = matchRequest(request);
 				}
-			}
-			finally {
+			} finally {
 				this.requests.add(request);
 			}
 		}
@@ -108,6 +106,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	/**
 	 * Subclasses must implement the actual validation of the request
 	 * matching to declared expectations.
+	 *
 	 * @deprecated as of 5.0.3, subclasses should implement {@link #matchRequest(ClientHttpRequest)}
 	 * instead and return only the matched expectation, leaving the call to create the response
 	 * as a separate step (to be invoked by this class).
@@ -123,6 +122,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	 * {@link #validateRequestInternal(ClientHttpRequest)} in order to match the
 	 * request to an expectation, leaving the call to create the response as a separate step
 	 * (to be invoked by this class).
+	 *
 	 * @param request the current request
 	 * @return the matched expectation with its request count updated via
 	 * {@link RequestExpectation#incrementAndValidate()}.
@@ -161,8 +161,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 			for (ClientHttpRequest request : this.requests) {
 				sb.append(request.toString()).append("\n");
 			}
-		}
-		else {
+		} else {
 			sb.append(".\n");
 		}
 		return sb.toString();
@@ -210,8 +209,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 				try {
 					expectation.match(request);
 					return expectation;
-				}
-				catch (AssertionError error) {
+				} catch (AssertionError error) {
 					// We're looking to find a match or return null..
 				}
 			}
@@ -231,14 +229,14 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 		private void updateInternal(RequestExpectation expectation) {
 			if (expectation.hasRemainingCount()) {
 				this.expectations.add(expectation);
-			}
-			else {
+			} else {
 				this.expectations.remove(expectation);
 			}
 		}
 
 		/**
 		 * Add expectations to this group.
+		 *
 		 * @deprecated as of 5.0.3, if favor of {@link #addAllExpectations}
 		 */
 		@Deprecated

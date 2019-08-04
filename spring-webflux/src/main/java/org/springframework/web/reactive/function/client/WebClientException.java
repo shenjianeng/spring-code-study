@@ -30,6 +30,7 @@ public abstract class WebClientException extends NestedRuntimeException {
 
 	/**
 	 * Construct a new instance of {@code WebClientException} with the given message.
+	 *
 	 * @param msg the message
 	 */
 	public WebClientException(String msg) {
@@ -39,8 +40,9 @@ public abstract class WebClientException extends NestedRuntimeException {
 	/**
 	 * Construct a new instance of {@code WebClientException} with the given message
 	 * and exception.
+	 *
 	 * @param msg the message
-	 * @param ex the exception
+	 * @param ex  the exception
 	 */
 	public WebClientException(String msg, Throwable ex) {
 		super(msg, ex);

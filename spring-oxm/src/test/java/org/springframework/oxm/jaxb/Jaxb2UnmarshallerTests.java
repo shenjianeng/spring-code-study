@@ -126,7 +126,7 @@ public class Jaxb2UnmarshallerTests extends AbstractUnmarshallerTests<Jaxb2Marsh
 	public void unmarshalAnXmlReferingToAWrappedXmlElementDecl() throws Exception {
 		// SPR-10714
 		unmarshaller = new Jaxb2Marshaller();
-		unmarshaller.setPackagesToScan(new String[] { "org.springframework.oxm.jaxb" });
+		unmarshaller.setPackagesToScan(new String[]{"org.springframework.oxm.jaxb"});
 		unmarshaller.afterPropertiesSet();
 		Source source = new StreamSource(new StringReader(
 				"<brand-airplane><name>test</name></brand-airplane>"));

@@ -33,8 +33,8 @@ import org.springframework.util.ClassUtils;
  * from the payload type to the requested type.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see ConversionService
+ * @since 4.1
  */
 public class GenericMessageConverter extends SimpleMessageConverter {
 
@@ -64,8 +64,7 @@ public class GenericMessageConverter extends SimpleMessageConverter {
 		if (this.conversionService.canConvert(payload.getClass(), targetClass)) {
 			try {
 				return this.conversionService.convert(payload, targetClass);
-			}
-			catch (ConversionException ex) {
+			} catch (ConversionException ex) {
 				throw new MessageConversionException(message, "Failed to convert message payload '" +
 						payload + "' to '" + targetClass.getName() + "'", ex);
 			}

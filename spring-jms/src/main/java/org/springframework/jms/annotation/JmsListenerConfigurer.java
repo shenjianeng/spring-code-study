@@ -29,9 +29,9 @@ import org.springframework.jms.config.JmsListenerEndpointRegistrar;
  * <p>See @{@link EnableJms} for detailed usage examples.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see EnableJms
  * @see JmsListenerEndpointRegistrar
+ * @since 4.1
  */
 @FunctionalInterface
 public interface JmsListenerConfigurer {
@@ -43,6 +43,7 @@ public interface JmsListenerConfigurer {
 	 * {@link JmsListenerEndpointRegistrar}. The default
 	 * {@link org.springframework.jms.config.JmsListenerContainerFactory JmsListenerContainerFactory}
 	 * can also be customized.
+	 *
 	 * @param registrar the registrar to be configured
 	 */
 	void configureJmsListeners(JmsListenerEndpointRegistrar registrar);

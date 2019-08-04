@@ -52,7 +52,7 @@ public class SqlScriptsTestExecutionListenerTests {
 	@Test
 	public void missingValueAndScriptsAndStatementsAtClassLevel() throws Exception {
 		Class<?> clazz = MissingValueAndScriptsAndStatementsAtClassLevel.class;
-		BDDMockito.<Class<?>> given(testContext.getTestClass()).willReturn(clazz);
+		BDDMockito.<Class<?>>given(testContext.getTestClass()).willReturn(clazz);
 		given(testContext.getTestMethod()).willReturn(clazz.getDeclaredMethod("foo"));
 
 		assertExceptionContains(clazz.getSimpleName() + ".sql");
@@ -61,7 +61,7 @@ public class SqlScriptsTestExecutionListenerTests {
 	@Test
 	public void missingValueAndScriptsAndStatementsAtMethodLevel() throws Exception {
 		Class<?> clazz = MissingValueAndScriptsAndStatementsAtMethodLevel.class;
-		BDDMockito.<Class<?>> given(testContext.getTestClass()).willReturn(clazz);
+		BDDMockito.<Class<?>>given(testContext.getTestClass()).willReturn(clazz);
 		given(testContext.getTestMethod()).willReturn(clazz.getDeclaredMethod("foo"));
 
 		assertExceptionContains(clazz.getSimpleName() + ".foo" + ".sql");
@@ -70,7 +70,7 @@ public class SqlScriptsTestExecutionListenerTests {
 	@Test
 	public void valueAndScriptsDeclared() throws Exception {
 		Class<?> clazz = ValueAndScriptsDeclared.class;
-		BDDMockito.<Class<?>> given(testContext.getTestClass()).willReturn(clazz);
+		BDDMockito.<Class<?>>given(testContext.getTestClass()).willReturn(clazz);
 		given(testContext.getTestMethod()).willReturn(clazz.getDeclaredMethod("foo"));
 
 		exception.expect(AnnotationConfigurationException.class);
@@ -90,7 +90,7 @@ public class SqlScriptsTestExecutionListenerTests {
 		given(ctx.getAutowireCapableBeanFactory()).willReturn(mock(AutowireCapableBeanFactory.class));
 
 		Class<?> clazz = IsolatedWithoutTxMgr.class;
-		BDDMockito.<Class<?>> given(testContext.getTestClass()).willReturn(clazz);
+		BDDMockito.<Class<?>>given(testContext.getTestClass()).willReturn(clazz);
 		given(testContext.getTestMethod()).willReturn(clazz.getDeclaredMethod("foo"));
 		given(testContext.getApplicationContext()).willReturn(ctx);
 
@@ -104,7 +104,7 @@ public class SqlScriptsTestExecutionListenerTests {
 		given(ctx.getAutowireCapableBeanFactory()).willReturn(mock(AutowireCapableBeanFactory.class));
 
 		Class<?> clazz = MissingDataSourceAndTxMgr.class;
-		BDDMockito.<Class<?>> given(testContext.getTestClass()).willReturn(clazz);
+		BDDMockito.<Class<?>>given(testContext.getTestClass()).willReturn(clazz);
 		given(testContext.getTestMethod()).willReturn(clazz.getDeclaredMethod("foo"));
 		given(testContext.getApplicationContext()).willReturn(ctx);
 
@@ -115,8 +115,7 @@ public class SqlScriptsTestExecutionListenerTests {
 		try {
 			listener.beforeTestMethod(testContext);
 			fail("Should have thrown an IllegalStateException.");
-		}
-		catch (IllegalStateException e) {
+		} catch (IllegalStateException e) {
 			// System.err.println(e.getMessage());
 			assertTrue("Exception message should contain: " + msg, e.getMessage().contains(msg));
 		}

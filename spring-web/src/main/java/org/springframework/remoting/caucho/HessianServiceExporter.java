@@ -38,11 +38,11 @@ import org.springframework.web.util.NestedServletException;
  * any Hessian client, as there isn't any special handling involved.
  *
  * @author Juergen Hoeller
- * @since 13.05.2003
  * @see HessianClientInterceptor
  * @see HessianProxyFactoryBean
  * @see org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter
  * @see org.springframework.remoting.rmi.RmiServiceExporter
+ * @since 13.05.2003
  */
 public class HessianServiceExporter extends HessianExporter implements HttpRequestHandler {
 
@@ -55,14 +55,13 @@ public class HessianServiceExporter extends HessianExporter implements HttpReque
 
 		if (!"POST".equals(request.getMethod())) {
 			throw new HttpRequestMethodNotSupportedException(request.getMethod(),
-					new String[] {"POST"}, "HessianServiceExporter only supports POST requests");
+					new String[]{"POST"}, "HessianServiceExporter only supports POST requests");
 		}
 
 		response.setContentType(CONTENT_TYPE_HESSIAN);
 		try {
 			invoke(request.getInputStream(), response.getOutputStream());
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new NestedServletException("Hessian skeleton invocation failed", ex);
 		}
 	}

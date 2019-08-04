@@ -76,13 +76,13 @@ public @interface ConfigClassesAndProfileResolverWithCustomDefaultsMetaConfig {
 
 		@Override
 		public String[] resolve(Class<?> testClass) {
-			return testClass.getSimpleName().equals("ConfigClassesAndProfileResolverWithCustomDefaultsMetaConfigTests") ? new String[] { "resolver" }
-					: new String[] {};
+			return testClass.getSimpleName().equals("ConfigClassesAndProfileResolverWithCustomDefaultsMetaConfigTests") ? new String[]{"resolver"}
+					: new String[]{};
 		}
 	}
 
 
-	Class<?>[] classes() default { DevConfig.class, ProductionConfig.class, ResolverConfig.class };
+	Class<?>[] classes() default {DevConfig.class, ProductionConfig.class, ResolverConfig.class};
 
 	Class<? extends ActiveProfilesResolver> resolver() default CustomResolver.class;
 

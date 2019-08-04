@@ -43,6 +43,7 @@ public abstract class DigestUtils {
 
 	/**
 	 * Calculate the MD5 digest of the given bytes.
+	 *
 	 * @param bytes the bytes to calculate the digest over
 	 * @return the digest
 	 */
@@ -52,6 +53,7 @@ public abstract class DigestUtils {
 
 	/**
 	 * Calculate the MD5 digest of the given stream.
+	 *
 	 * @param inputStream the InputStream to calculate the digest over
 	 * @return the digest
 	 * @since 4.2
@@ -62,6 +64,7 @@ public abstract class DigestUtils {
 
 	/**
 	 * Return a hexadecimal string representation of the MD5 digest of the given bytes.
+	 *
 	 * @param bytes the bytes to calculate the digest over
 	 * @return a hexadecimal digest string
 	 */
@@ -71,6 +74,7 @@ public abstract class DigestUtils {
 
 	/**
 	 * Return a hexadecimal string representation of the MD5 digest of the given stream.
+	 *
 	 * @param inputStream the InputStream to calculate the digest over
 	 * @return a hexadecimal digest string
 	 * @since 4.2
@@ -82,7 +86,8 @@ public abstract class DigestUtils {
 	/**
 	 * Append a hexadecimal string representation of the MD5 digest of the given
 	 * bytes to the given {@link StringBuilder}.
-	 * @param bytes the bytes to calculate the digest over
+	 *
+	 * @param bytes   the bytes to calculate the digest over
 	 * @param builder the string builder to append the digest to
 	 * @return the given string builder
 	 */
@@ -93,8 +98,9 @@ public abstract class DigestUtils {
 	/**
 	 * Append a hexadecimal string representation of the MD5 digest of the given
 	 * inputStream to the given {@link StringBuilder}.
+	 *
 	 * @param inputStream the inputStream to calculate the digest over
-	 * @param builder the string builder to append the digest to
+	 * @param builder     the string builder to append the digest to
 	 * @return the given string builder
 	 * @since 4.2
 	 */
@@ -110,8 +116,7 @@ public abstract class DigestUtils {
 	private static MessageDigest getDigest(String algorithm) {
 		try {
 			return MessageDigest.getInstance(algorithm);
-		}
-		catch (NoSuchAlgorithmException ex) {
+		} catch (NoSuchAlgorithmException ex) {
 			throw new IllegalStateException("Could not find MessageDigest with algorithm \"" + algorithm + "\"", ex);
 		}
 	}
@@ -122,11 +127,10 @@ public abstract class DigestUtils {
 
 	private static byte[] digest(String algorithm, InputStream inputStream) throws IOException {
 		MessageDigest messageDigest = getDigest(algorithm);
-		if (inputStream instanceof UpdateMessageDigestInputStream){
+		if (inputStream instanceof UpdateMessageDigestInputStream) {
 			((UpdateMessageDigestInputStream) inputStream).updateMessageDigest(messageDigest);
 			return messageDigest.digest();
-		}
-		else {
+		} else {
 			final byte[] buffer = new byte[StreamUtils.BUFFER_SIZE];
 			int bytesRead = -1;
 			while ((bytesRead = inputStream.read(buffer)) != -1) {

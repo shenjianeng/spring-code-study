@@ -219,19 +219,16 @@ public class GenericMessagingTemplateTests {
 				MessageChannel replyChannel = (MessageChannel) message.getHeaders().getReplyChannel();
 				replyChannel.send(new GenericMessage<>("response"));
 				failure.set(new IllegalStateException("Expected exception"));
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				failure.set(e);
-			}
-			catch (MessageDeliveryException ex) {
+			} catch (MessageDeliveryException ex) {
 				String expected = "Reply message received but the receiving thread has exited due to a timeout";
 				String actual = ex.getMessage();
 				if (!expected.equals(actual)) {
 					failure.set(new IllegalStateException(
 							"Unexpected error: '" + actual + "'"));
 				}
-			}
-			finally {
+			} finally {
 				latch.countDown();
 			}
 		};

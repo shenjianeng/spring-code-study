@@ -120,7 +120,7 @@ public class CollectionMergingTests {
 		Properties props = bean.getSomeProperties();
 		assertEquals("Incorrect size", 3, props.size());
 		assertEquals("Sally", props.getProperty("Rob"));
-		assertEquals("Kerry",props.getProperty("Rod"));
+		assertEquals("Kerry", props.getProperty("Rod"));
 		assertEquals("Eva", props.getProperty("Juergen"));
 	}
 

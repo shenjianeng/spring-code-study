@@ -62,7 +62,7 @@ public @interface ConfigClassesAndProfilesWithCustomDefaultsMetaConfig {
 	}
 
 
-	Class<?>[] classes() default { DevConfig.class, ProductionConfig.class };
+	Class<?>[] classes() default {DevConfig.class, ProductionConfig.class};
 
 	String[] profiles() default "dev";
 

@@ -96,23 +96,25 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 
 	/**
 	 * Basic constructor with a default {@link ReactiveAdapterRegistry}.
-	 * @param viewResolvers the resolver to use
+	 *
+	 * @param viewResolvers       the resolver to use
 	 * @param contentTypeResolver to determine the requested content type
 	 */
 	public ViewResolutionResultHandler(List<ViewResolver> viewResolvers,
-			RequestedContentTypeResolver contentTypeResolver) {
+									   RequestedContentTypeResolver contentTypeResolver) {
 
 		this(viewResolvers, contentTypeResolver, ReactiveAdapterRegistry.getSharedInstance());
 	}
 
 	/**
 	 * Constructor with an {@link ReactiveAdapterRegistry} instance.
-	 * @param viewResolvers the view resolver to use
+	 *
+	 * @param viewResolvers       the view resolver to use
 	 * @param contentTypeResolver to determine the requested content type
-	 * @param registry for adaptation to reactive types
+	 * @param registry            for adaptation to reactive types
 	 */
 	public ViewResolutionResultHandler(List<ViewResolver> viewResolvers,
-			RequestedContentTypeResolver contentTypeResolver, ReactiveAdapterRegistry registry) {
+									   RequestedContentTypeResolver contentTypeResolver, ReactiveAdapterRegistry registry) {
 
 		super(contentTypeResolver, registry);
 		this.viewResolvers.addAll(viewResolvers);
@@ -188,8 +190,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 
 			valueType = (adapter.isNoValue() ? ResolvableType.forClass(Void.class) :
 					result.getReturnType().getGeneric());
-		}
-		else {
+		} else {
 			valueMono = Mono.justOrEmpty(result.getReturnValue());
 			valueType = result.getReturnType();
 		}
@@ -210,11 +211,9 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 
 					if (returnValue == NO_VALUE || clazz == void.class || clazz == Void.class) {
 						viewsMono = resolveViews(getDefaultViewName(exchange), locale);
-					}
-					else if (CharSequence.class.isAssignableFrom(clazz) && !hasModelAnnotation(parameter)) {
+					} else if (CharSequence.class.isAssignableFrom(clazz) && !hasModelAnnotation(parameter)) {
 						viewsMono = resolveViews(returnValue.toString(), locale);
-					}
-					else if (Rendering.class.isAssignableFrom(clazz)) {
+					} else if (Rendering.class.isAssignableFrom(clazz)) {
 						Rendering render = (Rendering) returnValue;
 						HttpStatus status = render.status();
 						if (status != null) {
@@ -228,19 +227,15 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 						}
 						viewsMono = (view instanceof String ? resolveViews((String) view, locale) :
 								Mono.just(Collections.singletonList((View) view)));
-					}
-					else if (Model.class.isAssignableFrom(clazz)) {
+					} else if (Model.class.isAssignableFrom(clazz)) {
 						model.addAllAttributes(((Model) returnValue).asMap());
 						viewsMono = resolveViews(getDefaultViewName(exchange), locale);
-					}
-					else if (Map.class.isAssignableFrom(clazz) && !hasModelAnnotation(parameter)) {
+					} else if (Map.class.isAssignableFrom(clazz) && !hasModelAnnotation(parameter)) {
 						model.addAllAttributes((Map<String, ?>) returnValue);
 						viewsMono = resolveViews(getDefaultViewName(exchange), locale);
-					}
-					else if (View.class.isAssignableFrom(clazz)) {
+					} else if (View.class.isAssignableFrom(clazz)) {
 						viewsMono = Mono.just(Collections.singletonList((View) returnValue));
-					}
-					else {
+					} else {
 						String name = getNameForReturnValue(parameter);
 						model.addAttribute(name, returnValue);
 						viewsMono = resolveViews(getDefaultViewName(exchange), locale);
@@ -309,7 +304,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 	}
 
 	private Mono<? extends Void> render(List<View> views, Map<String, Object> model,
-			BindingContext bindingContext, ServerWebExchange exchange) {
+										BindingContext bindingContext, ServerWebExchange exchange) {
 
 		for (View view : views) {
 			if (view.isRedirectView()) {
@@ -331,7 +326,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport
 	}
 
 	private Mono<? extends Void> renderWith(View view, Map<String, Object> model,
-			@Nullable MediaType mediaType, ServerWebExchange exchange, BindingContext bindingContext) {
+											@Nullable MediaType mediaType, ServerWebExchange exchange, BindingContext bindingContext) {
 
 		exchange.getAttributes().put(View.BINDING_CONTEXT_ATTRIBUTE, bindingContext);
 		return view.render(model, mediaType, exchange)

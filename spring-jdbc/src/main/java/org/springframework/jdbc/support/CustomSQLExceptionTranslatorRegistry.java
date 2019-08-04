@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * named "sql-error-codes.xml".
  *
  * @author Thomas Risberg
- * @since 3.1.1
  * @see SQLErrorCodesFactory
+ * @since 3.1.1
  */
 public final class CustomSQLExceptionTranslatorRegistry {
 
@@ -69,7 +69,8 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 	/**
 	 * Register a new custom translator for the specified database name.
-	 * @param dbName the database name
+	 *
+	 * @param dbName     the database name
 	 * @param translator the custom translator
 	 */
 	public void registerTranslator(String dbName, SQLExceptionTranslator translator) {
@@ -78,8 +79,7 @@ public final class CustomSQLExceptionTranslatorRegistry {
 			if (replaced != null) {
 				logger.debug("Replacing custom translator [" + replaced + "] for database '" + dbName +
 						"' with [" + translator + "]");
-			}
-			else {
+			} else {
 				logger.debug("Adding custom translator of type [" + translator.getClass().getName() +
 						"] for database '" + dbName + "'");
 			}
@@ -88,6 +88,7 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 	/**
 	 * Find a custom translator for the specified database.
+	 *
 	 * @param dbName the database name
 	 * @return the custom translator, or {@code null} if none found
 	 */

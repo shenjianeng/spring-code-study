@@ -34,10 +34,10 @@ import org.springframework.lang.Nullable;
  * detailed instructions.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see CachingConfigurer
  * @see JCacheConfigurerSupport
  * @see org.springframework.cache.annotation.EnableCaching
+ * @since 4.1
  */
 public interface JCacheConfigurer extends CachingConfigurer {
 

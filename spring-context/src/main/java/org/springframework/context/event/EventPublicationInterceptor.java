@@ -62,9 +62,10 @@ public class EventPublicationInterceptor
 	 * <p>The event class <b>must</b> have a constructor with a single
 	 * {@code Object} argument for the event source. The interceptor
 	 * will pass in the invoked object.
+	 *
 	 * @throws IllegalArgumentException if the supplied {@code Class} is
-	 * {@code null} or if it is not an {@code ApplicationEvent} subclass or
-	 * if it does not expose a constructor that takes a single {@code Object} argument
+	 *                                  {@code null} or if it is not an {@code ApplicationEvent} subclass or
+	 *                                  if it does not expose a constructor that takes a single {@code Object} argument
 	 */
 	public void setApplicationEventClass(Class<?> applicationEventClass) {
 		if (ApplicationEvent.class == applicationEventClass ||
@@ -73,8 +74,7 @@ public class EventPublicationInterceptor
 		}
 		try {
 			this.applicationEventClassConstructor = applicationEventClass.getConstructor(Object.class);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalArgumentException("ApplicationEvent class [" +
 					applicationEventClass.getName() + "] does not have the required Object constructor: " + ex);
 		}

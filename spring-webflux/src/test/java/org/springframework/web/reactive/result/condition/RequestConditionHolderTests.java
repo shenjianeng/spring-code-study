@@ -71,7 +71,7 @@ public class RequestConditionHolderTests {
 
 		RequestConditionHolder holder = custom.getMatchingCondition(this.exchange);
 		assertNotNull(holder);
-		assertEquals(expected,  holder.getCondition());
+		assertEquals(expected, holder.getCondition());
 	}
 
 	@Test

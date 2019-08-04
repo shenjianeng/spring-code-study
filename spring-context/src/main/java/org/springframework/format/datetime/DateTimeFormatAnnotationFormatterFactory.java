@@ -34,10 +34,10 @@ import org.springframework.util.StringUtils;
  * Formats fields annotated with the {@link DateTimeFormat} annotation using a {@link DateFormatter}.
  *
  * @author Phillip Webb
- * @since 3.2
  * @see org.springframework.format.datetime.joda.JodaDateTimeFormatAnnotationFormatterFactory
+ * @since 3.2
  */
-public class DateTimeFormatAnnotationFormatterFactory  extends EmbeddedValueResolutionSupport
+public class DateTimeFormatAnnotationFormatterFactory extends EmbeddedValueResolutionSupport
 		implements AnnotationFormatterFactory<DateTimeFormat> {
 
 	private static final Set<Class<?>> FIELD_TYPES;

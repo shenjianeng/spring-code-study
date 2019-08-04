@@ -27,8 +27,8 @@ import org.springframework.util.Assert;
  * managed Locale. Typically used to wrap the validation provider's default interpolator.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.context.i18n.LocaleContextHolder#getLocale()
+ * @since 3.0
  */
 public class LocaleContextMessageInterpolator implements MessageInterpolator {
 
@@ -37,6 +37,7 @@ public class LocaleContextMessageInterpolator implements MessageInterpolator {
 
 	/**
 	 * Create a new LocaleContextMessageInterpolator, wrapping the given target interpolator.
+	 *
 	 * @param targetInterpolator the target MessageInterpolator to wrap
 	 */
 	public LocaleContextMessageInterpolator(MessageInterpolator targetInterpolator) {

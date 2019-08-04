@@ -21,15 +21,16 @@ package org.springframework.oxm;
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
- * @since 3.0
  * @see MarshallingFailureException
  * @see UnmarshallingFailureException
+ * @since 3.0
  */
 @SuppressWarnings("serial")
 public abstract class MarshallingException extends XmlMappingException {
 
 	/**
 	 * Construct a {@code MarshallingException} with the specified detail message.
+	 *
 	 * @param msg the detail message
 	 */
 	protected MarshallingException(String msg) {
@@ -39,7 +40,8 @@ public abstract class MarshallingException extends XmlMappingException {
 	/**
 	 * Construct a {@code MarshallingException} with the specified detail message
 	 * and nested exception.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the nested exception
 	 */
 	protected MarshallingException(String msg, Throwable cause) {

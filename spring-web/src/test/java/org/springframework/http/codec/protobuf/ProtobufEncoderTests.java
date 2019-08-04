@@ -76,11 +76,9 @@ public class ProtobufEncoderTests extends AbstractEncoderTestCase<ProtobufEncode
 					try {
 						assertEquals(this.msg1, Msg.parseFrom(dataBuffer.asInputStream()));
 
-					}
-					catch (IOException ex) {
+					} catch (IOException ex) {
 						throw new UncheckedIOException(ex);
-					}
-					finally {
+					} finally {
 						DataBufferUtils.release(dataBuffer);
 					}
 				})
@@ -102,11 +100,9 @@ public class ProtobufEncoderTests extends AbstractEncoderTestCase<ProtobufEncode
 			try {
 				assertEquals(msg, Msg.parseDelimitedFrom(dataBuffer.asInputStream()));
 
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new UncheckedIOException(ex);
-			}
-			finally {
+			} finally {
 				DataBufferUtils.release(dataBuffer);
 			}
 		};

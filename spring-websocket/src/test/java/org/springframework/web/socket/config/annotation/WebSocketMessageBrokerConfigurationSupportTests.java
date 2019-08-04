@@ -88,7 +88,7 @@ public class WebSocketMessageBrokerConfigurationSupportTests {
 		SubProtocolWebSocketHandler webSocketHandler = config.getBean(SubProtocolWebSocketHandler.class);
 
 		List<ChannelInterceptor> interceptors = channel.getInterceptors();
-		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size()-1).getClass());
+		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size() - 1).getClass());
 
 		TestWebSocketSession session = new TestWebSocketSession("s1");
 		session.setOpen(true);
@@ -112,7 +112,7 @@ public class WebSocketMessageBrokerConfigurationSupportTests {
 		Set<MessageHandler> handlers = channel.getSubscribers();
 
 		List<ChannelInterceptor> interceptors = channel.getInterceptors();
-		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size()-1).getClass());
+		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size() - 1).getClass());
 
 		assertEquals(1, handlers.size());
 		assertTrue(handlers.contains(config.getBean(SubProtocolWebSocketHandler.class)));
@@ -125,7 +125,7 @@ public class WebSocketMessageBrokerConfigurationSupportTests {
 		Set<MessageHandler> handlers = channel.getSubscribers();
 
 		List<ChannelInterceptor> interceptors = channel.getInterceptors();
-		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size()-1).getClass());
+		assertEquals(ImmutableMessageChannelInterceptor.class, interceptors.get(interceptors.size() - 1).getClass());
 
 		assertEquals(2, handlers.size());
 		assertTrue(handlers.contains(config.getBean(SimpleBrokerMessageHandler.class)));
@@ -158,7 +158,7 @@ public class WebSocketMessageBrokerConfigurationSupportTests {
 
 		SimpleBrokerMessageHandler handler = config.getBean(SimpleBrokerMessageHandler.class);
 		assertNotNull(handler.getTaskScheduler());
-		assertArrayEquals(new long[] {15000, 15000}, handler.getHeartbeatValue());
+		assertArrayEquals(new long[]{15000, 15000}, handler.getHeartbeatValue());
 	}
 
 	@Test
@@ -242,7 +242,7 @@ public class WebSocketMessageBrokerConfigurationSupportTests {
 		public void configureMessageBroker(MessageBrokerRegistry registry) {
 			registry.enableSimpleBroker()
 					.setTaskScheduler(mock(TaskScheduler.class))
-					.setHeartbeatValue(new long[] {15000, 15000});
+					.setHeartbeatValue(new long[]{15000, 15000});
 		}
 	}
 

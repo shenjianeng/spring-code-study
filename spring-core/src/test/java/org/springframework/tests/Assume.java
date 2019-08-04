@@ -41,9 +41,9 @@ import static org.junit.Assume.*;
  * @author Rob Winch
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 3.2
  * @see #group(TestGroup)
  * @see #group(TestGroup, Executable)
+ * @since 3.2
  */
 public abstract class Assume {
 
@@ -52,6 +52,7 @@ public abstract class Assume {
 
 	/**
 	 * Assume that a particular {@link TestGroup} has been specified.
+	 *
 	 * @param group the group that must be specified
 	 * @throws AssumptionViolatedException if the assumption fails
 	 */
@@ -67,7 +68,8 @@ public abstract class Assume {
 	 * executing the supplied {@link Executable}.
 	 * <p>If the assumption fails, the executable will not be executed, but
 	 * no {@link AssumptionViolatedException} will be thrown.
-	 * @param group the group that must be specified
+	 *
+	 * @param group      the group that must be specified
 	 * @param executable the executable to execute if the test group is active
 	 * @since 4.2
 	 */
@@ -80,6 +82,7 @@ public abstract class Assume {
 
 	/**
 	 * Assume that the specified log is not set to Trace or Debug.
+	 *
 	 * @param log the log to test
 	 * @throws AssumptionViolatedException if the assumption fails
 	 */
@@ -96,8 +99,7 @@ public abstract class Assume {
 	private static Set<TestGroup> loadTestGroups() {
 		try {
 			return TestGroup.parse(System.getProperty(TEST_GROUPS_SYSTEM_PROPERTY));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException("Failed to parse '" + TEST_GROUPS_SYSTEM_PROPERTY
 					+ "' system property: " + ex.getMessage(), ex);
 		}

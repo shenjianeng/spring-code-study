@@ -37,8 +37,8 @@ import org.springframework.util.StringUtils;
  * case of the {@code "file:"} protocol.
  *
  * @author Juergen Hoeller
- * @since 28.12.2003
  * @see java.net.URL
+ * @since 28.12.2003
  */
 public class UrlResource extends AbstractFileResolvingResource {
 
@@ -61,6 +61,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code UrlResource} based on the given URI object.
+	 *
 	 * @param uri a URI
 	 * @throws MalformedURLException if the given URL path is not valid
 	 * @since 2.5
@@ -74,6 +75,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Create a new {@code UrlResource} based on the given URL object.
+	 *
 	 * @param url a URL
 	 */
 	public UrlResource(URL url) {
@@ -86,6 +88,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * Create a new {@code UrlResource} based on a URL path.
 	 * <p>Note: The given path needs to be pre-encoded if necessary.
+	 *
 	 * @param path a URL path
 	 * @throws MalformedURLException if the given URL path is not valid
 	 * @see java.net.URL#URL(String)
@@ -100,36 +103,37 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * Create a new {@code UrlResource} based on a URI specification.
 	 * <p>The given parts will automatically get encoded if necessary.
+	 *
 	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
+	 *                 also known as "scheme"
 	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
+	 *                 also known as "scheme-specific part"
 	 * @throws MalformedURLException if the given URL specification is not valid
 	 * @see java.net.URI#URI(String, String, String)
 	 */
-	public UrlResource(String protocol, String location) throws MalformedURLException  {
+	public UrlResource(String protocol, String location) throws MalformedURLException {
 		this(protocol, location, null);
 	}
 
 	/**
 	 * Create a new {@code UrlResource} based on a URI specification.
 	 * <p>The given parts will automatically get encoded if necessary.
+	 *
 	 * @param protocol the URL protocol to use (e.g. "jar" or "file" - without colon);
-	 * also known as "scheme"
+	 *                 also known as "scheme"
 	 * @param location the location (e.g. the file path within that protocol);
-	 * also known as "scheme-specific part"
+	 *                 also known as "scheme-specific part"
 	 * @param fragment the fragment within that location (e.g. anchor on an HTML page,
-	 * as following after a "#" separator)
+	 *                 as following after a "#" separator)
 	 * @throws MalformedURLException if the given URL specification is not valid
 	 * @see java.net.URI#URI(String, String, String)
 	 */
-	public UrlResource(String protocol, String location, @Nullable String fragment) throws MalformedURLException  {
+	public UrlResource(String protocol, String location, @Nullable String fragment) throws MalformedURLException {
 		try {
 			this.uri = new URI(protocol, location, fragment);
 			this.url = this.uri.toURL();
 			this.cleanedUrl = getCleanedUrl(this.url, this.uri.toString());
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			MalformedURLException exToThrow = new MalformedURLException(ex.getMessage());
 			exToThrow.initCause(ex);
 			throw exToThrow;
@@ -139,7 +143,8 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * Determine a cleaned URL for the given original URL.
-	 * @param originalUrl the original URL
+	 *
+	 * @param originalUrl  the original URL
 	 * @param originalPath the original URL path
 	 * @return the cleaned URL (possibly the original URL as-is)
 	 * @see org.springframework.util.StringUtils#cleanPath
@@ -149,8 +154,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 		if (!cleanedPath.equals(originalPath)) {
 			try {
 				return new URL(cleanedPath);
-			}
-			catch (MalformedURLException ex) {
+			} catch (MalformedURLException ex) {
 				// Cleaned URL path cannot be converted to URL -> take original URL.
 			}
 		}
@@ -161,6 +165,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	 * This implementation opens an InputStream for the given URL.
 	 * <p>It sets the {@code useCaches} flag to {@code false},
 	 * mainly to avoid jar file locking on Windows.
+	 *
 	 * @see java.net.URL#openConnection()
 	 * @see java.net.URLConnection#setUseCaches(boolean)
 	 * @see java.net.URLConnection#getInputStream()
@@ -171,8 +176,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 		ResourceUtils.useCachesIfNecessary(con);
 		try {
 			return con.getInputStream();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// Close the HTTP connection (if applicable).
 			if (con instanceof HttpURLConnection) {
 				((HttpURLConnection) con).disconnect();
@@ -197,8 +201,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	public URI getURI() throws IOException {
 		if (this.uri != null) {
 			return this.uri;
-		}
-		else {
+		} else {
 			return super.getURI();
 		}
 	}
@@ -207,8 +210,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	public boolean isFile() {
 		if (this.uri != null) {
 			return super.isFile(this.uri);
-		}
-		else {
+		} else {
 			return super.isFile();
 		}
 	}
@@ -216,14 +218,14 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * This implementation returns a File reference for the underlying URL/URI,
 	 * provided that it refers to a file in the file system.
+	 *
 	 * @see org.springframework.util.ResourceUtils#getFile(java.net.URL, String)
 	 */
 	@Override
 	public File getFile() throws IOException {
 		if (this.uri != null) {
 			return super.getFile(this.uri);
-		}
-		else {
+		} else {
 			return super.getFile();
 		}
 	}
@@ -231,6 +233,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 	/**
 	 * This implementation creates a {@code UrlResource}, applying the given path
 	 * relative to the path of the underlying URL of this resource descriptor.
+	 *
 	 * @see java.net.URL#URL(java.net.URL, String)
 	 */
 	@Override
@@ -243,6 +246,7 @@ public class UrlResource extends AbstractFileResolvingResource {
 
 	/**
 	 * This implementation returns the name of the file that this URL refers to.
+	 *
 	 * @see java.net.URL#getPath()
 	 */
 	@Override

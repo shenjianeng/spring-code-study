@@ -55,6 +55,7 @@ class SimpleCommandLineArgsParser {
 	 * Parse the given {@code String} array based on the rules described {@linkplain
 	 * SimpleCommandLineArgsParser above}, returning a fully-populated
 	 * {@link CommandLineArgs} object.
+	 *
 	 * @param args command line arguments, typically from a {@code main()} method
 	 */
 	public CommandLineArgs parse(String... args) {
@@ -66,17 +67,15 @@ class SimpleCommandLineArgsParser {
 				String optionValue = null;
 				if (optionText.contains("=")) {
 					optionName = optionText.substring(0, optionText.indexOf('='));
-					optionValue = optionText.substring(optionText.indexOf('=')+1, optionText.length());
-				}
-				else {
+					optionValue = optionText.substring(optionText.indexOf('=') + 1, optionText.length());
+				} else {
 					optionName = optionText;
 				}
 				if (optionName.isEmpty() || (optionValue != null && optionValue.isEmpty())) {
 					throw new IllegalArgumentException("Invalid argument syntax: " + arg);
 				}
 				commandLineArgs.addOptionArg(optionName, optionValue);
-			}
-			else {
+			} else {
 				commandLineArgs.addNonOptionArg(arg);
 			}
 		}

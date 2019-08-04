@@ -42,6 +42,7 @@ public interface SmartDataSource extends DataSource {
 	 * perform a check via this method before invoking {@code close()}.
 	 * <p>Note that the JdbcTemplate class in the 'jdbc.core' package takes care of
 	 * releasing JDBC Connections, freeing application code of this responsibility.
+	 *
 	 * @param con the Connection to check
 	 * @return whether the given Connection should be closed
 	 * @see java.sql.Connection#close()

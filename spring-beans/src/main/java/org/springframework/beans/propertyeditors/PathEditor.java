@@ -42,13 +42,13 @@ import org.springframework.util.Assert;
  * if no existing context-relative resource could be found.
  *
  * @author Juergen Hoeller
- * @since 4.3.2
  * @see java.nio.file.Path
  * @see Paths#get(URI)
  * @see ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
  * @see FileEditor
  * @see URLEditor
+ * @since 4.3.2
  */
 public class PathEditor extends PropertyEditorSupport {
 
@@ -64,6 +64,7 @@ public class PathEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new PathEditor, using the given ResourceEditor underneath.
+	 *
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public PathEditor(ResourceEditor resourceEditor) {
@@ -84,8 +85,7 @@ public class PathEditor extends PropertyEditorSupport {
 					setValue(Paths.get(uri).normalize());
 					return;
 				}
-			}
-			catch (URISyntaxException | FileSystemNotFoundException ex) {
+			} catch (URISyntaxException | FileSystemNotFoundException ex) {
 				// Not a valid URI (let's try as Spring resource location),
 				// or a URI scheme not registered for NIO (let's try URL
 				// protocol handlers via Spring's resource mechanism).
@@ -96,15 +96,12 @@ public class PathEditor extends PropertyEditorSupport {
 		Resource resource = (Resource) this.resourceEditor.getValue();
 		if (resource == null) {
 			setValue(null);
-		}
-		else if (!resource.exists() && nioPathCandidate) {
+		} else if (!resource.exists() && nioPathCandidate) {
 			setValue(Paths.get(text).normalize());
-		}
-		else {
+		} else {
 			try {
 				setValue(resource.getFile().toPath());
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new IllegalArgumentException("Failed to retrieve file for " + resource, ex);
 			}
 		}

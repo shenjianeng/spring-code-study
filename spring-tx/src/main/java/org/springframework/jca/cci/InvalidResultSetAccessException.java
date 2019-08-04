@@ -28,16 +28,17 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
  * has been specified.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see javax.resource.cci.ResultSet
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class InvalidResultSetAccessException extends InvalidDataAccessResourceUsageException {
 
 	/**
 	 * Constructor for InvalidResultSetAccessException.
+	 *
 	 * @param msg message
-	 * @param ex the root cause
+	 * @param ex  the root cause
 	 */
 	public InvalidResultSetAccessException(String msg, SQLException ex) {
 		super(ex.getMessage(), ex);

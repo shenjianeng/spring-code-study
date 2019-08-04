@@ -34,6 +34,7 @@ public class AssignableTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	/**
 	 * Create a new AssignableTypeFilter for the given type.
+	 *
 	 * @param targetType the type to match
 	 */
 	public AssignableTypeFilter(Class<?> targetType) {
@@ -43,6 +44,7 @@ public class AssignableTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 	/**
 	 * Return the {@code type} that this instance is using to filter candidates.
+	 *
 	 * @since 5.0
 	 */
 	public final Class<?> getTargetType() {
@@ -70,16 +72,13 @@ public class AssignableTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	protected Boolean matchTargetType(String typeName) {
 		if (this.targetType.getName().equals(typeName)) {
 			return true;
-		}
-		else if (Object.class.getName().equals(typeName)) {
+		} else if (Object.class.getName().equals(typeName)) {
 			return false;
-		}
-		else if (typeName.startsWith("java")) {
+		} else if (typeName.startsWith("java")) {
 			try {
 				Class<?> clazz = ClassUtils.forName(typeName, getClass().getClassLoader());
 				return this.targetType.isAssignableFrom(clazz);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// Class not regularly loadable - can't determine a match that way.
 			}
 		}

@@ -55,6 +55,7 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * Create a resolver instance with the given {@link MessageConverter}.
+	 *
 	 * @param converter the MessageConverter to use (may be {@code null})
 	 * @since 4.3
 	 */
@@ -102,19 +103,17 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 
 	/**
 	 * Check if the given {@code payload} is empty.
+	 *
 	 * @param payload the payload to check (can be {@code null})
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {
 		if (payload == null) {
 			return true;
-		}
-		else if (payload instanceof byte[]) {
+		} else if (payload instanceof byte[]) {
 			return ((byte[]) payload).length == 0;
-		}
-		else if (payload instanceof String) {
+		} else if (payload instanceof String) {
 			return !StringUtils.hasText((String) payload);
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -124,8 +123,7 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 		if (this.converter instanceof SmartMessageConverter) {
 			SmartMessageConverter smartConverter = (SmartMessageConverter) this.converter;
 			result = smartConverter.fromMessage(message, targetPayloadType, parameter);
-		}
-		else if (this.converter != null) {
+		} else if (this.converter != null) {
 			result = this.converter.fromMessage(message, targetPayloadType);
 		}
 

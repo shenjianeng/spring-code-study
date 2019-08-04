@@ -36,8 +36,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Costin Leau
  * @author Stephane Nicoll
- * @since 3.1
  * @see CompositeCacheManager
+ * @since 3.1
  */
 public class NoOpCacheManager implements CacheManager {
 

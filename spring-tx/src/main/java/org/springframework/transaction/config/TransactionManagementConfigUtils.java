@@ -51,6 +51,7 @@ public abstract class TransactionManagementConfigUtils {
 
 	/**
 	 * The bean name of the internally managed JTA transaction aspect (used when mode == ASPECTJ).
+	 *
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_BEAN_NAME =
@@ -58,6 +59,7 @@ public abstract class TransactionManagementConfigUtils {
 
 	/**
 	 * The class name of the AspectJ transaction management aspect.
+	 *
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_CLASS_NAME =
@@ -65,6 +67,7 @@ public abstract class TransactionManagementConfigUtils {
 
 	/**
 	 * The name of the AspectJ transaction management @{@code Configuration} class for JTA.
+	 *
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME =

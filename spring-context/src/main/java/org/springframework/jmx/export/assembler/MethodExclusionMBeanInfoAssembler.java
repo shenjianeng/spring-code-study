@@ -48,13 +48,13 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Harrop
  * @author Seth Ladd
- * @since 1.2.5
  * @see #setIgnoredMethods
  * @see #setIgnoredMethodMappings
  * @see InterfaceBasedMBeanInfoAssembler
  * @see SimpleReflectiveMBeanInfoAssembler
  * @see MethodNameBasedMBeanInfoAssembler
  * @see org.springframework.jmx.export.MBeanExporter
+ * @since 1.2.5
  */
 public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBeanInfoAssembler {
 
@@ -69,6 +69,7 @@ public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBean
 	 * Set the array of method names to be <b>ignored</b> when creating the management info.
 	 * <p>These method names will be used for a bean if no entry corresponding to
 	 * that bean is found in the {@code ignoredMethodsMappings} property.
+	 *
 	 * @see #setIgnoredMethodMappings(java.util.Properties)
 	 */
 	public void setIgnoredMethods(String... ignoredMethodNames) {
@@ -84,7 +85,7 @@ public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBean
 	 */
 	public void setIgnoredMethodMappings(Properties mappings) {
 		this.ignoredMethodMappings = new HashMap<>();
-		for (Enumeration<?> en = mappings.keys(); en.hasMoreElements();) {
+		for (Enumeration<?> en = mappings.keys(); en.hasMoreElements(); ) {
 			String beanKey = (String) en.nextElement();
 			String[] methodNames = StringUtils.commaDelimitedListToStringArray(mappings.getProperty(beanKey));
 			this.ignoredMethodMappings.put(beanKey, new HashSet<>(Arrays.asList(methodNames)));
@@ -110,9 +111,10 @@ public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBean
 	/**
 	 * Determine whether the given method is supposed to be included,
 	 * that is, not configured as to be ignored.
-	 * @param method the operation method
+	 *
+	 * @param method  the operation method
 	 * @param beanKey the key associated with the MBean in the beans map
-	 * of the {@code MBeanExporter}
+	 *                of the {@code MBeanExporter}
 	 */
 	protected boolean isNotIgnored(Method method, String beanKey) {
 		if (this.ignoredMethodMappings != null) {

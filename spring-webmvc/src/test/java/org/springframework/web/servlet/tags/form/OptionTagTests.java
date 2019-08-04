@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
  * @author Rick Evans
  * @author Jeremy Grelle
  */
-@SuppressWarnings({ "rawtypes", "unchecked" })
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class OptionTagTests extends AbstractHtmlElementTagTests {
 
 	private static final String ARRAY_SOURCE = "abc,123,def";
@@ -200,8 +200,7 @@ public class OptionTagTests extends AbstractHtmlElementTagTests {
 		try {
 			tag.doStartTag();
 			fail("Must not be able to use <option> tag without exposed context.");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -472,8 +471,7 @@ public class OptionTagTests extends AbstractHtmlElementTagTests {
 			tag.setValue("foo");
 			tag.doStartTag();
 			fail("Must throw an IllegalStateException when not nested within a <select/> tag.");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -550,8 +548,7 @@ public class OptionTagTests extends AbstractHtmlElementTagTests {
 		public String toId() {
 			if (this.variant != null) {
 				return this.rules + "-" + this.variant;
-			}
-			else {
+			} else {
 				return rules;
 			}
 		}

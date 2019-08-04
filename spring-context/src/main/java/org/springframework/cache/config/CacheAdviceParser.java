@@ -76,8 +76,7 @@ class CacheAdviceParser extends AbstractSingleBeanDefinitionParser {
 			// Using attributes source.
 			List<RootBeanDefinition> attributeSourceDefinitions = parseDefinitionsSources(cacheDefs, parserContext);
 			builder.addPropertyValue("cacheOperationSources", attributeSourceDefinitions);
-		}
-		else {
+		} else {
 			// Assume annotations source.
 			builder.addPropertyValue("cacheOperationSources",
 					new RootBeanDefinition("org.springframework.cache.annotation.AnnotationCacheOperationSource"));
@@ -223,8 +222,7 @@ class CacheAdviceParser extends AbstractSingleBeanDefinitionParser {
 			}
 			if (localCaches != null) {
 				builder.setCacheNames(localCaches);
-			}
-			else {
+			} else {
 				readerCtx.error("No cache specified for " + element.getNodeName(), element);
 			}
 

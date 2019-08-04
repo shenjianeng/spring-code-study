@@ -74,8 +74,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		String host;
 		try {
 			host = InetAddress.getLocalHost().getHostAddress();
-		}
-		catch (UnknownHostException ex) {
+		} catch (UnknownHostException ex) {
 			host = "unknown";
 		}
 		return host + '-' + UUID.randomUUID();
@@ -180,7 +179,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 	@Override
 	public String toString() {
-		return "local=[" + this.localRegistry +	"], remote=" + this.remoteRegistries;
+		return "local=[" + this.localRegistry + "], remote=" + this.remoteRegistries;
 	}
 
 

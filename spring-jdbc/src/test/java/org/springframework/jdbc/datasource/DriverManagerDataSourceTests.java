@@ -140,8 +140,7 @@ public class DriverManagerDataSourceTests {
 		try {
 			ds.setDriverClassName(bogusClassName);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// OK
 			assertTrue(ex.getCause() instanceof ClassNotFoundException);
 		}

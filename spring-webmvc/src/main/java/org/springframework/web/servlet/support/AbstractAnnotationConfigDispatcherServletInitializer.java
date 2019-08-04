@@ -58,8 +58,7 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer
 			AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 			context.register(configClasses);
 			return context;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -82,6 +81,7 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer
 	/**
 	 * Specify {@code @Configuration} and/or {@code @Component} classes for the
 	 * {@linkplain #createRootApplicationContext() root application context}.
+	 *
 	 * @return the configuration for the root application context, or {@code null}
 	 * if creation and registration of a root context is not desired
 	 */
@@ -91,6 +91,7 @@ public abstract class AbstractAnnotationConfigDispatcherServletInitializer
 	/**
 	 * Specify {@code @Configuration} and/or {@code @Component} classes for the
 	 * {@linkplain #createServletApplicationContext() Servlet application context}.
+	 *
 	 * @return the configuration for the Servlet application context, or
 	 * {@code null} if all configuration is specified through root config classes.
 	 */

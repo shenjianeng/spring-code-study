@@ -80,7 +80,7 @@ class DefaultServerHttpRequestBuilder implements ServerHttpRequest.Builder {
 		this.originalRequest = original;
 	}
 
-	private static <K, V> void copyMultiValueMap(MultiValueMap<K,V> source, MultiValueMap<K,V> target) {
+	private static <K, V> void copyMultiValueMap(MultiValueMap<K, V> source, MultiValueMap<K, V> target) {
 		source.forEach((key, value) -> target.put(key, new LinkedList<>(value)));
 	}
 
@@ -168,8 +168,7 @@ class DefaultServerHttpRequestBuilder implements ServerHttpRequest.Builder {
 		}
 		try {
 			return new URI(uriBuilder.toString());
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException("Invalid URI path: \"" + this.uriPath + "\"", ex);
 		}
 	}
@@ -193,8 +192,8 @@ class DefaultServerHttpRequestBuilder implements ServerHttpRequest.Builder {
 
 
 		public MutatedServerHttpRequest(URI uri, @Nullable String contextPath,
-				HttpHeaders headers, String methodValue, MultiValueMap<String, HttpCookie> cookies,
-				@Nullable SslInfo sslInfo, Flux<DataBuffer> body, ServerHttpRequest originalRequest) {
+										HttpHeaders headers, String methodValue, MultiValueMap<String, HttpCookie> cookies,
+										@Nullable SslInfo sslInfo, Flux<DataBuffer> body, ServerHttpRequest originalRequest) {
 
 			super(uri, contextPath, headers);
 			this.methodValue = methodValue;

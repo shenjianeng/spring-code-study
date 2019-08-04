@@ -32,9 +32,9 @@ import org.springframework.util.Assert;
  * are an alternative to working with a CciTemplate directly.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see #setConnectionFactory
  * @see #setInteractionSpec
+ * @since 1.2
  */
 public abstract class EisOperation implements InitializingBean {
 
@@ -47,6 +47,7 @@ public abstract class EisOperation implements InitializingBean {
 	/**
 	 * Set the CciTemplate to be used by this operation.
 	 * Alternatively, specify a CCI ConnectionFactory.
+	 *
 	 * @see #setConnectionFactory
 	 */
 	public void setCciTemplate(CciTemplate cciTemplate) {

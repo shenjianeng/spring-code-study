@@ -38,9 +38,9 @@ import javax.management.Notification;
  * publication; this interface is intended for use only by Spring-created MBeans.
  *
  * @author Rob Harrop
- * @since 2.0
  * @see NotificationPublisherAware
  * @see org.springframework.jmx.export.MBeanExporter
+ * @since 2.0
  */
 @FunctionalInterface
 public interface NotificationPublisher {
@@ -51,6 +51,7 @@ public interface NotificationPublisher {
 	 * Managed resources are <strong>not</strong> responsible for managing the list
 	 * of registered {@link javax.management.NotificationListener NotificationListeners};
 	 * that is performed automatically.
+	 *
 	 * @param notification the JMX Notification to send
 	 * @throws UnableToSendNotificationException if sending failed
 	 */

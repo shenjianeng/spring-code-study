@@ -33,9 +33,9 @@ import org.springframework.util.Assert;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.0
  * @see Conventions#getVariableName
  * @see org.springframework.web.servlet.ModelAndView
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class ModelMap extends LinkedHashMap<String, Object> {
@@ -49,6 +49,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Construct a new {@code ModelMap} containing the supplied attribute
 	 * under the supplied name.
+	 *
 	 * @see #addAttribute(String, Object)
 	 */
 	public ModelMap(String attributeName, @Nullable Object attributeValue) {
@@ -59,6 +60,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	 * Construct a new {@code ModelMap} containing the supplied attribute.
 	 * Uses attribute name generation to generate the key for the supplied model
 	 * object.
+	 *
 	 * @see #addAttribute(Object)
 	 */
 	public ModelMap(Object attributeValue) {
@@ -68,7 +70,8 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Add the supplied attribute under the supplied name.
-	 * @param attributeName the name of the model attribute (never {@code null})
+	 *
+	 * @param attributeName  the name of the model attribute (never {@code null})
 	 * @param attributeValue the model attribute value (can be {@code null})
 	 */
 	public ModelMap addAttribute(String attributeName, @Nullable Object attributeValue) {
@@ -84,6 +87,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	 * the model when using this method because we cannot correctly determine
 	 * the true convention name. View code should check for {@code null} rather
 	 * than for empty collections as is already done by JSTL tags.</i>
+	 *
 	 * @param attributeValue the model attribute value (never {@code null})
 	 */
 	public ModelMap addAttribute(Object attributeValue) {
@@ -97,6 +101,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	/**
 	 * Copy all attributes in the supplied {@code Collection} into this
 	 * {@code Map}, using attribute name generation for each element.
+	 *
 	 * @see #addAttribute(Object)
 	 */
 	public ModelMap addAllAttributes(@Nullable Collection<?> attributeValues) {
@@ -110,6 +115,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Copy all attributes in the supplied {@code Map} into this {@code Map}.
+	 *
 	 * @see #addAttribute(String, Object)
 	 */
 	public ModelMap addAllAttributes(@Nullable Map<String, ?> attributes) {
@@ -137,6 +143,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
 	 * Does this model contain an attribute of the given name?
+	 *
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return whether this model contains a corresponding attribute
 	 */

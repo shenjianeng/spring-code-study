@@ -74,8 +74,7 @@ public class TomcatWebSocketTestServer implements WebSocketTestServer {
 			tempFolder.mkdir();
 			tempFolder.deleteOnExit();
 			return tempFolder;
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException("Unable to create temp directory", ex);
 		}
 	}

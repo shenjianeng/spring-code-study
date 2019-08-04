@@ -34,8 +34,8 @@ import org.springframework.web.util.WebUtils;
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
- * @since 17.06.2003
  * @see #setThemeName
+ * @since 17.06.2003
  */
 public class SessionThemeResolver extends AbstractThemeResolver {
 
@@ -44,6 +44,7 @@ public class SessionThemeResolver extends AbstractThemeResolver {
 	 * Only used internally by this implementation.
 	 * Use {@code RequestContext(Utils).getTheme()}
 	 * to retrieve the current theme in controllers or views.
+	 *
 	 * @see org.springframework.web.servlet.support.RequestContext#getTheme
 	 * @see org.springframework.web.servlet.support.RequestContextUtils#getTheme
 	 */

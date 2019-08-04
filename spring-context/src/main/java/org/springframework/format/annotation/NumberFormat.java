@@ -41,8 +41,8 @@ import java.lang.annotation.Target;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 3.0
  * @see java.text.NumberFormat
+ * @since 3.0
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -75,6 +75,7 @@ public @interface NumberFormat {
 		/**
 		 * The default format for the annotated type: typically 'number' but possibly
 		 * 'currency' for a money type (e.g. {@code javax.money.MonetaryAmount)}.
+		 *
 		 * @since 4.2
 		 */
 		DEFAULT,

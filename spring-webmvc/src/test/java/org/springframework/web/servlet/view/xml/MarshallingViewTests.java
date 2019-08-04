@@ -120,8 +120,7 @@ public class MarshallingViewTests {
 		try {
 			view.render(model, request, response);
 			fail("IllegalStateException expected");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 		assertEquals("Invalid content length", 0, response.getContentLength());
@@ -139,8 +138,7 @@ public class MarshallingViewTests {
 		try {
 			view.render(model, request, response);
 			fail("IllegalStateException expected");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 		assertEquals("Invalid content length", 0, response.getContentLength());
@@ -162,8 +160,7 @@ public class MarshallingViewTests {
 		try {
 			view.render(model, request, response);
 			fail("IllegalStateException expected");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -221,8 +218,7 @@ public class MarshallingViewTests {
 		try {
 			view.render(model, request, response);
 			fail("IllegalStateException expected");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}

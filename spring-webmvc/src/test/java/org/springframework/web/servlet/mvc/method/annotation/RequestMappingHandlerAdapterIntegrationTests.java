@@ -142,7 +142,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 
 	@Test
 	public void handle() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {int.class, String.class, String.class, String.class, Map.class,
+		Class<?>[] parameterTypes = new Class<?>[]{int.class, String.class, String.class, String.class, Map.class,
 				Date.class, Map.class, String.class, String.class, TestBean.class, Errors.class, TestBean.class,
 				Color.class, HttpServletRequest.class, HttpServletResponse.class, TestBean.class, TestBean.class,
 				User.class, OtherUser.class, Model.class, UriComponentsBuilder.class};
@@ -223,7 +223,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 
 	@Test
 	public void handleInInterface() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {int.class, String.class, String.class, String.class, Map.class,
+		Class<?>[] parameterTypes = new Class<?>[]{int.class, String.class, String.class, String.class, Map.class,
 				Date.class, Map.class, String.class, String.class, TestBean.class, Errors.class, TestBean.class,
 				Color.class, HttpServletRequest.class, HttpServletResponse.class, TestBean.class, TestBean.class,
 				User.class, OtherUser.class, Model.class, UriComponentsBuilder.class};
@@ -304,7 +304,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 
 	@Test
 	public void handleRequestBody() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {byte[].class};
+		Class<?>[] parameterTypes = new Class<?>[]{byte[].class};
 
 		request.setMethod("POST");
 		request.addHeader("Content-Type", "text/plain; charset=utf-8");
@@ -321,7 +321,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 
 	@Test
 	public void handleAndValidateRequestBody() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {TestBean.class, Errors.class};
+		Class<?>[] parameterTypes = new Class<?>[]{TestBean.class, Errors.class};
 
 		request.addHeader("Content-Type", "text/plain; charset=utf-8");
 		request.setContent("Hello Server".getBytes("UTF-8"));
@@ -337,7 +337,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 
 	@Test
 	public void handleHttpEntity() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {HttpEntity.class};
+		Class<?>[] parameterTypes = new Class<?>[]{HttpEntity.class};
 
 		request.addHeader("Content-Type", "text/plain; charset=utf-8");
 		request.setContent("Hello Server".getBytes("UTF-8"));
@@ -357,7 +357,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 	// SPR-13867
 	@Test
 	public void handleHttpEntityWithCacheControl() throws Exception {
-		Class<?>[] parameterTypes = new Class<?>[] {HttpEntity.class};
+		Class<?>[] parameterTypes = new Class<?>[]{HttpEntity.class};
 		request.addHeader("Content-Type", "text/plain; charset=utf-8");
 		request.setContent("Hello Server".getBytes("UTF-8"));
 
@@ -565,7 +565,7 @@ public class RequestMappingHandlerAdapterIntegrationTests {
 		}
 
 		public void handleAndValidateRequestPart(@RequestPart @Valid String requestPart,
-				Errors errors, Model model) throws Exception {
+												 Errors errors, Model model) throws Exception {
 
 			model.addAttribute("error count", errors.getErrorCount());
 		}

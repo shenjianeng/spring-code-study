@@ -96,7 +96,7 @@ public class DefaultWebClientTests {
 	@Test
 	public void requestHeaderAndCookie() {
 		this.builder.build().get().uri("/path").accept(MediaType.APPLICATION_JSON)
-				.cookies(cookies -> cookies.add("id", "123"))	// SPR-16178
+				.cookies(cookies -> cookies.add("id", "123"))    // SPR-16178
 				.exchange();
 
 		ClientRequest request = verifyAndGetRequest();
@@ -152,8 +152,7 @@ public class DefaultWebClientTests {
 		try {
 			context.set("bar");
 			client.get().uri("/path").attribute("foo", "bar").exchange();
-		}
-		finally {
+		} finally {
 			context.remove();
 		}
 

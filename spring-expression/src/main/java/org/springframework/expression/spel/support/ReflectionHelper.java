@@ -46,9 +46,10 @@ public abstract class ReflectionHelper {
 	 * Compare argument arrays and return information about whether they match.
 	 * A supplied type converter and conversionAllowed flag allow for matches to take
 	 * into account that a type may be transformed into a different type by the converter.
+	 *
 	 * @param expectedArgTypes the types the method/constructor is expecting
 	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
-	 * @param typeConverter a registered type converter
+	 * @param typeConverter    a registered type converter
 	 * @return a MatchInfo object indicating what kind of match it was,
 	 * or {@code null} if it was not a match
 	 */
@@ -68,17 +69,14 @@ public abstract class ReflectionHelper {
 				if (expectedArg.isPrimitive()) {
 					match = null;
 				}
-			}
-			else if (!expectedArg.equals(suppliedArg))  {
+			} else if (!expectedArg.equals(suppliedArg)) {
 				if (suppliedArg.isAssignableTo(expectedArg)) {
 					if (match != ArgumentsMatchKind.REQUIRES_CONVERSION) {
 						match = ArgumentsMatchKind.CLOSE;
 					}
-				}
-				else if (typeConverter.canConvert(suppliedArg, expectedArg)) {
+				} else if (typeConverter.canConvert(suppliedArg, expectedArg)) {
 					match = ArgumentsMatchKind.REQUIRES_CONVERSION;
-				}
-				else {
+				} else {
 					match = null;
 				}
 			}
@@ -98,8 +96,7 @@ public abstract class ReflectionHelper {
 				if (paramType.isPrimitive()) {
 					return Integer.MAX_VALUE;
 				}
-			}
-			else {
+			} else {
 				Class<?> paramTypeClazz = paramType.getType();
 				if (!ClassUtils.isAssignable(paramTypeClazz, argType.getType())) {
 					return Integer.MAX_VALUE;
@@ -112,12 +109,10 @@ public abstract class ReflectionHelper {
 					if (paramTypeClazz.equals(superClass)) {
 						result = result + 2;
 						superClass = null;
-					}
-					else if (ClassUtils.isAssignable(paramTypeClazz, superClass)) {
+					} else if (ClassUtils.isAssignable(paramTypeClazz, superClass)) {
 						result = result + 2;
 						superClass = superClass.getSuperclass();
-					}
-					else {
+					} else {
 						superClass = null;
 					}
 				}
@@ -134,9 +129,10 @@ public abstract class ReflectionHelper {
 	 * A supplied type converter and conversionAllowed flag allow for matches to
 	 * take into account that a type may be transformed into a different type by the
 	 * converter. This variant of compareArguments also allows for a varargs match.
+	 *
 	 * @param expectedArgTypes the types the method/constructor is expecting
 	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
-	 * @param typeConverter a registered type converter
+	 * @param typeConverter    a registered type converter
 	 * @return a MatchInfo object indicating what kind of match it was,
 	 * or {@code null} if it was not a match
 	 */
@@ -162,18 +158,15 @@ public abstract class ReflectionHelper {
 				if (expectedArg.isPrimitive()) {
 					match = null;
 				}
-			}
-			else {
+			} else {
 				if (!expectedArg.equals(suppliedArg)) {
 					if (suppliedArg.isAssignableTo(expectedArg)) {
 						if (match != ArgumentsMatchKind.REQUIRES_CONVERSION) {
 							match = ArgumentsMatchKind.CLOSE;
 						}
-					}
-					else if (typeConverter.canConvert(suppliedArg, expectedArg)) {
+					} else if (typeConverter.canConvert(suppliedArg, expectedArg)) {
 						match = ArgumentsMatchKind.REQUIRES_CONVERSION;
-					}
-					else {
+					} else {
 						match = null;
 					}
 				}
@@ -190,8 +183,7 @@ public abstract class ReflectionHelper {
 						suppliedArgTypes.get(suppliedArgTypes.size() - 1))) {
 			// Special case: there is one parameter left and it is an array and it matches the varargs
 			// expected argument - that is a match, the caller has already built the array. Proceed with it.
-		}
-		else {
+		} else {
 			// Now... we have the final argument in the method we are checking as a match and we have 0
 			// or more other arguments left to pass to it.
 			TypeDescriptor varargsDesc = expectedArgTypes.get(expectedArgTypes.size() - 1);
@@ -206,18 +198,15 @@ public abstract class ReflectionHelper {
 					if (varargsParamType.isPrimitive()) {
 						match = null;
 					}
-				}
-				else {
+				} else {
 					if (varargsParamType != suppliedArg.getType()) {
 						if (ClassUtils.isAssignable(varargsParamType, suppliedArg.getType())) {
 							if (match != ArgumentsMatchKind.REQUIRES_CONVERSION) {
 								match = ArgumentsMatchKind.CLOSE;
 							}
-						}
-						else if (typeConverter.canConvert(suppliedArg, TypeDescriptor.valueOf(varargsParamType))) {
+						} else if (typeConverter.canConvert(suppliedArg, TypeDescriptor.valueOf(varargsParamType))) {
 							match = ArgumentsMatchKind.REQUIRES_CONVERSION;
-						}
-						else {
+						} else {
 							match = null;
 						}
 					}
@@ -230,6 +219,7 @@ public abstract class ReflectionHelper {
 
 
 	// TODO could do with more refactoring around argument handling and varargs
+
 	/**
 	 * Convert a supplied set of arguments into the requested types. If the parameterTypes are related to
 	 * a varargs method then the final entry in the parameterTypes array is going to be an array itself whose
@@ -237,9 +227,10 @@ public abstract class ReflectionHelper {
 	 * parameterTypes are {Integer, String[]} and the input arguments are {Integer, boolean, float} then both
 	 * the boolean and float must be converted to strings). This method does *not* repackage the arguments
 	 * into a form suitable for the varargs invocation - a subsequent call to setupArgumentsForVarargsInvocation handles that.
+	 *
 	 * @param converter the converter to use for type conversions
 	 * @param arguments the arguments to convert to the requested parameter types
-	 * @param method the target Method
+	 * @param method    the target Method
 	 * @return true if some kind of conversion occurred on the argument
 	 * @throws SpelEvaluationException if there is a problem with conversion
 	 */
@@ -253,16 +244,17 @@ public abstract class ReflectionHelper {
 	/**
 	 * Takes an input set of argument values and converts them to the types specified as the
 	 * required parameter types. The arguments are converted 'in-place' in the input array.
-	 * @param converter the type converter to use for attempting conversions
-	 * @param arguments the actual arguments that need conversion
-	 * @param executable the target Method or Constructor
+	 *
+	 * @param converter       the type converter to use for attempting conversions
+	 * @param arguments       the actual arguments that need conversion
+	 * @param executable      the target Method or Constructor
 	 * @param varargsPosition the known position of the varargs argument, if any
-	 * ({@code null} if not varargs)
+	 *                        ({@code null} if not varargs)
 	 * @return {@code true} if some kind of conversion occurred on an argument
 	 * @throws EvaluationException if a problem occurs during conversion
 	 */
 	static boolean convertArguments(TypeConverter converter, Object[] arguments, Executable executable,
-			@Nullable Integer varargsPosition) throws EvaluationException {
+									@Nullable Integer varargsPosition) throws EvaluationException {
 
 		boolean conversionOccurred = false;
 		if (varargsPosition == null) {
@@ -272,8 +264,7 @@ public abstract class ReflectionHelper {
 				arguments[i] = converter.convertValue(argument, TypeDescriptor.forObject(argument), targetType);
 				conversionOccurred |= (argument != arguments[i]);
 			}
-		}
-		else {
+		} else {
 			// Convert everything up to the varargs position
 			for (int i = 0; i < varargsPosition; i++) {
 				TypeDescriptor targetType = new TypeDescriptor(MethodParameter.forExecutable(executable, i));
@@ -297,8 +288,7 @@ public abstract class ReflectionHelper {
 						!isFirstEntryInArray(argument, arguments[varargsPosition])) {
 					conversionOccurred = true; // case 3
 				}
-			}
-			else {
+			} else {
 				// Convert remaining arguments to the varargs element type
 				TypeDescriptor targetType = new TypeDescriptor(methodParam).getElementTypeDescriptor();
 				Assert.state(targetType != null, "No element type");
@@ -314,7 +304,8 @@ public abstract class ReflectionHelper {
 
 	/**
 	 * Check if the supplied value is the first entry in the array represented by the possibleArray value.
-	 * @param value the value to check for in the array
+	 *
+	 * @param value         the value to check for in the array
 	 * @param possibleArray an array object that may have the supplied value as the first element
 	 * @return true if the supplied value is the first entry in the array
 	 */
@@ -336,8 +327,9 @@ public abstract class ReflectionHelper {
 	 * For example, if parameterTypes is {@code (int, String[])} because the second parameter
 	 * was declared {@code String...}, then if arguments is {@code [1,"a","b"]} then it must be
 	 * repackaged as {@code [1,new String[]{"a","b"}]} in order to match the expected types.
+	 *
 	 * @param requiredParameterTypes the types of the parameters for the invocation
-	 * @param args the arguments to be setup ready for the invocation
+	 * @param args                   the arguments to be setup ready for the invocation
 	 * @return a repackaged array of arguments where any varargs setup has been done
 	 */
 	public static Object[] setupArgumentsForVarargsInvocation(Class<?>[] requiredParameterTypes, Object... args) {
@@ -378,13 +370,19 @@ public abstract class ReflectionHelper {
 	 */
 	enum ArgumentsMatchKind {
 
-		/** An exact match is where the parameter types exactly match what the method/constructor is expecting. */
+		/**
+		 * An exact match is where the parameter types exactly match what the method/constructor is expecting.
+		 */
 		EXACT,
 
-		/** A close match is where the parameter types either exactly match or are assignment-compatible. */
+		/**
+		 * A close match is where the parameter types either exactly match or are assignment-compatible.
+		 */
 		CLOSE,
 
-		/** A conversion match is where the type converter must be used to transform some of the parameter types. */
+		/**
+		 * A conversion match is where the type converter must be used to transform some of the parameter types.
+		 */
 		REQUIRES_CONVERSION
 	}
 

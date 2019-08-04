@@ -43,7 +43,9 @@ import org.springframework.core.PriorityOrdered;
 @SuppressWarnings("serial")
 public final class ExposeInvocationInterceptor implements MethodInterceptor, PriorityOrdered, Serializable {
 
-	/** Singleton instance of this class. */
+	/**
+	 * Singleton instance of this class.
+	 */
 	public static final ExposeInvocationInterceptor INSTANCE = new ExposeInvocationInterceptor();
 
 	/**
@@ -53,7 +55,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 	public static final Advisor ADVISOR = new DefaultPointcutAdvisor(INSTANCE) {
 		@Override
 		public String toString() {
-			return ExposeInvocationInterceptor.class.getName() +".ADVISOR";
+			return ExposeInvocationInterceptor.class.getName() + ".ADVISOR";
 		}
 	};
 
@@ -63,17 +65,18 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 
 	/**
 	 * Return the AOP Alliance MethodInvocation object associated with the current invocation.
+	 *
 	 * @return the invocation object associated with the current invocation
 	 * @throws IllegalStateException if there is no AOP invocation in progress,
-	 * or if the ExposeInvocationInterceptor was not added to this interceptor chain
+	 *                               or if the ExposeInvocationInterceptor was not added to this interceptor chain
 	 */
 	public static MethodInvocation currentInvocation() throws IllegalStateException {
 		MethodInvocation mi = invocation.get();
 		if (mi == null) {
 			throw new IllegalStateException(
 					"No MethodInvocation found: Check that an AOP invocation is in progress, and that the " +
-					"ExposeInvocationInterceptor is upfront in the interceptor chain. Specifically, note that " +
-					"advices with order HIGHEST_PRECEDENCE will execute before ExposeInvocationInterceptor!");
+							"ExposeInvocationInterceptor is upfront in the interceptor chain. Specifically, note that " +
+							"advices with order HIGHEST_PRECEDENCE will execute before ExposeInvocationInterceptor!");
 		}
 		return mi;
 	}
@@ -91,8 +94,7 @@ public final class ExposeInvocationInterceptor implements MethodInterceptor, Pri
 		invocation.set(mi);
 		try {
 			return mi.proceed();
-		}
-		finally {
+		} finally {
 			invocation.set(oldInvocation);
 		}
 	}

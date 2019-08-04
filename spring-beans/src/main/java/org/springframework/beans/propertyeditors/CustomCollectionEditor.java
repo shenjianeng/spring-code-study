@@ -38,11 +38,11 @@ import org.springframework.util.ReflectionUtils;
  * target types if the type does not match the target property.
  *
  * @author Juergen Hoeller
- * @since 1.1.3
  * @see java.util.Collection
  * @see java.util.Set
  * @see java.util.SortedSet
  * @see java.util.List
+ * @since 1.1.3
  */
 public class CustomCollectionEditor extends PropertyEditorSupport {
 
@@ -55,8 +55,9 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new CustomCollectionEditor for the given target type,
 	 * keeping an incoming {@code null} as-is.
+	 *
 	 * @param collectionType the target type, which needs to be a
-	 * sub-interface of Collection or a concrete Collection class
+	 *                       sub-interface of Collection or a concrete Collection class
 	 * @see java.util.Collection
 	 * @see java.util.ArrayList
 	 * @see java.util.TreeSet
@@ -76,10 +77,11 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	 * value will be created.
 	 * <p>The default Collection implementations are: ArrayList for List,
 	 * TreeSet for SortedSet, and LinkedHashSet for Set.
-	 * @param collectionType the target type, which needs to be a
-	 * sub-interface of Collection or a concrete Collection class
+	 *
+	 * @param collectionType        the target type, which needs to be a
+	 *                              sub-interface of Collection or a concrete Collection class
 	 * @param nullAsEmptyCollection whether to convert an incoming {@code null}
-	 * value to an empty Collection (of the appropriate type)
+	 *                              value to an empty Collection (of the appropriate type)
 	 * @see java.util.Collection
 	 * @see java.util.ArrayList
 	 * @see java.util.TreeSet
@@ -112,12 +114,10 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	public void setValue(@Nullable Object value) {
 		if (value == null && this.nullAsEmptyCollection) {
 			super.setValue(createCollection(this.collectionType, 0));
-		}
-		else if (value == null || (this.collectionType.isInstance(value) && !alwaysCreateNewCollection())) {
+		} else if (value == null || (this.collectionType.isInstance(value) && !alwaysCreateNewCollection())) {
 			// Use the source value as-is, as it matches the target type.
 			super.setValue(value);
-		}
-		else if (value instanceof Collection) {
+		} else if (value instanceof Collection) {
 			// Convert Collection elements.
 			Collection<?> source = (Collection<?>) value;
 			Collection<Object> target = createCollection(this.collectionType, source.size());
@@ -125,8 +125,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 				target.add(convertElement(elem));
 			}
 			super.setValue(target);
-		}
-		else if (value.getClass().isArray()) {
+		} else if (value.getClass().isArray()) {
 			// Convert array elements to Collection elements.
 			int length = Array.getLength(value);
 			Collection<Object> target = createCollection(this.collectionType, length);
@@ -134,8 +133,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 				target.add(convertElement(Array.get(value, i)));
 			}
 			super.setValue(target);
-		}
-		else {
+		} else {
 			// A plain value: convert it to a Collection with a single element.
 			Collection<Object> target = createCollection(this.collectionType, 1);
 			target.add(convertElement(value));
@@ -146,7 +144,8 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	/**
 	 * Create a Collection of the given type, with the given
 	 * initial capacity (if supported by the Collection type).
-	 * @param collectionType a sub-interface of Collection
+	 *
+	 * @param collectionType  a sub-interface of Collection
 	 * @param initialCapacity the initial capacity
 	 * @return the new Collection instance
 	 */
@@ -155,19 +154,15 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 		if (!collectionType.isInterface()) {
 			try {
 				return ReflectionUtils.accessibleConstructor(collectionType).newInstance();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalArgumentException(
 						"Could not instantiate collection class: " + collectionType.getName(), ex);
 			}
-		}
-		else if (List.class == collectionType) {
+		} else if (List.class == collectionType) {
 			return new ArrayList<>(initialCapacity);
-		}
-		else if (SortedSet.class == collectionType) {
+		} else if (SortedSet.class == collectionType) {
 			return new TreeSet<>();
-		}
-		else {
+		} else {
 			return new LinkedHashSet<>(initialCapacity);
 		}
 	}
@@ -177,6 +172,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	 * even if the type of the passed-in Collection already matches.
 	 * <p>Default is "false"; can be overridden to enforce creation of a
 	 * new Collection, for example to convert elements in any case.
+	 *
 	 * @see #convertElement
 	 */
 	protected boolean alwaysCreateNewCollection() {
@@ -193,6 +189,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	 * This is by default not the case if the type of the passed-in Collection
 	 * already matches. Override {@link #alwaysCreateNewCollection()} to
 	 * enforce creating a new Collection in every case.
+	 *
 	 * @param element the source element
 	 * @return the element to be used in the target Collection
 	 * @see #alwaysCreateNewCollection()

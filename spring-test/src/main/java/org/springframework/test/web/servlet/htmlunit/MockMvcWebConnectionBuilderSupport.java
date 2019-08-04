@@ -37,10 +37,10 @@ import org.springframework.web.context.WebApplicationContext;
  * <p>The default is to use {@link MockMvc} for requests to {@code localhost}
  * and otherwise use a real {@link WebConnection}.
  *
+ * @param <T> a self reference to the builder type
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
- * @param <T> a self reference to the builder type
  */
 public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebConnectionBuilderSupport<T>> {
 
@@ -55,6 +55,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * Create a new instance using the supplied {@link MockMvc} instance.
+	 *
 	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(MockMvc mockMvc) {
@@ -65,8 +66,9 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 
 	/**
 	 * Create a new instance using the supplied {@link WebApplicationContext}.
+	 *
 	 * @param context the {@code WebApplicationContext} to create a {@code MockMvc}
-	 * instance from; never {@code null}
+	 *                instance from; never {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(WebApplicationContext context) {
 		this(MockMvcBuilders.webAppContextSetup(context).build());
@@ -75,8 +77,9 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	/**
 	 * Create a new instance using the supplied {@link WebApplicationContext}
 	 * and {@link MockMvcConfigurer}.
-	 * @param context the {@code WebApplicationContext} to create a {@code MockMvc}
-	 * instance from; never {@code null}
+	 *
+	 * @param context    the {@code WebApplicationContext} to create a {@code MockMvc}
+	 *                   instance from; never {@code null}
 	 * @param configurer the MockMvcConfigurer to apply; never {@code null}
 	 */
 	protected MockMvcWebConnectionBuilderSupport(WebApplicationContext context, MockMvcConfigurer configurer) {
@@ -89,6 +92,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * <p>If the supplied value is {@code null} or empty, the first path
 	 * segment of the request URL is assumed to be the context path.
 	 * <p>Default is {@code ""}.
+	 *
 	 * @param contextPath the context path to use
 	 * @return this builder for further customization
 	 */
@@ -101,6 +105,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	/**
 	 * Specify that {@link MockMvc} should always be used regardless of
 	 * what the request looks like.
+	 *
 	 * @return this builder for further customization
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,6 +118,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * Add additional {@link WebRequestMatcher} instances that will ensure
 	 * that {@link MockMvc} is used to process the request, if such a matcher
 	 * matches against the web request.
+	 *
 	 * @param matchers additional {@code WebRequestMatcher} instances
 	 * @return this builder for further customization
 	 */
@@ -128,6 +134,7 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * Add additional {@link WebRequestMatcher} instances that return {@code true}
 	 * if a supplied host matches &mdash; for example, {@code "example.com"} or
 	 * {@code "example.com:8080"}.
+	 *
 	 * @param hosts additional hosts that ensure {@code MockMvc} gets invoked
 	 * @return this builder for further customization
 	 */
@@ -141,14 +148,15 @@ public abstract class MockMvcWebConnectionBuilderSupport<T extends MockMvcWebCon
 	 * Create a new {@link WebConnection} that will use a {@link MockMvc}
 	 * instance if one of the specified {@link WebRequestMatcher} instances
 	 * matches.
+	 *
 	 * @param webClient the WebClient to use if none of the specified
-	 * {@code WebRequestMatcher} instances matches (never {@code null})
+	 *                  {@code WebRequestMatcher} instances matches (never {@code null})
 	 * @return a new {@code WebConnection} that will use a {@code MockMvc}
 	 * instance if one of the specified {@code WebRequestMatcher} matches
-	 * @since 4.3
 	 * @see #alwaysUseMockMvc()
 	 * @see #useMockMvc(WebRequestMatcher...)
 	 * @see #useMockMvcForHosts(String...)
+	 * @since 4.3
 	 */
 	protected final WebConnection createConnection(WebClient webClient) {
 		Assert.notNull(webClient, "WebClient must not be null");

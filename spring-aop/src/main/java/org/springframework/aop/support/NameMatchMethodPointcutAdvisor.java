@@ -46,6 +46,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	/**
 	 * Set the {@link ClassFilter} to use for this pointcut.
 	 * Default is {@link ClassFilter#TRUE}.
+	 *
 	 * @see NameMatchMethodPointcut#setClassFilter
 	 */
 	public void setClassFilter(ClassFilter classFilter) {
@@ -55,6 +56,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	/**
 	 * Convenience method when we have only a single method name to match.
 	 * Use either this method or {@code setMappedNames}, not both.
+	 *
 	 * @see #setMappedNames
 	 * @see NameMatchMethodPointcut#setMappedName
 	 */
@@ -66,6 +68,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	 * Set the method names defining methods to match.
 	 * Matching will be the union of all these; if any match,
 	 * the pointcut matches.
+	 *
 	 * @see NameMatchMethodPointcut#setMappedNames
 	 */
 	public void setMappedNames(String... mappedNames) {
@@ -76,6 +79,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	 * Add another eligible method name, in addition to those already named.
 	 * Like the set methods, this method is for use when configuring proxies,
 	 * before a proxy is used.
+	 *
 	 * @param name name of the additional method that will match
 	 * @return this pointcut to allow for multiple additions in one line
 	 * @see NameMatchMethodPointcut#addMethodName

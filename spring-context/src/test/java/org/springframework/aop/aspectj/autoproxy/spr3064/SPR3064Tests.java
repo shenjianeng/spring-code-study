@@ -1,12 +1,12 @@
 /**
  * Copyright 2002-2016 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * https://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,16 +40,15 @@ public class SPR3064Tests {
 	@Test
 	public void testServiceIsAdvised() {
 		ClassPathXmlApplicationContext ctx =
-			new ClassPathXmlApplicationContext(getClass().getSimpleName() + ".xml", getClass());
+				new ClassPathXmlApplicationContext(getClass().getSimpleName() + ".xml", getClass());
 
 		service = (Service) ctx.getBean("service");
 
 		try {
 			this.service.serveMe();
 			fail("service operation has not been advised by transaction interceptor");
-		}
-		catch (RuntimeException ex) {
-			assertEquals("advice invoked",ex.getMessage());
+		} catch (RuntimeException ex) {
+			assertEquals("advice invoked", ex.getMessage());
 		}
 	}
 
@@ -64,7 +63,7 @@ public class SPR3064Tests {
 @Aspect
 class TransactionInterceptor {
 
-	@Around(value="execution(* *..Service.*(..)) && @annotation(transaction)")
+	@Around(value = "execution(* *..Service.*(..)) && @annotation(transaction)")
 	public Object around(ProceedingJoinPoint pjp, Transaction transaction) throws Throwable {
 		throw new RuntimeException("advice invoked");
 		//return pjp.proceed();

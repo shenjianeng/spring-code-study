@@ -44,13 +44,14 @@ public interface ViewResolver {
 	 * However, this is not required: Some ViewResolvers will always attempt
 	 * to build View objects with the given name, unable to return {@code null}
 	 * (rather throwing an exception when View creation failed).
+	 *
 	 * @param viewName name of the view to resolve
-	 * @param locale the Locale in which to resolve the view.
-	 * ViewResolvers that support internationalization should respect this.
+	 * @param locale   the Locale in which to resolve the view.
+	 *                 ViewResolvers that support internationalization should respect this.
 	 * @return the View object, or {@code null} if not found
 	 * (optional, to allow for ViewResolver chaining)
 	 * @throws Exception if the view cannot be resolved
-	 * (typically in case of problems creating an actual View object)
+	 *                   (typically in case of problems creating an actual View object)
 	 */
 	@Nullable
 	View resolveViewName(String viewName, Locale locale) throws Exception;

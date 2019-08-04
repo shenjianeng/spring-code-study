@@ -311,7 +311,7 @@ public class ViewResolutionResultHandlerTests {
 	}
 
 	private ServerWebExchange testHandle(String path, MethodParameter returnType, Object returnValue,
-			String responseBody, ViewResolver... resolvers) {
+										 String responseBody, ViewResolver... resolvers) {
 
 		Model model = this.bindingContext.getModel();
 		model.asMap().clear();
@@ -423,31 +423,75 @@ public class ViewResolutionResultHandlerTests {
 	@SuppressWarnings("unused")
 	private static class Handler {
 
-		String string() { return null; }
-		Mono<String> monoString() { return null; }
-		@ModelAttribute("myString") String stringWithAnnotation() { return null; }
+		String string() {
+			return null;
+		}
 
-		Rendering rendering() { return null; }
-		Mono<Rendering> monoRendering() { return null; }
+		Mono<String> monoString() {
+			return null;
+		}
 
-		View view() { return null; }
-		Mono<View> monoView() { return null; }
+		@ModelAttribute("myString")
+		String stringWithAnnotation() {
+			return null;
+		}
 
-		void voidMethod() { }
-		Mono<Void> monoVoid() { return null; }
-		Completable completable() { return null; }
+		Rendering rendering() {
+			return null;
+		}
 
-		Model model() { return null; }
+		Mono<Rendering> monoRendering() {
+			return null;
+		}
 
-		Map<?,?> map() { return null; }
-		@ModelAttribute("myMap") Map<?,?> mapWithAnnotation() { return null; }
+		View view() {
+			return null;
+		}
 
-		TestBean testBean() { return null; }
+		Mono<View> monoView() {
+			return null;
+		}
 
-		Long longValue() { return null; }
-		@ModelAttribute("myLong") Long longModelAttribute() { return null; }
+		void voidMethod() {
+		}
 
-		Mono<?> monoWildcard() { return null; }
+		Mono<Void> monoVoid() {
+			return null;
+		}
+
+		Completable completable() {
+			return null;
+		}
+
+		Model model() {
+			return null;
+		}
+
+		Map<?, ?> map() {
+			return null;
+		}
+
+		@ModelAttribute("myMap")
+		Map<?, ?> mapWithAnnotation() {
+			return null;
+		}
+
+		TestBean testBean() {
+			return null;
+		}
+
+		Long longValue() {
+			return null;
+		}
+
+		@ModelAttribute("myLong")
+		Long longModelAttribute() {
+			return null;
+		}
+
+		Mono<?> monoWildcard() {
+			return null;
+		}
 	}
 
 }

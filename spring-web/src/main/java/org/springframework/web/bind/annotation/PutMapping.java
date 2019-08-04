@@ -32,12 +32,12 @@ import org.springframework.core.annotation.AliasFor;
  * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.PUT)}.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see GetMapping
  * @see PostMapping
  * @see DeleteMapping
  * @see PatchMapping
  * @see RequestMapping
+ * @since 4.3
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

@@ -24,16 +24,17 @@ import java.util.Optional;
  * can be found in {@link RequestPredicates}.
  *
  * @author Arjen Poutsma
- * @since 5.0
  * @see RequestPredicates
  * @see RouterFunctions#route(RequestPredicate, HandlerFunction)
  * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
+ * @since 5.0
  */
 @FunctionalInterface
 public interface RequestPredicate {
 
 	/**
 	 * Evaluate this predicate on the given request.
+	 *
 	 * @param request the request to match against
 	 * @return {@code true} if the request matches the predicate; {@code false} otherwise
 	 */
@@ -43,6 +44,7 @@ public interface RequestPredicate {
 	 * Return a composed request predicate that tests against both this predicate AND
 	 * the {@code other} predicate. When evaluating the composed predicate, if this
 	 * predicate is {@code false}, then the {@code other} predicate is not evaluated.
+	 *
 	 * @param other a predicate that will be logically-ANDed with this predicate
 	 * @return a predicate composed of this predicate AND the {@code other} predicate
 	 */
@@ -52,6 +54,7 @@ public interface RequestPredicate {
 
 	/**
 	 * Return a predicate that represents the logical negation of this predicate.
+	 *
 	 * @return a predicate that represents the logical negation of this predicate
 	 */
 	default RequestPredicate negate() {
@@ -62,6 +65,7 @@ public interface RequestPredicate {
 	 * Return a composed request predicate that tests against both this predicate OR
 	 * the {@code other} predicate. When evaluating the composed predicate, if this
 	 * predicate is {@code true}, then the {@code other} predicate is not evaluated.
+	 *
 	 * @param other a predicate that will be logically-ORed with this predicate
 	 * @return a predicate composed of this predicate OR the {@code other} predicate
 	 */
@@ -76,6 +80,7 @@ public interface RequestPredicate {
 	 * <p>The default implementation returns an {@code Optional} wrapping the given path if
 	 * {@link #test(ServerRequest)} evaluates to {@code true}; or {@link Optional#empty()}
 	 * if it evaluates to {@code false}.
+	 *
 	 * @param request the request to be nested
 	 * @return the nested request
 	 * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
@@ -89,6 +94,7 @@ public interface RequestPredicate {
 	 * {@link RequestPredicates.Visitor#unknown(RequestPredicate)}; composed {@code RequestPredicate}
 	 * implementations are expected to call {@code accept} for all components that make up this
 	 * request predicate.
+	 *
 	 * @param visitor the visitor to accept
 	 */
 	default void accept(RequestPredicates.Visitor visitor) {

@@ -235,7 +235,7 @@ public class MockHttpServletRequestTests {
 		request.setParameter("key2", "value2");
 		Map<String, Object> params = new HashMap<>(2);
 		params.put("key1", "newValue1");
-		params.put("key3", new String[] { "value3A", "value3B" });
+		params.put("key3", new String[]{"value3A", "value3B"});
 		request.setParameters(params);
 		String[] values1 = request.getParameterValues("key1");
 		assertEquals(1, values1.length);
@@ -253,7 +253,7 @@ public class MockHttpServletRequestTests {
 		request.setParameter("key2", "value2");
 		Map<String, Object> params = new HashMap<>(2);
 		params.put("key1", "newValue1");
-		params.put("key3", new String[] { "value3A", "value3B" });
+		params.put("key3", new String[]{"value3A", "value3B"});
 		request.addParameters(params);
 		String[] values1 = request.getParameterValues("key1");
 		assertEquals(2, values1.length);
@@ -271,7 +271,7 @@ public class MockHttpServletRequestTests {
 		request.setParameter("key1", "value1");
 		Map<String, Object> params = new HashMap<>(2);
 		params.put("key2", "value2");
-		params.put("key3", new String[] { "value3A", "value3B" });
+		params.put("key3", new String[]{"value3A", "value3B"});
 		request.addParameters(params);
 		assertEquals(3, request.getParameterMap().size());
 		request.removeAllParameters();
@@ -312,8 +312,7 @@ public class MockHttpServletRequestTests {
 			MockHttpServletRequest request = new MockHttpServletRequest();
 			assertFalse(newDefaultLocale.equals(request.getLocale()));
 			assertEquals(Locale.ENGLISH, request.getLocale());
-		}
-		finally {
+		} finally {
 			Locale.setDefault(originalDefaultLocale);
 		}
 	}

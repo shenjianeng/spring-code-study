@@ -51,7 +51,6 @@ import org.springframework.util.ReflectionUtils;
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @author Stephane Nicoll
- * @since 15 April 2001
  * @see #registerCustomEditor
  * @see #setPropertyValues
  * @see #setPropertyValue
@@ -59,6 +58,7 @@ import org.springframework.util.ReflectionUtils;
  * @see #getPropertyType
  * @see BeanWrapper
  * @see PropertyEditorRegistrySupport
+ * @since 15 April 2001
  */
 public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements BeanWrapper {
 
@@ -79,6 +79,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	/**
 	 * Create a new empty BeanWrapperImpl. Wrapped instance needs to be set afterwards.
 	 * Registers default editors.
+	 *
 	 * @see #setWrappedInstance
 	 */
 	public BeanWrapperImpl() {
@@ -87,8 +88,9 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * Create a new empty BeanWrapperImpl. Wrapped instance needs to be set afterwards.
+	 *
 	 * @param registerDefaultEditors whether to register default editors
-	 * (can be suppressed if the BeanWrapper won't need any type conversion)
+	 *                               (can be suppressed if the BeanWrapper won't need any type conversion)
 	 * @see #setWrappedInstance
 	 */
 	public BeanWrapperImpl(boolean registerDefaultEditors) {
@@ -97,6 +99,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * Create a new BeanWrapperImpl for the given object.
+	 *
 	 * @param object object wrapped by this BeanWrapper
 	 */
 	public BeanWrapperImpl(Object object) {
@@ -105,6 +108,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * Create a new BeanWrapperImpl, wrapping a new instance of the specified class.
+	 *
 	 * @param clazz class to instantiate and wrap
 	 */
 	public BeanWrapperImpl(Class<?> clazz) {
@@ -114,7 +118,8 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	/**
 	 * Create a new BeanWrapperImpl for the given object,
 	 * registering a nested path that the object is in.
-	 * @param object object wrapped by this BeanWrapper
+	 *
+	 * @param object     object wrapped by this BeanWrapper
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
 	 */
@@ -125,9 +130,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	/**
 	 * Create a new BeanWrapperImpl for the given object,
 	 * registering a nested path that the object is in.
-	 * @param object object wrapped by this BeanWrapper
+	 *
+	 * @param object     object wrapped by this BeanWrapper
 	 * @param nestedPath the nested path of the object
-	 * @param parent the containing BeanWrapper (must not be {@code null})
+	 * @param parent     the containing BeanWrapper (must not be {@code null})
 	 */
 	private BeanWrapperImpl(Object object, String nestedPath, BeanWrapperImpl parent) {
 		super(object, nestedPath, parent);
@@ -137,9 +143,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 	/**
 	 * Set a bean instance to hold, without any unwrapping of {@link java.util.Optional}.
+	 *
 	 * @param object the actual target object
-	 * @since 4.3
 	 * @see #setWrappedInstance(Object)
+	 * @since 4.3
 	 */
 	public void setBeanInstance(Object object) {
 		this.wrappedObject = object;
@@ -157,6 +164,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	/**
 	 * Set the class to introspect.
 	 * Needs to be called when the target object changes.
+	 *
 	 * @param clazz the class to introspect
 	 */
 	protected void setIntrospectionClass(Class<?> clazz) {
@@ -198,9 +206,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	 * Convert the given value for the specified property to the latter's type.
 	 * <p>This method is only intended for optimizations in a BeanFactory.
 	 * Use the {@code convertIfNecessary} methods for programmatic conversion.
-	 * @param value the value to convert
+	 *
+	 * @param value        the value to convert
 	 * @param propertyName the target property
-	 * (note that nested or indexed properties are not supported here)
+	 *                     (note that nested or indexed properties are not supported here)
 	 * @return the new value, possibly the result of type conversion
 	 * @throws TypeMismatchException if type conversion failed
 	 */
@@ -298,12 +307,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 				try {
 					return AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () ->
 							readMethod.invoke(getWrappedInstance(), (Object[]) null), acc);
-				}
-				catch (PrivilegedActionException pae) {
+				} catch (PrivilegedActionException pae) {
 					throw pae.getException();
 				}
-			}
-			else {
+			} else {
 				ReflectionUtils.makeAccessible(readMethod);
 				return readMethod.invoke(getWrappedInstance(), (Object[]) null);
 			}
@@ -322,12 +329,10 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 				try {
 					AccessController.doPrivileged((PrivilegedExceptionAction<Object>) () ->
 							writeMethod.invoke(getWrappedInstance(), value), acc);
-				}
-				catch (PrivilegedActionException ex) {
+				} catch (PrivilegedActionException ex) {
 					throw ex.getException();
 				}
-			}
-			else {
+			} else {
 				ReflectionUtils.makeAccessible(writeMethod);
 				writeMethod.invoke(getWrappedInstance(), value);
 			}

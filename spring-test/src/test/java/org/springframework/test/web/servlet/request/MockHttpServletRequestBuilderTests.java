@@ -188,8 +188,7 @@ public class MockHttpServletRequestBuilderTests {
 			this.builder.contextPath(contextPath);
 			this.builder.servletPath(servletPath);
 			this.builder.buildRequest(this.servletContext);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertEquals(message, ex.getMessage());
 		}
 	}
@@ -209,7 +208,7 @@ public class MockHttpServletRequestBuilderTests {
 		MockHttpServletRequest request = this.builder.buildRequest(this.servletContext);
 		Map<String, String[]> parameterMap = request.getParameterMap();
 
-		assertArrayEquals(new String[] {"bar", "baz"}, parameterMap.get("foo"));
+		assertArrayEquals(new String[]{"bar", "baz"}, parameterMap.get("foo"));
 	}
 
 	@Test
@@ -219,7 +218,7 @@ public class MockHttpServletRequestBuilderTests {
 		MockHttpServletRequest request = this.builder.buildRequest(this.servletContext);
 		Map<String, String[]> parameterMap = request.getParameterMap();
 
-		assertArrayEquals(new String[] {"bar", "baz"}, parameterMap.get("foo"));
+		assertArrayEquals(new String[]{"bar", "baz"}, parameterMap.get("foo"));
 		assertEquals("foo=bar&foo=baz", request.getQueryString());
 	}
 
@@ -251,7 +250,7 @@ public class MockHttpServletRequestBuilderTests {
 		MockHttpServletRequest request = this.builder.buildRequest(this.servletContext);
 		Map<String, String[]> parameterMap = request.getParameterMap();
 
-		assertArrayEquals(new String[] {null}, parameterMap.get("foo"));
+		assertArrayEquals(new String[]{null}, parameterMap.get("foo"));
 		assertEquals("foo", request.getQueryString());
 	}
 
@@ -265,7 +264,7 @@ public class MockHttpServletRequestBuilderTests {
 
 		MockHttpServletRequest request = this.builder.buildRequest(this.servletContext);
 
-		assertArrayEquals(new String[] {"bar", "baz"}, request.getParameterMap().get("foo"));
+		assertArrayEquals(new String[]{"bar", "baz"}, request.getParameterMap().get("foo"));
 	}
 
 	@Test
@@ -277,9 +276,9 @@ public class MockHttpServletRequestBuilderTests {
 				.contentType(contentType).content(body.getBytes(StandardCharsets.UTF_8))
 				.buildRequest(this.servletContext);
 
-		assertArrayEquals(new String[] {"value 1"}, request.getParameterMap().get("name 1"));
-		assertArrayEquals(new String[] {"value A", "value B"}, request.getParameterMap().get("name 2"));
-		assertArrayEquals(new String[] {null}, request.getParameterMap().get("name 3"));
+		assertArrayEquals(new String[]{"value 1"}, request.getParameterMap().get("name 1"));
+		assertArrayEquals(new String[]{"value A", "value B"}, request.getParameterMap().get("name 2"));
+		assertArrayEquals(new String[]{null}, request.getParameterMap().get("name 3"));
 	}
 
 	@Test

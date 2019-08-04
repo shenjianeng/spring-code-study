@@ -73,6 +73,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 
 	/**
 	 * To be overridden by concrete test subclasses.
+	 *
 	 * @return the fixture
 	 */
 	protected abstract AspectJAdvisorFactory getFixture();
@@ -84,8 +85,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 			getFixture().getAdvisors(
 					new SingletonMetadataAwareAspectInstanceFactory(new PerCflowAspect(), "someBean"));
 			fail("Cannot accept cflow");
-		}
-		catch (AopConfigException ex) {
+		} catch (AopConfigException ex) {
 			assertTrue(ex.getMessage().contains("PERCFLOW"));
 		}
 	}
@@ -96,8 +96,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 			getFixture().getAdvisors(
 					new SingletonMetadataAwareAspectInstanceFactory(new PerCflowBelowAspect(), "someBean"));
 			fail("Cannot accept cflowbelow");
-		}
-		catch (AopConfigException ex) {
+		} catch (AopConfigException ex) {
 			assertTrue(ex.getMessage().contains("PERCFLOWBELOW"));
 		}
 	}
@@ -289,7 +288,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 				ITestBean.class);
 		itb.setAge(10);
 		assertEquals("Around advice must apply", 20, itb.getAge());
-		assertEquals(20,target.getAge());
+		assertEquals(20, target.getAge());
 	}
 
 	private void testNamedPointcuts(Object aspectInstance) {
@@ -312,7 +311,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 				ITestBean.class);
 		itb.setAge(10);
 		assertEquals("Around advice must apply", 20, itb.getAge());
-		assertEquals(20,target.getAge());
+		assertEquals(20, target.getAge());
 	}
 
 	@Test
@@ -328,7 +327,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		int c = 25;
 		String d = "d";
 		StringBuffer e = new StringBuffer("stringbuf");
-		String expectedResult = a + b+ c + d + e;
+		String expectedResult = a + b + c + d + e;
 		assertEquals(expectedResult, mva.mungeArgs(a, b, c, d, e));
 	}
 
@@ -362,8 +361,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			notLockable2.setIntValue(32);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 		}
 		assertTrue(lockable2.locked());
 	}
@@ -375,7 +373,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 						new SingletonMetadataAwareAspectInstanceFactory(new MakeLockable(), "someBean")),
 				CannotBeUnlocked.class).isEmpty());
 		assertEquals(2, AopUtils.findAdvisorsThatCanApply(getFixture().getAdvisors(
-				new SingletonMetadataAwareAspectInstanceFactory(new MakeLockable(),"someBean")), NotLockable.class).size());
+				new SingletonMetadataAwareAspectInstanceFactory(new MakeLockable(), "someBean")), NotLockable.class).size());
 	}
 
 	@Test
@@ -397,8 +395,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			lockable.unlock();
 			fail();
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			// Ok
 		}
 	}
@@ -423,7 +420,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		Object proxy = createProxy(target, advisors, AnnotatedTarget.class);
 		System.out.println(advisors.get(1));
 		assertTrue(proxy instanceof Lockable);
-		Lockable lockable = (Lockable)proxy;
+		Lockable lockable = (Lockable) proxy;
 		lockable.locked();
 	}
 
@@ -460,8 +457,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			itb.setName("Else");
 			fail("Should be locked");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// Ok
 		}
 		lockable.unlock();
@@ -480,8 +476,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			itb.getAge();
 			fail();
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			assertSame(expectedException, ex);
 		}
 	}
@@ -500,8 +495,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			itb.getAge();
 			fail();
-		}
-		catch (UndeclaredThrowableException ex) {
+		} catch (UndeclaredThrowableException ex) {
 			assertSame(expectedException, ex.getCause());
 		}
 	}
@@ -510,8 +504,7 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		ProxyFactory pf = new ProxyFactory(target);
 		if (interfaces.length > 1 || interfaces[0].isInterface()) {
 			pf.setInterfaces(interfaces);
-		}
-		else {
+		} else {
 			pf.setProxyTargetClass(true);
 		}
 
@@ -553,11 +546,9 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 		try {
 			echo.echo(new FileNotFoundException());
 			fail();
-		}
-		catch (FileNotFoundException ex) {
+		} catch (FileNotFoundException ex) {
 			// Ok
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			fail();
 		}
 		assertEquals(1, afterReturningAspect.successCount);
@@ -721,9 +712,9 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 			return -1;
 		}
 
-		@Around(value="org.springframework.aop.aspectj.annotation.AbstractAspectJAdvisorFactoryTests.Library.integerArgOperation(x)", argNames="x")
+		@Around(value = "org.springframework.aop.aspectj.annotation.AbstractAspectJAdvisorFactoryTests.Library.integerArgOperation(x)", argNames = "x")
 		public void doubleArg(ProceedingJoinPoint pjp, int x) throws Throwable {
-			pjp.proceed(new Object[] {x*2});
+			pjp.proceed(new Object[]{x * 2});
 		}
 	}
 
@@ -732,10 +723,12 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 	public static class Library {
 
 		@Pointcut("execution(!void get*())")
-		public void propertyAccess() {}
+		public void propertyAccess() {
+		}
 
 		@Pointcut("execution(* *(..)) && args(i)")
-		public void integerArgOperation(int i) {}
+		public void integerArgOperation(int i) {
+		}
 
 	}
 
@@ -743,9 +736,9 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 	@Aspect
 	public static class NamedPointcutAspectFromLibraryWithBinding {
 
-		@Around(value="org.springframework.aop.aspectj.annotation.AbstractAspectJAdvisorFactoryTests.Library.integerArgOperation(x)", argNames="x")
+		@Around(value = "org.springframework.aop.aspectj.annotation.AbstractAspectJAdvisorFactoryTests.Library.integerArgOperation(x)", argNames = "x")
 		public void doubleArg(ProceedingJoinPoint pjp, int x) throws Throwable {
-			pjp.proceed(new Object[] {x*2});
+			pjp.proceed(new Object[]{x * 2});
 		}
 	}
 
@@ -753,14 +746,15 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 	@Aspect
 	public static class BindingAspectWithSingleArg {
 
-		@Pointcut(value="args(a)", argNames="a")
-		public void setAge(int a) {}
+		@Pointcut(value = "args(a)", argNames = "a")
+		public void setAge(int a) {
+		}
 
-		@Around(value="setAge(age)",argNames="age")
+		@Around(value = "setAge(age)", argNames = "age")
 		// @ArgNames({"age"})	// AMC needs more work here? ignoring pjp arg... ok??
 		// argNames should be supported in Around as it is in Pointcut
 		public void changeReturnType(ProceedingJoinPoint pjp, int age) throws Throwable {
-			pjp.proceed(new Object[] {age*2});
+			pjp.proceed(new Object[]{age * 2});
 		}
 	}
 
@@ -772,9 +766,9 @@ public abstract class AbstractAspectJAdvisorFactoryTests {
 			return a + b + c + d + e;
 		}
 
-		@Around(value="execution(String mungeArgs(..)) && args(a, b, c, d, e)", argNames="b,c,d,e,a")
+		@Around(value = "execution(String mungeArgs(..)) && args(a, b, c, d, e)", argNames = "b,c,d,e,a")
 		public String reverseAdvice(ProceedingJoinPoint pjp, int b, int c, String d, StringBuffer e, String a) throws Throwable {
-			assertEquals(a + b+ c+ d+ e, pjp.proceed());
+			assertEquals(a + b + c + d + e, pjp.proceed());
 			return a + b + c + d + e;
 		}
 	}
@@ -909,7 +903,7 @@ abstract class AbstractMakeModifiable {
 		}
 	}
 
-	@Before(value="execution(void set*(*)) && this(modifiable) && args(newValue)", argNames="modifiable,newValue")
+	@Before(value = "execution(void set*(*)) && this(modifiable) && args(newValue)", argNames = "modifiable,newValue")
 	public void recordModificationIfSetterArgumentDiffersFromOldValue(
 			JoinPoint jp, MutableModifiable mixin, Object newValue) {
 
@@ -934,13 +928,11 @@ abstract class AbstractMakeModifiable {
 				Object oldValue = correspondingGetter.invoke(jp.getTarget());
 				//System.out.println("Old value=" + oldValue + "; new=" + newValue);
 				modified = !ObjectUtils.nullSafeEquals(oldValue, newValue);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				ex.printStackTrace();
 				// Don't sweat on exceptions; assume value was modified
 			}
-		}
-		else {
+		} else {
 			//System.out.println("cannot get getter for " + jp);
 		}
 		if (modified) {
@@ -952,8 +944,7 @@ abstract class AbstractMakeModifiable {
 		String getterName = setter.getName().replaceFirst("set", "get");
 		try {
 			return setter.getDeclaringClass().getMethod(getterName);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			// must be write only
 			return null;
 		}
@@ -964,6 +955,7 @@ abstract class AbstractMakeModifiable {
 
 /**
  * Adds a declare parents pointcut.
+ *
  * @author Rod Johnson
  * @since 2.0
  */
@@ -971,7 +963,7 @@ abstract class AbstractMakeModifiable {
 class MakeITestBeanModifiable extends AbstractMakeModifiable {
 
 	@DeclareParents(value = "org.springframework.tests.sample.beans.ITestBean+",
-			defaultImpl=ModifiableImpl.class)
+			defaultImpl = ModifiableImpl.class)
 	public static MutableModifiable mixin;
 
 }
@@ -979,6 +971,7 @@ class MakeITestBeanModifiable extends AbstractMakeModifiable {
 
 /**
  * Adds a declare parents pointcut - spr5307
+ *
  * @author Andy Clement
  * @since 3.0
  */
@@ -1001,8 +994,8 @@ class MakeLockable {
 	@DeclareParents(value = "org.springframework..*", defaultImpl = DefaultLockable.class)
 	public static Lockable mixin;
 
-	@Before(value="execution(void set*(*)) && this(mixin)", argNames="mixin")
-	public void checkNotLocked( Lockable mixin) {
+	@Before(value = "execution(void set*(*)) && this(mixin)", argNames = "mixin")
+	public void checkNotLocked(Lockable mixin) {
 		// Can also obtain the mixin (this) this way
 		//Lockable mixin = (Lockable) jp.getThis();
 		if (mixin.locked()) {
@@ -1053,6 +1046,7 @@ interface Modifiable {
 
 /**
  * Used as a target.
+ *
  * @author Andy Clement
  */
 interface AnnotatedTarget {
@@ -1065,7 +1059,8 @@ class AnnotatedTargetImpl implements AnnotatedTarget {
 
 
 @Retention(RetentionPolicy.RUNTIME)
-@interface Measured {}
+@interface Measured {
+}
 
 class NotLockable {
 

@@ -52,9 +52,10 @@ public interface RowCallbackHandler {
 	 * <p>Exactly what the implementation chooses to do is up to it:
 	 * A trivial implementation might simply count rows, while another
 	 * implementation might build an XML document.
+	 *
 	 * @param rs the ResultSet to process (pre-initialized for the current row)
 	 * @throws SQLException if a SQLException is encountered getting
-	 * column values (that is, there's no need to catch SQLException)
+	 *                      column values (that is, there's no need to catch SQLException)
 	 */
 	void processRow(ResultSet rs) throws SQLException;
 

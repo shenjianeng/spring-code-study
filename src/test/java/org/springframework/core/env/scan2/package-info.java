@@ -30,8 +30,10 @@ import org.springframework.stereotype.Component;
 
 @Profile(DEV_ENV_NAME)
 @Component(DEV_BEAN_NAME)
-class DevBean { }
+class DevBean {
+}
 
 @Profile(PROD_ENV_NAME)
 @Component(PROD_BEAN_NAME)
-class ProdBean { }
+class ProdBean {
+}

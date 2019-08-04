@@ -28,6 +28,7 @@ import org.springframework.test.web.servlet.StubMvcResult;
 
 /**
  * Unit tests for {@link HeaderResultMatchers}.
+ *
  * @author Rossen Stoyanchev
  */
 public class HeaderResultMatchersTests {

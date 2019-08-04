@@ -29,8 +29,8 @@ import org.springframework.web.server.ServerWebExchange;
  * includes associated time zone and other locale related information.
  *
  * @author Sebastien Deleuze
- * @since 5.0
  * @see LocaleContext
+ * @since 5.0
  */
 public interface LocaleContextResolver {
 
@@ -42,6 +42,7 @@ public interface LocaleContextResolver {
 	 * Simply apply an {@code instanceof} check and downcast accordingly.
 	 * <p>Custom resolver implementations may also return extra settings in
 	 * the returned context, which again can be accessed through downcasting.
+	 *
 	 * @param exchange current server exchange
 	 * @return the current locale context (never {@code null})
 	 */
@@ -50,10 +51,11 @@ public interface LocaleContextResolver {
 	/**
 	 * Set the current locale context to the given one,
 	 * potentially including a locale with associated time zone information.
-	 * @param exchange current server exchange
+	 *
+	 * @param exchange      current server exchange
 	 * @param localeContext the new locale context, or {@code null} to clear the locale
 	 * @throws UnsupportedOperationException if the LocaleResolver implementation
-	 * does not support dynamic changing of the locale or time zone
+	 *                                       does not support dynamic changing of the locale or time zone
 	 * @see org.springframework.context.i18n.SimpleLocaleContext
 	 * @see org.springframework.context.i18n.SimpleTimeZoneAwareLocaleContext
 	 */

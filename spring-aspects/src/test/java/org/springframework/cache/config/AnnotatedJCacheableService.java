@@ -200,8 +200,7 @@ public class AnnotatedJCacheableService implements JCacheableService<Long> {
 		long count = exceptionCounter.getAndIncrement();
 		if (matchFilter) {
 			throw new UnsupportedOperationException("Expected exception (" + count + ")");
-		}
-		else {
+		} else {
 			throw new NullPointerException("Expected exception (" + count + ")");
 		}
 	}
@@ -210,8 +209,7 @@ public class AnnotatedJCacheableService implements JCacheableService<Long> {
 		long count = exceptionCounter.getAndIncrement();
 		if (matchFilter) {
 			throw new IOException("Expected exception (" + count + ")");
-		}
-		else {
+		} else {
 			throw new NullPointerException("Expected exception (" + count + ")");
 		}
 	}

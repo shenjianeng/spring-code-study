@@ -305,8 +305,7 @@ public class PathResourceTests {
 			channel.read(buffer);
 			buffer.rewind();
 			assertThat(buffer.limit(), greaterThan(0));
-		}
-		finally {
+		} finally {
 			if (channel != null) {
 				channel.close();
 			}
@@ -318,8 +317,7 @@ public class PathResourceTests {
 		PathResource resource = new PathResource(TEST_DIR);
 		try {
 			resource.readableChannel();
-		}
-		catch (AccessDeniedException ex) {
+		} catch (AccessDeniedException ex) {
 			// on Windows
 		}
 	}
@@ -339,8 +337,7 @@ public class PathResourceTests {
 		try {
 			channel = resource.writableChannel();
 			channel.write(buffer);
-		}
-		finally {
+		} finally {
 			if (channel != null) {
 				channel.close();
 			}

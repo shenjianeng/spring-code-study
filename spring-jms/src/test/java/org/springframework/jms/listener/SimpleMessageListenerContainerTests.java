@@ -69,8 +69,8 @@ public class SimpleMessageListenerContainerTests {
 	@Test
 	public void testSessionTransactedModeReallyDoesDefaultToFalse() {
 		assertFalse("The [pubSubLocal] property of SimpleMessageListenerContainer " +
-				"must default to false. Change this test (and the " +
-				"attendant Javadoc) if you have changed the default.",
+						"must default to false. Change this test (and the " +
+						"attendant Javadoc) if you have changed the default.",
 				this.container.isPubSubNoLocal());
 	}
 
@@ -179,8 +179,7 @@ public class SimpleMessageListenerContainerTests {
 				try {
 					// Check correct Session passed into SessionAwareMessageListener.
 					assertSame(sess, session);
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					failure.add("MessageListener execution failed: " + ex);
 				}
 			}

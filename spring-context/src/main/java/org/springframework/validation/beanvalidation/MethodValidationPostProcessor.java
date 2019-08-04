@@ -52,9 +52,9 @@ import org.springframework.validation.annotation.Validated;
  * <p>As of Spring 5.0, this functionality requires a Bean Validation 1.1 provider.
  *
  * @author Juergen Hoeller
- * @since 3.1
  * @see MethodValidationInterceptor
  * @see javax.validation.executable.ExecutableValidator
+ * @since 3.1
  */
 @SuppressWarnings("serial")
 public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvisingPostProcessor
@@ -72,6 +72,7 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	 * <p>This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate that a class is supposed
 	 * to be validated in the sense of applying method validation.
+	 *
 	 * @param validatedAnnotationType the desired annotation type
 	 */
 	public void setValidatedAnnotationType(Class<? extends Annotation> validatedAnnotationType) {
@@ -87,11 +88,9 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 		// Unwrap to the native Validator with forExecutables support
 		if (validator instanceof LocalValidatorFactoryBean) {
 			this.validator = ((LocalValidatorFactoryBean) validator).getValidator();
-		}
-		else if (validator instanceof SpringValidatorAdapter) {
+		} else if (validator instanceof SpringValidatorAdapter) {
 			this.validator = validator.unwrap(Validator.class);
-		}
-		else {
+		} else {
 			this.validator = validator;
 		}
 	}
@@ -100,6 +99,7 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	 * Set the JSR-303 ValidatorFactory to delegate to for validating methods,
 	 * using its default Validator.
 	 * <p>Default is the default ValidatorFactory's default Validator.
+	 *
 	 * @see javax.validation.ValidatorFactory#getValidator()
 	 */
 	public void setValidatorFactory(ValidatorFactory validatorFactory) {
@@ -116,6 +116,7 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	/**
 	 * Create AOP advice for method validation purposes, to be applied
 	 * with a pointcut for the specified 'validated' annotation.
+	 *
 	 * @param validator the JSR-303 Validator to delegate to
 	 * @return the interceptor to use (typically, but not necessarily,
 	 * a {@link MethodValidationInterceptor} or subclass thereof)

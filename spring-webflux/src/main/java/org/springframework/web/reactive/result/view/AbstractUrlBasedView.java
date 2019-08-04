@@ -74,6 +74,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 	/**
 	 * Check whether the resource for the configured URL actually exists.
+	 *
 	 * @param locale the desired Locale that we're looking for
 	 * @return {@code false} if the resource exists
 	 * {@code false} if we know that it does not exist

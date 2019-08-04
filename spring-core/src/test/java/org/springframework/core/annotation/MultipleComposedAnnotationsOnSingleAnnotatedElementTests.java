@@ -39,10 +39,10 @@ import static org.springframework.core.annotation.AnnotatedElementUtils.*;
  * <p>See <a href="https://jira.spring.io/browse/SPR-13486">SPR-13486</a>.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see AnnotatedElementUtils
  * @see AnnotatedElementUtilsTests
  * @see ComposedRepeatableAnnotationsTests
+ * @since 4.3
  */
 public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 
@@ -194,8 +194,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 			if ("getFor".equals(method.getName()) && !method.getParameterTypes()[0].equals(Integer.class)) {
 				if (method.getReturnType().equals(Object.class)) {
 					bridgeMethod = method;
-				}
-				else {
+				} else {
 					bridgedMethod = method;
 				}
 			}
@@ -244,7 +243,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 	/**
 	 * Mock of {@code org.springframework.cache.annotation.Cacheable}.
 	 */
-	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Target({ElementType.METHOD, ElementType.TYPE})
 	@Retention(RetentionPolicy.RUNTIME)
 	@Inherited
 	@interface Cacheable {
@@ -259,7 +258,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 	}
 
 	@Cacheable("fooCache")
-	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Target({ElementType.METHOD, ElementType.TYPE})
 	@Retention(RetentionPolicy.RUNTIME)
 	@Inherited
 	@interface FooCache {
@@ -269,7 +268,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 	}
 
 	@Cacheable("barCache")
-	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Target({ElementType.METHOD, ElementType.TYPE})
 	@Retention(RetentionPolicy.RUNTIME)
 	@Inherited
 	@interface BarCache {
@@ -279,7 +278,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 	}
 
 	@Cacheable("noninheritedCache1")
-	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Target({ElementType.METHOD, ElementType.TYPE})
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface NoninheritedCache1 {
 
@@ -288,7 +287,7 @@ public class MultipleComposedAnnotationsOnSingleAnnotatedElementTests {
 	}
 
 	@Cacheable("noninheritedCache2")
-	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Target({ElementType.METHOD, ElementType.TYPE})
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface NoninheritedCache2 {
 

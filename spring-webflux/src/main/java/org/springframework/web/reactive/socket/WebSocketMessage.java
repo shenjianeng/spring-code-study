@@ -79,6 +79,7 @@ public class WebSocketMessage {
 	 * A shortcut for decoding the raw content of the message to text with the
 	 * given character encoding. This is useful for text WebSocket messages, or
 	 * otherwise when the payload is expected to contain text.
+	 *
 	 * @param charset the character encoding
 	 * @since 5.0.5
 	 */
@@ -95,6 +96,7 @@ public class WebSocketMessage {
 	 * DataBuffer payload = message.getPayload();
 	 * DataBufferUtils.retain(payload);
 	 * </pre>
+	 *
 	 * @see DataBufferUtils#retain(DataBuffer)
 	 */
 	public WebSocketMessage retain() {
@@ -109,6 +111,7 @@ public class WebSocketMessage {
 	 * DataBuffer payload = message.getPayload();
 	 * DataBufferUtils.release(payload);
 	 * </pre>
+	 *
 	 * @see DataBufferUtils#release(DataBuffer)
 	 */
 	public void release() {

@@ -42,11 +42,11 @@ import org.springframework.web.util.WebUtils;
  * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
  *
  * @author Juergen Hoeller
- * @since 2.5.2
  * @see javax.faces.context.FacesContext#getExternalContext()
  * @see javax.faces.context.ExternalContext#getRequestMap()
  * @see javax.faces.context.ExternalContext#getSessionMap()
  * @see RequestContextHolder#currentRequestAttributes()
+ * @since 2.5.2
  */
 public class FacesRequestAttributes implements RequestAttributes {
 
@@ -60,6 +60,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Create a new FacesRequestAttributes adapter for the given FacesContext.
+	 *
 	 * @param facesContext the current FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */
@@ -78,6 +79,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Return the JSF ExternalContext that this adapter operates on.
+	 *
 	 * @see javax.faces.context.FacesContext#getExternalContext()
 	 */
 	protected final ExternalContext getExternalContext() {
@@ -86,6 +88,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
 	 * Return the JSF attribute Map for the specified scope.
+	 *
 	 * @param scope constant indicating request or session scope
 	 * @return the Map representation of the attributes in the specified scope
 	 * @see #SCOPE_REQUEST
@@ -94,8 +97,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 	protected Map<String, Object> getAttributeMap(int scope) {
 		if (scope == SCOPE_REQUEST) {
 			return getExternalContext().getRequestMap();
-		}
-		else {
+		} else {
 			return getExternalContext().getSessionMap();
 		}
 	}
@@ -133,56 +135,39 @@ public class FacesRequestAttributes implements RequestAttributes {
 	public Object resolveReference(String key) {
 		if (REFERENCE_REQUEST.equals(key)) {
 			return getExternalContext().getRequest();
-		}
-		else if (REFERENCE_SESSION.equals(key)) {
+		} else if (REFERENCE_SESSION.equals(key)) {
 			return getExternalContext().getSession(true);
-		}
-		else if ("application".equals(key)) {
+		} else if ("application".equals(key)) {
 			return getExternalContext().getContext();
-		}
-		else if ("requestScope".equals(key)) {
+		} else if ("requestScope".equals(key)) {
 			return getExternalContext().getRequestMap();
-		}
-		else if ("sessionScope".equals(key)) {
+		} else if ("sessionScope".equals(key)) {
 			return getExternalContext().getSessionMap();
-		}
-		else if ("applicationScope".equals(key)) {
+		} else if ("applicationScope".equals(key)) {
 			return getExternalContext().getApplicationMap();
-		}
-		else if ("facesContext".equals(key)) {
+		} else if ("facesContext".equals(key)) {
 			return getFacesContext();
-		}
-		else if ("cookie".equals(key)) {
+		} else if ("cookie".equals(key)) {
 			return getExternalContext().getRequestCookieMap();
-		}
-		else if ("header".equals(key)) {
+		} else if ("header".equals(key)) {
 			return getExternalContext().getRequestHeaderMap();
-		}
-		else if ("headerValues".equals(key)) {
+		} else if ("headerValues".equals(key)) {
 			return getExternalContext().getRequestHeaderValuesMap();
-		}
-		else if ("param".equals(key)) {
+		} else if ("param".equals(key)) {
 			return getExternalContext().getRequestParameterMap();
-		}
-		else if ("paramValues".equals(key)) {
+		} else if ("paramValues".equals(key)) {
 			return getExternalContext().getRequestParameterValuesMap();
-		}
-		else if ("initParam".equals(key)) {
+		} else if ("initParam".equals(key)) {
 			return getExternalContext().getInitParameterMap();
-		}
-		else if ("view".equals(key)) {
+		} else if ("view".equals(key)) {
 			return getFacesContext().getViewRoot();
-		}
-		else if ("viewScope".equals(key)) {
+		} else if ("viewScope".equals(key)) {
 			return getFacesContext().getViewRoot().getViewMap();
-		}
-		else if ("flash".equals(key)) {
+		} else if ("flash".equals(key)) {
 			return getExternalContext().getFlash();
-		}
-		else if ("resource".equals(key)) {
+		} else if ("resource".equals(key)) {
 			return getFacesContext().getApplication().getResourceHandler();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -194,8 +179,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 			// HttpSession has a getId() method.
 			Method getIdMethod = session.getClass().getMethod("getId");
 			return String.valueOf(ReflectionUtils.invokeMethod(getIdMethod, session));
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalStateException("Session object [" + session + "] does not have a getId() method");
 		}
 	}

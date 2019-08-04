@@ -46,8 +46,7 @@ public class ExceptionWebSocketHandlerDecorator extends WebSocketHandlerDecorato
 	public void afterConnectionEstablished(WebSocketSession session) {
 		try {
 			getDelegate().afterConnectionEstablished(session);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			tryCloseWithError(session, ex, logger);
 		}
 	}
@@ -56,8 +55,7 @@ public class ExceptionWebSocketHandlerDecorator extends WebSocketHandlerDecorato
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
 		try {
 			getDelegate().handleMessage(session, message);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			tryCloseWithError(session, ex, logger);
 		}
 	}
@@ -66,8 +64,7 @@ public class ExceptionWebSocketHandlerDecorator extends WebSocketHandlerDecorato
 	public void handleTransportError(WebSocketSession session, Throwable exception) {
 		try {
 			getDelegate().handleTransportError(session, exception);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			tryCloseWithError(session, ex, logger);
 		}
 	}
@@ -76,8 +73,7 @@ public class ExceptionWebSocketHandlerDecorator extends WebSocketHandlerDecorato
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
 		try {
 			getDelegate().afterConnectionClosed(session, closeStatus);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			if (logger.isWarnEnabled()) {
 				logger.warn("Unhandled exception after connection closed for " + this, ex);
 			}
@@ -92,8 +88,7 @@ public class ExceptionWebSocketHandlerDecorator extends WebSocketHandlerDecorato
 		if (session.isOpen()) {
 			try {
 				session.close(CloseStatus.SERVER_ERROR);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// ignore
 			}
 		}

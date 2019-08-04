@@ -50,8 +50,7 @@ public class ReaderEditorTests {
 			assertTrue(value instanceof Reader);
 			reader = (Reader) value;
 			assertTrue(reader.ready());
-		}
-		finally {
+		} finally {
 			if (reader != null) {
 				reader.close();
 			}

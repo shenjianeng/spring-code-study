@@ -61,7 +61,7 @@ public class Spr11202Tests {
 
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-			return new String[] {Config.class.getName()};
+			return new String[]{Config.class.getName()};
 		}
 	}
 

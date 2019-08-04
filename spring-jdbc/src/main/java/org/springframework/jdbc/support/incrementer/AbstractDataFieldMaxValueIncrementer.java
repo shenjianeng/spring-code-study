@@ -36,15 +36,20 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	private DataSource dataSource;
 
-	/** The name of the sequence/table containing the sequence. */
+	/**
+	 * The name of the sequence/table containing the sequence.
+	 */
 	private String incrementerName;
 
-	/** The length to which a string result should be pre-pended with zeroes. */
+	/**
+	 * The length to which a string result should be pre-pended with zeroes.
+	 */
 	protected int paddingLength = 0;
 
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -53,7 +58,8 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public AbstractDataFieldMaxValueIncrementer(DataSource dataSource, String incrementerName) {
@@ -146,6 +152,7 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	/**
 	 * Determine the next key to use, as a long.
+	 *
 	 * @return the key to use as a long. It will eventually be converted later
 	 * in another format by the public concrete methods of this class.
 	 */

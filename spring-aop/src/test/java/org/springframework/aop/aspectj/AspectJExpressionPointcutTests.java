@@ -100,7 +100,7 @@ public class AspectJExpressionPointcutTests {
 
 
 	@Test
-	public void testThis() throws SecurityException, NoSuchMethodException{
+	public void testThis() throws SecurityException, NoSuchMethodException {
 		testThisOrTarget("this");
 	}
 
@@ -111,6 +111,7 @@ public class AspectJExpressionPointcutTests {
 
 	/**
 	 * This and target are equivalent. Really instanceof pointcuts.
+	 *
 	 * @param which this or target
 	 */
 	private void testThisOrTarget(String which) throws SecurityException, NoSuchMethodException {
@@ -163,8 +164,7 @@ public class AspectJExpressionPointcutTests {
 		try {
 			pc.matches(ITestBean.class);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("expression"));
 		}
 	}
@@ -175,8 +175,7 @@ public class AspectJExpressionPointcutTests {
 		try {
 			pc.matches(getAge, ITestBean.class);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("expression"));
 		}
 	}
@@ -187,8 +186,7 @@ public class AspectJExpressionPointcutTests {
 		try {
 			pc.matches(getAge, ITestBean.class, (Object[]) null);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("expression"));
 		}
 	}
@@ -249,8 +247,7 @@ public class AspectJExpressionPointcutTests {
 		try {
 			getPointcut(expression).getClassFilter();  // call to getClassFilter forces resolution
 			fail("Invalid expression should throw IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTrue(true);
 		}
 	}
@@ -286,8 +283,7 @@ public class AspectJExpressionPointcutTests {
 		try {
 			getPointcut(expression).getClassFilter(); // call to getClassFilter forces resolution...
 			fail("Should not support call pointcuts");
-		}
-		catch (UnsupportedPointcutPrimitiveException ex) {
+		} catch (UnsupportedPointcutPrimitiveException ex) {
 			assertEquals("Should not support call pointcut", PointcutPrimitive.CALL, ex.getUnsupportedPrimitive());
 		}
 	}
@@ -296,14 +292,14 @@ public class AspectJExpressionPointcutTests {
 	public void testAndSubstitution() {
 		Pointcut pc = getPointcut("execution(* *(..)) and args(String)");
 		PointcutExpression expr = ((AspectJExpressionPointcut) pc).getPointcutExpression();
-		assertEquals("execution(* *(..)) && args(String)",expr.getPointcutExpression());
+		assertEquals("execution(* *(..)) && args(String)", expr.getPointcutExpression());
 	}
 
 	@Test
 	public void testMultipleAndSubstitutions() {
 		Pointcut pc = getPointcut("execution(* *(..)) and args(String) and this(Object)");
 		PointcutExpression expr = ((AspectJExpressionPointcut) pc).getPointcutExpression();
-		assertEquals("execution(* *(..)) && args(String) && this(Object)",expr.getPointcutExpression());
+		assertEquals("execution(* *(..)) && args(String) && this(Object)", expr.getPointcutExpression());
 	}
 
 	private Pointcut getPointcut(String expression) {

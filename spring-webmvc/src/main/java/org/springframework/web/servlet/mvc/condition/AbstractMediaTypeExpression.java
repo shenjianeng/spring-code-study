@@ -44,8 +44,7 @@ abstract class AbstractMediaTypeExpression implements MediaTypeExpression, Compa
 		if (expression.startsWith("!")) {
 			this.isNegated = true;
 			expression = expression.substring(1);
-		}
-		else {
+		} else {
 			this.isNegated = false;
 		}
 		this.mediaType = MediaType.parseMediaType(expression);

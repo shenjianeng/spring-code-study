@@ -179,8 +179,7 @@ public class SharedEntityManagerCreatorTests {
 		try {
 			spq.getOutputParameterValue(1);
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		assertEquals("z", spq.getOutputParameterValue(2));
@@ -215,8 +214,7 @@ public class SharedEntityManagerCreatorTests {
 		try {
 			spq.getOutputParameterValue("b");
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		assertEquals("z", spq.getOutputParameterValue("c"));

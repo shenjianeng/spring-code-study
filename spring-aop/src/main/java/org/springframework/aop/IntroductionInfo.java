@@ -32,6 +32,7 @@ public interface IntroductionInfo {
 
 	/**
 	 * Return the additional interfaces introduced by this Advisor or Advice.
+	 *
 	 * @return the introduced interfaces
 	 */
 	Class<?>[] getInterfaces();

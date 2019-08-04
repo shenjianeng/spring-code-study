@@ -65,6 +65,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	/**
 	 * Create an instance that will access user session id information through
 	 * the provided registry.
+	 *
 	 * @param userRegistry the registry, never {@code null}
 	 */
 	public DefaultUserDestinationResolver(SimpUserRegistry userRegistry) {
@@ -84,6 +85,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * The prefix used to identify user destinations. Any destinations that do not
 	 * start with the given prefix are not be resolved.
 	 * <p>The default prefix is "/user/".
+	 *
 	 * @param prefix the prefix to use
 	 */
 	public void setUserDestinationPrefix(String prefix) {
@@ -107,6 +109,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * {@link org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration
 	 * AbstractMessageBrokerConfiguration} may change that to {@code true}
 	 * if the configured destinations do not have a leading slash.
+	 *
 	 * @param remove whether to remove the leading slash
 	 * @since 4.3.14
 	 */
@@ -116,6 +119,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 	/**
 	 * Whether to remove the leading slash from target destinations.
+	 *
 	 * @since 4.3.14
 	 */
 	public boolean isRemoveLeadingSlash() {
@@ -133,6 +137,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	 * is provided that supports an alternative separator, then resulting
 	 * destinations won't have a leading slash, e.g. {@code
 	 * jms.queue.position-updates}.
+	 *
 	 * @param pathMatcher the PathMatcher used to work with destinations
 	 * @since 4.3
 	 * @deprecated as of 4.3.14 this property is no longer used and is replaced
@@ -221,8 +226,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 		if (userName.equals(sessionId)) {
 			userName = null;
 			sessionIds = Collections.singleton(sessionId);
-		}
-		else {
+		} else {
 			sessionIds = getSessionIdsByUser(userName, sessionId);
 		}
 
@@ -238,16 +242,14 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 		if (user != null) {
 			if (sessionId != null && user.getSession(sessionId) != null) {
 				sessionIds = Collections.singleton(sessionId);
-			}
-			else {
+			} else {
 				Set<SimpSession> sessions = user.getSessions();
 				sessionIds = new HashSet<>(sessions.size());
 				for (SimpSession session : sessions) {
 					sessionIds.add(session.getId());
 				}
 			}
-		}
-		else {
+		} else {
 			sessionIds = Collections.emptySet();
 		}
 		return sessionIds;
@@ -260,16 +262,17 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	/**
 	 * This method determines how to translate the source "user" destination to an
 	 * actual target destination for the given active user session.
+	 *
 	 * @param sourceDestination the source destination from the input message.
 	 * @param actualDestination a subset of the destination without any user prefix.
-	 * @param sessionId the id of an active user session, never {@code null}.
-	 * @param user the target user, possibly {@code null}, e.g if not authenticated.
+	 * @param sessionId         the id of an active user session, never {@code null}.
+	 * @param user              the target user, possibly {@code null}, e.g if not authenticated.
 	 * @return a target destination, or {@code null} if none
 	 */
 	@SuppressWarnings("unused")
 	@Nullable
 	protected String getTargetDestination(String sourceDestination, String actualDestination,
-			String sessionId, @Nullable String user) {
+										  String sessionId, @Nullable String user) {
 
 		return actualDestination + "-user" + sessionId;
 	}
@@ -297,7 +300,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 		private final String user;
 
 		public ParseResult(String sourceDest, String actualDest, String subscribeDest,
-				Set<String> sessionIds, @Nullable String user) {
+						   Set<String> sessionIds, @Nullable String user) {
 
 			this.sourceDestination = sourceDest;
 			this.actualDestination = actualDest;

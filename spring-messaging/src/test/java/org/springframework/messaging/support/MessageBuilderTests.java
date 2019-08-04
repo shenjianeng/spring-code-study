@@ -121,20 +121,20 @@ public class MessageBuilderTests {
 	@Test
 	public void testRemove() {
 		Message<Integer> message1 = MessageBuilder.withPayload(1)
-			.setHeader("foo", "bar").build();
+				.setHeader("foo", "bar").build();
 		Message<Integer> message2 = MessageBuilder.fromMessage(message1)
-			.removeHeader("foo")
-			.build();
+				.removeHeader("foo")
+				.build();
 		assertFalse(message2.getHeaders().containsKey("foo"));
 	}
 
 	@Test
 	public void testSettingToNullRemoves() {
 		Message<Integer> message1 = MessageBuilder.withPayload(1)
-			.setHeader("foo", "bar").build();
+				.setHeader("foo", "bar").build();
 		Message<Integer> message2 = MessageBuilder.fromMessage(message1)
-			.setHeader("foo", null)
-			.build();
+				.setHeader("foo", null)
+				.build();
 		assertFalse(message2.getHeaders().containsKey("foo"));
 	}
 

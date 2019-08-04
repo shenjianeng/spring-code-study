@@ -158,14 +158,14 @@ public class MessageConverterTests {
 
 		@Override
 		protected Object convertFromInternal(Message<?> message, Class<?> targetClass,
-				@Nullable Object conversionHint) {
+											 @Nullable Object conversionHint) {
 
 			return "success-from";
 		}
 
 		@Override
 		protected Object convertToInternal(Object payload, @Nullable MessageHeaders headers,
-				@Nullable Object conversionHint) {
+										   @Nullable Object conversionHint) {
 
 			return "success-to";
 		}

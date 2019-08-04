@@ -44,6 +44,7 @@ import static org.springframework.web.method.MvcAnnotationPredicates.matrixAttri
 
 /**
  * Unit tests for {@link MatrixVariableMethodArgumentResolver}.
+ *
  * @author Rossen Stoyanchev
  */
 public class MatrixVariablesMethodArgumentResolverTests {

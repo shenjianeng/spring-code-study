@@ -37,10 +37,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Chris Beams
  * @author Stephane Nicoll
- * @since 3.1
  * @see AbstractAsyncConfiguration
  * @see EnableAsync
  * @see AsyncConfigurerSupport
+ * @since 3.1
  */
 public interface AsyncConfigurer {
 

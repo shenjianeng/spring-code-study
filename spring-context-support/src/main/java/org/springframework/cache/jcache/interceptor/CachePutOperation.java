@@ -31,8 +31,8 @@ import org.springframework.util.ExceptionTypeFilter;
  * The {@link JCacheOperation} implementation for a {@link CachePut} operation.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see CachePut
+ * @since 4.1
  */
 class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 
@@ -67,6 +67,7 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 	/**
 	 * Specify if the cache should be updated before invoking the method. By default,
 	 * the cache is updated after the method invocation.
+	 *
 	 * @see javax.cache.annotation.CachePut#afterInvocation()
 	 */
 	public boolean isEarlyPut() {
@@ -77,6 +78,7 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 	 * Return the {@link CacheInvocationParameter} for the parameter holding the value
 	 * to cache.
 	 * <p>The method arguments must match the signature of the related method invocation
+	 *
 	 * @param values the parameters value for a particular invocation
 	 * @return the {@link CacheInvocationParameter} instance for the value parameter
 	 */
@@ -99,8 +101,7 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 			if (parameter.isValue()) {
 				if (result == null) {
 					result = parameter;
-				}
-				else {
+				} else {
 					throw new IllegalArgumentException("More than one @CacheValue found on " + method + "");
 				}
 			}

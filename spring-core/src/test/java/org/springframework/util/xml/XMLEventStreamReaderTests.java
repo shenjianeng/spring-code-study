@@ -36,8 +36,7 @@ import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 public class XMLEventStreamReaderTests {
 
 	private static final String XML =
-			"<?pi content?><root xmlns='namespace'><prefix:child xmlns:prefix='namespace2'>content</prefix:child></root>"
-			;
+			"<?pi content?><root xmlns='namespace'><prefix:child xmlns:prefix='namespace2'>content</prefix:child></root>";
 
 	private XMLEventStreamReader streamReader;
 

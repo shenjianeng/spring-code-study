@@ -72,7 +72,7 @@ public class MethodBasedEvaluationContextTests {
 	@Test
 	public void varArgEmpty() {
 		Method method = ReflectionUtils.findMethod(SampleMethods.class, "hello", Boolean.class, String[].class);
-		MethodBasedEvaluationContext context = createEvaluationContext(method, new Object[] {null});
+		MethodBasedEvaluationContext context = createEvaluationContext(method, new Object[]{null});
 
 		assertNull(context.lookupVariable("a0"));
 		assertNull(context.lookupVariable("p0"));
@@ -120,9 +120,9 @@ public class MethodBasedEvaluationContextTests {
 		assertNull(context.lookupVariable("p0"));
 		assertNull(context.lookupVariable("flag"));
 
-		assertArrayEquals(new Object[] {"hello", "hi"}, (Object[]) context.lookupVariable("a1"));
-		assertArrayEquals(new Object[] {"hello", "hi"}, (Object[]) context.lookupVariable("p1"));
-		assertArrayEquals(new Object[] {"hello", "hi"}, (Object[]) context.lookupVariable("vararg"));
+		assertArrayEquals(new Object[]{"hello", "hi"}, (Object[]) context.lookupVariable("a1"));
+		assertArrayEquals(new Object[]{"hello", "hi"}, (Object[]) context.lookupVariable("p1"));
+		assertArrayEquals(new Object[]{"hello", "hi"}, (Object[]) context.lookupVariable("vararg"));
 	}
 
 	private MethodBasedEvaluationContext createEvaluationContext(Method method, Object... args) {
@@ -136,7 +136,7 @@ public class MethodBasedEvaluationContextTests {
 		private void hello(String foo, Boolean flag) {
 		}
 
-		private void hello(Boolean flag, String... vararg){
+		private void hello(Boolean flag, String... vararg) {
 		}
 	}
 

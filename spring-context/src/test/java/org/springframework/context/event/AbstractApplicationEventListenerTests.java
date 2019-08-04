@@ -32,8 +32,7 @@ public abstract class AbstractApplicationEventListenerTests {
 	protected ResolvableType getGenericApplicationEventType(String fieldName) {
 		try {
 			return ResolvableType.forField(TestEvents.class.getField(fieldName));
-		}
-		catch (NoSuchFieldException ex) {
+		} catch (NoSuchFieldException ex) {
 			throw new IllegalStateException("No such field on Events '" + fieldName + "'");
 		}
 	}

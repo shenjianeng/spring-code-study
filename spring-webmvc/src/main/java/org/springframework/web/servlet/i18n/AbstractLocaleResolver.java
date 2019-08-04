@@ -26,8 +26,8 @@ import org.springframework.web.servlet.LocaleResolver;
  * Provides support for a default locale.
  *
  * @author Juergen Hoeller
- * @since 1.2.9
  * @see #setDefaultLocale
+ * @since 1.2.9
  */
 public abstract class AbstractLocaleResolver implements LocaleResolver {
 

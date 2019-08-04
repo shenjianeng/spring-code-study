@@ -40,6 +40,7 @@ public interface ExchangeFunction {
 
 	/**
 	 * Exchange the given request for a response mono.
+	 *
 	 * @param request the request to exchange
 	 * @return the delayed response
 	 */
@@ -48,6 +49,7 @@ public interface ExchangeFunction {
 	/**
 	 * Filters this exchange function with the given {@code ExchangeFilterFunction}, resulting in a
 	 * filtered {@code ExchangeFunction}.
+	 *
 	 * @param filter the filter to apply to this exchange
 	 * @return the filtered exchange
 	 * @see ExchangeFilterFunction#apply(ExchangeFunction)

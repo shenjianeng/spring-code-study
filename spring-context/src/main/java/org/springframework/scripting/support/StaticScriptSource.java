@@ -42,6 +42,7 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * Create a new StaticScriptSource for the given script.
+	 *
 	 * @param script the script String
 	 */
 	public StaticScriptSource(String script) {
@@ -50,9 +51,10 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * Create a new StaticScriptSource for the given script.
-	 * @param script the script String
+	 *
+	 * @param script    the script String
 	 * @param className the suggested class name for the script
-	 * (may be {@code null})
+	 *                  (may be {@code null})
 	 */
 	public StaticScriptSource(String script, @Nullable String className) {
 		setScript(script);
@@ -61,6 +63,7 @@ public class StaticScriptSource implements ScriptSource {
 
 	/**
 	 * Set a fresh script String, overriding the previous script.
+	 *
 	 * @param script the script String
 	 */
 	public synchronized void setScript(String script) {

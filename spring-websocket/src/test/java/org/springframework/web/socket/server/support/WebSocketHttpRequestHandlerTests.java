@@ -43,6 +43,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * Unit tests for {@link WebSocketHttpRequestHandler}.
+ *
  * @author Rossen Stoyanchev
  * @since 5.1.9
  */
@@ -84,8 +85,7 @@ public class WebSocketHttpRequestHandlerTests {
 		try {
 			this.requestHandler.handleRequest(new MockHttpServletRequest(), this.response);
 			fail();
-		}
-		catch (HandshakeFailureException ex) {
+		} catch (HandshakeFailureException ex) {
 			assertSame(ex, interceptor.getException());
 			assertEquals("headerValue", this.response.getHeader("headerName"));
 			assertEquals("exceptionHeaderValue", this.response.getHeader("exceptionHeaderName"));
@@ -123,7 +123,7 @@ public class WebSocketHttpRequestHandlerTests {
 
 		@Override
 		public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
-				WebSocketHandler wsHandler, Map<String, Object> attributes) {
+									   WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 			response.getHeaders().add("headerName", "headerValue");
 			return this.allowHandshake;
@@ -131,7 +131,7 @@ public class WebSocketHttpRequestHandlerTests {
 
 		@Override
 		public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
-				WebSocketHandler wsHandler, Exception exception) {
+								   WebSocketHandler wsHandler, Exception exception) {
 
 			response.getHeaders().add("exceptionHeaderName", "exceptionHeaderValue");
 			this.exception = exception;

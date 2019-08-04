@@ -35,8 +35,8 @@ import org.springframework.test.util.AssertionErrors;
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @author Sam Brannen
- * @since 5.0
  * @see WebTestClient.ResponseSpec#expectHeader()
+ * @since 5.0
  */
 public class HeaderAssertions {
 
@@ -60,7 +60,8 @@ public class HeaderAssertions {
 
 	/**
 	 * Match the primary value of the response header with a regex.
-	 * @param name the header name
+	 *
+	 * @param name    the header name
 	 * @param pattern the regex pattern
 	 */
 	public WebTestClient.ResponseSpec valueMatches(String name, String pattern) {
@@ -72,7 +73,8 @@ public class HeaderAssertions {
 
 	/**
 	 * Assert the primary value of the response header with a {@link Matcher}.
-	 * @param name the header name
+	 *
+	 * @param name    the header name
 	 * @param matcher the matcher to sue
 	 * @since 5.1
 	 */
@@ -84,7 +86,8 @@ public class HeaderAssertions {
 
 	/**
 	 * Assert the primary value of the response header with a {@link Matcher}.
-	 * @param name the header name
+	 *
+	 * @param name     the header name
 	 * @param consumer the matcher to sue
 	 * @since 5.1
 	 */
@@ -104,6 +107,7 @@ public class HeaderAssertions {
 
 	/**
 	 * Expect that the header with the given name is present.
+	 *
 	 * @since 5.0.3
 	 */
 	public WebTestClient.ResponseSpec exists(String name) {

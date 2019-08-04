@@ -54,11 +54,13 @@ public abstract class MockRestRequestMatchers {
 	 * Match to any request.
 	 */
 	public static RequestMatcher anything() {
-		return request -> {};
+		return request -> {
+		};
 	}
 
 	/**
 	 * Assert the {@link HttpMethod} of the request.
+	 *
 	 * @param method the HTTP method
 	 * @return the request matcher
 	 */
@@ -69,6 +71,7 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * Assert the request URI string with the given Hamcrest matcher.
+	 *
 	 * @param matcher the String matcher for the expected URI
 	 * @return the request matcher
 	 */
@@ -79,6 +82,7 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * Assert the request URI matches the given string.
+	 *
 	 * @param expectedUri the expected URI
 	 * @return the request matcher
 	 */
@@ -91,8 +95,9 @@ public abstract class MockRestRequestMatchers {
 	 * Variant of {@link #requestTo(URI)} that prepares the URI from a URI
 	 * template plus optional variables via {@link UriComponentsBuilder}
 	 * including encoding.
+	 *
 	 * @param expectedUri the expected URI template
-	 * @param uriVars zero or more URI variables to populate the expected URI
+	 * @param uriVars     zero or more URI variables to populate the expected URI
 	 * @return the request matcher
 	 */
 	public static RequestMatcher requestToUriTemplate(final String expectedUri, final Object... uriVars) {
@@ -103,6 +108,7 @@ public abstract class MockRestRequestMatchers {
 
 	/**
 	 * Expect a request to the given URI.
+	 *
 	 * @param uri the expected URI
 	 * @return the request matcher
 	 */
@@ -119,7 +125,7 @@ public abstract class MockRestRequestMatchers {
 		return request -> {
 			MultiValueMap<String, String> params = getQueryParams(request);
 			assertValueCount("query param", name, params, matchers.length);
-			for (int i = 0 ; i < matchers.length; i++) {
+			for (int i = 0; i < matchers.length; i++) {
 				assertThat("Query param", params.get(name).get(i), matchers[i]);
 			}
 		};
@@ -132,7 +138,7 @@ public abstract class MockRestRequestMatchers {
 		return request -> {
 			MultiValueMap<String, String> params = getQueryParams(request);
 			assertValueCount("query param", name, params, expectedValues.length);
-			for (int i = 0 ; i < expectedValues.length; i++) {
+			for (int i = 0; i < expectedValues.length; i++) {
 				assertEquals("Query param [" + name + "]", expectedValues[i], params.get(name).get(i));
 			}
 		};
@@ -197,8 +203,9 @@ public abstract class MockRestRequestMatchers {
 	 * inspect a specific subset of the body. The JSON path expression can be a
 	 * parameterized string using formatting specifiers as defined in
 	 * {@link String#format(String, Object...)}.
+	 *
 	 * @param expression the JSON path optionally parameterized with arguments
-	 * @param args arguments to parameterize the JSON path expression with
+	 * @param args       arguments to parameterize the JSON path expression with
 	 */
 	public static JsonPathRequestMatchers jsonPath(String expression, Object... args) {
 		return new JsonPathRequestMatchers(expression, args);
@@ -209,8 +216,9 @@ public abstract class MockRestRequestMatchers {
 	 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression to
 	 * inspect a specific subset of the body and a Hamcrest match for asserting
 	 * the value found at the JSON path.
+	 *
 	 * @param expression the JSON path expression
-	 * @param matcher a matcher for the value expected at the JSON path
+	 * @param matcher    a matcher for the value expected at the JSON path
 	 */
 	public static <T> RequestMatcher jsonPath(String expression, Matcher<T> matcher) {
 		return new JsonPathRequestMatchers(expression).value(matcher);
@@ -221,8 +229,9 @@ public abstract class MockRestRequestMatchers {
 	 * subset of the body. The XPath expression can be a parameterized string
 	 * using formatting specifiers as defined in
 	 * {@link String#format(String, Object...)}.
+	 *
 	 * @param expression the XPath optionally parameterized with arguments
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param args       arguments to parameterize the XPath expression with
 	 */
 	public static XpathRequestMatchers xpath(String expression, Object... args) throws XPathExpressionException {
 		return new XpathRequestMatchers(expression, null, args);
@@ -233,9 +242,10 @@ public abstract class MockRestRequestMatchers {
 	 * subset of the body. The XPath expression can be a parameterized string
 	 * using formatting specifiers as defined in
 	 * {@link String#format(String, Object...)}.
+	 *
 	 * @param expression the XPath optionally parameterized with arguments
 	 * @param namespaces namespaces referenced in the XPath expression
-	 * @param args arguments to parameterize the XPath expression with
+	 * @param args       arguments to parameterize the XPath expression with
 	 */
 	public static XpathRequestMatchers xpath(String expression, Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {

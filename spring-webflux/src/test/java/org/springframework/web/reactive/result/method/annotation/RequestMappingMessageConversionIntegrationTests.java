@@ -73,7 +73,8 @@ import static org.springframework.http.MediaType.*;
 public class RequestMappingMessageConversionIntegrationTests extends AbstractRequestMappingIntegrationTests {
 
 	private static final ParameterizedTypeReference<List<Person>> PERSON_LIST =
-			new ParameterizedTypeReference<List<Person>>() {};
+			new ParameterizedTypeReference<List<Person>>() {
+			};
 
 	private static final MediaType JSON = MediaType.APPLICATION_JSON;
 

@@ -65,8 +65,7 @@ public class EnableTransactionManagementIntegrationTests {
 		try {
 			assertTxProxying(ctx);
 			fail("expected exception");
-		}
-		catch (AssertionError ex) {
+		} catch (AssertionError ex) {
 			assertThat(ex.getMessage(), equalTo("FooRepository is not a TX proxy"));
 		}
 	}
@@ -89,7 +88,8 @@ public class EnableTransactionManagementIntegrationTests {
 		assertTxProxying(ctx);
 	}
 
-	@Ignore @Test // TODO SPR-8207
+	@Ignore
+	@Test // TODO SPR-8207
 	public void repositoryIsTxProxy_withNonConventionalTxManagerName_fallsBackToByTypeLookup() {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.register(Config.class, NonConventionalTxManagerNameConfig.class);
@@ -114,8 +114,7 @@ public class EnableTransactionManagementIntegrationTests {
 		ctx.register(Config.class, AspectJTxConfig.class);
 		try {
 			ctx.refresh();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			// this test is a bit fragile, but gets the job done, proving that an
 			// attempt was made to look up the AJ aspect. It's due to classpath issues
 			// in .integration-tests that it's not found.
@@ -171,7 +170,7 @@ public class EnableTransactionManagementIntegrationTests {
 
 		boolean isTxProxy = false;
 		if (AopUtils.isAopProxy(repo)) {
-			for (Advisor advisor : ((Advised)repo).getAdvisors()) {
+			for (Advisor advisor : ((Advised) repo).getAdvisors()) {
 				if (advisor instanceof BeanFactoryTransactionAttributeSourceAdvisor) {
 					isTxProxy = true;
 					break;
@@ -287,7 +286,7 @@ public class EnableTransactionManagementIntegrationTests {
 
 
 	@Configuration
-	@EnableTransactionManagement(proxyTargetClass=true)
+	@EnableTransactionManagement(proxyTargetClass = true)
 	static class ProxyTargetClassTxConfig {
 
 		@Bean
@@ -298,7 +297,7 @@ public class EnableTransactionManagementIntegrationTests {
 
 
 	@Configuration
-	@EnableTransactionManagement(mode=AdviceMode.ASPECTJ)
+	@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 	static class AspectJTxConfig {
 
 		@Bean
@@ -321,8 +320,8 @@ public class EnableTransactionManagementIntegrationTests {
 		@Bean
 		DataSource dataSource() {
 			return new EmbeddedDatabaseBuilder()
-				.setType(EmbeddedDatabaseType.HSQL)
-				.build();
+					.setType(EmbeddedDatabaseType.HSQL)
+					.build();
 		}
 	}
 

@@ -44,9 +44,9 @@ import java.lang.annotation.Target;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 3.0
  * @see AnnotationAsyncExecutionInterceptor
  * @see AsyncAnnotationAdvisor
+ * @since 3.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -63,6 +63,7 @@ public @interface Async {
 	 * <p>When specified on a class level {@code @Async} annotation, indicates that the
 	 * given executor should be used for all methods within the class. Method level use
 	 * of {@code Async#value} always overrides any value set at the class level.
+	 *
 	 * @since 3.1.2
 	 */
 	String value() default "";

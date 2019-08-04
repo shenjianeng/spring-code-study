@@ -58,8 +58,8 @@ import static org.junit.Assert.*;
 /**
  * Security test case. Checks whether the container uses its privileges for its
  * internal work but does not leak them when touching/calling user code.
- *
- *t The first half of the test case checks that permissions are downgraded when
+ * <p>
+ * t The first half of the test case checks that permissions are downgraded when
  * calling user code while the second half that the caller code permission get
  * through and Spring doesn't override the permission stack.
  *
@@ -302,7 +302,7 @@ public class CallbacksSecurityTests {
 
 		provider = new SecurityContextProvider() {
 			private final AccessControlContext acc = new AccessControlContext(
-					new ProtectionDomain[] { empty });
+					new ProtectionDomain[]{empty});
 
 			@Override
 			public AccessControlContext getAccessControlContext() {
@@ -324,8 +324,7 @@ public class CallbacksSecurityTests {
 		try {
 			acc.checkPermission(new PropertyPermission("*", "read"));
 			fail("Acc should not have any permissions");
-		}
-		catch (SecurityException se) {
+		} catch (SecurityException se) {
 			// expected
 		}
 
@@ -343,8 +342,7 @@ public class CallbacksSecurityTests {
 				}
 			}, acc);
 			fail("expected security exception");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 		}
 
 		final Class<ConstructorBean> cl = ConstructorBean.class;
@@ -358,8 +356,7 @@ public class CallbacksSecurityTests {
 						}
 					}, acc);
 			fail("expected security exception");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 		}
 	}
 
@@ -368,8 +365,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("spring-init");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof SecurityException);
 		}
 	}
@@ -379,8 +375,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("custom-init");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof SecurityException);
 		}
 	}
@@ -404,8 +399,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("spring-factory");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof SecurityException);
 		}
 
@@ -422,8 +416,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("custom-static-factory-method");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMostSpecificCause() instanceof SecurityException);
 		}
 	}
@@ -433,8 +426,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("custom-factory-method");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMostSpecificCause() instanceof SecurityException);
 		}
 	}
@@ -444,8 +436,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("privileged-static-factory-method");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMostSpecificCause() instanceof SecurityException);
 		}
 	}
@@ -455,8 +446,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("constructor");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 			assertTrue(ex.getMostSpecificCause() instanceof SecurityException);
 		}
@@ -482,8 +472,7 @@ public class CallbacksSecurityTests {
 		try {
 			beanFactory.getBean("property-injection");
 			fail("expected security exception");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getMessage().contains("security"));
 		}
 
@@ -520,7 +509,7 @@ public class CallbacksSecurityTests {
 		perms.add(new AuthPermission("getSubject"));
 		ProtectionDomain pd = new ProtectionDomain(null, perms);
 
-		new AccessControlContext(new ProtectionDomain[] { pd });
+		new AccessControlContext(new ProtectionDomain[]{pd});
 
 		final Subject subject = new Subject();
 		subject.getPrincipals().add(new TestPrincipal("user1"));

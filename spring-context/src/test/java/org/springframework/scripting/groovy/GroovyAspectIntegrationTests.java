@@ -32,7 +32,7 @@ public class GroovyAspectIntegrationTests {
 
 	@Test
 	public void testJavaBean() {
-		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName()+"-java-context.xml");
+		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName() + "-java-context.xml");
 		TestService bean = context.getBean("javaBean", TestService.class);
 		LogUserAdvice logAdvice = context.getBean(LogUserAdvice.class);
 
@@ -40,8 +40,7 @@ public class GroovyAspectIntegrationTests {
 		try {
 			bean.sayHello();
 			fail("Expected exception");
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertEquals("TestServiceImpl", ex.getMessage());
 		}
 		assertEquals(1, logAdvice.getCountThrows());
@@ -50,7 +49,7 @@ public class GroovyAspectIntegrationTests {
 
 	@Test
 	public void testGroovyBeanInterface() {
-		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName()+"-groovy-interface-context.xml");
+		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName() + "-groovy-interface-context.xml");
 		TestService bean = context.getBean("groovyBean", TestService.class);
 		LogUserAdvice logAdvice = context.getBean(LogUserAdvice.class);
 
@@ -58,8 +57,7 @@ public class GroovyAspectIntegrationTests {
 		try {
 			bean.sayHello();
 			fail("Expected exception");
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertEquals("GroovyServiceImpl", ex.getMessage());
 		}
 		assertEquals(1, logAdvice.getCountThrows());
@@ -68,7 +66,7 @@ public class GroovyAspectIntegrationTests {
 
 	@Test
 	public void testGroovyBeanDynamic() {
-		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName()+"-groovy-dynamic-context.xml");
+		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName() + "-groovy-dynamic-context.xml");
 		TestService bean = context.getBean("groovyBean", TestService.class);
 		LogUserAdvice logAdvice = context.getBean(LogUserAdvice.class);
 
@@ -76,8 +74,7 @@ public class GroovyAspectIntegrationTests {
 		try {
 			bean.sayHello();
 			fail("Expected exception");
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertEquals("GroovyServiceImpl", ex.getMessage());
 		}
 		// No proxy here because the pointcut only applies to the concrete class, not the interface
@@ -87,7 +84,7 @@ public class GroovyAspectIntegrationTests {
 
 	@Test
 	public void testGroovyBeanProxyTargetClass() {
-		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName()+"-groovy-proxy-target-class-context.xml");
+		context = new GenericXmlApplicationContext(getClass(), getClass().getSimpleName() + "-groovy-proxy-target-class-context.xml");
 		TestService bean = context.getBean("groovyBean", TestService.class);
 		LogUserAdvice logAdvice = context.getBean(LogUserAdvice.class);
 
@@ -95,8 +92,7 @@ public class GroovyAspectIntegrationTests {
 		try {
 			bean.sayHello();
 			fail("Expected exception");
-		}
-		catch (TestException ex) {
+		} catch (TestException ex) {
 			assertEquals("GroovyServiceImpl", ex.getMessage());
 		}
 		assertEquals(1, logAdvice.getCountBefore());

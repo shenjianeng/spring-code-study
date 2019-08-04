@@ -113,8 +113,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	public PersistenceUnitTransactionType getTransactionType() {
 		if (this.transactionType != null) {
 			return this.transactionType;
-		}
-		else {
+		} else {
 			return (this.jtaDataSource != null ?
 					PersistenceUnitTransactionType.JTA : PersistenceUnitTransactionType.RESOURCE_LOCAL);
 		}
@@ -170,6 +169,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 
 	/**
 	 * Add a managed class name to the persistence provider's metadata.
+	 *
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getManagedClassNames()
 	 * @see #addManagedPackage
 	 */
@@ -187,9 +187,10 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	 * <p>Note: This refers to annotated {@code package-info.java} files. It does
 	 * <i>not</i> trigger entity scanning in the specified package; this is
 	 * rather the job of {@link DefaultPersistenceUnitManager#setPackagesToScan}.
-	 * @since 4.1
+	 *
 	 * @see SmartPersistenceUnitInfo#getManagedPackages()
 	 * @see #addManagedClassName
+	 * @since 4.1
 	 */
 	public void addManagedPackage(String packageName) {
 		this.managedPackages.add(packageName);
@@ -263,6 +264,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 
 	/**
 	 * This implementation returns the default ClassLoader.
+	 *
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	@Override

@@ -38,6 +38,7 @@ public class UrlBasedViewResolverRegistration {
 
 	/**
 	 * Set the prefix that gets prepended to view names when building a URL.
+	 *
 	 * @see UrlBasedViewResolver#setPrefix
 	 */
 	public UrlBasedViewResolverRegistration prefix(String prefix) {
@@ -47,6 +48,7 @@ public class UrlBasedViewResolverRegistration {
 
 	/**
 	 * Set the suffix that gets appended to view names when building a URL.
+	 *
 	 * @see UrlBasedViewResolver#setSuffix
 	 */
 	public UrlBasedViewResolverRegistration suffix(String suffix) {
@@ -56,6 +58,7 @@ public class UrlBasedViewResolverRegistration {
 
 	/**
 	 * Set the view class that should be used to create views.
+	 *
 	 * @see UrlBasedViewResolver#setViewClass
 	 */
 	public UrlBasedViewResolverRegistration viewClass(Class<?> viewClass) {
@@ -67,6 +70,7 @@ public class UrlBasedViewResolverRegistration {
 	 * Set the view names (or name patterns) that can be handled by this view
 	 * resolver. View names can contain simple wildcards such that 'my*', '*Report'
 	 * and '*Repo*' will all match the view name 'myReport'.
+	 *
 	 * @see UrlBasedViewResolver#setViewNames
 	 */
 	public UrlBasedViewResolverRegistration viewNames(String... viewNames) {

@@ -54,7 +54,7 @@ public class DelegatingIntroductionInterceptorTests {
 	@Test
 	public void testIntroductionInterceptorWithDelegation() throws Exception {
 		TestBean raw = new TestBean();
-		assertTrue(! (raw instanceof TimeStamped));
+		assertTrue(!(raw instanceof TimeStamped));
 		ProxyFactory factory = new ProxyFactory(raw);
 
 		TimeStamped ts = mock(TimeStamped.class);
@@ -70,7 +70,7 @@ public class DelegatingIntroductionInterceptorTests {
 	@Test
 	public void testIntroductionInterceptorWithInterfaceHierarchy() throws Exception {
 		TestBean raw = new TestBean();
-		assertTrue(! (raw instanceof SubTimeStamped));
+		assertTrue(!(raw instanceof SubTimeStamped));
 		ProxyFactory factory = new ProxyFactory(raw);
 
 		TimeStamped ts = mock(SubTimeStamped.class);
@@ -86,7 +86,7 @@ public class DelegatingIntroductionInterceptorTests {
 	@Test
 	public void testIntroductionInterceptorWithSuperInterface() throws Exception {
 		TestBean raw = new TestBean();
-		assertTrue(! (raw instanceof TimeStamped));
+		assertTrue(!(raw instanceof TimeStamped));
 		ProxyFactory factory = new ProxyFactory(raw);
 
 		TimeStamped ts = mock(SubTimeStamped.class);
@@ -107,6 +107,7 @@ public class DelegatingIntroductionInterceptorTests {
 			@Override
 			public void foo() throws Exception {
 			}
+
 			@Override
 			public long getTimeStamp() {
 				return t;
@@ -138,6 +139,7 @@ public class DelegatingIntroductionInterceptorTests {
 			@Override
 			public void foo() throws Exception {
 			}
+
 			@Override
 			public long getTimeStamp() {
 				return t;
@@ -179,7 +181,7 @@ public class DelegatingIntroductionInterceptorTests {
 	@Test
 	public void testIntroductionInterceptorDoesntReplaceToString() throws Exception {
 		TestBean raw = new TestBean();
-		assertTrue(! (raw instanceof TimeStamped));
+		assertTrue(!(raw instanceof TimeStamped));
 		ProxyFactory factory = new ProxyFactory(raw);
 
 		TimeStamped ts = new SerializableTimeStamped(0);

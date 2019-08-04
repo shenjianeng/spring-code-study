@@ -33,7 +33,7 @@ import javax.sql.DataSource;
  * <pre class="code">create table tab (id int not null primary key, text varchar(100))
  * create table tab_sequence (id bigint identity)
  * insert into tab_sequence default values</pre>
- *
+ * <p>
  * If "cacheSize" is set, the intermediate values are served without querying the
  * database. If the server or your application is stopped or crashes or a transaction
  * is rolled back, the unused values will never be served. The maximum hole size in
@@ -56,6 +56,7 @@ public class SqlServerMaxValueIncrementer extends AbstractIdentityColumnMaxValue
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 * @see #setColumnName
@@ -65,9 +66,10 @@ public class SqlServerMaxValueIncrementer extends AbstractIdentityColumnMaxValue
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
-	 * @param columnName the name of the column in the sequence table to use
+	 * @param columnName      the name of the column in the sequence table to use
 	 */
 	public SqlServerMaxValueIncrementer(DataSource dataSource, String incrementerName, String columnName) {
 		super(dataSource, incrementerName, columnName);

@@ -30,8 +30,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.0
  * @see JndiObjectFactoryBean
+ * @since 2.0
  */
 class JndiLookupBeanDefinitionParser extends AbstractJndiLocatingBeanDefinitionParser {
 
@@ -65,8 +65,7 @@ class JndiLookupBeanDefinitionParser extends AbstractJndiLocatingBeanDefinitionP
 						"'default-value' attribute OR 'default-ref' attribute, not both", element);
 			}
 			builder.addPropertyValue(DEFAULT_OBJECT, defaultValue);
-		}
-		else if (StringUtils.hasLength(defaultRef)) {
+		} else if (StringUtils.hasLength(defaultRef)) {
 			builder.addPropertyValue(DEFAULT_OBJECT, new RuntimeBeanReference(defaultRef));
 		}
 	}

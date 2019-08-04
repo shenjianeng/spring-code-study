@@ -45,6 +45,7 @@ public class OperatorBetween extends Operator {
 	 * Returns a boolean based on whether a value is in the range expressed. The first
 	 * operand is any value whilst the second is a list of two values - those two values
 	 * being the bounds allowed for the first operand (inclusive).
+	 *
 	 * @param state the expression state
 	 * @return true if the left operand is in the range specified, false otherwise
 	 * @throws EvaluationException if there is a problem evaluating the expression
@@ -64,8 +65,7 @@ public class OperatorBetween extends Operator {
 		TypeComparator comp = state.getTypeComparator();
 		try {
 			return BooleanTypedValue.forValue(comp.compare(left, low) >= 0 && comp.compare(left, high) <= 0);
-		}
-		catch (SpelEvaluationException ex) {
+		} catch (SpelEvaluationException ex) {
 			ex.setPosition(getStartPosition());
 			throw ex;
 		}

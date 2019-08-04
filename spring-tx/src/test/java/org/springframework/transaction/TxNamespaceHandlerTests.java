@@ -79,8 +79,7 @@ public class TxNamespaceHandlerTests {
 		try {
 			testBean.exceptional(new IllegalArgumentException("foo"));
 			fail("Should NEVER get here");
-		}
-		catch (Throwable throwable) {
+		} catch (Throwable throwable) {
 			assertEquals("Should have another started transaction", 2, ptm.begun);
 			assertEquals("Should have 1 rolled back transaction", 1, ptm.rollbacks);
 		}
@@ -90,11 +89,11 @@ public class TxNamespaceHandlerTests {
 	public void rollbackRules() {
 		TransactionInterceptor txInterceptor = (TransactionInterceptor) context.getBean("txRollbackAdvice");
 		TransactionAttributeSource txAttrSource = txInterceptor.getTransactionAttributeSource();
-		TransactionAttribute txAttr = txAttrSource.getTransactionAttribute(getAgeMethod,ITestBean.class);
-		assertTrue("should be configured to rollback on Exception",txAttr.rollbackOn(new Exception()));
+		TransactionAttribute txAttr = txAttrSource.getTransactionAttribute(getAgeMethod, ITestBean.class);
+		assertTrue("should be configured to rollback on Exception", txAttr.rollbackOn(new Exception()));
 
 		txAttr = txAttrSource.getTransactionAttribute(setAgeMethod, ITestBean.class);
-		assertFalse("should not rollback on RuntimeException",txAttr.rollbackOn(new RuntimeException()));
+		assertFalse("should not rollback on RuntimeException", txAttr.rollbackOn(new RuntimeException()));
 	}
 
 	private ITestBean getTestBean() {

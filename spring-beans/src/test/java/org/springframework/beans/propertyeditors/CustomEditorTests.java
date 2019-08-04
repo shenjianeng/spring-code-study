@@ -221,8 +221,7 @@ public class CustomEditorTests {
 		try {
 			bw.setPropertyValue("bool1", "argh");
 			fail("Should have thrown BeansException");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			// expected
 		}
 	}
@@ -323,8 +322,7 @@ public class CustomEditorTests {
 		try {
 			editor.setAsText(null);
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -452,8 +450,7 @@ public class CustomEditorTests {
 		try {
 			bw.setPropertyValue("long1", "");
 			fail("Should have thrown BeansException");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			// expected
 			assertTrue("Correct long1 value", new Long("5").equals(bw.getPropertyValue("long1")));
 			assertTrue("Correct long1 value", tb.getLong1() == 5);
@@ -480,8 +477,7 @@ public class CustomEditorTests {
 			CustomNumberEditor editor = new CustomNumberEditor(Short.class, true);
 			editor.setAsText(String.valueOf(Short.MAX_VALUE + 1));
 			fail(Short.MAX_VALUE + 1 + " is greater than max value");
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			// expected
 		}
 	}
@@ -601,8 +597,8 @@ public class CustomEditorTests {
 	}
 
 	/*
-	* SPR_2165 - ClassEditor is inconsistent with multidimensional arrays
-	*/
+	 * SPR_2165 - ClassEditor is inconsistent with multidimensional arrays
+	 */
 	@Test
 	public void testGetAsTextWithTwoDimensionalArray() throws Exception {
 		String[][] chessboard = new String[8][8];
@@ -635,8 +631,7 @@ public class CustomEditorTests {
 		PropertyEditor fileEditor = new FileEditor();
 		try {
 			fileEditor.setAsText("myfile.txt");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected: should get resolved as class path resource,
 			// and there is no such resource in the class path...
 		}
@@ -704,8 +699,7 @@ public class CustomEditorTests {
 		try {
 			editor.setAsText(null);
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -756,16 +750,14 @@ public class CustomEditorTests {
 
 		try {
 			editor.setAsText(validDate);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			fail("Exception shouldn't be thrown because this is a valid date");
 		}
 
 		try {
 			editor.setAsText(invalidDate);
 			fail("Exception should be thrown because this is an invalid date");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("10"));
 		}
@@ -1375,7 +1367,7 @@ public class CustomEditorTests {
 		bw.registerCustomEditor(Vector.class, new CustomCollectionEditor(Vector.class));
 		bw.registerCustomEditor(Hashtable.class, new CustomMapEditor(Hashtable.class));
 
-		bw.setPropertyValue("vector", new String[] {"a", "b"});
+		bw.setPropertyValue("vector", new String[]{"a", "b"});
 		assertEquals(2, tb.getVector().size());
 		assertEquals("a", tb.getVector().get(0));
 		assertEquals("b", tb.getVector().get(1));
@@ -1411,7 +1403,7 @@ public class CustomEditorTests {
 				setValue(new TestBean(text, 99));
 			}
 		});
-		bw.setPropertyValue("array", new String[] {"a", "b"});
+		bw.setPropertyValue("array", new String[]{"a", "b"});
 		assertEquals(2, tb.getArray().length);
 		assertEquals("a", tb.getArray()[0].getName());
 		assertEquals("b", tb.getArray()[1].getName());
@@ -1427,7 +1419,7 @@ public class CustomEditorTests {
 				setValue("-" + text + "-");
 			}
 		});
-		bw.setPropertyValue("name", new String[] {"a", "b"});
+		bw.setPropertyValue("name", new String[]{"a", "b"});
 		assertEquals("-a,b-", tb.getName());
 	}
 

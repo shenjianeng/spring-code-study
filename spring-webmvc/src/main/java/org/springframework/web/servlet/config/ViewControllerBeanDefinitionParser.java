@@ -88,15 +88,12 @@ class ViewControllerBeanDefinitionParser implements BeanDefinitionParser {
 			if (statusCode != null) {
 				controller.getPropertyValues().add("statusCode", statusCode);
 			}
-		}
-		else if (name.equals("redirect-view-controller")) {
+		} else if (name.equals("redirect-view-controller")) {
 			controller.getPropertyValues().add("view", getRedirectView(element, statusCode, source));
-		}
-		else if (name.equals("status-controller")) {
+		} else if (name.equals("status-controller")) {
 			controller.getPropertyValues().add("statusCode", statusCode);
 			controller.getPropertyValues().add("statusOnly", true);
-		}
-		else {
+		} else {
 			// Should never happen...
 			throw new IllegalStateException("Unexpected tag name: " + name);
 		}
@@ -141,8 +138,7 @@ class ViewControllerBeanDefinitionParser implements BeanDefinitionParser {
 
 		if (element.hasAttribute("context-relative")) {
 			redirectView.getPropertyValues().add("contextRelative", element.getAttribute("context-relative"));
-		}
-		else {
+		} else {
 			redirectView.getPropertyValues().add("contextRelative", true);
 		}
 

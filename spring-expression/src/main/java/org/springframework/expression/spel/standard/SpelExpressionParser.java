@@ -44,6 +44,7 @@ public class SpelExpressionParser extends TemplateAwareExpressionParser {
 
 	/**
 	 * Create a parser with the specified configuration.
+	 *
 	 * @param configuration custom configuration options
 	 */
 	public SpelExpressionParser(SpelParserConfiguration configuration) {

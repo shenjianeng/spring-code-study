@@ -26,9 +26,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Jennifer Hickey
- * @since 1.2
  * @see org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler#setAttributeSource
  * @see org.springframework.jmx.export.MBeanExporter#setAssembler
+ * @since 1.2
  */
 public interface JmxAttributeSource {
 
@@ -36,6 +36,7 @@ public interface JmxAttributeSource {
 	 * Implementations should return an instance of {@code ManagedResource}
 	 * if the supplied {@code Class} has the appropriate metadata.
 	 * Otherwise should return {@code null}.
+	 *
 	 * @param clazz the class to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -47,6 +48,7 @@ public interface JmxAttributeSource {
 	 * Implementations should return an instance of {@code ManagedAttribute}
 	 * if the supplied {@code Method} has the corresponding metadata.
 	 * Otherwise should return {@code null}.
+	 *
 	 * @param method the method to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -58,6 +60,7 @@ public interface JmxAttributeSource {
 	 * Implementations should return an instance of {@code ManagedMetric}
 	 * if the supplied {@code Method} has the corresponding metadata.
 	 * Otherwise should return {@code null}.
+	 *
 	 * @param method the method to read the attribute data from
 	 * @return the metric, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -69,6 +72,7 @@ public interface JmxAttributeSource {
 	 * Implementations should return an instance of {@code ManagedOperation}
 	 * if the supplied {@code Method} has the corresponding metadata.
 	 * Otherwise should return {@code null}.
+	 *
 	 * @param method the method to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -80,6 +84,7 @@ public interface JmxAttributeSource {
 	 * Implementations should return an array of {@code ManagedOperationParameter}
 	 * if the supplied {@code Method} has the corresponding metadata. Otherwise
 	 * should return an empty array if no metadata is found.
+	 *
 	 * @param method the {@code Method} to read the metadata from
 	 * @return the parameter information.
 	 * @throws InvalidMetadataException in the case of invalid attributes.
@@ -90,12 +95,12 @@ public interface JmxAttributeSource {
 	 * Implementations should return an array of {@link ManagedNotification ManagedNotifications}
 	 * if the supplied the {@code Class} has the corresponding metadata. Otherwise
 	 * should return an empty array.
+	 *
 	 * @param clazz the {@code Class} to read the metadata from
 	 * @return the notification information
 	 * @throws InvalidMetadataException in the case of invalid metadata
 	 */
 	ManagedNotification[] getManagedNotifications(Class<?> clazz) throws InvalidMetadataException;
-
 
 
 }

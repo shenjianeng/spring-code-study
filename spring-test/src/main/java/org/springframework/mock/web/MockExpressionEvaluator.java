@@ -30,8 +30,8 @@ import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
  * available on the classpath to use this expression evaluator.
  *
  * @author Juergen Hoeller
- * @since 1.1.5
  * @see org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager
+ * @since 1.1.5
  */
 @SuppressWarnings("deprecation")
 public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEvaluator {
@@ -41,6 +41,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 
 	/**
 	 * Create a new MockExpressionEvaluator for the given PageContext.
+	 *
 	 * @param pageContext the JSP PageContext to run in
 	 */
 	public MockExpressionEvaluator(PageContext pageContext) {
@@ -51,7 +52,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 	@Override
 	@SuppressWarnings("rawtypes")
 	public javax.servlet.jsp.el.Expression parseExpression(final String expression, final Class expectedType,
-			final javax.servlet.jsp.el.FunctionMapper functionMapper) throws javax.servlet.jsp.el.ELException {
+														   final javax.servlet.jsp.el.FunctionMapper functionMapper) throws javax.servlet.jsp.el.ELException {
 
 		return new javax.servlet.jsp.el.Expression() {
 			@Override
@@ -64,7 +65,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 	@Override
 	@SuppressWarnings("rawtypes")
 	public Object evaluate(String expression, Class expectedType, javax.servlet.jsp.el.VariableResolver variableResolver,
-			javax.servlet.jsp.el.FunctionMapper functionMapper) throws javax.servlet.jsp.el.ELException {
+						   javax.servlet.jsp.el.FunctionMapper functionMapper) throws javax.servlet.jsp.el.ELException {
 
 		return doEvaluate(expression, expectedType, functionMapper);
 	}
@@ -75,8 +76,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 
 		try {
 			return ExpressionEvaluatorManager.evaluate("JSP EL expression", expression, expectedType, this.pageContext);
-		}
-		catch (JspException ex) {
+		} catch (JspException ex) {
 			throw new javax.servlet.jsp.el.ELException("Parsing of JSP EL expression \"" + expression + "\" failed", ex);
 		}
 	}

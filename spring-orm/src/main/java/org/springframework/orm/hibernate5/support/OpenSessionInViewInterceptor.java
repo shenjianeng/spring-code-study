@@ -61,12 +61,12 @@ import org.springframework.web.context.request.async.WebAsyncUtils;
  * loaded instances of the same objects.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see OpenSessionInViewFilter
  * @see OpenSessionInterceptor
  * @see org.springframework.orm.hibernate5.HibernateTransactionManager
  * @see TransactionSynchronizationManager
  * @see SessionFactory#getCurrentSession()
+ * @since 4.2
  */
 public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor {
 
@@ -74,6 +74,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	 * Suffix that gets appended to the {@code SessionFactory}
 	 * {@code toString()} representation for the "participate in existing
 	 * session handling" request attribute.
+	 *
 	 * @see #getParticipateAttributeName
 	 */
 	public static final String PARTICIPATE_SUFFIX = ".PARTICIPATE";
@@ -123,8 +124,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 			Integer count = (Integer) request.getAttribute(key, WebRequest.SCOPE_REQUEST);
 			int newCount = (count != null ? count + 1 : 1);
 			request.setAttribute(getParticipateAttributeName(), newCount, WebRequest.SCOPE_REQUEST);
-		}
-		else {
+		} else {
 			logger.debug("Opening Hibernate Session in OpenSessionInViewInterceptor");
 			Session session = openSession();
 			SessionHolder sessionHolder = new SessionHolder(session);
@@ -143,6 +143,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 
 	/**
 	 * Unbind the Hibernate {@code Session} from the thread and close it).
+	 *
 	 * @see TransactionSynchronizationManager
 	 */
 	@Override
@@ -164,8 +165,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 		// Do not modify the Session: just clear the marker.
 		if (count > 1) {
 			request.setAttribute(participateAttributeName, count - 1, WebRequest.SCOPE_REQUEST);
-		}
-		else {
+		} else {
 			request.removeAttribute(participateAttributeName, WebRequest.SCOPE_REQUEST);
 		}
 		return true;
@@ -182,6 +182,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	 * Open a Session for the SessionFactory that this interceptor uses.
 	 * <p>The default implementation delegates to the {@link SessionFactory#openSession}
 	 * method and sets the {@link Session}'s flush mode to "MANUAL".
+	 *
 	 * @return the Session to use
 	 * @throws DataAccessResourceFailureException if the Session could not be created
 	 * @see FlushMode#MANUAL
@@ -192,8 +193,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 			Session session = obtainSessionFactory().openSession();
 			session.setFlushMode(FlushMode.MANUAL);
 			return session;
-		}
-		catch (HibernateException ex) {
+		} catch (HibernateException ex) {
 			throw new DataAccessResourceFailureException("Could not open Hibernate Session", ex);
 		}
 	}

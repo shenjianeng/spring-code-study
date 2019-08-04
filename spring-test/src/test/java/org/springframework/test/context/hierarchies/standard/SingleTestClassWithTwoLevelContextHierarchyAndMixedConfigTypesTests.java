@@ -35,8 +35,8 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextHierarchy({
-	@ContextConfiguration(classes = SingleTestClassWithTwoLevelContextHierarchyAndMixedConfigTypesTests.ParentConfig.class),
-	@ContextConfiguration("SingleTestClassWithTwoLevelContextHierarchyAndMixedConfigTypesTests-ChildConfig.xml") })
+		@ContextConfiguration(classes = SingleTestClassWithTwoLevelContextHierarchyAndMixedConfigTypesTests.ParentConfig.class),
+		@ContextConfiguration("SingleTestClassWithTwoLevelContextHierarchyAndMixedConfigTypesTests-ChildConfig.xml")})
 public class SingleTestClassWithTwoLevelContextHierarchyAndMixedConfigTypesTests {
 
 	@Configuration

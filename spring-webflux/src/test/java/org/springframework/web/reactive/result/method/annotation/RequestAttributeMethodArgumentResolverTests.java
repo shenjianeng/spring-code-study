@@ -175,8 +175,8 @@ public class RequestAttributeMethodArgumentResolverTests {
 	private void handleWithRequestAttribute(
 			@RequestAttribute Foo foo,
 			@RequestAttribute("specialFoo") Foo namedFoo,
-			@RequestAttribute(name="foo", required = false) Foo notRequiredFoo,
-			@RequestAttribute(name="foo") Optional<Foo> optionalFoo,
+			@RequestAttribute(name = "foo", required = false) Foo notRequiredFoo,
+			@RequestAttribute(name = "foo") Optional<Foo> optionalFoo,
 			@RequestAttribute Mono<Foo> fooMono,
 			String notSupported) {
 	}

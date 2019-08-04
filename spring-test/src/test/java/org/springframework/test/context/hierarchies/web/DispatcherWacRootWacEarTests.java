@@ -80,9 +80,9 @@ public class DispatcherWacRootWacEarTests extends RootWacEarTests {
 		assertSame(dispatcherServletContext, rootServletContext);
 
 		assertSame(parent,
-			rootServletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE));
+				rootServletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE));
 		assertSame(parent,
-			dispatcherServletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE));
+				dispatcherServletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE));
 
 		assertEquals("ear", ear);
 		assertEquals("root", root);

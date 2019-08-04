@@ -36,9 +36,9 @@ import org.springframework.web.util.HtmlUtils;
  * that get copied into the respective BindStatus instance.
  *
  * @author Juergen Hoeller
- * @since 01.03.2003
  * @see org.springframework.web.servlet.support.RequestContext#getErrors
  * @see org.springframework.web.servlet.tags.BindTag
+ * @since 01.03.2003
  */
 public class EscapedErrors implements Errors {
 
@@ -111,7 +111,7 @@ public class EscapedErrors implements Errors {
 
 	@Override
 	public void rejectValue(@Nullable String field, String errorCode, @Nullable Object[] errorArgs,
-			@Nullable String defaultMessage) {
+							@Nullable String defaultMessage) {
 
 		this.source.rejectValue(field, errorCode, errorArgs, defaultMessage);
 	}
@@ -232,8 +232,7 @@ public class EscapedErrors implements Errors {
 			return (T) new FieldError(
 					fieldError.getObjectName(), fieldError.getField(), value, fieldError.isBindingFailure(),
 					fieldError.getCodes(), fieldError.getArguments(), defaultMessage);
-		}
-		else {
+		} else {
 			return (T) new ObjectError(
 					source.getObjectName(), source.getCodes(), source.getArguments(), defaultMessage);
 		}

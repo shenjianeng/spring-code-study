@@ -61,33 +61,25 @@ public class OpMinus extends Operator {
 			if (operand instanceof Number) {
 				if (operand instanceof BigDecimal) {
 					return new TypedValue(((BigDecimal) operand).negate());
-				}
-				else if (operand instanceof Double) {
+				} else if (operand instanceof Double) {
 					this.exitTypeDescriptor = "D";
 					return new TypedValue(0 - ((Number) operand).doubleValue());
-				}
-				else if (operand instanceof Float) {
+				} else if (operand instanceof Float) {
 					this.exitTypeDescriptor = "F";
 					return new TypedValue(0 - ((Number) operand).floatValue());
-				}
-				else if (operand instanceof BigInteger) {
+				} else if (operand instanceof BigInteger) {
 					return new TypedValue(((BigInteger) operand).negate());
-				}
-				else if (operand instanceof Long) {
+				} else if (operand instanceof Long) {
 					this.exitTypeDescriptor = "J";
 					return new TypedValue(0 - ((Number) operand).longValue());
-				}
-				else if (operand instanceof Integer) {
+				} else if (operand instanceof Integer) {
 					this.exitTypeDescriptor = "I";
 					return new TypedValue(0 - ((Number) operand).intValue());
-				}
-				else if (operand instanceof Short) {
+				} else if (operand instanceof Short) {
 					return new TypedValue(0 - ((Number) operand).shortValue());
-				}
-				else if (operand instanceof Byte) {
+				} else if (operand instanceof Byte) {
 					return new TypedValue(0 - ((Number) operand).byteValue());
-				}
-				else {
+				} else {
 					// Unknown Number subtypes -> best guess is double subtraction
 					return new TypedValue(0 - ((Number) operand).doubleValue());
 				}
@@ -106,29 +98,23 @@ public class OpMinus extends Operator {
 				BigDecimal leftBigDecimal = NumberUtils.convertNumberToTargetClass(leftNumber, BigDecimal.class);
 				BigDecimal rightBigDecimal = NumberUtils.convertNumberToTargetClass(rightNumber, BigDecimal.class);
 				return new TypedValue(leftBigDecimal.subtract(rightBigDecimal));
-			}
-			else if (leftNumber instanceof Double || rightNumber instanceof Double) {
+			} else if (leftNumber instanceof Double || rightNumber instanceof Double) {
 				this.exitTypeDescriptor = "D";
 				return new TypedValue(leftNumber.doubleValue() - rightNumber.doubleValue());
-			}
-			else if (leftNumber instanceof Float || rightNumber instanceof Float) {
+			} else if (leftNumber instanceof Float || rightNumber instanceof Float) {
 				this.exitTypeDescriptor = "F";
 				return new TypedValue(leftNumber.floatValue() - rightNumber.floatValue());
-			}
-			else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
+			} else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
 				BigInteger leftBigInteger = NumberUtils.convertNumberToTargetClass(leftNumber, BigInteger.class);
 				BigInteger rightBigInteger = NumberUtils.convertNumberToTargetClass(rightNumber, BigInteger.class);
 				return new TypedValue(leftBigInteger.subtract(rightBigInteger));
-			}
-			else if (leftNumber instanceof Long || rightNumber instanceof Long) {
+			} else if (leftNumber instanceof Long || rightNumber instanceof Long) {
 				this.exitTypeDescriptor = "J";
 				return new TypedValue(leftNumber.longValue() - rightNumber.longValue());
-			}
-			else if (CodeFlow.isIntegerForNumericOp(leftNumber) || CodeFlow.isIntegerForNumericOp(rightNumber)) {
+			} else if (CodeFlow.isIntegerForNumericOp(leftNumber) || CodeFlow.isIntegerForNumericOp(rightNumber)) {
 				this.exitTypeDescriptor = "I";
 				return new TypedValue(leftNumber.intValue() - rightNumber.intValue());
-			}
-			else {
+			} else {
 				// Unknown Number subtypes -> best guess is double subtraction
 				return new TypedValue(leftNumber.doubleValue() - rightNumber.doubleValue());
 			}
@@ -204,8 +190,7 @@ public class OpMinus extends Operator {
 					throw new IllegalStateException(
 							"Unrecognized exit type descriptor: '" + this.exitTypeDescriptor + "'");
 			}
-		}
-		else {
+		} else {
 			switch (targetDesc) {
 				case 'I':
 					mv.visitInsn(INEG);

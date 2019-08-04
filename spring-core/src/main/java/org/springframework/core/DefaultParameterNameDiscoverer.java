@@ -31,10 +31,10 @@ package org.springframework.core;
  *
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
- * @since 4.0
  * @see StandardReflectionParameterNameDiscoverer
  * @see LocalVariableTableParameterNameDiscoverer
  * @see KotlinReflectionParameterNameDiscoverer
+ * @since 4.0
  */
 public class DefaultParameterNameDiscoverer extends PrioritizedParameterNameDiscoverer {
 

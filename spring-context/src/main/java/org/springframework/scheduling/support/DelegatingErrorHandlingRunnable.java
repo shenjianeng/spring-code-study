@@ -38,7 +38,8 @@ public class DelegatingErrorHandlingRunnable implements Runnable {
 
 	/**
 	 * Create a new DelegatingErrorHandlingRunnable.
-	 * @param delegate the Runnable implementation to delegate to
+	 *
+	 * @param delegate     the Runnable implementation to delegate to
 	 * @param errorHandler the ErrorHandler for handling any exceptions
 	 */
 	public DelegatingErrorHandlingRunnable(Runnable delegate, ErrorHandler errorHandler) {
@@ -52,11 +53,9 @@ public class DelegatingErrorHandlingRunnable implements Runnable {
 	public void run() {
 		try {
 			this.delegate.run();
-		}
-		catch (UndeclaredThrowableException ex) {
+		} catch (UndeclaredThrowableException ex) {
 			this.errorHandler.handleError(ex.getUndeclaredThrowable());
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			this.errorHandler.handleError(ex);
 		}
 	}

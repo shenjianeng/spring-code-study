@@ -26,9 +26,9 @@ import org.springframework.test.web.servlet.ResultMatcher;
 /**
  * Defines common methods for building a {@code MockMvc}.
  *
+ * @param <B> a self reference to the builder type
  * @author Rossen Stoyanchev
  * @since 4.1
- * @param <B> a self reference to the builder type
  */
 public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder<B>> extends MockMvcBuilder {
 
@@ -45,6 +45,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
 	 * <p>Filters will be invoked in the order in which they are provided.
+	 *
 	 * @param filters the filters to add
 	 */
 	<T extends B> T addFilters(Filter... filters);
@@ -62,7 +63,8 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
 	 * <p>Filters will be invoked in the order in which they are provided.
-	 * @param filter the filter to add
+	 *
+	 * @param filter      the filter to add
 	 * @param urlPatterns the URL patterns to map to; if empty, "/*" is used by default
 	 */
 	<T extends B> T addFilter(Filter filter, String... urlPatterns);
@@ -75,8 +77,9 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 *
 	 * <p>Properties specified at the time of performing a request override the
 	 * default properties defined here.
+	 *
 	 * @param requestBuilder a RequestBuilder; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
+	 *                       {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
 	 */
 	<T extends B> T defaultRequest(RequestBuilder requestBuilder);
 
@@ -84,8 +87,9 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * Define a global expectation that should <em>always</em> be applied to
 	 * every response. For example, status code 200 (OK), content type
 	 * {@code "application/json"}, etc.
+	 *
 	 * @param resultMatcher a ResultMatcher; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers}
+	 *                      {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers}
 	 */
 	<T extends B> T alwaysExpect(ResultMatcher resultMatcher);
 
@@ -93,8 +97,9 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * Define a global action that should <em>always</em> be applied to every
 	 * response. For example, writing detailed information about the performed
 	 * request and resulting response to {@code System.out}.
+	 *
 	 * @param resultHandler a ResultHandler; see static factory methods in
-	 * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}
+	 *                      {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}
 	 */
 	<T extends B> T alwaysDo(ResultHandler resultHandler);
 
@@ -112,6 +117,7 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	 * used to re-use the HTTP session across requests. 3rd party frameworks
 	 * like Spring Security also use this mechanism to provide configuration
 	 * shortcuts.
+	 *
 	 * @see SharedHttpSessionConfigurer
 	 */
 	<T extends B> T apply(MockMvcConfigurer configurer);

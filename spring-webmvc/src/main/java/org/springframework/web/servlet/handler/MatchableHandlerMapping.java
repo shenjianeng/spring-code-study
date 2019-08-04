@@ -27,13 +27,14 @@ import org.springframework.web.servlet.HandlerMapping;
  * configuration and implementation.
  *
  * @author Rossen Stoyanchev
- * @since 4.3.1
  * @see HandlerMappingIntrospector
+ * @since 4.3.1
  */
 public interface MatchableHandlerMapping extends HandlerMapping {
 
 	/**
 	 * Determine whether the given request matches the request criteria.
+	 *
 	 * @param request the current request
 	 * @param pattern the pattern to match
 	 * @return the result from request matching, or {@code null} if none

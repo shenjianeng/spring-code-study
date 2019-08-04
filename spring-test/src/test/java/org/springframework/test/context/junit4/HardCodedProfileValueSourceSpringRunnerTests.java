@@ -32,8 +32,8 @@ import org.springframework.test.annotation.ProfileValueSourceConfiguration;
  * </p>
  *
  * @author Sam Brannen
- * @since 2.5
  * @see EnabledAndIgnoredSpringRunnerTests
+ * @since 2.5
  */
 @ProfileValueSourceConfiguration(HardCodedProfileValueSourceSpringRunnerTests.HardCodedProfileValueSource.class)
 public class HardCodedProfileValueSourceSpringRunnerTests extends EnabledAndIgnoredSpringRunnerTests {

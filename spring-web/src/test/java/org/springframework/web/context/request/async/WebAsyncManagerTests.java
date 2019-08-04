@@ -64,16 +64,14 @@ public class WebAsyncManagerTests {
 		try {
 			manager.startCallableProcessing(new StubCallable(1));
 			fail("Expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("AsyncWebRequest must not be null", ex.getMessage());
 		}
 
 		try {
 			manager.startDeferredResultProcessing(new DeferredResult<String>());
 			fail("Expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("AsyncWebRequest must not be null", ex.getMessage());
 		}
 	}
@@ -154,8 +152,7 @@ public class WebAsyncManagerTests {
 		try {
 			this.asyncManager.startCallableProcessing(task);
 			fail("Expected Exception");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertEquals(exception, ex);
 		}
 
@@ -254,8 +251,7 @@ public class WebAsyncManagerTests {
 		try {
 			this.asyncManager.startCallableProcessing((Callable<?>) null);
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertEquals("Callable must not be null", ex.getMessage());
 		}
 	}
@@ -296,8 +292,7 @@ public class WebAsyncManagerTests {
 		try {
 			this.asyncManager.startDeferredResultProcessing(deferredResult);
 			fail("Expected Exception");
-		}
-		catch (Exception success) {
+		} catch (Exception success) {
 			assertEquals(exception, success);
 		}
 
@@ -355,8 +350,7 @@ public class WebAsyncManagerTests {
 		try {
 			this.asyncManager.startDeferredResultProcessing(null);
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertEquals("DeferredResult must not be null", ex.getMessage());
 		}
 	}

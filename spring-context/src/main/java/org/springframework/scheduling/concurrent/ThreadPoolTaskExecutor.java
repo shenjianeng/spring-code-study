@@ -72,11 +72,11 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * {@link org.springframework.scheduling.concurrent.ConcurrentTaskExecutor} adapter.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.core.task.TaskExecutor
  * @see java.util.concurrent.ThreadPoolExecutor
  * @see ThreadPoolExecutorFactoryBean
  * @see ConcurrentTaskExecutor
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
@@ -179,6 +179,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * Default is {@code Integer.MAX_VALUE}.
 	 * <p>Any positive value will lead to a LinkedBlockingQueue instance;
 	 * any other value will lead to a SynchronousQueue instance.
+	 *
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
 	 */
@@ -191,6 +192,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * growing and shrinking even in combination with a non-zero queue (since
 	 * the max pool size will only grow once the queue is full).
 	 * <p>Default is "false".
+	 *
 	 * @see java.util.concurrent.ThreadPoolExecutor#allowCoreThreadTimeOut(boolean)
 	 */
 	public void setAllowCoreThreadTimeOut(boolean allowCoreThreadTimeOut) {
@@ -205,6 +207,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * execution callback (which may be a wrapper around the user-supplied task).
 	 * <p>The primary use case is to set some execution context around the task's
 	 * invocation, or to provide some monitoring/statistics for task execution.
+	 *
 	 * @since 4.3
 	 */
 	public void setTaskDecorator(TaskDecorator taskDecorator) {
@@ -238,8 +241,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 					super.execute(decorated);
 				}
 			};
-		}
-		else {
+		} else {
 			executor = new ThreadPoolExecutor(
 					this.corePoolSize, this.maxPoolSize, this.keepAliveSeconds, TimeUnit.SECONDS,
 					queue, threadFactory, rejectedExecutionHandler);
@@ -258,6 +260,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	 * Create the BlockingQueue to use for the ThreadPoolExecutor.
 	 * <p>A LinkedBlockingQueue instance will be created for a positive
 	 * capacity value; a SynchronousQueue else.
+	 *
 	 * @param queueCapacity the specified queue capacity
 	 * @return the BlockingQueue instance
 	 * @see java.util.concurrent.LinkedBlockingQueue
@@ -266,14 +269,14 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 	protected BlockingQueue<Runnable> createQueue(int queueCapacity) {
 		if (queueCapacity > 0) {
 			return new LinkedBlockingQueue<>(queueCapacity);
-		}
-		else {
+		} else {
 			return new SynchronousQueue<>();
 		}
 	}
 
 	/**
 	 * Return the underlying ThreadPoolExecutor for native access.
+	 *
 	 * @return the underlying ThreadPoolExecutor (never {@code null})
 	 * @throws IllegalStateException if the ThreadPoolTaskExecutor hasn't been initialized yet
 	 */
@@ -284,6 +287,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 
 	/**
 	 * Return the current pool size.
+	 *
 	 * @see java.util.concurrent.ThreadPoolExecutor#getPoolSize()
 	 */
 	public int getPoolSize() {
@@ -296,6 +300,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 
 	/**
 	 * Return the number of currently active threads.
+	 *
 	 * @see java.util.concurrent.ThreadPoolExecutor#getActiveCount()
 	 */
 	public int getActiveCount() {
@@ -312,8 +317,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 		Executor executor = getThreadPoolExecutor();
 		try {
 			executor.execute(task);
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
 		}
 	}
@@ -328,8 +332,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 		ExecutorService executor = getThreadPoolExecutor();
 		try {
 			return executor.submit(task);
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
 		}
 	}
@@ -339,8 +342,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 		ExecutorService executor = getThreadPoolExecutor();
 		try {
 			return executor.submit(task);
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
 		}
 	}
@@ -352,8 +354,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 			ListenableFutureTask<Object> future = new ListenableFutureTask<>(task, null);
 			executor.execute(future);
 			return future;
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
 		}
 	}
@@ -365,8 +366,7 @@ public class ThreadPoolTaskExecutor extends ExecutorConfigurationSupport
 			ListenableFutureTask<T> future = new ListenableFutureTask<>(task);
 			executor.execute(future);
 			return future;
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			throw new TaskRejectedException("Executor [" + executor + "] did not accept task: " + task, ex);
 		}
 	}

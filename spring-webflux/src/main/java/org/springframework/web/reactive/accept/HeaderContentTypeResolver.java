@@ -38,8 +38,7 @@ public class HeaderContentTypeResolver implements RequestedContentTypeResolver {
 			List<MediaType> mediaTypes = exchange.getRequest().getHeaders().getAccept();
 			MediaType.sortBySpecificityAndQuality(mediaTypes);
 			return (!CollectionUtils.isEmpty(mediaTypes) ? mediaTypes : MEDIA_TYPE_ALL_LIST);
-		}
-		catch (InvalidMediaTypeException ex) {
+		} catch (InvalidMediaTypeException ex) {
 			String value = exchange.getRequest().getHeaders().getFirst("Accept");
 			throw new NotAcceptableStatusException(
 					"Could not parse 'Accept' header [" + value + "]: " + ex.getMessage());

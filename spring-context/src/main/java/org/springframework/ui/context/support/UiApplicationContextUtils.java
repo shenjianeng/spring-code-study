@@ -37,6 +37,7 @@ public abstract class UiApplicationContextUtils {
 	/**
 	 * Name of the ThemeSource bean in the factory.
 	 * If none is supplied, theme resolution is delegated to the parent.
+	 *
 	 * @see org.springframework.ui.context.ThemeSource
 	 */
 	public static final String THEME_SOURCE_BEAN_NAME = "themeSource";
@@ -49,6 +50,7 @@ public abstract class UiApplicationContextUtils {
 	 * Initialize the ThemeSource for the given application context,
 	 * autodetecting a bean with the name "themeSource". If no such
 	 * bean is found, a default (empty) ThemeSource will be used.
+	 *
 	 * @param context current application context
 	 * @return the initialized theme source (will never be {@code null})
 	 * @see #THEME_SOURCE_BEAN_NAME
@@ -69,16 +71,14 @@ public abstract class UiApplicationContextUtils {
 				logger.debug("Using ThemeSource [" + themeSource + "]");
 			}
 			return themeSource;
-		}
-		else {
+		} else {
 			// Use default ThemeSource to be able to accept getTheme calls, either
 			// delegating to parent context's default or to local ResourceBundleThemeSource.
 			HierarchicalThemeSource themeSource = null;
 			if (context.getParent() instanceof ThemeSource) {
 				themeSource = new DelegatingThemeSource();
 				themeSource.setParentThemeSource((ThemeSource) context.getParent());
-			}
-			else {
+			} else {
 				themeSource = new ResourceBundleThemeSource();
 			}
 			if (logger.isDebugEnabled()) {

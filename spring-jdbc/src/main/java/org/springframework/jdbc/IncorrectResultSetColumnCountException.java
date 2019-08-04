@@ -23,8 +23,8 @@ import org.springframework.dao.DataRetrievalFailureException;
  * for example when expecting a single column but getting 0 or more than 1 columns.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.dao.IncorrectResultSizeDataAccessException
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class IncorrectResultSetColumnCountException extends DataRetrievalFailureException {
@@ -36,8 +36,9 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 	/**
 	 * Constructor for IncorrectResultSetColumnCountException.
+	 *
 	 * @param expectedCount the expected column count
-	 * @param actualCount the actual column count
+	 * @param actualCount   the actual column count
 	 */
 	public IncorrectResultSetColumnCountException(int expectedCount, int actualCount) {
 		super("Incorrect column count: expected " + expectedCount + ", actual " + actualCount);
@@ -47,9 +48,10 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 	/**
 	 * Constructor for IncorrectResultCountDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg           the detail message
 	 * @param expectedCount the expected column count
-	 * @param actualCount the actual column count
+	 * @param actualCount   the actual column count
 	 */
 	public IncorrectResultSetColumnCountException(String msg, int expectedCount, int actualCount) {
 		super(msg);

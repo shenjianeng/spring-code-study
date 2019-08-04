@@ -95,7 +95,7 @@ public class RequestMappingDataBindingIntegrationTests extends AbstractRequestMa
 
 		@InitBinder
 		public void initBinder(WebDataBinder binder,
-				@RequestParam("date-pattern") Optional<String> optionalPattern) {
+							   @RequestParam("date-pattern") Optional<String> optionalPattern) {
 
 			optionalPattern.ifPresent(pattern -> {
 				CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat(pattern), false);

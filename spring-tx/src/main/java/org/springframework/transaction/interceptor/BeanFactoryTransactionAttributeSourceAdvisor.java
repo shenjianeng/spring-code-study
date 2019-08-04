@@ -26,10 +26,10 @@ import org.springframework.lang.Nullable;
  * a transaction advice bean for methods that are transactional.
  *
  * @author Juergen Hoeller
- * @since 2.5.5
  * @see #setAdviceBeanName
  * @see TransactionInterceptor
  * @see TransactionAttributeSourceAdvisor
+ * @since 2.5.5
  */
 @SuppressWarnings("serial")
 public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFactoryPointcutAdvisor {
@@ -50,6 +50,7 @@ public class BeanFactoryTransactionAttributeSourceAdvisor extends AbstractBeanFa
 	 * Set the transaction attribute source which is used to find transaction
 	 * attributes. This should usually be identical to the source reference
 	 * set on the transaction interceptor itself.
+	 *
 	 * @see TransactionInterceptor#setTransactionAttributeSource
 	 */
 	public void setTransactionAttributeSource(TransactionAttributeSource transactionAttributeSource) {

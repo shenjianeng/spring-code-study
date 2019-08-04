@@ -42,6 +42,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests for {@link JettyWebSocketClient}.
+ *
  * @author Rossen Stoyanchev
  */
 public class JettyWebSocketClientTests {

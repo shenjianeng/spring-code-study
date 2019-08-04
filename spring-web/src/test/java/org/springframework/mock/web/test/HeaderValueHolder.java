@@ -88,8 +88,9 @@ class HeaderValueHolder {
 
 	/**
 	 * Find a HeaderValueHolder by name, ignoring casing.
+	 *
 	 * @param headers the Map of header names to HeaderValueHolders
-	 * @param name the name of the desired header
+	 * @param name    the name of the desired header
 	 * @return the corresponding HeaderValueHolder, or {@code null} if none found
 	 */
 	@Nullable

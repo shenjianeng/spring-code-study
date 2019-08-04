@@ -69,6 +69,7 @@ public interface MessageListenerContainer extends SmartLifecycle {
 	/**
 	 * Return the {@link QosSettings} to use when sending a reply,
 	 * or {@code null} if the broker's defaults should be used.
+	 *
 	 * @since 5.0
 	 */
 	@Nullable

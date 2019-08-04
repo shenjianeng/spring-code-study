@@ -78,8 +78,7 @@ public class Service implements ApplicationContextAware, MessageSourceAware, Dis
 					applicationContext.getBean("service2");
 					// Should have thrown BeanCreationNotAllowedException
 					properlyDestroyed = false;
-				}
-				catch (BeanCreationNotAllowedException ex) {
+				} catch (BeanCreationNotAllowedException ex) {
 					// expected
 				}
 			}
@@ -87,8 +86,7 @@ public class Service implements ApplicationContextAware, MessageSourceAware, Dis
 		thread.start();
 		try {
 			thread.join();
-		}
-		catch (InterruptedException ex) {
+		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
 	}

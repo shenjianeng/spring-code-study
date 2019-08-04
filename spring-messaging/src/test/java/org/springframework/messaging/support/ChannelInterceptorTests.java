@@ -94,11 +94,13 @@ public class ChannelInterceptorTests {
 				assertInput(message, channel, sent);
 				preSendInvoked.set(true);
 			}
+
 			@Override
 			public void afterSendCompletion(Message<?> message, MessageChannel channel, boolean sent, Exception ex) {
 				assertInput(message, channel, sent);
 				completionInvoked.set(true);
 			}
+
 			private void assertInput(Message<?> message, MessageChannel channel, boolean sent) {
 				assertNotNull(message);
 				assertNotNull(channel);
@@ -127,11 +129,13 @@ public class ChannelInterceptorTests {
 				assertInput(message, channel, sent);
 				preSendInvoked.set(true);
 			}
+
 			@Override
 			public void afterSendCompletion(Message<?> message, MessageChannel channel, boolean sent, Exception ex) {
 				assertInput(message, channel, sent);
 				completionInvoked.set(true);
 			}
+
 			private void assertInput(Message<?> message, MessageChannel channel, boolean sent) {
 				assertNotNull(message);
 				assertNotNull(channel);
@@ -158,8 +162,7 @@ public class ChannelInterceptorTests {
 		testChannel.addInterceptor(interceptor2);
 		try {
 			testChannel.send(MessageBuilder.withPayload("test").build());
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertEquals("Simulated exception", ex.getCause().getMessage());
 		}
 		assertTrue(interceptor1.wasAfterCompletionInvoked());
@@ -175,8 +178,7 @@ public class ChannelInterceptorTests {
 		this.channel.addInterceptor(interceptor2);
 		try {
 			this.channel.send(MessageBuilder.withPayload("test").build());
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertEquals("Simulated exception", ex.getCause().getMessage());
 		}
 		assertTrue(interceptor1.wasAfterCompletionInvoked());

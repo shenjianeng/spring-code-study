@@ -48,13 +48,12 @@ public class FactoryBeanAccessTests {
 		assertEquals(CarFactoryBean.class.getName(), expr.getValue(context));
 
 		expr = new SpelExpressionParser().parseRaw("@boat.colour");
-		assertEquals("blue",expr.getValue(context));
+		assertEquals("blue", expr.getValue(context));
 		expr = new SpelExpressionParser().parseRaw("&boat.class.name");
 		try {
 			assertEquals(Boat.class.getName(), expr.getValue(context));
 			fail("Expected BeanIsNotAFactoryException");
-		}
-		catch (BeanIsNotAFactoryException binafe) {
+		} catch (BeanIsNotAFactoryException binafe) {
 			// success
 		}
 
@@ -63,8 +62,7 @@ public class FactoryBeanAccessTests {
 			expr = new SpelExpressionParser().parseRaw("@truck");
 			assertEquals("red", expr.getValue(context));
 			fail("Expected NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException nsbde) {
+		} catch (NoSuchBeanDefinitionException nsbde) {
 			// success
 		}
 
@@ -73,8 +71,7 @@ public class FactoryBeanAccessTests {
 			expr = new SpelExpressionParser().parseRaw("&truck");
 			assertEquals(CarFactoryBean.class.getName(), expr.getValue(context));
 			fail("Expected NoSuchBeanDefinitionException");
-		}
-		catch (NoSuchBeanDefinitionException nsbde) {
+		} catch (NoSuchBeanDefinitionException nsbde) {
 			// success
 		}
 	}

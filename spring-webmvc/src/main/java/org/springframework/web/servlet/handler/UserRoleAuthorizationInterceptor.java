@@ -28,8 +28,8 @@ import org.springframework.lang.Nullable;
  * user's roles, as evaluated by HttpServletRequest's isUserInRole method.
  *
  * @author Juergen Hoeller
- * @since 20.06.2003
  * @see javax.servlet.http.HttpServletRequest#isUserInRole
+ * @since 20.06.2003
  */
 public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter {
 
@@ -39,6 +39,7 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 
 	/**
 	 * Set the roles that this interceptor should treat as authorized.
+	 *
 	 * @param authorizedRoles array of role names
 	 */
 	public final void setAuthorizedRoles(String... authorizedRoles) {
@@ -66,11 +67,12 @@ public class UserRoleAuthorizationInterceptor extends HandlerInterceptorAdapter 
 	 * Default implementation sends HTTP status code 403 ("forbidden").
 	 * <p>This method can be overridden to write a custom message, forward or
 	 * redirect to some error page or login page, or throw a ServletException.
-	 * @param request current HTTP request
+	 *
+	 * @param request  current HTTP request
 	 * @param response current HTTP response
-	 * @param handler chosen handler to execute, for type and/or instance evaluation
+	 * @param handler  chosen handler to execute, for type and/or instance evaluation
 	 * @throws javax.servlet.ServletException if there is an internal error
-	 * @throws java.io.IOException in case of an I/O error when writing the response
+	 * @throws java.io.IOException            in case of an I/O error when writing the response
 	 */
 	protected void handleNotAuthorized(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws ServletException, IOException {

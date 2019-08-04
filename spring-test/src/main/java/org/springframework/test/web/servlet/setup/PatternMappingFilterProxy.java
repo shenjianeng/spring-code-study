@@ -48,13 +48,19 @@ final class PatternMappingFilterProxy implements Filter {
 
 	private final Filter delegate;
 
-	/** Patterns that require an exact match, e.g. "/test" */
+	/**
+	 * Patterns that require an exact match, e.g. "/test"
+	 */
 	private final List<String> exactMatches = new ArrayList<>();
 
-	/** Patterns that require the URL to have a specific prefix, e.g. "/test/*" */
+	/**
+	 * Patterns that require the URL to have a specific prefix, e.g. "/test/*"
+	 */
 	private final List<String> startsWithMatches = new ArrayList<>();
 
-	/** Patterns that require the request URL to have a specific suffix, e.g. "*.html" */
+	/**
+	 * Patterns that require the request URL to have a specific suffix, e.g. "*.html"
+	 */
 	private final List<String> endsWithMatches = new ArrayList<>();
 
 
@@ -73,15 +79,12 @@ final class PatternMappingFilterProxy implements Filter {
 		Assert.notNull(urlPattern, "Found null URL Pattern");
 		if (urlPattern.startsWith(EXTENSION_MAPPING_PATTERN)) {
 			this.endsWithMatches.add(urlPattern.substring(1, urlPattern.length()));
-		}
-		else if (urlPattern.equals(PATH_MAPPING_PATTERN)) {
+		} else if (urlPattern.equals(PATH_MAPPING_PATTERN)) {
 			this.startsWithMatches.add("");
-		}
-		else if (urlPattern.endsWith(PATH_MAPPING_PATTERN)) {
+		} else if (urlPattern.endsWith(PATH_MAPPING_PATTERN)) {
 			this.startsWithMatches.add(urlPattern.substring(0, urlPattern.length() - 1));
 			this.exactMatches.add(urlPattern.substring(0, urlPattern.length() - 2));
-		}
-		else {
+		} else {
 			if ("".equals(urlPattern)) {
 				urlPattern = "/";
 			}
@@ -99,8 +102,7 @@ final class PatternMappingFilterProxy implements Filter {
 
 		if (matches(requestPath)) {
 			this.delegate.doFilter(request, response, filterChain);
-		}
-		else {
+		} else {
 			filterChain.doFilter(request, response);
 		}
 	}

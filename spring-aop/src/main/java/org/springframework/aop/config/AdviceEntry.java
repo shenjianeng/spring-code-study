@@ -31,6 +31,7 @@ public class AdviceEntry implements ParseState.Entry {
 
 	/**
 	 * Creates a new instance of the {@link AdviceEntry} class.
+	 *
 	 * @param kind the kind of advice represented by this entry (before, after, around, etc.)
 	 */
 	public AdviceEntry(String kind) {

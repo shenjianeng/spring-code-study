@@ -40,6 +40,7 @@ public class HttpRequestWrapper implements HttpRequest {
 
 	/**
 	 * Create a new {@code HttpRequest} wrapping the given request object.
+	 *
 	 * @param request the request object to be wrapped
 	 */
 	public HttpRequestWrapper(HttpRequest request) {

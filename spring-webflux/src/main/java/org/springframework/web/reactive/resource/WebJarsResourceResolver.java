@@ -41,8 +41,8 @@ import org.springframework.web.server.ServerWebExchange;
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @since 5.0
  * @see <a href="https://www.webjars.org">webjars.org</a>
+ * @since 5.0
  */
 public class WebJarsResourceResolver extends AbstractResourceResolver {
 
@@ -72,15 +72,14 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Mono<Resource> resolveResourceInternal(@Nullable ServerWebExchange exchange,
-			String requestPath, List<? extends Resource> locations, ResourceResolverChain chain) {
+													 String requestPath, List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		return chain.resolveResource(exchange, requestPath, locations)
 				.switchIfEmpty(Mono.defer(() -> {
 					String webJarsResourcePath = findWebJarResourcePath(requestPath);
 					if (webJarsResourcePath != null) {
 						return chain.resolveResource(exchange, webJarsResourcePath, locations);
-					}
-					else {
+					} else {
 						return Mono.empty();
 					}
 				}));
@@ -88,15 +87,14 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Mono<String> resolveUrlPathInternal(String resourceUrlPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+												  List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		return chain.resolveUrlPath(resourceUrlPath, locations)
 				.switchIfEmpty(Mono.defer(() -> {
 					String webJarResourcePath = findWebJarResourcePath(resourceUrlPath);
 					if (webJarResourcePath != null) {
 						return chain.resolveUrlPath(webJarResourcePath, locations);
-					}
-					else {
+					} else {
 						return Mono.empty();
 					}
 				}));

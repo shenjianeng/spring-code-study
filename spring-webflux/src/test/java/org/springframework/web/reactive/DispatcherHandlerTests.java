@@ -39,6 +39,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link DispatcherHandler}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DispatcherHandlerTests {
@@ -72,7 +73,8 @@ public class DispatcherHandlerTests {
 
 
 	@SuppressWarnings("unused")
-	private void handle() {}
+	private void handle() {
+	}
 
 
 	private static class SupplierHandlerAdapter implements HandlerAdapter {

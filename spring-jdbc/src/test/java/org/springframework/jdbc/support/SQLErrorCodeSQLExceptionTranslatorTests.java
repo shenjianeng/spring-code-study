@@ -45,15 +45,16 @@ import static org.junit.Assert.*;
 public class SQLErrorCodeSQLExceptionTranslatorTests {
 
 	private static SQLErrorCodes ERROR_CODES = new SQLErrorCodes();
+
 	static {
-		ERROR_CODES.setBadSqlGrammarCodes(new String[] { "1", "2" });
-		ERROR_CODES.setInvalidResultSetAccessCodes(new String[] { "3", "4" });
-		ERROR_CODES.setDuplicateKeyCodes(new String[] {"10"});
-		ERROR_CODES.setDataAccessResourceFailureCodes(new String[] { "5" });
-		ERROR_CODES.setDataIntegrityViolationCodes(new String[] { "6" });
-		ERROR_CODES.setCannotAcquireLockCodes(new String[] { "7" });
-		ERROR_CODES.setDeadlockLoserCodes(new String[] { "8" });
-		ERROR_CODES.setCannotSerializeTransactionCodes(new String[] { "9" });
+		ERROR_CODES.setBadSqlGrammarCodes(new String[]{"1", "2"});
+		ERROR_CODES.setInvalidResultSetAccessCodes(new String[]{"3", "4"});
+		ERROR_CODES.setDuplicateKeyCodes(new String[]{"10"});
+		ERROR_CODES.setDataAccessResourceFailureCodes(new String[]{"5"});
+		ERROR_CODES.setDataIntegrityViolationCodes(new String[]{"6"});
+		ERROR_CODES.setCannotAcquireLockCodes(new String[]{"7"});
+		ERROR_CODES.setDeadlockLoserCodes(new String[]{"8"});
+		ERROR_CODES.setCannotSerializeTransactionCodes(new String[]{"9"});
 	}
 
 	@Rule
@@ -128,7 +129,8 @@ public class SQLErrorCodeSQLExceptionTranslatorTests {
 	public void customTranslateMethodTranslation() {
 		final String TASK = "TASK";
 		final String SQL = "SQL SELECT *";
-		final DataAccessException customDex = new DataAccessException("") {};
+		final DataAccessException customDex = new DataAccessException("") {
+		};
 
 		final SQLException badSqlEx = new SQLException("", "", 1);
 		SQLException intVioEx = new SQLException("", "", 6);
@@ -157,11 +159,11 @@ public class SQLErrorCodeSQLExceptionTranslatorTests {
 		final SQLErrorCodes customErrorCodes = new SQLErrorCodes();
 		final CustomSQLErrorCodesTranslation customTranslation = new CustomSQLErrorCodesTranslation();
 
-		customErrorCodes.setBadSqlGrammarCodes(new String[] {"1", "2"});
-		customErrorCodes.setDataIntegrityViolationCodes(new String[] {"3", "4"});
-		customTranslation.setErrorCodes(new String[] {"1"});
+		customErrorCodes.setBadSqlGrammarCodes(new String[]{"1", "2"});
+		customErrorCodes.setDataIntegrityViolationCodes(new String[]{"3", "4"});
+		customTranslation.setErrorCodes(new String[]{"1"});
 		customTranslation.setExceptionClass(CustomErrorCodeException.class);
-		customErrorCodes.setCustomTranslations(new CustomSQLErrorCodesTranslation[] {customTranslation});
+		customErrorCodes.setCustomTranslations(new CustomSQLErrorCodesTranslation[]{customTranslation});
 
 		SQLErrorCodeSQLExceptionTranslator sext = new SQLErrorCodeSQLExceptionTranslator();
 		sext.setSqlErrorCodes(customErrorCodes);

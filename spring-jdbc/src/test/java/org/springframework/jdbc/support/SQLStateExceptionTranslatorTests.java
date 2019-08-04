@@ -42,8 +42,7 @@ public class SQLStateExceptionTranslatorTests {
 		SQLException sex = new SQLException("Message", "42001", 1);
 		try {
 			throw this.trans.translate("task", sql, sex);
-		}
-		catch (BadSqlGrammarException ex) {
+		} catch (BadSqlGrammarException ex) {
 			// OK
 			assertTrue("SQL is correct", sql.equals(ex.getSql()));
 			assertTrue("Exception matches", sex.equals(ex.getSQLException()));
@@ -55,8 +54,7 @@ public class SQLStateExceptionTranslatorTests {
 		SQLException sex = new SQLException("Message", "NO SUCH CODE", 1);
 		try {
 			throw this.trans.translate("task", sql, sex);
-		}
-		catch (UncategorizedSQLException ex) {
+		} catch (UncategorizedSQLException ex) {
 			// OK
 			assertTrue("SQL is correct", sql.equals(ex.getSql()));
 			assertTrue("Exception matches", sex.equals(ex.getSQLException()));
@@ -85,8 +83,7 @@ public class SQLStateExceptionTranslatorTests {
 	private void testMalformedSqlStateCode(SQLException sex) {
 		try {
 			throw this.trans.translate("task", sql, sex);
-		}
-		catch (UncategorizedSQLException ex) {
+		} catch (UncategorizedSQLException ex) {
 			// OK
 			assertTrue("SQL is correct", sql.equals(ex.getSql()));
 			assertTrue("Exception matches", sex.equals(ex.getSQLException()));

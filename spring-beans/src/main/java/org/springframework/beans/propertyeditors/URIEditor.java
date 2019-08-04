@@ -44,9 +44,9 @@ import org.springframework.util.StringUtils;
  * is allowed, even without a matching protocol handler being registered.
  *
  * @author Juergen Hoeller
- * @since 2.0.2
  * @see java.net.URI
  * @see URLEditor
+ * @since 2.0.2
  */
 public class URIEditor extends PropertyEditorSupport {
 
@@ -54,7 +54,6 @@ public class URIEditor extends PropertyEditorSupport {
 	private final ClassLoader classLoader;
 
 	private final boolean encode;
-
 
 
 	/**
@@ -68,6 +67,7 @@ public class URIEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new URIEditor, converting "classpath:" locations into
 	 * standard URIs (not trying to resolve them into physical resources).
+	 *
 	 * @param encode indicates whether Strings will be encoded or not
 	 * @since 3.0
 	 */
@@ -79,8 +79,9 @@ public class URIEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new URIEditor, using the given ClassLoader to resolve
 	 * "classpath:" locations into physical resource URLs.
+	 *
 	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
-	 * (may be {@code null} to indicate the default ClassLoader)
+	 *                    (may be {@code null} to indicate the default ClassLoader)
 	 */
 	public URIEditor(@Nullable ClassLoader classLoader) {
 		this(classLoader, true);
@@ -89,9 +90,10 @@ public class URIEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new URIEditor, using the given ClassLoader to resolve
 	 * "classpath:" locations into physical resource URLs.
+	 *
 	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
-	 * (may be {@code null} to indicate the default ClassLoader)
-	 * @param encode indicates whether Strings will be encoded or not
+	 *                    (may be {@code null} to indicate the default ClassLoader)
+	 * @param encode      indicates whether Strings will be encoded or not
 	 * @since 3.0
 	 */
 	public URIEditor(@Nullable ClassLoader classLoader, boolean encode) {
@@ -109,21 +111,17 @@ public class URIEditor extends PropertyEditorSupport {
 						uri.substring(ResourceUtils.CLASSPATH_URL_PREFIX.length()), this.classLoader);
 				try {
 					setValue(resource.getURI());
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					throw new IllegalArgumentException("Could not retrieve URI for " + resource + ": " + ex.getMessage());
 				}
-			}
-			else {
+			} else {
 				try {
 					setValue(createURI(uri));
-				}
-				catch (URISyntaxException ex) {
+				} catch (URISyntaxException ex) {
 					throw new IllegalArgumentException("Invalid URI syntax: " + ex);
 				}
 			}
-		}
-		else {
+		} else {
 			setValue(null);
 		}
 	}
@@ -131,6 +129,7 @@ public class URIEditor extends PropertyEditorSupport {
 	/**
 	 * Create a URI instance for the given user-specified String value.
 	 * <p>The default implementation encodes the value into a RFC-2396 compliant URI.
+	 *
 	 * @param value the value to convert into a URI instance
 	 * @return the URI instance
 	 * @throws java.net.URISyntaxException if URI conversion failed
@@ -143,8 +142,7 @@ public class URIEditor extends PropertyEditorSupport {
 			String ssp = value.substring(colonIndex + 1, (fragmentIndex > 0 ? fragmentIndex : value.length()));
 			String fragment = (fragmentIndex > 0 ? value.substring(fragmentIndex + 1) : null);
 			return new URI(scheme, ssp, fragment);
-		}
-		else {
+		} else {
 			// not encoding or the value contains no scheme - fallback to default
 			return new URI(value);
 		}

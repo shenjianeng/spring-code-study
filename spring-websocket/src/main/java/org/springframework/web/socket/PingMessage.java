@@ -35,6 +35,7 @@ public final class PingMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * Create a new ping message with the given ByteBuffer payload.
+	 *
 	 * @param payload the non-null payload
 	 */
 	public PingMessage(ByteBuffer payload) {

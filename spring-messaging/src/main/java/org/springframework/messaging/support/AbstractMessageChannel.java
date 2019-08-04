@@ -54,6 +54,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 
 	/**
 	 * Set an alternative logger to use than the one based on the class name.
+	 *
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -63,6 +64,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 
 	/**
 	 * Return the currently configured Logger.
+	 *
 	 * @since 5.1
 	 */
 	public Log getLogger() {
@@ -137,15 +139,13 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 			chain.applyPostSend(messageToUse, this, sent);
 			chain.triggerAfterSendCompletion(messageToUse, this, sent, null);
 			return sent;
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			chain.triggerAfterSendCompletion(messageToUse, this, sent, ex);
 			if (ex instanceof MessagingException) {
 				throw (MessagingException) ex;
 			}
-			throw new MessageDeliveryException(messageToUse,"Failed to send message to " + this, ex);
-		}
-		catch (Throwable err) {
+			throw new MessageDeliveryException(messageToUse, "Failed to send message to " + this, ex);
+		} catch (Throwable err) {
 			MessageDeliveryException ex2 =
 					new MessageDeliveryException(messageToUse, "Failed to send message to " + this, err);
 			chain.triggerAfterSendCompletion(messageToUse, this, sent, ex2);
@@ -197,14 +197,13 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 		}
 
 		public void triggerAfterSendCompletion(Message<?> message, MessageChannel channel,
-				boolean sent, @Nullable Exception ex) {
+											   boolean sent, @Nullable Exception ex) {
 
 			for (int i = this.sendInterceptorIndex; i >= 0; i--) {
 				ChannelInterceptor interceptor = interceptors.get(i);
 				try {
 					interceptor.afterSendCompletion(message, channel, sent, ex);
-				}
-				catch (Throwable ex2) {
+				} catch (Throwable ex2) {
 					logger.error("Exception from afterSendCompletion in " + interceptor, ex2);
 				}
 			}
@@ -240,8 +239,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 				ChannelInterceptor interceptor = interceptors.get(i);
 				try {
 					interceptor.afterReceiveCompletion(message, channel, ex);
-				}
-				catch (Throwable ex2) {
+				} catch (Throwable ex2) {
 					if (logger.isErrorEnabled()) {
 						logger.error("Exception from afterReceiveCompletion in " + interceptor, ex2);
 					}

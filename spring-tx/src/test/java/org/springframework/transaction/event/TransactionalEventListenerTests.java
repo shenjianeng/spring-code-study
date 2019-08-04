@@ -101,8 +101,7 @@ public class TransactionalEventListenerTests {
 				fail("Should have thrown an exception at this point");
 				return null;
 			});
-		}
-		catch (IllegalStateException e) {
+		} catch (IllegalStateException e) {
 			assertTrue(e.getMessage().contains("Test exception"));
 			assertTrue(e.getMessage().contains(EventCollector.IMMEDIATELY));
 		}
@@ -217,8 +216,7 @@ public class TransactionalEventListenerTests {
 
 			});
 			fail("Should have thrown an exception");
-		}
-		catch (IllegalStateException e) {
+		} catch (IllegalStateException e) {
 			// Test exception - ignore
 		}
 		getEventCollector().assertNoEventReceived(); // Before commit not invoked

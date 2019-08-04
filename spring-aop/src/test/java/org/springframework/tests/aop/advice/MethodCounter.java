@@ -29,7 +29,9 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class MethodCounter implements Serializable {
 
-	/** Method name --> count, does not understand overloading */
+	/**
+	 * Method name --> count, does not understand overloading
+	 */
 	private HashMap<String, Integer> map = new HashMap<>();
 
 	private int allCount;
@@ -57,6 +59,7 @@ public class MethodCounter implements Serializable {
 	/**
 	 * A bit simplistic: just wants the same class.
 	 * Doesn't worry about counts.
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

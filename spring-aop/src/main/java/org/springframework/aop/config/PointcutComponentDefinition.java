@@ -59,7 +59,7 @@ public class PointcutComponentDefinition extends AbstractComponentDefinition {
 
 	@Override
 	public BeanDefinition[] getBeanDefinitions() {
-		return new BeanDefinition[] {this.pointcutDefinition};
+		return new BeanDefinition[]{this.pointcutDefinition};
 	}
 
 	@Override

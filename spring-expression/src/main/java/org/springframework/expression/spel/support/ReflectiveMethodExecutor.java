@@ -55,6 +55,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 
 	/**
 	 * Create a new executor for the given method.
+	 *
 	 * @param method the method to invoke
 	 */
 	public ReflectiveMethodExecutor(Method method) {
@@ -63,8 +64,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 		if (method.isVarArgs()) {
 			Class<?>[] paramTypes = method.getParameterTypes();
 			this.varargsPosition = paramTypes.length - 1;
-		}
-		else {
+		} else {
 			this.varargsPosition = null;
 		}
 	}
@@ -101,8 +101,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 			try {
 				clazz.getDeclaredMethod(method.getName(), method.getParameterTypes());
 				return clazz;
-			}
-			catch (NoSuchMethodException ex) {
+			} catch (NoSuchMethodException ex) {
 				// Continue below...
 			}
 		}
@@ -129,8 +128,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 			ReflectionUtils.makeAccessible(this.methodToInvoke);
 			Object value = this.methodToInvoke.invoke(target, arguments);
 			return new TypedValue(value, new TypeDescriptor(new MethodParameter(this.originalMethod, -1)).narrow(value));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new AccessException("Problem invoking method: " + this.methodToInvoke, ex);
 		}
 	}

@@ -24,8 +24,8 @@ import java.util.Currency;
  * objects. Exposes the currency code as text representation of a Currency object.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see java.util.Currency
+ * @since 3.0
  */
 public class CurrencyEditor extends PropertyEditorSupport {
 

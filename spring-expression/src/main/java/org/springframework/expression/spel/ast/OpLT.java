@@ -58,31 +58,23 @@ public class OpLT extends Operator {
 				BigDecimal leftBigDecimal = NumberUtils.convertNumberToTargetClass(leftNumber, BigDecimal.class);
 				BigDecimal rightBigDecimal = NumberUtils.convertNumberToTargetClass(rightNumber, BigDecimal.class);
 				return BooleanTypedValue.forValue(leftBigDecimal.compareTo(rightBigDecimal) < 0);
-			}
-			else if (leftNumber instanceof Double || rightNumber instanceof Double) {
+			} else if (leftNumber instanceof Double || rightNumber instanceof Double) {
 				return BooleanTypedValue.forValue(leftNumber.doubleValue() < rightNumber.doubleValue());
-			}
-			else if (leftNumber instanceof Float || rightNumber instanceof Float) {
+			} else if (leftNumber instanceof Float || rightNumber instanceof Float) {
 				return BooleanTypedValue.forValue(leftNumber.floatValue() < rightNumber.floatValue());
-			}
-			else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
+			} else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
 				BigInteger leftBigInteger = NumberUtils.convertNumberToTargetClass(leftNumber, BigInteger.class);
 				BigInteger rightBigInteger = NumberUtils.convertNumberToTargetClass(rightNumber, BigInteger.class);
 				return BooleanTypedValue.forValue(leftBigInteger.compareTo(rightBigInteger) < 0);
-			}
-			else if (leftNumber instanceof Long || rightNumber instanceof Long) {
+			} else if (leftNumber instanceof Long || rightNumber instanceof Long) {
 				return BooleanTypedValue.forValue(leftNumber.longValue() < rightNumber.longValue());
-			}
-			else if (leftNumber instanceof Integer || rightNumber instanceof Integer) {
+			} else if (leftNumber instanceof Integer || rightNumber instanceof Integer) {
 				return BooleanTypedValue.forValue(leftNumber.intValue() < rightNumber.intValue());
-			}
-			else if (leftNumber instanceof Short || rightNumber instanceof Short) {
+			} else if (leftNumber instanceof Short || rightNumber instanceof Short) {
 				return BooleanTypedValue.forValue(leftNumber.shortValue() < rightNumber.shortValue());
-			}
-			else if (leftNumber instanceof Byte || rightNumber instanceof Byte) {
+			} else if (leftNumber instanceof Byte || rightNumber instanceof Byte) {
 				return BooleanTypedValue.forValue(leftNumber.byteValue() < rightNumber.byteValue());
-			}
-			else {
+			} else {
 				// Unknown Number subtypes -> best guess is double comparison
 				return BooleanTypedValue.forValue(leftNumber.doubleValue() < rightNumber.doubleValue());
 			}

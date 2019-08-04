@@ -140,7 +140,7 @@ enum TokenKind {
 
 	@Override
 	public String toString() {
-		return (name() + (this.tokenChars.length !=0 ? "(" + new String(this.tokenChars) +")" : ""));
+		return (name() + (this.tokenChars.length != 0 ? "(" + new String(this.tokenChars) + ")" : ""));
 	}
 
 	public boolean hasPayload() {

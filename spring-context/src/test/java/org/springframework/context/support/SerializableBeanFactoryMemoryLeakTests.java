@@ -85,19 +85,17 @@ public class SerializableBeanFactoryMemoryLeakTests {
 			ctx.refresh();
 			assertThat(serializableFactoryCount(), equalTo(1));
 			ctx.close();
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// ignore - this is expected on refresh() for failure case tests
-		}
-		finally {
+		} finally {
 			assertThat(serializableFactoryCount(), equalTo(0));
 		}
 	}
 
 	private void registerMisconfiguredBeanDefinition(BeanDefinitionRegistry registry) {
 		registry.registerBeanDefinition("misconfigured",
-			rootBeanDefinition(Object.class).addPropertyValue("nonexistent", "bogus")
-				.getBeanDefinition());
+				rootBeanDefinition(Object.class).addPropertyValue("nonexistent", "bogus")
+						.getBeanDefinition());
 	}
 
 	private int serializableFactoryCount() throws Exception {

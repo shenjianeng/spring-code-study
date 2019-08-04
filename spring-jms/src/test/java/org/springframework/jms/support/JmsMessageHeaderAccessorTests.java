@@ -29,15 +29,16 @@ import org.springframework.messaging.support.MessageBuilder;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author Stephane Nicoll
  */
 public class JmsMessageHeaderAccessorTests {
 
 	@Test
 	public void validateJmsHeaders() throws JMSException {
-		Destination destination = new Destination() {};
-		Destination replyTo = new Destination() {};
+		Destination destination = new Destination() {
+		};
+		Destination replyTo = new Destination() {
+		};
 
 		StubTextMessage jmsMessage = new StubTextMessage("test");
 

@@ -54,7 +54,7 @@ public class PathVariableMethodArgumentResolverTests {
 
 	private PathVariableMethodArgumentResolver resolver;
 
-	private final MockServerWebExchange exchange= MockServerWebExchange.from(MockServerHttpRequest.get("/"));
+	private final MockServerWebExchange exchange = MockServerWebExchange.from(MockServerHttpRequest.get("/"));
 
 	private MethodParameter paramNamedString;
 	private MethodParameter paramString;
@@ -83,8 +83,7 @@ public class PathVariableMethodArgumentResolverTests {
 		try {
 			this.resolver.supportsParameter(this.paramMono);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"PathVariableMethodArgumentResolver doesn't support reactive type wrapper"));

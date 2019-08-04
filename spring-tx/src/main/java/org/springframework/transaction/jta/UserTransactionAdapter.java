@@ -50,6 +50,7 @@ public class UserTransactionAdapter implements UserTransaction {
 
 	/**
 	 * Create a new UserTransactionAdapter for the given TransactionManager.
+	 *
 	 * @param transactionManager the JTA TransactionManager to wrap
 	 */
 	public UserTransactionAdapter(TransactionManager transactionManager) {

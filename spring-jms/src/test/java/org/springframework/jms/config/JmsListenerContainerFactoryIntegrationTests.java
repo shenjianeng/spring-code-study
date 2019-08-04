@@ -128,8 +128,7 @@ public class JmsListenerContainerFactoryIntegrationTests {
 		Object listener = messageListenerContainer.getMessageListener();
 		if (listener instanceof SessionAwareMessageListener) {
 			((SessionAwareMessageListener<Message>) listener).onMessage(message, mock(Session.class));
-		}
-		else {
+		} else {
 			((MessageListener) listener).onMessage(message);
 		}
 	}

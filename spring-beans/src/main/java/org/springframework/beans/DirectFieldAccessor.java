@@ -39,11 +39,11 @@ import org.springframework.util.ReflectionUtils;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 2.0
  * @see #setExtractOldValueForEditor
  * @see BeanWrapper
  * @see org.springframework.validation.DirectFieldBindingResult
  * @see org.springframework.validation.DataBinder#initDirectFieldAccess()
+ * @since 2.0
  */
 public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
@@ -52,6 +52,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
 	/**
 	 * Create a new DirectFieldAccessor for the given object.
+	 *
 	 * @param object object wrapped by this DirectFieldAccessor
 	 */
 	public DirectFieldAccessor(Object object) {
@@ -61,9 +62,10 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 	/**
 	 * Create a new DirectFieldAccessor for the given object,
 	 * registering a nested path that the object is in.
-	 * @param object object wrapped by this DirectFieldAccessor
+	 *
+	 * @param object     object wrapped by this DirectFieldAccessor
 	 * @param nestedPath the nested path of the object
-	 * @param parent the containing DirectFieldAccessor (must not be {@code null})
+	 * @param parent     the containing DirectFieldAccessor (must not be {@code null})
 	 */
 	protected DirectFieldAccessor(Object object, String nestedPath, DirectFieldAccessor parent) {
 		super(object, nestedPath, parent);
@@ -129,9 +131,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 			try {
 				ReflectionUtils.makeAccessible(this.field);
 				return this.field.get(getWrappedInstance());
-			}
-
-			catch (IllegalAccessException ex) {
+			} catch (IllegalAccessException ex) {
 				throw new InvalidPropertyException(getWrappedClass(),
 						this.field.getName(), "Field is not accessible", ex);
 			}
@@ -142,8 +142,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 			try {
 				ReflectionUtils.makeAccessible(this.field);
 				this.field.set(getWrappedInstance(), value);
-			}
-			catch (IllegalAccessException ex) {
+			} catch (IllegalAccessException ex) {
 				throw new InvalidPropertyException(getWrappedClass(), this.field.getName(),
 						"Field is not accessible", ex);
 			}

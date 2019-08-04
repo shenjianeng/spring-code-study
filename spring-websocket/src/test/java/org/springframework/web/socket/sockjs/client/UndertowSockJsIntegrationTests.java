@@ -50,8 +50,7 @@ public class UndertowSockJsIntegrationTests extends AbstractSockJsIntegrationTes
 	protected AbstractXhrTransport createXhrTransport() {
 		try {
 			return new UndertowXhrTransport();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException("Could not create UndertowXhrTransport");
 		}
 	}

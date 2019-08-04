@@ -56,6 +56,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 	/**
 	 * Create an empty RegexpMethodPointcutAdvisor.
+	 *
 	 * @see #setPattern
 	 * @see #setPatterns
 	 * @see #setAdvice
@@ -66,6 +67,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	/**
 	 * Create a RegexpMethodPointcutAdvisor for the given advice.
 	 * The pattern still needs to be specified afterwards.
+	 *
 	 * @param advice the advice to use
 	 * @see #setPattern
 	 * @see #setPatterns
@@ -76,8 +78,9 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 	/**
 	 * Create a RegexpMethodPointcutAdvisor for the given advice.
+	 *
 	 * @param pattern the pattern to use
-	 * @param advice the advice to use
+	 * @param advice  the advice to use
 	 */
 	public RegexpMethodPointcutAdvisor(String pattern, Advice advice) {
 		setPattern(pattern);
@@ -86,8 +89,9 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 	/**
 	 * Create a RegexpMethodPointcutAdvisor for the given advice.
+	 *
 	 * @param patterns the patterns to use
-	 * @param advice the advice to use
+	 * @param advice   the advice to use
 	 */
 	public RegexpMethodPointcutAdvisor(String[] patterns, Advice advice) {
 		setPatterns(patterns);
@@ -98,6 +102,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	/**
 	 * Set the regular expression defining methods to match.
 	 * <p>Use either this method or {@link #setPatterns}, not both.
+	 *
 	 * @see #setPatterns
 	 */
 	public void setPattern(String pattern) {
@@ -109,6 +114,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	 * To be passed through to the pointcut implementation.
 	 * <p>Matching will be the union of all these; if any of the
 	 * patterns matches, the pointcut matches.
+	 *
 	 * @see AbstractRegexpMethodPointcut#setPatterns
 	 */
 	public void setPatterns(String... patterns) {
@@ -135,6 +141,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	/**
 	 * Create the actual pointcut: By default, a {@link JdkRegexpMethodPointcut}
 	 * will be used.
+	 *
 	 * @return the Pointcut instance (never {@code null})
 	 */
 	protected AbstractRegexpMethodPointcut createPointcut() {

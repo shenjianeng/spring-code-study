@@ -76,8 +76,7 @@ public class HttpReceivingTransportHandlerTests extends AbstractHttpRequestTests
 			transportHandler.initialize(sockJsConfig);
 			transportHandler.handleRequest(this.request, this.response, wsHandler, session);
 			fail("Expected exception");
-		}
-		catch (SockJsMessageDeliveryException ex) {
+		} catch (SockJsMessageDeliveryException ex) {
 			assertNull(session.getCloseStatus());
 		}
 	}

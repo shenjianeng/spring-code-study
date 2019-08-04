@@ -22,10 +22,10 @@ import org.springframework.util.Assert;
 /**
  * A simple holder for a given bean name plus bean instance.
  *
- * @author Juergen Hoeller
- * @since 4.3.3
  * @param <T> the bean type
+ * @author Juergen Hoeller
  * @see AutowireCapableBeanFactory#resolveNamedBean(Class)
+ * @since 4.3.3
  */
 public class NamedBeanHolder<T> implements NamedBean {
 
@@ -36,7 +36,8 @@ public class NamedBeanHolder<T> implements NamedBean {
 
 	/**
 	 * Create a new holder for the given bean name plus instance.
-	 * @param beanName the name of the bean
+	 *
+	 * @param beanName     the name of the bean
 	 * @param beanInstance the corresponding bean instance
 	 */
 	public NamedBeanHolder(String beanName, T beanInstance) {

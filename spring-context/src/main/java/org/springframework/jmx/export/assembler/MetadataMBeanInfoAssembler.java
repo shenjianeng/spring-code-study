@@ -51,9 +51,9 @@ import org.springframework.util.StringUtils;
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @author Jennifer Hickey
- * @since 1.2
  * @see #setAttributeSource
  * @see org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource
+ * @since 1.2
  */
 public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssembler
 		implements AutodetectCapableMBeanInfoAssembler, InitializingBean {
@@ -72,6 +72,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	/**
 	 * Create a new {@code MetadataMBeanInfoAssembler} for the given
 	 * {@code JmxAttributeSource}.
+	 *
 	 * @param attributeSource the JmxAttributeSource to use
 	 */
 	public MetadataMBeanInfoAssembler(JmxAttributeSource attributeSource) {
@@ -83,6 +84,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	/**
 	 * Set the {@code JmxAttributeSource} implementation to use for
 	 * reading the metadata from the bean class.
+	 *
 	 * @see org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource
 	 */
 	public void setAttributeSource(JmxAttributeSource attributeSource) {
@@ -112,15 +114,16 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 		if (AopUtils.isJdkDynamicProxy(managedBean)) {
 			throw new IllegalArgumentException(
 					"MetadataMBeanInfoAssembler does not support JDK dynamic proxies - " +
-					"export the target beans directly or use CGLIB proxies instead");
+							"export the target beans directly or use CGLIB proxies instead");
 		}
 	}
 
 	/**
 	 * Used for autodetection of beans. Checks to see if the bean's class has a
 	 * {@code ManagedResource} attribute. If so it will add it list of included beans.
+	 *
 	 * @param beanClass the class of the bean
-	 * @param beanName the name of the bean in the bean factory
+	 * @param beanName  the name of the bean in the bean factory
 	 */
 	@Override
 	public boolean includeBean(Class<?> beanClass, String beanName) {
@@ -129,7 +132,8 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * Vote on the inclusion of an attribute accessor.
-	 * @param method the accessor method
+	 *
+	 * @param method  the accessor method
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * @return whether the method has the appropriate metadata
 	 */
@@ -140,7 +144,8 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * Votes on the inclusion of an attribute mutator.
-	 * @param method the mutator method
+	 *
+	 * @param method  the mutator method
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * @return whether the method has the appropriate metadata
 	 */
@@ -151,7 +156,8 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * Votes on the inclusion of an operation.
-	 * @param method the operation method
+	 *
+	 * @param method  the operation method
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * @return whether the method has the appropriate metadata
 	 */
@@ -177,6 +183,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 	/**
 	 * Checks to see if the given Method has the {@code ManagedOperation} attribute.
+	 *
 	 * @param method the method to check
 	 */
 	private boolean hasManagedOperation(Method method) {
@@ -211,8 +218,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 
 		if (getter != null && StringUtils.hasText(getter.getDescription())) {
 			return getter.getDescription();
-		}
-		else if (setter != null && StringUtils.hasText(setter.getDescription())) {
+		} else if (setter != null && StringUtils.hasText(setter.getDescription())) {
 			return setter.getDescription();
 		}
 
@@ -241,8 +247,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 				return metric.getDescription();
 			}
 			return method.getName();
-		}
-		else {
+		} else {
 			ManagedOperation mo = obtainAttributeSource().getManagedOperation(method);
 			if (mo != null && StringUtils.hasText(mo.getDescription())) {
 				return mo.getDescription();
@@ -412,6 +417,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	 * be have a non-negative value so we use that value. In the event that both values
 	 * are non-negative, we use the greater of the two. This method can be used to
 	 * resolve any {@code int} valued descriptor where there are two possible values.
+	 *
 	 * @param getter the int value associated with the getter for this attribute
 	 * @param setter the int associated with the setter for this attribute
 	 */
@@ -423,6 +429,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	 * Locates the value of a descriptor based on values attached
 	 * to both the getter and setter methods. If both have values
 	 * supplied then the value attached to the getter is preferred.
+	 *
 	 * @param getter the Object value associated with the get method
 	 * @param setter the Object value associated with the set method
 	 * @return the appropriate Object to use as the value for the descriptor
@@ -438,6 +445,7 @@ public class MetadataMBeanInfoAssembler extends AbstractReflectiveMBeanInfoAssem
 	 * supplied then the value attached to the getter is preferred.
 	 * The supplied default value is used to check to see if the value
 	 * associated with the getter has changed from the default.
+	 *
 	 * @param getter the String value associated with the get method
 	 * @param setter the String value associated with the set method
 	 * @return the appropriate String to use as the value for the descriptor

@@ -88,8 +88,7 @@ public class ControllerTests {
 		given(context.getNamedDispatcher("action")).willReturn(dispatcher);
 		if (include) {
 			given(request.getAttribute(WebUtils.INCLUDE_REQUEST_URI_ATTRIBUTE)).willReturn("somePath");
-		}
-		else {
+		} else {
 			given(request.getAttribute(WebUtils.INCLUDE_REQUEST_URI_ATTRIBUTE)).willReturn(null);
 		}
 
@@ -100,8 +99,7 @@ public class ControllerTests {
 
 		if (include) {
 			verify(dispatcher).include(request, response);
-		}
-		else {
+		} else {
 			verify(dispatcher).forward(request, response);
 		}
 	}

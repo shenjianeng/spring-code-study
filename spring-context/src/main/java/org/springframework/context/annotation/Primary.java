@@ -76,11 +76,11 @@ import java.lang.annotation.Target;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.0
  * @see Lazy
  * @see Bean
  * @see ComponentScan
  * @see org.springframework.stereotype.Component
+ * @since 3.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

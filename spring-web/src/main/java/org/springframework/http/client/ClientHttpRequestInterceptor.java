@@ -55,8 +55,9 @@ public interface ClientHttpRequestInterceptor {
 	 * </ul>
 	 * <li>Optionally wrap the response to filter HTTP attributes.</li>
 	 * </ol>
-	 * @param request the request, containing method, URI, and headers
-	 * @param body the body of the request
+	 *
+	 * @param request   the request, containing method, URI, and headers
+	 * @param body      the body of the request
 	 * @param execution the request execution
 	 * @return the response
 	 * @throws IOException in case of I/O errors

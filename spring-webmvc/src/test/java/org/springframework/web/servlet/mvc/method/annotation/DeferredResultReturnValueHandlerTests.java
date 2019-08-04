@@ -122,7 +122,7 @@ public class DeferredResultReturnValueHandlerTests {
 
 
 	private void testHandle(Object returnValue, Class<?> asyncType,
-			Runnable setResultTask, Object expectedValue) throws Exception {
+							Runnable setResultTask, Object expectedValue) throws Exception {
 
 		ModelAndViewContainer mavContainer = new ModelAndViewContainer();
 		MethodParameter returnType = on(TestController.class).resolveReturnType(asyncType, String.class);
@@ -141,13 +141,21 @@ public class DeferredResultReturnValueHandlerTests {
 	@SuppressWarnings("unused")
 	static class TestController {
 
-		String handleString() { return null; }
+		String handleString() {
+			return null;
+		}
 
-		DeferredResult<String> handleDeferredResult() { return null; }
+		DeferredResult<String> handleDeferredResult() {
+			return null;
+		}
 
-		ListenableFuture<String> handleListenableFuture() { return null; }
+		ListenableFuture<String> handleListenableFuture() {
+			return null;
+		}
 
-		CompletableFuture<String> handleCompletableFuture() { return null; }
+		CompletableFuture<String> handleCompletableFuture() {
+			return null;
+		}
 	}
 
 }

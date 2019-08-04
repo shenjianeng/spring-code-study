@@ -32,6 +32,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 
 /**
  * Test case for reactive {@link CorsUtils}.
+ *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  */
@@ -102,7 +103,7 @@ public class CorsUtilsTests {
 	}
 
 	private void testWithXForwardedHeaders(String serverName, int port,
-			String forwardedProto, String forwardedHost, int forwardedPort, String originHeader) {
+										   String forwardedProto, String forwardedHost, int forwardedPort, String originHeader) {
 
 		String url = "http://" + serverName;
 		if (port != -1) {
@@ -125,7 +126,7 @@ public class CorsUtilsTests {
 	}
 
 	private void testWithForwardedHeader(String serverName, int port,
-			String forwardedHeader, String originHeader) {
+										 String forwardedHeader, String originHeader) {
 
 		String url = "http://" + serverName;
 		if (port != -1) {

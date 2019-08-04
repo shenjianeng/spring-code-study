@@ -32,8 +32,8 @@ import static org.junit.Assert.*;
  * @author Juergen Hoeller
  * @author Rick Evans
  * @author Chris Beams
- * @since 15.10.2003
  * @see org.springframework.transaction.interceptor.TransactionProxyFactoryBean
+ * @since 15.10.2003
  */
 public class TransactionAttributeSourceTests {
 

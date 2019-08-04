@@ -39,6 +39,7 @@ public interface ResourceTransformerChain {
 
 	/**
 	 * Transform the given resource.
+	 *
 	 * @param exchange the current exchange
 	 * @param resource the candidate resource to transform
 	 * @return the transformed or the same resource, never empty

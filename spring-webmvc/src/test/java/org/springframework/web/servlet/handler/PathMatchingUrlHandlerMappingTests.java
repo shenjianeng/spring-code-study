@@ -46,7 +46,7 @@ public class PathMatchingUrlHandlerMappingTests {
 		MockServletContext sc = new MockServletContext("");
 		wac = new XmlWebApplicationContext();
 		wac.setServletContext(sc);
-		wac.setConfigLocations(new String[] {CONF});
+		wac.setConfigLocations(new String[]{CONF});
 		wac.refresh();
 		hm = (HandlerMapping) wac.getBean("urlMapping");
 	}

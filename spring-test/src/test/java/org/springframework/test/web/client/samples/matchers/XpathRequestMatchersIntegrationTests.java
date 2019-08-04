@@ -92,14 +92,14 @@ public class XpathRequestMatchersIntegrationTests {
 		String performer = "/ns:people/performers/performer[%s]";
 
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath(composer, NS, 1).exists())
-			.andExpect(xpath(composer, NS, 2).exists())
-			.andExpect(xpath(composer, NS, 3).exists())
-			.andExpect(xpath(composer, NS, 4).exists())
-			.andExpect(xpath(performer, NS, 1).exists())
-			.andExpect(xpath(performer, NS, 2).exists())
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath(composer, NS, 1).exists())
+				.andExpect(xpath(composer, NS, 2).exists())
+				.andExpect(xpath(composer, NS, 3).exists())
+				.andExpect(xpath(composer, NS, 4).exists())
+				.andExpect(xpath(performer, NS, 1).exists())
+				.andExpect(xpath(performer, NS, 2).exists())
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -110,12 +110,12 @@ public class XpathRequestMatchersIntegrationTests {
 		String performer = "/ns:people/performers/performer[%s]";
 
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath(composer, NS, 0).doesNotExist())
-			.andExpect(xpath(composer, NS, 5).doesNotExist())
-			.andExpect(xpath(performer, NS, 0).doesNotExist())
-			.andExpect(xpath(performer, NS, 3).doesNotExist())
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath(composer, NS, 0).doesNotExist())
+				.andExpect(xpath(composer, NS, 5).doesNotExist())
+				.andExpect(xpath(performer, NS, 0).doesNotExist())
+				.andExpect(xpath(performer, NS, 3).doesNotExist())
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -126,17 +126,17 @@ public class XpathRequestMatchersIntegrationTests {
 		String performerName = "/ns:people/performers/performer[%s]/name";
 
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath(composerName, NS, 1).string("Johann Sebastian Bach"))
-			.andExpect(xpath(composerName, NS, 2).string("Johannes Brahms"))
-			.andExpect(xpath(composerName, NS, 3).string("Edvard Grieg"))
-			.andExpect(xpath(composerName, NS, 4).string("Robert Schumann"))
-			.andExpect(xpath(performerName, NS, 1).string("Vladimir Ashkenazy"))
-			.andExpect(xpath(performerName, NS, 2).string("Yehudi Menuhin"))
-			.andExpect(xpath(composerName, NS, 1).string(equalTo("Johann Sebastian Bach"))) // Hamcrest..
-			.andExpect(xpath(composerName, NS, 1).string(startsWith("Johann"))) // Hamcrest..
-			.andExpect(xpath(composerName, NS, 1).string(notNullValue())) // Hamcrest..
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath(composerName, NS, 1).string("Johann Sebastian Bach"))
+				.andExpect(xpath(composerName, NS, 2).string("Johannes Brahms"))
+				.andExpect(xpath(composerName, NS, 3).string("Edvard Grieg"))
+				.andExpect(xpath(composerName, NS, 4).string("Robert Schumann"))
+				.andExpect(xpath(performerName, NS, 1).string("Vladimir Ashkenazy"))
+				.andExpect(xpath(performerName, NS, 2).string("Yehudi Menuhin"))
+				.andExpect(xpath(composerName, NS, 1).string(equalTo("Johann Sebastian Bach"))) // Hamcrest..
+				.andExpect(xpath(composerName, NS, 1).string(startsWith("Johann"))) // Hamcrest..
+				.andExpect(xpath(composerName, NS, 1).string(notNullValue())) // Hamcrest..
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -146,14 +146,14 @@ public class XpathRequestMatchersIntegrationTests {
 		String composerDouble = "/ns:people/composers/composer[%s]/someDouble";
 
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath(composerDouble, NS, 1).number(21d))
-			.andExpect(xpath(composerDouble, NS, 2).number(.0025))
-			.andExpect(xpath(composerDouble, NS, 3).number(1.6035))
-			.andExpect(xpath(composerDouble, NS, 4).number(Double.NaN))
-			.andExpect(xpath(composerDouble, NS, 1).number(equalTo(21d))) // Hamcrest..
-			.andExpect(xpath(composerDouble, NS, 3).number(closeTo(1.6, .01))) // Hamcrest..
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath(composerDouble, NS, 1).number(21d))
+				.andExpect(xpath(composerDouble, NS, 2).number(.0025))
+				.andExpect(xpath(composerDouble, NS, 3).number(1.6035))
+				.andExpect(xpath(composerDouble, NS, 4).number(Double.NaN))
+				.andExpect(xpath(composerDouble, NS, 1).number(equalTo(21d))) // Hamcrest..
+				.andExpect(xpath(composerDouble, NS, 3).number(closeTo(1.6, .01))) // Hamcrest..
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -164,10 +164,10 @@ public class XpathRequestMatchersIntegrationTests {
 		String performerBooleanValue = "/ns:people/performers/performer[%s]/someBoolean";
 
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath(performerBooleanValue, NS, 1).booleanValue(false))
-			.andExpect(xpath(performerBooleanValue, NS, 2).booleanValue(true))
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath(performerBooleanValue, NS, 1).booleanValue(false))
+				.andExpect(xpath(performerBooleanValue, NS, 2).booleanValue(true))
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -175,12 +175,12 @@ public class XpathRequestMatchersIntegrationTests {
 	@Test
 	public void testNodeCount() throws Exception {
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(xpath("/ns:people/composers/composer", NS).nodeCount(4))
-			.andExpect(xpath("/ns:people/performers/performer", NS).nodeCount(2))
-			.andExpect(xpath("/ns:people/composers/composer", NS).nodeCount(equalTo(4))) // Hamcrest..
-			.andExpect(xpath("/ns:people/performers/performer", NS).nodeCount(equalTo(2))) // Hamcrest..
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(xpath("/ns:people/composers/composer", NS).nodeCount(4))
+				.andExpect(xpath("/ns:people/performers/performer", NS).nodeCount(2))
+				.andExpect(xpath("/ns:people/composers/composer", NS).nodeCount(equalTo(4))) // Hamcrest..
+				.andExpect(xpath("/ns:people/performers/performer", NS).nodeCount(equalTo(2))) // Hamcrest..
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -192,16 +192,16 @@ public class XpathRequestMatchersIntegrationTests {
 
 
 	@SuppressWarnings("unused")
-	@XmlRootElement(name="people", namespace="https://example.org/music/people")
+	@XmlRootElement(name = "people", namespace = "https://example.org/music/people")
 	@XmlAccessorType(XmlAccessType.FIELD)
 	private static class PeopleWrapper {
 
-		@XmlElementWrapper(name="composers")
-		@XmlElement(name="composer")
+		@XmlElementWrapper(name = "composers")
+		@XmlElement(name = "composer")
 		private List<Person> composers;
 
-		@XmlElementWrapper(name="performers")
-		@XmlElement(name="performer")
+		@XmlElementWrapper(name = "performers")
+		@XmlElement(name = "performer")
 		private List<Person> performers;
 
 		public PeopleWrapper() {

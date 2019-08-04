@@ -36,9 +36,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see SpringExtension
  * @see SpringJUnitJupiterConstructorInjectionTests
+ * @since 5.0
  */
 @SpringJUnitConfig(TestConfig.class)
 @TestPropertySource(properties = "enigma = 42")
@@ -51,7 +51,7 @@ class SpringJUnitJupiterAutowiredConstructorInjectionTests {
 
 	@Autowired
 	SpringJUnitJupiterAutowiredConstructorInjectionTests(ApplicationContext applicationContext, Person dilbert, Dog dog,
-			@Value("${enigma}") Integer enigma) {
+														 @Value("${enigma}") Integer enigma) {
 
 		this.applicationContext = applicationContext;
 		this.dilbert = dilbert;

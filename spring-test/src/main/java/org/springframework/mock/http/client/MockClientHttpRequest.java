@@ -53,8 +53,7 @@ public class MockClientHttpRequest extends MockHttpOutputMessage implements Clie
 		this.httpMethod = HttpMethod.GET;
 		try {
 			this.uri = new URI("/");
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
@@ -102,6 +101,7 @@ public class MockClientHttpRequest extends MockHttpOutputMessage implements Clie
 	/**
 	 * Set the {@link #isExecuted() executed} flag to {@code true} and return the
 	 * configured {@link #setResponse(ClientHttpResponse) response}.
+	 *
 	 * @see #executeInternal()
 	 */
 	@Override

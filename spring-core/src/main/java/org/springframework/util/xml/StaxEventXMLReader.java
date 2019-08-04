@@ -49,12 +49,12 @@ import org.springframework.util.StringUtils;
  * an {@code XMLEventReader}, and calls the corresponding methods on the SAX callback interfaces.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see XMLEventReader
  * @see #setContentHandler(org.xml.sax.ContentHandler)
  * @see #setDTDHandler(org.xml.sax.DTDHandler)
  * @see #setEntityResolver(org.xml.sax.EntityResolver)
  * @see #setErrorHandler(org.xml.sax.ErrorHandler)
+ * @since 3.0
  */
 @SuppressWarnings("rawtypes")
 class StaxEventXMLReader extends AbstractStaxXMLReader {
@@ -73,6 +73,7 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 	 * Constructs a new instance of the {@code StaxEventXmlReader} that reads from
 	 * the given {@code XMLEventReader}. The supplied event reader must be in
 	 * {@code XMLStreamConstants.START_DOCUMENT} or {@code XMLStreamConstants.START_ELEMENT} state.
+	 *
 	 * @param reader the {@code XMLEventReader} to read from
 	 * @throws IllegalStateException if the reader is not at the start of a document or element
 	 */
@@ -82,8 +83,7 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 			if (event != null && !(event.isStartDocument() || event.isStartElement())) {
 				throw new IllegalStateException("XMLEventReader not at start of document or element");
 			}
-		}
-		catch (XMLStreamException ex) {
+		} catch (XMLStreamException ex) {
 			throw new IllegalStateException("Could not read first element: " + ex.getMessage());
 		}
 		this.reader = reader;
@@ -169,24 +169,29 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 				public int getColumnNumber() {
 					return (location != null ? location.getColumnNumber() : -1);
 				}
+
 				@Override
 				public int getLineNumber() {
 					return (location != null ? location.getLineNumber() : -1);
 				}
+
 				@Override
 				@Nullable
 				public String getPublicId() {
 					return (location != null ? location.getPublicId() : null);
 				}
+
 				@Override
 				@Nullable
 				public String getSystemId() {
 					return (location != null ? location.getSystemId() : null);
 				}
+
 				@Override
 				public String getXMLVersion() {
 					return xmlVersion;
 				}
+
 				@Override
 				@Nullable
 				public String getEncoding() {
@@ -201,11 +206,11 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 		if (getContentHandler() != null) {
 			QName qName = startElement.getName();
 			if (hasNamespacesFeature()) {
-				for (Iterator i = startElement.getNamespaces(); i.hasNext();) {
+				for (Iterator i = startElement.getNamespaces(); i.hasNext(); ) {
 					Namespace namespace = (Namespace) i.next();
 					startPrefixMapping(namespace.getPrefix(), namespace.getNamespaceURI());
 				}
-				for (Iterator i = startElement.getAttributes(); i.hasNext();){
+				for (Iterator i = startElement.getAttributes(); i.hasNext(); ) {
 					Attribute attribute = (Attribute) i.next();
 					QName attributeName = attribute.getName();
 					startPrefixMapping(attributeName.getPrefix(), attributeName.getNamespaceURI());
@@ -213,8 +218,7 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 
 				getContentHandler().startElement(qName.getNamespaceURI(), qName.getLocalPart(), toQualifiedName(qName),
 						getAttributes(startElement));
-			}
-			else {
+			} else {
 				getContentHandler().startElement("", "", toQualifiedName(qName), getAttributes(startElement));
 			}
 		}
@@ -242,12 +246,11 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 			QName qName = endElement.getName();
 			if (hasNamespacesFeature()) {
 				getContentHandler().endElement(qName.getNamespaceURI(), qName.getLocalPart(), toQualifiedName(qName));
-				for (Iterator i = endElement.getNamespaces(); i.hasNext();) {
+				for (Iterator i = endElement.getNamespaces(); i.hasNext(); ) {
 					Namespace namespace = (Namespace) i.next();
 					endPrefixMapping(namespace.getPrefix());
 				}
-			}
-			else {
+			} else {
 				getContentHandler().endElement("", "", toQualifiedName(qName));
 			}
 
@@ -309,7 +312,7 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 
 	private Attributes getAttributes(StartElement event) {
 		AttributesImpl attributes = new AttributesImpl();
-		for (Iterator i = event.getAttributes(); i.hasNext();) {
+		for (Iterator i = event.getAttributes(); i.hasNext(); ) {
 			Attribute attribute = (Attribute) i.next();
 			QName qName = attribute.getName();
 			String namespace = qName.getNamespaceURI();
@@ -323,15 +326,14 @@ class StaxEventXMLReader extends AbstractStaxXMLReader {
 			attributes.addAttribute(namespace, qName.getLocalPart(), toQualifiedName(qName), type, attribute.getValue());
 		}
 		if (hasNamespacePrefixesFeature()) {
-			for (Iterator i = event.getNamespaces(); i.hasNext();) {
+			for (Iterator i = event.getNamespaces(); i.hasNext(); ) {
 				Namespace namespace = (Namespace) i.next();
 				String prefix = namespace.getPrefix();
 				String namespaceUri = namespace.getNamespaceURI();
 				String qName;
 				if (StringUtils.hasLength(prefix)) {
 					qName = "xmlns:" + prefix;
-				}
-				else {
+				} else {
 					qName = "xmlns";
 				}
 				attributes.addAttribute("", "", qName, "CDATA", namespaceUri);

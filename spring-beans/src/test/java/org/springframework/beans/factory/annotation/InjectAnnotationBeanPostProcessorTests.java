@@ -82,8 +82,7 @@ public class InjectAnnotationBeanPostProcessorTests {
 		bf.registerBeanDefinition("testBean", new GenericBeanDefinition());
 		try {
 			bf.getBean("testBean");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getRootCause() instanceof IllegalStateException);
 		}
 	}
@@ -309,8 +308,7 @@ public class InjectAnnotationBeanPostProcessorTests {
 		try {
 			bf.getBean("annotatedBean");
 			fail("should have failed, more than one bean of type");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			// expected
 		}
 	}
@@ -669,7 +667,8 @@ public class InjectAnnotationBeanPostProcessorTests {
 		}
 
 		@Override
-		@Inject @Required
+		@Inject
+		@Required
 		public void setTestBean2(TestBean testBean2) {
 			super.setTestBean2(testBean2);
 		}
@@ -826,7 +825,7 @@ public class InjectAnnotationBeanPostProcessorTests {
 
 		@Inject
 		public ConstructorResourceInjectionBean(ITestBean testBean4, NestedTestBean nestedTestBean,
-				ConfigurableListableBeanFactory beanFactory) {
+												ConfigurableListableBeanFactory beanFactory) {
 			this.testBean4 = testBean4;
 			this.nestedTestBean = nestedTestBean;
 			this.beanFactory = beanFactory;
@@ -933,7 +932,7 @@ public class InjectAnnotationBeanPostProcessorTests {
 		}
 
 		public ConstructorsCollectionResourceInjectionBean(ITestBean testBean3, ITestBean testBean4,
-				NestedTestBean nestedTestBean) {
+														   NestedTestBean nestedTestBean) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1153,12 +1152,14 @@ public class InjectAnnotationBeanPostProcessorTests {
 
 
 	@Retention(RetentionPolicy.RUNTIME)
-	public @interface Nullable {}
+	public @interface Nullable {
+	}
 
 
 	public static class NullableFieldInjectionBean {
 
-		@Inject @Nullable
+		@Inject
+		@Nullable
 		private TestBean testBean;
 
 		public TestBean getTestBean() {

@@ -39,7 +39,7 @@ public class StompBrokerRelayRegistrationTests {
 
 		SubscribableChannel inChannel = new StubMessageChannel();
 		MessageChannel outChannel = new StubMessageChannel();
-		String[] prefixes = new String[] { "/foo", "/bar" };
+		String[] prefixes = new String[]{"/foo", "/bar"};
 
 		StompBrokerRelayRegistration registration = new StompBrokerRelayRegistration(inChannel, outChannel, prefixes);
 		registration.setClientLogin("clientlogin");

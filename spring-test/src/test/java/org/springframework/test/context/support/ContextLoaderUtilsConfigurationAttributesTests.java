@@ -44,22 +44,22 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 
 
 	private void assertLocationsFooAttributes(ContextConfigurationAttributes attributes) {
-		assertAttributes(attributes, LocationsFoo.class, new String[] { "/foo.xml" }, EMPTY_CLASS_ARRAY,
+		assertAttributes(attributes, LocationsFoo.class, new String[]{"/foo.xml"}, EMPTY_CLASS_ARRAY,
 				ContextLoader.class, false);
 	}
 
 	private void assertClassesFooAttributes(ContextConfigurationAttributes attributes) {
-		assertAttributes(attributes, ClassesFoo.class, EMPTY_STRING_ARRAY, new Class<?>[] {FooConfig.class},
+		assertAttributes(attributes, ClassesFoo.class, EMPTY_STRING_ARRAY, new Class<?>[]{FooConfig.class},
 				ContextLoader.class, false);
 	}
 
 	private void assertLocationsBarAttributes(ContextConfigurationAttributes attributes) {
-		assertAttributes(attributes, LocationsBar.class, new String[] {"/bar.xml"}, EMPTY_CLASS_ARRAY,
+		assertAttributes(attributes, LocationsBar.class, new String[]{"/bar.xml"}, EMPTY_CLASS_ARRAY,
 				AnnotationConfigContextLoader.class, true);
 	}
 
 	private void assertClassesBarAttributes(ContextConfigurationAttributes attributes) {
-		assertAttributes(attributes, ClassesBar.class, EMPTY_STRING_ARRAY, new Class<?>[] {BarConfig.class},
+		assertAttributes(attributes, ClassesBar.class, EMPTY_STRING_ARRAY, new Class<?>[]{BarConfig.class},
 				AnnotationConfigContextLoader.class, true);
 	}
 
@@ -102,7 +102,7 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 		assertNotNull(attributesList);
 		assertEquals(1, attributesList.size());
 		assertAttributes(attributesList.get(0),
-				testClass, new String[] {"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
+				testClass, new String[]{"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 		assertNotNull(attributesList);
 		assertEquals(1, attributesList.size());
 		assertAttributes(attributesList.get(0),
-				testClass, new String[] {"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
+				testClass, new String[]{"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
 	}
 
 	@Test
@@ -122,7 +122,7 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 		assertNotNull(attributesList);
 		assertEquals(1, attributesList.size());
 		assertAttributes(attributesList.get(0),
-				testClass, new String[] {"foo1.xml", "foo2.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
+				testClass, new String[]{"foo1.xml", "foo2.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
 	}
 
 	@Test
@@ -132,9 +132,9 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 		assertNotNull(attributesList);
 		assertEquals(2, attributesList.size());
 		assertAttributes(attributesList.get(0),
-				testClass, new String[] {"/bar.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
+				testClass, new String[]{"/bar.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
 		assertAttributes(attributesList.get(1),
-				MetaLocationsFoo.class, new String[] {"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
+				MetaLocationsFoo.class, new String[]{"/foo.xml"}, EMPTY_CLASS_ARRAY, ContextLoader.class, true);
 	}
 
 	@Test
@@ -165,6 +165,7 @@ public class ContextLoaderUtilsConfigurationAttributesTests extends AbstractCont
 
 	/**
 	 * Verifies change requested in <a href="https://jira.spring.io/browse/SPR-11634">SPR-11634</a>.
+	 *
 	 * @since 4.0.4
 	 */
 	@Test

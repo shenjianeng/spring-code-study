@@ -27,8 +27,8 @@ import java.lang.annotation.Target;
  * {@link org.springframework.stereotype.Component} or {@link Bean}.
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see org.springframework.beans.factory.config.BeanDefinition#getDescription()
+ * @since 4.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

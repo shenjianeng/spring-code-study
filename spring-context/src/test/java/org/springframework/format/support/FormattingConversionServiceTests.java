@@ -133,8 +133,7 @@ public class FormattingConversionServiceTests {
 			MetaValueBean valueBean = ac.getBean(MetaValueBean.class);
 			assertEquals(new LocalDate(2009, 10, 31), new LocalDate(valueBean.date));
 			assertEquals(Double.valueOf(0.9999), valueBean.number);
-		}
-		finally {
+		} finally {
 			System.clearProperty("myDate");
 			System.clearProperty("myNumber");
 		}
@@ -330,10 +329,12 @@ public class FormattingConversionServiceTests {
 			public T parse(String text, Locale locale) throws ParseException {
 				return defaultValue;
 			}
+
 			@Override
 			public String print(T t, Locale locale) {
 				return defaultValue.toString();
 			}
+
 			@Override
 			public String toString() {
 				return defaultValue.toString();
@@ -384,7 +385,7 @@ public class FormattingConversionServiceTests {
 	public static class ValueBean {
 
 		@Value("10-31-09")
-		@org.springframework.format.annotation.DateTimeFormat(pattern="MM-d-yy")
+		@org.springframework.format.annotation.DateTimeFormat(pattern = "MM-d-yy")
 		public Date date;
 	}
 
@@ -400,7 +401,7 @@ public class FormattingConversionServiceTests {
 
 
 	@Value("${myDate}")
-	@org.springframework.format.annotation.DateTimeFormat(pattern="MM-d-yy")
+	@org.springframework.format.annotation.DateTimeFormat(pattern = "MM-d-yy")
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface MyDateAnn {
 	}
@@ -415,10 +416,10 @@ public class FormattingConversionServiceTests {
 
 	public static class Model {
 
-		@org.springframework.format.annotation.DateTimeFormat(style="S-")
+		@org.springframework.format.annotation.DateTimeFormat(style = "S-")
 		public Date date;
 
-		@org.springframework.format.annotation.DateTimeFormat(pattern="M-d-yy")
+		@org.springframework.format.annotation.DateTimeFormat(pattern = "M-d-yy")
 		public List<Date> dates;
 
 		public List<Date> getDates() {
@@ -433,7 +434,7 @@ public class FormattingConversionServiceTests {
 
 	public static class ModelWithPlaceholders {
 
-		@org.springframework.format.annotation.DateTimeFormat(style="${dateStyle}")
+		@org.springframework.format.annotation.DateTimeFormat(style = "${dateStyle}")
 		public Date date;
 
 		@MyDatePattern
@@ -449,7 +450,7 @@ public class FormattingConversionServiceTests {
 	}
 
 
-	@org.springframework.format.annotation.DateTimeFormat(pattern="${datePattern}")
+	@org.springframework.format.annotation.DateTimeFormat(pattern = "${datePattern}")
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface MyDatePattern {
 	}
@@ -497,8 +498,7 @@ public class FormattingConversionServiceTests {
 		public <T extends Number> Converter<String, T> getConverter(Class<T> targetType) {
 			if (Integer.class == targetType) {
 				return (Converter<String, T>) new IntegerConverter();
-			}
-			else {
+			} else {
 				throw new IllegalStateException();
 			}
 		}

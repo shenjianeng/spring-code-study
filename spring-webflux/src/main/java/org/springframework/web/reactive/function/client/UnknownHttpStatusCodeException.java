@@ -47,6 +47,7 @@ public class UnknownHttpStatusCodeException extends WebClientResponseException {
 	/**
 	 * Create a new instance of the {@code UnknownHttpStatusCodeException} with the given
 	 * parameters.
+	 *
 	 * @since 5.1.4
 	 */
 	public UnknownHttpStatusCodeException(

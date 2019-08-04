@@ -310,7 +310,7 @@ public class OpenEntityManagerInViewTests {
 		final FilterChain filterChain2 = new FilterChain() {
 			@Override
 			public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse)
-				throws IOException, ServletException {
+					throws IOException, ServletException {
 				assertTrue(TransactionSynchronizationManager.hasResource(factory2));
 				filter.doFilter(servletRequest, servletResponse, filterChain);
 			}
@@ -374,7 +374,7 @@ public class OpenEntityManagerInViewTests {
 		final FilterChain filterChain2 = new FilterChain() {
 			@Override
 			public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse)
-				throws IOException, ServletException {
+					throws IOException, ServletException {
 				assertTrue(TransactionSynchronizationManager.hasResource(factory2));
 				filter.doFilter(servletRequest, servletResponse, filterChain);
 				count2.incrementAndGet();

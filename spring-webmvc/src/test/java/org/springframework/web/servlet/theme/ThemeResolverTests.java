@@ -54,8 +54,7 @@ public class ThemeResolverTests {
 			themeResolver.setThemeName(request, response, null);
 			themeName = themeResolver.resolveThemeName(request);
 			assertEquals(themeName, defaultName);
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			if (shouldSet)
 				fail("should be able to set Theme name");
 		}
@@ -73,7 +72,7 @@ public class ThemeResolverTests {
 
 	@Test
 	public void sessionThemeResolver() {
-		internalTest(new SessionThemeResolver(), true,AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME);
+		internalTest(new SessionThemeResolver(), true, AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME);
 	}
 
 	@Test

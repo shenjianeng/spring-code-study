@@ -51,12 +51,12 @@ public class XmlContentRequestMatchersIntegrationTests {
 
 	private static final String PEOPLE_XML =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-			"<people><composers>" +
-			"<composer><name>Johann Sebastian Bach</name><someBoolean>false</someBoolean><someDouble>21.0</someDouble></composer>" +
-			"<composer><name>Johannes Brahms</name><someBoolean>false</someBoolean><someDouble>0.0025</someDouble></composer>" +
-			"<composer><name>Edvard Grieg</name><someBoolean>false</someBoolean><someDouble>1.6035</someDouble></composer>" +
-			"<composer><name>Robert Schumann</name><someBoolean>false</someBoolean><someDouble>NaN</someDouble></composer>" +
-			"</composers></people>";
+					"<people><composers>" +
+					"<composer><name>Johann Sebastian Bach</name><someBoolean>false</someBoolean><someDouble>21.0</someDouble></composer>" +
+					"<composer><name>Johannes Brahms</name><someBoolean>false</someBoolean><someDouble>0.0025</someDouble></composer>" +
+					"<composer><name>Edvard Grieg</name><someBoolean>false</someBoolean><someDouble>1.6035</someDouble></composer>" +
+					"<composer><name>Robert Schumann</name><someBoolean>false</someBoolean><someDouble>NaN</someDouble></composer>" +
+					"</composers></people>";
 
 
 	private MockRestServiceServer mockServer;
@@ -88,9 +88,9 @@ public class XmlContentRequestMatchersIntegrationTests {
 	@Test
 	public void testXmlEqualTo() throws Exception {
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(content().xml(PEOPLE_XML))
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(content().xml(PEOPLE_XML))
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -98,9 +98,9 @@ public class XmlContentRequestMatchersIntegrationTests {
 	@Test
 	public void testHamcrestNodeMatcher() throws Exception {
 		this.mockServer.expect(requestTo("/composers"))
-			.andExpect(content().contentType("application/xml"))
-			.andExpect(content().node(hasXPath("/people/composers/composer[1]")))
-			.andRespond(withSuccess());
+				.andExpect(content().contentType("application/xml"))
+				.andExpect(content().node(hasXPath("/people/composers/composer[1]")))
+				.andRespond(withSuccess());
 
 		executeAndVerify();
 	}
@@ -112,12 +112,12 @@ public class XmlContentRequestMatchersIntegrationTests {
 
 
 	@SuppressWarnings("unused")
-	@XmlRootElement(name="people")
+	@XmlRootElement(name = "people")
 	@XmlAccessorType(XmlAccessType.FIELD)
 	private static class PeopleWrapper {
 
-		@XmlElementWrapper(name="composers")
-		@XmlElement(name="composer")
+		@XmlElementWrapper(name = "composers")
+		@XmlElement(name = "composer")
 		private List<Person> composers;
 
 		public PeopleWrapper() {

@@ -34,8 +34,7 @@ public class SystemPropertyUtilsTests {
 		try {
 			String resolved = SystemPropertyUtils.resolvePlaceholders("${test.prop}");
 			assertEquals("bar", resolved);
-		}
-		finally {
+		} finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -46,8 +45,7 @@ public class SystemPropertyUtilsTests {
 		try {
 			String resolved = SystemPropertyUtils.resolvePlaceholders("${test.prop:foo}");
 			assertEquals("bar", resolved);
-		}
-		finally {
+		} finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -58,8 +56,7 @@ public class SystemPropertyUtilsTests {
 		try {
 			String resolved = SystemPropertyUtils.resolvePlaceholders("${test.prop:#{foo.bar}}");
 			assertEquals("bar", resolved);
-		}
-		finally {
+		} finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -70,8 +67,7 @@ public class SystemPropertyUtilsTests {
 		try {
 			String resolved = SystemPropertyUtils.resolvePlaceholders("${test.prop:Y#{foo.bar}X}");
 			assertEquals("bar", resolved);
-		}
-		finally {
+		} finally {
 			System.getProperties().remove("test.prop");
 		}
 	}
@@ -119,8 +115,7 @@ public class SystemPropertyUtilsTests {
 		try {
 			String resolved = SystemPropertyUtils.resolvePlaceholders("${test.prop}");
 			assertEquals("foo=baz", resolved);
-		}
-		finally {
+		} finally {
 			System.getProperties().remove("test.prop");
 			System.getProperties().remove("bar");
 		}
@@ -128,7 +123,7 @@ public class SystemPropertyUtilsTests {
 
 	@Test
 	public void testReplaceFromEnv() {
-		Map<String,String> env = System.getenv();
+		Map<String, String> env = System.getenv();
 		if (env.containsKey("PATH")) {
 			String text = "${PATH}";
 			assertEquals(env.get("PATH"), SystemPropertyUtils.resolvePlaceholders(text));

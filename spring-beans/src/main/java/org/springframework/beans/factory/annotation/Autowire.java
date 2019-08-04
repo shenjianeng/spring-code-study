@@ -28,9 +28,9 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.beans.factory.annotation.Configurable
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory
+ * @since 2.0
  */
 public enum Autowire {
 
@@ -63,6 +63,7 @@ public enum Autowire {
 
 	/**
 	 * Return whether this represents an actual autowiring value.
+	 *
 	 * @return whether actual autowiring was specified
 	 * (either BY_NAME or BY_TYPE)
 	 */

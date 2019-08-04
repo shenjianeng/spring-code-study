@@ -49,6 +49,7 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 
 	/**
 	 * Constructor used to initialize with provided database meta-data.
+	 *
 	 * @param databaseMetaData meta-data to be used
 	 */
 	public OracleTableMetaDataProvider(DatabaseMetaData databaseMetaData) throws SQLException {
@@ -57,8 +58,9 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 
 	/**
 	 * Constructor used to initialize with provided database meta-data.
+	 *
 	 * @param databaseMetaData meta-data to be used
-	 * @param includeSynonyms whether to include synonyms
+	 * @param includeSynonyms  whether to include synonyms
 	 */
 	public OracleTableMetaDataProvider(DatabaseMetaData databaseMetaData, boolean includeSynonyms)
 			throws SQLException {
@@ -86,14 +88,12 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 				cstmt.registerOutParameter(1, Types.VARCHAR);
 				cstmt.execute();
 				return cstmt.getString(1);
-			}
-			finally {
+			} finally {
 				if (cstmt != null) {
 					cstmt.close();
 				}
 			}
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			logger.debug("Exception encountered during default schema lookup", ex);
 			return null;
 		}
@@ -111,7 +111,7 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 
 	@Override
 	public void initializeWithTableColumnMetaData(DatabaseMetaData databaseMetaData,
-			@Nullable String catalogName, @Nullable String schemaName, @Nullable String tableName)
+												  @Nullable String catalogName, @Nullable String schemaName, @Nullable String tableName)
 			throws SQLException {
 
 		if (!this.includeSynonyms) {
@@ -130,8 +130,7 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 		try {
 			Class<?> oracleConClass = con.getClass().getClassLoader().loadClass("oracle.jdbc.OracleConnection");
 			con = (Connection) con.unwrap(oracleConClass);
-		}
-		catch (ClassNotFoundException | SQLException ex) {
+		} catch (ClassNotFoundException | SQLException ex) {
 			if (logger.isInfoEnabled()) {
 				logger.info("Unable to include synonyms in table meta-data lookup - no Oracle Connection: " + ex);
 			}
@@ -151,8 +150,7 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 			setIncludeSynonyms = con.getClass().getMethod("setIncludeSynonyms", boolean.class);
 			ReflectionUtils.makeAccessible(setIncludeSynonyms);
 			setIncludeSynonyms.invoke(con, Boolean.TRUE);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new InvalidDataAccessApiUsageException("Could not prepare Oracle Connection", ex);
 		}
 
@@ -160,8 +158,7 @@ public class OracleTableMetaDataProvider extends GenericTableMetaDataProvider {
 
 		try {
 			setIncludeSynonyms.invoke(con, originalValueForIncludeSynonyms);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new InvalidDataAccessApiUsageException("Could not reset Oracle Connection", ex);
 		}
 	}

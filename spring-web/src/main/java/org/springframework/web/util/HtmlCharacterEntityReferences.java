@@ -73,14 +73,12 @@ class HtmlCharacterEntityReferences {
 		try {
 			try {
 				entityReferences.load(is);
-			}
-			finally {
+			} finally {
 				is.close();
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException(
-					"Failed to parse reference definition file [HtmlCharacterEntityReferences.properties]: " +  ex.getMessage());
+					"Failed to parse reference definition file [HtmlCharacterEntityReferences.properties]: " + ex.getMessage());
 		}
 
 		// Parse reference definition properties
@@ -129,12 +127,13 @@ class HtmlCharacterEntityReferences {
 
 	/**
 	 * Return the reference mapped to the given character, or {@code null} if none found.
+	 *
 	 * @since 4.1.2
 	 */
 	@Nullable
 	public String convertToReference(char character, String encoding) {
-		if (encoding.startsWith("UTF-")){
-			switch (character){
+		if (encoding.startsWith("UTF-")) {
+			switch (character) {
 				case '<':
 					return "&lt;";
 				case '>':
@@ -146,8 +145,7 @@ class HtmlCharacterEntityReferences {
 				case '\'':
 					return "&#39;";
 			}
-		}
-		else if (character < 1000 || (character >= 8000 && character < 10000)) {
+		} else if (character < 1000 || (character >= 8000 && character < 10000)) {
 			int index = (character < 1000 ? character : character - 7000);
 			String entityReference = this.characterToEntityReferenceMap[index];
 			if (entityReference != null) {

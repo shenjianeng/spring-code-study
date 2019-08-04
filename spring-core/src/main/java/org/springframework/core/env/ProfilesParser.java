@@ -56,6 +56,7 @@ final class ProfilesParser {
 	private static Profiles parseTokens(String expression, StringTokenizer tokens) {
 		return parseTokens(expression, tokens, Context.NONE);
 	}
+
 	private static Profiles parseTokens(String expression, StringTokenizer tokens, Context context) {
 		List<Profiles> elements = new ArrayList<>();
 		Operator operator = null;

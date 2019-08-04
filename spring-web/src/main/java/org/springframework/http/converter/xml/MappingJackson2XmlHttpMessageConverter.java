@@ -54,6 +54,7 @@ public class MappingJackson2XmlHttpMessageConverter extends AbstractJackson2Http
 	 * Construct a new {@code MappingJackson2XmlHttpMessageConverter} with a custom {@link ObjectMapper}
 	 * (must be a {@link XmlMapper} instance).
 	 * You can use {@link Jackson2ObjectMapperBuilder} to build it easily.
+	 *
 	 * @see Jackson2ObjectMapperBuilder#xml()
 	 */
 	public MappingJackson2XmlHttpMessageConverter(ObjectMapper objectMapper) {

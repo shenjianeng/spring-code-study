@@ -56,7 +56,7 @@ import org.springframework.util.Assert;
  *     &lt;property name="myServiceFactory" ref="myServiceFactory"/&gt;
  *   &lt;/bean&gt;
  *
- *&lt;/beans&gt;</pre>
+ * &lt;/beans&gt;</pre>
  *
  * <p>The attendant {@code MyClientBean} class implementation might look
  * something like this:
@@ -91,9 +91,9 @@ import org.springframework.util.Assert;
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
- * @since 1.0.2
  * @see org.springframework.beans.factory.ObjectFactory
  * @see ServiceLocatorFactoryBean
+ * @since 1.0.2
  */
 public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<ObjectFactory<Object>> {
 

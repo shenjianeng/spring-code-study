@@ -25,8 +25,8 @@ import org.springframework.messaging.MessagingException;
  * {@link org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver}.
  *
  * @author Juergen Hoeller
- * @since 4.3.6
  * @see HandlerMethodArgumentResolver
+ * @since 4.3.6
  */
 @SuppressWarnings("serial")
 public class MethodArgumentResolutionException extends MessagingException {

@@ -28,9 +28,9 @@ import java.util.EventListener;
  * will be filtered accordingly, with the listener getting invoked for matching event
  * objects only.
  *
+ * @param <E> the specific ApplicationEvent subclass to listen to
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @param <E> the specific ApplicationEvent subclass to listen to
  * @see org.springframework.context.event.ApplicationEventMulticaster
  */
 @FunctionalInterface
@@ -38,6 +38,7 @@ public interface ApplicationListener<E extends ApplicationEvent> extends EventLi
 
 	/**
 	 * Handle an application event.
+	 *
 	 * @param event the event to respond to
 	 */
 	void onApplicationEvent(E event);

@@ -69,16 +69,14 @@ public class JettyHttpServer extends AbstractHttpServer {
 			if (this.contextHandler.isRunning()) {
 				this.contextHandler.stop();
 			}
-		}
-		finally {
+		} finally {
 			try {
 				if (this.jettyServer.isRunning()) {
 					this.jettyServer.setStopTimeout(5000);
 					this.jettyServer.stop();
 					this.jettyServer.destroy();
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				// ignore
 			}
 		}
@@ -92,11 +90,9 @@ public class JettyHttpServer extends AbstractHttpServer {
 				this.jettyServer.stop();
 				this.jettyServer.destroy();
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
-		}
-		finally {
+		} finally {
 			this.jettyServer = null;
 			this.contextHandler = null;
 		}

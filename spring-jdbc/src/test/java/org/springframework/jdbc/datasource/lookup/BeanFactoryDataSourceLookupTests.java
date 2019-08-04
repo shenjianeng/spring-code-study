@@ -60,11 +60,10 @@ public class BeanFactoryDataSourceLookupTests {
 						DataSource.class, String.class));
 
 		try {
-				BeanFactoryDataSourceLookup lookup = new BeanFactoryDataSourceLookup(beanFactory);
-				lookup.getDataSource(DATASOURCE_BEAN_NAME);
-				fail("should have thrown DataSourceLookupFailureException");
-		}
-		catch (DataSourceLookupFailureException ex) { /* expected */ }
+			BeanFactoryDataSourceLookup lookup = new BeanFactoryDataSourceLookup(beanFactory);
+			lookup.getDataSource(DATASOURCE_BEAN_NAME);
+			fail("should have thrown DataSourceLookupFailureException");
+		} catch (DataSourceLookupFailureException ex) { /* expected */ }
 	}
 
 	@Test(expected = IllegalStateException.class)

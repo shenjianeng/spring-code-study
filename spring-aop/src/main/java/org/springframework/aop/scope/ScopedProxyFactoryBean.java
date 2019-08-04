@@ -48,21 +48,27 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setProxyTargetClass
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class ScopedProxyFactoryBean extends ProxyConfig
 		implements FactoryBean<Object>, BeanFactoryAware, AopInfrastructureBean {
 
-	/** The TargetSource that manages scoping. */
+	/**
+	 * The TargetSource that manages scoping.
+	 */
 	private final SimpleBeanTargetSource scopedTargetSource = new SimpleBeanTargetSource();
 
-	/** The name of the target bean. */
+	/**
+	 * The name of the target bean.
+	 */
 	@Nullable
 	private String targetBeanName;
 
-	/** The cached singleton proxy. */
+	/**
+	 * The cached singleton proxy.
+	 */
 	@Nullable
 	private Object proxy;
 

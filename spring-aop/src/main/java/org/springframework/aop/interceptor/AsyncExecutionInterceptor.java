@@ -61,18 +61,19 @@ import org.springframework.util.ClassUtils;
  * @author Juergen Hoeller
  * @author Chris Beams
  * @author Stephane Nicoll
- * @since 3.0
  * @see org.springframework.scheduling.annotation.Async
  * @see org.springframework.scheduling.annotation.AsyncAnnotationAdvisor
  * @see org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor
+ * @since 3.0
  */
 public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport implements MethodInterceptor, Ordered {
 
 	/**
 	 * Create a new instance with a default {@link AsyncUncaughtExceptionHandler}.
+	 *
 	 * @param defaultExecutor the {@link Executor} (typically a Spring {@link AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to;
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
+	 *                        or {@link java.util.concurrent.ExecutorService}) to delegate to;
+	 *                        as of 4.2.6, a local executor for this interceptor will be built otherwise
 	 */
 	public AsyncExecutionInterceptor(@Nullable Executor defaultExecutor) {
 		super(defaultExecutor);
@@ -80,9 +81,10 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 
 	/**
 	 * Create a new {@code AsyncExecutionInterceptor}.
-	 * @param defaultExecutor the {@link Executor} (typically a Spring {@link AsyncTaskExecutor}
-	 * or {@link java.util.concurrent.ExecutorService}) to delegate to;
-	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
+	 *
+	 * @param defaultExecutor  the {@link Executor} (typically a Spring {@link AsyncTaskExecutor}
+	 *                         or {@link java.util.concurrent.ExecutorService}) to delegate to;
+	 *                         as of 4.2.6, a local executor for this interceptor will be built otherwise
 	 * @param exceptionHandler the {@link AsyncUncaughtExceptionHandler} to use
 	 */
 	public AsyncExecutionInterceptor(@Nullable Executor defaultExecutor, AsyncUncaughtExceptionHandler exceptionHandler) {
@@ -93,6 +95,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	/**
 	 * Intercept the given method invocation, submit the actual calling of the method to
 	 * the correct task executor and return immediately to the caller.
+	 *
 	 * @param invocation the method to intercept and make asynchronous
 	 * @return {@link Future} if the original method returns {@code Future}; {@code null}
 	 * otherwise.
@@ -116,11 +119,9 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 				if (result instanceof Future) {
 					return ((Future<?>) result).get();
 				}
-			}
-			catch (ExecutionException ex) {
+			} catch (ExecutionException ex) {
 				handleError(ex.getCause(), userDeclaredMethod, invocation.getArguments());
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				handleError(ex, userDeclaredMethod, invocation.getArguments());
 			}
 			return null;
@@ -133,9 +134,10 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	 * This implementation is a no-op for compatibility in Spring 3.1.2.
 	 * Subclasses may override to provide support for extracting qualifier information,
 	 * e.g. via an annotation on the given method.
+	 *
 	 * @return always {@code null}
-	 * @since 3.1.2
 	 * @see #determineAsyncExecutor(Method)
+	 * @since 3.1.2
 	 */
 	@Override
 	@Nullable
@@ -149,6 +151,7 @@ public class AsyncExecutionInterceptor extends AsyncExecutionAspectSupport imple
 	 * If neither of the two is resolvable (e.g. if no {@code BeanFactory} was configured at all),
 	 * this implementation falls back to a newly created {@link SimpleAsyncTaskExecutor} instance
 	 * for local use if no default could be found.
+	 *
 	 * @see #DEFAULT_TASK_EXECUTOR_BEAN_NAME
 	 */
 	@Override

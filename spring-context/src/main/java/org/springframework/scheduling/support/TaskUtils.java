@@ -83,8 +83,8 @@ public abstract class TaskUtils {
 
 	/**
 	 * An {@link ErrorHandler} implementation that logs the Throwable at error
- 	 * level. It does not perform any additional error handling. This can be
- 	 * useful when suppression of errors is the intended behavior.
+	 * level. It does not perform any additional error handling. This can be
+	 * useful when suppression of errors is the intended behavior.
 	 */
 	private static class LoggingErrorHandler implements ErrorHandler {
 

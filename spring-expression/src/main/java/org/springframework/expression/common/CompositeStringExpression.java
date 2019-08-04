@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
  * <pre class="code">
  * &quot;Hello ${getName()}&quot;
  * </pre>
- *
+ * <p>
  * which will be represented as a CompositeStringExpression of two parts. The first part
  * being a LiteralExpression representing 'Hello ' and the second part being a real
  * expression that will call {@code getName()} when invoked.
@@ -44,7 +44,9 @@ public class CompositeStringExpression implements Expression {
 
 	private final String expressionString;
 
-	/** The array of expressions that make up the composite expression. */
+	/**
+	 * The array of expressions that make up the composite expression.
+	 */
 	private final Expression[] expressions;
 
 
@@ -139,7 +141,7 @@ public class CompositeStringExpression implements Expression {
 	public <T> T getValue(EvaluationContext context, Object rootObject, @Nullable Class<T> desiredResultType)
 			throws EvaluationException {
 
-		Object value = getValue(context,rootObject);
+		Object value = getValue(context, rootObject);
 		return ExpressionUtils.convertTypedValue(context, new TypedValue(value), desiredResultType);
 	}
 

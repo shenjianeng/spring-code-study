@@ -32,10 +32,10 @@ import org.springframework.util.StringUtils;
  * registering RootBeanDefinition or ChildBeanDefinition is good enough.
  *
  * @author Juergen Hoeller
- * @since 1.0.2
  * @see org.springframework.beans.factory.BeanNameAware
  * @see org.springframework.beans.factory.support.RootBeanDefinition
  * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ * @since 1.0.2
  */
 public class BeanDefinitionHolder implements BeanMetadataElement {
 
@@ -49,8 +49,9 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * Create a new BeanDefinitionHolder.
+	 *
 	 * @param beanDefinition the BeanDefinition to wrap
-	 * @param beanName the name of the bean, as specified for the bean definition
+	 * @param beanName       the name of the bean, as specified for the bean definition
 	 */
 	public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName) {
 		this(beanDefinition, beanName, null);
@@ -58,9 +59,10 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * Create a new BeanDefinitionHolder.
+	 *
 	 * @param beanDefinition the BeanDefinition to wrap
-	 * @param beanName the name of the bean, as specified for the bean definition
-	 * @param aliases alias names for the bean, or {@code null} if none
+	 * @param beanName       the name of the bean, as specified for the bean definition
+	 * @param aliases        alias names for the bean, or {@code null} if none
 	 */
 	public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName, @Nullable String[] aliases) {
 		Assert.notNull(beanDefinition, "BeanDefinition must not be null");
@@ -75,6 +77,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	 * same contents as the given BeanDefinitionHolder instance.
 	 * <p>Note: The wrapped BeanDefinition reference is taken as-is;
 	 * it is {@code not} deeply copied.
+	 *
 	 * @param beanDefinitionHolder the BeanDefinitionHolder to copy
 	 */
 	public BeanDefinitionHolder(BeanDefinitionHolder beanDefinitionHolder) {
@@ -101,6 +104,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * Return the alias names for the bean, as specified directly for the bean definition.
+	 *
 	 * @return the array of alias names, or {@code null} if none
 	 */
 	@Nullable
@@ -110,6 +114,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * Expose the bean definition's source object.
+	 *
 	 * @see BeanDefinition#getSource()
 	 */
 	@Override
@@ -131,6 +136,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 	/**
 	 * Return a friendly, short description for the bean, stating name and aliases.
+	 *
 	 * @see #getBeanName()
 	 * @see #getAliases()
 	 */
@@ -146,6 +152,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	/**
 	 * Return a long description for the bean, including name and aliases
 	 * as well as a description of the contained {@link BeanDefinition}.
+	 *
 	 * @see #getShortDescription()
 	 * @see #getBeanDefinition()
 	 */
@@ -158,6 +165,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	/**
 	 * This implementation returns the long description. Can be overridden
 	 * to return the short description or any kind of custom description instead.
+	 *
 	 * @see #getLongDescription()
 	 * @see #getShortDescription()
 	 */

@@ -38,9 +38,10 @@ class CaptureTheRestPathElement extends PathElement {
 
 	/**
 	 * Create a new {@link CaptureTheRestPathElement} instance.
-	 * @param pos position of the path element within the path pattern text
+	 *
+	 * @param pos               position of the path element within the path pattern text
 	 * @param captureDescriptor a character array containing contents like '{' '*' 'a' 'b' '}'
-	 * @param separator the separator used in the path pattern
+	 * @param separator         the separator used in the path pattern
 	 */
 	CaptureTheRestPathElement(int pos, char[] captureDescriptor, char separator) {
 		super(pos, separator);
@@ -63,7 +64,7 @@ class CaptureTheRestPathElement extends PathElement {
 		}
 		if (matchingContext.extractingVariables) {
 			// Collect the parameters from all the remaining segments
-			MultiValueMap<String,String> parametersCollector = null;
+			MultiValueMap<String, String> parametersCollector = null;
 			for (int i = pathIndex; i < matchingContext.pathLength; i++) {
 				Element element = matchingContext.pathElements.get(i);
 				if (element instanceof PathSegment) {
@@ -77,7 +78,7 @@ class CaptureTheRestPathElement extends PathElement {
 				}
 			}
 			matchingContext.set(this.variableName, pathToString(pathIndex, matchingContext.pathElements),
-					parametersCollector == null?NO_PARAMETERS:parametersCollector);
+					parametersCollector == null ? NO_PARAMETERS : parametersCollector);
 		}
 		return true;
 	}
@@ -87,9 +88,8 @@ class CaptureTheRestPathElement extends PathElement {
 		for (int i = fromSegment, max = pathElements.size(); i < max; i++) {
 			Element element = pathElements.get(i);
 			if (element instanceof PathSegment) {
-				buf.append(((PathSegment)element).valueToMatch());
-			}
-			else {
+				buf.append(((PathSegment) element).valueToMatch());
+			} else {
 				buf.append(element.value());
 			}
 		}
@@ -118,6 +118,6 @@ class CaptureTheRestPathElement extends PathElement {
 
 	@Override
 	public char[] getChars() {
-		return ("/{*"+this.variableName+"}").toCharArray();
+		return ("/{*" + this.variableName + "}").toCharArray();
 	}
 }

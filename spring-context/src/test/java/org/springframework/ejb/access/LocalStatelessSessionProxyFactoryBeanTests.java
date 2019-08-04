@@ -122,7 +122,7 @@ public class LocalStatelessSessionProxyFactoryBeanTests {
 
 		LocalStatelessSessionProxyFactoryBean fb = new LocalStatelessSessionProxyFactoryBean();
 		fb.setJndiName(jndiName);
-		fb.setResourceRef(false);	// no java:comp/env prefix
+		fb.setResourceRef(false);    // no java:comp/env prefix
 		fb.setBusinessInterface(MyBusinessMethods.class);
 		assertEquals(fb.getBusinessInterface(), MyBusinessMethods.class);
 		fb.setJndiTemplate(jt);
@@ -136,8 +136,7 @@ public class LocalStatelessSessionProxyFactoryBeanTests {
 		try {
 			mbm.getValue();
 			fail("Should have failed to create EJB");
-		}
-		catch (EjbAccessException ex) {
+		} catch (EjbAccessException ex) {
 			assertSame(cex, ex.getCause());
 		}
 	}
@@ -171,8 +170,7 @@ public class LocalStatelessSessionProxyFactoryBeanTests {
 		try {
 			fb.afterPropertiesSet();
 			fail("Should have failed to create EJB");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// TODO more appropriate exception?
 			assertTrue(ex.getMessage().indexOf("businessInterface") != 1);
 		}
@@ -188,7 +186,7 @@ public class LocalStatelessSessionProxyFactoryBeanTests {
 	}
 
 
-	public interface MyBusinessMethods  {
+	public interface MyBusinessMethods {
 
 		int getValue();
 	}

@@ -101,6 +101,7 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 
 	/**
 	 * A variant of {@link #doCommit(Supplier)} for a request without body.
+	 *
 	 * @return a completion publisher
 	 */
 	protected Mono<Void> doCommit() {
@@ -110,6 +111,7 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	/**
 	 * Apply {@link #beforeCommit(Supplier) beforeCommit} actions, apply the
 	 * request headers/cookies, and write the request body.
+	 *
 	 * @param writeAction the action to write the request body (may be {@code null})
 	 * @return a completion publisher
 	 */

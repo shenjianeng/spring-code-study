@@ -37,16 +37,17 @@ package org.springframework.transaction;
  * native resource exceptions (for example, JDBC SQLExceptions).
  *
  * @author Juergen Hoeller
- * @since 1.1.5
  * @see org.springframework.transaction.support.ResourceHolderSupport#getTimeToLiveInMillis
  * @see java.sql.Statement#setQueryTimeout
  * @see java.sql.SQLException
+ * @since 1.1.5
  */
 @SuppressWarnings("serial")
 public class TransactionTimedOutException extends TransactionException {
 
 	/**
 	 * Constructor for TransactionTimedOutException.
+	 *
 	 * @param msg the detail message
 	 */
 	public TransactionTimedOutException(String msg) {
@@ -55,7 +56,8 @@ public class TransactionTimedOutException extends TransactionException {
 
 	/**
 	 * Constructor for TransactionTimedOutException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */
 	public TransactionTimedOutException(String msg, Throwable cause) {

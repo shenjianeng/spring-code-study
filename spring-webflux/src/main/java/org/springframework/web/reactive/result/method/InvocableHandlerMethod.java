@@ -122,9 +122,10 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 	/**
 	 * Invoke the method for the given exchange.
-	 * @param exchange the current exchange
+	 *
+	 * @param exchange       the current exchange
 	 * @param bindingContext the binding context to use
-	 * @param providedArgs optional list of argument values to match by type
+	 * @param providedArgs   optional list of argument values to match by type
 	 * @return a Mono with a {@link HandlerResult}
 	 */
 	public Mono<HandlerResult> invoke(
@@ -135,16 +136,13 @@ public class InvocableHandlerMethod extends HandlerMethod {
 			try {
 				ReflectionUtils.makeAccessible(getBridgedMethod());
 				value = getBridgedMethod().invoke(getBean(), args);
-			}
-			catch (IllegalArgumentException ex) {
+			} catch (IllegalArgumentException ex) {
 				assertTargetBean(getBridgedMethod(), getBean(), args);
 				String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");
 				return Mono.error(new IllegalStateException(formatInvokeError(text, args), ex));
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				return Mono.error(ex.getTargetException());
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// Unlikely to ever get here, but it must be handled...
 				return Mono.error(new IllegalStateException(formatInvokeError("Invocation failure", args), ex));
 			}
@@ -190,8 +188,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 				argMonos.add(this.resolvers.resolveArgument(parameter, bindingContext, exchange)
 						.defaultIfEmpty(NO_ARG_VALUE)
 						.doOnError(ex -> logArgumentErrorIfNecessary(exchange, parameter, ex)));
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				logArgumentErrorIfNecessary(exchange, parameter, ex);
 				argMonos.add(Mono.error(ex));
 			}

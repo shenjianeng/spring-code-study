@@ -32,7 +32,7 @@ public abstract class BootstrapTestUtils {
 	}
 
 	public static BootstrapContext buildBootstrapContext(Class<?> testClass,
-			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
+														 CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate) {
 		return new DefaultBootstrapContext(testClass, cacheAwareContextLoaderDelegate);
 	}
 

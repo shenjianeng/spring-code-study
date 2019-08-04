@@ -80,8 +80,7 @@ public class PersistenceExceptionTranslationPostProcessorTests {
 		try {
 			rwi2.additionalMethod(true);
 			fail("Should have thrown DataAccessResourceFailureException");
-		}
-		catch (DataAccessResourceFailureException ex) {
+		} catch (DataAccessResourceFailureException ex) {
 			assertEquals("my failure", ex.getMessage());
 		}
 	}

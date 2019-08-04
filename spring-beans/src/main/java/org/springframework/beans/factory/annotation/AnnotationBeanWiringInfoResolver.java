@@ -31,9 +31,9 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see Configurable
  * @see org.springframework.beans.factory.wiring.ClassNameBeanWiringInfoResolver
+ * @since 2.0
  */
 public class AnnotationBeanWiringInfoResolver implements BeanWiringInfoResolver {
 
@@ -47,20 +47,19 @@ public class AnnotationBeanWiringInfoResolver implements BeanWiringInfoResolver 
 
 	/**
 	 * Build the {@link BeanWiringInfo} for the given {@link Configurable} annotation.
+	 *
 	 * @param beanInstance the bean instance
-	 * @param annotation the Configurable annotation found on the bean class
+	 * @param annotation   the Configurable annotation found on the bean class
 	 * @return the resolved BeanWiringInfo
 	 */
 	protected BeanWiringInfo buildWiringInfo(Object beanInstance, Configurable annotation) {
 		if (!Autowire.NO.equals(annotation.autowire())) {
 			// Autowiring by name or by type
 			return new BeanWiringInfo(annotation.autowire().value(), annotation.dependencyCheck());
-		}
-		else if (!"".equals(annotation.value())) {
+		} else if (!"".equals(annotation.value())) {
 			// Explicitly specified bean name for bean definition to take property values from
 			return new BeanWiringInfo(annotation.value(), false);
-		}
-		else {
+		} else {
 			// Default bean name for bean definition to take property values from
 			return new BeanWiringInfo(getDefaultBeanName(beanInstance), true);
 		}
@@ -70,6 +69,7 @@ public class AnnotationBeanWiringInfoResolver implements BeanWiringInfoResolver 
 	 * Determine the default bean name for the specified bean instance.
 	 * <p>The default implementation returns the superclass name for a CGLIB
 	 * proxy and the name of the plain bean class else.
+	 *
 	 * @param beanInstance the bean instance to build a default name for
 	 * @return the default bean name to use
 	 * @see org.springframework.util.ClassUtils#getUserClass(Class)

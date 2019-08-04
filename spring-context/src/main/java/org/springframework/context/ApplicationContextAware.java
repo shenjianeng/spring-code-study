@@ -66,9 +66,10 @@ public interface ApplicationContextAware extends Aware {
 	 * or a custom init-method. Invoked after {@link ResourceLoaderAware#setResourceLoader},
 	 * {@link ApplicationEventPublisherAware#setApplicationEventPublisher} and
 	 * {@link MessageSourceAware}, if applicable.
+	 *
 	 * @param applicationContext the ApplicationContext object to be used by this object
 	 * @throws ApplicationContextException in case of context initialization errors
-	 * @throws BeansException if thrown by application context methods
+	 * @throws BeansException              if thrown by application context methods
 	 * @see org.springframework.beans.factory.BeanInitializationException
 	 */
 	void setApplicationContext(ApplicationContext applicationContext) throws BeansException;

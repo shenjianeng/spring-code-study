@@ -52,8 +52,8 @@ public abstract class AbstractStaxHandlerTestCase {
 					"</root>";
 
 	private static final String SIMPLE_XML = "<?xml version='1.0' encoding='UTF-8'?>" +
-					"<?pi content?><root xmlns='namespace'><prefix:child xmlns:prefix='namespace2' prefix:attr='value'>content</prefix:child>" +
-					"</root>";
+			"<?pi content?><root xmlns='namespace'><prefix:child xmlns:prefix='namespace2' prefix:attr='value'>content</prefix:child>" +
+			"</root>";
 
 	private static final Predicate<Node> nodeFilter = (n -> n.getNodeType() != Node.COMMENT_NODE &&
 			n.getNodeType() != Node.DOCUMENT_TYPE_NODE && n.getNodeType() != Node.PROCESSING_INSTRUCTION_NODE);
@@ -89,8 +89,7 @@ public abstract class AbstractStaxHandlerTestCase {
 	private static boolean wwwSpringframeworkOrgIsAccessible() {
 		try {
 			new Socket("www.springframework.org", 80).close();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;

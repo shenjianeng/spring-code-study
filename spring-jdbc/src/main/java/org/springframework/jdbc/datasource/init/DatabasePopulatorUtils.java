@@ -35,7 +35,8 @@ public abstract class DatabasePopulatorUtils {
 
 	/**
 	 * Execute the given {@link DatabasePopulator} against the given {@link DataSource}.
-	 * @param populator the {@code DatabasePopulator} to execute
+	 *
+	 * @param populator  the {@code DatabasePopulator} to execute
 	 * @param dataSource the {@code DataSource} to execute against
 	 * @throws DataAccessException if an error occurs, specifically a {@link ScriptException}
 	 */
@@ -46,12 +47,10 @@ public abstract class DatabasePopulatorUtils {
 			Connection connection = DataSourceUtils.getConnection(dataSource);
 			try {
 				populator.populate(connection);
-			}
-			finally {
+			} finally {
 				DataSourceUtils.releaseConnection(connection, dataSource);
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			if (ex instanceof ScriptException) {
 				throw (ScriptException) ex;
 			}

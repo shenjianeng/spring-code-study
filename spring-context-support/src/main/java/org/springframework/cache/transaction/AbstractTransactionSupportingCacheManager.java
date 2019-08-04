@@ -25,10 +25,10 @@ import org.springframework.cache.support.AbstractCacheManager;
  * on explicitly through the {@link #setTransactionAware} bean property.
  *
  * @author Juergen Hoeller
- * @since 3.2
  * @see #setTransactionAware
  * @see TransactionAwareCacheDecorator
  * @see TransactionAwareCacheManagerProxy
+ * @since 3.2
  */
 public abstract class AbstractTransactionSupportingCacheManager extends AbstractCacheManager {
 

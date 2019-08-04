@@ -32,10 +32,10 @@ import org.springframework.util.Assert;
  * If no transaction is active, {@link Cache#put} operations will be performed immediately, as usual.
  *
  * @author Juergen Hoeller
- * @since 3.2
  * @see #setTargetCacheManager
  * @see TransactionAwareCacheDecorator
  * @see org.springframework.transaction.support.TransactionSynchronizationManager
+ * @since 3.2
  */
 public class TransactionAwareCacheManagerProxy implements CacheManager, InitializingBean {
 
@@ -52,6 +52,7 @@ public class TransactionAwareCacheManagerProxy implements CacheManager, Initiali
 
 	/**
 	 * Create a new TransactionAwareCacheManagerProxy for the given target CacheManager.
+	 *
 	 * @param targetCacheManager the target CacheManager to proxy
 	 */
 	public TransactionAwareCacheManagerProxy(CacheManager targetCacheManager) {

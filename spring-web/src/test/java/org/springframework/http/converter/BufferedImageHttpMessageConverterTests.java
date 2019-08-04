@@ -35,6 +35,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for BufferedImageHttpMessageConverter.
+ *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  */

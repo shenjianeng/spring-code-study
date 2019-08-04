@@ -76,12 +76,13 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	 * Create an instance with the given client and broker channels subscribing
 	 * to handle messages from each and then sending any resolved messages to the
 	 * broker channel.
+	 *
 	 * @param clientInboundChannel messages received from clients.
-	 * @param brokerChannel messages sent to the broker.
-	 * @param resolver the resolver for "user" destinations.
+	 * @param brokerChannel        messages sent to the broker.
+	 * @param resolver             the resolver for "user" destinations.
 	 */
 	public UserDestinationMessageHandler(SubscribableChannel clientInboundChannel,
-			SubscribableChannel brokerChannel, UserDestinationResolver resolver) {
+										 SubscribableChannel brokerChannel, UserDestinationResolver resolver) {
 
 		Assert.notNull(clientInboundChannel, "'clientInChannel' must not be null");
 		Assert.notNull(brokerChannel, "'brokerChannel' must not be null");
@@ -106,6 +107,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	 * the user is not connected. In a multi-application server scenario this
 	 * gives other application servers a chance to try.
 	 * <p>By default this is not set.
+	 *
 	 * @param destination the target destination.
 	 */
 	public void setBroadcastDestination(@Nullable String destination) {

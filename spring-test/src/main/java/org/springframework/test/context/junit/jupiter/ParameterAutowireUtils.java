@@ -39,9 +39,9 @@ import org.springframework.util.ClassUtils;
  * Collection of utilities related to autowiring of individual method parameters.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see #isAutowirable
  * @see #resolveDependency
+ * @since 5.0
  */
 abstract class ParameterAutowireUtils {
 
@@ -51,10 +51,12 @@ abstract class ParameterAutowireUtils {
 		public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
 			return null;
 		}
+
 		@Override
 		public Annotation[] getAnnotations() {
 			return new Annotation[0];
 		}
+
 		@Override
 		public Annotation[] getDeclaredAnnotations() {
 			return new Annotation[0];
@@ -69,7 +71,8 @@ abstract class ParameterAutowireUtils {
 	 * {@link ApplicationContext} (or a sub-type thereof) or is annotated or
 	 * meta-annotated with {@link Autowired @Autowired},
 	 * {@link Qualifier @Qualifier}, or {@link Value @Value}.
-	 * @param parameter the parameter whose dependency should be autowired
+	 *
+	 * @param parameter      the parameter whose dependency should be autowired
 	 * @param parameterIndex the index of the parameter
 	 * @see #resolveDependency
 	 */
@@ -96,13 +99,14 @@ abstract class ParameterAutowireUtils {
 	 * flag set to {@code false}.
 	 * <p>If an explicit <em>qualifier</em> is not declared, the name of the parameter
 	 * will be used as the qualifier for resolving ambiguities.
-	 * @param parameter the parameter whose dependency should be resolved
-	 * @param parameterIndex the index of the parameter
-	 * @param containingClass the concrete class that contains the parameter; this may
-	 * differ from the class that declares the parameter in that it may be a subclass
-	 * thereof, potentially substituting type variables
+	 *
+	 * @param parameter          the parameter whose dependency should be resolved
+	 * @param parameterIndex     the index of the parameter
+	 * @param containingClass    the concrete class that contains the parameter; this may
+	 *                           differ from the class that declares the parameter in that it may be a subclass
+	 *                           thereof, potentially substituting type variables
 	 * @param applicationContext the application context from which to resolve the
-	 * dependency
+	 *                           dependency
 	 * @return the resolved object, or {@code null} if none found
 	 * @throws BeansException if dependency resolution failed
 	 * @see #isAutowirable
@@ -143,6 +147,7 @@ abstract class ParameterAutowireUtils {
 	 * treated as a {@code Parameter} since the metadata (e.g., {@link Parameter#getName()},
 	 * {@link Parameter#getType()}, etc.) will not match those for the declared parameter
 	 * at the given index in an inner class constructor.
+	 *
 	 * @return the supplied {@code parameter} or the <em>effective</em> {@code Parameter}
 	 * if the aforementioned bug is in effect
 	 */

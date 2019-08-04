@@ -273,6 +273,7 @@ public class RequestBodyArgumentResolverTests {
 			@RequestBody(required = false) io.reactivex.Observable<String> rxjava2ObsNotRequired,
 			@RequestBody(required = false) CompletableFuture<String> futureNotRequired,
 			@RequestBody(required = false) Map<?, ?> mapNotRequired,
-			String notAnnotated) {}
+			String notAnnotated) {
+	}
 
 }

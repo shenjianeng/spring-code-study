@@ -39,8 +39,8 @@ import org.springframework.util.Assert;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.0
  * @see MBeanExporter#setNotificationListeners
+ * @since 2.0
  */
 public class NotificationListenerBean extends NotificationListenerHolder implements InitializingBean {
 
@@ -52,6 +52,7 @@ public class NotificationListenerBean extends NotificationListenerHolder impleme
 
 	/**
 	 * Create a new instance of the {@link NotificationListenerBean} class.
+	 *
 	 * @param notificationListener the encapsulated listener
 	 */
 	public NotificationListenerBean(NotificationListener notificationListener) {

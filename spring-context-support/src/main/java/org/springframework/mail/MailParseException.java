@@ -27,6 +27,7 @@ public class MailParseException extends MailException {
 
 	/**
 	 * Constructor for MailParseException.
+	 *
 	 * @param msg the detail message
 	 */
 	public MailParseException(String msg) {
@@ -35,7 +36,8 @@ public class MailParseException extends MailException {
 
 	/**
 	 * Constructor for MailParseException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the mail API in use
 	 */
 	public MailParseException(String msg, Throwable cause) {
@@ -44,6 +46,7 @@ public class MailParseException extends MailException {
 
 	/**
 	 * Constructor for MailParseException.
+	 *
 	 * @param cause the root cause from the mail API in use
 	 */
 	public MailParseException(Throwable cause) {

@@ -22,4 +22,5 @@ package example.scannable;
  *
  * @see org.springframework.context.annotation.ComponentScan#basePackageClasses()
  */
-public class _package { }
+public class _package {
+}

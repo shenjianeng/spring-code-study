@@ -94,7 +94,7 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	 * This constructor is protected. See factory methods in this and sub-classes.
 	 */
 	protected SimpMessageHeaderAccessor(SimpMessageType messageType,
-			@Nullable Map<String, List<String>> externalSourceHeaders) {
+										@Nullable Map<String, List<String>> externalSourceHeaders) {
 
 		super(externalSourceHeaders);
 		Assert.notNull(messageType, "MessageType must not be null");
@@ -193,6 +193,7 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	 * Provide a callback to be invoked if and when {@link #setUser(Principal)}
 	 * is called. This is used internally on the inbound channel to detect
 	 * token-based authentications through an interceptor.
+	 *
 	 * @param callback the callback to invoke
 	 * @since 5.1.9
 	 */

@@ -30,9 +30,9 @@ import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
 /**
  * Reactor Netty based implementation of {@link TcpConnection}.
  *
+ * @param <P> the type of payload for outbound messages
  * @author Rossen Stoyanchev
  * @since 5.0
- * @param <P> the type of payload for outbound messages
  */
 public class ReactorNettyTcpConnection<P> implements TcpConnection<P> {
 
@@ -46,7 +46,7 @@ public class ReactorNettyTcpConnection<P> implements TcpConnection<P> {
 
 
 	public ReactorNettyTcpConnection(NettyInbound inbound, NettyOutbound outbound,
-			ReactorNettyCodec<P> codec, DirectProcessor<Void> closeProcessor) {
+									 ReactorNettyCodec<P> codec, DirectProcessor<Void> closeProcessor) {
 
 		this.inbound = inbound;
 		this.outbound = outbound;

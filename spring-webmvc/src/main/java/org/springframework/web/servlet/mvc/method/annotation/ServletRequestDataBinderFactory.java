@@ -35,11 +35,12 @@ public class ServletRequestDataBinderFactory extends InitBinderDataBinderFactory
 
 	/**
 	 * Create a new instance.
+	 *
 	 * @param binderMethods one or more {@code @InitBinder} methods
-	 * @param initializer provides global data binder initialization
+	 * @param initializer   provides global data binder initialization
 	 */
 	public ServletRequestDataBinderFactory(@Nullable List<InvocableHandlerMethod> binderMethods,
-			@Nullable WebBindingInitializer initializer) {
+										   @Nullable WebBindingInitializer initializer) {
 
 		super(binderMethods, initializer);
 	}
@@ -49,7 +50,7 @@ public class ServletRequestDataBinderFactory extends InitBinderDataBinderFactory
 	 */
 	@Override
 	protected ServletRequestDataBinder createBinderInstance(
-			@Nullable Object target, String objectName, NativeWebRequest request) throws Exception  {
+			@Nullable Object target, String objectName, NativeWebRequest request) throws Exception {
 
 		return new ExtendedServletRequestDataBinder(target, objectName);
 	}

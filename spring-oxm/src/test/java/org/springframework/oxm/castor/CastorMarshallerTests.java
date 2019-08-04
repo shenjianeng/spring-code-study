@@ -268,10 +268,11 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 	 * Assert the values of xpath expression evaluation is exactly the same as expected value.
 	 * <p>The xpath may contain the xml namespace prefixes, since namespaces from flight example
 	 * are being registered.
-	 * @param msg the error message that will be used in case of test failure
+	 *
+	 * @param msg      the error message that will be used in case of test failure
 	 * @param expected the expected value
-	 * @param xpath the xpath to evaluate
-	 * @param xmlDoc the xml to use
+	 * @param xpath    the xpath to evaluate
+	 * @param xmlDoc   the xml to use
 	 * @throws Exception if any error occurs during xpath evaluation
 	 */
 	private void assertXpathEvaluatesTo(String msg, String expected, String xpath, String xmlDoc) throws Exception {

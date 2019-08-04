@@ -111,7 +111,8 @@ public class Jaxb2XmlEncoderTests extends AbstractEncoderTestCase<Jaxb2XmlEncode
 		};
 	}
 
-	public static class Model {}
+	public static class Model {
+	}
 
 	public static class Foo extends Model {
 
@@ -151,8 +152,8 @@ public class Jaxb2XmlEncoderTests extends AbstractEncoderTestCase<Jaxb2XmlEncode
 	public static class Container {
 
 		@XmlElements({
-				@XmlElement(name="foo", type=Foo.class),
-				@XmlElement(name="bar", type=Bar.class)
+				@XmlElement(name = "foo", type = Foo.class),
+				@XmlElement(name = "bar", type = Bar.class)
 		})
 		public List<Model> getElements() {
 			return Arrays.asList(new Foo("name1"), new Bar("title1"));

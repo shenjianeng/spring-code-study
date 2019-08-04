@@ -128,8 +128,7 @@ public class EnableMBeanExportConfigurationTests {
 			validateMBeanAttribute(server, "bean:name=testBean5", "FACTORY");
 			validateMBeanAttribute(server, "spring:mbean=true", "Rob Harrop");
 			validateMBeanAttribute(server, "spring:mbean=another", "Juergen Hoeller");
-		}
-		finally {
+		} finally {
 			System.clearProperty("domain");
 		}
 	}
@@ -143,7 +142,7 @@ public class EnableMBeanExportConfigurationTests {
 
 	private void validateAnnotationTestBean() throws Exception {
 		MBeanServer server = (MBeanServer) this.ctx.getBean("server");
-		validateMBeanAttribute(server,"bean:name=testBean4", "TEST");
+		validateMBeanAttribute(server, "bean:name=testBean4", "TEST");
 	}
 
 	private void validateMBeanAttribute(MBeanServer server, String objectName, String expected) throws Exception {
@@ -215,7 +214,7 @@ public class EnableMBeanExportConfigurationTests {
 
 
 	@Configuration
-	@EnableMBeanExport(server="server", registration=RegistrationPolicy.REPLACE_EXISTING)
+	@EnableMBeanExport(server = "server", registration = RegistrationPolicy.REPLACE_EXISTING)
 	static class LazyAssemblingConfiguration {
 
 		@Bean
@@ -242,13 +241,13 @@ public class EnableMBeanExportConfigurationTests {
 			return new AnnotationTestBeanFactory();
 		}
 
-		@Bean(name="spring:mbean=true")
+		@Bean(name = "spring:mbean=true")
 		@Lazy
 		public TestDynamicMBean dynamic() {
 			return new TestDynamicMBean();
 		}
 
-		@Bean(name="spring:mbean=another")
+		@Bean(name = "spring:mbean=another")
 		@Lazy
 		public MBeanExporterTests.Person person() {
 			MBeanExporterTests.Person person = new MBeanExporterTests.Person();
@@ -265,7 +264,7 @@ public class EnableMBeanExportConfigurationTests {
 
 
 	@Configuration
-	@ComponentScan(excludeFilters = @ComponentScan.Filter(value=Configuration.class))
+	@ComponentScan(excludeFilters = @ComponentScan.Filter(value = Configuration.class))
 	@EnableMBeanExport(server = "server")
 	static class ComponentScanConfiguration {
 

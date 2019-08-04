@@ -95,8 +95,7 @@ public class PerConnectionWebSocketHandler implements WebSocketHandler, BeanFact
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
 		try {
 			getHandler(session).afterConnectionClosed(session, closeStatus);
-		}
-		finally {
+		} finally {
 			destroyHandler(session);
 		}
 	}
@@ -121,8 +120,7 @@ public class PerConnectionWebSocketHandler implements WebSocketHandler, BeanFact
 			if (handler != null) {
 				this.provider.destroy(handler);
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			if (logger.isWarnEnabled()) {
 				logger.warn("Error while destroying " + handler, ex);
 			}

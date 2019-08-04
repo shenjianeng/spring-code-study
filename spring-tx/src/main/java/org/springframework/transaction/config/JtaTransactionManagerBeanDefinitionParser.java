@@ -29,11 +29,11 @@ import org.springframework.beans.factory.xml.ParserContext;
  *
  * @author Juergen Hoeller
  * @author Christian Dupuis
- * @since 2.5
  * @see org.springframework.transaction.jta.WebLogicJtaTransactionManager
  * @see org.springframework.transaction.jta.WebSphereUowTransactionManager
+ * @since 2.5
  */
-public class JtaTransactionManagerBeanDefinitionParser extends AbstractSingleBeanDefinitionParser  {
+public class JtaTransactionManagerBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 	@Override
 	protected String getBeanClassName(Element element) {

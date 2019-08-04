@@ -35,8 +35,8 @@ import static org.mockito.Mockito.*;
  * Unit tests for the LRU eviction policy in {@link DefaultContextCache}.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see ContextCacheTests
+ * @since 4.3
  */
 public class LruContextCacheTests {
 
@@ -149,7 +149,7 @@ public class LruContextCacheTests {
 
 
 	private static MergedContextConfiguration config(Class<?> clazz) {
-		return new MergedContextConfiguration(null, null, new Class<?>[] { clazz }, null, null);
+		return new MergedContextConfiguration(null, null, new Class<?>[]{clazz}, null, null);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -160,18 +160,25 @@ public class LruContextCacheTests {
 
 		// @formatter:off
 		List<String> actualNames = contextMap.keySet().stream()
-			.map(cfg -> cfg.getClasses()[0])
-			.map(Class::getSimpleName)
-			.collect(toList());
+				.map(cfg -> cfg.getClasses()[0])
+				.map(Class::getSimpleName)
+				.collect(toList());
 		// @formatter:on
 
 		assertEquals(asList(expectedNames), actualNames);
 	}
 
 
-	private static class Abc {}
-	private static class Foo {}
-	private static class Bar {}
-	private static class Baz {}
+	private static class Abc {
+	}
+
+	private static class Foo {
+	}
+
+	private static class Bar {
+	}
+
+	private static class Baz {
+	}
 
 }

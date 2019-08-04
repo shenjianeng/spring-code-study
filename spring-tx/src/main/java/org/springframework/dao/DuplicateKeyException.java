@@ -29,6 +29,7 @@ public class DuplicateKeyException extends DataIntegrityViolationException {
 
 	/**
 	 * Constructor for DuplicateKeyException.
+	 *
 	 * @param msg the detail message
 	 */
 	public DuplicateKeyException(String msg) {
@@ -37,7 +38,8 @@ public class DuplicateKeyException extends DataIntegrityViolationException {
 
 	/**
 	 * Constructor for DuplicateKeyException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the data access API in use
 	 */
 	public DuplicateKeyException(String msg, Throwable cause) {

@@ -32,7 +32,9 @@ import org.springframework.web.server.ServerWebExchange;
  */
 public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 
-	/** Default value for {@link #setHeaderName(String)}. */
+	/**
+	 * Default value for {@link #setHeaderName(String)}.
+	 */
 	public static final String DEFAULT_HEADER_NAME = "SESSION";
 
 
@@ -44,6 +46,7 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 	 * The name is used to extract the session id from the request headers as
 	 * well to set the session id on the response headers.
 	 * <p>By default set to {@code DEFAULT_HEADER_NAME}
+	 *
 	 * @param headerName the header name
 	 */
 	public void setHeaderName(String headerName) {
@@ -53,6 +56,7 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 
 	/**
 	 * Return the configured header name.
+	 *
 	 * @return the configured header name
 	 */
 	public String getHeaderName() {

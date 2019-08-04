@@ -48,8 +48,8 @@ import org.springframework.beans.BeanWrapper;
  * settings and contributing corresponding tests!
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see #setActivationSpecClass
+ * @since 2.5
  */
 public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFactory {
 
@@ -62,7 +62,9 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 	private static final String ACTIVATION_SPEC_IMPL_SUFFIX = "ActivationSpecImpl";
 
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
@@ -83,23 +85,19 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 			String specClassName = providerName + ACTIVATION_SPEC_SUFFIX;
 			try {
 				return adapter.getClass().getClassLoader().loadClass(specClassName);
-			}
-			catch (ClassNotFoundException ex) {
+			} catch (ClassNotFoundException ex) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("No default <Provider>ActivationSpec class found: " + specClassName);
 				}
 			}
-		}
-
-		else if (adapterClassName.endsWith(RESOURCE_ADAPTER_IMPL_SUFFIX)){
+		} else if (adapterClassName.endsWith(RESOURCE_ADAPTER_IMPL_SUFFIX)) {
 			//e.g. WebSphere
 			String providerName =
 					adapterClassName.substring(0, adapterClassName.length() - RESOURCE_ADAPTER_IMPL_SUFFIX.length());
 			String specClassName = providerName + ACTIVATION_SPEC_IMPL_SUFFIX;
 			try {
 				return adapter.getClass().getClassLoader().loadClass(specClassName);
-			}
-			catch (ClassNotFoundException ex) {
+			} catch (ClassNotFoundException ex) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("No default <Provider>ActivationSpecImpl class found: " + specClassName);
 				}
@@ -111,8 +109,7 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 		String specClassName = providerPackage + ACTIVATION_SPEC_IMPL_SUFFIX;
 		try {
 			return adapter.getClass().getClassLoader().loadClass(specClassName);
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("No default ActivationSpecImpl class found in provider package: " + specClassName);
 			}
@@ -122,8 +119,7 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 		specClassName = providerPackage + "inbound." + ACTIVATION_SPEC_IMPL_SUFFIX;
 		try {
 			return adapter.getClass().getClassLoader().loadClass(specClassName);
-		}
-		catch (ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("No default ActivationSpecImpl class found in inbound subpackage: " + specClassName);
 			}
@@ -147,12 +143,10 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 			if (bw.isWritableProperty("maxSessions")) {
 				// ActiveMQ
 				bw.setPropertyValue("maxSessions", Integer.toString(config.getMaxConcurrency()));
-			}
-			else if (bw.isWritableProperty("maxNumberOfWorks")) {
+			} else if (bw.isWritableProperty("maxNumberOfWorks")) {
 				// JORAM
 				bw.setPropertyValue("maxNumberOfWorks", Integer.toString(config.getMaxConcurrency()));
-			}
-			else if (bw.isWritableProperty("maxConcurrency")){
+			} else if (bw.isWritableProperty("maxConcurrency")) {
 				// WebSphere
 				bw.setPropertyValue("maxConcurrency", Integer.toString(config.getMaxConcurrency()));
 			}
@@ -161,12 +155,10 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 			if (bw.isWritableProperty("maxMessagesPerSessions")) {
 				// ActiveMQ
 				bw.setPropertyValue("maxMessagesPerSessions", Integer.toString(config.getPrefetchSize()));
-			}
-			else if (bw.isWritableProperty("maxMessages")) {
+			} else if (bw.isWritableProperty("maxMessages")) {
 				// JORAM
 				bw.setPropertyValue("maxMessages", Integer.toString(config.getPrefetchSize()));
-			}
-			else if (bw.isWritableProperty("maxBatchSize")){
+			} else if (bw.isWritableProperty("maxBatchSize")) {
 				// WebSphere
 				bw.setPropertyValue("maxBatchSize", Integer.toString(config.getPrefetchSize()));
 			}
@@ -183,8 +175,7 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 		if (ackMode == Session.SESSION_TRANSACTED && bw.isWritableProperty("useRAManagedTransaction")) {
 			// ActiveMQ
 			bw.setPropertyValue("useRAManagedTransaction", "true");
-		}
-		else {
+		} else {
 			super.applyAcknowledgeMode(bw, ackMode);
 		}
 	}

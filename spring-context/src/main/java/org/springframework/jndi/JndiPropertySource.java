@@ -45,11 +45,11 @@ import org.springframework.lang.Nullable;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see JndiLocatorDelegate
  * @see org.springframework.context.ApplicationContextInitializer
  * @see org.springframework.web.WebApplicationInitializer
  * @see org.springframework.web.context.support.StandardServletEnvironment
+ * @since 3.1
  */
 public class JndiPropertySource extends PropertySource<JndiLocatorDelegate> {
 
@@ -95,8 +95,7 @@ public class JndiPropertySource extends PropertySource<JndiLocatorDelegate> {
 				logger.debug("JNDI lookup for name [" + name + "] returned: [" + value + "]");
 			}
 			return value;
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("JNDI lookup for name [" + name + "] threw NamingException " +
 						"with message: " + ex.getMessage() + ". Returning null.");

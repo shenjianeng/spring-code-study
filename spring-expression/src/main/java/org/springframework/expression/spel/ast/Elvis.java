@@ -44,9 +44,10 @@ public class Elvis extends SpelNodeImpl {
 	/**
 	 * Evaluate the condition and if not null, return it.
 	 * If it is null, return the other value.
+	 *
 	 * @param state the expression state
 	 * @throws EvaluationException if the condition does not evaluate correctly
-	 * to a boolean or there is a problem executing the chosen alternative
+	 *                             to a boolean or there is a problem executing the chosen alternative
 	 */
 	@Override
 	public TypedValue getValueInternal(ExpressionState state) throws EvaluationException {
@@ -54,8 +55,7 @@ public class Elvis extends SpelNodeImpl {
 		// If this check is changed, the generateCode method will need changing too
 		if (!StringUtils.isEmpty(value.getValue())) {
 			return value;
-		}
-		else {
+		} else {
 			TypedValue result = this.children[1].getValueInternal(state);
 			computeExitTypeDescriptor();
 			return result;
@@ -93,7 +93,7 @@ public class Elvis extends SpelNodeImpl {
 		mv.visitInsn(DUP);
 		mv.visitLdcInsn("");
 		mv.visitInsn(SWAP);
-		mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "equals", "(Ljava/lang/Object;)Z",false);
+		mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "equals", "(Ljava/lang/Object;)Z", false);
 		mv.visitJumpInsn(IFEQ, endOfIf);  // if not empty, drop through to elseTarget
 		mv.visitLabel(elseTarget);
 		mv.visitInsn(POP);
@@ -116,8 +116,7 @@ public class Elvis extends SpelNodeImpl {
 			String ifNullValueDescriptor = this.children[1].exitTypeDescriptor;
 			if (ObjectUtils.nullSafeEquals(conditionDescriptor, ifNullValueDescriptor)) {
 				this.exitTypeDescriptor = conditionDescriptor;
-			}
-			else {
+			} else {
 				// Use the easiest to compute common super type
 				this.exitTypeDescriptor = "Ljava/lang/Object";
 			}

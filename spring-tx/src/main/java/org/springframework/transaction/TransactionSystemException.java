@@ -35,6 +35,7 @@ public class TransactionSystemException extends TransactionException {
 
 	/**
 	 * Constructor for TransactionSystemException.
+	 *
 	 * @param msg the detail message
 	 */
 	public TransactionSystemException(String msg) {
@@ -43,7 +44,8 @@ public class TransactionSystemException extends TransactionException {
 
 	/**
 	 * Constructor for TransactionSystemException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */
 	public TransactionSystemException(String msg, Throwable cause) {
@@ -54,9 +56,10 @@ public class TransactionSystemException extends TransactionException {
 	/**
 	 * Set an application exception that was thrown before this transaction exception,
 	 * preserving the original exception despite the overriding TransactionSystemException.
+	 *
 	 * @param ex the application exception
 	 * @throws IllegalStateException if this TransactionSystemException already holds an
-	 * application exception
+	 *                               application exception
 	 */
 	public void initApplicationException(Throwable ex) {
 		Assert.notNull(ex, "Application exception must not be null");
@@ -69,6 +72,7 @@ public class TransactionSystemException extends TransactionException {
 	/**
 	 * Return the application exception that was thrown before this transaction exception,
 	 * if any.
+	 *
 	 * @return the application exception, or {@code null} if none set
 	 */
 	@Nullable
@@ -79,6 +83,7 @@ public class TransactionSystemException extends TransactionException {
 	/**
 	 * Return the exception that was the first to be thrown within the failed transaction:
 	 * i.e. the application exception, if any, or the TransactionSystemException's own cause.
+	 *
 	 * @return the original exception, or {@code null} if there was none
 	 */
 	@Nullable

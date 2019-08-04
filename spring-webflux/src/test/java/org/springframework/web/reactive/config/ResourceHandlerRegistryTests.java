@@ -108,7 +108,7 @@ public class ResourceHandlerRegistryTests {
 
 	@Test
 	public void order() {
-		assertEquals(Integer.MAX_VALUE -1, this.registry.getHandlerMapping().getOrder());
+		assertEquals(Integer.MAX_VALUE - 1, this.registry.getHandlerMapping().getOrder());
 
 		this.registry.setOrder(0);
 		assertEquals(0, this.registry.getHandlerMapping().getOrder());
@@ -126,7 +126,7 @@ public class ResourceHandlerRegistryTests {
 		this.registry.setResourceUrlProvider(resourceUrlProvider);
 		ResourceResolver mockResolver = Mockito.mock(ResourceResolver.class);
 		ResourceTransformerSupport mockTransformer = Mockito.mock(ResourceTransformerSupport.class);
-		
+
 		this.registration.resourceChain(true).addResolver(mockResolver).addTransformer(mockTransformer);
 
 		ResourceWebHandler handler = getHandler("/resources/**");
@@ -196,13 +196,13 @@ public class ResourceHandlerRegistryTests {
 
 		this.registration.setCacheControl(CacheControl.maxAge(3600, TimeUnit.MILLISECONDS))
 				.resourceChain(false)
-					.addResolver(cachingResolver)
-					.addResolver(versionResolver)
-					.addResolver(webjarsResolver)
-					.addResolver(pathResourceResolver)
-					.addTransformer(cachingTransformer)
-					.addTransformer(appCacheTransformer)
-					.addTransformer(cssLinkTransformer);
+				.addResolver(cachingResolver)
+				.addResolver(versionResolver)
+				.addResolver(webjarsResolver)
+				.addResolver(pathResourceResolver)
+				.addTransformer(cachingTransformer)
+				.addTransformer(appCacheTransformer)
+				.addTransformer(cssLinkTransformer);
 
 		ResourceWebHandler handler = getHandler("/resources/**");
 		List<ResourceResolver> resolvers = handler.getResourceResolvers();

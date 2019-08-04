@@ -44,7 +44,7 @@ public class WebSocketClientSockJsSession extends AbstractClientSockJsSession im
 
 
 	public WebSocketClientSockJsSession(TransportRequest request, WebSocketHandler handler,
-			SettableListenableFuture<WebSocketSession> connectFuture) {
+										SettableListenableFuture<WebSocketSession> connectFuture) {
 
 		super(request, handler, connectFuture);
 	}

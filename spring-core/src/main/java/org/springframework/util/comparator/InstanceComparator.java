@@ -31,10 +31,10 @@ import org.springframework.util.Assert;
  * {@code 0}. Consider combining with {@link Comparator#thenComparing(Comparator)}
  * if additional sorting is required.
  *
- * @author Phillip Webb
- * @since 3.2
  * @param <T> the type of objects that may be compared by this comparator
+ * @author Phillip Webb
  * @see Comparator#thenComparing(Comparator)
+ * @since 3.2
  */
 public class InstanceComparator<T> implements Comparator<T> {
 
@@ -43,8 +43,9 @@ public class InstanceComparator<T> implements Comparator<T> {
 
 	/**
 	 * Create a new {@link InstanceComparator} instance.
+	 *
 	 * @param instanceOrder the ordered list of classes that should be used when comparing
-	 * objects. Classes earlier in the list will be given a higher priority.
+	 *                      objects. Classes earlier in the list will be given a higher priority.
 	 */
 	public InstanceComparator(Class<?>... instanceOrder) {
 		Assert.notNull(instanceOrder, "'instanceOrder' array must not be null");

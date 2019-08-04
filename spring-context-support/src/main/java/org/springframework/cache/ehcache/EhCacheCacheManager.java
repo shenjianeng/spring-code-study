@@ -50,6 +50,7 @@ public class EhCacheCacheManager extends AbstractTransactionSupportingCacheManag
 
 	/**
 	 * Create a new EhCacheCacheManager for the given backing EhCache CacheManager.
+	 *
 	 * @param cacheManager the backing EhCache {@link net.sf.ehcache.CacheManager}
 	 */
 	public EhCacheCacheManager(net.sf.ehcache.CacheManager cacheManager) {

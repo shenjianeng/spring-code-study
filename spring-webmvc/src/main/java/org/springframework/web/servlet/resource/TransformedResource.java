@@ -44,8 +44,7 @@ public class TransformedResource extends ByteArrayResource {
 		this.filename = original.getFilename();
 		try {
 			this.lastModified = original.lastModified();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// should never happen
 			throw new IllegalArgumentException(ex);
 		}

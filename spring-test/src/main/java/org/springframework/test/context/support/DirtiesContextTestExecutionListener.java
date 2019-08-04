@@ -48,9 +48,9 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTE
  * {@code DependencyInjectionTestExecutionListener}.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see DirtiesContext
  * @see DirtiesContextBeforeModesTestExecutionListener
+ * @since 2.5
  */
 public class DirtiesContextTestExecutionListener extends AbstractDirtiesContextTestExecutionListener {
 

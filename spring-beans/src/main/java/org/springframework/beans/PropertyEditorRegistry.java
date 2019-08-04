@@ -28,17 +28,18 @@ import org.springframework.lang.Nullable;
  * and {@link org.springframework.validation.DataBinder}.
  *
  * @author Juergen Hoeller
- * @since 1.2.6
  * @see java.beans.PropertyEditor
  * @see PropertyEditorRegistrar
  * @see BeanWrapper
  * @see org.springframework.validation.DataBinder
+ * @since 1.2.6
  */
 public interface PropertyEditorRegistry {
 
 	/**
 	 * Register the given custom property editor for all properties of the given type.
-	 * @param requiredType the type of the property
+	 *
+	 * @param requiredType   the type of the property
 	 * @param propertyEditor the editor to register
 	 */
 	void registerCustomEditor(Class<?> requiredType, PropertyEditor propertyEditor);
@@ -57,23 +58,25 @@ public interface PropertyEditorRegistry {
 	 * <p>For example, if you wanted to register an editor for "items[n].quantity"
 	 * (for all values n), you would use "items.quantity" as the value of the
 	 * 'propertyPath' argument to this method.
-	 * @param requiredType the type of the property. This may be {@code null}
-	 * if a property is given but should be specified in any case, in particular in
-	 * case of a Collection - making clear whether the editor is supposed to apply
-	 * to the entire Collection itself or to each of its entries. So as a general rule:
-	 * <b>Do not specify {@code null} here in case of a Collection/array!</b>
-	 * @param propertyPath the path of the property (name or nested path), or
-	 * {@code null} if registering an editor for all properties of the given type
+	 *
+	 * @param requiredType   the type of the property. This may be {@code null}
+	 *                       if a property is given but should be specified in any case, in particular in
+	 *                       case of a Collection - making clear whether the editor is supposed to apply
+	 *                       to the entire Collection itself or to each of its entries. So as a general rule:
+	 *                       <b>Do not specify {@code null} here in case of a Collection/array!</b>
+	 * @param propertyPath   the path of the property (name or nested path), or
+	 *                       {@code null} if registering an editor for all properties of the given type
 	 * @param propertyEditor editor to register
 	 */
 	void registerCustomEditor(@Nullable Class<?> requiredType, @Nullable String propertyPath, PropertyEditor propertyEditor);
 
 	/**
 	 * Find a custom property editor for the given type and property.
+	 *
 	 * @param requiredType the type of the property (can be {@code null} if a property
-	 * is given but should be specified in any case for consistency checking)
+	 *                     is given but should be specified in any case for consistency checking)
 	 * @param propertyPath the path of the property (name or nested path), or
-	 * {@code null} if looking for an editor for all properties of the given type
+	 *                     {@code null} if looking for an editor for all properties of the given type
 	 * @return the registered editor, or {@code null} if none
 	 */
 	@Nullable

@@ -55,8 +55,9 @@ public @interface MatrixVariable {
 
 	/**
 	 * The name of the matrix variable.
-	 * @since 4.2
+	 *
 	 * @see #value
+	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";

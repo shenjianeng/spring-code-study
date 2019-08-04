@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link MonoToListenableFutureAdapter}.
+ *
  * @author Rossen Stoyanchev
  */
 public class MonoToListenableFutureAdapterTests {

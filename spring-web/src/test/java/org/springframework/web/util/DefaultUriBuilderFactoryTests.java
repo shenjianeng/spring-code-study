@@ -29,6 +29,7 @@ import static junit.framework.TestCase.assertEquals;
 
 /**
  * Unit tests for {@link DefaultUriBuilderFactory}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DefaultUriBuilderFactoryTests {

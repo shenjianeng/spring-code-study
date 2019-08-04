@@ -34,10 +34,10 @@ import org.springframework.util.CollectionUtils;
 /**
  * A base interceptor for JSR-107 cache annotations.
  *
- * @author Stephane Nicoll
- * @since 4.1
  * @param <O> the operation type
  * @param <A> the annotation type
+ * @author Stephane Nicoll
+ * @since 4.1
  */
 @SuppressWarnings("serial")
 abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A extends Annotation>
@@ -58,6 +58,7 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 
 	/**
 	 * Resolve the cache to use.
+	 *
 	 * @param context the invocation context
 	 * @return the cache to use (never {@code null})
 	 */
@@ -73,17 +74,16 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 	/**
 	 * Convert the collection of caches in a single expected element.
 	 * <p>Throw an {@link IllegalStateException} if the collection holds more than one element
+	 *
 	 * @return the single element, or {@code null} if the collection is empty
 	 */
 	@Nullable
 	static Cache extractFrom(Collection<? extends Cache> caches) {
 		if (CollectionUtils.isEmpty(caches)) {
 			return null;
-		}
-		else if (caches.size() == 1) {
+		} else if (caches.size() == 1) {
 			return caches.iterator().next();
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Unsupported cache resolution result " + caches +
 					": JSR-107 only supports a single cache.");
 		}

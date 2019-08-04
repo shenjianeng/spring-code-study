@@ -99,7 +99,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 	}
 
 	private TypedValue getValueInternal(TypedValue contextObject, EvaluationContext evalContext,
-			boolean isAutoGrowNullReferences) throws EvaluationException {
+										boolean isAutoGrowNullReferences) throws EvaluationException {
 
 		TypedValue result = readProperty(contextObject, evalContext, this.name);
 
@@ -115,29 +115,25 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 					writeProperty(contextObject, evalContext, this.name, newList);
 					result = readProperty(contextObject, evalContext, this.name);
 				}
-			}
-			else if (Map.class == resultDescriptor.getType()) {
-				if (isWritableProperty(this.name,contextObject, evalContext)) {
-					Map<?,?> newMap = new HashMap<>();
+			} else if (Map.class == resultDescriptor.getType()) {
+				if (isWritableProperty(this.name, contextObject, evalContext)) {
+					Map<?, ?> newMap = new HashMap<>();
 					writeProperty(contextObject, evalContext, this.name, newMap);
 					result = readProperty(contextObject, evalContext, this.name);
 				}
-			}
-			else {
+			} else {
 				// 'simple' object
 				try {
-					if (isWritableProperty(this.name,contextObject, evalContext)) {
+					if (isWritableProperty(this.name, contextObject, evalContext)) {
 						Class<?> clazz = result.getTypeDescriptor().getType();
 						Object newObject = ReflectionUtils.accessibleConstructor(clazz).newInstance();
 						writeProperty(contextObject, evalContext, this.name, newObject);
 						result = readProperty(contextObject, evalContext, this.name);
 					}
-				}
-				catch (InvocationTargetException ex) {
+				} catch (InvocationTargetException ex) {
 					throw new SpelEvaluationException(getStartPosition(), ex.getTargetException(),
 							SpelMessage.UNABLE_TO_DYNAMICALLY_CREATE_OBJECT, result.getTypeDescriptor().getType());
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new SpelEvaluationException(getStartPosition(), ex,
 							SpelMessage.UNABLE_TO_DYNAMICALLY_CREATE_OBJECT, result.getTypeDescriptor().getType());
 				}
@@ -163,6 +159,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 
 	/**
 	 * Attempt to read the named property from the current context object.
+	 *
 	 * @return the value of the property
 	 * @throws EvaluationException if any problem accessing the property or it cannot be found
 	 */
@@ -179,8 +176,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 			if (evalContext.getPropertyAccessors().contains(accessorToUse)) {
 				try {
 					return accessorToUse.read(evalContext, contextObject.getValue(), name);
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					// This is OK - it may have gone stale due to a class change,
 					// let's try to get a new one and call it before giving up...
 				}
@@ -204,15 +200,13 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 					return accessor.read(evalContext, contextObject.getValue(), name);
 				}
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new SpelEvaluationException(ex, SpelMessage.EXCEPTION_DURING_PROPERTY_READ, name, ex.getMessage());
 		}
 
 		if (contextObject.getValue() == null) {
 			throw new SpelEvaluationException(SpelMessage.PROPERTY_OR_FIELD_NOT_READABLE_ON_NULL, name);
-		}
-		else {
+		} else {
 			throw new SpelEvaluationException(getStartPosition(), SpelMessage.PROPERTY_OR_FIELD_NOT_READABLE, name,
 					FormatHelper.formatClassNameForMessage(getObjectClass(contextObject.getValue())));
 		}
@@ -235,8 +229,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 				try {
 					accessorToUse.write(evalContext, contextObject.getValue(), name, newValue);
 					return;
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					// This is OK - it may have gone stale due to a class change,
 					// let's try to get a new one and call it before giving up...
 				}
@@ -254,8 +247,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 					return;
 				}
 			}
-		}
-		catch (AccessException ex) {
+		} catch (AccessException ex) {
 			throw new SpelEvaluationException(getStartPosition(), ex, SpelMessage.EXCEPTION_DURING_PROPERTY_WRITE,
 					name, ex.getMessage());
 		}
@@ -276,8 +268,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 					if (accessor.canWrite(evalContext, value, name)) {
 						return true;
 					}
-				}
-				catch (AccessException ex) {
+				} catch (AccessException ex) {
 					// let others try
 				}
 			}
@@ -294,6 +285,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 	 * and resolvers that name a specific class but it is a supertype of the class we have.
 	 * These are put at the end of the specific resolvers set and will be tried after exactly
 	 * matching accessors but before generic accessors.
+	 *
 	 * @param contextObject the object upon which property access is being attempted
 	 * @return a list of resolvers that should be tried in order to access the property
 	 */
@@ -309,14 +301,12 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 			if (targets == null) {
 				// generic resolver that says it can be used for any type
 				generalAccessors.add(resolver);
-			}
-			else if (targetType != null) {
+			} else if (targetType != null) {
 				for (Class<?> clazz : targets) {
 					if (clazz == targetType) {
 						specificAccessors.add(resolver);
 						break;
-					}
-					else if (clazz.isAssignableFrom(targetType)) {
+					} else if (clazz.isAssignableFrom(targetType)) {
 						generalAccessors.add(resolver);
 					}
 				}
@@ -374,8 +364,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 		if (this.nullSafe && CodeFlow.isPrimitive(descriptor)) {
 			this.originalPrimitiveExitTypeDescriptor = descriptor;
 			this.exitTypeDescriptor = CodeFlow.toBoxedDescriptor(descriptor);
-		}
-		else {
+		} else {
 			this.exitTypeDescriptor = descriptor;
 		}
 	}
@@ -392,7 +381,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 		private final boolean autoGrowNullReferences;
 
 		public AccessorLValue(PropertyOrFieldReference propertyOrFieldReference, TypedValue activeContextObject,
-				EvaluationContext evalContext, boolean autoGrowNullReferences) {
+							  EvaluationContext evalContext, boolean autoGrowNullReferences) {
 
 			this.ref = propertyOrFieldReference;
 			this.contextObject = activeContextObject;

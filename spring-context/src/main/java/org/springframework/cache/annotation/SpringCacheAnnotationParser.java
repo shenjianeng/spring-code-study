@@ -196,7 +196,8 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 	 * <p>Throws an {@link IllegalStateException} if the state of the operation is
 	 * invalid. As there might be multiple sources for default values, this ensure
 	 * that the operation is in a proper state before being returned.
-	 * @param ae the annotated element of the cache operation
+	 *
+	 * @param ae        the annotated element of the cache operation
 	 * @param operation the {@link CacheOperation} to validate
 	 */
 	private void validateCacheOperation(AnnotatedElement ae, CacheOperation operation) {
@@ -253,6 +254,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 		/**
 		 * Apply the defaults to the specified {@link CacheOperation.Builder}.
+		 *
 		 * @param builder the operation builder to update
 		 */
 		public void applyDefault(CacheOperation.Builder builder) {
@@ -277,11 +279,9 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 			if (StringUtils.hasText(builder.getCacheManager()) || StringUtils.hasText(builder.getCacheResolver())) {
 				// One of these is set so we should not inherit anything
-			}
-			else if (StringUtils.hasText(this.cacheResolver)) {
+			} else if (StringUtils.hasText(this.cacheResolver)) {
 				builder.setCacheResolver(this.cacheResolver);
-			}
-			else if (StringUtils.hasText(this.cacheManager)) {
+			} else if (StringUtils.hasText(this.cacheManager)) {
 				builder.setCacheManager(this.cacheManager);
 			}
 		}

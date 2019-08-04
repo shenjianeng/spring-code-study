@@ -51,8 +51,9 @@ public interface WebSession {
 
 	/**
 	 * Return the session attribute value if present.
+	 *
 	 * @param name the attribute name
-	 * @param <T> the attribute type
+	 * @param <T>  the attribute type
 	 * @return the attribute value
 	 */
 	@SuppressWarnings("unchecked")
@@ -64,8 +65,9 @@ public interface WebSession {
 	/**
 	 * Return the session attribute value or if not present raise an
 	 * {@link IllegalArgumentException}.
+	 *
 	 * @param name the attribute name
-	 * @param <T> the attribute type
+	 * @param <T>  the attribute type
 	 * @return the attribute value
 	 */
 	@SuppressWarnings("unchecked")
@@ -77,9 +79,10 @@ public interface WebSession {
 
 	/**
 	 * Return the session attribute value, or a default, fallback value.
-	 * @param name the attribute name
+	 *
+	 * @param name         the attribute name
 	 * @param defaultValue a default value to return instead
-	 * @param <T> the attribute type
+	 * @param <T>          the attribute type
 	 * @return the attribute value
 	 */
 	@SuppressWarnings("unchecked")
@@ -105,12 +108,14 @@ public interface WebSession {
 	 * Generate a new id for the session and update the underlying session
 	 * storage to reflect the new id. After a successful call {@link #getId()}
 	 * reflects the new session id.
+	 *
 	 * @return completion notification (success or error)
 	 */
 	Mono<Void> changeSessionId();
 
 	/**
 	 * Invalidate the current session and clear session storage.
+	 *
 	 * @return completion notification (success or error)
 	 */
 	Mono<Void> invalidate();
@@ -128,6 +133,7 @@ public interface WebSession {
 	 * <p>Note that this method is not intended for direct use by applications.
 	 * Instead it is automatically invoked just before the response is
 	 * committed.
+	 *
 	 * @return {@code Mono} to indicate completion with success or error
 	 */
 	Mono<Void> save();

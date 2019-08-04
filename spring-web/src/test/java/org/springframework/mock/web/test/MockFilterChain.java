@@ -44,9 +44,9 @@ import org.springframework.util.ObjectUtils;
  * @author Juergen Hoeller
  * @author Rob Winch
  * @author Rossen Stoyanchev
- * @since 2.0.3
  * @see MockFilterConfig
  * @see PassThroughFilterChain
+ * @since 2.0.3
  */
 public class MockFilterChain implements FilterChain {
 
@@ -73,6 +73,7 @@ public class MockFilterChain implements FilterChain {
 
 	/**
 	 * Create a FilterChain with a Servlet.
+	 *
 	 * @param servlet the Servlet to invoke
 	 * @since 3.2
 	 */
@@ -82,6 +83,7 @@ public class MockFilterChain implements FilterChain {
 
 	/**
 	 * Create a {@code FilterChain} with Filter's and a Servlet.
+	 *
 	 * @param servlet the {@link Servlet} to invoke in this {@link FilterChain}
 	 * @param filters the {@link Filter}'s to invoke in this {@link FilterChain}
 	 * @since 3.2

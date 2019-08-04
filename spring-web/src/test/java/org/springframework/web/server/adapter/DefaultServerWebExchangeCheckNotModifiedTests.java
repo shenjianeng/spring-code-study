@@ -62,7 +62,7 @@ public class DefaultServerWebExchangeCheckNotModifiedTests {
 
 	@Parameters(name = "{0}")
 	static public Iterable<Object[]> safeMethods() {
-		return Arrays.asList(new Object[][] {
+		return Arrays.asList(new Object[][]{
 				{HttpMethod.GET},
 				{HttpMethod.HEAD}
 		});
@@ -223,7 +223,7 @@ public class DefaultServerWebExchangeCheckNotModifiedTests {
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/")
 				.ifNoneMatch(eTag)
 				.ifModifiedSince(oneMinuteAgo.toEpochMilli())
-				);
+		);
 
 		assertTrue(exchange.checkNotModified(eTag, currentDate));
 

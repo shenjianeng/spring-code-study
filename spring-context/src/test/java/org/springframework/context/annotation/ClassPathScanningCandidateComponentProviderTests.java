@@ -91,7 +91,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testDefault(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+							 Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);
 		assertTrue(containsBeanClass(candidates, DefaultNamedComponent.class));
 		assertTrue(containsBeanClass(candidates, NamedComponent.class));
@@ -120,7 +120,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testAntStyle(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+							  Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE + ".**.sub");
 		assertTrue(containsBeanClass(candidates, BarComponent.class));
 		assertEquals(1, candidates.size());
@@ -170,7 +170,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testCustomAnnotationTypeIncludeFilter(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+													   Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		provider.addIncludeFilter(new AnnotationTypeFilter(Component.class));
 		testDefault(provider, expectedBeanDefinitionType);
 	}
@@ -191,7 +191,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testCustomAssignableTypeIncludeFilter(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+													   Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		provider.addIncludeFilter(new AssignableTypeFilter(FooService.class));
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);
 		// Interfaces/Abstract class are filtered out automatically.
@@ -218,7 +218,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testCustomSupportedIncludeAndExcludeFilter(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+															Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		provider.addIncludeFilter(new AnnotationTypeFilter(Component.class));
 		provider.addExcludeFilter(new AnnotationTypeFilter(Service.class));
 		provider.addExcludeFilter(new AnnotationTypeFilter(Repository.class));
@@ -272,7 +272,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void testExclude(ClassPathScanningCandidateComponentProvider provider,
-			Class<? extends BeanDefinition> expectedBeanDefinitionType) {
+							 Class<? extends BeanDefinition> expectedBeanDefinitionType) {
 		Set<BeanDefinition> candidates = provider.findCandidateComponents(TEST_BASE_PACKAGE);
 		assertTrue(containsBeanClass(candidates, FooServiceImpl.class));
 		assertTrue(containsBeanClass(candidates, StubFooDao.class));
@@ -511,7 +511,7 @@ public class ClassPathScanningCandidateComponentProviderTests {
 	}
 
 	private void assertBeanDefinitionType(Set<BeanDefinition> candidates,
-			Class<? extends BeanDefinition> expectedType) {
+										  Class<? extends BeanDefinition> expectedType) {
 		candidates.forEach(c -> {
 			assertThat(c, is(instanceOf(expectedType)));
 		});
@@ -530,7 +530,8 @@ public class ClassPathScanningCandidateComponentProviderTests {
 		static final String BEAN_NAME = "defaultAndDevProfileAnnotatedComponent";
 	}
 
-	@DefaultProfile @DevProfile
+	@DefaultProfile
+	@DevProfile
 	@Component(MetaProfileAnnotatedComponent.BEAN_NAME)
 	private static class MetaProfileAnnotatedComponent {
 		static final String BEAN_NAME = "metaProfileAnnotatedComponent";

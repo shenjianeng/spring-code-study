@@ -77,8 +77,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 			if (preFlightRequest) {
 				rejectRequest(response);
 				return false;
-			}
-			else {
+			} else {
 				return true;
 			}
 		}
@@ -101,7 +100,7 @@ public class DefaultCorsProcessor implements CorsProcessor {
 	 * Handle the given request.
 	 */
 	protected boolean handleInternal(ServerWebExchange exchange,
-			CorsConfiguration config, boolean preFlightRequest) {
+									 CorsConfiguration config, boolean preFlightRequest) {
 
 		ServerHttpRequest request = exchange.getRequest();
 		ServerHttpResponse response = exchange.getResponse();

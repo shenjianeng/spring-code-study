@@ -55,7 +55,7 @@ public class XhrClientSockJsSession extends AbstractClientSockJsSession {
 
 
 	public XhrClientSockJsSession(TransportRequest request, WebSocketHandler handler,
-			XhrTransport transport, SettableListenableFuture<WebSocketSession> connectFuture) {
+								  XhrTransport transport, SettableListenableFuture<WebSocketSession> connectFuture) {
 
 		super(request, handler, connectFuture);
 		Assert.notNull(transport, "XhrTransport is required");

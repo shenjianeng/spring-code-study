@@ -318,7 +318,7 @@ public class Jackson2ObjectMapperBuilderTests {
 		javaTimeModule.addDeserializer(OffsetDateTime.class, new OffsetDateTimeDeserializer());
 		builder.modulesToInstall(javaTimeModule);
 		builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		ObjectMapper objectMapper =  builder.build();
+		ObjectMapper objectMapper = builder.build();
 		DemoPojo demoPojo = objectMapper.readValue(DATA, DemoPojo.class);
 		assertNotNull(demoPojo.getOffsetDateTime());
 	}
@@ -453,7 +453,7 @@ public class Jackson2ObjectMapperBuilderTests {
 						MapperFeature.AUTO_DETECT_FIELDS,
 						JsonParser.Feature.AUTO_CLOSE_SOURCE,
 						JsonGenerator.Feature.QUOTE_FIELD_NAMES)
-						.serializationInclusion(JsonInclude.Include.NON_NULL);
+				.serializationInclusion(JsonInclude.Include.NON_NULL);
 
 		ObjectMapper mapper = new ObjectMapper();
 		builder.configure(mapper);
@@ -692,9 +692,11 @@ public class Jackson2ObjectMapperBuilderTests {
 	public static class MyXmlFactory extends XmlFactory {
 	}
 
-	static class Foo {}
+	static class Foo {
+	}
 
-	static class Bar {}
+	static class Bar {
+	}
 
 	static class FooSerializer extends JsonSerializer<Foo> {
 		@Override
@@ -711,6 +713,7 @@ public class Jackson2ObjectMapperBuilderTests {
 		@Override
 		public void serialize(Bar value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
 		}
+
 		@Override
 		public Class<Bar> handledType() {
 			return Bar.class;

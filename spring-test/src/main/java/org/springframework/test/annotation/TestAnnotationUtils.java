@@ -32,6 +32,7 @@ public abstract class TestAnnotationUtils {
 	 * Get the {@code timeout} configured via the {@link Timed @Timed}
 	 * annotation on the supplied {@code method}.
 	 * <p>Negative configured values will be converted to {@code 0}.
+	 *
 	 * @return the configured timeout, or {@code 0} if the method is not
 	 * annotated with {@code @Timed}
 	 */
@@ -47,6 +48,7 @@ public abstract class TestAnnotationUtils {
 	 * Get the repeat count configured via the {@link Repeat @Repeat}
 	 * annotation on the supplied {@code method}.
 	 * <p>Non-negative configured values will be converted to {@code 1}.
+	 *
 	 * @return the configured repeat count, or {@code 1} if the method is
 	 * not annotated with {@code @Repeat}
 	 */

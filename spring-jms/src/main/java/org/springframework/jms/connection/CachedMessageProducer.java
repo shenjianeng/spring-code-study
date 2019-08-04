@@ -172,7 +172,7 @@ class CachedMessageProducer implements MessageProducer, QueueSender, TopicPublis
 
 	@Override
 	public void send(Message message, int deliveryMode, int priority, long timeToLive,
-			CompletionListener completionListener) throws JMSException {
+					 CompletionListener completionListener) throws JMSException {
 
 		this.target.send(message, deliveryMode, priority, timeToLive, completionListener);
 	}
@@ -184,7 +184,7 @@ class CachedMessageProducer implements MessageProducer, QueueSender, TopicPublis
 
 	@Override
 	public void send(Destination destination, Message message, int deliveryMode, int priority,
-			long timeToLive, CompletionListener completionListener) throws JMSException {
+					 long timeToLive, CompletionListener completionListener) throws JMSException {
 
 		this.target.send(destination, message, deliveryMode, priority, timeToLive, completionListener);
 

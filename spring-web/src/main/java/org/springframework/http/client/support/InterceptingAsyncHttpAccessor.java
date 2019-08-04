@@ -39,6 +39,7 @@ public abstract class InterceptingAsyncHttpAccessor extends AsyncHttpAccessor {
 
 	/**
 	 * Set the request interceptors that this accessor should use.
+	 *
 	 * @param interceptors the list of interceptors
 	 */
 	public void setInterceptors(List<org.springframework.http.client.AsyncClientHttpRequestInterceptor> interceptors) {
@@ -58,8 +59,7 @@ public abstract class InterceptingAsyncHttpAccessor extends AsyncHttpAccessor {
 		org.springframework.http.client.AsyncClientHttpRequestFactory delegate = super.getAsyncRequestFactory();
 		if (!CollectionUtils.isEmpty(getInterceptors())) {
 			return new org.springframework.http.client.InterceptingAsyncClientHttpRequestFactory(delegate, getInterceptors());
-		}
-		else {
+		} else {
 			return delegate;
 		}
 	}

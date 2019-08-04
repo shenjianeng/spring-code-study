@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * "non-option arguments".
  *
  * @author Chris Beams
- * @since 3.1
  * @see SimpleCommandLineArgsParser
+ * @since 3.1
  */
 class CommandLineArgs {
 

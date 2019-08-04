@@ -63,7 +63,7 @@ public class WebSocketServerSockJsSession extends AbstractSockJsSession implemen
 
 
 	public WebSocketServerSockJsSession(String id, SockJsServiceConfig config,
-			WebSocketHandler handler, @Nullable Map<String, Object> attributes) {
+										WebSocketHandler handler, @Nullable Map<String, Object> attributes) {
 
 		super(id, config, handler, attributes);
 	}
@@ -165,8 +165,7 @@ public class WebSocketServerSockJsSession extends AbstractSockJsSession implemen
 				}
 				scheduleHeartbeat();
 				this.openFrameSent = true;
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				tryCloseWithSockJsTransportError(ex, CloseStatus.SERVER_ERROR);
 			}
 		}
@@ -185,8 +184,7 @@ public class WebSocketServerSockJsSession extends AbstractSockJsSession implemen
 		String[] messages;
 		try {
 			messages = getSockJsServiceConfig().getMessageCodec().decode(payload);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			logger.error("Broken data received. Terminating WebSocket connection abruptly", ex);
 			tryCloseWithSockJsTransportError(ex, CloseStatus.BAD_DATA);
 			return;

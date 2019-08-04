@@ -83,7 +83,7 @@ public class AfterAdviceBindingTests {
 	@Test
 	public void testOneIntAndOneObjectArgs() {
 		testBeanProxy.setAge(5);
-		verify(mockCollaborator).oneIntAndOneObject(5,this.testBeanProxy);
+		verify(mockCollaborator).oneIntAndOneObject(5, this.testBeanProxy);
 	}
 
 	@Test

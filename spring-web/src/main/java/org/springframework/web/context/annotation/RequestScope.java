@@ -39,7 +39,6 @@ import org.springframework.web.context.WebApplicationContext;
  * composed annotations.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see SessionScope
  * @see ApplicationScope
  * @see org.springframework.context.annotation.Scope
@@ -47,6 +46,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @see org.springframework.web.context.request.RequestScope
  * @see org.springframework.stereotype.Component
  * @see org.springframework.context.annotation.Bean
+ * @since 4.3
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

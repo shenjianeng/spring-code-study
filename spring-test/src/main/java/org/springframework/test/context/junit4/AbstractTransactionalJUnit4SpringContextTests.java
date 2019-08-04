@@ -79,7 +79,6 @@ import org.springframework.util.Assert;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 2.5
  * @see AbstractJUnit4SpringContextTests
  * @see org.springframework.test.context.ContextConfiguration
  * @see org.springframework.test.context.TestExecutionListeners
@@ -92,6 +91,7 @@ import org.springframework.util.Assert;
  * @see org.springframework.test.context.transaction.AfterTransaction
  * @see org.springframework.test.jdbc.JdbcTestUtils
  * @see org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests
+ * @since 2.5
  */
 @TestExecutionListeners({TransactionalTestExecutionListener.class, SqlScriptsTestExecutionListener.class})
 @Transactional
@@ -99,6 +99,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * The {@code JdbcTemplate} that this base class manages, available to subclasses.
+	 *
 	 * @since 3.2
 	 */
 	protected final JdbcTemplate jdbcTemplate = new JdbcTemplate();
@@ -118,6 +119,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Specify the encoding for SQL scripts, if different from the platform encoding.
+	 *
 	 * @see #executeSqlScript
 	 */
 	public void setSqlScriptEncoding(String sqlScriptEncoding) {
@@ -126,6 +128,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 
 	/**
 	 * Convenience method for counting the rows in the given table.
+	 *
 	 * @param tableName table name to count rows in
 	 * @return the number of rows in the table
 	 * @see JdbcTestUtils#countRowsInTable
@@ -138,12 +141,13 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	 * Convenience method for counting the rows in the given table, using the
 	 * provided {@code WHERE} clause.
 	 * <p>See the Javadoc for {@link JdbcTestUtils#countRowsInTableWhere} for details.
-	 * @param tableName the name of the table to count rows in
+	 *
+	 * @param tableName   the name of the table to count rows in
 	 * @param whereClause the {@code WHERE} clause to append to the query
 	 * @return the number of rows in the table that match the provided
 	 * {@code WHERE} clause
-	 * @since 3.2
 	 * @see JdbcTestUtils#countRowsInTableWhere
+	 * @since 3.2
 	 */
 	protected int countRowsInTableWhere(String tableName, String whereClause) {
 		return JdbcTestUtils.countRowsInTableWhere(this.jdbcTemplate, tableName, whereClause);
@@ -152,6 +156,7 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	/**
 	 * Convenience method for deleting all rows from the specified tables.
 	 * <p>Use with caution outside of a transaction!
+	 *
 	 * @param names the names of the tables from which to delete
 	 * @return the total number of rows deleted from all specified tables
 	 * @see JdbcTestUtils#deleteFromTables
@@ -165,16 +170,17 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	 * provided {@code WHERE} clause.
 	 * <p>Use with caution outside of a transaction!
 	 * <p>See the Javadoc for {@link JdbcTestUtils#deleteFromTableWhere} for details.
-	 * @param tableName the name of the table to delete rows from
+	 *
+	 * @param tableName   the name of the table to delete rows from
 	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @param args arguments to bind to the query (leaving it to the {@code
-	 * PreparedStatement} to guess the corresponding SQL type); may also contain
-	 * {@link org.springframework.jdbc.core.SqlParameterValue SqlParameterValue}
-	 * objects which indicate not only the argument value but also the SQL type
-	 * and optionally the scale.
+	 * @param args        arguments to bind to the query (leaving it to the {@code
+	 *                    PreparedStatement} to guess the corresponding SQL type); may also contain
+	 *                    {@link org.springframework.jdbc.core.SqlParameterValue SqlParameterValue}
+	 *                    objects which indicate not only the argument value but also the SQL type
+	 *                    and optionally the scale.
 	 * @return the number of rows deleted from the table
-	 * @since 4.0
 	 * @see JdbcTestUtils#deleteFromTableWhere
+	 * @since 4.0
 	 */
 	protected int deleteFromTableWhere(String tableName, String whereClause, Object... args) {
 		return JdbcTestUtils.deleteFromTableWhere(this.jdbcTemplate, tableName, whereClause, args);
@@ -183,9 +189,10 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	/**
 	 * Convenience method for dropping all of the specified tables.
 	 * <p>Use with caution outside of a transaction!
+	 *
 	 * @param names the names of the tables to drop
-	 * @since 3.2
 	 * @see JdbcTestUtils#dropTables
+	 * @since 3.2
 	 */
 	protected void dropTables(String... names) {
 		JdbcTestUtils.dropTables(this.jdbcTemplate, names);
@@ -196,9 +203,10 @@ public abstract class AbstractTransactionalJUnit4SpringContextTests extends Abst
 	 * <p>Use with caution outside of a transaction!
 	 * <p>The script will normally be loaded by classpath.
 	 * <p><b>Do not use this method to execute DDL if you expect rollback.</b>
+	 *
 	 * @param sqlResourcePath the Spring resource path for the SQL script
 	 * @param continueOnError whether or not to continue without throwing an
-	 * exception in the event of an error
+	 *                        exception in the event of an error
 	 * @throws DataAccessException if there is an error executing a statement
 	 * @see ResourceDatabasePopulator
 	 * @see #setSqlScriptEncoding

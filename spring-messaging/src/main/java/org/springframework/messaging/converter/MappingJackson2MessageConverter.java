@@ -81,6 +81,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	/**
 	 * Construct a {@code MappingJackson2MessageConverter} supporting
 	 * one or more custom MIME types.
+	 *
 	 * @param supportedMimeTypes the supported MIME types
 	 * @since 4.1.5
 	 */
@@ -171,9 +172,10 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	/**
 	 * Determine whether to log the given exception coming from a
 	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} check.
-	 * @param type the class that Jackson tested for (de-)serializability
+	 *
+	 * @param type  the class that Jackson tested for (de-)serializability
 	 * @param cause the Jackson-thrown exception to evaluate
-	 * (typically a {@link JsonMappingException})
+	 *              (typically a {@link JsonMappingException})
 	 * @since 4.3
 	 */
 	protected void logWarningIfNecessary(Type type, @Nullable Throwable cause) {
@@ -189,11 +191,9 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 					"serialization for type [" + type + "]";
 			if (debugLevel) {
 				logger.debug(msg, cause);
-			}
-			else if (logger.isDebugEnabled()) {
+			} else if (logger.isDebugEnabled()) {
 				logger.warn(msg, cause);
-			}
-			else {
+			} else {
 				logger.warn(msg + ": " + cause);
 			}
 		}
@@ -216,21 +216,17 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 			if (payload instanceof byte[]) {
 				if (view != null) {
 					return this.objectMapper.readerWithView(view).forType(javaType).readValue((byte[]) payload);
-				}
-				else {
+				} else {
 					return this.objectMapper.readValue((byte[]) payload, javaType);
 				}
-			}
-			else {
+			} else {
 				if (view != null) {
 					return this.objectMapper.readerWithView(view).forType(javaType).readValue(payload.toString());
-				}
-				else {
+				} else {
 					return this.objectMapper.readValue(payload.toString(), javaType);
 				}
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new MessageConversionException(message, "Could not read JSON: " + ex.getMessage(), ex);
 		}
 	}
@@ -253,7 +249,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	@Override
 	@Nullable
 	protected Object convertToInternal(Object payload, @Nullable MessageHeaders headers,
-			@Nullable Object conversionHint) {
+									   @Nullable Object conversionHint) {
 
 		try {
 			Class<?> view = getSerializationView(conversionHint);
@@ -263,24 +259,20 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 				JsonGenerator generator = this.objectMapper.getFactory().createGenerator(out, encoding);
 				if (view != null) {
 					this.objectMapper.writerWithView(view).writeValue(generator, payload);
-				}
-				else {
+				} else {
 					this.objectMapper.writeValue(generator, payload);
 				}
 				payload = out.toByteArray();
-			}
-			else {
+			} else {
 				Writer writer = new StringWriter();
 				if (view != null) {
 					this.objectMapper.writerWithView(view).writeValue(writer, payload);
-				}
-				else {
+				} else {
 					this.objectMapper.writeValue(writer, payload);
 				}
 				payload = writer.toString();
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new MessageConversionException("Could not write JSON: " + ex.getMessage(), ex);
 		}
 		return payload;
@@ -288,8 +280,9 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 
 	/**
 	 * Determine a Jackson serialization view based on the given conversion hint.
+	 *
 	 * @param conversionHint the conversion hint Object as passed into the
-	 * converter for the current conversion attempt
+	 *                       converter for the current conversion attempt
 	 * @return the serialization view class, or {@code null} if none
 	 * @since 4.2
 	 */
@@ -302,11 +295,9 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 			if (annotation != null) {
 				return extractViewClass(annotation, conversionHint);
 			}
-		}
-		else if (conversionHint instanceof JsonView) {
+		} else if (conversionHint instanceof JsonView) {
 			return extractViewClass((JsonView) conversionHint, conversionHint);
-		}
-		else if (conversionHint instanceof Class) {
+		} else if (conversionHint instanceof Class) {
 			return (Class<?>) conversionHint;
 		}
 
@@ -325,6 +316,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 
 	/**
 	 * Determine the JSON encoding to use for the given content type.
+	 *
 	 * @param contentType the MIME type from the MessageHeaders, if any
 	 * @return the JSON encoding to use (never {@code null})
 	 */

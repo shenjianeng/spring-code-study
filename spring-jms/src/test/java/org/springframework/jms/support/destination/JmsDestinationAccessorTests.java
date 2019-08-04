@@ -39,8 +39,7 @@ public class JmsDestinationAccessorTests {
 			accessor.setDestinationResolver(null);
 			accessor.afterPropertiesSet();
 			fail("expected IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 
@@ -50,8 +49,8 @@ public class JmsDestinationAccessorTests {
 	public void testSessionTransactedModeReallyDoesDefaultToFalse() throws Exception {
 		JmsDestinationAccessor accessor = new StubJmsDestinationAccessor();
 		assertFalse("The [pubSubDomain] property of JmsDestinationAccessor must default to " +
-				"false (i.e. Queues are used by default). Change this test (and the " +
-				"attendant Javadoc) if you have changed the default.",
+						"false (i.e. Queues are used by default). Change this test (and the " +
+						"attendant Javadoc) if you have changed the default.",
 				accessor.isPubSubDomain());
 	}
 

@@ -38,13 +38,14 @@ public class ExpressionValueMethodArgumentResolver extends AbstractNamedValueSyn
 
 	/**
 	 * Create a new {@link ExpressionValueMethodArgumentResolver} instance.
-	 * @param factory a bean factory to use for resolving {@code ${...}}
-	 * placeholder and {@code #{...}} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to contain expressions
+	 *
+	 * @param factory  a bean factory to use for resolving {@code ${...}}
+	 *                 placeholder and {@code #{...}} SpEL expressions in default values;
+	 *                 or {@code null} if default values are not expected to contain expressions
 	 * @param registry for checking reactive type wrappers
 	 */
 	public ExpressionValueMethodArgumentResolver(@Nullable ConfigurableBeanFactory factory,
-			ReactiveAdapterRegistry registry) {
+												 ReactiveAdapterRegistry registry) {
 
 		super(factory, registry);
 	}

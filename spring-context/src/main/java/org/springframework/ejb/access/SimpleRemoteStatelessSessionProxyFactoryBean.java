@@ -53,23 +53,27 @@ import org.springframework.util.ClassUtils;
  * @author Rod Johnson
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
- * @since 09.05.2003
  * @see org.springframework.remoting.RemoteAccessException
  * @see AbstractSlsbInvokerInterceptor#setLookupHomeOnStartup
  * @see AbstractSlsbInvokerInterceptor#setCacheHome
  * @see AbstractRemoteSlsbInvokerInterceptor#setRefreshHomeOnConnectFailure
+ * @since 09.05.2003
  */
 public class SimpleRemoteStatelessSessionProxyFactoryBean extends SimpleRemoteSlsbInvokerInterceptor
-	implements FactoryBean<Object>, BeanClassLoaderAware {
+		implements FactoryBean<Object>, BeanClassLoaderAware {
 
-	/** The business interface of the EJB we're proxying. */
+	/**
+	 * The business interface of the EJB we're proxying.
+	 */
 	@Nullable
 	private Class<?> businessInterface;
 
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
-	/** EJBObject. */
+	/**
+	 * EJBObject.
+	 */
 	@Nullable
 	private Object proxy;
 
@@ -82,6 +86,7 @@ public class SimpleRemoteStatelessSessionProxyFactoryBean extends SimpleRemoteSl
 	 * that mirrors the EJB business methods but does not declare RemoteExceptions.
 	 * In this case, RemoteExceptions thrown by the EJB stub will automatically get
 	 * converted to Spring's generic RemoteAccessException.
+	 *
 	 * @param businessInterface the business interface of the EJB
 	 */
 	public void setBusinessInterface(@Nullable Class<?> businessInterface) {

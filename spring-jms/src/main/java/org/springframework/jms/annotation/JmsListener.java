@@ -76,10 +76,10 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
  * <em>composed annotations</em> with attribute overrides.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see EnableJms
  * @see JmsListenerAnnotationBeanPostProcessor
  * @see JmsListeners
+ * @since 4.1
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -91,6 +91,7 @@ public @interface JmsListener {
 	/**
 	 * The unique identifier of the container managing this endpoint.
 	 * <p>If none is specified, an auto-generated one is provided.
+	 *
 	 * @see org.springframework.jms.config.JmsListenerEndpointRegistry#getListenerContainer(String)
 	 */
 	String id() default "";

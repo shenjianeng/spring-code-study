@@ -57,8 +57,7 @@ public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessa
 		Resource resource = null;
 		if (object instanceof ResourceRegion) {
 			resource = ((ResourceRegion) object).getResource();
-		}
-		else {
+		} else {
 			Collection<ResourceRegion> regions = (Collection<ResourceRegion>) object;
 			if (!regions.isEmpty()) {
 				resource = regions.iterator().next().getResource();
@@ -129,13 +128,11 @@ public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessa
 
 		if (object instanceof ResourceRegion) {
 			writeResourceRegion((ResourceRegion) object, outputMessage);
-		}
-		else {
+		} else {
 			Collection<ResourceRegion> regions = (Collection<ResourceRegion>) object;
 			if (regions.size() == 1) {
 				writeResourceRegion(regions.iterator().next(), outputMessage);
-			}
-			else {
+			} else {
 				writeResourceRegionCollection((Collection<ResourceRegion>) object, outputMessage);
 			}
 		}
@@ -157,19 +154,17 @@ public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessa
 		InputStream in = region.getResource().getInputStream();
 		try {
 			StreamUtils.copyRange(in, outputMessage.getBody(), start, end);
-		}
-		finally {
+		} finally {
 			try {
 				in.close();
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				// ignore
 			}
 		}
 	}
 
 	private void writeResourceRegionCollection(Collection<ResourceRegion> resourceRegions,
-			HttpOutputMessage outputMessage) throws IOException {
+											   HttpOutputMessage outputMessage) throws IOException {
 
 		Assert.notNull(resourceRegions, "Collection of ResourceRegion should not be null");
 		HttpHeaders responseHeaders = outputMessage.getHeaders();
@@ -199,12 +194,10 @@ public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessa
 				println(out);
 				// Printing content
 				StreamUtils.copyRange(in, out, start, end);
-			}
-			finally {
+			} finally {
 				try {
 					in.close();
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					// ignore
 				}
 			}

@@ -51,6 +51,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	/**
 	 * Configure supported locales to check against the requested locales
 	 * determined via {@link HttpHeaders#getAcceptLanguageAsLocales()}.
+	 *
 	 * @param locales the supported locales
 	 */
 	public void setSupportedLocales(List<Locale> locales) {
@@ -68,6 +69,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	/**
 	 * Configure a fixed default locale to fall back on if the request does not
 	 * have an "Accept-Language" header (not set by default).
+	 *
 	 * @param defaultLocale the default locale to use
 	 */
 	public void setDefaultLocale(@Nullable Locale defaultLocale) {
@@ -88,8 +90,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 		List<Locale> requestLocales = null;
 		try {
 			requestLocales = exchange.getRequest().getHeaders().getAcceptLanguageAsLocales();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Invalid Accept-Language header: treat as empty for matching purposes
 		}
 		return new SimpleLocaleContext(resolveSupportedLocale(requestLocales));
@@ -112,8 +113,7 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 					// Full match: language + country, possibly narrowed from earlier language-only match
 					return locale;
 				}
-			}
-			else if (languageMatch == null) {
+			} else if (languageMatch == null) {
 				// Let's try to find a language-only match as a fallback
 				for (Locale candidate : supportedLocales) {
 					if (!StringUtils.hasLength(candidate.getCountry()) &&

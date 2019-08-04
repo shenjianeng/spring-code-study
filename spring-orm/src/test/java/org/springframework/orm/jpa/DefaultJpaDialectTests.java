@@ -45,8 +45,7 @@ public class DefaultJpaDialectTests {
 		try {
 			dialect.beginTransaction(null, definition);
 			fail("expected exception");
-		}
-		catch (TransactionException e) {
+		} catch (TransactionException e) {
 			// ok
 		}
 	}

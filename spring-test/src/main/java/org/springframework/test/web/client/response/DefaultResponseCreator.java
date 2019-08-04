@@ -115,8 +115,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 		if (this.contentResource != null) {
 			InputStream stream = this.contentResource.getInputStream();
 			response = new MockClientHttpResponse(stream, this.statusCode);
-		}
-		else {
+		} else {
 			response = new MockClientHttpResponse(this.content, this.statusCode);
 		}
 		response.getHeaders().putAll(this.headers);

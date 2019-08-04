@@ -73,7 +73,7 @@ public class AnnotationConfigWebApplicationContextTests {
 		ctx.setBeanNameGenerator(new AnnotationBeanNameGenerator() {
 			@Override
 			public String generateBeanName(BeanDefinition definition,
-					BeanDefinitionRegistry registry) {
+										   BeanDefinitionRegistry registry) {
 				return "custom-" + super.generateBeanName(definition, registry);
 			}
 		});

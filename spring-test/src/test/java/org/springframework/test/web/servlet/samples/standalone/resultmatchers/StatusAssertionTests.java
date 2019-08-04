@@ -95,21 +95,25 @@ public class StatusAssertionTests {
 
 		@RequestMapping("/created")
 		@ResponseStatus(CREATED)
-		public @ResponseBody void created(){
+		public @ResponseBody
+		void created() {
 		}
 
 		@Get(path = "/createdWithComposedAnnotation", status = CREATED)
-		public @ResponseBody void createdWithComposedAnnotation() {
+		public @ResponseBody
+		void createdWithComposedAnnotation() {
 		}
 
 		@RequestMapping("/badRequest")
 		@ResponseStatus(code = BAD_REQUEST, reason = "Expired token")
-		public @ResponseBody void badRequest(){
+		public @ResponseBody
+		void badRequest() {
 		}
 
 		@RequestMapping("/notImplemented")
 		@ResponseStatus(NOT_IMPLEMENTED)
-		public @ResponseBody void notImplemented(){
+		public @ResponseBody
+		void notImplemented() {
 		}
 	}
 

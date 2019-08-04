@@ -47,12 +47,12 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
  * rather than a {@link org.springframework.test.context.ContextLoader ContextLoader}.
  *
  * @author Sam Brannen
- * @since 3.2
  * @see #processContextConfiguration(ContextConfigurationAttributes)
  * @see #detectDefaultConfigurationClasses(Class)
  * @see #loadBeanDefinitions(GenericWebApplicationContext, WebMergedContextConfiguration)
  * @see GenericXmlWebContextLoader
  * @see GenericGroovyXmlWebContextLoader
+ * @since 3.2
  */
 public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextLoader {
 
@@ -71,6 +71,7 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * {@linkplain ContextConfigurationAttributes#setClasses(Class[]) set} in the
 	 * supplied configuration attributes. Otherwise, properties in the supplied
 	 * configuration attributes will not be modified.
+	 *
 	 * @param configAttributes the context configuration attributes to process
 	 * @see org.springframework.test.context.SmartContextLoader#processContextConfiguration(ContextConfigurationAttributes)
 	 * @see #isGenerateDefaultLocations()
@@ -87,6 +88,7 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * Detect the default configuration classes for the supplied test class.
 	 * <p>The default implementation simply delegates to
 	 * {@link AnnotationConfigContextLoaderUtils#detectDefaultConfigurationClasses(Class)}.
+	 *
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @return an array of default configuration classes, potentially empty but never {@code null}
 	 * @see AnnotationConfigContextLoaderUtils
@@ -103,6 +105,7 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader},
 	 * not as a legacy {@link org.springframework.test.context.ContextLoader ContextLoader}.
 	 * Consequently, this method is not supported.
+	 *
 	 * @throws UnsupportedOperationException in this implementation
 	 * @see org.springframework.test.context.support.AbstractContextLoader#modifyLocations
 	 */
@@ -117,6 +120,7 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader},
 	 * not as a legacy {@link org.springframework.test.context.ContextLoader ContextLoader}.
 	 * Consequently, this method is not supported.
+	 *
 	 * @throws UnsupportedOperationException in this implementation
 	 * @see org.springframework.test.context.support.AbstractContextLoader#generateDefaultLocations
 	 */
@@ -131,6 +135,7 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader},
 	 * not as a legacy {@link org.springframework.test.context.ContextLoader ContextLoader}.
 	 * Consequently, this method is not supported.
+	 *
 	 * @throws UnsupportedOperationException in this implementation
 	 * @see org.springframework.test.context.support.AbstractContextLoader#getResourceSuffix
 	 */
@@ -149,7 +154,8 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	 * <p>Each class must represent an <em>annotated class</em>. An
 	 * {@link AnnotatedBeanDefinitionReader} is used to register the appropriate
 	 * bean definitions.
-	 * @param context the context in which the annotated classes should be registered
+	 *
+	 * @param context         the context in which the annotated classes should be registered
 	 * @param webMergedConfig the merged configuration from which the classes should be retrieved
 	 * @see AbstractGenericWebContextLoader#loadBeanDefinitions
 	 */
@@ -167,8 +173,9 @@ public class AnnotationConfigWebContextLoader extends AbstractGenericWebContextL
 	/**
 	 * Ensure that the supplied {@link WebMergedContextConfiguration} does not
 	 * contain {@link MergedContextConfiguration#getLocations() locations}.
-	 * @since 4.0.4
+	 *
 	 * @see AbstractGenericWebContextLoader#validateMergedContextConfiguration
+	 * @since 4.0.4
 	 */
 	@Override
 	protected void validateMergedContextConfiguration(WebMergedContextConfiguration webMergedConfig) {

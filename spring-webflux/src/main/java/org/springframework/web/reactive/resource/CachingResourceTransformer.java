@@ -65,7 +65,7 @@ public class CachingResourceTransformer implements ResourceTransformer {
 
 	@Override
 	public Mono<Resource> transform(ServerWebExchange exchange, Resource resource,
-			ResourceTransformerChain transformerChain) {
+									ResourceTransformerChain transformerChain) {
 
 		Resource cachedResource = this.cache.get(resource, Resource.class);
 		if (cachedResource != null) {

@@ -31,9 +31,9 @@ import org.springframework.transaction.config.TransactionManagementConfigUtils;
  * {@link org.springframework.transaction.annotation.Transactional} annotation.
  *
  * @author Juergen Hoeller
- * @since 5.1
  * @see EnableTransactionManagement
  * @see TransactionManagementConfigurationSelector
+ * @since 5.1
  */
 @Configuration
 public class AspectJJtaTransactionManagementConfiguration extends AspectJTransactionManagementConfiguration {

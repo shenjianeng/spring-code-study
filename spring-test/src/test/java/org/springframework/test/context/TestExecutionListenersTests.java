@@ -118,7 +118,7 @@ public class TestExecutionListenersTests {
 	@Test
 	public void customListenersDeclaredOnInterface() {
 		assertRegisteredListeners(ExplicitListenersOnTestInterfaceTestCase.class,
-			asList(FooTestExecutionListener.class, BarTestExecutionListener.class));
+				asList(FooTestExecutionListener.class, BarTestExecutionListener.class));
 	}
 
 	@Test
@@ -235,7 +235,7 @@ public class TestExecutionListenersTests {
 	static class NonInheritedListenersTestCase extends InheritedListenersTestCase {
 	}
 
-	@TestExecutionListeners({ FooTestExecutionListener.class, BarTestExecutionListener.class })
+	@TestExecutionListeners({FooTestExecutionListener.class, BarTestExecutionListener.class})
 	interface ExplicitListenersTestInterface {
 	}
 

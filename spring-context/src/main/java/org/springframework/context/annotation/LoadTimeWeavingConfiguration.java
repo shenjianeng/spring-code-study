@@ -37,9 +37,9 @@ import org.springframework.util.Assert;
  * javadoc for complete usage details.
  *
  * @author Chris Beams
- * @since 3.1
  * @see LoadTimeWeavingConfigurer
  * @see ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME
+ * @since 3.1
  */
 @Configuration
 public class LoadTimeWeavingConfiguration implements ImportAware, BeanClassLoaderAware {

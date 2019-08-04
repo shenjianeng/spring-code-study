@@ -29,6 +29,7 @@ public class FixedIntervalReconnectStrategy implements ReconnectStrategy {
 
 	/**
 	 * Create a new {@link FixedIntervalReconnectStrategy} instance.
+	 *
 	 * @param interval the frequency, in millisecond, at which to try to reconnect
 	 */
 	public FixedIntervalReconnectStrategy(long interval) {

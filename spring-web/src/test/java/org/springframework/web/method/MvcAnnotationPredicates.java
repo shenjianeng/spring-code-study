@@ -37,10 +37,9 @@ import org.springframework.web.bind.annotation.ValueConstants;
  * Predicates for {@code @MVC} annotations.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
- *
  * @see ResolvableMethod#annot(Predicate[])
  * @see ResolvableMethod.Builder#annot(Predicate[])
+ * @since 5.0
  */
 public class MvcAnnotationPredicates {
 
@@ -114,7 +113,6 @@ public class MvcAnnotationPredicates {
 	}
 
 
-
 	public static class ModelAttributePredicate implements Predicate<MethodParameter> {
 
 		private String name;
@@ -172,7 +170,6 @@ public class MvcAnnotationPredicates {
 		private boolean required = true;
 
 		private String defaultValue = ValueConstants.DEFAULT_NONE;
-
 
 
 		public RequestParamPredicate name(String name) {

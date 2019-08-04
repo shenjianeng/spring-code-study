@@ -49,7 +49,8 @@ public class FixedBackOff implements BackOff {
 
 	/**
 	 * Create an instance.
-	 * @param interval the interval between two attempts
+	 *
+	 * @param interval    the interval between two attempts
 	 * @param maxAttempts the maximum number of attempts
 	 */
 	public FixedBackOff(long interval, long maxAttempts) {
@@ -101,8 +102,7 @@ public class FixedBackOff implements BackOff {
 			this.currentAttempts++;
 			if (this.currentAttempts <= getMaxAttempts()) {
 				return getInterval();
-			}
-			else {
+			} else {
 				return STOP;
 			}
 		}

@@ -172,8 +172,7 @@ public class RestTemplateIntegrationTests extends AbstractMockWebServerTestCase 
 		try {
 			template.execute(baseUrl + "/status/notfound", HttpMethod.GET, null, null);
 			fail("HttpClientErrorException expected");
-		}
-		catch (HttpClientErrorException ex) {
+		} catch (HttpClientErrorException ex) {
 			assertEquals(HttpStatus.NOT_FOUND, ex.getStatusCode());
 			assertNotNull(ex.getStatusText());
 			assertNotNull(ex.getResponseBodyAsString());
@@ -185,8 +184,7 @@ public class RestTemplateIntegrationTests extends AbstractMockWebServerTestCase 
 		try {
 			template.execute(baseUrl + "/status/badrequest", HttpMethod.GET, null, null);
 			fail("HttpClientErrorException.BadRequest expected");
-		}
-		catch (HttpClientErrorException.BadRequest ex) {
+		} catch (HttpClientErrorException.BadRequest ex) {
 			assertEquals(HttpStatus.BAD_REQUEST, ex.getStatusCode());
 			assertEquals("400 Client Error", ex.getMessage());
 		}
@@ -197,8 +195,7 @@ public class RestTemplateIntegrationTests extends AbstractMockWebServerTestCase 
 		try {
 			template.execute(baseUrl + "/status/server", HttpMethod.GET, null, null);
 			fail("HttpServerErrorException expected");
-		}
-		catch (HttpServerErrorException ex) {
+		} catch (HttpServerErrorException ex) {
 			assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, ex.getStatusCode());
 			assertNotNull(ex.getStatusText());
 			assertNotNull(ex.getResponseBodyAsString());
@@ -307,7 +304,8 @@ public class RestTemplateIntegrationTests extends AbstractMockWebServerTestCase 
 		List<ParentClass> list = new ArrayList<>();
 		list.add(new Foo("foo"));
 		list.add(new Bar("bar"));
-		ParameterizedTypeReference<?> typeReference = new ParameterizedTypeReference<List<ParentClass>>() {};
+		ParameterizedTypeReference<?> typeReference = new ParameterizedTypeReference<List<ParentClass>>() {
+		};
 		RequestEntity<List<ParentClass>> entity = RequestEntity
 				.post(new URI(baseUrl + "/jsonpost"))
 				.contentType(new MediaType("application", "json", StandardCharsets.UTF_8))
@@ -323,9 +321,11 @@ public class RestTemplateIntegrationTests extends AbstractMockWebServerTestCase 
 	}
 
 
-	public interface MyJacksonView1 {}
+	public interface MyJacksonView1 {
+	}
 
-	public interface MyJacksonView2 {}
+	public interface MyJacksonView2 {
+	}
 
 
 	public static class MySampleBean {

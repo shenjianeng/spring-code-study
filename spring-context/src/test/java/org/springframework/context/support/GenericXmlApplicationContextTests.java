@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link GenericXmlApplicationContext}.
- *
+ * <p>
  * See SPR-7530.
  *
  * @author Chris Beams

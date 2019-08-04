@@ -48,6 +48,7 @@ public class ToStringCreator {
 
 	/**
 	 * Create a ToStringCreator for the given object.
+	 *
 	 * @param obj the object to be stringified
 	 */
 	public ToStringCreator(Object obj) {
@@ -56,7 +57,8 @@ public class ToStringCreator {
 
 	/**
 	 * Create a ToStringCreator for the given object, using the provided style.
-	 * @param obj the object to be stringified
+	 *
+	 * @param obj    the object to be stringified
 	 * @param styler the ValueStyler encapsulating pretty-print instructions
 	 */
 	public ToStringCreator(Object obj, @Nullable ValueStyler styler) {
@@ -65,7 +67,8 @@ public class ToStringCreator {
 
 	/**
 	 * Create a ToStringCreator for the given object, using the provided style.
-	 * @param obj the object to be stringified
+	 *
+	 * @param obj    the object to be stringified
 	 * @param styler the ToStringStyler encapsulating pretty-print instructions
 	 */
 	public ToStringCreator(Object obj, @Nullable ToStringStyler styler) {
@@ -78,8 +81,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a byte field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, byte value) {
@@ -88,8 +92,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a short field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, short value) {
@@ -98,8 +103,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a integer field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, int value) {
@@ -108,8 +114,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a long field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, long value) {
@@ -118,8 +125,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a float field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, float value) {
@@ -128,8 +136,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a double field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, double value) {
@@ -138,8 +147,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a boolean field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, boolean value) {
@@ -148,8 +158,9 @@ public class ToStringCreator {
 
 	/**
 	 * Append a field value.
+	 *
 	 * @param fieldName the name of the field, usually the member variable name
-	 * @param value the field value
+	 * @param value     the field value
 	 * @return this, to support call-chaining
 	 */
 	public ToStringCreator append(String fieldName, @Nullable Object value) {
@@ -161,14 +172,14 @@ public class ToStringCreator {
 	private void printFieldSeparatorIfNecessary() {
 		if (this.styledFirstField) {
 			this.styler.styleFieldSeparator(this.buffer);
-		}
-		else {
+		} else {
 			this.styledFirstField = true;
 		}
 	}
 
 	/**
 	 * Append the provided value.
+	 *
 	 * @param value the value to append
 	 * @return this, to support call-chaining.
 	 */

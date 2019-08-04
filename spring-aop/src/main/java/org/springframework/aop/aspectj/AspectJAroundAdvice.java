@@ -73,8 +73,9 @@ public class AspectJAroundAdvice extends AbstractAspectJAdvice implements Method
 	/**
 	 * Return the ProceedingJoinPoint for the current invocation,
 	 * instantiating it lazily if it hasn't been bound to the thread already.
+	 *
 	 * @param rmi the current Spring AOP ReflectiveMethodInvocation,
-	 * which we'll use for attribute binding
+	 *            which we'll use for attribute binding
 	 * @return the ProceedingJoinPoint to make available to advice methods
 	 */
 	protected ProceedingJoinPoint lazyGetProceedingJoinPoint(ProxyMethodInvocation rmi) {

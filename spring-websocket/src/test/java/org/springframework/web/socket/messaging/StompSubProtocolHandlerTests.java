@@ -66,6 +66,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Test fixture for {@link StompSubProtocolHandler} tests.
+ *
  * @author Rossen Stoyanchev
  */
 public class StompSubProtocolHandlerTests {
@@ -131,7 +132,7 @@ public class StompSubProtocolHandlerTests {
 
 		SimpMessageHeaderAccessor ackAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.CONNECT_ACK);
 		ackAccessor.setHeader(SimpMessageHeaderAccessor.CONNECT_MESSAGE_HEADER, connectMessage);
-		ackAccessor.setHeader(SimpMessageHeaderAccessor.HEART_BEAT_HEADER, new long[] {15000, 15000});
+		ackAccessor.setHeader(SimpMessageHeaderAccessor.HEART_BEAT_HEADER, new long[]{15000, 15000});
 		Message<byte[]> ackMessage = MessageBuilder.createMessage(EMPTY_PAYLOAD, ackAccessor.getMessageHeaders());
 		this.protocolHandler.handleMessageToClient(this.session, ackMessage);
 
@@ -304,14 +305,14 @@ public class StompSubProtocolHandlerTests {
 		assertNotNull(SimpMessageHeaderAccessor.getUser(actual.getHeaders()));
 		assertEquals("joe", SimpMessageHeaderAccessor.getUser(actual.getHeaders()).getName());
 		assertNotNull(SimpMessageHeaderAccessor.getHeartbeat(actual.getHeaders()));
-		assertArrayEquals(new long[] {10000, 10000}, SimpMessageHeaderAccessor.getHeartbeat(actual.getHeaders()));
+		assertArrayEquals(new long[]{10000, 10000}, SimpMessageHeaderAccessor.getHeartbeat(actual.getHeaders()));
 
 		StompHeaderAccessor stompAccessor = StompHeaderAccessor.wrap(actual);
 		assertEquals(StompCommand.STOMP, stompAccessor.getCommand());
 		assertEquals("guest", stompAccessor.getLogin());
 		assertEquals("guest", stompAccessor.getPasscode());
-		assertArrayEquals(new long[] {10000, 10000}, stompAccessor.getHeartbeat());
-		assertEquals(new HashSet<>(Arrays.asList("1.1","1.0")), stompAccessor.getAcceptVersion());
+		assertArrayEquals(new long[]{10000, 10000}, stompAccessor.getHeartbeat());
+		assertEquals(new HashSet<>(Arrays.asList("1.1", "1.0")), stompAccessor.getAcceptVersion());
 		assertEquals(0, this.session.getSentMessages().size());
 	}
 
@@ -493,6 +494,7 @@ public class StompSubProtocolHandlerTests {
 				assertThat(simpAttributes.getAttribute("name"), is("value"));
 				return true;
 			}
+
 			@Override
 			public boolean send(Message<?> message, long timeout) {
 				return false;

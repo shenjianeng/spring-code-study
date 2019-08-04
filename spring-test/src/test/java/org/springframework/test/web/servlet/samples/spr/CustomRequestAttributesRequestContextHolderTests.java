@@ -54,8 +54,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
  * is not reused by MockMvc.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see RequestContextHolderTests
+ * @since 4.2
  */
 public class CustomRequestAttributesRequestContextHolderTests {
 

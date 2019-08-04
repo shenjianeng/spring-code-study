@@ -91,6 +91,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	 * Configure "streaming" media types for which flushing should be performed
 	 * automatically vs at the end of the stream.
 	 * <p>By default this is set to {@link MediaType#APPLICATION_STREAM_JSON}.
+	 *
 	 * @param mediaTypes one or more media types to add to the list
 	 * @see HttpMessageEncoder#getStreamingMediaTypes()
 	 */
@@ -109,7 +110,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<?> inputStream, DataBufferFactory bufferFactory,
-			ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+								   ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		Assert.notNull(inputStream, "'inputStream' must not be null");
 		Assert.notNull(bufferFactory, "'bufferFactory' must not be null");
@@ -120,8 +121,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 		if (inputStream instanceof Mono) {
 			return Mono.from(inputStream).map(value ->
 					encodeValue(value, mimeType, bufferFactory, elementType, hints, encoding)).flux();
-		}
-		else {
+		} else {
 			return this.streamingMediaTypes.stream()
 					.filter(mediaType -> mediaType.isCompatibleWith(mimeType))
 					.findFirst()
@@ -145,7 +145,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	}
 
 	private DataBuffer encodeValue(Object value, @Nullable MimeType mimeType, DataBufferFactory bufferFactory,
-			ResolvableType elementType, @Nullable Map<String, Object> hints, JsonEncoding encoding) {
+								   ResolvableType elementType, @Nullable Map<String, Object> hints, JsonEncoding encoding) {
 
 		if (!Hints.isLoggingSuppressed(hints)) {
 			LogFormatUtils.traceDebug(logger, traceOn -> {
@@ -174,18 +174,14 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 			writer.writeValue(generator, value);
 			generator.flush();
 			release = false;
-		}
-		catch (InvalidDefinitionException ex) {
+		} catch (InvalidDefinitionException ex) {
 			throw new CodecException("Type definition error: " + ex.getType(), ex);
-		}
-		catch (JsonProcessingException ex) {
+		} catch (JsonProcessingException ex) {
 			throw new EncodingException("JSON encoding error: " + ex.getOriginalMessage(), ex);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException("Unexpected I/O error while writing to data buffer",
 					ex);
-		}
-		finally {
+		} finally {
 			if (release) {
 				DataBufferUtils.release(buffer);
 			}
@@ -195,13 +191,14 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	}
 
 	protected ObjectWriter customizeWriter(ObjectWriter writer, @Nullable MimeType mimeType,
-			ResolvableType elementType, @Nullable Map<String, Object> hints) {
+										   ResolvableType elementType, @Nullable Map<String, Object> hints) {
 
 		return writer;
 	}
 
 	/**
 	 * Determine the JSON encoding to use for the given mime type.
+	 *
 	 * @param mimeType the mime type as requested by the caller
 	 * @return the JSON encoding to use (never {@code null})
 	 * @since 5.0.5
@@ -233,7 +230,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 
 	@Override
 	public Map<String, Object> getEncodeHints(@Nullable ResolvableType actualType, ResolvableType elementType,
-			@Nullable MediaType mediaType, ServerHttpRequest request, ServerHttpResponse response) {
+											  @Nullable MediaType mediaType, ServerHttpRequest request, ServerHttpResponse response) {
 
 		return (actualType != null ? getHints(actualType) : Hints.none());
 	}

@@ -34,6 +34,7 @@ public class SimpleConnectionHandle implements ConnectionHandle {
 
 	/**
 	 * Create a new SimpleConnectionHandle for the given Connection.
+	 *
 	 * @param connection the JDBC Connection
 	 */
 	public SimpleConnectionHandle(Connection connection) {

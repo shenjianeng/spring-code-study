@@ -28,8 +28,8 @@ import java.lang.annotation.Target;
  * Only valid when used on a JavaBean getter or setter.
  *
  * @author Rob Harrop
- * @since 1.2
  * @see org.springframework.jmx.export.metadata.ManagedAttribute
+ * @since 1.2
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

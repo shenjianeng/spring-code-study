@@ -133,8 +133,7 @@ public class FreeMarkerMacroTests {
 
 		try {
 			fv.render(model, request, response);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertTrue(ex instanceof ServletException);
 			assertTrue(ex.getMessage().contains(FreeMarkerView.SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE));
 		}
@@ -306,7 +305,7 @@ public class FreeMarkerMacroTests {
 		fred.setJedi(true);
 		darren.setSpouse(fred);
 		darren.setJedi(true);
-		darren.setStringArray(new String[] {"John", "Fred"});
+		darren.setStringArray(new String[]{"John", "Fred"});
 		request.setAttribute("command", darren);
 
 		Map<String, String> names = new HashMap<>();
@@ -319,7 +318,7 @@ public class FreeMarkerMacroTests {
 		Map<String, Object> model = new HashMap<>();
 		model.put("command", darren);
 		model.put("springMacroRequestContext", rc);
-		model.put("msgArgs", new Object[] { "World" });
+		model.put("msgArgs", new Object[]{"World"});
 		model.put("nameOptionMap", names);
 		model.put("options", names.values());
 

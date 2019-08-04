@@ -34,6 +34,7 @@ public class JaxWsSoapFaultException extends SoapFaultException {
 
 	/**
 	 * Constructor for JaxWsSoapFaultException.
+	 *
 	 * @param original the original JAX-WS SOAPFaultException to wrap
 	 */
 	public JaxWsSoapFaultException(SOAPFaultException original) {

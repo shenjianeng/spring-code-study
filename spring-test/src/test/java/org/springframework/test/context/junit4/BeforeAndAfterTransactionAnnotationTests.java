@@ -73,11 +73,11 @@ public class BeforeAndAfterTransactionAnnotationTests extends AbstractTransactio
 	@AfterClass
 	public static void afterClass() {
 		assertEquals("Verifying the final number of rows in the person table after all tests.", 3,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 		assertEquals("Verifying the total number of calls to beforeTransaction().", 2,
-			BeforeAndAfterTransactionAnnotationTests.numBeforeTransactionCalls);
+				BeforeAndAfterTransactionAnnotationTests.numBeforeTransactionCalls);
 		assertEquals("Verifying the total number of calls to afterTransaction().", 2,
-			BeforeAndAfterTransactionAnnotationTests.numAfterTransactionCalls);
+				BeforeAndAfterTransactionAnnotationTests.numAfterTransactionCalls);
 	}
 
 	@BeforeTransaction
@@ -96,7 +96,7 @@ public class BeforeAndAfterTransactionAnnotationTests extends AbstractTransactio
 		BeforeAndAfterTransactionAnnotationTests.numAfterTransactionCalls++;
 		assertEquals("Deleting yoda", 1, deletePerson(jdbcTemplate, YODA));
 		assertEquals("Verifying the number of rows in the person table after a transactional test method.", 0,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Before
@@ -121,7 +121,7 @@ public class BeforeAndAfterTransactionAnnotationTests extends AbstractTransactio
 		assertInTransaction(true);
 		assertEquals("Adding jane", 1, addPerson(jdbcTemplate, JANE));
 		assertEquals("Verifying the number of rows in the person table within transactionalMethod1().", 2,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Test
@@ -130,7 +130,7 @@ public class BeforeAndAfterTransactionAnnotationTests extends AbstractTransactio
 		assertEquals("Adding jane", 1, addPerson(jdbcTemplate, JANE));
 		assertEquals("Adding sue", 1, addPerson(jdbcTemplate, SUE));
 		assertEquals("Verifying the number of rows in the person table within transactionalMethod2().", 3,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 	@Test
@@ -141,7 +141,7 @@ public class BeforeAndAfterTransactionAnnotationTests extends AbstractTransactio
 		assertEquals("Adding leia", 1, addPerson(jdbcTemplate, LEIA));
 		assertEquals("Adding yoda", 1, addPerson(jdbcTemplate, YODA));
 		assertEquals("Verifying the number of rows in the person table without a transaction.", 3,
-			countRowsInPersonTable(jdbcTemplate));
+				countRowsInPersonTable(jdbcTemplate));
 	}
 
 }

@@ -50,7 +50,7 @@ import java.lang.annotation.Target;
  * &#064;Service
  * public @interface PrivilegedService { ... }
  * </pre>
- *
+ * <p>
  * If the above annotation is present on a type, it will be indexed with two
  * stereotypes: {@code org.springframework.stereotype.Component} and
  * {@code com.example.PrivilegedService}. While {@link Service} isn't directly
@@ -58,7 +58,7 @@ import java.lang.annotation.Target;
  *
  * <p>It is also possible to index all implementations of a certain interface or
  * all the subclasses of a given class by adding {@code @Indexed} on it.
- *
+ * <p>
  * Consider this base interface:
  * <pre class="code">
  * package com.example;
@@ -66,7 +66,7 @@ import java.lang.annotation.Target;
  * &#064;Indexed
  * public interface AdminService { ... }
  * </pre>
- *
+ * <p>
  * Now, consider an implementation of this {@code AdminService} somewhere:
  * <pre class="code">
  * package com.example.foo;
@@ -75,7 +75,7 @@ import java.lang.annotation.Target;
  *
  * public class ConfigurationAdminService implements AdminService { ... }
  * </pre>
- *
+ * <p>
  * Because this class implements an interface that is indexed, it will be
  * automatically included with the {@code com.example.AdminService} stereotype.
  * If there are more {@code @Indexed} interfaces and/or superclasses in the

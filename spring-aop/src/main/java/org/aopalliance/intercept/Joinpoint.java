@@ -43,6 +43,7 @@ public interface Joinpoint {
 	 * Proceed to the next interceptor in the chain.
 	 * <p>The implementation and the semantics of this method depends
 	 * on the actual joinpoint type (see the children interfaces).
+	 *
 	 * @return see the children interfaces' proceed definition
 	 * @throws Throwable if the joinpoint throws an exception
 	 */
@@ -51,6 +52,7 @@ public interface Joinpoint {
 	/**
 	 * Return the object that holds the current joinpoint's static part.
 	 * <p>For instance, the target object for an invocation.
+	 *
 	 * @return the object (can be null if the accessible object is static)
 	 */
 	Object getThis();

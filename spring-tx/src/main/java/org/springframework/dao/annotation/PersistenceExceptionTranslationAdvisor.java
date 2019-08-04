@@ -34,9 +34,9 @@ import org.springframework.dao.support.PersistenceExceptionTranslator;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.dao.DataAccessException
  * @see org.springframework.dao.support.PersistenceExceptionTranslator
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class PersistenceExceptionTranslationAdvisor extends AbstractPointcutAdvisor {
@@ -48,8 +48,9 @@ public class PersistenceExceptionTranslationAdvisor extends AbstractPointcutAdvi
 
 	/**
 	 * Create a new PersistenceExceptionTranslationAdvisor.
+	 *
 	 * @param persistenceExceptionTranslator the PersistenceExceptionTranslator to use
-	 * @param repositoryAnnotationType the annotation type to check for
+	 * @param repositoryAnnotationType       the annotation type to check for
 	 */
 	public PersistenceExceptionTranslationAdvisor(
 			PersistenceExceptionTranslator persistenceExceptionTranslator,
@@ -61,8 +62,9 @@ public class PersistenceExceptionTranslationAdvisor extends AbstractPointcutAdvi
 
 	/**
 	 * Create a new PersistenceExceptionTranslationAdvisor.
-	 * @param beanFactory the ListableBeanFactory to obtaining all
-	 * PersistenceExceptionTranslators from
+	 *
+	 * @param beanFactory              the ListableBeanFactory to obtaining all
+	 *                                 PersistenceExceptionTranslators from
 	 * @param repositoryAnnotationType the annotation type to check for
 	 */
 	PersistenceExceptionTranslationAdvisor(

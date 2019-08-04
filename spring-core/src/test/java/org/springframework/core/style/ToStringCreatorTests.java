@@ -70,7 +70,7 @@ public class ToStringCreatorTests {
 			}
 		};
 		assertEquals("[ToStringCreatorTests.4@" + ObjectUtils.getIdentityHexString(stringy) +
-				" familyFavoriteSport = map['Keri' -> 'Softball', 'Scot' -> 'Fishing', 'Keith' -> 'Flag Football']]",
+						" familyFavoriteSport = map['Keri' -> 'Softball', 'Scot' -> 'Fishing', 'Keith' -> 'Flag Football']]",
 				stringy.toString());
 	}
 
@@ -84,7 +84,7 @@ public class ToStringCreatorTests {
 
 	@Test
 	public void defaultStyleArray() {
-		SomeObject[] array = new SomeObject[] {s1, s2, s3};
+		SomeObject[] array = new SomeObject[]{s1, s2, s3};
 		String str = new ToStringCreator(array).toString();
 		assertEquals("[@" + ObjectUtils.getIdentityHexString(array) +
 				" array<ToStringCreatorTests.SomeObject>[A, B, C]]", str);
@@ -92,7 +92,7 @@ public class ToStringCreatorTests {
 
 	@Test
 	public void primitiveArrays() {
-		int[] integers = new int[] {0, 1, 2, 3, 4};
+		int[] integers = new int[]{0, 1, 2, 3, 4};
 		String str = new ToStringCreator(integers).toString();
 		assertEquals("[@" + ObjectUtils.getIdentityHexString(integers) + " array<Integer>[0, 1, 2, 3, 4]]", str);
 	}

@@ -80,21 +80,27 @@ import org.springframework.web.util.TagUtils;
  *
  * @author Alef Arendsen
  * @author Juergen Hoeller
- * @since 20.09.2003
  * @see BindTag
+ * @since 20.09.2003
  */
 @SuppressWarnings("serial")
 public class TransformTag extends HtmlEscapingAwareTag {
 
-	/** the value to transform using the appropriate property editor. */
+	/**
+	 * the value to transform using the appropriate property editor.
+	 */
 	@Nullable
 	private Object value;
 
-	/** the variable to put the result in. */
+	/**
+	 * the variable to put the result in.
+	 */
 	@Nullable
 	private String var;
 
-	/** the scope of the variable the result will be put in. */
+	/**
+	 * the scope of the variable the result will be put in.
+	 */
 	private String scope = TagUtils.SCOPE_PAGE;
 
 
@@ -112,6 +118,7 @@ public class TransformTag extends HtmlEscapingAwareTag {
 	/**
 	 * Set PageContext attribute name under which to expose
 	 * a variable that contains the result of the transformation.
+	 *
 	 * @see #setScope
 	 * @see javax.servlet.jsp.PageContext#setAttribute
 	 */
@@ -122,6 +129,7 @@ public class TransformTag extends HtmlEscapingAwareTag {
 	/**
 	 * Set the scope to export the variable to.
 	 * Default is SCOPE_PAGE ("page").
+	 *
 	 * @see #setVar
 	 * @see org.springframework.web.util.TagUtils#SCOPE_PAGE
 	 * @see javax.servlet.jsp.PageContext#setAttribute
@@ -147,21 +155,18 @@ public class TransformTag extends HtmlEscapingAwareTag {
 				// If an editor was found, edit the value.
 				editor.setValue(this.value);
 				result = editor.getAsText();
-			}
-			else {
+			} else {
 				// Else, just do a toString.
 				result = this.value.toString();
 			}
 			result = htmlEscape(result);
 			if (this.var != null) {
 				this.pageContext.setAttribute(this.var, result, TagUtils.getScope(this.scope));
-			}
-			else {
+			} else {
 				try {
 					// Else, just print it out.
 					this.pageContext.getOut().print(result);
-				}
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					throw new JspException(ex);
 				}
 			}

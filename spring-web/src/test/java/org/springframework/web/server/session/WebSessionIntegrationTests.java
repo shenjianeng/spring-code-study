@@ -193,7 +193,7 @@ public class WebSessionIntegrationTests extends AbstractHttpHandlerIntegrationTe
 		assertNotNull(headerValues);
 		assertEquals(1, headerValues.size());
 
-		for (String s : headerValues.get(0).split(";")){
+		for (String s : headerValues.get(0).split(";")) {
 			if (s.startsWith("SESSION=")) {
 				return s.substring("SESSION=".length());
 			}
@@ -221,15 +221,12 @@ public class WebSessionIntegrationTests extends AbstractHttpHandlerIntegrationTe
 				return exchange.getSession().doOnNext(session -> {
 					// Don't do anything, leave it expired...
 				}).then();
-			}
-			else if (exchange.getRequest().getQueryParams().containsKey("changeId")) {
+			} else if (exchange.getRequest().getQueryParams().containsKey("changeId")) {
 				return exchange.getSession().flatMap(session ->
 						session.changeSessionId().doOnSuccess(aVoid -> updateSessionAttribute(session)));
-			}
-			else if (exchange.getRequest().getQueryParams().containsKey("invalidate")) {
+			} else if (exchange.getRequest().getQueryParams().containsKey("invalidate")) {
 				return exchange.getSession().doOnNext(WebSession::invalidate).then();
-			}
-			else {
+			} else {
 				return exchange.getSession().doOnSuccess(this::updateSessionAttribute).then();
 			}
 		}

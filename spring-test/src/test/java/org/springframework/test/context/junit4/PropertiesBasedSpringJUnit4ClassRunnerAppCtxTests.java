@@ -50,9 +50,9 @@ import static org.junit.Assert.*;
  * </p>
  *
  * @author Sam Brannen
- * @since 2.5
  * @see GenericPropertiesContextLoader
  * @see SpringJUnit4ClassRunnerAppCtxTests
+ * @since 2.5
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(loader = GenericPropertiesContextLoader.class)

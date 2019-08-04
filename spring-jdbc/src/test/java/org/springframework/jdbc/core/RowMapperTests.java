@@ -111,7 +111,7 @@ public class RowMapperTests {
 
 	@Test
 	public void queryWithArgsAndRowMapper() throws SQLException {
-		result = template.query("some SQL", new Object[] { "test1", "test2" }, testRowMapper);
+		result = template.query("some SQL", new Object[]{"test1", "test2"}, testRowMapper);
 		preparedStatement.setString(1, "test1");
 		preparedStatement.setString(2, "test2");
 		preparedStatement.close();
@@ -120,8 +120,8 @@ public class RowMapperTests {
 	@Test
 	public void queryWithArgsAndTypesAndRowMapper() throws SQLException {
 		result = template.query("some SQL",
-				new Object[] { "test1", "test2" },
-				new int[] { Types.VARCHAR, Types.VARCHAR },
+				new Object[]{"test1", "test2"},
+				new int[]{Types.VARCHAR, Types.VARCHAR},
 				testRowMapper);
 		verify(preparedStatement).setString(1, "test1");
 		verify(preparedStatement).setString(2, "test2");

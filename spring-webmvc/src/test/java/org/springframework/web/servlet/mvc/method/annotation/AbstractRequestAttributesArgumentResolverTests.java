@@ -92,8 +92,7 @@ public abstract class AbstractRequestAttributesArgumentResolverTests {
 		try {
 			testResolveArgument(param);
 			fail("Should be required by default");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			assertTrue(ex.getMessage().startsWith("Missing "));
 		}
 
@@ -164,16 +163,16 @@ public abstract class AbstractRequestAttributesArgumentResolverTests {
 	private void handleWithRequestAttribute(
 			@RequestAttribute Foo foo,
 			@RequestAttribute("specialFoo") Foo namedFoo,
-			@RequestAttribute(name="foo", required = false) Foo notRequiredFoo,
-			@RequestAttribute(name="foo") Optional<Foo> optionalFoo) {
+			@RequestAttribute(name = "foo", required = false) Foo notRequiredFoo,
+			@RequestAttribute(name = "foo") Optional<Foo> optionalFoo) {
 	}
 
 	@SuppressWarnings("unused")
 	private void handleWithSessionAttribute(
 			@SessionAttribute Foo foo,
 			@SessionAttribute("specialFoo") Foo namedFoo,
-			@SessionAttribute(name="foo", required = false) Foo notRequiredFoo,
-			@SessionAttribute(name="foo") Optional<Foo> optionalFoo) {
+			@SessionAttribute(name = "foo", required = false) Foo notRequiredFoo,
+			@SessionAttribute(name = "foo") Optional<Foo> optionalFoo) {
 	}
 
 

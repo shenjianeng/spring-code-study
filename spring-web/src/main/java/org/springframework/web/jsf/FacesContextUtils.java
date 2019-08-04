@@ -32,9 +32,9 @@ import org.springframework.web.util.WebUtils;
  * <p>Analogous to Spring's WebApplicationContextUtils for the ServletContext.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see org.springframework.web.context.ContextLoader
  * @see org.springframework.web.context.support.WebApplicationContextUtils
+ * @since 1.1
  */
 public abstract class FacesContextUtils {
 
@@ -43,6 +43,7 @@ public abstract class FacesContextUtils {
 	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
 	 * <p>Will rethrow an exception that happened on root context startup,
 	 * to differentiate between a failed context startup and no context at all.
+	 *
 	 * @param fc the FacesContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app, or {@code null} if none
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
@@ -72,6 +73,7 @@ public abstract class FacesContextUtils {
 	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
 	 * <p>Will rethrow an exception that happened on root context startup,
 	 * to differentiate between a failed context startup and no context at all.
+	 *
 	 * @param fc the FacesContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app
 	 * @throws IllegalStateException if the root WebApplicationContext could not be found
@@ -100,6 +102,7 @@ public abstract class FacesContextUtils {
 	 * as well, since it will always be the same object reference for the
 	 * same active logical session. However, this is not guaranteed across
 	 * different servlet containers; the only 100% safe way is a session mutex.
+	 *
 	 * @param fc the FacesContext to find the session mutex for
 	 * @return the mutex object (never {@code null})
 	 * @see org.springframework.web.util.WebUtils#SESSION_MUTEX_ATTRIBUTE

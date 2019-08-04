@@ -41,7 +41,8 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 	/**
 	 * Create a new AbstractSubProtocolEvent.
-	 * @param source the component that published the event (never {@code null})
+	 *
+	 * @param source  the component that published the event (never {@code null})
 	 * @param message the incoming message (never {@code null})
 	 */
 	protected AbstractSubProtocolEvent(Object source, Message<byte[]> message) {
@@ -50,7 +51,8 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 	/**
 	 * Create a new AbstractSubProtocolEvent.
-	 * @param source the component that published the event (never {@code null})
+	 *
+	 * @param source  the component that published the event (never {@code null})
 	 * @param message the incoming message (never {@code null})
 	 */
 	protected AbstractSubProtocolEvent(Object source, Message<byte[]> message, @Nullable Principal user) {

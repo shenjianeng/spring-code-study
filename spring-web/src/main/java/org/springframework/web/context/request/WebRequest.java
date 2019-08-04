@@ -30,16 +30,17 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Brian Clozel
- * @since 2.0
  * @see WebRequestInterceptor
+ * @since 2.0
  */
 public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Return the request header of the given name, or {@code null} if none.
 	 * <p>Retrieves the first header value in case of a multi-value header.
-	 * @since 3.0
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getHeader(String)
+	 * @since 3.0
 	 */
 	@Nullable
 	String getHeader(String headerName);
@@ -48,22 +49,25 @@ public interface WebRequest extends RequestAttributes {
 	 * Return the request header values for the given header name,
 	 * or {@code null} if none.
 	 * <p>A single-value header will be exposed as an array with a single element.
-	 * @since 3.0
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getHeaders(String)
+	 * @since 3.0
 	 */
 	@Nullable
 	String[] getHeaderValues(String headerName);
 
 	/**
 	 * Return a Iterator over request header names.
-	 * @since 3.0
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getHeaderNames()
+	 * @since 3.0
 	 */
 	Iterator<String> getHeaderNames();
 
 	/**
 	 * Return the request parameter of the given name, or {@code null} if none.
 	 * <p>Retrieves the first parameter value in case of a multi-value parameter.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getParameter(String)
 	 */
 	@Nullable
@@ -73,6 +77,7 @@ public interface WebRequest extends RequestAttributes {
 	 * Return the request parameter values for the given parameter name,
 	 * or {@code null} if none.
 	 * <p>A single-value parameter will be exposed as an array with a single element.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)
 	 */
 	@Nullable
@@ -80,8 +85,9 @@ public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Return a Iterator over request parameter names.
-	 * @since 3.0
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getParameterNames()
+	 * @since 3.0
 	 */
 	Iterator<String> getParameterNames();
 
@@ -89,12 +95,14 @@ public interface WebRequest extends RequestAttributes {
 	 * Return a immutable Map of the request parameters, with parameter names as map keys
 	 * and parameter values as map values. The map values will be of type String array.
 	 * <p>A single-value parameter will be exposed as an array with a single element.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getParameterMap()
 	 */
 	Map<String, String[]> getParameterMap();
 
 	/**
 	 * Return the primary Locale for this request.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
 	 */
 	Locale getLocale();
@@ -102,12 +110,14 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Return the context path for this request
 	 * (usually the base path that the current web application is mapped to).
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getContextPath()
 	 */
 	String getContextPath();
 
 	/**
 	 * Return the remote user for this request, if any.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getRemoteUser()
 	 */
 	@Nullable
@@ -115,6 +125,7 @@ public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Return the user principal for this request, if any.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()
 	 */
 	@Nullable
@@ -122,6 +133,7 @@ public interface WebRequest extends RequestAttributes {
 
 	/**
 	 * Determine whether the user is in the given role for this request.
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#isUserInRole(String)
 	 */
 	boolean isUserInRole(String role);
@@ -129,6 +141,7 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Return whether this request has been sent over a secure transport
 	 * mechanism (such as SSL).
+	 *
 	 * @see javax.servlet.http.HttpServletRequest#isSecure()
 	 */
 	boolean isSecure();
@@ -161,9 +174,10 @@ public interface WebRequest extends RequestAttributes {
 	 * <p>If the "If-Modified-Since" header is set but cannot be parsed
 	 * to a date value, this method will ignore the header and proceed
 	 * with setting the last-modified timestamp on the response.
+	 *
 	 * @param lastModifiedTimestamp the last-modified timestamp in
-	 * milliseconds that the application determined for the underlying
-	 * resource
+	 *                              milliseconds that the application determined for the underlying
+	 *                              resource
 	 * @return whether the request qualifies as not modified,
 	 * allowing to abort request processing and relying on the response
 	 * telling the client that the content has not been modified
@@ -193,9 +207,10 @@ public interface WebRequest extends RequestAttributes {
 	 * a strong entity tag and a Last-Modified value,
 	 * as recommended by the HTTP specification,
 	 * then you should use {@link #checkNotModified(String, long)}.
+	 *
 	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
+	 *             for the underlying resource. This parameter will be padded
+	 *             with quotes (") if necessary.
 	 * @return true if the request does not require further processing.
 	 */
 	boolean checkNotModified(String etag);
@@ -225,12 +240,13 @@ public interface WebRequest extends RequestAttributes {
 	 * setting both ETag and Last-Modified values, but you can also
 	 * use {@code #checkNotModified(String)} or
 	 * {@link #checkNotModified(long)}.
-	 * @param etag the entity tag that the application determined
-	 * for the underlying resource. This parameter will be padded
-	 * with quotes (") if necessary.
+	 *
+	 * @param etag                  the entity tag that the application determined
+	 *                              for the underlying resource. This parameter will be padded
+	 *                              with quotes (") if necessary.
 	 * @param lastModifiedTimestamp the last-modified timestamp in
-	 * milliseconds that the application determined for the underlying
-	 * resource
+	 *                              milliseconds that the application determined for the underlying
+	 *                              resource
 	 * @return true if the request does not require further processing.
 	 * @since 4.2
 	 */
@@ -239,8 +255,9 @@ public interface WebRequest extends RequestAttributes {
 	/**
 	 * Get a short description of this request,
 	 * typically containing request URI and session id.
+	 *
 	 * @param includeClientInfo whether to include client-specific
-	 * information such as session id and user name
+	 *                          information such as session id and user name
 	 * @return the requested description as String
 	 */
 	String getDescription(boolean includeClientInfo);

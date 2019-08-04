@@ -86,6 +86,7 @@ public class WebSocketIntegrationTests extends AbstractWebSocketIntegrationTests
 					public List<String> getSubProtocols() {
 						return Collections.singletonList(protocol);
 					}
+
 					@Override
 					public Mono<Void> handle(WebSocketSession session) {
 						infoRef.set(session.getHandshakeInfo());

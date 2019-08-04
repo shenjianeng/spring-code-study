@@ -53,8 +53,7 @@ class ReadOnlyHttpHeaders extends HttpHeaders {
 	public MediaType getContentType() {
 		if (this.cachedContentType != null) {
 			return this.cachedContentType;
-		}
-		else {
+		} else {
 			MediaType contentType = super.getContentType();
 			this.cachedContentType = contentType;
 			return contentType;
@@ -65,8 +64,7 @@ class ReadOnlyHttpHeaders extends HttpHeaders {
 	public List<MediaType> getAccept() {
 		if (this.cachedAccept != null) {
 			return this.cachedAccept;
-		}
-		else {
+		} else {
 			List<MediaType> accept = super.getAccept();
 			this.cachedAccept = accept;
 			return accept;

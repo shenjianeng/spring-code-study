@@ -63,8 +63,7 @@ public class BufferingClientHttpRequestFactoryTests extends AbstractHttpRequestF
 			assertTrue("Invalid body", Arrays.equals(body, result));
 			FileCopyUtils.copyToByteArray(response.getBody());
 			assertTrue("Invalid body", Arrays.equals(body, result));
-		}
-		finally {
+		} finally {
 			response.close();
 		}
 	}

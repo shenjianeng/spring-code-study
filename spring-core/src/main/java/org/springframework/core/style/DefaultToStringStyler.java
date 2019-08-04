@@ -38,6 +38,7 @@ public class DefaultToStringStyler implements ToStringStyler {
 
 	/**
 	 * Create a new DefaultToStringStyler.
+	 *
 	 * @param valueStyler the ValueStyler to use
 	 */
 	public DefaultToStringStyler(ValueStyler valueStyler) {
@@ -58,8 +59,7 @@ public class DefaultToStringStyler implements ToStringStyler {
 		if (!obj.getClass().isArray()) {
 			buffer.append('[').append(ClassUtils.getShortName(obj.getClass()));
 			styleIdentityHashCode(buffer, obj);
-		}
-		else {
+		} else {
 			buffer.append('[');
 			styleIdentityHashCode(buffer, obj);
 			buffer.append(' ');

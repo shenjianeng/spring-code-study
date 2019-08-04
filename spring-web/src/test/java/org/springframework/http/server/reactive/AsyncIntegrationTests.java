@@ -67,8 +67,8 @@ public class AsyncIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 		@Override
 		public Mono<Void> handle(ServerHttpRequest request, ServerHttpResponse response) {
 			return response.writeWith(Flux.just("h", "e", "l", "l", "o")
-										.delayElements(Duration.ofMillis(100))
-										.publishOn(asyncGroup)
+					.delayElements(Duration.ofMillis(100))
+					.publishOn(asyncGroup)
 					.collect(dataBufferFactory::allocateBuffer, (buffer, str) -> buffer.write(str.getBytes())));
 		}
 	}

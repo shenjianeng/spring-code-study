@@ -39,17 +39,17 @@ import org.springframework.lang.Nullable;
  * Map&lt;String, Object&gt; in = new HashMap&lt;String, Object&gt;();
  * in.put("myarray", new AbstractSqlTypeValue() {
  *   public Object createTypeValue(Connection con, int sqlType, String typeName) throws SQLException {
- *	   oracle.sql.ArrayDescriptor desc = new oracle.sql.ArrayDescriptor(typeName, con);
- *	   return new oracle.sql.ARRAY(desc, con, seats);
+ * 	   oracle.sql.ArrayDescriptor desc = new oracle.sql.ArrayDescriptor(typeName, con);
+ * 	   return new oracle.sql.ARRAY(desc, con, seats);
  *   }
  * });
  * Map out = execute(in);
  * </pre>
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see java.sql.PreparedStatement#setObject(int, Object, int)
  * @see org.springframework.jdbc.object.StoredProcedure
+ * @since 1.1
  */
 public abstract class AbstractSqlTypeValue implements SqlTypeValue {
 
@@ -60,20 +60,20 @@ public abstract class AbstractSqlTypeValue implements SqlTypeValue {
 		Object value = createTypeValue(ps.getConnection(), sqlType, typeName);
 		if (sqlType == TYPE_UNKNOWN) {
 			ps.setObject(paramIndex, value);
-		}
-		else {
+		} else {
 			ps.setObject(paramIndex, value, sqlType);
 		}
 	}
 
 	/**
 	 * Create the type value to be passed into {@code PreparedStatement.setObject}.
-	 * @param con the JDBC Connection, if needed to create any database-specific objects
-	 * @param sqlType the SQL type of the parameter we are setting
+	 *
+	 * @param con      the JDBC Connection, if needed to create any database-specific objects
+	 * @param sqlType  the SQL type of the parameter we are setting
 	 * @param typeName the type name of the parameter
 	 * @return the type value
 	 * @throws SQLException if a SQLException is encountered setting
-	 * parameter values (that is, there's no need to catch SQLException)
+	 *                      parameter values (that is, there's no need to catch SQLException)
 	 * @see java.sql.PreparedStatement#setObject(int, Object, int)
 	 */
 	protected abstract Object createTypeValue(Connection con, int sqlType, @Nullable String typeName)

@@ -85,10 +85,10 @@ public class Jackson2JsonEncoderTests extends AbstractEncoderTestCase<Jackson2Js
 				new Pojo("foofoofoo", "barbarbar"));
 
 		testEncodeAll(input, ResolvableType.forClass(Pojo.class), step -> step
-				.consumeNextWith(expectString("{\"foo\":\"foo\",\"bar\":\"bar\"}\n"))
-				.consumeNextWith(expectString("{\"foo\":\"foofoo\",\"bar\":\"barbar\"}\n"))
-				.consumeNextWith(expectString("{\"foo\":\"foofoofoo\",\"bar\":\"barbarbar\"}\n"))
-				.verifyComplete(),
+						.consumeNextWith(expectString("{\"foo\":\"foo\",\"bar\":\"bar\"}\n"))
+						.consumeNextWith(expectString("{\"foo\":\"foofoo\",\"bar\":\"barbar\"}\n"))
+						.consumeNextWith(expectString("{\"foo\":\"foofoofoo\",\"bar\":\"barbarbar\"}\n"))
+						.verifyComplete(),
 				APPLICATION_STREAM_JSON, null);
 	}
 
@@ -157,13 +157,13 @@ public class Jackson2JsonEncoderTests extends AbstractEncoderTestCase<Jackson2Js
 		);
 
 		testEncode(input, ResolvableType.forClass(Pojo.class), step -> step
-				.consumeNextWith(expectString("{\"foo\":\"foo\",\"bar\":\"bar\"}\n")
-						.andThen(DataBufferUtils::release))
-				.consumeNextWith(expectString("{\"foo\":\"foofoo\",\"bar\":\"barbar\"}\n")
-						.andThen(DataBufferUtils::release))
-				.consumeNextWith(expectString("{\"foo\":\"foofoofoo\",\"bar\":\"barbarbar\"}\n")
-						.andThen(DataBufferUtils::release))
-				.verifyComplete(),
+						.consumeNextWith(expectString("{\"foo\":\"foo\",\"bar\":\"bar\"}\n")
+								.andThen(DataBufferUtils::release))
+						.consumeNextWith(expectString("{\"foo\":\"foofoo\",\"bar\":\"barbar\"}\n")
+								.andThen(DataBufferUtils::release))
+						.consumeNextWith(expectString("{\"foo\":\"foofoofoo\",\"bar\":\"barbarbar\"}\n")
+								.andThen(DataBufferUtils::release))
+						.verifyComplete(),
 				barMediaType, null);
 	}
 

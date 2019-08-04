@@ -38,9 +38,9 @@ import org.springframework.web.socket.WebSocketSession;
 /**
  * An abstract base class for implementations of {@link WebSocketSession}.
  *
+ * @param <T> the native session type
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the native session type
  */
 public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSession {
 
@@ -57,8 +57,9 @@ public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSess
 
 	/**
 	 * Create a new instance and associate the given attributes with it.
+	 *
 	 * @param attributes attributes from the HTTP handshake to associate with the WebSocket
-	 * session; the provided attributes are copied, the original map is not used.
+	 *                   session; the provided attributes are copied, the original map is not used.
 	 */
 	public AbstractWebSocketSession(@Nullable Map<String, Object> attributes) {
 		if (attributes != null) {
@@ -104,17 +105,13 @@ public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSess
 
 		if (message instanceof TextMessage) {
 			sendTextMessage((TextMessage) message);
-		}
-		else if (message instanceof BinaryMessage) {
+		} else if (message instanceof BinaryMessage) {
 			sendBinaryMessage((BinaryMessage) message);
-		}
-		else if (message instanceof PingMessage) {
+		} else if (message instanceof PingMessage) {
 			sendPingMessage((PingMessage) message);
-		}
-		else if (message instanceof PongMessage) {
+		} else if (message instanceof PongMessage) {
 			sendPongMessage((PongMessage) message);
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Unexpected WebSocketMessage type: " + message);
 		}
 	}
@@ -149,8 +146,7 @@ public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSess
 	public String toString() {
 		if (this.nativeSession != null) {
 			return getClass().getSimpleName() + "[id=" + getId() + ", uri=" + getUri() + "]";
-		}
-		else {
+		} else {
 			return getClass().getSimpleName() + "[nativeSession=null]";
 		}
 	}

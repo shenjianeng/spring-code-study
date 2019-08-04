@@ -52,7 +52,7 @@ import org.springframework.util.Assert;
  *     &lt;/bean&gt;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * In this example, Spring's own {@link GenericMessageEndpointFactory} is used
  * to point to a standard message listener object that happens to be supported
  * by the specified target ResourceAdapter: in this case, a JMS
@@ -63,7 +63,7 @@ import org.springframework.util.Assert;
  * &lt;bean id="messageListener" class="com.myorg.messaging.myMessageListener"&gt;
  *   ...
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * The target ResourceAdapter may be configured as a local Spring bean as well
  * (the typical case) or obtained from JNDI (e.g. on WebLogic). For the
  * example above, a local ResourceAdapter bean could be defined as follows
@@ -80,7 +80,7 @@ import org.springframework.util.Assert;
  *     &lt;bean class="org.springframework.jca.work.SimpleTaskWorkManager"/&gt;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * For a different target resource, the configuration would simply point to a
  * different ResourceAdapter and a different ActivationSpec object (which are
  * both specific to the resource provider), and possibly a different message
@@ -117,7 +117,7 @@ import org.springframework.util.Assert;
  * &lt;/bean&gt;
  *
  * &lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/&gt;</pre>
- *
+ * <p>
  * Alternatively, check out your resource provider's ActivationSpec object,
  * which should support local transactions through a provider-specific config flag,
  * e.g. ActiveMQActivationSpec's "useRAManagedTransaction" bean property.
@@ -140,11 +140,11 @@ import org.springframework.util.Assert;
  * &lt;/bean&gt;</pre>
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see javax.resource.spi.ResourceAdapter#endpointActivation
  * @see javax.resource.spi.ResourceAdapter#endpointDeactivation
  * @see javax.resource.spi.endpoint.MessageEndpointFactory
  * @see javax.resource.spi.ActivationSpec
+ * @since 2.5
  */
 public class GenericMessageEndpointManager implements SmartLifecycle, InitializingBean, DisposableBean {
 
@@ -187,6 +187,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	 * <p>A MessageEndpointFactory instance may be shared across multiple
 	 * endpoints (i.e. multiple GenericMessageEndpointManager instances),
 	 * with different {@link #setActivationSpec ActivationSpec} objects applied.
+	 *
 	 * @see GenericMessageEndpointFactory#setMessageListener
 	 */
 	public void setMessageEndpointFactory(@Nullable MessageEndpointFactory messageEndpointFactory) {
@@ -275,8 +276,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 
 		if (activationSpec.getResourceAdapter() == null) {
 			activationSpec.setResourceAdapter(getResourceAdapter());
-		}
-		else if (activationSpec.getResourceAdapter() != getResourceAdapter()) {
+		} else if (activationSpec.getResourceAdapter() != getResourceAdapter()) {
 			throw new IllegalArgumentException("ActivationSpec [" + activationSpec +
 					"] is associated with a different ResourceAdapter: " + activationSpec.getResourceAdapter());
 		}
@@ -293,8 +293,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 				Assert.state(resourceAdapter != null, "No ResourceAdapter set");
 				try {
 					resourceAdapter.endpointActivation(getMessageEndpointFactory(), getActivationSpec());
-				}
-				catch (ResourceException ex) {
+				} catch (ResourceException ex) {
 					throw new IllegalStateException("Could not activate message endpoint", ex);
 				}
 				this.running = true;

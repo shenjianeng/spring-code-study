@@ -77,8 +77,7 @@ public class FunctionReference extends SpelNodeImpl {
 
 		try {
 			return executeFunctionJLRMethod(state, (Method) value.getValue());
-		}
-		catch (SpelEvaluationException ex) {
+		} catch (SpelEvaluationException ex) {
 			ex.setPosition(getStartPosition());
 			throw ex;
 		}
@@ -86,7 +85,8 @@ public class FunctionReference extends SpelNodeImpl {
 
 	/**
 	 * Execute a function represented as a {@code java.lang.reflect.Method}.
-	 * @param state the expression evaluation state
+	 *
+	 * @param state  the expression evaluation state
 	 * @param method the method to invoke
 	 * @return the return value of the invoked Java method
 	 * @throws EvaluationException if there is any problem invoking the method
@@ -120,17 +120,14 @@ public class FunctionReference extends SpelNodeImpl {
 			Object result = method.invoke(method.getClass(), functionArgs);
 			compilable = !argumentConversionOccurred;
 			return new TypedValue(result, new TypeDescriptor(new MethodParameter(method, -1)).narrow(result));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new SpelEvaluationException(getStartPosition(), ex, SpelMessage.EXCEPTION_DURING_FUNCTION_CALL,
 					this.name, ex.getMessage());
-		}
-		finally {
+		} finally {
 			if (compilable) {
 				this.exitTypeDescriptor = CodeFlow.toDescriptor(method.getReturnType());
 				this.method = method;
-			}
-			else {
+			} else {
 				this.exitTypeDescriptor = null;
 				this.method = null;
 			}
@@ -153,6 +150,7 @@ public class FunctionReference extends SpelNodeImpl {
 
 	/**
 	 * Compute the arguments to the function, they are the children of this expression node.
+	 *
 	 * @return an array of argument values for the function call
 	 */
 	private Object[] getArguments(ExpressionState state) throws EvaluationException {

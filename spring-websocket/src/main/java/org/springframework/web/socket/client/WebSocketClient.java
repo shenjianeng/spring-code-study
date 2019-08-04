@@ -30,15 +30,15 @@ import org.springframework.web.socket.WebSocketSession;
  * to a pre-configured URI when the application starts.
  *
  * @author Rossen Stoyanchev
- * @since 4.0
  * @see WebSocketConnectionManager
+ * @since 4.0
  */
 public interface WebSocketClient {
 
 	ListenableFuture<WebSocketSession> doHandshake(WebSocketHandler webSocketHandler,
-			String uriTemplate, Object... uriVariables);
+												   String uriTemplate, Object... uriVariables);
 
 	ListenableFuture<WebSocketSession> doHandshake(WebSocketHandler webSocketHandler,
-			@Nullable WebSocketHttpHeaders headers, URI uri);
+												   @Nullable WebSocketHttpHeaders headers, URI uri);
 
 }

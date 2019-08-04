@@ -88,7 +88,7 @@ public class AbstractViewTests {
 
 		@Override
 		protected Mono<Void> renderInternal(Map<String, Object> renderAttributes,
-				@Nullable MediaType contentType, ServerWebExchange exchange) {
+											@Nullable MediaType contentType, ServerWebExchange exchange) {
 
 			this.attributes = renderAttributes;
 			return Mono.empty();

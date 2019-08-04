@@ -92,7 +92,7 @@ public class TilesViewTests {
 	public void alwaysIncludeEnabled() throws Exception {
 		view.setAlwaysInclude(true);
 		view.render(new HashMap<>(), request, response);
-		assertTrue((Boolean)request.getAttribute(AbstractRequest.FORCE_INCLUDE_ATTRIBUTE_NAME));
+		assertTrue((Boolean) request.getAttribute(AbstractRequest.FORCE_INCLUDE_ATTRIBUTE_NAME));
 	}
 
 }

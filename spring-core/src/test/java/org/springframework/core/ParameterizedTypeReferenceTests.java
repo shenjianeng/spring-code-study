@@ -34,33 +34,36 @@ public class ParameterizedTypeReferenceTests {
 
 	@Test
 	public void stringTypeReference() {
-		ParameterizedTypeReference<String> typeReference = new ParameterizedTypeReference<String>() {};
+		ParameterizedTypeReference<String> typeReference = new ParameterizedTypeReference<String>() {
+		};
 		assertEquals(String.class, typeReference.getType());
 	}
 
 	@Test
 	public void mapTypeReference() throws Exception {
 		Type mapType = getClass().getMethod("mapMethod").getGenericReturnType();
-		ParameterizedTypeReference<Map<Object,String>> typeReference = new ParameterizedTypeReference<Map<Object,String>>() {};
+		ParameterizedTypeReference<Map<Object, String>> typeReference = new ParameterizedTypeReference<Map<Object, String>>() {
+		};
 		assertEquals(mapType, typeReference.getType());
 	}
 
 	@Test
 	public void listTypeReference() throws Exception {
 		Type listType = getClass().getMethod("listMethod").getGenericReturnType();
-		ParameterizedTypeReference<List<String>> typeReference = new ParameterizedTypeReference<List<String>>() {};
+		ParameterizedTypeReference<List<String>> typeReference = new ParameterizedTypeReference<List<String>>() {
+		};
 		assertEquals(listType, typeReference.getType());
 	}
 
 	@Test
-	public void reflectiveTypeReferenceWithSpecificDeclaration() throws Exception{
+	public void reflectiveTypeReferenceWithSpecificDeclaration() throws Exception {
 		Type listType = getClass().getMethod("listMethod").getGenericReturnType();
 		ParameterizedTypeReference<List<String>> typeReference = ParameterizedTypeReference.forType(listType);
 		assertEquals(listType, typeReference.getType());
 	}
 
 	@Test
-	public void reflectiveTypeReferenceWithGenericDeclaration() throws Exception{
+	public void reflectiveTypeReferenceWithGenericDeclaration() throws Exception {
 		Type listType = getClass().getMethod("listMethod").getGenericReturnType();
 		ParameterizedTypeReference<?> typeReference = ParameterizedTypeReference.forType(listType);
 		assertEquals(listType, typeReference.getType());

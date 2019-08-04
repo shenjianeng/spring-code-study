@@ -32,6 +32,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test fixture with {@link SessionAttributesHandler}.
+ *
  * @author Rossen Stoyanchev
  */
 public class SessionAttributesHandlerTests {
@@ -105,7 +106,7 @@ public class SessionAttributesHandlerTests {
 	}
 
 
-	@SessionAttributes(names = { "attr1", "attr2" }, types = { TestBean.class })
+	@SessionAttributes(names = {"attr1", "attr2"}, types = {TestBean.class})
 	private static class TestController {
 	}
 

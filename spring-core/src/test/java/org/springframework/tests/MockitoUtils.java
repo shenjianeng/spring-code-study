@@ -36,8 +36,9 @@ public abstract class MockitoUtils {
 	/**
 	 * Verify the same invocations have been applied to two mocks. This is generally not
 	 * the preferred way test with mockito and should be avoided if possible.
-	 * @param expected the mock containing expected invocations
-	 * @param actual the mock containing actual invocations
+	 *
+	 * @param expected         the mock containing expected invocations
+	 * @param actual           the mock containing actual invocations
 	 * @param argumentAdapters adapters that can be used to change argument values before they are compared
 	 */
 	public static <T> void verifySameInvocations(T expected, T actual, InvocationArgumentsAdapter... argumentAdapters) {
@@ -49,7 +50,7 @@ public abstract class MockitoUtils {
 	}
 
 	private static void verifySameInvocations(List<Invocation> expectedInvocations, List<Invocation> actualInvocations,
-			InvocationArgumentsAdapter... argumentAdapters) {
+											  InvocationArgumentsAdapter... argumentAdapters) {
 
 		assertThat(expectedInvocations.size(), is(equalTo(actualInvocations.size())));
 		for (int i = 0; i < expectedInvocations.size(); i++) {
@@ -58,7 +59,7 @@ public abstract class MockitoUtils {
 	}
 
 	private static void verifySameInvocation(Invocation expectedInvocation, Invocation actualInvocation,
-			InvocationArgumentsAdapter... argumentAdapters) {
+											 InvocationArgumentsAdapter... argumentAdapters) {
 
 		assertThat(expectedInvocation.getMethod(), is(equalTo(actualInvocation.getMethod())));
 		Object[] expectedArguments = getInvocationArguments(expectedInvocation, argumentAdapters);
@@ -82,6 +83,7 @@ public abstract class MockitoUtils {
 
 		/**
 		 * Change the arguments if required.
+		 *
 		 * @param arguments the source arguments
 		 * @return updated or original arguments (never {@code null})
 		 */

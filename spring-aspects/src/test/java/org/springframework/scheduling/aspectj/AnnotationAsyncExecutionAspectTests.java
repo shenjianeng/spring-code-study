@@ -159,8 +159,7 @@ public class AnnotationAsyncExecutionAspectTests {
 			obj.failWithVoid();
 			exceptionHandler.await(3000);
 			exceptionHandler.assertCalledWith(m, UnsupportedOperationException.class);
-		}
-		finally {
+		} finally {
 			AnnotationAsyncExecutionAspect.aspectOf().setExceptionHandler(defaultExceptionHandler);
 		}
 	}
@@ -177,12 +176,10 @@ public class AnnotationAsyncExecutionAspectTests {
 				obj.failWithVoid();
 				exceptionHandler.await(3000);
 				exceptionHandler.assertCalledWith(m, UnsupportedOperationException.class);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				fail("No unexpected exception should have been received but got " + ex.getMessage());
 			}
-		}
-		finally {
+		} finally {
 			AnnotationAsyncExecutionAspect.aspectOf().setExceptionHandler(defaultExceptionHandler);
 
 		}
@@ -210,8 +207,7 @@ public class AnnotationAsyncExecutionAspectTests {
 		public synchronized void waitForCompletion() {
 			try {
 				wait(WAIT_TIME);
-			}
-			catch (InterruptedException ex) {
+			} catch (InterruptedException ex) {
 				fail("Didn't finish the async job in " + WAIT_TIME + " milliseconds");
 			}
 		}
@@ -222,7 +218,8 @@ public class AnnotationAsyncExecutionAspectTests {
 
 		int counter;
 
-		@Async public void incrementAsync() {
+		@Async
+		public void incrementAsync() {
 			counter++;
 		}
 
@@ -230,7 +227,8 @@ public class AnnotationAsyncExecutionAspectTests {
 			counter++;
 		}
 
-		@Async public Future<Integer> incrementReturningAFuture() {
+		@Async
+		public Future<Integer> incrementReturningAFuture() {
 			counter++;
 			return new AsyncResult<Integer>(5);
 		}

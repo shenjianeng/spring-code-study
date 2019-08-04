@@ -71,7 +71,7 @@ class AtAspectJAnnotationBindingTestAspect {
 
 	@Around("execution(* *(..)) && @annotation(testAnn)")
 	public Object doWithAnnotation(ProceedingJoinPoint pjp, TestAnnotation testAnn)
-	throws Throwable {
+			throws Throwable {
 		String annValue = testAnn.value();
 		Object result = pjp.proceed();
 		return (result instanceof String ? annValue + " " + result : result);

@@ -117,8 +117,7 @@ public class CciLocalTransactionTests {
 					throw new DataRetrievalFailureException("error");
 				}
 			});
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 		}
 
 		verify(localTransaction).begin();

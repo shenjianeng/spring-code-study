@@ -43,9 +43,9 @@ public class ComposedAnnotationSqlScriptsTests extends AbstractTransactionalJUni
 
 	@Test
 	@ComposedSql(
-		scripts = { "drop-schema.sql", "schema.sql" },
-		statements = "INSERT INTO user VALUES('Dilbert')",
-		executionPhase = BEFORE_TEST_METHOD
+			scripts = {"drop-schema.sql", "schema.sql"},
+			statements = "INSERT INTO user VALUES('Dilbert')",
+			executionPhase = BEFORE_TEST_METHOD
 	)
 	public void composedSqlAnnotation() {
 		assertEquals("Number of rows in the 'user' table.", 1, countRowsInTable("user"));

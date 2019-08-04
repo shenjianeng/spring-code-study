@@ -64,7 +64,7 @@ public class ConversionServiceFactoryBeanTests {
 		converters.add(new ConverterFactory<String, Bar>() {
 			@Override
 			public <T extends Bar> Converter<String, T> getConverter(Class<T> targetType) {
-				return new Converter<String, T> () {
+				return new Converter<String, T>() {
 					@SuppressWarnings("unchecked")
 					@Override
 					public T convert(String source) {
@@ -78,6 +78,7 @@ public class ConversionServiceFactoryBeanTests {
 			public Set<ConvertiblePair> getConvertibleTypes() {
 				return Collections.singleton(new ConvertiblePair(String.class, Baz.class));
 			}
+
 			@Override
 			@Nullable
 			public Object convert(@Nullable Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {

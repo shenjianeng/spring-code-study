@@ -24,10 +24,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see PropertySource
  * @see PropertySources
  * @see AbstractEnvironment
+ * @since 3.1
  */
 public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
@@ -37,6 +37,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
 	/**
 	 * Create a new resolver against the given property sources.
+	 *
 	 * @param propertySources the set of {@link PropertySource} objects to use
 	 */
 	public PropertySourcesPropertyResolver(@Nullable PropertySources propertySources) {
@@ -105,9 +106,10 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	 * As of 4.3.3, this does not log the value anymore in order to avoid accidental
 	 * logging of sensitive settings. Subclasses may override this method to change
 	 * the log level and/or log message, including the property's value if desired.
-	 * @param key the key found
+	 *
+	 * @param key            the key found
 	 * @param propertySource the {@code PropertySource} that the key has been found in
-	 * @param value the corresponding value
+	 * @param value          the corresponding value
 	 * @since 4.3.1
 	 */
 	protected void logKeyFound(String key, PropertySource<?> propertySource, Object value) {

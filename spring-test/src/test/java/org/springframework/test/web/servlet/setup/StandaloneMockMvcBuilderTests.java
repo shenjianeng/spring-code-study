@@ -86,7 +86,7 @@ public class StandaloneMockMvcBuilderTests {
 	public void applicationContextAttribute() {
 		TestStandaloneMockMvcBuilder builder = new TestStandaloneMockMvcBuilder(new PlaceholderController());
 		builder.addPlaceholderValue("sys.login.ajax", "/foo");
-		WebApplicationContext  wac = builder.initWebAppContext();
+		WebApplicationContext wac = builder.initWebAppContext();
 		assertEquals(wac, WebApplicationContextUtils.getRequiredWebApplicationContext(wac.getServletContext()));
 	}
 
@@ -129,7 +129,8 @@ public class StandaloneMockMvcBuilderTests {
 	private static class PlaceholderController {
 
 		@RequestMapping(value = "${sys.login.ajax}")
-		private void handleWithPlaceholders() { }
+		private void handleWithPlaceholders() {
+		}
 	}
 
 
@@ -152,12 +153,12 @@ public class StandaloneMockMvcBuilderTests {
 	@Controller
 	private static class PersonController {
 
-		@RequestMapping(value="/persons")
+		@RequestMapping(value = "/persons")
 		public String persons() {
 			return null;
 		}
 
-		@RequestMapping(value="/forward")
+		@RequestMapping(value = "/forward")
 		public String forward() {
 			return "forward:/persons";
 		}
@@ -168,7 +169,7 @@ public class StandaloneMockMvcBuilderTests {
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-				FilterChain filterChain) throws ServletException, IOException {
+										FilterChain filterChain) throws ServletException, IOException {
 
 			filterChain.doFilter(request, response);
 		}

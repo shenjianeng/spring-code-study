@@ -103,8 +103,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 		if (!this.externallyManaged) {
 			try {
 				this.jettyClient.start();
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				throw new IllegalStateException("Failed to start Jetty WebSocketClient", ex);
 			}
 		}
@@ -115,8 +114,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 		if (!this.externallyManaged) {
 			try {
 				this.jettyClient.stop();
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				throw new IllegalStateException("Error stopping Jetty WebSocketClient", ex);
 			}
 		}

@@ -105,7 +105,7 @@ public class NestedBeansElementAttributeRecursionTests {
 
 		TestBean secondLevel = bf.getBean("secondLevelNestedTestBean", TestBean.class);
 		// merges all values
-		assertThat((Iterable<String>)secondLevel.getSomeList(),
+		assertThat((Iterable<String>) secondLevel.getSomeList(),
 				hasItems("charlie", "delta", "echo", "foxtrot", "golf", "hotel"));
 	}
 
@@ -184,11 +184,27 @@ class InitDestroyBean {
 	boolean destroyMethod2Called;
 	boolean destroyMethod3Called;
 
-	void initMethod1() { this.initMethod1Called = true; }
-	void initMethod2() { this.initMethod2Called = true; }
-	void initMethod3() { this.initMethod3Called = true; }
+	void initMethod1() {
+		this.initMethod1Called = true;
+	}
 
-	void destroyMethod1() { this.destroyMethod1Called = true; }
-	void destroyMethod2() { this.destroyMethod2Called = true; }
-	void destroyMethod3() { this.destroyMethod3Called = true; }
+	void initMethod2() {
+		this.initMethod2Called = true;
+	}
+
+	void initMethod3() {
+		this.initMethod3Called = true;
+	}
+
+	void destroyMethod1() {
+		this.destroyMethod1Called = true;
+	}
+
+	void destroyMethod2() {
+		this.destroyMethod2Called = true;
+	}
+
+	void destroyMethod3() {
+		this.destroyMethod3Called = true;
+	}
 }

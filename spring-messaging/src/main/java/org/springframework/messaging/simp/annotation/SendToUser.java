@@ -36,13 +36,13 @@ import org.springframework.core.annotation.AliasFor;
  * <p>This annotation may be placed class-level in which case it is inherited
  * by methods of the class. At the same time, method-level {@code @SendTo} or
  * {@code @SendToUser} annotations override any such at the class level.
-
+ *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
- * @since 4.0
  * @see org.springframework.messaging.simp.annotation.support.SendToMethodReturnValueHandler
  * @see org.springframework.messaging.simp.user.UserDestinationMessageHandler
  * @see org.springframework.messaging.simp.SimpMessageHeaderAccessor#getUser()
+ * @since 4.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -51,6 +51,7 @@ public @interface SendToUser {
 
 	/**
 	 * Alias for {@link #destinations}.
+	 *
 	 * @see #destinations
 	 */
 	@AliasFor("destinations")
@@ -60,9 +61,10 @@ public @interface SendToUser {
 	 * One or more destinations to send a message to.
 	 * <p>If left unspecified, a default destination is selected based on the
 	 * destination of the input message being handled.
-	 * @since 4.2
+	 *
 	 * @see #value
 	 * @see org.springframework.messaging.simp.annotation.support.SendToMethodReturnValueHandler
+	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String[] destinations() default {};

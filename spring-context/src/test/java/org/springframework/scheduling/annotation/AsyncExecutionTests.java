@@ -80,40 +80,35 @@ public class AsyncExecutionTests {
 		try {
 			asyncTest.returnSomething(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 
 		try {
 			asyncTest.returnSomething(-1).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IOException);
 		}
 
 		try {
 			asyncTest.returnSomethingListenable(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 
 		try {
 			asyncTest.returnSomethingListenable(-1).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IOException);
 		}
 
 		try {
 			asyncTest.returnSomethingCompletable(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 	}
@@ -197,24 +192,21 @@ public class AsyncExecutionTests {
 		try {
 			asyncTest.returnSomething(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 
 		try {
 			asyncTest.returnSomethingListenable(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 
 		try {
 			asyncTest.returnSomethingCompletable(0).get();
 			fail("Should have thrown ExecutionException");
-		}
-		catch (ExecutionException ex) {
+		} catch (ExecutionException ex) {
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 		}
 	}
@@ -378,9 +370,9 @@ public class AsyncExecutionTests {
 		context.refresh();
 		// Assert
 		Awaitility.await()
-					.atMost(1, TimeUnit.SECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> listenerCalled == 1);
+				.atMost(1, TimeUnit.SECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> listenerCalled == 1);
 		context.close();
 	}
 
@@ -399,9 +391,9 @@ public class AsyncExecutionTests {
 		context.close();
 		// Assert
 		Awaitility.await()
-					.atMost(1, TimeUnit.SECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> listenerCalled == 2);
+				.atMost(1, TimeUnit.SECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> listenerCalled == 2);
 		assertEquals(1, listenerConstructed);
 	}
 
@@ -422,9 +414,9 @@ public class AsyncExecutionTests {
 		context.close();
 		// Assert
 		Awaitility.await()
-					.atMost(1, TimeUnit.SECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> listenerCalled == 2);
+				.atMost(1, TimeUnit.SECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> listenerCalled == 2);
 		assertEquals(2, listenerConstructed);
 	}
 
@@ -457,8 +449,7 @@ public class AsyncExecutionTests {
 			assertTrue(!Thread.currentThread().getName().equals(originalThreadName));
 			if (i == 0) {
 				throw new IllegalArgumentException();
-			}
-			else if (i < 0) {
+			} else if (i < 0) {
 				return AsyncResult.forExecutionException(new IOException());
 			}
 			return AsyncResult.forValue(Integer.toString(i));
@@ -469,8 +460,7 @@ public class AsyncExecutionTests {
 			assertTrue(!Thread.currentThread().getName().equals(originalThreadName));
 			if (i == 0) {
 				throw new IllegalArgumentException();
-			}
-			else if (i < 0) {
+			} else if (i < 0) {
 				return AsyncResult.forExecutionException(new IOException());
 			}
 			return new AsyncResult<>(Integer.toString(i));

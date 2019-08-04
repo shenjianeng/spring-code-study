@@ -114,8 +114,7 @@ public class ProtobufDecoderTests extends AbstractDecoderTestCase<ProtobufDecode
 					try {
 						msg.writeDelimitedTo(buffer.asOutputStream());
 						return Mono.just(buffer);
-					}
-					catch (IOException e) {
+					} catch (IOException e) {
 						release(buffer);
 						return Mono.error(e);
 					}
@@ -137,8 +136,7 @@ public class ProtobufDecoderTests extends AbstractDecoderTestCase<ProtobufDecode
 					try {
 						msg.writeDelimitedTo(buffer.asOutputStream());
 						return Mono.just(buffer);
-					}
-					catch (IOException e) {
+					} catch (IOException e) {
 						release(buffer);
 						return Mono.error(e);
 					}
@@ -175,8 +173,7 @@ public class ProtobufDecoderTests extends AbstractDecoderTestCase<ProtobufDecode
 					try {
 						msg.writeDelimitedTo(buffer.asOutputStream());
 						return Mono.just(buffer);
-					}
-					catch (IOException e) {
+					} catch (IOException e) {
 						release(buffer);
 						return Mono.error(e);
 					}

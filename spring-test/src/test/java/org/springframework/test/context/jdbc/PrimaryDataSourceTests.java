@@ -40,8 +40,8 @@ import static org.junit.Assert.*;
  * supported.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see org.springframework.test.context.transaction.PrimaryTransactionManagerTests
+ * @since 4.3
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -83,7 +83,7 @@ public class PrimaryDataSourceTests {
 	public void dataSourceTest() {
 		TransactionTestUtils.assertInTransaction(false);
 		assertEquals("Number of rows in the 'user' table.", 1,
-			JdbcTestUtils.countRowsInTable(this.jdbcTemplate, "user"));
+				JdbcTestUtils.countRowsInTable(this.jdbcTemplate, "user"));
 	}
 
 }

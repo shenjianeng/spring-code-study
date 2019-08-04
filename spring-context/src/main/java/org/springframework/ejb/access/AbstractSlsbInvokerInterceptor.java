@@ -68,6 +68,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	 * Default is "true".
 	 * <p>Can be turned off to allow for late start of the EJB server.
 	 * In this case, the EJB home object will be fetched on first access.
+	 *
 	 * @see #setCacheHome
 	 */
 	public void setLookupHomeOnStartup(boolean lookupHomeOnStartup) {
@@ -79,6 +80,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	 * Default is "true".
 	 * <p>Can be turned off to allow for hot restart of the EJB server.
 	 * In this case, the EJB home object will be fetched for each invocation.
+	 *
 	 * @see #setLookupHomeOnStartup
 	 */
 	public void setCacheHome(boolean cacheHome) {
@@ -100,6 +102,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * Fetches EJB home on startup, if necessary.
+	 *
 	 * @see #setLookupHomeOnStartup
 	 * @see #refreshHome
 	 */
@@ -115,6 +118,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	/**
 	 * Refresh the cached home object, if applicable.
 	 * Also caches the create method on the home object.
+	 *
 	 * @throws NamingException if thrown by the JNDI lookup
 	 * @see #lookup
 	 * @see #getCreateMethod
@@ -131,6 +135,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * Determine the create method of the given EJB home object.
+	 *
 	 * @param home the EJB home object
 	 * @return the create method
 	 * @throws EjbAccessException if the method couldn't be retrieved
@@ -140,8 +145,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 		try {
 			// Cache the EJB create() method that must be declared on the home interface.
 			return home.getClass().getMethod("create");
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new EjbAccessException("EJB home [" + home + "] has no no-arg create() method");
 		}
 	}
@@ -153,6 +157,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	 * <p>Can be overridden in subclasses, for example to cache a home object
 	 * for a given amount of time before recreating it, or to test the home
 	 * object whether it is still alive.
+	 *
 	 * @return the EJB home object to use for an invocation
 	 * @throws NamingException if proxy creation failed
 	 * @see #lookup
@@ -161,8 +166,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	protected Object getHome() throws NamingException {
 		if (!this.cacheHome || (this.lookupHomeOnStartup && !isHomeRefreshable())) {
 			return (this.cachedHome != null ? this.cachedHome : lookup());
-		}
-		else {
+		} else {
 			synchronized (this.homeMonitor) {
 				if (this.cachedHome == null) {
 					this.cachedHome = lookup();
@@ -192,8 +196,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 		Context ctx = (this.exposeAccessContext ? getJndiTemplate().getContext() : null);
 		try {
 			return invokeInContext(invocation);
-		}
-		finally {
+		} finally {
 			getJndiTemplate().releaseContext(ctx);
 		}
 	}
@@ -202,6 +205,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 	 * Perform the given invocation on the current EJB home,
 	 * within the thread context being prepared accordingly.
 	 * Template method to be implemented by subclasses.
+	 *
 	 * @param invocation the AOP method invocation
 	 * @return the invocation result, if any
 	 * @throws Throwable in case of invocation failure
@@ -212,8 +216,9 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 
 	/**
 	 * Invokes the {@code create()} method on the cached EJB home object.
+	 *
 	 * @return a new EJBObject or EJBLocalObject
-	 * @throws NamingException if thrown by JNDI
+	 * @throws NamingException           if thrown by JNDI
 	 * @throws InvocationTargetException if thrown by the create method
 	 */
 	protected Object create() throws NamingException, InvocationTargetException {
@@ -228,8 +233,7 @@ public abstract class AbstractSlsbInvokerInterceptor extends JndiObjectLocator
 			}
 			// Invoke create() method on EJB home object.
 			return createMethodToUse.invoke(home, (Object[]) null);
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			throw new EjbAccessException("Could not access EJB home create() method", ex);
 		}
 	}

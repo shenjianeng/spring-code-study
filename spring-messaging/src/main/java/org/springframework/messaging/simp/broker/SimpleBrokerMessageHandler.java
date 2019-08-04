@@ -82,13 +82,14 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	/**
 	 * Create a SimpleBrokerMessageHandler instance with the given message channels
 	 * and destination prefixes.
-	 * @param clientInboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
+	 *
+	 * @param clientInboundChannel  the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param clientOutboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
-	 * @param brokerChannel the channel for the application to send messages to the broker
-	 * @param destinationPrefixes prefixes to use to filter out messages
+	 * @param brokerChannel         the channel for the application to send messages to the broker
+	 * @param destinationPrefixes   prefixes to use to filter out messages
 	 */
 	public SimpleBrokerMessageHandler(SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel,
-			SubscribableChannel brokerChannel, Collection<String> destinationPrefixes) {
+									  SubscribableChannel brokerChannel, Collection<String> destinationPrefixes) {
 
 		super(clientInboundChannel, clientOutboundChannel, brokerChannel, destinationPrefixes);
 		this.subscriptionRegistry = new DefaultSubscriptionRegistry();
@@ -118,10 +119,11 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * When configured, the given PathMatcher is passed down to the underlying
 	 * SubscriptionRegistry to use for matching destination to subscriptions.
 	 * <p>Default is a standard {@link org.springframework.util.AntPathMatcher}.
-	 * @since 4.1
+	 *
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setPathMatcher
 	 * @see org.springframework.util.AntPathMatcher
+	 * @since 4.1
 	 */
 	public void setPathMatcher(@Nullable PathMatcher pathMatcher) {
 		this.pathMatcher = pathMatcher;
@@ -139,10 +141,11 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * underlying SubscriptionRegistry, overriding any default there.
 	 * <p>With a standard {@link DefaultSubscriptionRegistry}, the default
 	 * cache limit is 1024.
-	 * @since 4.3.2
+	 *
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setCacheLimit
 	 * @see DefaultSubscriptionRegistry#DEFAULT_CACHE_LIMIT
+	 * @since 4.3.2
 	 */
 	public void setCacheLimit(@Nullable Integer cacheLimit) {
 		this.cacheLimit = cacheLimit;
@@ -166,10 +169,11 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * </pre>
 	 * <p>By default this is set to "selector". You can set it to a different
 	 * name, or to {@code null} to turn off support for a selector header.
+	 *
 	 * @param selectorHeaderName the name to use for a selector header
-	 * @since 4.3.17
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setSelectorHeaderName(String)
+	 * @since 4.3.17
 	 */
 	public void setSelectorHeaderName(@Nullable String selectorHeaderName) {
 		this.selectorHeaderName = selectorHeaderName;
@@ -187,17 +191,19 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * use for providing heartbeat support. Setting this property also sets the
 	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
 	 * <p>By default this is not set.
+	 *
 	 * @since 4.2
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
 		this.taskScheduler = taskScheduler;
 		if (taskScheduler != null && this.heartbeatValue == null) {
-			this.heartbeatValue = new long[] {10000, 10000};
+			this.heartbeatValue = new long[]{10000, 10000};
 		}
 	}
 
 	/**
 	 * Return the configured TaskScheduler.
+	 *
 	 * @since 4.2
 	 */
 	@Nullable
@@ -212,6 +218,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
 	 * taskScheduler} in which case the default becomes "10000,10000"
 	 * (in milliseconds).
+	 *
 	 * @since 4.2
 	 */
 	public void setHeartbeatValue(@Nullable long[] heartbeat) {
@@ -223,6 +230,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 	/**
 	 * The configured value for the heart-beat settings.
+	 *
 	 * @since 4.2
 	 */
 	@Nullable
@@ -234,6 +242,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	 * Configure a {@link MessageHeaderInitializer} to apply to the headers
 	 * of all messages sent to the client outbound channel.
 	 * <p>By default this property is not set.
+	 *
 	 * @since 4.1
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
@@ -242,6 +251,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 	/**
 	 * Return the configured header initializer.
+	 *
 	 * @since 4.1
 	 */
 	@Nullable
@@ -258,10 +268,9 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 			if (interval > 0) {
 				this.heartbeatFuture = this.taskScheduler.scheduleWithFixedDelay(new HeartbeatTask(), interval);
 			}
-		}
-		else {
+		} else {
 			Assert.isTrue(getHeartbeatValue() == null ||
-					(getHeartbeatValue()[0] == 0 && getHeartbeatValue()[1] == 0),
+							(getHeartbeatValue()[0] == 0 && getHeartbeatValue()[1] == 0),
 					"Heartbeat values configured but no TaskScheduler provided");
 		}
 	}
@@ -269,11 +278,9 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	private long initHeartbeatTaskDelay() {
 		if (getHeartbeatValue() == null) {
 			return 0;
-		}
-		else if (getHeartbeatValue()[0] > 0 && getHeartbeatValue()[1] > 0) {
+		} else if (getHeartbeatValue()[0] > 0 && getHeartbeatValue()[1] > 0) {
 			return Math.min(getHeartbeatValue()[0], getHeartbeatValue()[1]);
-		}
-		else {
+		} else {
 			return (getHeartbeatValue()[0] > 0 ? getHeartbeatValue()[0] : getHeartbeatValue()[1]);
 		}
 	}
@@ -302,8 +309,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 		if (SimpMessageType.MESSAGE.equals(messageType)) {
 			logMessage(message);
 			sendMessageToSubscribers(destination, message);
-		}
-		else if (SimpMessageType.CONNECT.equals(messageType)) {
+		} else if (SimpMessageType.CONNECT.equals(messageType)) {
 			logMessage(message);
 			if (sessionId != null) {
 				long[] heartbeatIn = SimpMessageHeaderAccessor.getHeartbeat(headers);
@@ -322,19 +328,16 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 				Message<byte[]> messageOut = MessageBuilder.createMessage(EMPTY_PAYLOAD, connectAck.getMessageHeaders());
 				getClientOutboundChannel().send(messageOut);
 			}
-		}
-		else if (SimpMessageType.DISCONNECT.equals(messageType)) {
+		} else if (SimpMessageType.DISCONNECT.equals(messageType)) {
 			logMessage(message);
 			if (sessionId != null) {
 				Principal user = SimpMessageHeaderAccessor.getUser(headers);
 				handleDisconnect(sessionId, user, message);
 			}
-		}
-		else if (SimpMessageType.SUBSCRIBE.equals(messageType)) {
+		} else if (SimpMessageType.SUBSCRIBE.equals(messageType)) {
 			logMessage(message);
 			this.subscriptionRegistry.registerSubscription(message);
-		}
-		else if (SimpMessageType.UNSUBSCRIBE.equals(messageType)) {
+		} else if (SimpMessageType.UNSUBSCRIBE.equals(messageType)) {
 			logMessage(message);
 			this.subscriptionRegistry.unregisterSubscription(message);
 		}
@@ -380,7 +383,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	protected void sendMessageToSubscribers(@Nullable String destination, Message<?> message) {
-		MultiValueMap<String,String> subscriptions = this.subscriptionRegistry.findSubscriptions(message);
+		MultiValueMap<String, String> subscriptions = this.subscriptionRegistry.findSubscriptions(message);
 		if (!subscriptions.isEmpty() && logger.isDebugEnabled()) {
 			logger.debug("Broadcasting to " + subscriptions.size() + " sessions.");
 		}
@@ -399,13 +402,11 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 				if (info != null) {
 					try {
 						info.getClientOutboundChannel().send(reply);
-					}
-					catch (Throwable ex) {
+					} catch (Throwable ex) {
 						if (logger.isErrorEnabled()) {
 							logger.error("Failed to send " + message, ex);
 						}
-					}
-					finally {
+					} finally {
 						info.setLastWriteTime(now);
 					}
 				}
@@ -441,7 +442,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 
 		public SessionInfo(String sessionId, @Nullable Principal user, MessageChannel outboundChannel,
-				@Nullable long[] clientHeartbeat, @Nullable long[] serverHeartbeat) {
+						   @Nullable long[] clientHeartbeat, @Nullable long[] serverHeartbeat) {
 
 			this.sessionId = sessionId;
 			this.user = user;
@@ -451,8 +452,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 						Math.max(clientHeartbeat[0], serverHeartbeat[1]) * HEARTBEAT_MULTIPLIER : 0);
 				this.writeInterval = (clientHeartbeat[1] > 0 && serverHeartbeat[0] > 0 ?
 						Math.max(clientHeartbeat[1], serverHeartbeat[0]) : 0);
-			}
-			else {
+			} else {
 				this.readInterval = 0;
 				this.writeInterval = 0;
 			}

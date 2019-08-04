@@ -33,10 +33,10 @@ import org.springframework.util.MimeType;
 /**
  * Abstract base class for {@link Decoder} implementations.
  *
+ * @param <T> the element type
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
  * @since 5.0
- * @param <T> the element type
  */
 public abstract class AbstractDecoder<T> implements Decoder<T> {
 
@@ -52,6 +52,7 @@ public abstract class AbstractDecoder<T> implements Decoder<T> {
 
 	/**
 	 * Set an alternative logger to use than the one based on the class name.
+	 *
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -61,6 +62,7 @@ public abstract class AbstractDecoder<T> implements Decoder<T> {
 
 	/**
 	 * Return the currently configured Logger.
+	 *
 	 * @since 5.1
 	 */
 	public Log getLogger() {
@@ -88,7 +90,7 @@ public abstract class AbstractDecoder<T> implements Decoder<T> {
 
 	@Override
 	public Mono<T> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+								@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		throw new UnsupportedOperationException();
 	}

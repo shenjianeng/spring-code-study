@@ -64,8 +64,7 @@ public class ServletRequestAttributesTests {
 		try {
 			attrs.setAttribute(KEY, VALUE, RequestAttributes.SCOPE_REQUEST);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}

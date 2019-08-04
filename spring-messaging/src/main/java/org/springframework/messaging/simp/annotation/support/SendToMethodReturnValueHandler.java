@@ -93,6 +93,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 
 	/**
 	 * Return the configured default destination prefix.
+	 *
 	 * @see #setDefaultDestinationPrefix(String)
 	 */
 	public String getDefaultDestinationPrefix() {
@@ -111,6 +112,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 
 	/**
 	 * Return the configured default user destination prefix.
+	 *
 	 * @see #setDefaultUserDestinationPrefix(String)
 	 */
 	public String getDefaultUserDestinationPrefix() {
@@ -173,8 +175,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 				if (broadcast) {
 					this.messagingTemplate.convertAndSendToUser(
 							user, destination, returnValue, createHeaders(null, returnType));
-				}
-				else {
+				} else {
 					this.messagingTemplate.convertAndSendToUser(
 							user, destination, returnValue, createHeaders(sessionId, returnType));
 				}
@@ -233,7 +234,7 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 		}
 
 		return (destination.startsWith("/") ?
-				new String[] {defaultPrefix + destination} : new String[] {defaultPrefix + '/' + destination});
+				new String[]{defaultPrefix + destination} : new String[]{defaultPrefix + '/' + destination});
 	}
 
 	private MessageHeaders createHeaders(@Nullable String sessionId, MethodParameter returnType) {

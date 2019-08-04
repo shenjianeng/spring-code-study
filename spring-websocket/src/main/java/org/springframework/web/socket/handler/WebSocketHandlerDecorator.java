@@ -59,8 +59,7 @@ public class WebSocketHandlerDecorator implements WebSocketHandler {
 	public static WebSocketHandler unwrap(WebSocketHandler handler) {
 		if (handler instanceof WebSocketHandlerDecorator) {
 			return ((WebSocketHandlerDecorator) handler).getLastHandler();
-		}
-		else {
+		} else {
 			return handler;
 		}
 	}

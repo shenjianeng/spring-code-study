@@ -49,7 +49,7 @@ import org.springframework.util.MultiValueMap;
  */
 public class StompDecoder {
 
-	static final byte[] HEARTBEAT_PAYLOAD = new byte[] {'\n'};
+	static final byte[] HEARTBEAT_PAYLOAD = new byte[]{'\n'};
 
 	private static final Log logger = SimpLogging.forLogName(StompDecoder.class);
 
@@ -79,6 +79,7 @@ public class StompDecoder {
 	 * list of {@link Message Messages}. If the input buffer contains partial STOMP frame
 	 * content, or additional content with a partial STOMP frame, the buffer is
 	 * reset and {@code null} is returned.
+	 *
 	 * @param byteBuffer the buffer to decode the STOMP frame from
 	 * @return the decoded messages, or an empty list if none
 	 * @throws StompConversionException raised in case of decoding issues
@@ -99,23 +100,23 @@ public class StompDecoder {
 	 * headers in case of partial content. The caller can then check if a
 	 * "content-length" header was read, which helps to determine how much more
 	 * content is needed before the next attempt to decode.
-	 * @param byteBuffer the buffer to decode the STOMP frame from
+	 *
+	 * @param byteBuffer            the buffer to decode the STOMP frame from
 	 * @param partialMessageHeaders an empty output map that will store the last
-	 * successfully parsed partialMessageHeaders in case of partial message content
-	 * in cases where the partial buffer ended with a partial STOMP frame
+	 *                              successfully parsed partialMessageHeaders in case of partial message content
+	 *                              in cases where the partial buffer ended with a partial STOMP frame
 	 * @return the decoded messages, or an empty list if none
 	 * @throws StompConversionException raised in case of decoding issues
 	 */
 	public List<Message<byte[]>> decode(ByteBuffer byteBuffer,
-			@Nullable MultiValueMap<String, String> partialMessageHeaders) {
+										@Nullable MultiValueMap<String, String> partialMessageHeaders) {
 
 		List<Message<byte[]>> messages = new ArrayList<>();
 		while (byteBuffer.hasRemaining()) {
 			Message<byte[]> message = decodeMessage(byteBuffer, partialMessageHeaders);
 			if (message != null) {
 				messages.add(message);
-			}
-			else {
+			} else {
 				break;
 			}
 		}
@@ -160,8 +161,7 @@ public class StompDecoder {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Decoded " + headerAccessor.getDetailedLogMessage(payload));
 				}
-			}
-			else {
+			} else {
 				logger.trace("Incomplete frame, resetting input buffer...");
 				if (headers != null && headerAccessor != null) {
 					String name = NativeMessageHeaderAccessor.NATIVE_HEADERS;
@@ -173,8 +173,7 @@ public class StompDecoder {
 				}
 				buffer.reset();
 			}
-		}
-		else {
+		} else {
 			StompHeaderAccessor headerAccessor = StompHeaderAccessor.createForHeartbeat();
 			initHeaders(headerAccessor);
 			headerAccessor.setLeaveMutable(true);
@@ -233,21 +232,18 @@ public class StompDecoder {
 						throw new StompConversionException("Illegal header: '" + header +
 								"'. A header must be of the form <name>:[<value>].");
 					}
-				}
-				else {
+				} else {
 					String headerName = unescape(header.substring(0, colonIndex));
 					String headerValue = unescape(header.substring(colonIndex + 1));
 					try {
 						headerAccessor.addNativeHeader(headerName, headerValue);
-					}
-					catch (InvalidMimeTypeException ex) {
+					} catch (InvalidMimeTypeException ex) {
 						if (byteBuffer.remaining() > 0) {
 							throw ex;
 						}
 					}
 				}
-			}
-			else {
+			} else {
 				break;
 			}
 		}
@@ -270,17 +266,13 @@ public class StompDecoder {
 			char c = inString.charAt(index + 1);
 			if (c == 'r') {
 				sb.append('\r');
-			}
-			else if (c == 'n') {
+			} else if (c == 'n') {
 				sb.append('\n');
-			}
-			else if (c == 'c') {
+			} else if (c == 'c') {
 				sb.append(':');
-			}
-			else if (c == '\\') {
+			} else if (c == '\\') {
 				sb.append('\\');
-			}
-			else {
+			} else {
 				// should never happen
 				throw new StompConversionException("Illegal escape sequence at index " + index + ": " + inString);
 			}
@@ -297,8 +289,7 @@ public class StompDecoder {
 		Integer contentLength;
 		try {
 			contentLength = headerAccessor.getContentLength();
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Ignoring invalid content-length: '" + headerAccessor);
 			}
@@ -313,19 +304,16 @@ public class StompDecoder {
 					throw new StompConversionException("Frame must be terminated with a null octet");
 				}
 				return payload;
-			}
-			else {
+			} else {
 				return null;
 			}
-		}
-		else {
+		} else {
 			ByteArrayOutputStream payload = new ByteArrayOutputStream(256);
 			while (byteBuffer.remaining() > 0) {
 				byte b = byteBuffer.get();
 				if (b == 0) {
 					return payload.toByteArray();
-				}
-				else {
+				} else {
 					payload.write(b);
 				}
 			}
@@ -335,6 +323,7 @@ public class StompDecoder {
 
 	/**
 	 * Try to read an EOL incrementing the buffer position if successful.
+	 *
 	 * @return whether an EOL was consumed
 	 */
 	private boolean tryConsumeEndOfLine(ByteBuffer byteBuffer) {
@@ -342,12 +331,10 @@ public class StompDecoder {
 			byte b = byteBuffer.get();
 			if (b == '\n') {
 				return true;
-			}
-			else if (b == '\r') {
+			} else if (b == '\r') {
 				if (byteBuffer.remaining() > 0 && byteBuffer.get() == '\n') {
 					return true;
-				}
-				else {
+				} else {
 					throw new StompConversionException("'\\r' must be followed by '\\n'");
 				}
 			}

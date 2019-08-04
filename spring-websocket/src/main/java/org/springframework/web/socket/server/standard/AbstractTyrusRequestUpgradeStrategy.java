@@ -63,8 +63,8 @@ import static org.glassfish.tyrus.spi.WebSocketEngine.UpgradeStatus.SUCCESS;
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @author Juergen Hoeller
- * @since 4.1
  * @see <a href="https://tyrus.java.net/">Project Tyrus</a>
+ * @since 4.1
  */
 public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStandardUpgradeStrategy {
 
@@ -89,8 +89,7 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 			registerMethod = TyrusWebSocketEngine.class.getDeclaredMethod("register", TyrusEndpointWrapper.class);
 			unRegisterMethod = TyrusWebSocketEngine.class.getDeclaredMethod("unregister", TyrusEndpointWrapper.class);
 			ReflectionUtils.makeAccessible(registerMethod);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException("No compatible Tyrus version found", ex);
 		}
 	}
@@ -118,15 +117,14 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 	protected List<WebSocketExtension> getInstalledExtensions(WebSocketContainer container) {
 		try {
 			return super.getInstalledExtensions(container);
-		}
-		catch (UnsupportedOperationException ex) {
+		} catch (UnsupportedOperationException ex) {
 			return new ArrayList<>(0);
 		}
 	}
 
 	@Override
 	public void upgradeInternal(ServerHttpRequest request, ServerHttpResponse response,
-			@Nullable String selectedProtocol, List<Extension> extensions, Endpoint endpoint)
+								@Nullable String selectedProtocol, List<Extension> extensions, Endpoint endpoint)
 			throws HandshakeFailureException {
 
 		HttpServletRequest servletRequest = getHttpServletRequest(request);
@@ -154,8 +152,7 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 				}
 				handleSuccess(servletRequest, servletResponse, upgradeInfo, upgradeResponse);
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			unregisterTyrusEndpoint(engine, tyrusEndpoint);
 			throw new HandshakeFailureException("Error during handshake: " + request.getURI(), ex);
 		}
@@ -167,7 +164,7 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 	}
 
 	private Object createTyrusEndpoint(Endpoint endpoint, String endpointPath, @Nullable String protocol,
-			List<Extension> extensions, WebSocketContainer container, TyrusWebSocketEngine engine)
+									   List<Extension> extensions, WebSocketContainer container, TyrusWebSocketEngine engine)
 			throws DeploymentException {
 
 		ServerEndpointRegistration endpointConfig = new ServerEndpointRegistration(endpointPath, endpoint);
@@ -192,15 +189,14 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 		if (tyrusEndpoint != null) {
 			try {
 				unregister(engine, tyrusEndpoint);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// ignore
 			}
 		}
 	}
 
 	private Object createEndpoint(ServerEndpointRegistration registration, ComponentProviderService provider,
-			WebSocketContainer container, TyrusWebSocketEngine engine) throws DeploymentException {
+								  WebSocketContainer container, TyrusWebSocketEngine engine) throws DeploymentException {
 
 		DirectFieldAccessor accessor = new DirectFieldAccessor(engine);
 		Object sessionListener = accessor.getPropertyValue("sessionListener");
@@ -210,13 +206,11 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 				// Tyrus 1.11+
 				return constructor.newInstance(registration.getEndpoint(), registration, provider, container,
 						"/", registration.getConfigurator(), sessionListener, clusterContext, null, Boolean.TRUE);
-			}
-			else {
+			} else {
 				return constructor.newInstance(registration.getEndpoint(), registration, provider, container,
 						"/", registration.getConfigurator(), sessionListener, clusterContext, null);
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HandshakeFailureException("Failed to register " + registration, ex);
 		}
 	}
@@ -224,8 +218,7 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 	private void register(TyrusWebSocketEngine engine, Object endpoint) {
 		try {
 			registerMethod.invoke(engine, endpoint);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HandshakeFailureException("Failed to register " + endpoint, ex);
 		}
 	}
@@ -233,14 +226,13 @@ public abstract class AbstractTyrusRequestUpgradeStrategy extends AbstractStanda
 	private void unregister(TyrusWebSocketEngine engine, Object endpoint) {
 		try {
 			unRegisterMethod.invoke(engine, endpoint);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HandshakeFailureException("Failed to unregister " + endpoint, ex);
 		}
 	}
 
 
 	protected abstract void handleSuccess(HttpServletRequest request, HttpServletResponse response,
-			UpgradeInfo upgradeInfo, TyrusUpgradeResponse upgradeResponse) throws IOException, ServletException;
+										  UpgradeInfo upgradeInfo, TyrusUpgradeResponse upgradeResponse) throws IOException, ServletException;
 
 }

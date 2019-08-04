@@ -52,10 +52,10 @@ import org.springframework.util.Assert;
  * released connections to the pool, not stopping them while they sit in the pool.
  *
  * @author Juergen Hoeller
- * @since 2.0.2
  * @see #createConnection()
  * @see #setShouldStopConnections
  * @see ConnectionFactoryUtils#releaseConnection
+ * @since 2.0.2
  */
 public class DelegatingConnectionFactory
 		implements SmartConnectionFactory, QueueConnectionFactory, TopicConnectionFactory, InitializingBean {
@@ -93,6 +93,7 @@ public class DelegatingConnectionFactory
 	 * An extra stop call may be necessary for some connection pools that simply return
 	 * released connections to the pool, not stopping them while they sit in the pool.
 	 * <p>Default is "false", simply closing Connections.
+	 *
 	 * @see ConnectionFactoryUtils#releaseConnection
 	 */
 	public void setShouldStopConnections(boolean shouldStopConnections) {
@@ -122,8 +123,7 @@ public class DelegatingConnectionFactory
 		ConnectionFactory target = obtainTargetConnectionFactory();
 		if (target instanceof QueueConnectionFactory) {
 			return ((QueueConnectionFactory) target).createQueueConnection();
-		}
-		else {
+		} else {
 			Connection con = target.createConnection();
 			if (!(con instanceof QueueConnection)) {
 				throw new javax.jms.IllegalStateException("'targetConnectionFactory' is not a QueueConnectionFactory");
@@ -137,8 +137,7 @@ public class DelegatingConnectionFactory
 		ConnectionFactory target = obtainTargetConnectionFactory();
 		if (target instanceof QueueConnectionFactory) {
 			return ((QueueConnectionFactory) target).createQueueConnection(username, password);
-		}
-		else {
+		} else {
 			Connection con = target.createConnection(username, password);
 			if (!(con instanceof QueueConnection)) {
 				throw new javax.jms.IllegalStateException("'targetConnectionFactory' is not a QueueConnectionFactory");
@@ -152,8 +151,7 @@ public class DelegatingConnectionFactory
 		ConnectionFactory target = obtainTargetConnectionFactory();
 		if (target instanceof TopicConnectionFactory) {
 			return ((TopicConnectionFactory) target).createTopicConnection();
-		}
-		else {
+		} else {
 			Connection con = target.createConnection();
 			if (!(con instanceof TopicConnection)) {
 				throw new javax.jms.IllegalStateException("'targetConnectionFactory' is not a TopicConnectionFactory");
@@ -167,8 +165,7 @@ public class DelegatingConnectionFactory
 		ConnectionFactory target = obtainTargetConnectionFactory();
 		if (target instanceof TopicConnectionFactory) {
 			return ((TopicConnectionFactory) target).createTopicConnection(username, password);
-		}
-		else {
+		} else {
 			Connection con = target.createConnection(username, password);
 			if (!(con instanceof TopicConnection)) {
 				throw new javax.jms.IllegalStateException("'targetConnectionFactory' is not a TopicConnectionFactory");

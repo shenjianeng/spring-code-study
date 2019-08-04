@@ -37,24 +37,28 @@ public interface ApplicationEventMulticaster {
 
 	/**
 	 * Add a listener to be notified of all events.
+	 *
 	 * @param listener the listener to add
 	 */
 	void addApplicationListener(ApplicationListener<?> listener);
 
 	/**
 	 * Add a listener bean to be notified of all events.
+	 *
 	 * @param listenerBeanName the name of the listener bean to add
 	 */
 	void addApplicationListenerBean(String listenerBeanName);
 
 	/**
 	 * Remove a listener from the notification list.
+	 *
 	 * @param listener the listener to remove
 	 */
 	void removeApplicationListener(ApplicationListener<?> listener);
 
 	/**
 	 * Remove a listener bean from the notification list.
+	 *
 	 * @param listenerBeanName the name of the listener bean to add
 	 */
 	void removeApplicationListenerBean(String listenerBeanName);
@@ -70,6 +74,7 @@ public interface ApplicationEventMulticaster {
 	 * Multicast the given application event to appropriate listeners.
 	 * <p>Consider using {@link #multicastEvent(ApplicationEvent, ResolvableType)}
 	 * if possible as it provides a better support for generics-based events.
+	 *
 	 * @param event the event to multicast
 	 */
 	void multicastEvent(ApplicationEvent event);
@@ -78,7 +83,8 @@ public interface ApplicationEventMulticaster {
 	 * Multicast the given application event to appropriate listeners.
 	 * <p>If the {@code eventType} is {@code null}, a default type is built
 	 * based on the {@code event} instance.
-	 * @param event the event to multicast
+	 *
+	 * @param event     the event to multicast
 	 * @param eventType the type of event (can be null)
 	 * @since 4.2
 	 */

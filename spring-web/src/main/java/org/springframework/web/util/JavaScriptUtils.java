@@ -33,6 +33,7 @@ public abstract class JavaScriptUtils {
 
 	/**
 	 * Turn JavaScript special characters into escaped characters.
+	 *
 	 * @param input the input string
 	 * @return the string with escaped characters
 	 */
@@ -44,41 +45,31 @@ public abstract class JavaScriptUtils {
 			c = input.charAt(i);
 			if (c == '"') {
 				filtered.append("\\\"");
-			}
-			else if (c == '\'') {
+			} else if (c == '\'') {
 				filtered.append("\\'");
-			}
-			else if (c == '\\') {
+			} else if (c == '\\') {
 				filtered.append("\\\\");
-			}
-			else if (c == '/') {
+			} else if (c == '/') {
 				filtered.append("\\/");
-			}
-			else if (c == '\t') {
+			} else if (c == '\t') {
 				filtered.append("\\t");
-			}
-			else if (c == '\n') {
+			} else if (c == '\n') {
 				if (prevChar != '\r') {
 					filtered.append("\\n");
 				}
-			}
-			else if (c == '\r') {
+			} else if (c == '\r') {
 				filtered.append("\\n");
-			}
-			else if (c == '\f') {
+			} else if (c == '\f') {
 				filtered.append("\\f");
-			}
-			else if (c == '\b') {
+			} else if (c == '\b') {
 				filtered.append("\\b");
 			}
 			// No '\v' in Java, use octal value for VT ascii char
 			else if (c == '\013') {
 				filtered.append("\\v");
-			}
-			else if (c == '<') {
+			} else if (c == '<') {
 				filtered.append("\\u003C");
-			}
-			else if (c == '>') {
+			} else if (c == '>') {
 				filtered.append("\\u003E");
 			}
 			// Unicode for PS (line terminator in ECMA-262)
@@ -88,8 +79,7 @@ public abstract class JavaScriptUtils {
 			// Unicode for LS (line terminator in ECMA-262)
 			else if (c == '\u2029') {
 				filtered.append("\\u2029");
-			}
-			else {
+			} else {
 				filtered.append(c);
 			}
 			prevChar = c;

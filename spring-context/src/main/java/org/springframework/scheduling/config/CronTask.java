@@ -24,9 +24,9 @@ import org.springframework.scheduling.support.CronTrigger;
  * cron expression}.
  *
  * @author Chris Beams
- * @since 3.2
  * @see org.springframework.scheduling.annotation.Scheduled#cron()
  * @see ScheduledTaskRegistrar#addCronTask(CronTask)
+ * @since 3.2
  */
 public class CronTask extends TriggerTask {
 
@@ -35,7 +35,8 @@ public class CronTask extends TriggerTask {
 
 	/**
 	 * Create a new {@code CronTask}.
-	 * @param runnable the underlying task to execute
+	 *
+	 * @param runnable   the underlying task to execute
 	 * @param expression the cron expression defining when the task should be executed
 	 */
 	public CronTask(Runnable runnable, String expression) {
@@ -44,7 +45,8 @@ public class CronTask extends TriggerTask {
 
 	/**
 	 * Create a new {@code CronTask}.
-	 * @param runnable the underlying task to execute
+	 *
+	 * @param runnable    the underlying task to execute
 	 * @param cronTrigger the cron trigger defining when the task should be executed
 	 */
 	public CronTask(Runnable runnable, CronTrigger cronTrigger) {

@@ -171,8 +171,7 @@ public class RestTemplateTests {
 		try {
 			template.execute(url, GET, null, null);
 			fail("HttpServerErrorException expected");
-		}
-		catch (HttpServerErrorException ex) {
+		} catch (HttpServerErrorException ex) {
 			// expected
 		}
 
@@ -212,8 +211,7 @@ public class RestTemplateTests {
 		try {
 			template.getForObject("https://example.com/{p}", String.class, "resource");
 			fail("UnsupportedMediaTypeException expected");
-		}
-		catch (RestClientException ex) {
+		} catch (RestClientException ex) {
 			// expected
 		}
 
@@ -550,8 +548,7 @@ public class RestTemplateTests {
 		try {
 			template.getForObject(url, String.class);
 			fail("RestClientException expected");
-		}
-		catch (ResourceAccessException ex) {
+		} catch (ResourceAccessException ex) {
 			assertEquals("I/O error on GET request for \"https://example.com/resource\": " +
 							"Socket failure; nested exception is java.io.IOException: Socket failure",
 					ex.getMessage());
@@ -573,10 +570,9 @@ public class RestTemplateTests {
 		try {
 			template.getForObject(uri, String.class);
 			fail("RestClientException expected");
-		}
-		catch (ResourceAccessException ex) {
+		} catch (ResourceAccessException ex) {
 			assertEquals("I/O error on GET request for \"https://example.com/resource\": " +
-					"Socket failure; nested exception is java.io.IOException: Socket failure",
+							"Socket failure; nested exception is java.io.IOException: Socket failure",
 					ex.getMessage());
 		}
 	}
@@ -608,7 +604,8 @@ public class RestTemplateTests {
 	public void exchangeParameterizedType() throws Exception {
 		GenericHttpMessageConverter converter = mock(GenericHttpMessageConverter.class);
 		template.setMessageConverters(Collections.<HttpMessageConverter<?>>singletonList(converter));
-		ParameterizedTypeReference<List<Integer>> intList = new ParameterizedTypeReference<List<Integer>>() {};
+		ParameterizedTypeReference<List<Integer>> intList = new ParameterizedTypeReference<List<Integer>>() {
+		};
 		given(converter.canRead(intList.getType(), null, null)).willReturn(true);
 		given(converter.getSupportedMediaTypes()).willReturn(Collections.singletonList(MediaType.TEXT_PLAIN));
 		given(converter.canWrite(String.class, String.class, null)).willReturn(true);

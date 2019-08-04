@@ -32,7 +32,7 @@ public class LegacyEntity {
 		@Override
 		public String toString() {
 			throw new LegacyEntityException(
-				"Invoking toString() on the default collaborator causes an undesirable side effect");
+					"Invoking toString() on the default collaborator causes an undesirable side effect");
 		}
 	};
 

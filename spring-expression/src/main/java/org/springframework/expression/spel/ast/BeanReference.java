@@ -53,10 +53,9 @@ public class BeanReference extends SpelNodeImpl {
 
 		try {
 			return new TypedValue(beanResolver.resolve(state.getEvaluationContext(), this.beanName));
-		}
-		catch (AccessException ex) {
+		} catch (AccessException ex) {
 			throw new SpelEvaluationException(getStartPosition(), ex, SpelMessage.EXCEPTION_DURING_BEAN_RESOLUTION,
-				this.beanName, ex.getMessage());
+					this.beanName, ex.getMessage());
 		}
 	}
 
@@ -68,8 +67,7 @@ public class BeanReference extends SpelNodeImpl {
 		}
 		if (!this.beanName.contains(".")) {
 			sb.append(this.beanName);
-		}
-		else {
+		} else {
 			sb.append("'").append(this.beanName).append("'");
 		}
 		return sb.toString();

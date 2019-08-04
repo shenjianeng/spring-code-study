@@ -38,8 +38,8 @@ package org.springframework.beans.factory;
  * a richer model for runtime management and allows for phased startup/shutdown.
  *
  * @author Juergen Hoeller
- * @since 4.1
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory#preInstantiateSingletons()
+ * @since 4.1
  */
 public interface SmartInitializingSingleton {
 

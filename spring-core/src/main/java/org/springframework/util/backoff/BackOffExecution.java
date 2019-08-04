@@ -22,8 +22,8 @@ package org.springframework.util.backoff;
  * <p>Implementations do not need to be thread safe.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see BackOff
+ * @since 4.1
  */
 @FunctionalInterface
 public interface BackOffExecution {

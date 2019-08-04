@@ -32,8 +32,8 @@ import org.springframework.util.Assert;
  * Defines common configuration settings and common lifecycle handling.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see commonj.timers.TimerManager
+ * @since 3.0
  * @deprecated as of 5.1, in favor of EE 7's
  * {@link org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler}
  */
@@ -56,6 +56,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	 * by this FactoryBean.
 	 * <p>Alternatively (and typically), you can specify the JNDI name
 	 * of the target TimerManager.
+	 *
 	 * @see #setTimerManagerName
 	 */
 	public void setTimerManager(TimerManager timerManager) {
@@ -66,6 +67,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	 * Set the JNDI name of the CommonJ TimerManager.
 	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
 	 * to the current environment naming context if "resourceRef" is set to "true".
+	 *
 	 * @see #setTimerManager
 	 * @see #setResourceRef
 	 */
@@ -92,6 +94,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	 * the underlying TimerManager in case of an independent (non-shared) instance.
 	 * This only affects the {@link org.springframework.context.Lifecycle} support
 	 * as well as application context shutdown.
+	 *
 	 * @see #stop()
 	 * @see #start()
 	 * @see #destroy()
@@ -114,6 +117,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * Return the configured TimerManager, if any.
+	 *
 	 * @return the TimerManager, or {@code null} if not available
 	 */
 	@Nullable
@@ -123,6 +127,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * Obtain the TimerManager for actual use.
+	 *
 	 * @return the TimerManager (never {@code null})
 	 * @throws IllegalStateException in case of no TimerManager set
 	 * @since 5.0
@@ -139,6 +144,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * Resumes the underlying TimerManager (if not shared).
+	 *
 	 * @see commonj.timers.TimerManager#resume()
 	 */
 	@Override
@@ -150,6 +156,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * Suspends the underlying TimerManager (if not shared).
+	 *
 	 * @see commonj.timers.TimerManager#suspend()
 	 */
 	@Override
@@ -162,6 +169,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	/**
 	 * Considers the underlying TimerManager as running if it is
 	 * neither suspending nor stopping.
+	 *
 	 * @see commonj.timers.TimerManager#isSuspending()
 	 * @see commonj.timers.TimerManager#isStopping()
 	 */
@@ -178,6 +186,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 	/**
 	 * Stops the underlying TimerManager (if not shared).
+	 *
 	 * @see commonj.timers.TimerManager#stop()
 	 */
 	@Override

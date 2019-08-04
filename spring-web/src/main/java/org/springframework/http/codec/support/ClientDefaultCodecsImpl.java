@@ -99,11 +99,9 @@ class ClientDefaultCodecsImpl extends BaseDefaultCodecs implements ClientCodecCo
 	private List<HttpMessageWriter<?>> getPartWriters() {
 		if (this.multipartCodecs != null) {
 			return this.multipartCodecs.getWriters();
-		}
-		else if (this.partWritersSupplier != null) {
+		} else if (this.partWritersSupplier != null) {
 			return this.partWritersSupplier.get();
-		}
-		else {
+		} else {
 			return Collections.emptyList();
 		}
 	}

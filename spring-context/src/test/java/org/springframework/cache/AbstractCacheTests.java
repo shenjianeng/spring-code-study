@@ -170,8 +170,7 @@ public abstract class AbstractCacheTests<T extends Cache> {
 			cache.get(key, () -> {
 				throw new UnsupportedOperationException("Expected exception");
 			});
-		}
-		catch (Cache.ValueRetrievalException ex) {
+		} catch (Cache.ValueRetrievalException ex) {
 			assertNotNull(ex.getCause());
 			assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
 		}
@@ -196,8 +195,7 @@ public abstract class AbstractCacheTests<T extends Cache> {
 					return counter.incrementAndGet();
 				});
 				results.add(value);
-			}
-			finally {
+			} finally {
 				latch.countDown();
 			}
 		};

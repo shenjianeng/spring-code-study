@@ -46,8 +46,8 @@ import org.springframework.util.concurrent.SuccessCallback;
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma
- * @since 4.0
  * @see HttpComponentsClientHttpRequestFactory#createRequest
+ * @since 4.0
  * @deprecated as of Spring 5.0, with no direct replacement
  */
 @Deprecated
@@ -161,7 +161,7 @@ final class HttpComponentsAsyncClientHttpRequest extends AbstractBufferingAsyncC
 
 		@Override
 		public void addCallback(SuccessCallback<? super ClientHttpResponse> successCallback,
-				FailureCallback failureCallback) {
+								FailureCallback failureCallback) {
 
 			this.callback.addSuccessCallback(successCallback);
 			this.callback.addFailureCallback(failureCallback);

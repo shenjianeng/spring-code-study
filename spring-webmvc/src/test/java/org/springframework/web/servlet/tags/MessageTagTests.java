@@ -146,7 +146,7 @@ public class MessageTagTests extends AbstractTagTests {
 		};
 		tag.setPageContext(pc);
 		tag.setCode("testArgs");
-		tag.setArguments(new Object[] {"arg1", 5});
+		tag.setArguments(new Object[]{"arg1", 5});
 		assertTrue("Correct doStartTag return value", tag.doStartTag() == Tag.EVAL_BODY_INCLUDE);
 		assertEquals("Correct doEndTag return value", Tag.EVAL_PAGE, tag.doEndTag());
 		assertEquals("Correct message", "test arg1 message 5", message.toString());
@@ -389,12 +389,12 @@ public class MessageTagTests extends AbstractTagTests {
 		assertEquals("test message", rc.getMessage("test", "default"));
 		assertEquals("test message", rc.getMessage("test", (Object[]) null, "default"));
 		assertEquals("test arg1 message arg2",
-				rc.getMessage("testArgs", new String[] {"arg1", "arg2"}, "default"));
+				rc.getMessage("testArgs", new String[]{"arg1", "arg2"}, "default"));
 		assertEquals("test arg1 message arg2",
-				rc.getMessage("testArgs", Arrays.asList(new String[] {"arg1", "arg2"}), "default"));
+				rc.getMessage("testArgs", Arrays.asList(new String[]{"arg1", "arg2"}), "default"));
 		assertEquals("default", rc.getMessage("testa", "default"));
 		assertEquals("default", rc.getMessage("testa", (List) null, "default"));
-		MessageSourceResolvable resolvable = new DefaultMessageSourceResolvable(new String[] {"test"});
+		MessageSourceResolvable resolvable = new DefaultMessageSourceResolvable(new String[]{"test"});
 		assertEquals("test message", rc.getMessage(resolvable));
 	}
 

@@ -86,7 +86,7 @@ public class DelegatingSmartContextLoaderTests {
 
 	@Test
 	public void processContextConfigurationWithLocation() {
-		String[] locations = new String[] {"classpath:/foo.xml"};
+		String[] locations = new String[]{"classpath:/foo.xml"};
 		ContextConfigurationAttributes configAttributes = new ContextConfigurationAttributes(
 				getClass(), locations, EMPTY_CLASS_ARRAY, true, null, true, ContextLoader.class);
 		loader.processContextConfiguration(configAttributes);
@@ -96,7 +96,7 @@ public class DelegatingSmartContextLoaderTests {
 
 	@Test
 	public void processContextConfigurationWithConfigurationClass() {
-		Class<?>[] classes = new Class<?>[] {getClass()};
+		Class<?>[] classes = new Class<?>[]{getClass()};
 		ContextConfigurationAttributes configAttributes = new ContextConfigurationAttributes(
 				getClass(), EMPTY_STRING_ARRAY, classes, true, null, true, ContextLoader.class);
 		loader.processContextConfiguration(configAttributes);
@@ -133,7 +133,7 @@ public class DelegatingSmartContextLoaderTests {
 		expectedException.expectMessage(endsWith("declare either 'locations' or 'classes' but not both."));
 
 		MergedContextConfiguration mergedConfig = new MergedContextConfiguration(getClass(),
-				new String[] {"test.xml"}, new Class<?>[] {getClass()}, EMPTY_STRING_ARRAY, loader);
+				new String[]{"test.xml"}, new Class<?>[]{getClass()}, EMPTY_STRING_ARRAY, loader);
 		loader.loadContext(mergedConfig);
 	}
 
@@ -151,7 +151,7 @@ public class DelegatingSmartContextLoaderTests {
 	public void loadContextWithXmlConfig() throws Exception {
 		MergedContextConfiguration mergedConfig = new MergedContextConfiguration(
 				XmlTestCase.class,
-				new String[] {"classpath:/org/springframework/test/context/support/DelegatingSmartContextLoaderTests$XmlTestCase-context.xml"},
+				new String[]{"classpath:/org/springframework/test/context/support/DelegatingSmartContextLoaderTests$XmlTestCase-context.xml"},
 				EMPTY_CLASS_ARRAY, EMPTY_STRING_ARRAY, loader);
 		assertApplicationContextLoadsAndContainsFooString(mergedConfig);
 	}
@@ -159,7 +159,7 @@ public class DelegatingSmartContextLoaderTests {
 	@Test
 	public void loadContextWithConfigurationClass() throws Exception {
 		MergedContextConfiguration mergedConfig = new MergedContextConfiguration(ConfigClassTestCase.class,
-				EMPTY_STRING_ARRAY, new Class<?>[] {ConfigClassTestCase.Config.class}, EMPTY_STRING_ARRAY, loader);
+				EMPTY_STRING_ARRAY, new Class<?>[]{ConfigClassTestCase.Config.class}, EMPTY_STRING_ARRAY, loader);
 		assertApplicationContextLoadsAndContainsFooString(mergedConfig);
 	}
 

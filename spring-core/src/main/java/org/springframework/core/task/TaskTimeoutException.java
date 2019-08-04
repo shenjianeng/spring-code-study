@@ -21,9 +21,9 @@ package org.springframework.core.task;
  * a given task for execution because of the specified timeout.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see AsyncTaskExecutor#execute(Runnable, long)
  * @see TaskRejectedException
+ * @since 2.0.3
  */
 @SuppressWarnings("serial")
 public class TaskTimeoutException extends TaskRejectedException {
@@ -31,6 +31,7 @@ public class TaskTimeoutException extends TaskRejectedException {
 	/**
 	 * Create a new {@code TaskTimeoutException}
 	 * with the specified detail message and no root cause.
+	 *
 	 * @param msg the detail message
 	 */
 	public TaskTimeoutException(String msg) {
@@ -40,9 +41,10 @@ public class TaskTimeoutException extends TaskRejectedException {
 	/**
 	 * Create a new {@code TaskTimeoutException}
 	 * with the specified detail message and the given root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (usually from using an underlying
-	 * API such as the {@code java.util.concurrent} package)
+	 *              API such as the {@code java.util.concurrent} package)
 	 * @see java.util.concurrent.RejectedExecutionException
 	 */
 	public TaskTimeoutException(String msg, Throwable cause) {

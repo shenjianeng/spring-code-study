@@ -46,8 +46,8 @@ import static org.junit.Assert.*;
  * are supported.
  *
  * @author Sam Brannen
- * @since 4.3
  * @see org.springframework.test.context.jdbc.PrimaryDataSourceTests
+ * @since 4.3
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration

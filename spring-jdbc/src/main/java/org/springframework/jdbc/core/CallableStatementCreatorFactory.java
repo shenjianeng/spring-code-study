@@ -39,10 +39,14 @@ import org.springframework.lang.Nullable;
  */
 public class CallableStatementCreatorFactory {
 
-	/** The SQL call string, which won't change when the parameters change. */
+	/**
+	 * The SQL call string, which won't change when the parameters change.
+	 */
 	private final String callString;
 
-	/** List of SqlParameter objects. May not be {@code null}. */
+	/**
+	 * List of SqlParameter objects. May not be {@code null}.
+	 */
 	private final List<SqlParameter> declaredParameters;
 
 	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY;
@@ -53,6 +57,7 @@ public class CallableStatementCreatorFactory {
 	/**
 	 * Create a new factory. Will need to add parameters via the
 	 * {@link #addParameter} method or have no parameters.
+	 *
 	 * @param callString the SQL call string
 	 */
 	public CallableStatementCreatorFactory(String callString) {
@@ -62,7 +67,8 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * Create a new factory with the given SQL and the given parameters.
-	 * @param callString the SQL call string
+	 *
+	 * @param callString         the SQL call string
 	 * @param declaredParameters list of {@link SqlParameter} objects
 	 */
 	public CallableStatementCreatorFactory(String callString, List<SqlParameter> declaredParameters) {
@@ -73,6 +79,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * Return the SQL call string.
+	 *
 	 * @since 5.1.3
 	 */
 	public final String getCallString() {
@@ -82,6 +89,7 @@ public class CallableStatementCreatorFactory {
 	/**
 	 * Add a new declared parameter.
 	 * <p>Order of parameter addition is significant.
+	 *
 	 * @param param the parameter to add to the list of declared parameters
 	 */
 	public void addParameter(SqlParameter param) {
@@ -91,6 +99,7 @@ public class CallableStatementCreatorFactory {
 	/**
 	 * Set whether to use prepared statements that return a specific type of ResultSet.
 	 * specific type of ResultSet.
+	 *
 	 * @param resultSetType the ResultSet type
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
@@ -110,6 +119,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * Return a new CallableStatementCreator instance given this parameters.
+	 *
 	 * @param params list of parameters (may be {@code null})
 	 */
 	public CallableStatementCreator newCallableStatementCreator(@Nullable Map<String, ?> params) {
@@ -118,6 +128,7 @@ public class CallableStatementCreatorFactory {
 
 	/**
 	 * Return a new CallableStatementCreator instance given this parameter mapper.
+	 *
 	 * @param inParamMapper the ParameterMapper implementation that will return a Map of parameters
 	 */
 	public CallableStatementCreator newCallableStatementCreator(ParameterMapper inParamMapper) {
@@ -138,6 +149,7 @@ public class CallableStatementCreatorFactory {
 
 		/**
 		 * Create a new CallableStatementCreatorImpl.
+		 *
 		 * @param inParamMapper the ParameterMapper implementation for mapping input parameters
 		 */
 		public CallableStatementCreatorImpl(ParameterMapper inParamMapper) {
@@ -146,6 +158,7 @@ public class CallableStatementCreatorFactory {
 
 		/**
 		 * Create a new CallableStatementCreatorImpl.
+		 *
 		 * @param inParams list of SqlParameter objects
 		 */
 		public CallableStatementCreatorImpl(Map<String, ?> inParams) {
@@ -157,8 +170,7 @@ public class CallableStatementCreatorFactory {
 			// If we were given a ParameterMapper, we must let the mapper do its thing to create the Map.
 			if (this.inParameterMapper != null) {
 				this.inParameters = this.inParameterMapper.createMap(con);
-			}
-			else {
+			} else {
 				if (this.inParameters == null) {
 					throw new InvalidDataAccessApiUsageException(
 							"A ParameterMapper or a Map of parameters must be provided");
@@ -168,8 +180,7 @@ public class CallableStatementCreatorFactory {
 			CallableStatement cs = null;
 			if (resultSetType == ResultSet.TYPE_FORWARD_ONLY && !updatableResults) {
 				cs = con.prepareCall(callString);
-			}
-			else {
+			} else {
 				cs = con.prepareCall(callString, resultSetType,
 						updatableResults ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
 			}
@@ -186,12 +197,10 @@ public class CallableStatementCreatorFactory {
 						if (declaredParam instanceof SqlOutParameter) {
 							if (declaredParam.getTypeName() != null) {
 								cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType(), declaredParam.getTypeName());
-							}
-							else {
+							} else {
 								if (declaredParam.getScale() != null) {
 									cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType(), declaredParam.getScale());
-								}
-								else {
+								} else {
 									cs.registerOutParameter(sqlColIndx, declaredParam.getSqlType());
 								}
 							}
@@ -199,8 +208,7 @@ public class CallableStatementCreatorFactory {
 								StatementCreatorUtils.setParameterValue(cs, sqlColIndx, declaredParam, inValue);
 							}
 						}
-					}
-					else {
+					} else {
 						// It's an input parameter; must be supplied by the caller.
 						if (!this.inParameters.containsKey(declaredParam.getName())) {
 							throw new InvalidDataAccessApiUsageException(

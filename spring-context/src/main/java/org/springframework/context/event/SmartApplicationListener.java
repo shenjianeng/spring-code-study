@@ -29,14 +29,15 @@ import org.springframework.lang.Nullable;
  * the {@link GenericApplicationListener} interface instead.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see GenericApplicationListener
  * @see GenericApplicationListenerAdapter
+ * @since 3.0
  */
 public interface SmartApplicationListener extends ApplicationListener<ApplicationEvent>, Ordered {
 
 	/**
 	 * Determine whether this listener actually supports the given event type.
+	 *
 	 * @param eventType the event type (never {@code null})
 	 */
 	boolean supportsEventType(Class<? extends ApplicationEvent> eventType);
@@ -44,6 +45,7 @@ public interface SmartApplicationListener extends ApplicationListener<Applicatio
 	/**
 	 * Determine whether this listener actually supports the given source type.
 	 * <p>The default implementation always returns {@code true}.
+	 *
 	 * @param sourceType the source type, or {@code null} if no source
 	 */
 	default boolean supportsSourceType(@Nullable Class<?> sourceType) {

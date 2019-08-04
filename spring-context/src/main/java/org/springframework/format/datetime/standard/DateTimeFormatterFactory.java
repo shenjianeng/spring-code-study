@@ -34,7 +34,6 @@ import org.springframework.util.StringUtils;
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
- * @since 4.0
  * @see #createDateTimeFormatter()
  * @see #createDateTimeFormatter(DateTimeFormatter)
  * @see #setPattern
@@ -43,6 +42,7 @@ import org.springframework.util.StringUtils;
  * @see #setTimeStyle
  * @see #setDateTimeStyle
  * @see DateTimeFormatterFactoryBean
+ * @since 4.0
  */
 public class DateTimeFormatterFactory {
 
@@ -70,6 +70,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatterFactory} instance.
+	 *
 	 * @param pattern the pattern to use to format date values
 	 */
 	public DateTimeFormatterFactory(String pattern) {
@@ -79,6 +80,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the pattern to use to format date values.
+	 *
 	 * @param pattern the format pattern
 	 */
 	public void setPattern(String pattern) {
@@ -87,6 +89,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the ISO format used to format date values.
+	 *
 	 * @param iso the ISO format
 	 */
 	public void setIso(ISO iso) {
@@ -129,6 +132,7 @@ public class DateTimeFormatterFactory {
 	 * <p>This method mimics the styles supported by Joda-Time. Note that
 	 * JSR-310 natively favors {@link java.time.format.FormatStyle} as used for
 	 * {@link #setDateStyle}, {@link #setTimeStyle} and {@link #setDateTimeStyle}.
+	 *
 	 * @param style two characters from the set {"S", "M", "L", "F", "-"}
 	 */
 	public void setStylePattern(String style) {
@@ -140,17 +144,24 @@ public class DateTimeFormatterFactory {
 	@Nullable
 	private FormatStyle convertStyleCharacter(char c) {
 		switch (c) {
-			case 'S': return FormatStyle.SHORT;
-			case 'M': return FormatStyle.MEDIUM;
-			case 'L': return FormatStyle.LONG;
-			case 'F': return FormatStyle.FULL;
-			case '-': return null;
-			default: throw new IllegalArgumentException("Invalid style character '" + c + "'");
+			case 'S':
+				return FormatStyle.SHORT;
+			case 'M':
+				return FormatStyle.MEDIUM;
+			case 'L':
+				return FormatStyle.LONG;
+			case 'F':
+				return FormatStyle.FULL;
+			case '-':
+				return null;
+			default:
+				throw new IllegalArgumentException("Invalid style character '" + c + "'");
 		}
 	}
 
 	/**
 	 * Set the {@code TimeZone} to normalize the date values into, if any.
+	 *
 	 * @param timeZone the time zone
 	 */
 	public void setTimeZone(TimeZone timeZone) {
@@ -162,6 +173,7 @@ public class DateTimeFormatterFactory {
 	 * Create a new {@code DateTimeFormatter} using this factory.
 	 * <p>If no specific pattern or style has been defined,
 	 * {@link FormatStyle#MEDIUM medium date time format} will be used.
+	 *
 	 * @return a new date time formatter
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
 	 */
@@ -173,8 +185,9 @@ public class DateTimeFormatterFactory {
 	 * Create a new {@code DateTimeFormatter} using this factory.
 	 * <p>If no specific pattern or style has been defined,
 	 * the supplied {@code fallbackFormatter} will be used.
+	 *
 	 * @param fallbackFormatter the fall-back formatter to use
-	 * when no specific factory properties have been set
+	 *                          when no specific factory properties have been set
 	 * @return a new date time formatter
 	 */
 	public DateTimeFormatter createDateTimeFormatter(DateTimeFormatter fallbackFormatter) {
@@ -185,8 +198,7 @@ public class DateTimeFormatterFactory {
 			// However, with strict parsing, a year digit needs to be specified as 'u'...
 			String patternToUse = StringUtils.replace(this.pattern, "yy", "uu");
 			dateTimeFormatter = DateTimeFormatter.ofPattern(patternToUse).withResolverStyle(ResolverStyle.STRICT);
-		}
-		else if (this.iso != null && this.iso != ISO.NONE) {
+		} else if (this.iso != null && this.iso != ISO.NONE) {
 			switch (this.iso) {
 				case DATE:
 					dateTimeFormatter = DateTimeFormatter.ISO_DATE;
@@ -200,14 +212,11 @@ public class DateTimeFormatterFactory {
 				default:
 					throw new IllegalStateException("Unsupported ISO format: " + this.iso);
 			}
-		}
-		else if (this.dateStyle != null && this.timeStyle != null) {
+		} else if (this.dateStyle != null && this.timeStyle != null) {
 			dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(this.dateStyle, this.timeStyle);
-		}
-		else if (this.dateStyle != null) {
+		} else if (this.dateStyle != null) {
 			dateTimeFormatter = DateTimeFormatter.ofLocalizedDate(this.dateStyle);
-		}
-		else if (this.timeStyle != null) {
+		} else if (this.timeStyle != null) {
 			dateTimeFormatter = DateTimeFormatter.ofLocalizedTime(this.timeStyle);
 		}
 

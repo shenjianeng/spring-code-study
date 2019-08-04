@@ -44,16 +44,14 @@ public class ConstantsTests {
 		try {
 			c.asNumber("bogus");
 			fail("Can't get bogus field");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 
 		assertTrue(c.asString("S1").equals(A.S1));
 		try {
 			c.asNumber("S1");
 			fail("Wrong type");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 	}
 
@@ -127,8 +125,7 @@ public class ConstantsTests {
 			assertEquals(2, values.size());
 			assertTrue(values.contains(Integer.valueOf(1)));
 			assertTrue(values.contains(Integer.valueOf(2)));
-		}
-		finally {
+		} finally {
 			Locale.setDefault(oldLocale);
 		}
 	}
@@ -169,14 +166,12 @@ public class ConstantsTests {
 		try {
 			c.toCode("bogus", "bogus");
 			fail("Should have thrown ConstantException");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 		try {
 			c.toCode("bogus", null);
 			fail("Should have thrown ConstantException");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 
 		assertEquals("MY_PROPERTY_NO", c.toCodeForProperty(Integer.valueOf(1), "myProperty"));
@@ -184,8 +179,7 @@ public class ConstantsTests {
 		try {
 			c.toCodeForProperty("bogus", "bogus");
 			fail("Should have thrown ConstantException");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 
 		assertEquals("DOG", c.toCodeForSuffix(Integer.valueOf(0), ""));
@@ -205,14 +199,12 @@ public class ConstantsTests {
 		try {
 			c.toCodeForSuffix("bogus", "bogus");
 			fail("Should have thrown ConstantException");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 		try {
 			c.toCodeForSuffix("bogus", null);
 			fail("Should have thrown ConstantException");
-		}
-		catch (Constants.ConstantException expected) {
+		} catch (Constants.ConstantException expected) {
 		}
 	}
 
@@ -251,8 +243,8 @@ public class ConstantsTests {
 		try {
 			new Constants(null);
 			fail("Must have thrown IllegalArgumentException");
+		} catch (IllegalArgumentException expected) {
 		}
-		catch (IllegalArgumentException expected) {}
 	}
 
 
@@ -276,7 +268,9 @@ public class ConstantsTests {
 		public static final int NO_PROPERTY = 3;
 		public static final int YES_PROPERTY = 4;
 
-		/** ignore these */
+		/**
+		 * ignore these
+		 */
 		protected static final int P = -1;
 		protected boolean f;
 		static final Object o = new Object();

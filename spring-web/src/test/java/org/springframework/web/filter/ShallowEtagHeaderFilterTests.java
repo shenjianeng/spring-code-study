@@ -53,7 +53,7 @@ public class ShallowEtagHeaderFilterTests {
 		assertFalse(filter.isEligibleForEtag(request, response, 200, StreamUtils.emptyInput()));
 
 		request = new MockHttpServletRequest("POST", "/hotels");
-		request.addHeader("Cache-Control","must-revalidate, no-store");
+		request.addHeader("Cache-Control", "must-revalidate, no-store");
 		assertFalse(filter.isEligibleForEtag(request, response, 200, StreamUtils.emptyInput()));
 	}
 

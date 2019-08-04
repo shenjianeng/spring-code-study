@@ -59,10 +59,10 @@ import org.springframework.web.context.ServletContextAware;
  * allowing to specify Servlet initialization parameters etc.
  *
  * @author Juergen Hoeller
- * @since 1.1.5
  * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
  * @see javax.servlet.Servlet#destroy()
  * @see SimpleServletHandlerAdapter
+ * @since 1.1.5
  */
 public class SimpleServletPostProcessor implements
 		DestructionAwareBeanPostProcessor, ServletContextAware, ServletConfigAware {
@@ -82,6 +82,7 @@ public class SimpleServletPostProcessor implements
 	 * <p>Default is "true". Turn this setting to "false" to pass in
 	 * a mock ServletConfig object with the bean name as servlet name,
 	 * holding the current ServletContext.
+	 *
 	 * @see #setServletConfig
 	 */
 	public void setUseSharedServletConfig(boolean useSharedServletConfig) {
@@ -113,8 +114,7 @@ public class SimpleServletPostProcessor implements
 			}
 			try {
 				((Servlet) bean).init(config);
-			}
-			catch (ServletException ex) {
+			} catch (ServletException ex) {
 				throw new BeanInitializationException("Servlet.init threw exception", ex);
 			}
 		}

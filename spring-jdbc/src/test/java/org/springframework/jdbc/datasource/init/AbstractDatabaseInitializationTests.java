@@ -77,8 +77,8 @@ public abstract class AbstractDatabaseInitializationTests {
 	void assertUsersDatabaseCreated(String... lastNames) {
 		for (String lastName : lastNames) {
 			assertThat("Did not find user with last name [" + lastName + "].",
-				jdbcTemplate.queryForObject("select count(0) from users where last_name = ?", Integer.class, lastName),
-				equalTo(1));
+					jdbcTemplate.queryForObject("select count(0) from users where last_name = ?", Integer.class, lastName),
+					equalTo(1));
 		}
 	}
 

@@ -53,6 +53,7 @@ import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
 /**
  * Integration tests for {@link WebSocketStompClient}.
+ *
  * @author Rossen Stoyanchev
  */
 public class WebSocketStompClientIntegrationTests {
@@ -92,20 +93,17 @@ public class WebSocketStompClientIntegrationTests {
 	public void tearDown() throws Exception {
 		try {
 			this.server.undeployConfig();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to undeploy application config", t);
 		}
 		try {
 			this.server.stop();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to stop server", t);
 		}
 		try {
 			this.wac.close();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to close WebApplicationContext", t);
 		}
 	}
@@ -171,6 +169,7 @@ public class WebSocketStompClientIntegrationTests {
 				public Type getPayloadType(StompHeaders headers) {
 					return String.class;
 				}
+
 				@Override
 				public void handleFrame(StompHeaders headers, @Nullable Object payload) {
 					received.add((String) payload);
@@ -180,8 +179,7 @@ public class WebSocketStompClientIntegrationTests {
 				// Delay send since server processes concurrently
 				// Ideally order should be preserved or receipts supported (simple broker)
 				Thread.sleep(500);
-			}
-			catch (InterruptedException ex) {
+			} catch (InterruptedException ex) {
 				logger.error(ex);
 			}
 			session.send(this.topic, this.payload);
@@ -203,7 +201,7 @@ public class WebSocketStompClientIntegrationTests {
 
 		@Override
 		public void handleException(StompSession session, StompCommand command,
-				StompHeaders headers, byte[] payload, Throwable ex) {
+									StompHeaders headers, byte[] payload, Throwable ex) {
 
 			logger.error(command + " " + headers, ex);
 		}

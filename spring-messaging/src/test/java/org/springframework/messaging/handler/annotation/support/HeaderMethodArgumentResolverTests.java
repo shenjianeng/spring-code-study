@@ -132,8 +132,7 @@ public class HeaderMethodArgumentResolverTests {
 			Message<byte[]> message = MessageBuilder.withPayload(new byte[0]).build();
 			Object result = resolver.resolveArgument(paramSystemPropertyDefaultValue, message);
 			assertEquals("sysbar", result);
-		}
-		finally {
+		} finally {
 			System.clearProperty("systemProperty");
 		}
 	}
@@ -145,8 +144,7 @@ public class HeaderMethodArgumentResolverTests {
 			Message<byte[]> message = MessageBuilder.withPayload(new byte[0]).setHeader("sysbar", "foo").build();
 			Object result = resolver.resolveArgument(paramSystemPropertyName, message);
 			assertEquals("foo", result);
-		}
-		finally {
+		} finally {
 			System.clearProperty("systemProperty");
 		}
 	}

@@ -71,9 +71,8 @@ public class UndertowTestServer implements WebSocketTestServer {
 		WebSocketDeploymentInfo info = new WebSocketDeploymentInfo();
 		try {
 			info.setWorker(Xnio.getInstance().createWorker(OptionMap.EMPTY));
-			info.setBuffers(new org.xnio.ByteBufferSlicePool(1024,1024));
-		}
-		catch (IOException ex) {
+			info.setBuffers(new org.xnio.ByteBufferSlicePool(1024, 1024));
+		} catch (IOException ex) {
 			throw new IllegalStateException(ex);
 		}
 
@@ -99,8 +98,7 @@ public class UndertowTestServer implements WebSocketTestServer {
 			this.manager.deploy();
 			HttpHandler httpHandler = this.manager.start();
 			this.server = Undertow.builder().addHttpListener(0, "localhost").setHandler(httpHandler).build();
-		}
-		catch (ServletException ex) {
+		} catch (ServletException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
@@ -149,6 +147,7 @@ public class UndertowTestServer implements WebSocketTestServer {
 				public Servlet getInstance() {
 					return new DispatcherServlet(wac);
 				}
+
 				@Override
 				public void release() {
 				}
@@ -172,8 +171,10 @@ public class UndertowTestServer implements WebSocketTestServer {
 				public Filter getInstance() {
 					return filter;
 				}
+
 				@Override
-				public void release() {}
+				public void release() {
+				}
 			};
 		}
 	}

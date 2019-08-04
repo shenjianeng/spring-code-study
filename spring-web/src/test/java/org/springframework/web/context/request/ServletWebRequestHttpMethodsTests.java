@@ -58,7 +58,7 @@ public class ServletWebRequestHttpMethodsTests {
 
 	@Parameters(name = "{0}")
 	static public Iterable<Object[]> safeMethods() {
-		return Arrays.asList(new Object[][] {
+		return Arrays.asList(new Object[][]{
 				{"GET"}, {"HEAD"}
 		});
 	}

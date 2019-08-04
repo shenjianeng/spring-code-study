@@ -24,8 +24,8 @@ import org.springframework.core.MethodParameter;
  * {@code @RequestMapping} method is not present.
  *
  * @author Juergen Hoeller
- * @since 5.1
  * @see MissingRequestHeaderException
+ * @since 5.1
  */
 @SuppressWarnings("serial")
 public class MissingRequestCookieException extends ServletRequestBindingException {
@@ -37,8 +37,9 @@ public class MissingRequestCookieException extends ServletRequestBindingExceptio
 
 	/**
 	 * Constructor for MissingRequestCookieException.
+	 *
 	 * @param cookieName the name of the missing request cookie
-	 * @param parameter the method parameter
+	 * @param parameter  the method parameter
 	 */
 	public MissingRequestCookieException(String cookieName, MethodParameter parameter) {
 		super("");

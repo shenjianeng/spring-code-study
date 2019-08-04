@@ -20,8 +20,8 @@ package org.springframework.jms;
  * Runtime exception mirroring the JMS InvalidDestinationException.
  *
  * @author Mark Pollack
- * @since 1.1
  * @see javax.jms.InvalidDestinationException
+ * @since 1.1
  */
 @SuppressWarnings("serial")
 public class InvalidDestinationException extends JmsException {

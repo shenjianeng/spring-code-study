@@ -40,21 +40,21 @@ import reactor.core.publisher.Mono;
  *
  * <pre class="code">
  * class ExampleHandler implements WebSocketHandler {
-
+ *
  * 	&#064;Override
  * 	public Mono&lt;Void&gt; handle(WebSocketSession session) {
  *
  * 		Flux&lt;WebSocketMessage&gt; output = session.receive()
- *			.doOnNext(message -> {
+ * 			.doOnNext(message -> {
  * 				// ...
- * 			})
+ *            })
  * 			.concatMap(message -> {
  * 				// ...
- * 			})
+ *            })
  * 			.map(value -> session.textMessage("Echo " + value));
  *
  * 		return session.send(output);
- * 	}
+ *    }
  * }
  * </pre>
  *
@@ -63,24 +63,24 @@ import reactor.core.publisher.Mono;
  *
  * <pre class="code">
  * class ExampleHandler implements WebSocketHandler {
-
+ *
  * 	&#064;Override
  * 	public Mono&lt;Void&gt; handle(WebSocketSession session) {
  *
  * 		Mono&lt;Void&gt; input = session.receive()
- *			.doOnNext(message -> {
+ * 			.doOnNext(message -> {
  * 				// ...
- * 			})
+ *            })
  * 			.concatMap(message -> {
  * 				// ...
- * 			})
+ *            })
  * 			.then();
  *
- *		Flux&lt;String&gt; source = ... ;
+ * 		Flux&lt;String&gt; source = ... ;
  * 		Mono&lt;Void&gt; output = session.send(source.map(session::textMessage));
  *
  * 		return Mono.zip(input, output).then();
- * 	}
+ *    }
  * }
  * </pre>
  *

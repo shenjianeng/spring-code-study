@@ -45,6 +45,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 
 	/**
 	 * Create a new ObjenesisCglibAopProxy for the given AOP configuration.
+	 *
 	 * @param config the AOP configuration as AdvisedSupport object
 	 */
 	public ObjenesisCglibAopProxy(AdvisedSupport config) {
@@ -60,8 +61,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 		if (objenesis.isWorthTrying()) {
 			try {
 				proxyInstance = objenesis.newInstance(proxyClass, enhancer.getUseCache());
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				logger.debug("Unable to instantiate proxy using Objenesis, " +
 						"falling back to regular proxy construction", ex);
 			}
@@ -76,8 +76,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 				ReflectionUtils.makeAccessible(ctor);
 				proxyInstance = (this.constructorArgs != null ?
 						ctor.newInstance(this.constructorArgs) : ctor.newInstance());
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new AopConfigException("Unable to instantiate proxy using Objenesis, " +
 						"and regular proxy instantiation via default constructor fails as well", ex);
 			}

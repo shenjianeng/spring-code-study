@@ -32,9 +32,9 @@ import org.springframework.core.annotation.AliasFor;
  * target method parameter type.
  *
  * @author Rossen Stoyanchev
- * @since 4.3
  * @see RequestMapping
  * @see SessionAttribute
+ * @since 4.3
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

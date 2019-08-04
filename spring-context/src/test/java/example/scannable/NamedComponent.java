@@ -22,7 +22,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author Mark Fisher
  */
-@Component("myNamedComponent") @Lazy
+@Component("myNamedComponent")
+@Lazy
 public class NamedComponent {
 
 }

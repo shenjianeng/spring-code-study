@@ -36,8 +36,8 @@ import org.springframework.util.Assert;
  * {@link ClientHttpConnector} for the Jetty Reactive Streams HttpClient.
  *
  * @author Sebastien Deleuze
- * @since 5.1
  * @see <a href="https://github.com/jetty-project/jetty-reactive-httpclient">Jetty ReactiveStreams HttpClient</a>
+ * @since 5.1
  */
 public class JettyClientHttpConnector implements ClientHttpConnector {
 
@@ -55,8 +55,9 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 
 	/**
 	 * Constructor with an {@link JettyResourceFactory} that will manage shared resources.
+	 *
 	 * @param resourceFactory the {@link JettyResourceFactory} to use
-	 * @param customizer the lambda used to customize the {@link HttpClient}
+	 * @param customizer      the lambda used to customize the {@link HttpClient}
 	 */
 	public JettyClientHttpConnector(
 			JettyResourceFactory resourceFactory, @Nullable Consumer<HttpClient> customizer) {
@@ -87,7 +88,7 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 
 	@Override
 	public Mono<ClientHttpResponse> connect(HttpMethod method, URI uri,
-			Function<? super ClientHttpRequest, Mono<Void>> requestCallback) {
+											Function<? super ClientHttpRequest, Mono<Void>> requestCallback) {
 
 		if (!uri.isAbsolute()) {
 			return Mono.error(new IllegalArgumentException("URI is not absolute: " + uri));
@@ -96,8 +97,7 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 		if (!this.httpClient.isStarted()) {
 			try {
 				this.httpClient.start();
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				return Mono.error(ex);
 			}
 		}

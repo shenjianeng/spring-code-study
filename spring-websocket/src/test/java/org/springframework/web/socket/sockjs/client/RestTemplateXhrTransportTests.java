@@ -130,6 +130,7 @@ public class RestTemplateXhrTransportTests {
 					@Override
 					public void onSuccess(WebSocketSession result) {
 					}
+
 					@Override
 					public void onFailure(Throwable ex) {
 						if (ex == expected) {
@@ -196,7 +197,6 @@ public class RestTemplateXhrTransportTests {
 	}
 
 
-
 	private static class TestRestTemplate extends RestTemplate {
 
 		private Queue<ClientHttpResponse> responses = new LinkedBlockingDeque<>();
@@ -208,12 +208,11 @@ public class RestTemplateXhrTransportTests {
 
 		@Override
 		public <T> T execute(URI url, HttpMethod method, @Nullable RequestCallback callback,
-				@Nullable ResponseExtractor<T> extractor) throws RestClientException {
+							 @Nullable ResponseExtractor<T> extractor) throws RestClientException {
 
 			try {
 				extractor.extractData(this.responses.remove());
-			}
-			catch (Throwable t) {
+			} catch (Throwable t) {
 				throw new RestClientException("Failed to invoke extractor", t);
 			}
 			return null;

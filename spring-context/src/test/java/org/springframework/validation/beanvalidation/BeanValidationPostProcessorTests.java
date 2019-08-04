@@ -47,8 +47,7 @@ public class BeanValidationPostProcessorTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getRootCause().getMessage().contains("testBean"));
 			assertTrue(ex.getRootCause().getMessage().contains("invalid"));
 		}
@@ -104,8 +103,7 @@ public class BeanValidationPostProcessorTests {
 		try {
 			ac.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getRootCause().getMessage().contains("stringValue"));
 			assertTrue(ex.getRootCause().getMessage().contains("invalid"));
 		}

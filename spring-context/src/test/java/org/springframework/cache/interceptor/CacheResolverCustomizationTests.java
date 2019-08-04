@@ -134,8 +134,7 @@ public class CacheResolverCustomizationTests {
 		try {
 			this.simpleService.noCacheResolved(new Object());
 			fail("Should have failed, no cache resolved");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Reference to the method must be contained in the message", ex.getMessage().contains(method.toString()));
 		}
 	}
@@ -145,8 +144,7 @@ public class CacheResolverCustomizationTests {
 		try {
 			this.simpleService.unknownCacheResolver(new Object());
 			fail("Should have failed, no cache resolver with that name");
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			assertEquals("Wrong bean name in exception", "unknownCacheResolver", ex.getBeanName());
 		}
 	}

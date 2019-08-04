@@ -40,7 +40,7 @@ public class SimpMessageMappingInfo implements MessageCondition<SimpMessageMappi
 
 
 	public SimpMessageMappingInfo(SimpMessageTypeMessageCondition messageTypeMessageCondition,
-			DestinationPatternsMessageCondition destinationConditions) {
+								  DestinationPatternsMessageCondition destinationConditions) {
 
 		this.messageTypeMessageCondition = messageTypeMessageCondition;
 		this.destinationConditions = destinationConditions;

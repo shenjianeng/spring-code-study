@@ -33,12 +33,12 @@ import org.springframework.util.Assert;
  * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL.
  *
  * @author Juergen Hoeller
- * @since 3.0.3
  * @see org.xml.sax.InputSource
  * @see org.springframework.core.io.ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
  * @see URLEditor
  * @see FileEditor
+ * @since 3.0.3
  */
 public class InputSourceEditor extends PropertyEditorSupport {
 
@@ -56,6 +56,7 @@ public class InputSourceEditor extends PropertyEditorSupport {
 	/**
 	 * Create a new InputSourceEditor,
 	 * using the given ResourceEditor underneath.
+	 *
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public InputSourceEditor(ResourceEditor resourceEditor) {
@@ -70,8 +71,7 @@ public class InputSourceEditor extends PropertyEditorSupport {
 		Resource resource = (Resource) this.resourceEditor.getValue();
 		try {
 			setValue(resource != null ? new InputSource(resource.getURL().toString()) : null);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalArgumentException(
 					"Could not retrieve URL for " + resource + ": " + ex.getMessage());
 		}

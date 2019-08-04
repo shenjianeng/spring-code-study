@@ -35,6 +35,7 @@ public final class PongMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
 	 * Create a new pong message with the given ByteBuffer payload.
+	 *
 	 * @param payload the non-null payload
 	 */
 	public PongMessage(ByteBuffer payload) {

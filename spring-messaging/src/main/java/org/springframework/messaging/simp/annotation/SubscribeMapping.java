@@ -46,10 +46,10 @@ import java.lang.annotation.Target;
  * the controller <i>interface</i> rather than on the implementation class.
  *
  * @author Rossen Stoyanchev
- * @since 4.0
  * @see org.springframework.messaging.handler.annotation.MessageMapping
  * @see org.springframework.messaging.handler.annotation.SendTo
  * @see org.springframework.messaging.simp.annotation.SendToUser
+ * @since 4.0
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

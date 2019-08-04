@@ -27,7 +27,6 @@ import org.springframework.util.NumberUtils;
  * delegates to {@link NumberUtils#parseNumber(String, Class)} to perform the conversion.
  *
  * @author Keith Donald
- * @since 3.0
  * @see java.lang.Byte
  * @see java.lang.Short
  * @see java.lang.Integer
@@ -37,6 +36,7 @@ import org.springframework.util.NumberUtils;
  * @see java.lang.Double
  * @see java.math.BigDecimal
  * @see NumberUtils
+ * @since 3.0
  */
 final class StringToNumberConverterFactory implements ConverterFactory<String, Number> {
 

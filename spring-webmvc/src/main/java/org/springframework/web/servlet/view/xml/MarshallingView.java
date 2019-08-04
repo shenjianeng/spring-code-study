@@ -87,6 +87,7 @@ public class MarshallingView extends AbstractView {
 	/**
 	 * Set the name of the model key that represents the object to be marshalled.
 	 * If not specified, the model map will be searched for a supported value type.
+	 *
 	 * @see Marshaller#supports(Class)
 	 */
 	public void setModelKey(String modelKey) {
@@ -101,7 +102,7 @@ public class MarshallingView extends AbstractView {
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+										   HttpServletResponse response) throws Exception {
 
 		Object toBeMarshalled = locateToBeMarshalled(model);
 		if (toBeMarshalled == null) {
@@ -122,10 +123,11 @@ public class MarshallingView extends AbstractView {
 	 * <p>The default implementation first attempts to look under the configured
 	 * {@linkplain #setModelKey(String) model key}, if any, before attempting to
 	 * locate an object of {@linkplain Marshaller#supports(Class) supported type}.
+	 *
 	 * @param model the model Map
 	 * @return the Object to be marshalled (or {@code null} if none found)
 	 * @throws IllegalStateException if the model object specified by the
-	 * {@linkplain #setModelKey(String) model key} is not supported by the marshaller
+	 *                               {@linkplain #setModelKey(String) model key} is not supported by the marshaller
 	 * @see #setModelKey(String)
 	 */
 	@Nullable
@@ -156,8 +158,9 @@ public class MarshallingView extends AbstractView {
 	 * for marshalling through the configured {@link Marshaller}.
 	 * <p>The default implementation calls {@link Marshaller#supports(Class)},
 	 * unwrapping a given {@link JAXBElement} first if applicable.
+	 *
 	 * @param modelKey the value's key in the model (never {@code null})
-	 * @param value the value to check (never {@code null})
+	 * @param value    the value to check (never {@code null})
 	 * @return whether the given value is to be considered as eligible
 	 * @see Marshaller#supports(Class)
 	 */

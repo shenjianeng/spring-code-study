@@ -116,8 +116,7 @@ public class ApplicationContextEventTests extends AbstractApplicationEventListen
 
 		if (eventType != null) {
 			smc.multicastEvent(event, eventType);
-		}
-		else {
+		} else {
 			smc.multicastEvent(event);
 		}
 		int invocation = match ? 1 : 0;
@@ -158,8 +157,7 @@ public class ApplicationContextEventTests extends AbstractApplicationEventListen
 		try {
 			smc.multicastEvent(evt);
 			fail("Should have thrown RuntimeException");
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertSame(thrown, ex);
 		}
 	}
@@ -478,7 +476,9 @@ public class ApplicationContextEventTests extends AbstractApplicationEventListen
 	public void lambdaAsListenerWithJava8StyleClassCastMessage() {
 		StaticApplicationContext context = new StaticApplicationContext();
 		ApplicationListener<ApplicationEvent> listener =
-				event -> { throw new ClassCastException(event.getClass().getName()); };
+				event -> {
+					throw new ClassCastException(event.getClass().getName());
+				};
 		context.addApplicationListener(listener);
 		context.refresh();
 
@@ -490,7 +490,9 @@ public class ApplicationContextEventTests extends AbstractApplicationEventListen
 	public void lambdaAsListenerWithJava9StyleClassCastMessage() {
 		StaticApplicationContext context = new StaticApplicationContext();
 		ApplicationListener<ApplicationEvent> listener =
-				event -> { throw new ClassCastException("spring.context/" + event.getClass().getName()); };
+				event -> {
+					throw new ClassCastException("spring.context/" + event.getClass().getName());
+				};
 		context.addApplicationListener(listener);
 		context.refresh();
 

@@ -66,8 +66,7 @@ class InterceptorsBeanDefinitionParser implements BeanDefinitionParser {
 				excludePatterns = getIncludePatterns(interceptor, "exclude-mapping");
 				Element beanElem = DomUtils.getChildElementsByTagName(interceptor, "bean", "ref").get(0);
 				interceptorBean = context.getDelegate().parsePropertySubElement(beanElem, null);
-			}
-			else {
+			} else {
 				interceptorBean = context.getDelegate().parsePropertySubElement(interceptor, null);
 			}
 			mappedInterceptorDef.getConstructorArgumentValues().addIndexedArgumentValue(0, includePatterns);

@@ -46,11 +46,11 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Dmitriy Kopylenko
- * @since 1.1.1
  * @see #setConfigLocation
  * @see #setShared
  * @see EhCacheFactoryBean
  * @see net.sf.ehcache.CacheManager
+ * @since 1.1.1
  */
 public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, InitializingBean, DisposableBean {
 
@@ -76,6 +76,7 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 	 * Set the location of the EhCache config file. A typical value is "/WEB-INF/ehcache.xml".
 	 * <p>Default is "ehcache.xml" in the root of the class path, or if not found,
 	 * "ehcache-failsafe.xml" in the EhCache jar (default EhCache initialization).
+	 *
 	 * @see net.sf.ehcache.CacheManager#create(java.io.InputStream)
 	 * @see net.sf.ehcache.CacheManager#CacheManager(java.io.InputStream)
 	 */
@@ -85,6 +86,7 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 
 	/**
 	 * Set the name of the EhCache CacheManager (if a specific name is desired).
+	 *
 	 * @see net.sf.ehcache.config.Configuration#setName(String)
 	 */
 	public void setCacheManagerName(String cacheManagerName) {
@@ -98,6 +100,7 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 	 * but will simply work with the default CacheManager name if none specified.
 	 * All references to the same CacheManager name (or the same default) in the
 	 * same ClassLoader space will share the specified CacheManager then.
+	 *
 	 * @see #setCacheManagerName
 	 * #see #setShared
 	 * @see net.sf.ehcache.CacheManager#getCacheManager(String)
@@ -118,6 +121,7 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 	 * control the lifecycle of the underlying CacheManager (in particular, its shutdown).
 	 * <p>This flag overrides {@link #setAcceptExisting "acceptExisting"} if both are set,
 	 * since it indicates the 'stronger' mode of sharing.
+	 *
 	 * @see #setCacheManagerName
 	 * @see #setAcceptExisting
 	 * @see net.sf.ehcache.CacheManager#create()
@@ -146,8 +150,7 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 			// No way to find out whether we actually created a new CacheManager
 			// or just received an existing singleton reference.
 			this.cacheManager = CacheManager.create(configuration);
-		}
-		else if (this.acceptExisting) {
+		} else if (this.acceptExisting) {
 			// EhCache 2.5+: Reusing an existing CacheManager of the same name.
 			// Basically the same code as in CacheManager.getInstance(String),
 			// just storing whether we're dealing with an existing instance.
@@ -155,13 +158,11 @@ public class EhCacheManagerFactoryBean implements FactoryBean<CacheManager>, Ini
 				this.cacheManager = CacheManager.getCacheManager(this.cacheManagerName);
 				if (this.cacheManager == null) {
 					this.cacheManager = new CacheManager(configuration);
-				}
-				else {
+				} else {
 					this.locallyManaged = false;
 				}
 			}
-		}
-		else {
+		} else {
 			// Throwing an exception if a CacheManager of the same name exists already...
 			this.cacheManager = new CacheManager(configuration);
 		}

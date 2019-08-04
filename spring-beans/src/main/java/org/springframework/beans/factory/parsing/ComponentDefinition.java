@@ -68,11 +68,11 @@ import org.springframework.beans.factory.config.BeanReference;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.0
  * @see AbstractComponentDefinition
  * @see CompositeComponentDefinition
  * @see BeanComponentDefinition
  * @see ReaderEventListener#componentRegistered(ComponentDefinition)
+ * @since 2.0
  */
 public interface ComponentDefinition extends BeanMetadataElement {
 
@@ -97,6 +97,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 * other {@link BeanDefinition BeanDefinitions} via {@link BeanReference references},
 	 * however these are <strong>not</strong> included as they may be not available immediately.
 	 * Important {@link BeanReference BeanReferences} are available from {@link #getBeanReferences()}.
+	 *
 	 * @return the array of BeanDefinitions, or an empty array if none
 	 */
 	BeanDefinition[] getBeanDefinitions();
@@ -106,6 +107,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 * inner beans within this component.
 	 * <p>Other inner beans may exist within the associated {@link BeanDefinition BeanDefinitions},
 	 * however these are not considered to be needed for validation or for user visualization.
+	 *
 	 * @return the array of BeanDefinitions, or an empty array if none
 	 */
 	BeanDefinition[] getInnerBeanDefinitions();
@@ -116,6 +118,7 @@ public interface ComponentDefinition extends BeanMetadataElement {
 	 * <p>Other {@link BeanReference BeanReferences} may exist within the associated
 	 * {@link BeanDefinition BeanDefinitions}, however these are not considered
 	 * to be needed for validation or for user visualization.
+	 *
 	 * @return the array of BeanReferences, or an empty array if none
 	 */
 	BeanReference[] getBeanReferences();

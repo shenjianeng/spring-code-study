@@ -51,8 +51,7 @@ public class SimpleRequestExpectationManagerTests {
 	public void unexpectedRequest() throws Exception {
 		try {
 			this.manager.validateRequest(createRequest(GET, "/foo"));
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			assertEquals("No further requests expected: HTTP GET /foo\n" +
 					"0 request(s) executed.\n", error.getMessage());
 		}
@@ -183,15 +182,16 @@ public class SimpleRequestExpectationManagerTests {
 	@Test  // SPR-16132
 	public void sequentialRequestsWithFirstFailing() throws Exception {
 		this.manager.expectRequest(once(), requestTo("/foo")).
-				andExpect(method(GET)).andRespond(request -> { throw new SocketException("pseudo network error"); });
+				andExpect(method(GET)).andRespond(request -> {
+			throw new SocketException("pseudo network error");
+		});
 		this.manager.expectRequest(once(), requestTo("/handle-error")).
 				andExpect(method(POST)).andRespond(withSuccess());
 
 		try {
 			this.manager.validateRequest(createRequest(GET, "/foo"));
 			fail("Expected SocketException");
-		}
-		catch (SocketException ex) {
+		} catch (SocketException ex) {
 			// expected
 		}
 		this.manager.validateRequest(createRequest(POST, "/handle-error"));
@@ -202,8 +202,7 @@ public class SimpleRequestExpectationManagerTests {
 	private ClientHttpRequest createRequest(HttpMethod method, String url) {
 		try {
 			return new MockClientHttpRequest(method, new URI(url));
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

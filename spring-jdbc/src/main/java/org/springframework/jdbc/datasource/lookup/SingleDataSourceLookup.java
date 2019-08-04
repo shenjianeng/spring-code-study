@@ -34,6 +34,7 @@ public class SingleDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * Create a new instance of the {@link SingleDataSourceLookup} class.
+	 *
 	 * @param dataSource the single {@link DataSource} to wrap
 	 */
 	public SingleDataSourceLookup(DataSource dataSource) {

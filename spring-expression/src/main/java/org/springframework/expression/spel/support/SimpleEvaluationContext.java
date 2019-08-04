@@ -78,13 +78,13 @@ import org.springframework.lang.Nullable;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 4.3.15
  * @see #forPropertyAccessors
  * @see #forReadOnlyDataBinding()
  * @see #forReadWriteDataBinding()
  * @see StandardEvaluationContext
  * @see StandardTypeConverter
  * @see DataBindingPropertyAccessor
+ * @since 4.3.15
  */
 public final class SimpleEvaluationContext implements EvaluationContext {
 
@@ -109,7 +109,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 
 	private SimpleEvaluationContext(List<PropertyAccessor> accessors, List<MethodResolver> resolvers,
-			@Nullable TypeConverter converter, @Nullable TypedValue rootObject) {
+									@Nullable TypeConverter converter, @Nullable TypedValue rootObject) {
 
 		this.propertyAccessors = accessors;
 		this.methodResolvers = resolvers;
@@ -128,6 +128,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * Return the specified {@link PropertyAccessor} delegates, if any.
+	 *
 	 * @see #forPropertyAccessors
 	 */
 	@Override
@@ -146,6 +147,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * Return the specified {@link MethodResolver} delegates, if any.
+	 *
 	 * @see Builder#withMethodResolvers
 	 */
 	@Override
@@ -155,6 +157,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * {@code SimpleEvaluationContext} does not support the use of bean references.
+	 *
 	 * @return always {@code null}
 	 */
 	@Override
@@ -165,6 +168,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 
 	/**
 	 * {@code SimpleEvaluationContext} does not support use of type references.
+	 *
 	 * @return {@code TypeLocator} implementation that raises a
 	 * {@link SpelEvaluationException} with {@link SpelMessage#TYPE_NOT_FOUND}.
 	 */
@@ -176,6 +180,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 	/**
 	 * The configured {@link TypeConverter}.
 	 * <p>By default this is {@link StandardTypeConverter}.
+	 *
 	 * @see Builder#withTypeConverter
 	 * @see Builder#withConversionService
 	 */
@@ -217,6 +222,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 	 * delegates: typically a custom {@code PropertyAccessor} specific to a use case
 	 * (e.g. attribute resolution in a custom data structure), potentially combined with
 	 * a {@link DataBindingPropertyAccessor} if property dereferences are needed as well.
+	 *
 	 * @param accessors the accessor delegates to use
 	 * @see DataBindingPropertyAccessor#forReadOnlyAccess()
 	 * @see DataBindingPropertyAccessor#forReadWriteAccess()
@@ -234,6 +240,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 	/**
 	 * Create a {@code SimpleEvaluationContext} for read-only access to
 	 * public properties via {@link DataBindingPropertyAccessor}.
+	 *
 	 * @see DataBindingPropertyAccessor#forReadOnlyAccess()
 	 * @see #forPropertyAccessors
 	 */
@@ -244,6 +251,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 	/**
 	 * Create a {@code SimpleEvaluationContext} for read-write access to
 	 * public properties via {@link DataBindingPropertyAccessor}.
+	 *
 	 * @see DataBindingPropertyAccessor#forReadWriteAccess()
 	 * @see #forPropertyAccessors
 	 */
@@ -274,6 +282,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		/**
 		 * Register the specified {@link MethodResolver} delegates for
 		 * a combination of property access and method resolution.
+		 *
 		 * @param resolvers the resolver delegates to use
 		 * @see #withInstanceMethods()
 		 * @see SimpleEvaluationContext#forPropertyAccessors
@@ -293,6 +302,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		 * Register a {@link DataBindingMethodResolver} for instance method invocation purposes
 		 * (i.e. not supporting static methods) in addition to the specified property accessors,
 		 * typically in combination with a {@link DataBindingPropertyAccessor}.
+		 *
 		 * @see #withMethodResolvers
 		 * @see SimpleEvaluationContext#forReadOnlyDataBinding()
 		 * @see SimpleEvaluationContext#forReadWriteDataBinding()
@@ -307,6 +317,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		 * Register a custom {@link ConversionService}.
 		 * <p>By default a {@link StandardTypeConverter} backed by a
 		 * {@link org.springframework.core.convert.support.DefaultConversionService} is used.
+		 *
 		 * @see #withTypeConverter
 		 * @see StandardTypeConverter#StandardTypeConverter(ConversionService)
 		 */
@@ -314,10 +325,12 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 			this.typeConverter = new StandardTypeConverter(conversionService);
 			return this;
 		}
+
 		/**
 		 * Register a custom {@link TypeConverter}.
 		 * <p>By default a {@link StandardTypeConverter} backed by a
 		 * {@link org.springframework.core.convert.support.DefaultConversionService} is used.
+		 *
 		 * @see #withConversionService
 		 * @see StandardTypeConverter#StandardTypeConverter()
 		 */
@@ -329,6 +342,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		/**
 		 * Specify a default root object to resolve against.
 		 * <p>Default is none, expecting an object argument at evaluation time.
+		 *
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext)
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext, Object)
 		 */
@@ -340,6 +354,7 @@ public final class SimpleEvaluationContext implements EvaluationContext {
 		/**
 		 * Specify a typed root object to resolve against.
 		 * <p>Default is none, expecting an object argument at evaluation time.
+		 *
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext)
 		 * @see org.springframework.expression.Expression#getValue(EvaluationContext, Object)
 		 */

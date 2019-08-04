@@ -30,8 +30,8 @@ import org.springframework.util.ObjectUtils;
  * are defined on {@link java.lang.reflect.AnnotatedElement}.
  *
  * @author Stephane Nicoll
- * @since 4.2
  * @see AnnotatedElementKey
+ * @since 4.2
  */
 public abstract class CachedExpressionEvaluator {
 
@@ -65,6 +65,7 @@ public abstract class CachedExpressionEvaluator {
 
 	/**
 	 * Return a shared parameter name discoverer which caches data internally.
+	 *
 	 * @since 4.3
 	 */
 	protected ParameterNameDiscoverer getParameterNameDiscoverer() {
@@ -75,12 +76,13 @@ public abstract class CachedExpressionEvaluator {
 	/**
 	 * Return the {@link Expression} for the specified SpEL value
 	 * <p>Parse the expression if it hasn't been already.
-	 * @param cache the cache to use
+	 *
+	 * @param cache      the cache to use
 	 * @param elementKey the element on which the expression is defined
 	 * @param expression the expression to parse
 	 */
 	protected Expression getExpression(Map<ExpressionKey, Expression> cache,
-			AnnotatedElementKey elementKey, String expression) {
+									   AnnotatedElementKey elementKey, String expression) {
 
 		ExpressionKey expressionKey = createKey(elementKey, expression);
 		Expression expr = cache.get(expressionKey);

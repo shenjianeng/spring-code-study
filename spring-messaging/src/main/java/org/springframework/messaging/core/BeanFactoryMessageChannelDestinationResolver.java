@@ -49,6 +49,7 @@ public class BeanFactoryMessageChannelDestinationResolver
 	/**
 	 * A constructor that accepts a {@link BeanFactory} useful if instantiating this
 	 * resolver manually rather than having it defined as a Spring-managed bean.
+	 *
 	 * @param beanFactory the bean factory to perform lookups against
 	 */
 	public BeanFactoryMessageChannelDestinationResolver(BeanFactory beanFactory) {
@@ -68,8 +69,7 @@ public class BeanFactoryMessageChannelDestinationResolver
 		Assert.state(this.beanFactory != null, "No BeanFactory configured");
 		try {
 			return this.beanFactory.getBean(name, MessageChannel.class);
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			throw new DestinationResolutionException(
 					"Failed to find MessageChannel bean with name '" + name + "'", ex);
 		}

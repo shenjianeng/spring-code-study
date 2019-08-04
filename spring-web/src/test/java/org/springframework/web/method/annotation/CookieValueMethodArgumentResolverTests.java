@@ -103,8 +103,8 @@ public class CookieValueMethodArgumentResolverTests {
 
 
 	public void params(@CookieValue("name") Cookie param1,
-			@CookieValue(name = "name", defaultValue = "bar") String param2,
-			String param3) {
+					   @CookieValue(name = "name", defaultValue = "bar") String param2,
+					   String param3) {
 	}
 
 }

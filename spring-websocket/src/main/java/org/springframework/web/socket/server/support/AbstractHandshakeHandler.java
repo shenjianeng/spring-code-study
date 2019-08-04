@@ -62,12 +62,12 @@ import org.springframework.web.socket.server.RequestUpgradeStrategy;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 4.2
  * @see org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy
  * @see org.springframework.web.socket.server.standard.TomcatRequestUpgradeStrategy
  * @see org.springframework.web.socket.server.standard.UndertowRequestUpgradeStrategy
  * @see org.springframework.web.socket.server.standard.GlassFishRequestUpgradeStrategy
  * @see org.springframework.web.socket.server.standard.WebLogicRequestUpgradeStrategy
+ * @since 4.2
  */
 public abstract class AbstractHandshakeHandler implements HandshakeHandler, Lifecycle {
 
@@ -113,6 +113,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	/**
 	 * Default constructor that auto-detects and instantiates a
 	 * {@link RequestUpgradeStrategy} suitable for the runtime container.
+	 *
 	 * @throws IllegalStateException if no {@link RequestUpgradeStrategy} can be found.
 	 */
 	protected AbstractHandshakeHandler() {
@@ -121,6 +122,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 
 	/**
 	 * A constructor that accepts a runtime-specific {@link RequestUpgradeStrategy}.
+	 *
 	 * @param requestUpgradeStrategy the upgrade strategy to use
 	 */
 	protected AbstractHandshakeHandler(RequestUpgradeStrategy requestUpgradeStrategy) {
@@ -133,31 +135,24 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 		String className;
 		if (tomcatWsPresent) {
 			className = "org.springframework.web.socket.server.standard.TomcatRequestUpgradeStrategy";
-		}
-		else if (jettyWsPresent) {
+		} else if (jettyWsPresent) {
 			className = "org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy";
-		}
-		else if (undertowWsPresent) {
+		} else if (undertowWsPresent) {
 			className = "org.springframework.web.socket.server.standard.UndertowRequestUpgradeStrategy";
-		}
-		else if (glassfishWsPresent) {
+		} else if (glassfishWsPresent) {
 			className = "org.springframework.web.socket.server.standard.GlassFishRequestUpgradeStrategy";
-		}
-		else if (weblogicWsPresent) {
+		} else if (weblogicWsPresent) {
 			className = "org.springframework.web.socket.server.standard.WebLogicRequestUpgradeStrategy";
-		}
-		else if (websphereWsPresent) {
+		} else if (websphereWsPresent) {
 			className = "org.springframework.web.socket.server.standard.WebSphereRequestUpgradeStrategy";
-		}
-		else {
+		} else {
 			throw new IllegalStateException("No suitable default RequestUpgradeStrategy found");
 		}
 
 		try {
 			Class<?> clazz = ClassUtils.forName(className, AbstractHandshakeHandler.class.getClassLoader());
 			return (RequestUpgradeStrategy) ReflectionUtils.accessibleConstructor(clazz).newInstance();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalStateException(
 					"Failed to instantiate RequestUpgradeStrategy: " + className, ex);
 		}
@@ -233,7 +228,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 
 	@Override
 	public final boolean doHandshake(ServerHttpRequest request, ServerHttpResponse response,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) throws HandshakeFailureException {
+									 WebSocketHandler wsHandler, Map<String, Object> attributes) throws HandshakeFailureException {
 
 		WebSocketHttpHeaders headers = new WebSocketHttpHeaders(request.getHeaders());
 		if (logger.isTraceEnabled()) {
@@ -272,8 +267,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 				response.setStatusCode(HttpStatus.BAD_REQUEST);
 				return false;
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new HandshakeFailureException(
 					"Response update failed during upgrade to WebSocket: " + request.getURI(), ex);
 		}
@@ -348,8 +342,9 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * WebSocketHandler is a {@link SubProtocolCapable} and then also checks if any
 	 * sub-protocols have been explicitly configured with
 	 * {@link #setSupportedProtocols(String...)}.
+	 *
 	 * @param requestedProtocols the requested sub-protocols
-	 * @param webSocketHandler the WebSocketHandler that will be used
+	 * @param webSocketHandler   the WebSocketHandler that will be used
 	 * @return the selected protocols or {@code null}
 	 * @see #determineHandlerSupportedProtocols(WebSocketHandler)
 	 */
@@ -370,6 +365,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	/**
 	 * Determine the sub-protocols supported by the given WebSocketHandler by
 	 * checking whether it is an instance of {@link SubProtocolCapable}.
+	 *
 	 * @param handler the handler to check
 	 * @return a list of supported protocols, or an empty list if none available
 	 */
@@ -386,13 +382,14 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * Filter the list of requested WebSocket extensions.
 	 * <p>As of 4.1, the default implementation of this method filters the list to
 	 * leave only extensions that are both requested and supported.
-	 * @param request the current request
+	 *
+	 * @param request             the current request
 	 * @param requestedExtensions the list of extensions requested by the client
 	 * @param supportedExtensions the list of extensions supported by the server
 	 * @return the selected extensions or an empty list
 	 */
 	protected List<WebSocketExtension> filterRequestedExtensions(ServerHttpRequest request,
-			List<WebSocketExtension> requestedExtensions, List<WebSocketExtension> supportedExtensions) {
+																 List<WebSocketExtension> requestedExtensions, List<WebSocketExtension> supportedExtensions) {
 
 		List<WebSocketExtension> result = new ArrayList<>(requestedExtensions.size());
 		for (WebSocketExtension extension : requestedExtensions) {
@@ -409,8 +406,9 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	 * {@link ServerHttpRequest#getPrincipal()}
 	 * <p>Subclasses can provide custom logic for associating a user with a session,
 	 * for example for assigning a name to anonymous users (i.e. not fully authenticated).
-	 * @param request the handshake request
-	 * @param wsHandler the WebSocket handler that will handle messages
+	 *
+	 * @param request    the handshake request
+	 * @param wsHandler  the WebSocket handler that will handle messages
 	 * @param attributes handshake attributes to pass to the WebSocket session
 	 * @return the user for the WebSocket session, or {@code null} if not available
 	 */

@@ -36,27 +36,27 @@ public class DefaultMessageCodesResolverTests {
 	@Test
 	public void shouldResolveMessageCode() throws Exception {
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName");
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldResolveFieldMessageCode() throws Exception {
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName.field",
 				"errorCode.field",
 				"errorCode.org.springframework.tests.sample.beans.TestBean",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldResolveIndexedFieldMessageCode() throws Exception {
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "a.b[3].c[5].d",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName.a.b[3].c[5].d",
 				"errorCode.objectName.a.b[3].c.d",
 				"errorCode.objectName.a.b.c.d",
@@ -65,16 +65,16 @@ public class DefaultMessageCodesResolverTests {
 				"errorCode.a.b.c.d",
 				"errorCode.d",
 				"errorCode.org.springframework.tests.sample.beans.TestBean",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldResolveMessageCodeWithPrefix() throws Exception {
 		resolver.setPrefix("prefix.");
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName");
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"prefix.errorCode.objectName",
-				"prefix.errorCode" })));
+				"prefix.errorCode"})));
 	}
 
 	@Test
@@ -82,11 +82,11 @@ public class DefaultMessageCodesResolverTests {
 		resolver.setPrefix("prefix.");
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"prefix.errorCode.objectName.field",
 				"prefix.errorCode.field",
 				"prefix.errorCode.org.springframework.tests.sample.beans.TestBean",
-				"prefix.errorCode" })));
+				"prefix.errorCode"})));
 	}
 
 	@Test
@@ -94,41 +94,41 @@ public class DefaultMessageCodesResolverTests {
 		resolver.setPrefix(null);
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName.field",
 				"errorCode.field",
 				"errorCode.org.springframework.tests.sample.beans.TestBean",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldSupportMalformedIndexField() throws Exception {
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field[",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName.field[",
 				"errorCode.field[",
 				"errorCode.org.springframework.tests.sample.beans.TestBean",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldSupportNullFieldType() throws Exception {
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field",
 				null);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"errorCode.objectName.field",
 				"errorCode.field",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
 	public void shouldSupportPostfixFormat() throws Exception {
 		resolver.setMessageCodeFormatter(Format.POSTFIX_ERROR_CODE);
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName");
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"objectName.errorCode",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
@@ -136,11 +136,11 @@ public class DefaultMessageCodesResolverTests {
 		resolver.setMessageCodeFormatter(Format.POSTFIX_ERROR_CODE);
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName", "field",
 				TestBean.class);
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"objectName.field.errorCode",
 				"field.errorCode",
 				"org.springframework.tests.sample.beans.TestBean.errorCode",
-				"errorCode" })));
+				"errorCode"})));
 	}
 
 	@Test
@@ -153,8 +153,8 @@ public class DefaultMessageCodesResolverTests {
 			}
 		});
 		String[] codes = resolver.resolveMessageCodes("errorCode", "objectName");
-		assertThat(codes, is(equalTo(new String[] {
+		assertThat(codes, is(equalTo(new String[]{
 				"CUSTOM-errorCode.objectName",
-				"CUSTOM-errorCode" })));
+				"CUSTOM-errorCode"})));
 	}
 }

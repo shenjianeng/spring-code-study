@@ -22,9 +22,9 @@ import org.springframework.util.ObjectUtils;
 /**
  * A message that can be handled or sent on a WebSocket connection.
  *
+ * @param <T> the payload type
  * @author Rossen Stoyanchev
  * @since 4.0
- * @param <T> the payload type
  */
 public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T> {
 
@@ -35,6 +35,7 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 
 	/**
 	 * Create a new WebSocket message with the given payload.
+	 *
 	 * @param payload the non-null payload
 	 */
 	AbstractWebSocketMessage(T payload) {
@@ -46,8 +47,9 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 	 * message content. When the {@code isLast} boolean flag is set to {@code false}
 	 * the message is sent as partial content and more partial messages will be
 	 * expected until the boolean flag is set to {@code true}.
+	 *
 	 * @param payload the non-null payload
-	 * @param isLast if the message is the last of a series of partial messages
+	 * @param isLast  if the message is the last of a series of partial messages
 	 */
 	AbstractWebSocketMessage(T payload, boolean isLast) {
 		Assert.notNull(payload, "payload must not be null");

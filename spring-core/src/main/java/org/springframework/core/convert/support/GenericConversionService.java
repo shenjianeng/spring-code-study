@@ -150,8 +150,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * Return whether conversion between the source type and the target type can be bypassed.
 	 * <p>More precisely, this method will return true if objects of sourceType can be
 	 * converted to the target type by returning the source object unchanged.
+	 *
 	 * @param sourceType context about the source type to convert from
-	 * (may be {@code null} if source is {@code null})
+	 *                   (may be {@code null} if source is {@code null})
 	 * @param targetType context about the target type to convert to (required)
 	 * @return {@code true} if conversion can be bypassed; {@code false} otherwise
 	 * @throws IllegalArgumentException if targetType is {@code null}
@@ -200,12 +201,13 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * Simply delegates to {@link #convert(Object, TypeDescriptor, TypeDescriptor)} and
 	 * encapsulates the construction of the source type descriptor using
 	 * {@link TypeDescriptor#forObject(Object)}.
-	 * @param source the source object
+	 *
+	 * @param source     the source object
 	 * @param targetType the target type
 	 * @return the converted value
-	 * @throws ConversionException if a conversion exception occurred
+	 * @throws ConversionException      if a conversion exception occurred
 	 * @throws IllegalArgumentException if targetType is {@code null},
-	 * or sourceType is {@code null} but source is not {@code null}
+	 *                                  or sourceType is {@code null} but source is not {@code null}
 	 */
 	@Nullable
 	public Object convert(@Nullable Object source, TypeDescriptor targetType) {
@@ -226,6 +228,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * {@link java.util.Optional#empty()} instance if the target type is
 	 * {@code java.util.Optional}. Subclasses may override this to return
 	 * custom {@code null} objects for specific target types.
+	 *
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the converted null object
@@ -243,6 +246,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * First queries this ConversionService's converter cache.
 	 * On a cache miss, then performs an exhaustive search for a matching converter.
 	 * If no converter matches, returns the default converter.
+	 *
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the generic converter that will perform the conversion,
@@ -275,6 +279,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 	 * Return the default converter if no converter is found for the given sourceType/targetType pair.
 	 * <p>Returns a NO_OP Converter if the source type is assignable to the target type.
 	 * Returns {@code null} otherwise, indicating no suitable converter could be found.
+	 *
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the default generic converter that will perform the conversion
@@ -509,8 +514,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 				Assert.state(converter instanceof ConditionalConverter,
 						"Only conditional converters may return null convertible types");
 				this.globalConverters.add(converter);
-			}
-			else {
+			} else {
 				for (ConvertiblePair convertiblePair : convertibleTypes) {
 					ConvertersForPair convertersForPair = getMatchableConverters(convertiblePair);
 					convertersForPair.add(converter);
@@ -535,6 +539,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		 * Find a {@link GenericConverter} given a source and target type.
 		 * <p>This method will attempt to match all possible converters by working
 		 * through the class and interface hierarchy of the types.
+		 *
 		 * @param sourceType the source type
 		 * @param targetType the target type
 		 * @return a matching {@link GenericConverter}, or {@code null} if none found
@@ -558,7 +563,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 		@Nullable
 		private GenericConverter getRegisteredConverter(TypeDescriptor sourceType,
-				TypeDescriptor targetType, ConvertiblePair convertiblePair) {
+														TypeDescriptor targetType, ConvertiblePair convertiblePair) {
 
 			// Check specifically registered converters
 			ConvertersForPair convertersForPair = this.converters.get(convertiblePair);
@@ -579,6 +584,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 		/**
 		 * Returns an ordered class hierarchy for the given type.
+		 *
 		 * @param type the type
 		 * @return an ordered list of all classes that the given type extends or implements
 		 */
@@ -612,7 +618,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		}
 
 		private void addInterfacesToClassHierarchy(Class<?> type, boolean asArray,
-				List<Class<?>> hierarchy, Set<Class<?>> visited) {
+												   List<Class<?>> hierarchy, Set<Class<?>> visited) {
 
 			for (Class<?> implementedInterface : type.getInterfaces()) {
 				addToClassHierarchy(hierarchy.size(), implementedInterface, asArray, hierarchy, visited);
@@ -620,7 +626,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		}
 
 		private void addToClassHierarchy(int index, Class<?> type, boolean asArray,
-				List<Class<?>> hierarchy, Set<Class<?>> visited) {
+										 List<Class<?>> hierarchy, Set<Class<?>> visited) {
 
 			if (asArray) {
 				type = Array.newInstance(type, 0).getClass();

@@ -67,7 +67,8 @@ public class ForwardedHeaderFilterTests {
 		this.request.setScheme("http");
 		this.request.setServerName("localhost");
 		this.request.setServerPort(80);
-		this.filterChain = new MockFilterChain(new HttpServlet() {});
+		this.filterChain = new MockFilterChain(new HttpServlet() {
+		});
 	}
 
 
@@ -503,7 +504,7 @@ public class ForwardedHeaderFilterTests {
 		Filter filter = new OncePerRequestFilter() {
 			@Override
 			protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res,
-					FilterChain chain) throws IOException {
+											FilterChain chain) throws IOException {
 
 				res.sendRedirect(location);
 			}

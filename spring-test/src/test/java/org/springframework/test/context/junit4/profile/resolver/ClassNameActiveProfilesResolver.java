@@ -26,6 +26,6 @@ public class ClassNameActiveProfilesResolver implements ActiveProfilesResolver {
 
 	@Override
 	public String[] resolve(Class<?> testClass) {
-		return new String[] { testClass.getSimpleName().toLowerCase() };
+		return new String[]{testClass.getSimpleName().toLowerCase()};
 	}
 }

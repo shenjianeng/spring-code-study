@@ -28,8 +28,8 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
  * obtained through the JDK 1.6 {@link java.util.ServiceLoader} facility.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see java.util.ServiceLoader
+ * @since 2.5
  */
 public class ServiceListFactoryBean extends AbstractServiceLoaderBasedFactoryBean implements BeanClassLoaderAware {
 

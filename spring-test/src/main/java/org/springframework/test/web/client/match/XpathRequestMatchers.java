@@ -48,13 +48,14 @@ public class XpathRequestMatchers {
 	 * Class constructor, not for direct instantiation. Use
 	 * {@link MockRestRequestMatchers#xpath(String, Object...)} or
 	 * {@link MockRestRequestMatchers#xpath(String, Map, Object...)}.
+	 *
 	 * @param expression the XPath expression
 	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
-	 * @param args arguments to parameterize the XPath expression with using the
-	 * formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param args       arguments to parameterize the XPath expression with using the
+	 *                   formatting specifiers defined in {@link String#format(String, Object...)}
 	 * @throws XPathExpressionException if expression compilation failed
 	 */
-	protected XpathRequestMatchers(String expression, @Nullable Map<String, String> namespaces, Object ... args)
+	protected XpathRequestMatchers(String expression, @Nullable Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {
 
 		this.xpathHelper = new XpathExpectationsHelper(expression, namespaces, args);
@@ -193,8 +194,7 @@ public class XpathRequestMatchers {
 			try {
 				MockClientHttpRequest mockRequest = (MockClientHttpRequest) request;
 				matchInternal(mockRequest);
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				throw new AssertionError("Failed to parse XML request content", ex);
 			}
 		}

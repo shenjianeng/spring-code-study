@@ -35,12 +35,12 @@ import org.springframework.util.ClassUtils;
  * target queue (either as {@link javax.jms.Queue} reference or as queue name).
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setConnectionFactory
  * @see #setQueueName
  * @see #setServiceInterface
  * @see org.springframework.jms.remoting.JmsInvokerClientInterceptor
  * @see org.springframework.jms.remoting.JmsInvokerServiceExporter
+ * @since 2.0
  */
 public class JmsInvokerProxyFactoryBean extends JmsInvokerClientInterceptor
 		implements FactoryBean<Object>, BeanClassLoaderAware {
@@ -57,9 +57,10 @@ public class JmsInvokerProxyFactoryBean extends JmsInvokerClientInterceptor
 
 	/**
 	 * Set the interface that the proxy must implement.
+	 *
 	 * @param serviceInterface the interface that the proxy must implement
 	 * @throws IllegalArgumentException if the supplied {@code serviceInterface}
-	 * is not an interface type
+	 *                                  is not an interface type
 	 */
 	public void setServiceInterface(Class<?> serviceInterface) {
 		Assert.notNull(serviceInterface, "'serviceInterface' must not be null");

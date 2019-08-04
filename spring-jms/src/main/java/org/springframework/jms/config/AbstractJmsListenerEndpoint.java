@@ -29,9 +29,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 4.1
  * @see MethodJmsListenerEndpoint
  * @see SimpleJmsListenerEndpoint
+ * @since 4.1
  */
 public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint {
 
@@ -129,8 +129,7 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	public void setupListenerContainer(MessageListenerContainer listenerContainer) {
 		if (listenerContainer instanceof AbstractMessageListenerContainer) {
 			setupJmsListenerContainer((AbstractMessageListenerContainer) listenerContainer);
-		}
-		else {
+		} else {
 			new JcaEndpointConfigurer().configureEndpoint(listenerContainer);
 		}
 	}
@@ -186,8 +185,7 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 		public void configureEndpoint(Object listenerContainer) {
 			if (listenerContainer instanceof JmsMessageEndpointManager) {
 				setupJcaMessageContainer((JmsMessageEndpointManager) listenerContainer);
-			}
-			else {
+			} else {
 				throw new IllegalArgumentException("Could not configure endpoint with the specified container '" +
 						listenerContainer + "' Only JMS (" + AbstractMessageListenerContainer.class.getName() +
 						" subclass) or JCA (" + JmsMessageEndpointManager.class.getName() + ") are supported.");

@@ -29,8 +29,8 @@ import org.springframework.ui.context.ThemeSource;
  * define its own ThemeSource. Not intended for direct use in applications.
  *
  * @author Juergen Hoeller
- * @since 1.2.4
  * @see UiApplicationContextUtils
+ * @since 1.2.4
  */
 public class DelegatingThemeSource implements HierarchicalThemeSource {
 
@@ -55,8 +55,7 @@ public class DelegatingThemeSource implements HierarchicalThemeSource {
 	public Theme getTheme(String themeName) {
 		if (this.parentThemeSource != null) {
 			return this.parentThemeSource.getTheme(themeName);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

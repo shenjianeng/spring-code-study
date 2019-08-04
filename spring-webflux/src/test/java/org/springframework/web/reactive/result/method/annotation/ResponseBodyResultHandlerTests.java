@@ -50,8 +50,8 @@ import static org.springframework.web.method.ResolvableMethod.on;
  * Unit tests for {@link ResponseBodyResultHandler}.When adding a test also
  * consider whether the logic under test is in a parent class, then see:
  * <ul>
- * 	<li>{@code MessageWriterResultHandlerTests},
- *  <li>{@code ContentNegotiatingResultHandlerSupportTests}
+ * <li>{@code MessageWriterResultHandlerTests},
+ * <li>{@code ContentNegotiatingResultHandlerSupportTests}
  * </ul>
  *
  * @author Sebastien Deleuze
@@ -122,12 +122,13 @@ public class ResponseBodyResultHandlerTests {
 	}
 
 
-
 	@RestController
 	@SuppressWarnings("unused")
 	private static class TestRestController {
 
-		public Mono<Void> handleToMonoVoid() { return null;}
+		public Mono<Void> handleToMonoVoid() {
+			return null;
+		}
 
 		public String handleToString() {
 			return null;

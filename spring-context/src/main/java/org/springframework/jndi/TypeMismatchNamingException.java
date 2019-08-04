@@ -23,8 +23,8 @@ import javax.naming.NamingException;
  * located in a JNDI environment. Thrown by JndiTemplate.
  *
  * @author Juergen Hoeller
- * @since 1.2.8
  * @see JndiTemplate#lookup(String, Class)
+ * @since 1.2.8
  */
 @SuppressWarnings("serial")
 public class TypeMismatchNamingException extends NamingException {
@@ -37,9 +37,10 @@ public class TypeMismatchNamingException extends NamingException {
 	/**
 	 * Construct a new TypeMismatchNamingException,
 	 * building an explanation text from the given arguments.
-	 * @param jndiName the JNDI name
+	 *
+	 * @param jndiName     the JNDI name
 	 * @param requiredType the required type for the lookup
-	 * @param actualType the actual type that the lookup returned
+	 * @param actualType   the actual type that the lookup returned
 	 */
 	public TypeMismatchNamingException(String jndiName, Class<?> requiredType, Class<?> actualType) {
 		super("Object of type [" + actualType + "] available at JNDI location [" +

@@ -37,8 +37,8 @@ import org.springframework.util.StreamUtils;
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma
- * @since 3.1
  * @see HttpComponentsClientHttpRequest#execute()
+ * @since 3.1
  */
 final class HttpComponentsClientHttpResponse extends AbstractClientHttpResponse {
 
@@ -87,14 +87,12 @@ final class HttpComponentsClientHttpResponse extends AbstractClientHttpResponse 
 			try {
 				// Attempt to keep connection alive by consuming its remaining content
 				EntityUtils.consume(this.httpResponse.getEntity());
-			}
-			finally {
+			} finally {
 				if (this.httpResponse instanceof Closeable) {
 					((Closeable) this.httpResponse).close();
 				}
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// Ignore exception on close...
 		}
 	}

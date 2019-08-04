@@ -170,6 +170,7 @@ public class MessageBrokerRegistry {
 	 * Set the order for the
 	 * {@link org.springframework.messaging.simp.user.SimpUserRegistry
 	 * SimpUserRegistry} to use as a {@link SmartApplicationListener}.
+	 *
 	 * @param order the order value
 	 * @since 5.0.8
 	 */
@@ -196,8 +197,9 @@ public class MessageBrokerRegistry {
 	 * as its type and method-level mappings respectively.
 	 * <p>When the simple broker is enabled, the PathMatcher configured here is
 	 * also used to match message destinations when brokering messages.
-	 * @since 4.1
+	 *
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setPathMatcher
+	 * @since 4.1
 	 */
 	public MessageBrokerRegistry setPathMatcher(PathMatcher pathMatcher) {
 		this.pathMatcher = pathMatcher;
@@ -213,8 +215,9 @@ public class MessageBrokerRegistry {
 	 * Configure the cache limit to apply for registrations with the broker.
 	 * <p>This is currently only applied for the destination cache in the
 	 * subscription registry. The default cache limit there is 1024.
-	 * @since 4.3.2
+	 *
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setCacheLimit
+	 * @since 4.3.2
 	 */
 	public MessageBrokerRegistry setCacheLimit(int cacheLimit) {
 		this.cacheLimit = cacheLimit;
@@ -230,6 +233,7 @@ public class MessageBrokerRegistry {
 	 * will be sent to the {@code "clientOutboundChannel"} one at a time in
 	 * order to preserve the order of publication. Enable this only if needed
 	 * since there is some performance overhead to keep messages in order.
+	 *
 	 * @since 5.1
 	 */
 	public MessageBrokerRegistry setPreservePublishOrder(boolean preservePublishOrder) {

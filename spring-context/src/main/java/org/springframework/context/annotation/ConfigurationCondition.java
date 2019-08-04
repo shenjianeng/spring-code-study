@@ -24,8 +24,8 @@ package org.springframework.context.annotation;
  * {@link ConfigurationPhase#REGISTER_BEAN REGISTER_BEAN} {@link ConfigurationPhase}.
  *
  * @author Phillip Webb
- * @since 4.0
  * @see Configuration
+ * @since 4.0
  */
 public interface ConfigurationCondition extends Condition {
 

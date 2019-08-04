@@ -249,7 +249,8 @@ public class ScopingTests {
 	@Configuration
 	public static class InvalidProxyOnPredefinedScopesConfiguration {
 
-		@Bean @Scope(proxyMode=ScopedProxyMode.INTERFACES)
+		@Bean
+		@Scope(proxyMode = ScopedProxyMode.INTERFACES)
 		public Object invalidProxyOnPredefinedScopes() {
 			return new Object();
 		}
@@ -316,13 +317,14 @@ public class ScopingTests {
 	@Target({ElementType.METHOD})
 	@Retention(RetentionPolicy.RUNTIME)
 	@Bean
-	@Scope(value=SCOPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
+	@Scope(value = SCOPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	@interface MyProxiedScope {
 	}
 
 
 	/**
 	 * Simple scope implementation which creates object based on a flag.
+	 *
 	 * @author Costin Leau
 	 * @author Chris Beams
 	 */

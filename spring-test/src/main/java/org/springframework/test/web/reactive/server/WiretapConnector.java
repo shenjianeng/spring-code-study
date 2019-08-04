@@ -46,8 +46,8 @@ import org.springframework.util.Assert;
  * transmitted to and received from the server.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see HttpHandlerConnector
+ * @since 5.0
  */
 class WiretapConnector implements ClientHttpConnector {
 
@@ -63,7 +63,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 	@Override
 	public Mono<ClientHttpResponse> connect(HttpMethod method, URI uri,
-			Function<? super ClientHttpRequest, Mono<Void>> requestCallback) {
+											Function<? super ClientHttpRequest, Mono<Void>> requestCallback) {
 
 		AtomicReference<WiretapClientHttpRequest> requestRef = new AtomicReference<>();
 
@@ -73,7 +73,7 @@ class WiretapConnector implements ClientHttpConnector {
 					requestRef.set(wrapped);
 					return requestCallback.apply(wrapped);
 				})
-				.map(response ->  {
+				.map(response -> {
 					WiretapClientHttpRequest wrappedRequest = requestRef.get();
 					String header = WebTestClient.WEBTESTCLIENT_REQUEST_ID;
 					String requestId = wrappedRequest.getHeaders().getFirst(header);
@@ -142,7 +142,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 
 		public WiretapRecorder(@Nullable Publisher<? extends DataBuffer> publisher,
-				@Nullable Publisher<? extends Publisher<? extends DataBuffer>> publisherNested) {
+							   @Nullable Publisher<? extends Publisher<? extends DataBuffer>> publisherNested) {
 
 			if (publisher != null && publisherNested != null) {
 				throw new IllegalArgumentException("At most one publisher expected");

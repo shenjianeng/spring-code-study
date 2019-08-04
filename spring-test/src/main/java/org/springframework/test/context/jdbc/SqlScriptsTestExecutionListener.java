@@ -81,7 +81,6 @@ import org.springframework.util.StringUtils;
  * locate these beans.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see Sql
  * @see SqlConfig
  * @see SqlGroup
@@ -89,6 +88,7 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.test.context.transaction.TransactionalTestExecutionListener
  * @see org.springframework.jdbc.datasource.init.ResourceDatabasePopulator
  * @see org.springframework.jdbc.datasource.init.ScriptUtils
+ * @since 4.1
  */
 public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListener {
 
@@ -148,10 +148,11 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	 * annotation for the given {@link ExecutionPhase} and {@link TestContext}.
 	 * <p>Special care must be taken in order to properly support the configured
 	 * {@link SqlConfig#transactionMode}.
-	 * @param sql the {@code @Sql} annotation to parse
+	 *
+	 * @param sql            the {@code @Sql} annotation to parse
 	 * @param executionPhase the current execution phase
-	 * @param testContext the current {@code TestContext}
-	 * @param classLevel {@code true} if {@link Sql @Sql} was declared at the class level
+	 * @param testContext    the current {@code TestContext}
+	 * @param classLevel     {@code true} if {@link Sql @Sql} was declared at the class level
 	 */
 	private void executeSqlScripts(Sql sql, ExecutionPhase executionPhase, TestContext testContext, boolean classLevel)
 			throws Exception {
@@ -204,20 +205,19 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 					"supply at least a DataSource or PlatformTransactionManager.", testContext));
 			// Execute scripts directly against the DataSource
 			populator.execute(dataSource);
-		}
-		else {
+		} else {
 			DataSource dataSourceFromTxMgr = getDataSourceFromTransactionManager(txMgr);
 			// Ensure user configured an appropriate DataSource/TransactionManager pair.
 			if (dataSource != null && dataSourceFromTxMgr != null && !dataSource.equals(dataSourceFromTxMgr)) {
 				throw new IllegalStateException(String.format("Failed to execute SQL scripts for test context %s: " +
-						"the configured DataSource [%s] (named '%s') is not the one associated with " +
-						"transaction manager [%s] (named '%s').", testContext, dataSource.getClass().getName(),
+								"the configured DataSource [%s] (named '%s') is not the one associated with " +
+								"transaction manager [%s] (named '%s').", testContext, dataSource.getClass().getName(),
 						dsName, txMgr.getClass().getName(), tmName));
 			}
 			if (dataSource == null) {
 				dataSource = dataSourceFromTxMgr;
 				Assert.state(dataSource != null, () -> String.format("Failed to execute SQL scripts for " +
-						"test context %s: could not obtain DataSource from transaction manager [%s] (named '%s').",
+								"test context %s: could not obtain DataSource from transaction manager [%s] (named '%s').",
 						testContext, txMgr.getClass().getName(), tmName));
 			}
 			final DataSource finalDataSource = dataSource;
@@ -240,8 +240,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 			if (obj instanceof DataSource) {
 				return (DataSource) obj;
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			// ignore
 		}
 		return null;
@@ -250,7 +249,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	private String[] getScripts(Sql sql, TestContext testContext, boolean classLevel) {
 		String[] scripts = sql.scripts();
 		if (ObjectUtils.isEmpty(scripts) && ObjectUtils.isEmpty(sql.statements())) {
-			scripts = new String[] {detectDefaultScript(testContext, classLevel)};
+			scripts = new String[]{detectDefaultScript(testContext, classLevel)};
 		}
 		return scripts;
 	}
@@ -280,8 +279,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 						prefixedResourcePath, elementType, elementName));
 			}
 			return prefixedResourcePath;
-		}
-		else {
+		} else {
 			String msg = String.format("Could not detect default SQL script for test %s [%s]: " +
 					"%s does not exist. Either declare statements or scripts via @Sql or make the " +
 					"default SQL script available.", elementType, elementName, classPathResource);

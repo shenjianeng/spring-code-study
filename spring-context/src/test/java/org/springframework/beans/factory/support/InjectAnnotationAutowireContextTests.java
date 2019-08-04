@@ -63,8 +63,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -83,8 +82,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -103,8 +101,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e instanceof UnsatisfiedDependencyException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -213,8 +210,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -237,8 +233,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -261,8 +256,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e instanceof UnsatisfiedDependencyException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -371,8 +365,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -450,8 +443,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -508,8 +500,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e.getRootCause() instanceof NoSuchBeanDefinitionException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -534,8 +525,7 @@ public class InjectAnnotationAutowireContextTests {
 		try {
 			context.refresh();
 			fail("expected BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		} catch (BeanCreationException e) {
 			assertTrue(e instanceof UnsatisfiedDependencyException);
 			assertEquals("autowired", e.getBeanName());
 		}
@@ -600,7 +590,7 @@ public class InjectAnnotationAutowireContextTests {
 	public static class QualifiedFieldWithMultipleAttributesTestBean {
 
 		@Inject
-		@TestQualifierWithMultipleAttributes(number=123)
+		@TestQualifierWithMultipleAttributes(number = 123)
 		private Person person;
 
 		public Person getPerson() {

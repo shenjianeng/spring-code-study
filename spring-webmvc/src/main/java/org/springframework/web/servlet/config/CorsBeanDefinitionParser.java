@@ -52,8 +52,7 @@ public class CorsBeanDefinitionParser implements BeanDefinitionParser {
 		if (mappings.isEmpty()) {
 			CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
 			corsConfigurations.put("/**", config);
-		}
-		else {
+		} else {
 			for (Element mapping : mappings) {
 				CorsConfiguration config = new CorsConfiguration();
 				if (mapping.hasAttribute("allowed-origins")) {

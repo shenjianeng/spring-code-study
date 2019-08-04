@@ -49,8 +49,8 @@ import org.springframework.web.util.UrlPathHelper;
  * {@code "classpath:/META-INF/public-web-resources/"}}) or to specify a cache period for served resources.
  *
  * @author Rossen Stoyanchev
- * @since 3.1
  * @see DefaultServletHandlerConfigurer
+ * @since 3.1
  */
 public class ResourceHandlerRegistry {
 
@@ -71,8 +71,9 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * Create a new resource handler registry for the given application context.
+	 *
 	 * @param applicationContext the Spring application context
-	 * @param servletContext the corresponding Servlet context
+	 * @param servletContext     the corresponding Servlet context
 	 */
 	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext) {
 		this(applicationContext, servletContext, null);
@@ -80,13 +81,14 @@ public class ResourceHandlerRegistry {
 
 	/**
 	 * Create a new resource handler registry for the given application context.
-	 * @param applicationContext the Spring application context
-	 * @param servletContext the corresponding Servlet context
+	 *
+	 * @param applicationContext        the Spring application context
+	 * @param servletContext            the corresponding Servlet context
 	 * @param contentNegotiationManager the content negotiation manager to use
 	 * @since 4.3
 	 */
 	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,
-			@Nullable ContentNegotiationManager contentNegotiationManager) {
+								   @Nullable ContentNegotiationManager contentNegotiationManager) {
 
 		this(applicationContext, servletContext, contentNegotiationManager, null);
 	}
@@ -95,10 +97,11 @@ public class ResourceHandlerRegistry {
 	 * A variant of
 	 * {@link #ResourceHandlerRegistry(ApplicationContext, ServletContext, ContentNegotiationManager)}
 	 * that also accepts the {@link UrlPathHelper} used for mapping requests to static resources.
+	 *
 	 * @since 4.3.13
 	 */
 	public ResourceHandlerRegistry(ApplicationContext applicationContext, ServletContext servletContext,
-			@Nullable ContentNegotiationManager contentNegotiationManager, @Nullable UrlPathHelper pathHelper) {
+								   @Nullable ContentNegotiationManager contentNegotiationManager, @Nullable UrlPathHelper pathHelper) {
 
 		Assert.notNull(applicationContext, "ApplicationContext is required");
 		this.applicationContext = applicationContext;
@@ -114,6 +117,7 @@ public class ResourceHandlerRegistry {
 	 * path patterns.
 	 * <p>Patterns like {@code "/static/**"} or {@code "/css/{filename:\\w+\\.css}"} are allowed.
 	 * See {@link org.springframework.util.AntPathMatcher} for more details on the syntax.
+	 *
 	 * @return a {@link ResourceHandlerRegistration} to use to further configure the
 	 * registered resource handler
 	 */
@@ -169,8 +173,7 @@ public class ResourceHandlerRegistry {
 				handler.setApplicationContext(this.applicationContext);
 				try {
 					handler.afterPropertiesSet();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new BeanInitializationException("Failed to init ResourceHttpRequestHandler", ex);
 				}
 				urlMap.put(pathPattern, handler);

@@ -42,7 +42,7 @@ class SampleObject {
 
 	@CacheResult
 	public SampleObject multiKeysGet(@CacheKey Long id, Boolean notUsed,
-			@CacheKey String domain) {
+									 @CacheKey String domain) {
 		return null;
 	}
 
@@ -54,7 +54,7 @@ class SampleObject {
 
 	@CachePut(cacheName = "simpleCache")
 	public void multiCacheValues(Long id, @CacheValue SampleObject instance,
-			@CacheValue SampleObject anotherInstance) {
+								 @CacheValue SampleObject anotherInstance) {
 	}
 
 	// Parameter annotation

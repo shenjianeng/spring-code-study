@@ -44,12 +44,10 @@ class SeparatorPathElement extends PathElement {
 				if (matchingContext.determineRemainingPath) {
 					matchingContext.remainingPathIndex = pathIndex + 1;
 					return true;
-				}
-				else {
+				} else {
 					return (pathIndex + 1 == matchingContext.pathLength);
 				}
-			}
-			else {
+			} else {
 				pathIndex++;
 				return (this.next != null && this.next.matches(pathIndex, matchingContext));
 			}
@@ -67,7 +65,7 @@ class SeparatorPathElement extends PathElement {
 	}
 
 	public char[] getChars() {
-		return new char[] {this.separator};
+		return new char[]{this.separator};
 	}
 
 }

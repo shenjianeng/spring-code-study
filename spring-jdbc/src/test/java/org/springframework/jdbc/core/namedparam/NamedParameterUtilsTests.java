@@ -81,8 +81,7 @@ public class NamedParameterUtilsTests {
 		try {
 			NamedParameterUtils.buildValueArray("xxx :a :b ?", paramMap);
 			fail("mixed named parameters and ? placeholders not detected");
-		}
-		catch (InvalidDataAccessApiUsageException expected) {
+		} catch (InvalidDataAccessApiUsageException expected) {
 		}
 	}
 

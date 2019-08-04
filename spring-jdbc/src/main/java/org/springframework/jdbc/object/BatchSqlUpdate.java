@@ -40,9 +40,9 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 1.1
  * @see #flush
  * @see #reset
+ * @since 1.1
  */
 public class BatchSqlUpdate extends SqlUpdate {
 
@@ -64,6 +64,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	/**
 	 * Constructor to allow use as a JavaBean. DataSource and SQL
 	 * must be supplied before compilation and use.
+	 *
 	 * @see #setDataSource
 	 * @see #setSql
 	 */
@@ -73,7 +74,8 @@ public class BatchSqlUpdate extends SqlUpdate {
 
 	/**
 	 * Construct an update object with a given DataSource and SQL.
-	 * @param ds the DataSource to use to obtain connections
+	 *
+	 * @param ds  the DataSource to use to obtain connections
 	 * @param sql the SQL statement to execute
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql) {
@@ -83,10 +85,11 @@ public class BatchSqlUpdate extends SqlUpdate {
 	/**
 	 * Construct an update object with a given DataSource, SQL
 	 * and anonymous parameters.
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
+	 *
+	 * @param ds    the DataSource to use to obtain connections
+	 * @param sql   the SQL statement to execute
 	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
+	 *              {@code java.sql.Types} class
 	 * @see java.sql.Types
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql, int[] types) {
@@ -97,12 +100,13 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * Construct an update object with a given DataSource, SQL,
 	 * anonymous parameters and specifying the maximum number of rows
 	 * that may be affected.
-	 * @param ds the DataSource to use to obtain connections
-	 * @param sql the SQL statement to execute
-	 * @param types the SQL types of the parameters, as defined in the
-	 * {@code java.sql.Types} class
+	 *
+	 * @param ds        the DataSource to use to obtain connections
+	 * @param sql       the SQL statement to execute
+	 * @param types     the SQL types of the parameters, as defined in the
+	 *                  {@code java.sql.Types} class
 	 * @param batchSize the number of statements that will trigger
-	 * an automatic intermediate flush
+	 *                  an automatic intermediate flush
 	 * @see java.sql.Types
 	 */
 	public BatchSqlUpdate(DataSource ds, String sql, int[] types, int batchSize) {
@@ -129,6 +133,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * by this operation object.
 	 * <p>Default is "true". Turn this off to save the memory needed for
 	 * the list of row counts.
+	 *
 	 * @see #getRowsAffected()
 	 */
 	public void setTrackRowsAffected(boolean trackRowsAffected) {
@@ -152,6 +157,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * <p>You need to call {@code flush} to actually execute the batch.
 	 * If the specified batch size is reached, an implicit flush will happen;
 	 * you still need to finally call {@code flush} to flush all statements.
+	 *
 	 * @param params array of parameter objects
 	 * @return the number of rows affected by the update (always -1,
 	 * meaning "not applicable", as the statement is not actually
@@ -175,6 +181,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 
 	/**
 	 * Trigger any queued update operations to be added as a final batch.
+	 *
 	 * @return an array of the number of rows affected by each statement
 	 */
 	public int[] flush() {
@@ -189,6 +196,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 					public int getBatchSize() {
 						return parameterQueue.size();
 					}
+
 					@Override
 					public void setValues(PreparedStatement ps, int index) throws SQLException {
 						Object[] params = parameterQueue.removeFirst();
@@ -225,6 +233,7 @@ public class BatchSqlUpdate extends SqlUpdate {
 	 * Return the number of affected rows for all already executed statements.
 	 * Accumulates all of {@code flush}'s return values until
 	 * {@code reset} is invoked.
+	 *
 	 * @return an array of the number of rows affected by each statement
 	 * @see #reset
 	 */

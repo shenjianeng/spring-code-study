@@ -17,6 +17,7 @@
 package org.springframework.web.cors;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,7 @@ import org.springframework.mock.web.test.MockHttpServletRequest;
 
 /**
  * Unit tests for {@link UrlBasedCorsConfigurationSource}.
+ *
  * @author Sebastien Deleuze
  */
 public class UrlBasedCorsConfigurationSourceTests {

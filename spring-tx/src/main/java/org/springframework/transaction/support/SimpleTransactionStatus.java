@@ -29,8 +29,8 @@ package org.springframework.transaction.support;
  * as argument passed into a {@link TransactionCallback} to be tested).
  *
  * @author Juergen Hoeller
- * @since 1.2.3
  * @see TransactionCallback#doInTransaction
+ * @since 1.2.3
  */
 public class SimpleTransactionStatus extends AbstractTransactionStatus {
 
@@ -47,6 +47,7 @@ public class SimpleTransactionStatus extends AbstractTransactionStatus {
 
 	/**
 	 * Create a new {@code SimpleTransactionStatus} instance.
+	 *
 	 * @param newTransaction whether to indicate a new transaction
 	 */
 	public SimpleTransactionStatus(boolean newTransaction) {

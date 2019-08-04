@@ -33,9 +33,9 @@ import org.springframework.util.Assert;
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
- * @since 3.0
  * @see java.net.HttpURLConnection
  * @see HttpComponentsClientHttpRequestFactory
+ * @since 3.0
  */
 @SuppressWarnings("deprecation")
 public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory, AsyncClientHttpRequestFactory {
@@ -77,6 +77,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
 	 * is known in advance), or that will use "Chunked transfer encoding"
 	 * (if the {@code Content-Length} is not known in advance).
+	 *
 	 * @see #setChunkSize(int)
 	 * @see HttpURLConnection#setFixedLengthStreamingMode(int)
 	 */
@@ -91,6 +92,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * {@link #setBufferRequestBody(boolean) bufferRequestBody} is set to {@code false},
 	 * and the {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
 	 * is not known in advance.
+	 *
 	 * @see #setBufferRequestBody(boolean)
 	 */
 	public void setChunkSize(int chunkSize) {
@@ -101,6 +103,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * Set the underlying URLConnection's connect timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
 	 * <p>Default is the system's default timeout.
+	 *
 	 * @see URLConnection#setConnectTimeout(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -111,6 +114,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * Set the underlying URLConnection's read timeout (in milliseconds).
 	 * A timeout value of 0 specifies an infinite timeout.
 	 * <p>Default is the system's default timeout.
+	 *
 	 * @see URLConnection#setReadTimeout(int)
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -124,6 +128,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * If output streaming is disabled, the {@link HttpURLConnection#setFixedLengthStreamingMode} and
 	 * {@link HttpURLConnection#setChunkedStreamingMode} methods of the underlying connection will never
 	 * be called.
+	 *
 	 * @param outputStreaming if output streaming is enabled
 	 */
 	public void setOutputStreaming(boolean outputStreaming) {
@@ -133,6 +138,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Set the task executor for this request factory. Setting this property is required
 	 * for {@linkplain #createAsyncRequest(URI, HttpMethod) creating asynchronous requests}.
+	 *
 	 * @param taskExecutor the task executor
 	 */
 	public void setTaskExecutor(AsyncListenableTaskExecutor taskExecutor) {
@@ -147,8 +153,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 		if (this.bufferRequestBody) {
 			return new SimpleBufferingClientHttpRequest(connection, this.outputStreaming);
-		}
-		else {
+		} else {
 			return new SimpleStreamingClientHttpRequest(connection, this.chunkSize, this.outputStreaming);
 		}
 	}
@@ -167,8 +172,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 		if (this.bufferRequestBody) {
 			return new SimpleBufferingAsyncClientHttpRequest(
 					connection, this.outputStreaming, this.taskExecutor);
-		}
-		else {
+		} else {
 			return new SimpleStreamingAsyncClientHttpRequest(
 					connection, this.chunkSize, this.outputStreaming, this.taskExecutor);
 		}
@@ -178,7 +182,8 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	 * Opens and returns a connection to the given URL.
 	 * <p>The default implementation uses the given {@linkplain #setProxy(java.net.Proxy) proxy} -
 	 * if any - to open a connection.
-	 * @param url the URL to open a connection to
+	 *
+	 * @param url   the URL to open a connection to
 	 * @param proxy the proxy to use, may be {@code null}
 	 * @return the opened connection
 	 * @throws IOException in case of I/O errors
@@ -194,6 +199,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	/**
 	 * Template method for preparing the given {@link HttpURLConnection}.
 	 * <p>The default implementation prepares the connection for input and output, and sets the HTTP method.
+	 *
 	 * @param connection the connection to prepare
 	 * @param httpMethod the HTTP request method ({@code GET}, {@code POST}, etc.)
 	 * @throws IOException in case of I/O errors
@@ -210,16 +216,14 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 		if ("GET".equals(httpMethod)) {
 			connection.setInstanceFollowRedirects(true);
-		}
-		else {
+		} else {
 			connection.setInstanceFollowRedirects(false);
 		}
 
 		if ("POST".equals(httpMethod) || "PUT".equals(httpMethod) ||
 				"PATCH".equals(httpMethod) || "DELETE".equals(httpMethod)) {
 			connection.setDoOutput(true);
-		}
-		else {
+		} else {
 			connection.setDoOutput(false);
 		}
 

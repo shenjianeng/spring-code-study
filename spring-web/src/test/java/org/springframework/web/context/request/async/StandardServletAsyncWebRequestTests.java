@@ -41,6 +41,7 @@ import static org.mockito.BDDMockito.verify;
 
 /**
  * A test fixture with a {@link StandardServletAsyncWebRequest}.
+ *
  * @author Rossen Stoyanchev
  */
 public class StandardServletAsyncWebRequestTests {
@@ -58,7 +59,7 @@ public class StandardServletAsyncWebRequestTests {
 		this.request.setAsyncSupported(true);
 		this.response = new MockHttpServletResponse();
 		this.asyncRequest = new StandardServletAsyncWebRequest(this.request, this.response);
-		this.asyncRequest.setTimeout(44*1000L);
+		this.asyncRequest.setTimeout(44 * 1000L);
 	}
 
 
@@ -85,7 +86,7 @@ public class StandardServletAsyncWebRequestTests {
 		this.asyncRequest.startAsync();
 		this.asyncRequest.startAsync();
 		this.asyncRequest.startAsync();
-		this.asyncRequest.startAsync();	// idempotent
+		this.asyncRequest.startAsync();    // idempotent
 
 		MockAsyncContext context = (MockAsyncContext) this.request.getAsyncContext();
 		assertNotNull(context);
@@ -98,8 +99,7 @@ public class StandardServletAsyncWebRequestTests {
 		try {
 			this.asyncRequest.startAsync();
 			fail("expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertThat(ex.getMessage(), containsString("Async support must be enabled"));
 		}
 	}
@@ -110,8 +110,7 @@ public class StandardServletAsyncWebRequestTests {
 		try {
 			this.asyncRequest.startAsync();
 			fail("expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("Async processing has already completed", ex.getMessage());
 		}
 	}

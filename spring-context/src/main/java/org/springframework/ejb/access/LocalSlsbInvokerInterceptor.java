@@ -71,33 +71,27 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 			if (method.getDeclaringClass().isInstance(ejb)) {
 				// directly implemented
 				return method.invoke(ejb, invocation.getArguments());
-			}
-			else {
+			} else {
 				// not directly implemented
 				Method ejbMethod = ejb.getClass().getMethod(method.getName(), method.getParameterTypes());
 				return ejbMethod.invoke(ejb, invocation.getArguments());
 			}
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			Throwable targetEx = ex.getTargetException();
 			if (logger.isDebugEnabled()) {
 				logger.debug("Method of local EJB [" + getJndiName() + "] threw exception", targetEx);
 			}
 			if (targetEx instanceof CreateException) {
 				throw new EjbAccessException("Could not create local EJB [" + getJndiName() + "]", targetEx);
-			}
-			else {
+			} else {
 				throw targetEx;
 			}
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			throw new EjbAccessException("Failed to locate local EJB [" + getJndiName() + "]", ex);
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			throw new EjbAccessException("Could not access method [" + invocation.getMethod().getName() +
-				"] of local EJB [" + getJndiName() + "]", ex);
-		}
-		finally {
+					"] of local EJB [" + getJndiName() + "]", ex);
+		} finally {
 			if (ejb instanceof EJBLocalObject) {
 				releaseSessionBeanInstance((EJBLocalObject) ejb);
 			}
@@ -123,7 +117,8 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 	/**
 	 * Return an EJB instance to delegate the call to.
 	 * Default implementation delegates to newSessionBeanInstance.
-	 * @throws NamingException if thrown by JNDI
+	 *
+	 * @throws NamingException           if thrown by JNDI
 	 * @throws InvocationTargetException if thrown by the create method
 	 * @see #newSessionBeanInstance
 	 */
@@ -134,6 +129,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 	/**
 	 * Release the given EJB instance.
 	 * Default implementation delegates to removeSessionBeanInstance.
+	 *
 	 * @param ejb the EJB instance to release
 	 * @see #removeSessionBeanInstance
 	 */
@@ -144,7 +140,8 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 	/**
 	 * Return a new instance of the stateless session bean.
 	 * Can be overridden to change the algorithm.
-	 * @throws NamingException if thrown by JNDI
+	 *
+	 * @throws NamingException           if thrown by JNDI
 	 * @throws InvocationTargetException if thrown by the create method
 	 * @see #create
 	 */
@@ -161,6 +158,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 
 	/**
 	 * Remove the given EJB instance.
+	 *
 	 * @param ejb the EJB instance to remove
 	 * @see javax.ejb.EJBLocalObject#remove()
 	 */
@@ -168,8 +166,7 @@ public class LocalSlsbInvokerInterceptor extends AbstractSlsbInvokerInterceptor 
 		if (ejb != null && !this.homeAsComponent) {
 			try {
 				ejb.remove();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				logger.warn("Could not invoke 'remove' on local EJB proxy", ex);
 			}
 		}

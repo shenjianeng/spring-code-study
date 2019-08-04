@@ -75,8 +75,7 @@ public class ContentRequestMatchersIntegrationTests {
 		this.mockServer.expect(content().contentType("application/json;charset=UTF-8")).andRespond(withSuccess());
 		try {
 			executeAndVerify("foo");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			String message = error.getMessage();
 			assertTrue(message, message.startsWith("Content type expected:<application/json;charset=UTF-8>"));
 		}

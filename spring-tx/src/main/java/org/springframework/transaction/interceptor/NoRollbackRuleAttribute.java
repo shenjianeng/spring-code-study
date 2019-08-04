@@ -29,6 +29,7 @@ public class NoRollbackRuleAttribute extends RollbackRuleAttribute {
 	/**
 	 * Create a new instance of the {@code NoRollbackRuleAttribute} class
 	 * for the supplied {@link Throwable} class.
+	 *
 	 * @param clazz the {@code Throwable} class
 	 * @see RollbackRuleAttribute#RollbackRuleAttribute(Class)
 	 */
@@ -39,6 +40,7 @@ public class NoRollbackRuleAttribute extends RollbackRuleAttribute {
 	/**
 	 * Create a new instance of the {@code NoRollbackRuleAttribute} class
 	 * for the supplied {@code exceptionName}.
+	 *
 	 * @param exceptionName the exception name pattern
 	 * @see RollbackRuleAttribute#RollbackRuleAttribute(String)
 	 */

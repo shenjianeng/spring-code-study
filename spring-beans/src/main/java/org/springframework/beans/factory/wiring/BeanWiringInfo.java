@@ -27,15 +27,16 @@ import org.springframework.util.Assert;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see BeanWiringInfoResolver
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory
  * @see org.springframework.beans.factory.annotation.Configurable
+ * @since 2.0
  */
 public class BeanWiringInfo {
 
 	/**
 	 * Constant that indicates autowiring bean properties by name.
+	 *
 	 * @see #BeanWiringInfo(int, boolean)
 	 * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#AUTOWIRE_BY_NAME
 	 */
@@ -43,6 +44,7 @@ public class BeanWiringInfo {
 
 	/**
 	 * Constant that indicates autowiring bean properties by type.
+	 *
 	 * @see #BeanWiringInfo(int, boolean)
 	 * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#AUTOWIRE_BY_TYPE
 	 */
@@ -68,9 +70,10 @@ public class BeanWiringInfo {
 
 	/**
 	 * Create a new BeanWiringInfo that points to the given bean name.
+	 *
 	 * @param beanName the name of the bean definition to take the property values from
 	 * @throws IllegalArgumentException if the supplied beanName is {@code null},
-	 * is empty, or consists wholly of whitespace
+	 *                                  is empty, or consists wholly of whitespace
 	 */
 	public BeanWiringInfo(String beanName) {
 		this(beanName, false);
@@ -78,11 +81,12 @@ public class BeanWiringInfo {
 
 	/**
 	 * Create a new BeanWiringInfo that points to the given bean name.
-	 * @param beanName the name of the bean definition to take the property values from
+	 *
+	 * @param beanName          the name of the bean definition to take the property values from
 	 * @param isDefaultBeanName whether the given bean name is a suggested
-	 * default bean name, not necessarily matching an actual bean definition
+	 *                          default bean name, not necessarily matching an actual bean definition
 	 * @throws IllegalArgumentException if the supplied beanName is {@code null},
-	 * is empty, or consists wholly of whitespace
+	 *                                  is empty, or consists wholly of whitespace
 	 */
 	public BeanWiringInfo(String beanName, boolean isDefaultBeanName) {
 		Assert.hasText(beanName, "'beanName' must not be empty");
@@ -92,12 +96,13 @@ public class BeanWiringInfo {
 
 	/**
 	 * Create a new BeanWiringInfo that indicates autowiring.
-	 * @param autowireMode one of the constants {@link #AUTOWIRE_BY_NAME} /
-	 * {@link #AUTOWIRE_BY_TYPE}
+	 *
+	 * @param autowireMode    one of the constants {@link #AUTOWIRE_BY_NAME} /
+	 *                        {@link #AUTOWIRE_BY_TYPE}
 	 * @param dependencyCheck whether to perform a dependency check for object
-	 * references in the bean instance (after autowiring)
+	 *                        references in the bean instance (after autowiring)
 	 * @throws IllegalArgumentException if the supplied {@code autowireMode}
-	 * is not one of the allowed values
+	 *                                  is not one of the allowed values
 	 * @see #AUTOWIRE_BY_NAME
 	 * @see #AUTOWIRE_BY_TYPE
 	 */

@@ -343,7 +343,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class ModelAndViewController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler
 		public ModelAndView handle(Exception ex) throws IOException {
@@ -355,7 +356,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class ResponseWriterController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler
 		public void handleException(Exception ex, Writer writer) throws IOException {
@@ -377,7 +379,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class ResponseBodyController extends WebApplicationObjectSupport implements ResponseBodyInterface {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler
 		@ResponseBody
@@ -390,7 +393,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class IoExceptionController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler(value = IOException.class)
 		public void handleException() {
@@ -401,7 +405,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class ModelArgumentController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler
 		public void handleException(Exception ex, Model model) {
@@ -412,7 +417,8 @@ public class ExceptionHandlerExceptionResolverTests {
 	@Controller
 	static class RedirectAttributesController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@ExceptionHandler
 		public String handleException(Exception ex, RedirectAttributes redirectAttributes) {

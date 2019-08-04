@@ -34,6 +34,7 @@ public interface RequestBuilder {
 
 	/**
 	 * Build the request.
+	 *
 	 * @param servletContext the {@link ServletContext} to use to create the request
 	 * @return the request
 	 */

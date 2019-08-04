@@ -24,8 +24,8 @@ import org.junit.After;
  * throwing an {@link AssertionError} if not.
  *
  * @author Arjen Poutsma
- * @since 5.1.3
  * @see LeakAwareDataBufferFactory
+ * @since 5.1.3
  */
 public abstract class AbstractLeakCheckingTestCase {
 

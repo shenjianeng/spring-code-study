@@ -104,7 +104,7 @@ public class PathVariableMethodArgumentResolver extends AbstractNamedValueMethod
 	@Override
 	@SuppressWarnings("unchecked")
 	protected void handleResolvedValue(@Nullable Object arg, String name, MethodParameter parameter,
-			@Nullable ModelAndViewContainer mavContainer, NativeWebRequest request) {
+									   @Nullable ModelAndViewContainer mavContainer, NativeWebRequest request) {
 
 		String key = View.PATH_VARIABLES;
 		int scope = RequestAttributes.SCOPE_REQUEST;
@@ -118,7 +118,7 @@ public class PathVariableMethodArgumentResolver extends AbstractNamedValueMethod
 
 	@Override
 	public void contributeMethodArgument(MethodParameter parameter, Object value,
-			UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
+										 UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
 
 		if (Map.class.isAssignableFrom(parameter.nestedIfOptional().getNestedParameterType())) {
 			return;
@@ -134,11 +134,9 @@ public class PathVariableMethodArgumentResolver extends AbstractNamedValueMethod
 	protected String formatUriValue(@Nullable ConversionService cs, @Nullable TypeDescriptor sourceType, Object value) {
 		if (value instanceof String) {
 			return (String) value;
-		}
-		else if (cs != null) {
+		} else if (cs != null) {
 			return (String) cs.convert(value, sourceType, STRING_TYPE_DESCRIPTOR);
-		}
-		else {
+		} else {
 			return value.toString();
 		}
 	}

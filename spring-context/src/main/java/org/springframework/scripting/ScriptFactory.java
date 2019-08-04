@@ -27,9 +27,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
- * @since 2.0
  * @see #getScriptSourceLocator
  * @see #getScriptedObject
+ * @since 2.0
  */
 public interface ScriptFactory {
 
@@ -39,6 +39,7 @@ public interface ScriptFactory {
 	 * <p>Typical supported locators are Spring resource locations
 	 * (such as "file:C:/myScript.bsh" or "classpath:myPackage/myScript.bsh")
 	 * and inline scripts ("inline:myScriptText...").
+	 *
 	 * @return the script source locator
 	 * @see org.springframework.scripting.support.ScriptFactoryPostProcessor#convertToScriptSource
 	 * @see org.springframework.core.io.ResourceLoader
@@ -49,6 +50,7 @@ public interface ScriptFactory {
 	 * Return the business interfaces that the script is supposed to implement.
 	 * <p>Can return {@code null} if the script itself determines
 	 * its Java interfaces (such as in the case of Groovy).
+	 *
 	 * @return the interfaces for the script
 	 */
 	@Nullable
@@ -59,6 +61,7 @@ public interface ScriptFactory {
 	 * generated for it. This is typically the case for scripts that
 	 * do not determine Java signatures themselves, with no appropriate
 	 * config interface specified in {@code getScriptInterfaces()}.
+	 *
 	 * @return whether the script requires a generated config interface
 	 * @see #getScriptInterfaces()
 	 */
@@ -69,13 +72,14 @@ public interface ScriptFactory {
 	 * <p>Implementations are encouraged to cache script metadata such as
 	 * a generated script class. Note that this method may be invoked
 	 * concurrently and must be implemented in a thread-safe fashion.
-	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
+	 *
+	 * @param scriptSource     the actual ScriptSource to retrieve
+	 *                         the script source text from (never {@code null})
 	 * @param actualInterfaces the actual interfaces to expose,
-	 * including script interfaces as well as a generated config interface
-	 * (if applicable; may be {@code null})
+	 *                         including script interfaces as well as a generated config interface
+	 *                         (if applicable; may be {@code null})
 	 * @return the scripted Java object
-	 * @throws IOException if script retrieval failed
+	 * @throws IOException                if script retrieval failed
 	 * @throws ScriptCompilationException if script compilation failed
 	 */
 	@Nullable
@@ -87,11 +91,12 @@ public interface ScriptFactory {
 	 * <p>Implementations are encouraged to cache script metadata such as
 	 * a generated script class. Note that this method may be invoked
 	 * concurrently and must be implemented in a thread-safe fashion.
+	 *
 	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
+	 *                     the script source text from (never {@code null})
 	 * @return the type of the scripted Java object, or {@code null}
 	 * if none could be determined
-	 * @throws IOException if script retrieval failed
+	 * @throws IOException                if script retrieval failed
 	 * @throws ScriptCompilationException if script compilation failed
 	 * @since 2.0.3
 	 */
@@ -102,11 +107,12 @@ public interface ScriptFactory {
 	/**
 	 * Determine whether a refresh is required (e.g. through
 	 * ScriptSource's {@code isModified()} method).
+	 *
 	 * @param scriptSource the actual ScriptSource to retrieve
-	 * the script source text from (never {@code null})
+	 *                     the script source text from (never {@code null})
 	 * @return whether a fresh {@link #getScriptedObject} call is required
-	 * @since 2.5.2
 	 * @see ScriptSource#isModified()
+	 * @since 2.5.2
 	 */
 	boolean requiresScriptedObjectRefresh(ScriptSource scriptSource);
 

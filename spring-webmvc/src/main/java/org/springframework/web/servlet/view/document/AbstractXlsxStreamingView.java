@@ -46,6 +46,7 @@ public abstract class AbstractXlsxStreamingView extends AbstractXlsxView {
 
 	/**
 	 * This implementation disposes of the {@link SXSSFWorkbook} when done with rendering.
+	 *
 	 * @see org.apache.poi.xssf.streaming.SXSSFWorkbook#dispose()
 	 */
 	@Override

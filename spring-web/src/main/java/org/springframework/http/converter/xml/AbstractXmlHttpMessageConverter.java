@@ -41,10 +41,10 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
  * application/*-xml}. This can be overridden by setting the {@link #setSupportedMediaTypes(java.util.List)
  * supportedMediaTypes} property.
  *
+ * @param <T> the converted object type
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 3.0
- * @param <T> the converted object type
  */
 public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMessageConverter<T> {
 
@@ -66,11 +66,9 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 		try {
 			return readFromSource(clazz, inputMessage.getHeaders(), new StreamSource(inputMessage.getBody()));
-		}
-		catch (IOException | HttpMessageConversionException ex) {
+		} catch (IOException | HttpMessageConversionException ex) {
 			throw ex;
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HttpMessageNotReadableException("Could not unmarshal to [" + clazz + "]: " + ex.getMessage(),
 					ex, inputMessage);
 		}
@@ -82,17 +80,16 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 		try {
 			writeToResult(t, outputMessage.getHeaders(), new StreamResult(outputMessage.getBody()));
-		}
-		catch (IOException | HttpMessageConversionException ex) {
+		} catch (IOException | HttpMessageConversionException ex) {
 			throw ex;
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new HttpMessageNotWritableException("Could not marshal [" + t + "]: " + ex.getMessage(), ex);
 		}
 	}
 
 	/**
 	 * Transforms the given {@code Source} to the {@code Result}.
+	 *
 	 * @param source the source to transform from
 	 * @param result the result to transform to
 	 * @throws TransformerException in case of transformation errors
@@ -104,9 +101,10 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 	/**
 	 * Abstract template method called from {@link #read(Class, HttpInputMessage)}.
-	 * @param clazz the type of object to return
+	 *
+	 * @param clazz   the type of object to return
 	 * @param headers the HTTP input headers
-	 * @param source the HTTP input body
+	 * @param source  the HTTP input body
 	 * @return the converted object
 	 * @throws Exception in case of I/O or conversion errors
 	 */
@@ -114,9 +112,10 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 	/**
 	 * Abstract template method called from {@link #writeInternal(Object, HttpOutputMessage)}.
-	 * @param t the object to write to the output message
+	 *
+	 * @param t       the object to write to the output message
 	 * @param headers the HTTP output headers
-	 * @param result the HTTP output body
+	 * @param result  the HTTP output body
 	 * @throws Exception in case of I/O or conversion errors
 	 */
 	protected abstract void writeToResult(T t, HttpHeaders headers, Result result) throws Exception;

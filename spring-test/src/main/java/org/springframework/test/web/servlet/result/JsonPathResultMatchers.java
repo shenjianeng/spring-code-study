@@ -55,9 +55,10 @@ public class JsonPathResultMatchers {
 	 * Protected constructor.
 	 * <p>Use {@link MockMvcResultMatchers#jsonPath(String, Object...)} or
 	 * {@link MockMvcResultMatchers#jsonPath(String, Matcher)}.
+	 *
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
-	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * @param args       arguments to parameterize the {@code JsonPath} expression with,
+	 *                   using formatting specifiers defined in {@link String#format(String, Object...)}
 	 */
 	protected JsonPathResultMatchers(String expression, Object... args) {
 		this.jsonPathHelper = new JsonPathExpectationsHelper(expression, args);
@@ -68,6 +69,7 @@ public class JsonPathResultMatchers {
 	 * to verify that the JSON payload is prepended with the given prefix.
 	 * <p>Use this method if the JSON payloads are prefixed to avoid
 	 * Cross Site Script Inclusion (XSSI) attacks.
+	 *
 	 * @param prefix the string prefix prepended to the actual JSON payload
 	 * @since 4.3
 	 */
@@ -80,6 +82,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert the resulting value with the given Hamcrest {@link Matcher}.
+	 *
 	 * @see #value(Matcher, Class)
 	 * @see #value(Object)
 	 */
@@ -93,9 +96,10 @@ public class JsonPathResultMatchers {
 	 * against.
 	 * <p>This can be useful for matching numbers reliably &mdash; for example,
 	 * to coerce an integer into a double.
-	 * @since 4.3.15
+	 *
 	 * @see #value(Matcher)
 	 * @see #value(Object)
+	 * @since 4.3.15
 	 */
 	public <T> ResultMatcher value(Matcher<T> matcher, Class<T> targetType) {
 		return result -> this.jsonPathHelper.assertValue(getContent(result), matcher, targetType);
@@ -104,6 +108,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert that the result is equal to the supplied value.
+	 *
 	 * @see #value(Matcher)
 	 * @see #value(Matcher, Class)
 	 */
@@ -139,10 +144,11 @@ public class JsonPathResultMatchers {
 	 * assert that an empty value exists at the given path.
 	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
-	 * @since 4.2.1
+	 *
 	 * @see #isNotEmpty()
 	 * @see #exists()
 	 * @see #doesNotExist()
+	 * @since 4.2.1
 	 */
 	public ResultMatcher isEmpty() {
 		return result -> this.jsonPathHelper.assertValueIsEmpty(getContent(result));
@@ -153,10 +159,11 @@ public class JsonPathResultMatchers {
 	 * assert that a non-empty value exists at the given path.
 	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
 	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
-	 * @since 4.2.1
+	 *
 	 * @see #isEmpty()
 	 * @see #exists()
 	 * @see #doesNotExist()
+	 * @since 4.2.1
 	 */
 	public ResultMatcher isNotEmpty() {
 		return result -> this.jsonPathHelper.assertValueIsNotEmpty(getContent(result));
@@ -168,9 +175,10 @@ public class JsonPathResultMatchers {
 	 * <p>If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is not <em>empty</em>.
-	 * @since 5.0.3
+	 *
 	 * @see #exists()
 	 * @see #isNotEmpty()
+	 * @since 5.0.3
 	 */
 	public ResultMatcher hasJsonPath() {
 		return result -> this.jsonPathHelper.hasJsonPath(getContent(result));
@@ -183,9 +191,10 @@ public class JsonPathResultMatchers {
 	 * <p>If the JSON path expression is not
 	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
 	 * that the list of values at the given path is <em>empty</em>.
-	 * @since 5.0.3
+	 *
 	 * @see #doesNotExist()
 	 * @see #isEmpty()
+	 * @since 5.0.3
 	 */
 	public ResultMatcher doesNotHaveJsonPath() {
 		return result -> this.jsonPathHelper.doesNotHaveJsonPath(getContent(result));
@@ -194,6 +203,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert that the result is a {@link String}.
+	 *
 	 * @since 4.2.1
 	 */
 	public ResultMatcher isString() {
@@ -203,6 +213,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert that the result is a {@link Boolean}.
+	 *
 	 * @since 4.2.1
 	 */
 	public ResultMatcher isBoolean() {
@@ -212,6 +223,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert that the result is a {@link Number}.
+	 *
 	 * @since 4.2.1
 	 */
 	public ResultMatcher isNumber() {
@@ -229,6 +241,7 @@ public class JsonPathResultMatchers {
 	/**
 	 * Evaluate the JSON path expression against the response content and
 	 * assert that the result is a {@link java.util.Map}.
+	 *
 	 * @since 4.2.1
 	 */
 	public ResultMatcher isMap() {
@@ -243,12 +256,10 @@ public class JsonPathResultMatchers {
 						this.prefix, StringUtils.quote(content.substring(0, this.prefix.length())));
 				MatcherAssert.assertThat(reason, content, StringStartsWith.startsWith(this.prefix));
 				return content.substring(this.prefix.length());
-			}
-			catch (StringIndexOutOfBoundsException ex) {
+			} catch (StringIndexOutOfBoundsException ex) {
 				throw new AssertionError("JSON prefix \"" + this.prefix + "\" not found", ex);
 			}
-		}
-		else {
+		} else {
 			return content;
 		}
 	}

@@ -367,9 +367,9 @@ public class OperatorTests extends AbstractExpressionTests {
 
 	@Test
 	public void testMathOperatorsInChains() {
-		evaluate("1+2+3",6,Integer.class);
-		evaluate("2*3*4",24,Integer.class);
-		evaluate("12-1-2",9,Integer.class);
+		evaluate("1+2+3", 6, Integer.class);
+		evaluate("2*3*4", 24, Integer.class);
+		evaluate("12-1-2", 9, Integer.class);
 	}
 
 	@Test
@@ -400,22 +400,22 @@ public class OperatorTests extends AbstractExpressionTests {
 		evaluate("null + 'ab'", "nullab", String.class);
 
 		// AST:
-		SpelExpression expr = (SpelExpression)parser.parseExpression("+3");
-		assertEquals("+3",expr.toStringAST());
-		expr = (SpelExpression)parser.parseExpression("2+3");
-		assertEquals("(2 + 3)",expr.toStringAST());
+		SpelExpression expr = (SpelExpression) parser.parseExpression("+3");
+		assertEquals("+3", expr.toStringAST());
+		expr = (SpelExpression) parser.parseExpression("2+3");
+		assertEquals("(2 + 3)", expr.toStringAST());
 
 		// use as a unary operator
-		evaluate("+5d",5d,Double.class);
-		evaluate("+5L",5L,Long.class);
-		evaluate("+5",5,Integer.class);
-		evaluate("+new java.math.BigDecimal('5')", new BigDecimal("5"),BigDecimal.class);
-		evaluateAndCheckError("+'abc'",SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
+		evaluate("+5d", 5d, Double.class);
+		evaluate("+5L", 5L, Long.class);
+		evaluate("+5", 5, Integer.class);
+		evaluate("+new java.math.BigDecimal('5')", new BigDecimal("5"), BigDecimal.class);
+		evaluateAndCheckError("+'abc'", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
 
 		// string concatenation
-		evaluate("'abc'+'def'","abcdef",String.class);
+		evaluate("'abc'+'def'", "abcdef", String.class);
 
-		evaluate("5 + new Integer('37')",42,Integer.class);
+		evaluate("5 + new Integer('37')", 42, Integer.class);
 	}
 
 	@Test
@@ -424,40 +424,40 @@ public class OperatorTests extends AbstractExpressionTests {
 		evaluate("3.0f - 5.0f", -2.0f, Float.class);
 		evaluateAndCheckError("'ab' - 2", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
 		evaluateAndCheckError("2-'ab'", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
-		SpelExpression expr = (SpelExpression)parser.parseExpression("-3");
+		SpelExpression expr = (SpelExpression) parser.parseExpression("-3");
 		assertEquals("-3", expr.toStringAST());
-		expr = (SpelExpression)parser.parseExpression("2-3");
+		expr = (SpelExpression) parser.parseExpression("2-3");
 		assertEquals("(2 - 3)", expr.toStringAST());
 
-		evaluate("-5d",-5d,Double.class);
-		evaluate("-5L",-5L,Long.class);
+		evaluate("-5d", -5d, Double.class);
+		evaluate("-5L", -5L, Long.class);
 		evaluate("-5", -5, Integer.class);
-		evaluate("-new java.math.BigDecimal('5')", new BigDecimal("-5"),BigDecimal.class);
+		evaluate("-new java.math.BigDecimal('5')", new BigDecimal("-5"), BigDecimal.class);
 		evaluateAndCheckError("-'abc'", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
 	}
 
 	@Test
 	public void testModulus() {
-		evaluate("3%2",1,Integer.class);
-		evaluate("3L%2L",1L,Long.class);
-		evaluate("3.0f%2.0f",1f,Float.class);
+		evaluate("3%2", 1, Integer.class);
+		evaluate("3L%2L", 1L, Long.class);
+		evaluate("3.0f%2.0f", 1f, Float.class);
 		evaluate("5.0d % 3.1d", 1.9d, Double.class);
 		evaluate("new java.math.BigDecimal('5') % new java.math.BigDecimal('3')", new BigDecimal("2"), BigDecimal.class);
 		evaluate("new java.math.BigDecimal('5') % 3", new BigDecimal("2"), BigDecimal.class);
-		evaluateAndCheckError("'abc'%'def'",SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
+		evaluateAndCheckError("'abc'%'def'", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
 	}
 
 	@Test
 	public void testDivide() {
 		evaluate("3.0f / 5.0f", 0.6f, Float.class);
-		evaluate("4L/2L",2L,Long.class);
+		evaluate("4L/2L", 2L, Long.class);
 		evaluate("3.0f div 5.0f", 0.6f, Float.class);
-		evaluate("4L DIV 2L",2L,Long.class);
+		evaluate("4L DIV 2L", 2L, Long.class);
 		evaluate("new java.math.BigDecimal('3') / 5", new BigDecimal("1"), BigDecimal.class);
 		evaluate("new java.math.BigDecimal('3.0') / 5", new BigDecimal("0.6"), BigDecimal.class);
 		evaluate("new java.math.BigDecimal('3.00') / 5", new BigDecimal("0.60"), BigDecimal.class);
 		evaluate("new java.math.BigDecimal('3.00') / new java.math.BigDecimal('5.0000')", new BigDecimal("0.6000"), BigDecimal.class);
-		evaluateAndCheckError("'abc'/'def'",SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
+		evaluateAndCheckError("'abc'/'def'", SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES);
 	}
 
 	@Test
@@ -496,41 +496,41 @@ public class OperatorTests extends AbstractExpressionTests {
 
 	@Test
 	public void testOperatorNames() throws Exception {
-		Operator node = getOperatorNode((SpelExpression)parser.parseExpression("1==3"));
-		assertEquals("==",node.getOperatorName());
+		Operator node = getOperatorNode((SpelExpression) parser.parseExpression("1==3"));
+		assertEquals("==", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("1!=3"));
-		assertEquals("!=",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("1!=3"));
+		assertEquals("!=", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3/3"));
-		assertEquals("/",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3/3"));
+		assertEquals("/", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3+3"));
-		assertEquals("+",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3+3"));
+		assertEquals("+", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3-3"));
-		assertEquals("-",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3-3"));
+		assertEquals("-", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3<4"));
-		assertEquals("<",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3<4"));
+		assertEquals("<", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3<=4"));
-		assertEquals("<=",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3<=4"));
+		assertEquals("<=", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3*4"));
-		assertEquals("*",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3*4"));
+		assertEquals("*", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3%4"));
-		assertEquals("%",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3%4"));
+		assertEquals("%", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3>=4"));
-		assertEquals(">=",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3>=4"));
+		assertEquals(">=", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3 between 4"));
-		assertEquals("between",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3 between 4"));
+		assertEquals("between", node.getOperatorName());
 
-		node = getOperatorNode((SpelExpression)parser.parseExpression("3 ^ 4"));
-		assertEquals("^",node.getOperatorName());
+		node = getOperatorNode((SpelExpression) parser.parseExpression("3 ^ 4"));
+		assertEquals("^", node.getOperatorName());
 	}
 
 	@Test
@@ -541,9 +541,9 @@ public class OperatorTests extends AbstractExpressionTests {
 
 	@Test
 	public void testPower() {
-		evaluate("3^2",9,Integer.class);
-		evaluate("3.0d^2.0d",9.0d,Double.class);
-		evaluate("3L^2L",9L,Long.class);
+		evaluate("3^2", 9, Integer.class);
+		evaluate("3.0d^2.0d", 9.0d, Double.class);
+		evaluate("3L^2L", 9L, Long.class);
 		evaluate("(2^32)^2", 9223372036854775807L, Long.class);
 		evaluate("new java.math.BigDecimal('5') ^ 3", new BigDecimal("125"), BigDecimal.class);
 	}

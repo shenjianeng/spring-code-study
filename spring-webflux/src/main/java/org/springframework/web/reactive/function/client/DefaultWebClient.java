@@ -89,8 +89,8 @@ class DefaultWebClient implements WebClient {
 
 
 	DefaultWebClient(ExchangeFunction exchangeFunction, @Nullable UriBuilderFactory factory,
-			@Nullable HttpHeaders defaultHeaders, @Nullable MultiValueMap<String, String> defaultCookies,
-			@Nullable Consumer<RequestHeadersSpec<?>> defaultRequest, DefaultWebClientBuilder builder) {
+					 @Nullable HttpHeaders defaultHeaders, @Nullable MultiValueMap<String, String> defaultCookies,
+					 @Nullable Consumer<RequestHeadersSpec<?>> defaultRequest, DefaultWebClientBuilder builder) {
 
 		this.exchangeFunction = exchangeFunction;
 		this.uriBuilderFactory = (factory != null ? factory : new DefaultUriBuilderFactory());
@@ -337,11 +337,9 @@ class DefaultWebClient implements WebClient {
 		private HttpHeaders initHeaders() {
 			if (CollectionUtils.isEmpty(this.headers)) {
 				return (defaultHeaders != null ? defaultHeaders : new HttpHeaders());
-			}
-			else if (CollectionUtils.isEmpty(defaultHeaders)) {
+			} else if (CollectionUtils.isEmpty(defaultHeaders)) {
 				return this.headers;
-			}
-			else {
+			} else {
 				HttpHeaders result = new HttpHeaders();
 				result.putAll(defaultHeaders);
 				result.putAll(this.headers);
@@ -352,11 +350,9 @@ class DefaultWebClient implements WebClient {
 		private MultiValueMap<String, String> initCookies() {
 			if (CollectionUtils.isEmpty(this.cookies)) {
 				return (defaultCookies != null ? defaultCookies : new LinkedMultiValueMap<>());
-			}
-			else if (CollectionUtils.isEmpty(defaultCookies)) {
+			} else if (CollectionUtils.isEmpty(defaultCookies)) {
 				return this.cookies;
-			}
-			else {
+			} else {
 				MultiValueMap<String, String> result = new LinkedMultiValueMap<>();
 				result.putAll(defaultCookies);
 				result.putAll(this.cookies);
@@ -378,14 +374,17 @@ class DefaultWebClient implements WebClient {
 				public HttpMethod getMethod() {
 					return httpMethod;
 				}
+
 				@Override
 				public String getMethodValue() {
 					return httpMethod.name();
 				}
+
 				@Override
 				public URI getURI() {
 					return this.uri;
 				}
+
 				@Override
 				public HttpHeaders getHeaders() {
 					return this.headers;
@@ -416,7 +415,7 @@ class DefaultWebClient implements WebClient {
 
 		@Override
 		public ResponseSpec onStatus(Predicate<HttpStatus> statusPredicate,
-				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
+									 Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
 			return onRawStatus(toIntPredicate(statusPredicate), exceptionFunction);
 		}
 
@@ -429,7 +428,7 @@ class DefaultWebClient implements WebClient {
 
 		@Override
 		public ResponseSpec onRawStatus(IntPredicate statusCodePredicate,
-				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
+										Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction) {
 
 			if (this.statusHandlers.size() == 1 && this.statusHandlers.get(0) == DEFAULT_STATUS_HANDLER) {
 				this.statusHandlers.clear();
@@ -464,7 +463,7 @@ class DefaultWebClient implements WebClient {
 		}
 
 		private <T extends Publisher<?>> T handleBody(ClientResponse response,
-				T bodyPublisher, Function<Mono<? extends Throwable>, T> errorFunction) {
+													  T bodyPublisher, Function<Mono<? extends Throwable>, T> errorFunction) {
 
 			int statusCode = response.rawStatusCode();
 			for (StatusHandler handler : this.statusHandlers) {
@@ -475,8 +474,7 @@ class DefaultWebClient implements WebClient {
 						exMono = handler.apply(response, request);
 						exMono = exMono.flatMap(ex -> drainBody(response, ex));
 						exMono = exMono.onErrorResume(ex -> drainBody(response, ex));
-					}
-					catch (Throwable ex2) {
+					} catch (Throwable ex2) {
 						exMono = drainBody(response, ex2);
 					}
 					return errorFunction.apply(exMono);
@@ -516,8 +514,7 @@ class DefaultWebClient implements WebClient {
 									bodyBytes,
 									charset,
 									request);
-						}
-						else {
+						} else {
 							return new UnknownHttpStatusCodeException(
 									response.rawStatusCode(),
 									response.headers().asHttpHeaders(),
@@ -536,7 +533,7 @@ class DefaultWebClient implements WebClient {
 			private final BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction;
 
 			public StatusHandler(IntPredicate predicate,
-					BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction) {
+								 BiFunction<ClientResponse, HttpRequest, Mono<? extends Throwable>> exceptionFunction) {
 
 				this.predicate = predicate;
 				this.exceptionFunction = exceptionFunction;

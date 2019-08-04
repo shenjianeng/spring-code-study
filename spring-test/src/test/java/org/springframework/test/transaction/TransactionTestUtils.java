@@ -32,6 +32,7 @@ public abstract class TransactionTestUtils {
 	/**
 	 * Convenience method for determining if a transaction is active for the
 	 * current {@link Thread}.
+	 *
 	 * @return {@code true} if a transaction is currently active
 	 */
 	public static boolean inTransaction() {
@@ -41,6 +42,7 @@ public abstract class TransactionTestUtils {
 	/**
 	 * Asserts whether or not a transaction is active for the current
 	 * {@link Thread}.
+	 *
 	 * @param transactionExpected whether or not a transaction is expected
 	 * @throws AssertionError if the supplied assertion fails
 	 * @see #inTransaction()
@@ -48,8 +50,7 @@ public abstract class TransactionTestUtils {
 	public static void assertInTransaction(boolean transactionExpected) {
 		if (transactionExpected) {
 			assertCondition(inTransaction(), "The current thread should be associated with a transaction.");
-		}
-		else {
+		} else {
 			assertCondition(!inTransaction(), "The current thread should not be associated with a transaction");
 		}
 	}
@@ -57,6 +58,7 @@ public abstract class TransactionTestUtils {
 	/**
 	 * Fails by throwing an {@code AssertionError} with the supplied
 	 * {@code message}.
+	 *
 	 * @param message the exception message to use
 	 * @see #assertCondition(boolean, String)
 	 */
@@ -68,8 +70,9 @@ public abstract class TransactionTestUtils {
 	 * Assert the provided boolean {@code condition}, throwing
 	 * {@code AssertionError} with the supplied {@code message} if
 	 * the test result is {@code false}.
+	 *
 	 * @param condition a boolean expression
-	 * @param message the exception message to use if the assertion fails
+	 * @param message   the exception message to use if the assertion fails
 	 * @throws AssertionError if condition is {@code false}
 	 * @see #fail(String)
 	 */

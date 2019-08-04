@@ -50,6 +50,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	 * have a scheme and host but may optionally contain a port and a path.
 	 * The base URL must be fully expanded and encoded which can be done via
 	 * {@link UriComponentsBuilder}.
+	 *
 	 * @param baseUrl the base URL.
 	 */
 	public void setBaseUrl(@Nullable String baseUrl) {
@@ -76,6 +77,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	 * template. These default values apply only when expanding with a Map, and
 	 * not with an array, where the Map supplied to {@link #expand(String, Map)}
 	 * can override the default values.
+	 *
 	 * @param defaultUriVariables the default URI variable values
 	 * @since 4.3
 	 */
@@ -134,8 +136,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 				url = new URI(baseUrl + url.toString());
 			}
 			return url;
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalArgumentException("Invalid URL after inserting base URL: " + url, ex);
 		}
 	}

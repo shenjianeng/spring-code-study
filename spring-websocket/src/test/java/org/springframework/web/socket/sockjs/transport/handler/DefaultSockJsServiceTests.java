@@ -59,15 +59,20 @@ public class DefaultSockJsServiceTests extends AbstractHttpRequestTests {
 	private static final String sessionUrlPrefix = "/server1/" + sessionId + "/";
 
 
-	@Mock private SessionCreatingTransportHandler xhrHandler;
+	@Mock
+	private SessionCreatingTransportHandler xhrHandler;
 
-	@Mock private TransportHandler xhrSendHandler;
+	@Mock
+	private TransportHandler xhrSendHandler;
 
-	@Mock private HandshakeTransportHandler wsTransportHandler;
+	@Mock
+	private HandshakeTransportHandler wsTransportHandler;
 
-	@Mock private WebSocketHandler wsHandler;
+	@Mock
+	private WebSocketHandler wsHandler;
 
-	@Mock private TaskScheduler taskScheduler;
+	@Mock
+	private TaskScheduler taskScheduler;
 
 	private TestSockJsSession session;
 

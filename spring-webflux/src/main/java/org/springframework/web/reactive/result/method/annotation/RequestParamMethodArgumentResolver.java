@@ -48,8 +48,8 @@ import org.springframework.web.server.ServerWebInputException;
  * to provide access to all request parameters in the form of a map.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see RequestParamMapMethodArgumentResolver
+ * @since 5.0
  */
 public class RequestParamMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
@@ -58,14 +58,15 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueSyncAr
 
 	/**
 	 * Class constructor with a default resolution mode flag.
-	 * @param factory a bean factory used for resolving  ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
-	 * @param registry for checking reactive type wrappers
+	 *
+	 * @param factory              a bean factory used for resolving  ${...} placeholder
+	 *                             and #{...} SpEL expressions in default values, or {@code null} if default
+	 *                             values are not expected to contain expressions
+	 * @param registry             for checking reactive type wrappers
 	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 *                             that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
+	 *                             is treated as a request parameter even if it isn't annotated, the
+	 *                             request parameter name is derived from the method parameter name.
 	 */
 	public RequestParamMethodArgumentResolver(
 			@Nullable ConfigurableBeanFactory factory, ReactiveAdapterRegistry registry, boolean useDefaultResolution) {
@@ -79,8 +80,7 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueSyncAr
 	public boolean supportsParameter(MethodParameter param) {
 		if (checkAnnotatedParamNoReactiveWrapper(param, RequestParam.class, this::singleParam)) {
 			return true;
-		}
-		else if (this.useDefaultResolution) {
+		} else if (this.useDefaultResolution) {
 			return checkParameterTypeNoReactiveWrapper(param, BeanUtils::isSimpleProperty) ||
 					BeanUtils.isSimpleProperty(param.nestedIfOptional().getNestedParameterType());
 		}

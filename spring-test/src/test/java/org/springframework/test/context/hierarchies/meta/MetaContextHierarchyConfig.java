@@ -34,7 +34,7 @@ import org.springframework.test.context.ContextHierarchy;
  * @author Sam Brannen
  * @since 4.0.3
  */
-@ContextHierarchy(@ContextConfiguration(classes = { DevConfig.class, ProductionConfig.class }))
+@ContextHierarchy(@ContextConfiguration(classes = {DevConfig.class, ProductionConfig.class}))
 @ActiveProfiles("dev")
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

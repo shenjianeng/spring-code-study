@@ -54,7 +54,7 @@ public class JettyWebSocketSession extends AbstractListenerWebSocketSession<Sess
 	}
 
 	public JettyWebSocketSession(Session session, HandshakeInfo info, DataBufferFactory factory,
-			@Nullable MonoProcessor<Void> completionMono) {
+								 @Nullable MonoProcessor<Void> completionMono) {
 
 		super(session, ObjectUtils.getIdentityHexString(session), info, factory, completionMono);
 		// TODO: suspend causes failures if invoked at this stage
@@ -89,18 +89,14 @@ public class JettyWebSocketSession extends AbstractListenerWebSocketSession<Sess
 			getSendProcessor().setReadyToSend(false);
 			String text = new String(buffer.array(), StandardCharsets.UTF_8);
 			getDelegate().getRemote().sendString(text, new SendProcessorCallback());
-		}
-		else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
 			getSendProcessor().setReadyToSend(false);
 			getDelegate().getRemote().sendBytes(buffer, new SendProcessorCallback());
-		}
-		else if (WebSocketMessage.Type.PING.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PING.equals(message.getType())) {
 			getDelegate().getRemote().sendPing(buffer);
-		}
-		else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
 			getDelegate().getRemote().sendPong(buffer);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unexpected message type: " + message.getType());
 		}
 		return true;

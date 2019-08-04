@@ -48,8 +48,7 @@ public class TransactionSupportTests {
 		try {
 			tm.getTransaction(new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_MANDATORY));
 			fail("Should not have thrown NoTransactionException");
-		}
-		catch (IllegalTransactionStateException ex) {
+		} catch (IllegalTransactionStateException ex) {
 			// expected
 		}
 	}
@@ -72,8 +71,7 @@ public class TransactionSupportTests {
 					tm.getTransaction(new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_MANDATORY));
 			assertTrue("Must have transaction", status3.getTransaction() != null);
 			assertTrue("Must not be new transaction", !status3.isNewTransaction());
-		}
-		catch (NoTransactionException ex) {
+		} catch (NoTransactionException ex) {
 			fail("Should not have thrown NoTransactionException");
 		}
 	}
@@ -195,8 +193,7 @@ public class TransactionSupportTests {
 				}
 			});
 			fail("Should have propagated RuntimeException");
-		}
-		catch (RuntimeException caught) {
+		} catch (RuntimeException caught) {
 			// expected
 			assertTrue("Correct exception", caught == ex);
 			assertTrue("triggered begin", tm.begin);
@@ -227,8 +224,7 @@ public class TransactionSupportTests {
 				}
 			});
 			fail("Should have propagated RuntimeException");
-		}
-		catch (RuntimeException caught) {
+		} catch (RuntimeException caught) {
 			// expected
 			assertTrue("Correct exception", caught == tex);
 			assertTrue("triggered begin", tm.begin);
@@ -250,8 +246,7 @@ public class TransactionSupportTests {
 				}
 			});
 			fail("Should have propagated Error");
-		}
-		catch (Error err) {
+		} catch (Error err) {
 			// expected
 			assertTrue("triggered begin", tm.begin);
 			assertTrue("no commit", !tm.commit);
@@ -270,8 +265,7 @@ public class TransactionSupportTests {
 		try {
 			template.setPropagationBehaviorName("TIMEOUT_DEFAULT");
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		template.setPropagationBehaviorName("PROPAGATION_SUPPORTS");
@@ -280,8 +274,7 @@ public class TransactionSupportTests {
 		try {
 			template.setPropagationBehavior(999);
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		template.setPropagationBehavior(TransactionDefinition.PROPAGATION_MANDATORY);
@@ -290,8 +283,7 @@ public class TransactionSupportTests {
 		try {
 			template.setIsolationLevelName("TIMEOUT_DEFAULT");
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		template.setIsolationLevelName("ISOLATION_SERIALIZABLE");
@@ -300,8 +292,7 @@ public class TransactionSupportTests {
 		try {
 			template.setIsolationLevel(999);
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 		template.setIsolationLevel(TransactionDefinition.ISOLATION_REPEATABLE_READ);

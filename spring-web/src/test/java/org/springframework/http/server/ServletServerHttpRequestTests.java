@@ -105,7 +105,7 @@ public class ServletServerHttpRequestTests {
 		mockRequest.setRequestURI(uri.getRawPath());
 		mockRequest.setQueryString(uri.getRawQuery());
 		assertEquals(uri, request.getURI());
-    }
+	}
 
 	@Test
 	public void getHeaders() {
@@ -163,7 +163,7 @@ public class ServletServerHttpRequestTests {
 		mockRequest.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
 		mockRequest.setMethod("POST");
 		mockRequest.addParameter("name 1", "value 1");
-		mockRequest.addParameter("name 2", new String[] {"value 2+1", "value 2+2"});
+		mockRequest.addParameter("name 2", new String[]{"value 2+1", "value 2+2"});
 		mockRequest.addParameter("name 3", (String) null);
 
 		byte[] result = FileCopyUtils.copyToByteArray(request.getBody());

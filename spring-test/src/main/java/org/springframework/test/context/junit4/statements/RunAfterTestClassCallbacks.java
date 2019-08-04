@@ -33,9 +33,9 @@ import org.springframework.test.context.TestContextManager;
  * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
  *
  * @author Sam Brannen
- * @since 3.0
  * @see #evaluate()
  * @see RunBeforeTestClassCallbacks
+ * @since 3.0
  */
 public class RunAfterTestClassCallbacks extends Statement {
 
@@ -46,9 +46,10 @@ public class RunAfterTestClassCallbacks extends Statement {
 
 	/**
 	 * Construct a new {@code RunAfterTestClassCallbacks} statement.
-	 * @param next the next {@code Statement} in the execution chain
+	 *
+	 * @param next               the next {@code Statement} in the execution chain
 	 * @param testContextManager the TestContextManager upon which to call
-	 * {@code afterTestClass()}
+	 *                           {@code afterTestClass()}
 	 */
 	public RunAfterTestClassCallbacks(Statement next, TestContextManager testContextManager) {
 		this.next = next;
@@ -68,15 +69,13 @@ public class RunAfterTestClassCallbacks extends Statement {
 		List<Throwable> errors = new ArrayList<>();
 		try {
 			this.next.evaluate();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			errors.add(ex);
 		}
 
 		try {
 			this.testContextManager.afterTestClass();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			errors.add(ex);
 		}
 

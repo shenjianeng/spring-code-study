@@ -27,8 +27,8 @@ import org.springframework.test.context.TestContextManager;
  * prepareTestInstance()} on the supplied {@link TestContextManager}.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see #evaluate()
+ * @since 4.2
  */
 public class RunPrepareTestInstanceCallbacks extends Statement {
 
@@ -41,10 +41,11 @@ public class RunPrepareTestInstanceCallbacks extends Statement {
 
 	/**
 	 * Construct a new {@code RunPrepareTestInstanceCallbacks} statement.
-	 * @param next the next {@code Statement} in the execution chain; never {@code null}
-	 * @param testInstance the current test instance; never {@code null}
+	 *
+	 * @param next               the next {@code Statement} in the execution chain; never {@code null}
+	 * @param testInstance       the current test instance; never {@code null}
 	 * @param testContextManager the {@code TestContextManager} upon which to call
-	 * {@code prepareTestInstance()}; never {@code null}
+	 *                           {@code prepareTestInstance()}; never {@code null}
 	 */
 	public RunPrepareTestInstanceCallbacks(Statement next, Object testInstance, TestContextManager testContextManager) {
 		this.next = next;

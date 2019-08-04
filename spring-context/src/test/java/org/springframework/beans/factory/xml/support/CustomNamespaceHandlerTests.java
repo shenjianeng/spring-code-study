@@ -126,8 +126,7 @@ public class CustomNamespaceHandlerTests {
 		try {
 			this.beanFactory.getBean("debuggingTestBeanNoInstance");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getRootCause() instanceof BeanInstantiationException);
 		}
 	}

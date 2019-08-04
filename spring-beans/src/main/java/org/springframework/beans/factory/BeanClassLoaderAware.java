@@ -30,10 +30,10 @@ package org.springframework.beans.factory;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 2.0
  * @see BeanNameAware
  * @see BeanFactoryAware
  * @see InitializingBean
+ * @since 2.0
  */
 public interface BeanClassLoaderAware extends Aware {
 
@@ -45,6 +45,7 @@ public interface BeanClassLoaderAware extends Aware {
 	 * {@link InitializingBean InitializingBean's}
 	 * {@link InitializingBean#afterPropertiesSet()}
 	 * method or a custom init-method.
+	 *
 	 * @param classLoader the owning class loader
 	 */
 	void setBeanClassLoader(ClassLoader classLoader);

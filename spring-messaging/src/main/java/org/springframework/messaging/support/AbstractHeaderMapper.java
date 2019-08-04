@@ -28,9 +28,9 @@ import org.springframework.util.StringUtils;
 /**
  * A base {@link HeaderMapper} implementation.
  *
+ * @param <T> type of the instance to and from which headers will be mapped
  * @author Stephane Nicoll
  * @since 4.1
- * @param <T> type of the instance to and from which headers will be mapped
  */
 public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 
@@ -63,6 +63,7 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 	/**
 	 * Generate the name to use to set the header defined by the specified
 	 * {@code headerName} to the protocol specific message.
+	 *
 	 * @see #setOutboundPrefix
 	 */
 	protected String fromHeaderName(String headerName) {
@@ -76,6 +77,7 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 	/**
 	 * Generate the name to use to set the header defined by the specified
 	 * {@code propertyName} to the {@link MessageHeaders} instance.
+	 *
 	 * @see #setInboundPrefix(String)
 	 */
 	protected String toHeaderName(String propertyName) {
@@ -102,8 +104,7 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 						value.getClass() + "]");
 			}
 			return null;
-		}
-		else {
+		} else {
 			return type.cast(value);
 		}
 	}

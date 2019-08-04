@@ -33,8 +33,8 @@ import com.gargoylesoftware.htmlunit.WebRequest;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @since 4.2
  * @see org.springframework.test.web.servlet.htmlunit.DelegatingWebConnection
+ * @since 4.2
  */
 public final class UrlRegexRequestMatcher implements WebRequestMatcher {
 

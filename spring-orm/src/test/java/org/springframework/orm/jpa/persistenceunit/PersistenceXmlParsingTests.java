@@ -261,8 +261,7 @@ public class PersistenceXmlParsingTests {
 		try {
 			reader.readPersistenceUnitInfos(resource);
 			fail("expected invalid document exception");
-		}
-		catch (RuntimeException expected) {
+		} catch (RuntimeException expected) {
 		}
 	}
 
@@ -275,8 +274,7 @@ public class PersistenceXmlParsingTests {
 		try {
 			reader.readPersistenceUnitInfos(resource);
 			fail("expected invalid document exception");
-		}
-		catch (RuntimeException expected) {
+		} catch (RuntimeException expected) {
 		}
 	}
 

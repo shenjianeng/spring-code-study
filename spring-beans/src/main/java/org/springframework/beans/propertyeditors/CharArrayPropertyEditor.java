@@ -25,8 +25,8 @@ import org.springframework.lang.Nullable;
  * their corresponding char representations.
  *
  * @author Juergen Hoeller
- * @since 1.2.8
  * @see String#toCharArray()
+ * @since 1.2.8
  */
 public class CharArrayPropertyEditor extends PropertyEditorSupport {
 

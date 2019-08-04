@@ -38,8 +38,8 @@ import de.bechte.junit.runners.context.HierarchicalContextRunner;
  * {@link SpringClassRule} and {@link SpringMethodRule} support.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see org.springframework.test.context.junit.jupiter.nested.NestedTestsWithSpringAndJUnitJupiterTestCase
+ * @since 5.0
  */
 @RunWith(HierarchicalContextRunner.class)
 @ContextConfiguration(classes = TopLevelConfig.class)

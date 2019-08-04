@@ -42,8 +42,8 @@ import static org.junit.Assert.*;
  * to provide dependency injection to a <em>parameterized test instance</em>.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see org.springframework.test.context.junit4.ParameterizedDependencyInjectionTests
+ * @since 4.2
  */
 @RunWith(Parameterized.class)
 @ContextConfiguration("/org/springframework/test/context/junit4/ParameterizedDependencyInjectionTests-context.xml")
@@ -72,7 +72,7 @@ public class ParameterizedSpringRuleTests {
 
 	@Parameters(name = "bean [{0}], employee [{1}]")
 	public static String[][] employeeData() {
-		return new String[][] { { "employee1", "John Smith" }, { "employee2", "Jane Smith" } };
+		return new String[][]{{"employee1", "John Smith"}, {"employee2", "Jane Smith"}};
 	}
 
 	@BeforeClass
@@ -90,13 +90,13 @@ public class ParameterizedSpringRuleTests {
 		// Verifying 'parameterized' support:
 		Employee employee = this.applicationContext.getBean(this.employeeBeanName, Employee.class);
 		assertEquals("Name of the employee configured as bean [" + this.employeeBeanName + "].", this.employeeName,
-			employee.getName());
+				employee.getName());
 	}
 
 	@AfterClass
 	public static void verifyNumParameterizedRuns() {
 		assertEquals("Number of times the parameterized test method was executed.", employeeData().length,
-			invocationCount.get());
+				invocationCount.get());
 	}
 
 }

@@ -65,8 +65,7 @@ public class ReactorHttpHandlerAdapter implements BiFunction<HttpServerRequest, 
 			return this.httpHandler.handle(request, response)
 					.doOnError(ex -> logger.trace(request.getLogPrefix() + "Failed to complete: " + ex.getMessage()))
 					.doOnSuccess(aVoid -> logger.trace(request.getLogPrefix() + "Handling completed"));
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Failed to get request URI: " + ex.getMessage());
 			}

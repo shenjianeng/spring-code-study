@@ -51,9 +51,10 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 	 * Set the log category for warn logging.
 	 * <p>Default is no warn logging. Specify this setting to activate warn
 	 * logging into a specific category.
-	 * @since 5.1
+	 *
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)
 	 * @see java.util.logging.Logger#getLogger(String)
+	 * @since 5.1
 	 */
 	public void setWarnLogCategory(String loggerName) {
 		this.warnLogger = LogFactory.getLog(loggerName);
@@ -71,8 +72,7 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 		String logPrefix = exchange.getLogPrefix();
 		if (this.warnLogger != null && this.warnLogger.isWarnEnabled()) {
 			this.warnLogger.warn(logPrefix + formatError(ex, exchange.getRequest()), ex);
-		}
-		else if (logger.isDebugEnabled()) {
+		} else if (logger.isDebugEnabled()) {
 			logger.debug(logPrefix + formatError(ex, exchange.getRequest()));
 		}
 
@@ -100,6 +100,7 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 
 	/**
 	 * Determine the HTTP status implied by the given exception.
+	 *
 	 * @param ex the exception to introspect
 	 * @return the associated HTTP status, if any
 	 * @since 5.0.5

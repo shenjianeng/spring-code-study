@@ -45,8 +45,8 @@ import static org.junit.Assert.*;
  * @since 3.2.2
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextHierarchy({ @ContextConfiguration(classes = DirtiesContextWithContextHierarchyTests.ParentConfig.class),
-	@ContextConfiguration(classes = DirtiesContextWithContextHierarchyTests.ChildConfig.class) })
+@ContextHierarchy({@ContextConfiguration(classes = DirtiesContextWithContextHierarchyTests.ParentConfig.class),
+		@ContextConfiguration(classes = DirtiesContextWithContextHierarchyTests.ChildConfig.class)})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DirtiesContextWithContextHierarchyTests {
 

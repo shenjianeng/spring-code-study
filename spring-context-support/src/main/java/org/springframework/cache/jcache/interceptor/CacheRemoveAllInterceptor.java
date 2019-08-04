@@ -53,8 +53,7 @@ class CacheRemoveAllInterceptor extends AbstractCacheInterceptor<CacheRemoveAllO
 				removeAll(context);
 			}
 			return result;
-		}
-		catch (CacheOperationInvoker.ThrowableWrapper ex) {
+		} catch (CacheOperationInvoker.ThrowableWrapper ex) {
 			Throwable original = ex.getOriginal();
 			if (!earlyRemove && operation.getExceptionTypeFilter().match(original.getClass())) {
 				removeAll(context);

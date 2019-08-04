@@ -44,13 +44,13 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Juergen Hoeller
  * @author Scott Andrews
  * @author Brian Clozel
- * @since 1.2
  * @see #registerCustomEditor
  * @see #setAllowedFields
  * @see #setRequiredFields
  * @see #setFieldMarkerPrefix
  * @see #setFieldDefaultPrefix
  * @see ServletRequestDataBinder
+ * @since 1.2
  */
 public class WebDataBinder extends DataBinder {
 
@@ -62,6 +62,7 @@ public class WebDataBinder extends DataBinder {
 	 * value parameter was found, the field will be reset. The value of the field
 	 * marker parameter does not matter in this case; an arbitrary value can be used.
 	 * This is particularly useful for HTML checkboxes and select options.
+	 *
 	 * @see #setFieldMarkerPrefix
 	 */
 	public static final String DEFAULT_FIELD_MARKER_PREFIX = "_";
@@ -71,6 +72,7 @@ public class WebDataBinder extends DataBinder {
 	 * name: e.g. "!subscribeToNewsletter" for a field "subscribeToNewsletter".
 	 * <p>Default parameters differ from field markers in that they provide a default
 	 * value instead of an empty value.
+	 *
 	 * @see #setFieldDefaultPrefix
 	 */
 	public static final String DEFAULT_FIELD_DEFAULT_PREFIX = "!";
@@ -86,8 +88,9 @@ public class WebDataBinder extends DataBinder {
 
 	/**
 	 * Create a new WebDataBinder instance, with default object name.
+	 *
 	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 *               if the binder is just used to convert a plain parameter value)
 	 * @see #DEFAULT_OBJECT_NAME
 	 */
 	public WebDataBinder(@Nullable Object target) {
@@ -96,8 +99,9 @@ public class WebDataBinder extends DataBinder {
 
 	/**
 	 * Create a new WebDataBinder instance.
-	 * @param target the target object to bind onto (or {@code null}
-	 * if the binder is just used to convert a plain parameter value)
+	 *
+	 * @param target     the target object to bind onto (or {@code null}
+	 *                   if the binder is just used to convert a plain parameter value)
 	 * @param objectName the name of the target object
 	 */
 	public WebDataBinder(@Nullable Object target, String objectName) {
@@ -124,6 +128,7 @@ public class WebDataBinder extends DataBinder {
 	 * "_subscribeToNewsletter" for a "subscribeToNewsletter" field.
 	 * As the marker parameter is sent in any case, the data binder can
 	 * detect an empty field and automatically reset its value.
+	 *
 	 * @see #DEFAULT_FIELD_MARKER_PREFIX
 	 */
 	public void setFieldMarkerPrefix(@Nullable String fieldMarkerPrefix) {
@@ -150,6 +155,7 @@ public class WebDataBinder extends DataBinder {
 	 * useful when a checkbox represents a non-boolean value.
 	 * <p>The presence of a default parameter preempts the behavior of a field
 	 * marker for the given field.
+	 *
 	 * @see #DEFAULT_FIELD_DEFAULT_PREFIX
 	 */
 	public void setFieldDefaultPrefix(@Nullable String fieldDefaultPrefix) {
@@ -170,6 +176,7 @@ public class WebDataBinder extends DataBinder {
 	 * when the user resubmits the form without choosing a different file.
 	 * Else, the already bound MultipartFile will be replaced by an empty
 	 * MultipartFile holder.
+	 *
 	 * @see org.springframework.web.multipart.MultipartFile
 	 */
 	public void setBindEmptyMultipartFiles(boolean bindEmptyMultipartFiles) {
@@ -187,6 +194,7 @@ public class WebDataBinder extends DataBinder {
 	/**
 	 * This implementation performs a field default and marker check
 	 * before delegating to the superclass binding process.
+	 *
 	 * @see #checkFieldDefaults
 	 * @see #checkFieldMarkers
 	 */
@@ -202,6 +210,7 @@ public class WebDataBinder extends DataBinder {
 	 * i.e. for fields that start with the field default prefix.
 	 * <p>The existence of a field defaults indicates that the specified
 	 * value should be used if the field is otherwise not present.
+	 *
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @see #getFieldDefaultPrefix
 	 */
@@ -228,6 +237,7 @@ public class WebDataBinder extends DataBinder {
 	 * field existed in the form. If the property values do not contain
 	 * a corresponding field value, the field will be considered as empty
 	 * and will be reset appropriately.
+	 *
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @see #getFieldMarkerPrefix
 	 * @see #getEmptyValue(String, Class)
@@ -253,7 +263,8 @@ public class WebDataBinder extends DataBinder {
 	 * Determine an empty value for the specified field.
 	 * <p>The default implementation delegates to {@link #getEmptyValue(Class)}
 	 * if the field type is known, otherwise falls back to {@code null}.
-	 * @param field the name of the field
+	 *
+	 * @param field     the name of the field
 	 * @param fieldType the type of the field
 	 * @return the empty value (for most fields: {@code null})
 	 */
@@ -272,6 +283,7 @@ public class WebDataBinder extends DataBinder {
 	 * <li>Map implementations for Map types
 	 * <li>else, {@code null} is used as default
 	 * </ul>
+	 *
 	 * @param fieldType the type of the field
 	 * @return the empty value (for most fields: {@code null})
 	 * @since 5.0
@@ -282,19 +294,15 @@ public class WebDataBinder extends DataBinder {
 			if (boolean.class == fieldType || Boolean.class == fieldType) {
 				// Special handling of boolean property.
 				return Boolean.FALSE;
-			}
-			else if (fieldType.isArray()) {
+			} else if (fieldType.isArray()) {
 				// Special handling of array property.
 				return Array.newInstance(fieldType.getComponentType(), 0);
-			}
-			else if (Collection.class.isAssignableFrom(fieldType)) {
+			} else if (Collection.class.isAssignableFrom(fieldType)) {
 				return CollectionFactory.createCollection(fieldType, 0);
-			}
-			else if (Map.class.isAssignableFrom(fieldType)) {
+			} else if (Map.class.isAssignableFrom(fieldType)) {
 				return CollectionFactory.createMap(fieldType, 0);
 			}
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Failed to create default value - falling back to null: " + ex.getMessage());
 			}
@@ -309,8 +317,9 @@ public class WebDataBinder extends DataBinder {
 	 * (in case of a multipart request). To be called by subclasses.
 	 * <p>Multipart files will only be added to the property values if they
 	 * are not empty or if we're configured to bind empty multipart files too.
+	 *
 	 * @param multipartFiles a Map of field name String to MultipartFile object
-	 * @param mpvs the property values to be bound (can be modified)
+	 * @param mpvs           the property values to be bound (can be modified)
 	 * @see org.springframework.web.multipart.MultipartFile
 	 * @see #setBindEmptyMultipartFiles
 	 */
@@ -321,8 +330,7 @@ public class WebDataBinder extends DataBinder {
 				if (isBindEmptyMultipartFiles() || !value.isEmpty()) {
 					mpvs.add(key, value);
 				}
-			}
-			else {
+			} else {
 				mpvs.add(key, values);
 			}
 		});

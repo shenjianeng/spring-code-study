@@ -66,12 +66,12 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * properly. Use {@link Connection#unwrap} to retrieve the native JDBC Connection.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see javax.sql.DataSource#getConnection()
  * @see java.sql.Connection#close()
  * @see DataSourceUtils#doGetConnection
  * @see DataSourceUtils#applyTransactionTimeout
  * @see DataSourceUtils#doReleaseConnection
+ * @since 1.1
  */
 public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
@@ -80,6 +80,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
 	/**
 	 * Create a new TransactionAwareDataSourceProxy.
+	 *
 	 * @see #setTargetDataSource
 	 */
 	public TransactionAwareDataSourceProxy() {
@@ -87,6 +88,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 
 	/**
 	 * Create a new TransactionAwareDataSourceProxy.
+	 *
 	 * @param targetDataSource the target DataSource
 	 */
 	public TransactionAwareDataSourceProxy(DataSource targetDataSource) {
@@ -112,6 +114,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	 * transactions. Throws the original SQLException, if any.
 	 * <p>The returned Connection handle implements the ConnectionProxy interface,
 	 * allowing to retrieve the underlying target Connection.
+	 *
 	 * @return a transactional Connection if any, a new one else
 	 * @see DataSourceUtils#doGetConnection
 	 * @see ConnectionProxy#getTargetConnection
@@ -124,6 +127,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	/**
 	 * Wraps the given Connection with a proxy that delegates every method call to it
 	 * but delegates {@code close()} calls to DataSourceUtils.
+	 *
 	 * @param targetDataSource the DataSource that the Connection came from
 	 * @return the wrapped Connection
 	 * @see java.sql.Connection#close()
@@ -132,7 +136,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	protected Connection getTransactionAwareConnectionProxy(DataSource targetDataSource) {
 		return (Connection) Proxy.newProxyInstance(
 				ConnectionProxy.class.getClassLoader(),
-				new Class<?>[] {ConnectionProxy.class},
+				new Class<?>[]{ConnectionProxy.class},
 				new TransactionAwareInvocationHandler(targetDataSource));
 	}
 
@@ -144,6 +148,7 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 	 * {@link #setReobtainTransactionalConnections "reobtainTransactionalConnections"}
 	 * flag, which enforces a non-fixed target Connection within an active transaction.
 	 * Note that non-transactional access will always use a fixed Connection.
+	 *
 	 * @param targetDataSource the target DataSource
 	 */
 	protected boolean shouldObtainFixedConnection(DataSource targetDataSource) {
@@ -177,39 +182,32 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 			if (method.getName().equals("equals")) {
 				// Only considered as equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of Connection proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (method.getName().equals("toString")) {
+			} else if (method.getName().equals("toString")) {
 				// Allow for differentiating between the proxy and the raw Connection.
 				StringBuilder sb = new StringBuilder("Transaction-aware proxy for target Connection ");
 				if (this.target != null) {
 					sb.append("[").append(this.target.toString()).append("]");
-				}
-				else {
+				} else {
 					sb.append(" from DataSource [").append(this.targetDataSource).append("]");
 				}
 				return sb.toString();
-			}
-			else if (method.getName().equals("unwrap")) {
+			} else if (method.getName().equals("unwrap")) {
 				if (((Class<?>) args[0]).isInstance(proxy)) {
 					return proxy;
 				}
-			}
-			else if (method.getName().equals("isWrapperFor")) {
+			} else if (method.getName().equals("isWrapperFor")) {
 				if (((Class<?>) args[0]).isInstance(proxy)) {
 					return true;
 				}
-			}
-			else if (method.getName().equals("close")) {
+			} else if (method.getName().equals("close")) {
 				// Handle close method: only close if not within a transaction.
 				DataSourceUtils.doReleaseConnection(this.target, this.targetDataSource);
 				this.closed = true;
 				return null;
-			}
-			else if (method.getName().equals("isClosed")) {
+			} else if (method.getName().equals("isClosed")) {
 				return this.closed;
 			}
 
@@ -246,11 +244,9 @@ public class TransactionAwareDataSourceProxy extends DelegatingDataSource {
 				}
 
 				return retVal;
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
-			}
-			finally {
+			} finally {
 				if (actualTarget != this.target) {
 					DataSourceUtils.doReleaseConnection(actualTarget, this.targetDataSource);
 				}

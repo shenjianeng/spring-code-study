@@ -57,11 +57,11 @@ import org.springframework.web.multipart.MultipartResolver;
  * In any case, this filter should not be combined with servlet-specific multipart resolution.
  *
  * @author Juergen Hoeller
- * @since 08.10.2003
  * @see #setMultipartResolverBeanName
  * @see #lookupMultipartResolver
  * @see org.springframework.web.multipart.MultipartResolver
  * @see org.springframework.web.servlet.DispatcherServlet
+ * @since 08.10.2003
  */
 public class MultipartFilter extends OncePerRequestFilter {
 
@@ -112,8 +112,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 				logger.trace("Resolving multipart request");
 			}
 			processedRequest = multipartResolver.resolveMultipart(processedRequest);
-		}
-		else {
+		} else {
 			// A regular request...
 			if (logger.isTraceEnabled()) {
 				logger.trace("Not a multipart request");
@@ -122,8 +121,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 
 		try {
 			filterChain.doFilter(processedRequest, response);
-		}
-		finally {
+		} finally {
 			if (processedRequest instanceof MultipartHttpServletRequest) {
 				multipartResolver.cleanupMultipart((MultipartHttpServletRequest) processedRequest);
 			}
@@ -135,6 +133,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	 * taking the current HTTP request as argument.
 	 * <p>The default implementation delegates to the {@code lookupMultipartResolver}
 	 * without arguments.
+	 *
 	 * @return the MultipartResolver to use
 	 * @see #lookupMultipartResolver()
 	 */
@@ -148,6 +147,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 	 * bean name is "filterMultipartResolver".
 	 * <p>This can be overridden to use a custom MultipartResolver instance,
 	 * for example if not using a Spring web application context.
+	 *
 	 * @return the MultipartResolver instance
 	 */
 	protected MultipartResolver lookupMultipartResolver() {
@@ -158,8 +158,7 @@ public class MultipartFilter extends OncePerRequestFilter {
 				logger.debug("Using MultipartResolver '" + beanName + "' for MultipartFilter");
 			}
 			return wac.getBean(beanName, MultipartResolver.class);
-		}
-		else {
+		} else {
 			return this.defaultMultipartResolver;
 		}
 	}

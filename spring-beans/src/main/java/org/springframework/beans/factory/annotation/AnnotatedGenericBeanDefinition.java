@@ -36,9 +36,9 @@ import org.springframework.util.Assert;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 2.5
  * @see AnnotatedBeanDefinition#getMetadata()
  * @see org.springframework.core.type.StandardAnnotationMetadata
+ * @since 2.5
  */
 @SuppressWarnings("serial")
 public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implements AnnotatedBeanDefinition {
@@ -51,6 +51,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 
 	/**
 	 * Create a new AnnotatedGenericBeanDefinition for the given bean class.
+	 *
 	 * @param beanClass the loaded bean class
 	 */
 	public AnnotatedGenericBeanDefinition(Class<?> beanClass) {
@@ -65,6 +66,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	 * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition
 	 * ScannedGenericBeanDefinition}, however the semantics of the latter indicate that a
 	 * bean was discovered specifically via component-scanning as opposed to other means.
+	 *
 	 * @param metadata the annotation metadata for the bean class in question
 	 * @since 3.1.1
 	 */
@@ -72,8 +74,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 		Assert.notNull(metadata, "AnnotationMetadata must not be null");
 		if (metadata instanceof StandardAnnotationMetadata) {
 			setBeanClass(((StandardAnnotationMetadata) metadata).getIntrospectedClass());
-		}
-		else {
+		} else {
 			setBeanClassName(metadata.getClassName());
 		}
 		this.metadata = metadata;
@@ -82,7 +83,8 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	/**
 	 * Create a new AnnotatedGenericBeanDefinition for the given annotation metadata,
 	 * based on an annotated class and a factory method on that class.
-	 * @param metadata the annotation metadata for the bean class in question
+	 *
+	 * @param metadata              the annotation metadata for the bean class in question
 	 * @param factoryMethodMetadata metadata for the selected factory method
 	 * @since 4.1.1
 	 */

@@ -57,39 +57,32 @@ public class AbstractMockWebServerTestCase {
 							.setBody(request.getBody());
 					request.getBody().flush();
 					return response;
-				}
-				else if(request.getPath().equals("/status/ok")) {
+				} else if (request.getPath().equals("/status/ok")) {
 					return new MockResponse();
-				}
-				else if(request.getPath().equals("/status/notfound")) {
+				} else if (request.getPath().equals("/status/notfound")) {
 					return new MockResponse().setResponseCode(404);
-				}
-				else if(request.getPath().startsWith("/params")) {
+				} else if (request.getPath().startsWith("/params")) {
 					assertThat(request.getPath(), Matchers.containsString("param1=value"));
 					assertThat(request.getPath(), Matchers.containsString("param2=value1&param2=value2"));
 					return new MockResponse();
-				}
-				else if(request.getPath().equals("/methods/post")) {
+				} else if (request.getPath().equals("/methods/post")) {
 					assertThat(request.getMethod(), Matchers.is("POST"));
 					String transferEncoding = request.getHeader("Transfer-Encoding");
-					if(StringUtils.hasLength(transferEncoding)) {
+					if (StringUtils.hasLength(transferEncoding)) {
 						assertThat(transferEncoding, Matchers.is("chunked"));
-					}
-					else {
+					} else {
 						long contentLength = Long.parseLong(request.getHeader("Content-Length"));
 						assertThat("Invalid content-length",
 								request.getBody().size(), Matchers.is(contentLength));
 					}
 					return new MockResponse().setResponseCode(200);
-				}
-				else if(request.getPath().startsWith("/methods/")) {
-					String expectedMethod = request.getPath().replace("/methods/","").toUpperCase();
+				} else if (request.getPath().startsWith("/methods/")) {
+					String expectedMethod = request.getPath().replace("/methods/", "").toUpperCase();
 					assertThat(request.getMethod(), Matchers.is(expectedMethod));
 					return new MockResponse();
 				}
 				return new MockResponse().setResponseCode(404);
-			}
-			catch (Throwable exc) {
+			} catch (Throwable exc) {
 				return new MockResponse().setResponseCode(500).setBody(exc.toString());
 			}
 		}

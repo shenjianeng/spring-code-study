@@ -98,8 +98,8 @@ public class ResourceUrlEncodingFilter extends GenericFilterBean {
 				if (this.indexLookupPath == -1) {
 					throw new IllegalStateException(
 							"Failed to find lookupPath '" + lookupPath + "' within requestUri '" + requestUri + "'. " +
-							"Does the path have invalid encoded characters for characterEncoding '" +
-							getRequest().getCharacterEncoding() + "'?");
+									"Does the path have invalid encoded characters for characterEncoding '" +
+									getRequest().getCharacterEncoding() + "'?");
 				}
 				this.prefixLookupPath = requestUri.substring(0, this.indexLookupPath);
 				if ("/".equals(lookupPath) && !"/".equals(requestUri)) {

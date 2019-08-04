@@ -28,7 +28,8 @@ import org.springframework.expression.MethodExecutor;
 
 public class Spr7538Tests {
 
-	@Ignore @Test
+	@Ignore
+	@Test
 	public void repro() throws Exception {
 		AlwaysTrueReleaseStrategy target = new AlwaysTrueReleaseStrategy();
 		BeanFactoryTypeConverter converter = new BeanFactoryTypeConverter();
@@ -61,5 +62,6 @@ public class Spr7538Tests {
 		}
 	}
 
-	public static class Foo{}
+	public static class Foo {
+	}
 }

@@ -33,6 +33,7 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 
 	/**
 	 * Set the HTTP status code of the response.
+	 *
 	 * @param status the HTTP status as an {@link HttpStatus} enum value
 	 * @return {@code false} if the status code has not been set because the
 	 * HTTP response is already committed, {@code true} if successfully set.
@@ -56,6 +57,7 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 
 	/**
 	 * Add the given {@code ResponseCookie}.
+	 *
 	 * @param cookie the cookie to add
 	 * @throws IllegalStateException if the response has already been committed
 	 */

@@ -85,12 +85,18 @@ public class ConfigurationBeanNameTests {
 	static class A {
 		@Component("nested")
 		static class B {
-			@Bean public String nestedBean() { return ""; }
+			@Bean
+			public String nestedBean() {
+				return "";
+			}
 		}
 	}
 
 	@Configuration("imported")
 	static class C {
-		@Bean public String s() { return "s"; }
+		@Bean
+		public String s() {
+			return "s";
+		}
 	}
 }

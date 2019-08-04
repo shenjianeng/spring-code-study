@@ -30,7 +30,7 @@ import static org.junit.Assert.*;
  * @author Sam Brannen
  * @since 4.1
  */
-@TestPropertySource(properties = { "explicit = inlined", "extended = inlined1", "extended = inlined2" })
+@TestPropertySource(properties = {"explicit = inlined", "extended = inlined1", "extended = inlined2"})
 public class MergedPropertiesFilesOverriddenByInlinedPropertiesTestPropertySourceTests extends
 		MergedPropertiesFilesTestPropertySourceTests {
 

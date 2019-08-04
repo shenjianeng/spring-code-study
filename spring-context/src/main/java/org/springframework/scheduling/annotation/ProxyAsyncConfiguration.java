@@ -33,9 +33,9 @@ import org.springframework.util.Assert;
  * @author Chris Beams
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 3.1
  * @see EnableAsync
  * @see AsyncConfigurationSelector
+ * @since 3.1
  */
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)

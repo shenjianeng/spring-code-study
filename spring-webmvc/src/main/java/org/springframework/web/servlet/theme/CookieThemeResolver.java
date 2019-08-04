@@ -37,8 +37,8 @@ import org.springframework.web.util.WebUtils;
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
- * @since 17.06.2003
  * @see #setThemeName
+ * @since 17.06.2003
  */
 public class CookieThemeResolver extends CookieGenerator implements ThemeResolver {
 
@@ -52,6 +52,7 @@ public class CookieThemeResolver extends CookieGenerator implements ThemeResolve
 	 * for overriding a cookie value if the theme has been changed in the
 	 * course of the current request! Use RequestContext.getTheme() to
 	 * retrieve the current theme in controllers or views.
+	 *
 	 * @see org.springframework.web.servlet.support.RequestContext#getTheme
 	 */
 	public static final String THEME_REQUEST_ATTRIBUTE_NAME = CookieThemeResolver.class.getName() + ".THEME";
@@ -123,8 +124,7 @@ public class CookieThemeResolver extends CookieGenerator implements ThemeResolve
 			// Set request attribute and add cookie.
 			request.setAttribute(THEME_REQUEST_ATTRIBUTE_NAME, themeName);
 			addCookie(response, themeName);
-		}
-		else {
+		} else {
 			// Set request attribute to fallback theme and remove cookie.
 			request.setAttribute(THEME_REQUEST_ATTRIBUTE_NAME, getDefaultThemeName());
 			removeCookie(response);

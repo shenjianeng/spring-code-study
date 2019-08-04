@@ -27,8 +27,8 @@ import org.springframework.dao.UncategorizedDataAccessException;
  * for JDBC exceptions that Hibernate wrapped.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see SessionFactoryUtils#convertHibernateAccessException
+ * @since 4.2
  */
 @SuppressWarnings("serial")
 public class HibernateJdbcException extends UncategorizedDataAccessException {

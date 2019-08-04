@@ -23,9 +23,9 @@ import org.springframework.lang.Nullable;
  * Only valid when used on a JavaBean getter or setter.
  *
  * @author Rob Harrop
- * @since 1.2
  * @see org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
  * @see org.springframework.jmx.export.MBeanExporter
+ * @since 1.2
  */
 public class ManagedAttribute extends AbstractJmxAttribute {
 

@@ -38,6 +38,7 @@ public interface EntityManagerFactoryInfo {
 
 	/**
 	 * Return the raw underlying EntityManagerFactory.
+	 *
 	 * @return the unadorned EntityManagerFactory (never {@code null})
 	 */
 	EntityManagerFactory getNativeEntityManagerFactory();
@@ -45,6 +46,7 @@ public interface EntityManagerFactoryInfo {
 	/**
 	 * Return the underlying PersistenceProvider that the underlying
 	 * EntityManagerFactory was created with.
+	 *
 	 * @return the PersistenceProvider used to create this EntityManagerFactory,
 	 * or {@code null} if the standard JPA provider autodetection process
 	 * was used to configure the EntityManagerFactory
@@ -55,6 +57,7 @@ public interface EntityManagerFactoryInfo {
 	/**
 	 * Return the PersistenceUnitInfo used to create this
 	 * EntityManagerFactory, if the in-container API was used.
+	 *
 	 * @return the PersistenceUnitInfo used to create this EntityManagerFactory,
 	 * or {@code null} if the in-container contract was not used to
 	 * configure the EntityManagerFactory
@@ -68,6 +71,7 @@ public interface EntityManagerFactoryInfo {
 	 * <p>If {@code getPersistenceUnitInfo()} returns non-null, the result of
 	 * {@code getPersistenceUnitName()} must be equal to the value returned by
 	 * {@code PersistenceUnitInfo.getPersistenceUnitName()}.
+	 *
 	 * @see #getPersistenceUnitInfo()
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getPersistenceUnitName()
 	 */
@@ -77,6 +81,7 @@ public interface EntityManagerFactoryInfo {
 	/**
 	 * Return the JDBC DataSource that this EntityManagerFactory
 	 * obtains its JDBC Connections from.
+	 *
 	 * @return the JDBC DataSource, or {@code null} if not known
 	 */
 	@Nullable

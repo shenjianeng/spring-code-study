@@ -25,9 +25,9 @@ import org.springframework.util.Assert;
  *
  * <p>Mainly intended for internal use within the framework.
  *
+ * @param <T> the payload type of the event
  * @author Stephane Nicoll
  * @since 4.2
- * @param <T> the payload type of the event
  */
 @SuppressWarnings("serial")
 public class PayloadApplicationEvent<T> extends ApplicationEvent implements ResolvableTypeProvider {
@@ -37,7 +37,8 @@ public class PayloadApplicationEvent<T> extends ApplicationEvent implements Reso
 
 	/**
 	 * Create a new PayloadApplicationEvent.
-	 * @param source the object on which the event initially occurred (never {@code null})
+	 *
+	 * @param source  the object on which the event initially occurred (never {@code null})
 	 * @param payload the payload object (never {@code null})
 	 */
 	public PayloadApplicationEvent(Object source, T payload) {

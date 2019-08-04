@@ -295,13 +295,13 @@ public class SockJsServiceTests extends AbstractHttpRequestTests {
 
 		@Override
 		protected void handleRawWebSocketRequest(ServerHttpRequest req, ServerHttpResponse res,
-				WebSocketHandler handler) throws IOException {
+												 WebSocketHandler handler) throws IOException {
 			this.handler = handler;
 		}
 
 		@Override
 		protected void handleTransportRequest(ServerHttpRequest req, ServerHttpResponse res, WebSocketHandler handler,
-				String sessionId, String transport) throws SockJsException {
+											  String sessionId, String transport) throws SockJsException {
 			this.sessionId = sessionId;
 			this.transport = transport;
 			this.handler = handler;

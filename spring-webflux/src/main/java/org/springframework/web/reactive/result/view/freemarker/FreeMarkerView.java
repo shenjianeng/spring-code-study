@@ -95,6 +95,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Obtain the FreeMarker configuration for actual use.
+	 *
 	 * @return the FreeMarker configuration (never {@code null})
 	 * @throws IllegalStateException in case of no Configuration object set
 	 * @since 5.0
@@ -136,6 +137,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
 	 * Autodetect a {@link FreeMarkerConfig} object via the ApplicationContext.
+	 *
 	 * @return the Configuration instance to use for FreeMarkerViews
 	 * @throws BeansException if no Configuration instance could be found
 	 * @see #setConfiguration
@@ -144,8 +146,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 		try {
 			return BeanFactoryUtils.beanOfTypeIncludingAncestors(
 					obtainApplicationContext(), FreeMarkerConfig.class, true, false);
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			throw new ApplicationContextException(
 					"Must define a single FreeMarkerConfig bean in this web application context " +
 							"(may be inherited): FreeMarkerConfigurer is the usual implementation. " +
@@ -165,16 +166,13 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 			// Check that we can get the template, even if we might subsequently get it again.
 			getTemplate(locale);
 			return true;
-		}
-		catch (FileNotFoundException ex) {
+		} catch (FileNotFoundException ex) {
 			// Allow for ViewResolver chaining...
 			return false;
-		}
-		catch (ParseException ex) {
+		} catch (ParseException ex) {
 			throw new ApplicationContextException(
-					"Failed to parse FreeMarker template for URL [" +  getUrl() + "]", ex);
-		}
-		catch (IOException ex) {
+					"Failed to parse FreeMarker template for URL [" + getUrl() + "]", ex);
+		} catch (IOException ex) {
 			throw new ApplicationContextException(
 					"Could not load FreeMarker template for URL [" + getUrl() + "]", ex);
 		}
@@ -182,7 +180,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 	@Override
 	protected Mono<Void> renderInternal(Map<String, Object> renderAttributes,
-			@Nullable MediaType contentType, ServerWebExchange exchange) {
+										@Nullable MediaType contentType, ServerWebExchange exchange) {
 
 		return exchange.getResponse().writeWith(Mono
 				.fromCallable(() -> {
@@ -200,13 +198,11 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 						Writer writer = new OutputStreamWriter(dataBuffer.asOutputStream(), charset);
 						getTemplate(locale).process(freeMarkerModel, writer);
 						return dataBuffer;
-					}
-					catch (IOException ex) {
+					} catch (IOException ex) {
 						DataBufferUtils.release(dataBuffer);
 						String message = "Could not load FreeMarker template for URL [" + getUrl() + "]";
 						throw new IllegalStateException(message, ex);
-					}
-					catch (Throwable ex) {
+					} catch (Throwable ex) {
 						DataBufferUtils.release(dataBuffer);
 						throw ex;
 					}
@@ -221,7 +217,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	/**
 	 * Build a FreeMarker template model for the given model Map.
 	 * <p>The default implementation builds a {@link SimpleHash}.
-	 * @param model the model to use for rendering
+	 *
+	 * @param model    the model to use for rendering
 	 * @param exchange current exchange
 	 * @return the FreeMarker template model, as a {@link SimpleHash} or subclass thereof
 	 */
@@ -234,6 +231,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	/**
 	 * Return the configured FreeMarker {@link ObjectWrapper}, or the
 	 * {@link ObjectWrapper#DEFAULT_WRAPPER default wrapper} if none specified.
+	 *
 	 * @see freemarker.template.Configuration#getObjectWrapper()
 	 */
 	protected ObjectWrapper getObjectWrapper() {
@@ -247,6 +245,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	 * to be rendering by this view.
 	 * <p>By default, the template specified by the "url" bean property
 	 * will be retrieved.
+	 *
 	 * @param locale the current locale
 	 * @return the FreeMarker template to render
 	 */

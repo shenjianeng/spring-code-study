@@ -71,8 +71,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 		ClientHttpResponse response = request.execute();
 		try {
 			assertEquals("Invalid status code", HttpStatus.NOT_FOUND, response.getStatusCode());
-		}
-		finally {
+		} finally {
 			response.close();
 		}
 	}
@@ -93,8 +92,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 		if (request instanceof StreamingHttpOutputMessage) {
 			StreamingHttpOutputMessage streamingRequest = (StreamingHttpOutputMessage) request;
 			streamingRequest.setBody(outputStream -> StreamUtils.copy(body, outputStream));
-		}
-		else {
+		} else {
 			StreamUtils.copy(body, request.getBody());
 		}
 
@@ -106,8 +104,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 					response.getHeaders().get(headerName));
 			byte[] result = FileCopyUtils.copyToByteArray(response.getBody());
 			assertTrue("Invalid body", Arrays.equals(body, result));
-		}
-		finally {
+		} finally {
 			response.close();
 		}
 	}
@@ -124,8 +121,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 				outputStream.flush();
 				outputStream.close();
 			});
-		}
-		else {
+		} else {
 			StreamUtils.copy(body, request.getBody());
 		}
 
@@ -144,8 +140,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 		ClientHttpResponse response = request.execute();
 		try {
 			request.getHeaders().add("MyHeader", "value");
-		}
-		finally {
+		} finally {
 			response.close();
 		}
 	}
@@ -168,16 +163,14 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 				// requires a body
 				try {
 					request.getBody().write(32);
-				}
-				catch (UnsupportedOperationException ex) {
+				} catch (UnsupportedOperationException ex) {
 					// probably a streaming request - let's simply ignore it
 				}
 			}
 			response = request.execute();
 			assertEquals("Invalid response status", HttpStatus.OK, response.getStatusCode());
 			assertEquals("Invalid method", path.toUpperCase(Locale.ENGLISH), request.getMethod().name());
-		}
-		finally {
+		} finally {
 			if (response != null) {
 				response.close();
 			}
@@ -192,8 +185,7 @@ public abstract class AbstractHttpRequestFactoryTestCase extends AbstractMockWeb
 		ClientHttpResponse response = request.execute();
 		try {
 			assertEquals("Invalid status code", HttpStatus.OK, response.getStatusCode());
-		}
-		finally {
+		} finally {
 			response.close();
 		}
 	}

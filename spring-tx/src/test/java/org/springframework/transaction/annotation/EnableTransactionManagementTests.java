@@ -58,7 +58,7 @@ public class EnableTransactionManagementTests {
 				EnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
 		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
-		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
+		Map<?, ?> services = ctx.getBeansWithAnnotation(Service.class);
 		assertTrue("Stereotype annotation not visible", services.containsKey("testBean"));
 		ctx.close();
 	}
@@ -69,7 +69,7 @@ public class EnableTransactionManagementTests {
 				InheritedEnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
 		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
-		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
+		Map<?, ?> services = ctx.getBeansWithAnnotation(Service.class);
 		assertTrue("Stereotype annotation not visible", services.containsKey("testBean"));
 		ctx.close();
 	}
@@ -80,7 +80,7 @@ public class EnableTransactionManagementTests {
 				ParentEnableTxConfig.class, ChildEnableTxConfig.class, TxManagerConfig.class);
 		TransactionalTestBean bean = ctx.getBean(TransactionalTestBean.class);
 		assertTrue("testBean is not a proxy", AopUtils.isAopProxy(bean));
-		Map<?,?> services = ctx.getBeansWithAnnotation(Service.class);
+		Map<?, ?> services = ctx.getBeansWithAnnotation(Service.class);
 		assertTrue("Stereotype annotation not visible", services.containsKey("testBean"));
 		ctx.close();
 	}
@@ -118,8 +118,7 @@ public class EnableTransactionManagementTests {
 			new AnnotationConfigApplicationContext(EnableAspectjTxConfig.class, TxManagerConfig.class);
 			fail("should have thrown CNFE when trying to load AnnotationTransactionAspect. " +
 					"Do you actually have org.springframework.aspects on the classpath?");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertThat(ex.getMessage(), containsString("AspectJJtaTransactionManagementConfiguration"));
 		}
 	}

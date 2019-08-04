@@ -47,7 +47,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected Resource resolveResourceInternal(@Nullable HttpServletRequest request, String requestPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+											   List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		Resource resource = chain.resolveResource(request, requestPath, locations);
 		if (resource == null || (request != null && !isGzipAccepted(request))) {
@@ -59,8 +59,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 			if (gzipped.exists()) {
 				return gzipped;
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			logger.trace("No gzip resource for [" + resource.getFilename() + "]", ex);
 		}
 
@@ -74,7 +73,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 
 	@Override
 	protected String resolveUrlPathInternal(String resourceUrlPath,
-			List<? extends Resource> locations, ResourceResolverChain chain) {
+											List<? extends Resource> locations, ResourceResolverChain chain) {
 
 		return chain.resolveUrlPath(resourceUrlPath, locations);
 	}

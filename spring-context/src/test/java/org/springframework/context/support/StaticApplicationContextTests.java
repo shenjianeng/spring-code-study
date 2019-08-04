@@ -49,7 +49,7 @@ public class StaticApplicationContextTests extends AbstractApplicationContextTes
 		m.put("name", "Albert");
 		parent.registerPrototype("father", TestBean.class, new MutablePropertyValues(m));
 		parent.refresh();
-		parent.addApplicationListener(parentListener) ;
+		parent.addApplicationListener(parentListener);
 
 		parent.getStaticMessageSource().addMessage("code1", Locale.getDefault(), "message1");
 

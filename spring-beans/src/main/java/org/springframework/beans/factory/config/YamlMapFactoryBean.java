@@ -41,7 +41,7 @@ import org.springframework.lang.Nullable;
  *    one: two
  * three: four
  * </pre>
- *
+ * <p>
  * plus (later in the list)
  *
  * <pre class="code">
@@ -50,7 +50,7 @@ import org.springframework.lang.Nullable;
  *    one: 2
  * five: six
  * </pre>
- *
+ * <p>
  * results in an effective input of
  *
  * <pre class="code">
@@ -60,7 +60,7 @@ import org.springframework.lang.Nullable;
  * three: four
  * five: six
  * </pre>
- *
+ * <p>
  * Note that the value of "foo" in the first document is not simply replaced
  * with the value in the second, but its nested values are merged.
  *
@@ -116,6 +116,7 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 	 * <p>Invoked lazily the first time {@link #getObject()} is invoked in
 	 * case of a shared singleton; else, on each {@link #getObject()} call.
 	 * <p>The default implementation returns the merged {@code Map} instance.
+	 *
 	 * @return the object returned by this factory
 	 * @see #process(MatchCallback)
 	 */
@@ -134,8 +135,7 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 				Map<String, Object> result = new LinkedHashMap<>((Map<String, Object>) existing);
 				merge(result, (Map) value);
 				output.put(key, result);
-			}
-			else {
+			} else {
 				output.put(key, value);
 			}
 		});

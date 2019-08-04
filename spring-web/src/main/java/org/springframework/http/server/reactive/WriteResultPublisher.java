@@ -40,6 +40,7 @@ class WriteResultPublisher implements Publisher<Void> {
 
 	/**
 	 * Special logger for debugging Reactive Streams signals.
+	 *
 	 * @see LogDelegateFactory#getHiddenLog(Class)
 	 * @see AbstractListenerReadPublisher#rsReadLogger
 	 * @see AbstractListenerWriteProcessor#rsWriteLogger
@@ -167,15 +168,16 @@ class WriteResultPublisher implements Publisher<Void> {
 					if (publisherError != null) {
 						publisher.publishError(publisherError);
 					}
-				}
-				else {
+				} else {
 					throw new IllegalStateException(toString());
 				}
 			}
+
 			@Override
 			void publishComplete(WriteResultPublisher publisher) {
 				publisher.completedBeforeSubscribed = true;
 			}
+
 			@Override
 			void publishError(WriteResultPublisher publisher, Throwable ex) {
 				publisher.errorBeforeSubscribed = ex;
@@ -187,10 +189,12 @@ class WriteResultPublisher implements Publisher<Void> {
 			void request(WriteResultPublisher publisher, long n) {
 				Operators.validate(n);
 			}
+
 			@Override
 			void publishComplete(WriteResultPublisher publisher) {
 				publisher.completedBeforeSubscribed = true;
 			}
+
 			@Override
 			void publishError(WriteResultPublisher publisher, Throwable ex) {
 				publisher.errorBeforeSubscribed = ex;
@@ -209,14 +213,17 @@ class WriteResultPublisher implements Publisher<Void> {
 			void request(WriteResultPublisher publisher, long n) {
 				// ignore
 			}
+
 			@Override
 			void cancel(WriteResultPublisher publisher) {
 				// ignore
 			}
+
 			@Override
 			void publishComplete(WriteResultPublisher publisher) {
 				// ignore
 			}
+
 			@Override
 			void publishError(WriteResultPublisher publisher, Throwable t) {
 				// ignore
@@ -242,8 +249,7 @@ class WriteResultPublisher implements Publisher<Void> {
 				Subscriber<? super Void> s = publisher.subscriber;
 				Assert.state(s != null, "No subscriber");
 				s.onComplete();
-			}
-			else {
+			} else {
 				publisher.state.get().publishComplete(publisher);
 			}
 		}
@@ -253,8 +259,7 @@ class WriteResultPublisher implements Publisher<Void> {
 				Subscriber<? super Void> s = publisher.subscriber;
 				Assert.state(s != null, "No subscriber");
 				s.onError(t);
-			}
-			else {
+			} else {
 				publisher.state.get().publishError(publisher, t);
 			}
 		}

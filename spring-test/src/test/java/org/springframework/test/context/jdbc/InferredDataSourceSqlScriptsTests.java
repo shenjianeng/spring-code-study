@@ -43,8 +43,8 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * {@link DataSource}s from {@link PlatformTransactionManager}s.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see InferredDataSourceTransactionalSqlScriptsTests
+ * @since 4.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -97,19 +97,19 @@ public class InferredDataSourceSqlScriptsTests {
 		@Bean
 		public DataSource dataSource1() {
 			return new EmbeddedDatabaseBuilder()//
-			.setName("database1")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
-			.build();
+					.setName("database1")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
+					.build();
 		}
 
 		@Bean
 		public DataSource dataSource2() {
 			return new EmbeddedDatabaseBuilder()//
-			.setName("database2")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
-			.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
-			.build();
+					.setName("database2")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/schema.sql")//
+					.addScript("classpath:/org/springframework/test/context/jdbc/data.sql")//
+					.build();
 		}
 	}
 

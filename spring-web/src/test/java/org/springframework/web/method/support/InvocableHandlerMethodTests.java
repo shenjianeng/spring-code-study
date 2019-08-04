@@ -81,8 +81,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Integer.class, String.class).invokeForRequest(request, null);
 			fail("Expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("Could not resolve parameter [0]"));
 		}
 	}
@@ -111,8 +110,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Integer.class, String.class).invokeForRequest(request, null);
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected -  allow HandlerMethodArgumentResolver exceptions to propagate
 		}
 	}
@@ -124,8 +122,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Integer.class, String.class).invokeForRequest(request, null);
 			fail("Expected exception");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertNotNull("Exception not wrapped", ex.getCause());
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 			assertTrue(ex.getMessage().contains("Controller ["));
@@ -142,8 +139,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Throwable.class).invokeForRequest(this.request, null, expected);
 			fail("Expected exception");
-		}
-		catch (RuntimeException actual) {
+		} catch (RuntimeException actual) {
 			assertSame(expected, actual);
 		}
 
@@ -151,8 +147,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Throwable.class).invokeForRequest(this.request, null, expected);
 			fail("Expected exception");
-		}
-		catch (Error actual) {
+		} catch (Error actual) {
 			assertSame(expected, actual);
 		}
 
@@ -160,8 +155,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Throwable.class).invokeForRequest(this.request, null, expected);
 			fail("Expected exception");
-		}
-		catch (Exception actual) {
+		} catch (Exception actual) {
 			assertSame(expected, actual);
 		}
 
@@ -169,8 +163,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(Throwable.class).invokeForRequest(this.request, null, expected);
 			fail("Expected exception");
-		}
-		catch (IllegalStateException actual) {
+		} catch (IllegalStateException actual) {
 			assertNotNull(actual.getCause());
 			assertSame(expected, actual.getCause());
 			assertTrue(actual.getMessage().contains("Invocation failure"));
@@ -183,8 +176,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			getInvocable(double.class).invokeForRequest(this.request, null);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertThat(ex.getMessage(), containsString("Illegal argument"));
 		}
 	}
@@ -199,7 +191,6 @@ public class InvocableHandlerMethodTests {
 	private StubArgumentResolver getStubResolver(int index) {
 		return (StubArgumentResolver) this.composite.getResolvers().get(index);
 	}
-
 
 
 	@SuppressWarnings("unused")
@@ -227,7 +218,7 @@ public class InvocableHandlerMethodTests {
 
 		@Override
 		public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-				NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+									  NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
 			throw new IllegalArgumentException("oops, can't read");
 		}

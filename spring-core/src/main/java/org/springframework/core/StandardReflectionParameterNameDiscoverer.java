@@ -27,9 +27,9 @@ import org.springframework.lang.Nullable;
  * for introspecting parameter names (based on the "-parameters" compiler flag).
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see java.lang.reflect.Method#getParameters()
  * @see java.lang.reflect.Parameter#getName()
+ * @since 4.0
  */
 public class StandardReflectionParameterNameDiscoverer implements ParameterNameDiscoverer {
 

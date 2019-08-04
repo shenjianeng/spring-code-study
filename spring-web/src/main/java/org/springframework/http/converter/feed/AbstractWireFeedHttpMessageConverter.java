@@ -44,11 +44,11 @@ import org.springframework.util.StringUtils;
  * <p><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
  * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
  *
- * @author Arjen Poutsma
- * @since 3.0.2
  * @param <T> the converted object type
+ * @author Arjen Poutsma
  * @see AtomFeedHttpMessageConverter
  * @see RssChannelHttpMessageConverter
+ * @since 3.0.2
  */
 public abstract class AbstractWireFeedHttpMessageConverter<T extends WireFeed>
 		extends AbstractHttpMessageConverter<T> {
@@ -76,8 +76,7 @@ public abstract class AbstractWireFeedHttpMessageConverter<T extends WireFeed>
 		try {
 			Reader reader = new InputStreamReader(inputMessage.getBody(), charset);
 			return (T) feedInput.build(reader);
-		}
-		catch (FeedException ex) {
+		} catch (FeedException ex) {
 			throw new HttpMessageNotReadableException("Could not read WireFeed: " + ex.getMessage(), ex, inputMessage);
 		}
 	}
@@ -98,8 +97,7 @@ public abstract class AbstractWireFeedHttpMessageConverter<T extends WireFeed>
 		try {
 			Writer writer = new OutputStreamWriter(outputMessage.getBody(), charset);
 			feedOutput.output(wireFeed, writer);
-		}
-		catch (FeedException ex) {
+		} catch (FeedException ex) {
 			throw new HttpMessageNotWritableException("Could not write WireFeed: " + ex.getMessage(), ex);
 		}
 	}

@@ -38,8 +38,7 @@ public class OptionalValidatorFactoryBean extends LocalValidatorFactoryBean {
 	public void afterPropertiesSet() {
 		try {
 			super.afterPropertiesSet();
-		}
-		catch (ValidationException ex) {
+		} catch (ValidationException ex) {
 			LogFactory.getLog(getClass()).debug("Failed to set up a Bean Validation provider", ex);
 		}
 	}

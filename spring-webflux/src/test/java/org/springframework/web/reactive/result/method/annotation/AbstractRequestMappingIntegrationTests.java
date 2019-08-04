@@ -100,17 +100,17 @@ public abstract class AbstractRequestMappingIntegrationTests extends AbstractHtt
 		if (out != null) {
 			headers.setAccept(Collections.singletonList(out));
 		}
-		return  getRestTemplate().exchange(preparePost(url, headers, body), type);
+		return getRestTemplate().exchange(preparePost(url, headers, body), type);
 	}
 
 	<T> ResponseEntity<T> performPost(String url, HttpHeaders headers, Object body,
-			Class<T> type) throws Exception {
+									  Class<T> type) throws Exception {
 
-		return  getRestTemplate().exchange(preparePost(url, headers, body), type);
+		return getRestTemplate().exchange(preparePost(url, headers, body), type);
 	}
 
 	<T> ResponseEntity<T> performPost(String url, MediaType in, Object body, MediaType out,
-			ParameterizedTypeReference<T> type) throws Exception {
+									  ParameterizedTypeReference<T> type) throws Exception {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(in);

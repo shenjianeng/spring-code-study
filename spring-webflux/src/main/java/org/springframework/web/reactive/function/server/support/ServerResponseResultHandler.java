@@ -96,6 +96,7 @@ public class ServerResponseResultHandler implements HandlerResultHandler, Initia
 			public List<HttpMessageWriter<?>> messageWriters() {
 				return messageWriters;
 			}
+
 			@Override
 			public List<ViewResolver> viewResolvers() {
 				return viewResolvers;

@@ -30,6 +30,7 @@ public class DataSourceLookupFailureException extends NonTransientDataAccessExce
 
 	/**
 	 * Constructor for DataSourceLookupFailureException.
+	 *
 	 * @param msg the detail message
 	 */
 	public DataSourceLookupFailureException(String msg) {
@@ -38,9 +39,10 @@ public class DataSourceLookupFailureException extends NonTransientDataAccessExce
 
 	/**
 	 * Constructor for DataSourceLookupFailureException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (usually from using a underlying
-	 * lookup API such as JNDI)
+	 *              lookup API such as JNDI)
 	 */
 	public DataSourceLookupFailureException(String msg, Throwable cause) {
 		super(msg, cause);

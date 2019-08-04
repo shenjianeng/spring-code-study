@@ -37,8 +37,8 @@ import org.springframework.web.servlet.LocaleResolver;
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
- * @since 27.02.2003
  * @see javax.servlet.http.HttpServletRequest#getLocale()
+ * @since 27.02.2003
  */
 public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
@@ -52,6 +52,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	 * Configure supported locales to check against the requested locales
 	 * determined via {@link HttpServletRequest#getLocales()}. If this is not
 	 * configured then {@link HttpServletRequest#getLocale()} is used instead.
+	 *
 	 * @param locales the supported locales
 	 * @since 4.3
 	 */
@@ -62,6 +63,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	/**
 	 * Return the configured list of supported locales.
+	 *
 	 * @since 4.3
 	 */
 	public List<Locale> getSupportedLocales() {
@@ -74,6 +76,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	 * <p>By default this is not set in which case when there is "Accept-Language"
 	 * header, the default locale for the server is used as defined in
 	 * {@link HttpServletRequest#getLocale()}.
+	 *
 	 * @param defaultLocale the default locale to use
 	 * @since 4.3
 	 */
@@ -83,6 +86,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 	/**
 	 * The configured default locale, if any.
+	 *
 	 * @since 4.3
 	 */
 	@Nullable
@@ -120,8 +124,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 					// Full match: language + country, possibly narrowed from earlier language-only match
 					return locale;
 				}
-			}
-			else if (languageMatch == null) {
+			} else if (languageMatch == null) {
 				// Let's try to find a language-only match as a fallback
 				for (Locale candidate : supportedLocales) {
 					if (!StringUtils.hasLength(candidate.getCountry()) &&

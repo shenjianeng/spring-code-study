@@ -34,10 +34,10 @@ import org.springframework.core.io.Resource;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 3.0
  * @see #load
  * @see XmlBeanDefinitionReader
  * @see org.springframework.context.annotation.AnnotationConfigApplicationContext
+ * @since 3.0
  */
 public class GenericXmlApplicationContext extends GenericApplicationContext {
 
@@ -54,6 +54,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	/**
 	 * Create a new GenericXmlApplicationContext, loading bean definitions
 	 * from the given resources and automatically refreshing the context.
+	 *
 	 * @param resources the resources to load from
 	 */
 	public GenericXmlApplicationContext(Resource... resources) {
@@ -64,6 +65,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	/**
 	 * Create a new GenericXmlApplicationContext, loading bean definitions
 	 * from the given resource locations and automatically refreshing the context.
+	 *
 	 * @param resourceLocations the resources to load from
 	 */
 	public GenericXmlApplicationContext(String... resourceLocations) {
@@ -74,8 +76,9 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	/**
 	 * Create a new GenericXmlApplicationContext, loading bean definitions
 	 * from the given resource locations and automatically refreshing the context.
+	 *
 	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
+	 *                      loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load
 	 */
 	public GenericXmlApplicationContext(Class<?> relativeClass, String... resourceNames) {
@@ -116,6 +119,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Load bean definitions from the given XML resources.
+	 *
 	 * @param resources one or more resources to load from
 	 */
 	public void load(Resource... resources) {
@@ -124,6 +128,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Load bean definitions from the given XML resources.
+	 *
 	 * @param resourceLocations one or more resource locations to load from
 	 */
 	public void load(String... resourceLocations) {
@@ -132,8 +137,9 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 
 	/**
 	 * Load bean definitions from the given XML resources.
+	 *
 	 * @param relativeClass class whose package will be used as a prefix when
-	 * loading each specified resource name
+	 *                      loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load
 	 */
 	public void load(Class<?> relativeClass, String... resourceNames) {

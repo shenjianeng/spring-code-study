@@ -62,14 +62,11 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 		CacheDefaults defaults = getCacheDefaults(method, targetType);
 		if (cacheResult != null) {
 			return createCacheResultOperation(method, defaults, cacheResult);
-		}
-		else if (cachePut != null) {
+		} else if (cachePut != null) {
 			return createCachePutOperation(method, defaults, cachePut);
-		}
-		else if (cacheRemove != null) {
+		} else if (cacheRemove != null) {
 			return createCacheRemoveOperation(method, defaults, cacheRemove);
-		}
-		else {
+		} else {
 			return createCacheRemoveAllOperation(method, defaults, cacheRemoveAll);
 		}
 	}
@@ -143,8 +140,7 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 		if (factory != null) {
 			javax.cache.annotation.CacheResolver cacheResolver = factory.getCacheResolver(details);
 			return new CacheResolverAdapter(cacheResolver);
-		}
-		else {
+		} else {
 			return getDefaultCacheResolver();
 		}
 	}
@@ -155,8 +151,7 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 		if (factory != null) {
 			javax.cache.annotation.CacheResolver cacheResolver = factory.getExceptionCacheResolver(details);
 			return new CacheResolverAdapter(cacheResolver);
-		}
-		else {
+		} else {
 			return getDefaultExceptionCacheResolver();
 		}
 	}
@@ -167,11 +162,9 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 		if (candidate != CacheResolverFactory.class) {
 			return getBean(candidate);
-		}
-		else if (defaults != null && defaults.cacheResolverFactory() != CacheResolverFactory.class) {
+		} else if (defaults != null && defaults.cacheResolverFactory() != CacheResolverFactory.class) {
 			return getBean(defaults.cacheResolverFactory());
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -181,11 +174,9 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 		if (candidate != CacheKeyGenerator.class) {
 			return new KeyGeneratorAdapter(this, getBean(candidate));
-		}
-		else if (defaults != null && CacheKeyGenerator.class != defaults.cacheKeyGenerator()) {
+		} else if (defaults != null && CacheKeyGenerator.class != defaults.cacheKeyGenerator()) {
 			return new KeyGeneratorAdapter(this, getBean(defaults.cacheKeyGenerator()));
-		}
-		else {
+		} else {
 			return getDefaultKeyGenerator();
 		}
 	}
@@ -202,6 +193,7 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 	/**
 	 * Generate a default cache name for the specified {@link Method}.
+	 *
 	 * @param method the annotated method
 	 * @return the default cache name, according to JSR-107
 	 */
@@ -231,6 +223,7 @@ public abstract class AnnotationJCacheOperationSource extends AbstractFallbackJC
 
 	/**
 	 * Locate or create an instance of the specified cache strategy {@code type}.
+	 *
 	 * @param type the type of the bean to manage
 	 * @return the required bean
 	 */

@@ -32,12 +32,14 @@ import org.springframework.util.Assert;
  * {@link Executor} instance, specified on {@link SchedulerFactoryBean}.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see SchedulerFactoryBean#setTaskExecutor
+ * @since 2.0
  */
 public class LocalTaskExecutorThreadPool implements ThreadPool {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -79,8 +81,7 @@ public class LocalTaskExecutorThreadPool implements ThreadPool {
 		try {
 			this.taskExecutor.execute(runnable);
 			return true;
-		}
-		catch (RejectedExecutionException ex) {
+		} catch (RejectedExecutionException ex) {
 			logger.error("Task has been rejected by TaskExecutor", ex);
 			return false;
 		}

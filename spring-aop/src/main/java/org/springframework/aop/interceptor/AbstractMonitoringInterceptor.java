@@ -33,10 +33,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2.7
  * @see #setPrefix
  * @see #setSuffix
  * @see #createInvocationTraceName
+ * @since 1.2.7
  */
 @SuppressWarnings("serial")
 public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterceptor {
@@ -94,6 +94,7 @@ public abstract class AbstractMonitoringInterceptor extends AbstractTraceInterce
 	 * that can be used for trace/logging purposes. This name is made up of the
 	 * configured prefix, followed by the fully-qualified name of the method being
 	 * invoked, followed by the configured suffix.
+	 *
 	 * @see #setPrefix
 	 * @see #setSuffix
 	 */

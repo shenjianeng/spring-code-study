@@ -266,7 +266,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void listenableFutureSuccess() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -286,7 +286,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void listenableFutureFailure() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -304,7 +304,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void completableFutureSuccess() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -324,7 +324,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void completableFutureFailure() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -342,7 +342,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void monoSuccess() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -362,7 +362,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void monoFailure() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -380,7 +380,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void fluxNotHandled() {
 		Message emptyMessage = MessageBuilder.withPayload(new byte[0]).build();
 		given(this.channel.send(any(Message.class))).willReturn(true);
@@ -435,7 +435,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 	private static class TestSimpAnnotationMethodMessageHandler extends SimpAnnotationMethodMessageHandler {
 
 		public TestSimpAnnotationMethodMessageHandler(SimpMessageSendingOperations brokerTemplate,
-				SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel) {
+													  SubscribableChannel clientInboundChannel, MessageChannel clientOutboundChannel) {
 
 			super(clientInboundChannel, clientOutboundChannel, brokerTemplate);
 		}
@@ -462,7 +462,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 		}
 
 		@MessageMapping("/optionalHeaders")
-		public void optionalHeaders(@Header(name="foo", required=false) String foo1, @Header("foo") Optional<String> foo2) {
+		public void optionalHeaders(@Header(name = "foo", required = false) String foo1, @Header("foo") Optional<String> foo2) {
 			this.method = "optionalHeaders";
 			this.arguments.put("foo1", foo1);
 			this.arguments.put("foo2", (foo2.isPresent() ? foo2.get() : null));
@@ -470,7 +470,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 
 		@MessageMapping("/message/{foo}/{name}")
 		public void messageMappingDestinationVariable(@DestinationVariable("foo") String param1,
-				@DestinationVariable("name") String param2) {
+													  @DestinationVariable("name") String param2) {
 			this.method = "messageMappingDestinationVariable";
 			this.arguments.put("foo", param1);
 			this.arguments.put("name", param2);
@@ -478,7 +478,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 
 		@SubscribeMapping("/sub/{foo}/{name}")
 		public void subscribeEventDestinationVariable(@DestinationVariable("foo") String param1,
-				@DestinationVariable("name") String param2) {
+													  @DestinationVariable("name") String param2) {
 			this.method = "subscribeEventDestinationVariable";
 			this.arguments.put("foo", param1);
 			this.arguments.put("name", param2);
@@ -650,7 +650,7 @@ public class SimpAnnotationMethodMessageHandlerTests {
 		public void validate(@Nullable Object target, Errors errors) {
 			String value = (String) target;
 			if (invalidValue.equals(value)) {
-				errors.reject("invalid value '"+invalidValue+"'");
+				errors.reject("invalid value '" + invalidValue + "'");
 			}
 		}
 	}

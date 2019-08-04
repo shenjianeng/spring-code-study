@@ -34,8 +34,8 @@ import javax.management.modelmbean.RequiredModelMBean;
  * for the managed resource's {@link ClassLoader} before any invocations occur.
  *
  * @author Rob Harrop
- * @since 2.0
  * @see RequiredModelMBean
+ * @since 2.0
  */
 public class SpringModelMBean extends RequiredModelMBean {
 
@@ -48,6 +48,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 
 	/**
 	 * Construct a new SpringModelMBean instance with an empty {@link ModelMBeanInfo}.
+	 *
 	 * @see javax.management.modelmbean.RequiredModelMBean#RequiredModelMBean()
 	 */
 	public SpringModelMBean() throws MBeanException, RuntimeOperationsException {
@@ -56,6 +57,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 
 	/**
 	 * Construct a new SpringModelMBean instance with the given {@link ModelMBeanInfo}.
+	 *
 	 * @see javax.management.modelmbean.RequiredModelMBean#RequiredModelMBean(ModelMBeanInfo)
 	 */
 	public SpringModelMBean(ModelMBeanInfo mbi) throws MBeanException, RuntimeOperationsException {
@@ -78,6 +80,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 	/**
 	 * Switches the {@link Thread#getContextClassLoader() context ClassLoader} for the
 	 * managed resources {@link ClassLoader} before allowing the invocation to occur.
+	 *
 	 * @see javax.management.modelmbean.ModelMBean#invoke
 	 */
 	@Override
@@ -88,8 +91,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 		try {
 			Thread.currentThread().setContextClassLoader(this.managedResourceClassLoader);
 			return super.invoke(opName, opArgs, sig);
-		}
-		finally {
+		} finally {
 			Thread.currentThread().setContextClassLoader(currentClassLoader);
 		}
 	}
@@ -97,6 +99,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 	/**
 	 * Switches the {@link Thread#getContextClassLoader() context ClassLoader} for the
 	 * managed resources {@link ClassLoader} before allowing the invocation to occur.
+	 *
 	 * @see javax.management.modelmbean.ModelMBean#getAttribute
 	 */
 	@Override
@@ -107,8 +110,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 		try {
 			Thread.currentThread().setContextClassLoader(this.managedResourceClassLoader);
 			return super.getAttribute(attrName);
-		}
-		finally {
+		} finally {
 			Thread.currentThread().setContextClassLoader(currentClassLoader);
 		}
 	}
@@ -116,6 +118,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 	/**
 	 * Switches the {@link Thread#getContextClassLoader() context ClassLoader} for the
 	 * managed resources {@link ClassLoader} before allowing the invocation to occur.
+	 *
 	 * @see javax.management.modelmbean.ModelMBean#getAttributes
 	 */
 	@Override
@@ -124,8 +127,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 		try {
 			Thread.currentThread().setContextClassLoader(this.managedResourceClassLoader);
 			return super.getAttributes(attrNames);
-		}
-		finally {
+		} finally {
 			Thread.currentThread().setContextClassLoader(currentClassLoader);
 		}
 	}
@@ -133,6 +135,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 	/**
 	 * Switches the {@link Thread#getContextClassLoader() context ClassLoader} for the
 	 * managed resources {@link ClassLoader} before allowing the invocation to occur.
+	 *
 	 * @see javax.management.modelmbean.ModelMBean#setAttribute
 	 */
 	@Override
@@ -143,8 +146,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 		try {
 			Thread.currentThread().setContextClassLoader(this.managedResourceClassLoader);
 			super.setAttribute(attribute);
-		}
-		finally {
+		} finally {
 			Thread.currentThread().setContextClassLoader(currentClassLoader);
 		}
 	}
@@ -152,6 +154,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 	/**
 	 * Switches the {@link Thread#getContextClassLoader() context ClassLoader} for the
 	 * managed resources {@link ClassLoader} before allowing the invocation to occur.
+	 *
 	 * @see javax.management.modelmbean.ModelMBean#setAttributes
 	 */
 	@Override
@@ -160,8 +163,7 @@ public class SpringModelMBean extends RequiredModelMBean {
 		try {
 			Thread.currentThread().setContextClassLoader(this.managedResourceClassLoader);
 			return super.setAttributes(attributes);
-		}
-		finally {
+		} finally {
 			Thread.currentThread().setContextClassLoader(currentClassLoader);
 		}
 	}

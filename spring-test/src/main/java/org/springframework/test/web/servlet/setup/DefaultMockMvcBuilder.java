@@ -46,6 +46,7 @@ public class DefaultMockMvcBuilder extends AbstractMockMvcBuilder<DefaultMockMvc
 
 	/**
 	 * Protected constructor. Not intended for direct instantiation.
+	 *
 	 * @see MockMvcBuilders#webAppContextSetup(WebApplicationContext)
 	 */
 	protected DefaultMockMvcBuilder(WebApplicationContext webAppContext) {

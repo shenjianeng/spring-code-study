@@ -39,8 +39,7 @@ public class AopNamespaceHandlerPointcutErrorTests {
 			new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
 					qualifiedResource(getClass(), "pointcutDuplication.xml"));
 			fail("parsing should have caused a BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			assertTrue(ex.contains(BeanDefinitionParsingException.class));
 		}
 	}
@@ -52,8 +51,7 @@ public class AopNamespaceHandlerPointcutErrorTests {
 			new XmlBeanDefinitionReader(bf).loadBeanDefinitions(
 					qualifiedResource(getClass(), "pointcutMissing.xml"));
 			fail("parsing should have caused a BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			assertTrue(ex.contains(BeanDefinitionParsingException.class));
 		}
 	}

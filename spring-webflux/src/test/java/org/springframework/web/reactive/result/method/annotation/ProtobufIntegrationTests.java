@@ -59,7 +59,7 @@ public class ProtobufIntegrationTests extends AbstractRequestMappingIntegrationT
 	@Override
 	protected ApplicationContext initApplicationContext() {
 		AnnotationConfigApplicationContext wac = new AnnotationConfigApplicationContext();
-		wac.register(TestConfiguration .class);
+		wac.register(TestConfiguration.class);
 		wac.refresh();
 		return wac;
 	}

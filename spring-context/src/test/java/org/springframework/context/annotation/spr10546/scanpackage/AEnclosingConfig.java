@@ -29,5 +29,6 @@ import org.springframework.context.annotation.spr10546.ParentConfig;
 @Configuration
 public class AEnclosingConfig {
 	@Configuration
-	public static class ChildConfig extends ParentConfig {}
+	public static class ChildConfig extends ParentConfig {
+	}
 }

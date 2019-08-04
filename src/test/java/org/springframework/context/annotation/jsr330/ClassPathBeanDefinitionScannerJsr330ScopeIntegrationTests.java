@@ -24,7 +24,9 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.junit.After;
+
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -310,13 +312,11 @@ public class ClassPathBeanDefinitionScannerJsr330ScopeIntegrationTests {
 						if (type.equals(javax.inject.Singleton.class.getName())) {
 							metadata.setScopeName(BeanDefinition.SCOPE_SINGLETON);
 							break;
-						}
-						else if (annDef.getMetadata().getMetaAnnotationTypes(type).contains(javax.inject.Scope.class.getName())) {
+						} else if (annDef.getMetadata().getMetaAnnotationTypes(type).contains(javax.inject.Scope.class.getName())) {
 							metadata.setScopeName(type.substring(type.length() - 13, type.length() - 6).toLowerCase());
 							metadata.setScopedProxyMode(scopedProxyMode);
 							break;
-						}
-						else if (type.startsWith("javax.inject")) {
+						} else if (type.startsWith("javax.inject")) {
 							metadata.setScopeName(BeanDefinition.SCOPE_PROTOTYPE);
 						}
 					}
@@ -348,10 +348,14 @@ public class ClassPathBeanDefinitionScannerJsr330ScopeIntegrationTests {
 		private String name = DEFAULT_NAME;
 
 		@Override
-		public String getName() { return this.name; }
+		public String getName() {
+			return this.name;
+		}
 
 		@Override
-		public void setName(String name) { this.name = name; }
+		public void setName(String name) {
+			this.name = name;
+		}
 	}
 
 

@@ -25,13 +25,14 @@ import org.springframework.lang.Nullable;
  * Concrete implementations might adapt a SOAPMessage or an email message.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/">XML-binary Optimized Packaging</a>
+ * @since 3.0
  */
 public interface MimeContainer {
 
 	/**
 	 * Indicate whether this container is a XOP package.
+	 *
 	 * @return {@code true} when the constraints specified in
 	 * <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#identifying_xop_documents">Identifying XOP Documents</a>
 	 * are met
@@ -41,6 +42,7 @@ public interface MimeContainer {
 
 	/**
 	 * Turn this message into a XOP package.
+	 *
 	 * @return {@code true} when the message actually is a XOP package
 	 * @see <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#xop_packages">XOP Packages</a>
 	 */
@@ -48,13 +50,15 @@ public interface MimeContainer {
 
 	/**
 	 * Add the given data handler as an attachment to this container.
-	 * @param contentId  the content id of the attachment
+	 *
+	 * @param contentId   the content id of the attachment
 	 * @param dataHandler the data handler containing the data of the attachment
 	 */
 	void addAttachment(String contentId, DataHandler dataHandler);
 
 	/**
 	 * Return the attachment with the given content id, or {@code null} if not found.
+	 *
 	 * @param contentId the content id
 	 * @return the attachment, as a data handler
 	 */

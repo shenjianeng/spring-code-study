@@ -135,8 +135,7 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 						destination.getWriteSetter().set(listener::transfer);
 
 						listener.transfer(destination);
-					}
-					catch (IOException ex) {
+					} catch (IOException ex) {
 						sink.error(ex);
 					}
 				}));
@@ -162,7 +161,9 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 		@Nullable
 		private volatile ByteBuffer byteBuffer;
 
-		/** Keep track of write listener calls, for {@link #writePossible}. */
+		/**
+		 * Keep track of write listener calls, for {@link #writePossible}.
+		 */
 		private volatile boolean writePossible;
 
 
@@ -199,8 +200,7 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 
 			if (logger.isTraceEnabled()) {
 				logger.trace(getLogPrefix() + "Wrote " + written + " of " + total + " bytes");
-			}
-			else if (rsWriteLogger.isTraceEnabled()) {
+			} else if (rsWriteLogger.isTraceEnabled()) {
 				rsWriteLogger.trace(getLogPrefix() + "Wrote " + written + " of " + total + " bytes");
 			}
 			if (written != total) {
@@ -327,15 +327,13 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 					if (len != 0) {
 						this.position += len;
 						this.count -= len;
-					}
-					else {
+					} else {
 						destination.resumeWrites();
 						return;
 					}
 				}
 				this.sink.success();
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				this.sink.error(ex);
 			}
 
@@ -344,8 +342,7 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 		public void closeSource() {
 			try {
 				this.source.close();
-			}
-			catch (IOException ignore) {
+			} catch (IOException ignore) {
 			}
 		}
 

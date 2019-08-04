@@ -47,7 +47,6 @@ public class EventPublicationTests {
 	private final CollectingReaderEventListener eventListener = new CollectingReaderEventListener();
 
 
-
 	@Before
 	public void setUp() throws Exception {
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this.beanFactory);

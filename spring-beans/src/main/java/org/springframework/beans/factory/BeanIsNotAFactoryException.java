@@ -22,17 +22,18 @@ package org.springframework.beans.factory;
  * determined by whether it implements the FactoryBean interface.
  *
  * @author Rod Johnson
- * @since 10.03.2003
  * @see org.springframework.beans.factory.FactoryBean
+ * @since 10.03.2003
  */
 @SuppressWarnings("serial")
 public class BeanIsNotAFactoryException extends BeanNotOfRequiredTypeException {
 
 	/**
 	 * Create a new BeanIsNotAFactoryException.
-	 * @param name the name of the bean requested
+	 *
+	 * @param name       the name of the bean requested
 	 * @param actualType the actual type returned, which did not match
-	 * the expected type
+	 *                   the expected type
 	 */
 	public BeanIsNotAFactoryException(String name, Class<?> actualType) {
 		super(name, FactoryBean.class, actualType);

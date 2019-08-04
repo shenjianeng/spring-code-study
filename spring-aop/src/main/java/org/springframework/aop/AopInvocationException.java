@@ -30,6 +30,7 @@ public class AopInvocationException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for AopInvocationException.
+	 *
 	 * @param msg the detail message
 	 */
 	public AopInvocationException(String msg) {
@@ -38,7 +39,8 @@ public class AopInvocationException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for AopInvocationException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public AopInvocationException(String msg, Throwable cause) {

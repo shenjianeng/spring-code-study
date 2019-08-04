@@ -82,8 +82,7 @@ final class MockWebResponseBuilder {
 
 		try {
 			return HttpStatus.valueOf(statusCode).getReasonPhrase();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// ignore
 		}
 

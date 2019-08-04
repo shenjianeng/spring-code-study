@@ -29,8 +29,8 @@ import org.springframework.util.StringUtils;
  * e.g. {@code UTF-8}, {@code ISO-8859-16}, etc.
  *
  * @author Arjen Poutsma
- * @since 2.5.4
  * @see Charset
+ * @since 2.5.4
  */
 public class CharsetEditor extends PropertyEditorSupport {
 
@@ -38,8 +38,7 @@ public class CharsetEditor extends PropertyEditorSupport {
 	public void setAsText(String text) throws IllegalArgumentException {
 		if (StringUtils.hasText(text)) {
 			setValue(Charset.forName(text));
-		}
-		else {
+		} else {
 			setValue(null);
 		}
 	}

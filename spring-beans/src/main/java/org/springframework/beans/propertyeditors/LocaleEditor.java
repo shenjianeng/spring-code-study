@@ -28,9 +28,9 @@ import org.springframework.util.StringUtils;
  * Also accepts spaces as separators, as alternative to underscores.
  *
  * @author Juergen Hoeller
- * @since 26.05.2003
  * @see java.util.Locale
  * @see org.springframework.util.StringUtils#parseLocaleString
+ * @since 26.05.2003
  */
 public class LocaleEditor extends PropertyEditorSupport {
 

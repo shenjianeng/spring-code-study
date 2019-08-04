@@ -38,8 +38,8 @@ public class VariableAndFunctionTests extends AbstractExpressionTests {
 
 	@Test
 	public void testVariableAccess_WellKnownVariables() {
-		evaluate("#this.getName()","Nikola Tesla",String.class);
-		evaluate("#root.getName()","Nikola Tesla",String.class);
+		evaluate("#this.getName()", "Nikola Tesla", String.class);
+		evaluate("#root.getName()", "Nikola Tesla", String.class);
 	}
 
 	@Test
@@ -78,8 +78,7 @@ public class VariableAndFunctionTests extends AbstractExpressionTests {
 			@SuppressWarnings("unused")
 			Object v = parser.parseRaw("#notStatic()").getValue(ctx);
 			fail("Should have failed with exception - cannot call non static method that way");
-		}
-		catch (SpelEvaluationException se) {
+		} catch (SpelEvaluationException se) {
 			if (se.getMessageCode() != SpelMessage.FUNCTION_MUST_BE_STATIC) {
 				se.printStackTrace();
 				fail("Should have failed a message about the function needing to be static, not: "

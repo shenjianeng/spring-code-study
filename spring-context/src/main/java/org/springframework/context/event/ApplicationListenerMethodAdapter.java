@@ -179,8 +179,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 			Object result = doInvoke(args);
 			if (result != null) {
 				handleResult(result);
-			}
-			else {
+			} else {
 				logger.trace("No result object given - no result to handle");
 			}
 		}
@@ -206,10 +205,10 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 				event instanceof PayloadApplicationEvent) {
 			Object payload = ((PayloadApplicationEvent) event).getPayload();
 			if (declaredEventClass.isInstance(payload)) {
-				return new Object[] {payload};
+				return new Object[]{payload};
 			}
 		}
-		return new Object[] {event};
+		return new Object[]{event};
 	}
 
 	protected void handleResult(Object result) {
@@ -218,14 +217,12 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 			for (Object event : events) {
 				publishEvent(event);
 			}
-		}
-		else if (result instanceof Collection<?>) {
+		} else if (result instanceof Collection<?>) {
 			Collection<?> events = (Collection<?>) result;
 			for (Object event : events) {
 				publishEvent(event);
 			}
-		}
-		else {
+		} else {
 			publishEvent(result);
 		}
 	}
@@ -259,21 +256,17 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 		ReflectionUtils.makeAccessible(this.method);
 		try {
 			return this.method.invoke(bean, args);
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertTargetBean(this.method, bean, args);
 			throw new IllegalStateException(getInvocationErrorMessage(bean, ex.getMessage(), args), ex);
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			throw new IllegalStateException(getInvocationErrorMessage(bean, ex.getMessage(), args), ex);
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			// Throw underlying exception
 			Throwable targetException = ex.getTargetException();
 			if (targetException instanceof RuntimeException) {
 				throw (RuntimeException) targetException;
-			}
-			else {
+			} else {
 				String msg = getInvocationErrorMessage(bean, "Failed to invoke event listener method", args);
 				throw new UndeclaredThrowableException(targetException, msg);
 			}
@@ -302,6 +295,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	/**
 	 * Add additional details such as the bean type and method signature to
 	 * the given error message.
+	 *
 	 * @param message error message to append the HandlerMethod details to
 	 */
 	protected String getDetailedErrorMessage(Object bean, String message) {
@@ -338,8 +332,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 			sb.append("[").append(i).append("] ");
 			if (resolvedArgs[i] == null) {
 				sb.append("[null] \n");
-			}
-			else {
+			} else {
 				sb.append("[type=").append(resolvedArgs[i].getClass().getName()).append("] ");
 				sb.append("[value=").append(resolvedArgs[i]).append("]\n");
 			}

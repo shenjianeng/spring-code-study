@@ -53,6 +53,7 @@ public class SockJsFrame {
 
 	/**
 	 * Create a new instance frame with the given frame content.
+	 *
 	 * @param content the content (must be a non-empty and represent a valid SockJS frame)
 	 */
 	public SockJsFrame(String content) {
@@ -60,24 +61,19 @@ public class SockJsFrame {
 		if ("o".equals(content)) {
 			this.type = SockJsFrameType.OPEN;
 			this.content = content;
-		}
-		else if ("h".equals(content)) {
+		} else if ("h".equals(content)) {
 			this.type = SockJsFrameType.HEARTBEAT;
 			this.content = content;
-		}
-		else if (content.charAt(0) == 'a') {
+		} else if (content.charAt(0) == 'a') {
 			this.type = SockJsFrameType.MESSAGE;
 			this.content = (content.length() > 1 ? content : "a[]");
-		}
-		else if (content.charAt(0) == 'm') {
+		} else if (content.charAt(0) == 'm') {
 			this.type = SockJsFrameType.MESSAGE;
 			this.content = (content.length() > 1 ? content : "null");
-		}
-		else if (content.charAt(0) == 'c') {
+		} else if (content.charAt(0) == 'c') {
 			this.type = SockJsFrameType.CLOSE;
 			this.content = (content.length() > 1 ? content : "c[]");
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unexpected SockJS frame type in content \"" + content + "\"");
 		}
 	}
@@ -113,8 +109,7 @@ public class SockJsFrame {
 	public String getFrameData() {
 		if (getType() == SockJsFrameType.OPEN || getType() == SockJsFrameType.HEARTBEAT) {
 			return null;
-		}
-		else {
+		} else {
 			return getContent().substring(1);
 		}
 	}

@@ -64,10 +64,14 @@ public class Jaxb2CollectionHttpMessageConverterTests {
 	@Before
 	public void setup() {
 		converter = new Jaxb2CollectionHttpMessageConverter<Collection<Object>>();
-		rootElementListType = new ParameterizedTypeReference<List<RootElement>>() {}.getType();
-		rootElementSetType = new ParameterizedTypeReference<Set<RootElement>>() {}.getType();
-		typeListType = new ParameterizedTypeReference<List<TestType>>() {}.getType();
-		typeSetType = new ParameterizedTypeReference<Set<TestType>>() {}.getType();
+		rootElementListType = new ParameterizedTypeReference<List<RootElement>>() {
+		}.getType();
+		rootElementSetType = new ParameterizedTypeReference<Set<RootElement>>() {
+		}.getType();
+		typeListType = new ParameterizedTypeReference<List<TestType>>() {
+		}.getType();
+		typeSetType = new ParameterizedTypeReference<Set<TestType>>() {
+		}.getType();
 	}
 
 
@@ -130,7 +134,7 @@ public class Jaxb2CollectionHttpMessageConverterTests {
 	@SuppressWarnings("unchecked")
 	public void readXmlRootElementExternalEntityDisabled() throws Exception {
 		Resource external = new ClassPathResource("external.txt", getClass());
-		String content =  "<!DOCTYPE root [" +
+		String content = "<!DOCTYPE root [" +
 				"  <!ELEMENT external ANY >\n" +
 				"  <!ENTITY ext SYSTEM \"" + external.getURI() + "\" >]>" +
 				"  <list><rootElement><type s=\"1\"/><external>&ext;</external></rootElement></list>";
@@ -149,8 +153,7 @@ public class Jaxb2CollectionHttpMessageConverterTests {
 			Collection<RootElement> result = converter.read(rootElementListType, null, inputMessage);
 			assertEquals(1, result.size());
 			assertEquals("", result.iterator().next().external);
-		}
-		catch (HttpMessageNotReadableException ex) {
+		} catch (HttpMessageNotReadableException ex) {
 			// Some parsers raise an exception
 		}
 	}
@@ -159,7 +162,7 @@ public class Jaxb2CollectionHttpMessageConverterTests {
 	@SuppressWarnings("unchecked")
 	public void readXmlRootElementExternalEntityEnabled() throws Exception {
 		Resource external = new ClassPathResource("external.txt", getClass());
-		String content =  "<!DOCTYPE root [" +
+		String content = "<!DOCTYPE root [" +
 				"  <!ELEMENT external ANY >\n" +
 				"  <!ENTITY ext SYSTEM \"" + external.getURI() + "\" >]>" +
 				"  <list><rootElement><type s=\"1\"/><external>&ext;</external></rootElement></list>";
@@ -218,7 +221,7 @@ public class Jaxb2CollectionHttpMessageConverterTests {
 		@XmlElement
 		public TestType type = new TestType();
 
-		@XmlElement(required=false)
+		@XmlElement(required = false)
 		public String external;
 
 		@Override

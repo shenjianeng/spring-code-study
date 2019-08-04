@@ -38,10 +38,10 @@ import org.springframework.web.socket.sockjs.transport.handler.WebSocketTranspor
  * Base class for {@link WebSocketHandlerRegistration WebSocketHandlerRegistrations} that gathers all the configuration
  * options but allows sub-classes to put together the actual HTTP request mappings.
  *
+ * @param <M> the mappings type
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 4.0
- * @param <M> the mappings type
  */
 public abstract class AbstractWebSocketHandlerRegistration<M> implements WebSocketHandlerRegistration {
 
@@ -139,8 +139,7 @@ public abstract class AbstractWebSocketHandlerRegistration<M> implements WebSock
 					addSockJsServiceMapping(mappings, sockJsService, wsHandler, pathPattern);
 				}
 			});
-		}
-		else {
+		} else {
 			HandshakeHandler handshakeHandler = getOrCreateHandshakeHandler();
 			HandshakeInterceptor[] interceptors = getInterceptors();
 			this.handlerMap.forEach((wsHandler, paths) -> {
@@ -161,9 +160,9 @@ public abstract class AbstractWebSocketHandlerRegistration<M> implements WebSock
 	protected abstract M createMappings();
 
 	protected abstract void addSockJsServiceMapping(M mappings, SockJsService sockJsService,
-			WebSocketHandler handler, String pathPattern);
+													WebSocketHandler handler, String pathPattern);
 
 	protected abstract void addWebSocketHandlerMapping(M mappings, WebSocketHandler wsHandler,
-			HandshakeHandler handshakeHandler, HandshakeInterceptor[] interceptors, String path);
+													   HandshakeHandler handshakeHandler, HandshakeInterceptor[] interceptors, String path);
 
 }

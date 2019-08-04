@@ -38,8 +38,8 @@ import org.springframework.util.CollectionUtils;
  * @author Chris Beams
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 3.1
  * @see EnableCaching
+ * @since 3.1
  */
 @Configuration
 public abstract class AbstractCachingConfiguration implements ImportAware {

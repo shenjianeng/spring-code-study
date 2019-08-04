@@ -37,6 +37,7 @@ public class HeaderContentNegotiationStrategy implements ContentNegotiationStrat
 
 	/**
 	 * {@inheritDoc}
+	 *
 	 * @throws HttpMediaTypeNotAcceptableException if the 'Accept' header cannot be parsed
 	 */
 	@Override
@@ -53,8 +54,7 @@ public class HeaderContentNegotiationStrategy implements ContentNegotiationStrat
 			List<MediaType> mediaTypes = MediaType.parseMediaTypes(headerValues);
 			MediaType.sortBySpecificityAndQuality(mediaTypes);
 			return !CollectionUtils.isEmpty(mediaTypes) ? mediaTypes : MEDIA_TYPE_ALL_LIST;
-		}
-		catch (InvalidMediaTypeException ex) {
+		} catch (InvalidMediaTypeException ex) {
 			throw new HttpMediaTypeNotAcceptableException(
 					"Could not parse 'Accept' header " + headerValues + ": " + ex.getMessage());
 		}

@@ -63,11 +63,11 @@ import org.springframework.util.ClassUtils;
  * {@link org.springframework.jdbc.datasource.DriverManagerDataSource} definition!
  *
  * @author Juergen Hoeller
- * @since 22.05.2003
  * @see #setProxyInterface
  * @see #setLookupOnStartup
  * @see #setCache
  * @see JndiObjectTargetSource
+ * @since 22.05.2003
  */
 public class JndiObjectFactoryBean extends JndiObjectLocator
 		implements FactoryBean<Object>, BeanFactoryAware, BeanClassLoaderAware {
@@ -99,12 +99,13 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * <p>Typically used in conjunction with "lookupOnStartup"=false and/or "cache"=false.
 	 * Needs to be specified because the actual JNDI object type is not known
 	 * in advance in case of a lazy lookup.
+	 *
 	 * @see #setProxyInterfaces
 	 * @see #setLookupOnStartup
 	 * @see #setCache
 	 */
 	public void setProxyInterface(Class<?> proxyInterface) {
-		this.proxyInterfaces = new Class<?>[] {proxyInterface};
+		this.proxyInterfaces = new Class<?>[]{proxyInterface};
 	}
 
 	/**
@@ -112,6 +113,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * <p>Typically used in conjunction with "lookupOnStartup"=false and/or "cache"=false.
 	 * Note that proxy interfaces will be autodetected from a specified "expectedType",
 	 * if necessary.
+	 *
 	 * @see #setExpectedType
 	 * @see #setLookupOnStartup
 	 * @see #setCache
@@ -125,6 +127,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * <p>Can be turned off to allow for late availability of the JNDI object.
 	 * In this case, the JNDI object will be fetched on first access.
 	 * <p>For a lazy lookup, a proxy interface needs to be specified.
+	 *
 	 * @see #setProxyInterface
 	 * @see #setCache
 	 */
@@ -138,6 +141,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * <p>Can be turned off to allow for hot redeployment of JNDI objects.
 	 * In this case, the JNDI object will be fetched for each invocation.
 	 * <p>For hot redeployment, a proxy interface needs to be specified.
+	 *
 	 * @see #setProxyInterface
 	 * @see #setLookupOnStartup
 	 */
@@ -167,6 +171,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * <p>Note: This is only supported for lookup on startup.
 	 * If specified together with {@link #setExpectedType}, the specified value
 	 * needs to be either of that type or convertible to it.
+	 *
 	 * @see #setLookupOnStartup
 	 * @see ConfigurableBeanFactory#getTypeConverter()
 	 * @see SimpleTypeConverter
@@ -205,16 +210,14 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 			}
 			// We need a proxy and a JndiObjectTargetSource.
 			this.jndiObject = JndiObjectProxyFactory.createJndiObjectProxy(this);
-		}
-		else {
+		} else {
 			if (this.defaultObject != null && getExpectedType() != null &&
 					!getExpectedType().isInstance(this.defaultObject)) {
 				TypeConverter converter = (this.beanFactory != null ?
 						this.beanFactory.getTypeConverter() : new SimpleTypeConverter());
 				try {
 					this.defaultObject = converter.convertIfNecessary(this.defaultObject, getExpectedType());
-				}
-				catch (TypeMismatchException ex) {
+				} catch (TypeMismatchException ex) {
 					throw new IllegalArgumentException("Default object [" + this.defaultObject + "] of type [" +
 							this.defaultObject.getClass().getName() + "] is not of expected type [" +
 							getExpectedType().getName() + "] and cannot be converted either", ex);
@@ -228,6 +231,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	/**
 	 * Lookup variant that returns the specified "defaultObject"
 	 * (if any) in case of lookup failure.
+	 *
 	 * @return the located object, or the "defaultObject" as fallback
 	 * @throws NamingException in case of lookup failure without fallback
 	 * @see #setDefaultObject
@@ -236,25 +240,21 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 		ClassLoader originalClassLoader = ClassUtils.overrideThreadContextClassLoader(this.beanClassLoader);
 		try {
 			return lookup();
-		}
-		catch (TypeMismatchNamingException ex) {
+		} catch (TypeMismatchNamingException ex) {
 			// Always let TypeMismatchNamingException through -
 			// we don't want to fall back to the defaultObject in this case.
 			throw ex;
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			if (this.defaultObject != null) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("JNDI lookup failed - returning specified default object instead", ex);
-				}
-				else if (logger.isDebugEnabled()) {
+				} else if (logger.isDebugEnabled()) {
 					logger.debug("JNDI lookup failed - returning specified default object instead: " + ex);
 				}
 				return this.defaultObject;
 			}
 			throw ex;
-		}
-		finally {
+		} finally {
 			if (originalClassLoader != null) {
 				Thread.currentThread().setContextClassLoader(originalClassLoader);
 			}
@@ -276,15 +276,13 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 		if (this.proxyInterfaces != null) {
 			if (this.proxyInterfaces.length == 1) {
 				return this.proxyInterfaces[0];
-			}
-			else if (this.proxyInterfaces.length > 1) {
+			} else if (this.proxyInterfaces.length > 1) {
 				return createCompositeInterface(this.proxyInterfaces);
 			}
 		}
 		if (this.jndiObject != null) {
 			return this.jndiObject.getClass();
-		}
-		else {
+		} else {
 			return getExpectedType();
 		}
 	}
@@ -300,6 +298,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 	 * implementing the given interfaces in one single Class.
 	 * <p>The default implementation builds a JDK proxy class for the
 	 * given interfaces.
+	 *
 	 * @param interfaces the interfaces to merge
 	 * @return the merged interface as Class
 	 * @see java.lang.reflect.Proxy#getProxyClass
@@ -331,8 +330,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 			ProxyFactory proxyFactory = new ProxyFactory();
 			if (jof.proxyInterfaces != null) {
 				proxyFactory.setInterfaces(jof.proxyInterfaces);
-			}
-			else {
+			} else {
 				Class<?> targetClass = targetSource.getTargetClass();
 				if (targetClass == null) {
 					throw new IllegalStateException(
@@ -371,8 +369,7 @@ public class JndiObjectFactoryBean extends JndiObjectLocator
 			Context ctx = (isEligible(invocation.getMethod()) ? this.jndiTemplate.getContext() : null);
 			try {
 				return invocation.proceed();
-			}
-			finally {
+			} finally {
 				this.jndiTemplate.releaseContext(ctx);
 			}
 		}

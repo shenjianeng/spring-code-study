@@ -36,6 +36,7 @@ import static org.springframework.mock.http.server.reactive.test.MockServerHttpR
 
 /**
  * Unit tests for {@link ModelArgumentResolver}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ModelArgumentResolverTests {
@@ -70,6 +71,7 @@ public class ModelArgumentResolverTests {
 	}
 
 	@SuppressWarnings("unused")
-	void handle(Model model, Map<String, Object> map, ModelMap modelMap, Object object) {}
+	void handle(Model model, Map<String, Object> map, ModelMap modelMap, Object object) {
+	}
 
 }

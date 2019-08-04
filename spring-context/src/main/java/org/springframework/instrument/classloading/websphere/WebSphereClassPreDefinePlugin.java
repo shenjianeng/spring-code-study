@@ -40,8 +40,9 @@ class WebSphereClassPreDefinePlugin implements InvocationHandler {
 
 	/**
 	 * Create a new {@link WebSphereClassPreDefinePlugin}.
+	 *
 	 * @param transformer the {@link ClassFileTransformer} to be adapted
-	 * (must not be {@code null})
+	 *                    (must not be {@code null})
 	 */
 	public WebSphereClassPreDefinePlugin(ClassFileTransformer transformer) {
 		this.transformer = transformer;
@@ -52,8 +53,7 @@ class WebSphereClassPreDefinePlugin implements InvocationHandler {
 			String dummyClass = Dummy.class.getName().replace('.', '/');
 			byte[] bytes = FileCopyUtils.copyToByteArray(classLoader.getResourceAsStream(dummyClass + ".class"));
 			transformer.transform(classLoader, dummyClass, null, null, bytes);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalArgumentException("Cannot load transformer", ex);
 		}
 	}
@@ -64,17 +64,13 @@ class WebSphereClassPreDefinePlugin implements InvocationHandler {
 		String name = method.getName();
 		if ("equals".equals(name)) {
 			return (proxy == args[0]);
-		}
-		else if ("hashCode".equals(name)) {
+		} else if ("hashCode".equals(name)) {
 			return hashCode();
-		}
-		else if ("toString".equals(name)) {
+		} else if ("toString".equals(name)) {
 			return toString();
-		}
-		else if ("transformClass".equals(name)) {
+		} else if ("transformClass".equals(name)) {
 			return transform((String) args[0], (byte[]) args[1], (CodeSource) args[2], (ClassLoader) args[3]);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unknown method: " + method);
 		}
 	}

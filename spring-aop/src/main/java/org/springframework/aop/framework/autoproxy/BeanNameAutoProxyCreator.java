@@ -37,11 +37,11 @@ import org.springframework.util.StringUtils;
  * "interceptorNames" property.
  *
  * @author Juergen Hoeller
- * @since 10.10.2003
  * @see #setBeanNames
  * @see #isMatch
  * @see #setInterceptorNames
  * @see AbstractAutoProxyCreator
+ * @since 10.10.2003
  */
 @SuppressWarnings("serial")
 public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
@@ -59,6 +59,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	 * If you intend to proxy a FactoryBean instance itself (a rare use case, but
 	 * Spring 1.2's default behavior), specify the bean name of the FactoryBean
 	 * including the factory-bean prefix "&": e.g. "&myFactoryBean".
+	 *
 	 * @see org.springframework.beans.factory.FactoryBean
 	 * @see org.springframework.beans.factory.BeanFactory#FACTORY_BEAN_PREFIX
 	 */
@@ -108,7 +109,8 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	 * Return if the given bean name matches the mapped name.
 	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
-	 * @param beanName the bean name to check
+	 *
+	 * @param beanName   the bean name to check
 	 * @param mappedName the name in the configured list of names
 	 * @return if the names match
 	 * @see org.springframework.util.PatternMatchUtils#simpleMatch(String, String)

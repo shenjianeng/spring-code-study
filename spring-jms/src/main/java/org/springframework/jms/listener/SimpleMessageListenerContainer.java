@@ -57,10 +57,10 @@ import org.springframework.util.Assert;
  * see {@link DefaultMessageListenerContainer}.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see javax.jms.MessageConsumer#setMessageListener
  * @see DefaultMessageListenerContainer
  * @see org.springframework.jms.listener.endpoint.JmsMessageEndpointManager
+ * @since 2.0
  */
 public class SimpleMessageListenerContainer extends AbstractMessageListenerContainer implements ExceptionListener {
 
@@ -89,6 +89,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * <p>Default is "false": connecting early, i.e. during the bean initialization phase.
 	 * Set this flag to "true" in order to switch to lazy connecting if your target broker
 	 * is likely to not have started up yet and you prefer to not even try a connection.
+	 *
 	 * @see #start()
 	 * @see #initialize()
 	 */
@@ -103,9 +104,10 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * consumers whenever the connection propagates an exception to its listener.
 	 * Set this flag to "false" in order to rely on automatic recovery within the
 	 * provider, holding on to the existing connection and consumer handles.
-	 * @since 5.1.8
+	 *
 	 * @see #onException(JMSException)
 	 * @see Connection#setExceptionListener
+	 * @since 5.1.8
 	 */
 	public void setRecoverOnException(boolean recoverOnException) {
 		this.recoverOnException = recoverOnException;
@@ -126,12 +128,10 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 			int separatorIndex = concurrency.indexOf('-');
 			if (separatorIndex != -1) {
 				setConcurrentConsumers(Integer.parseInt(concurrency.substring(separatorIndex + 1, concurrency.length())));
-			}
-			else {
+			} else {
 				setConcurrentConsumers(Integer.parseInt(concurrency));
 			}
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			throw new IllegalArgumentException("Invalid concurrency value [" + concurrency + "]: only " +
 					"single maximum integer (e.g. \"5\") and minimum-maximum combo (e.g. \"3-5\") supported. " +
 					"Note that SimpleMessageListenerContainer will effectively ignore the minimum value and " +
@@ -174,6 +174,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * this setting with a {@link SessionAwareMessageListener}, at least not
 	 * if the latter performs actual work on the given Session. A standard
 	 * {@link javax.jms.MessageListener} will work fine, in general.
+	 *
 	 * @see #setConcurrentConsumers
 	 * @see org.springframework.core.task.SimpleAsyncTaskExecutor
 	 * @see org.springframework.scheduling.commonj.WorkManagerTaskExecutor
@@ -206,6 +207,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	/**
 	 * Creates the specified number of concurrent consumers,
 	 * in the form of a JMS Session plus associated MessageConsumer.
+	 *
 	 * @see #createListenerConsumer
 	 */
 	@Override
@@ -213,8 +215,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 		if (!this.connectLazily) {
 			try {
 				establishSharedConnection();
-			}
-			catch (JMSException ex) {
+			} catch (JMSException ex) {
 				logger.debug("Could not connect on initialization - registering message consumers lazily", ex);
 				return;
 			}
@@ -245,6 +246,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * JMS ExceptionListener implementation, invoked by the JMS provider in
 	 * case of connection failures. Re-initializes this listener container's
 	 * shared connection and its sessions and consumers, if necessary.
+	 *
 	 * @param ex the reported connection exception
 	 * @see #setRecoverOnException
 	 * @see #refreshSharedConnection()
@@ -268,8 +270,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 				refreshSharedConnection();
 				initializeConsumers();
 				logger.debug("Successfully refreshed JMS Connection");
-			}
-			catch (JMSException recoverEx) {
+			} catch (JMSException recoverEx) {
 				logger.debug("Failed to recover JMS Connection", recoverEx);
 				logger.error("Encountered non-recoverable JMSException", ex);
 			}
@@ -278,6 +279,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 
 	/**
 	 * Initialize the JMS Sessions and MessageConsumers for this container.
+	 *
 	 * @throws JMSException in case of setup failure
 	 */
 	protected void initializeConsumers() throws JMSException {
@@ -300,6 +302,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	/**
 	 * Create a MessageConsumer for the given JMS Session,
 	 * registering a MessageListener for the specified listener.
+	 *
 	 * @param session the JMS Session to work on
 	 * @return the MessageConsumer
 	 * @throws JMSException if thrown by JMS methods
@@ -316,8 +319,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 
 		if (this.taskExecutor != null) {
 			consumer.setMessageListener(message -> this.taskExecutor.execute(() -> processMessage(message, session)));
-		}
-		else {
+		} else {
 			consumer.setMessageListener(message -> processMessage(message, session));
 		}
 
@@ -328,6 +330,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 	 * Process a message received from the provider.
 	 * <p>Executes the listener, exposing the current JMS Session as
 	 * thread-bound resource (if "exposeListenerSession" is "true").
+	 *
 	 * @param message the received JMS Message
 	 * @param session the JMS Session to operate on
 	 * @see #executeListener
@@ -342,8 +345,7 @@ public class SimpleMessageListenerContainer extends AbstractMessageListenerConta
 		}
 		try {
 			executeListener(session, message);
-		}
-		finally {
+		} finally {
 			if (exposeResource) {
 				TransactionSynchronizationManager.unbindResource(getConnectionFactory());
 			}

@@ -48,6 +48,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	/**
 	 * Construct a new {@code ModelMap} containing the supplied attribute
 	 * under the supplied name.
+	 *
 	 * @see #addAttribute(String, Object)
 	 */
 	public ConcurrentModel(String attributeName, Object attributeValue) {
@@ -58,6 +59,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	 * Construct a new {@code ModelMap} containing the supplied attribute.
 	 * Uses attribute name generation to generate the key for the supplied model
 	 * object.
+	 *
 	 * @see #addAttribute(Object)
 	 */
 	public ConcurrentModel(Object attributeValue) {
@@ -69,8 +71,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	public Object put(String key, Object value) {
 		if (value != null) {
 			return super.put(key, value);
-		}
-		else {
+		} else {
 			return remove(key);
 		}
 	}
@@ -84,9 +85,10 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 
 	/**
 	 * Add the supplied attribute under the supplied name.
-	 * @param attributeName the name of the model attribute (never {@code null})
+	 *
+	 * @param attributeName  the name of the model attribute (never {@code null})
 	 * @param attributeValue the model attribute value (ignored if {@code null},
-	 * just removing an existing entry if any)
+	 *                       just removing an existing entry if any)
 	 */
 	public ConcurrentModel addAttribute(String attributeName, @Nullable Object attributeValue) {
 		Assert.notNull(attributeName, "Model attribute name must not be null");
@@ -101,6 +103,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	 * the model when using this method because we cannot correctly determine
 	 * the true convention name. View code should check for {@code null} rather
 	 * than for empty collections as is already done by JSTL tags.</i>
+	 *
 	 * @param attributeValue the model attribute value (never {@code null})
 	 */
 	public ConcurrentModel addAttribute(Object attributeValue) {
@@ -114,6 +117,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 	/**
 	 * Copy all attributes in the supplied {@code Collection} into this
 	 * {@code Map}, using attribute name generation for each element.
+	 *
 	 * @see #addAttribute(Object)
 	 */
 	public ConcurrentModel addAllAttributes(@Nullable Collection<?> attributeValues) {
@@ -127,6 +131,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 
 	/**
 	 * Copy all attributes in the supplied {@code Map} into this {@code Map}.
+	 *
 	 * @see #addAttribute(String, Object)
 	 */
 	public ConcurrentModel addAllAttributes(@Nullable Map<String, ?> attributes) {
@@ -154,6 +159,7 @@ public class ConcurrentModel extends ConcurrentHashMap<String, Object> implement
 
 	/**
 	 * Does this model contain an attribute of the given name?
+	 *
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return whether this model contains a corresponding attribute
 	 */

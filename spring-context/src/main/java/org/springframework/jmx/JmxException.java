@@ -30,6 +30,7 @@ public class JmxException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for JmxException.
+	 *
 	 * @param msg the detail message
 	 */
 	public JmxException(String msg) {
@@ -38,7 +39,8 @@ public class JmxException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for JmxException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (usually a raw JMX API exception)
 	 */
 	public JmxException(String msg, Throwable cause) {

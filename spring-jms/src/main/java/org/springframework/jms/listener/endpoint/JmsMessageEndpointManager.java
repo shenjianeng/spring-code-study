@@ -44,12 +44,12 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 2.5
  * @see javax.jms.MessageListener
  * @see #setActivationSpecConfig
  * @see JmsActivationSpecConfig
  * @see JmsActivationSpecFactory
  * @see JmsMessageEndpointFactory
+ * @since 2.5
  */
 public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 		implements BeanNameAware, MessageListenerContainer {
@@ -67,6 +67,7 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	/**
 	 * Set the JMS MessageListener for this endpoint.
 	 * <p>This is a shortcut for configuring a dedicated JmsMessageEndpointFactory.
+	 *
 	 * @see JmsMessageEndpointFactory#setMessageListener
 	 */
 	public void setMessageListener(MessageListener messageListener) {
@@ -92,6 +93,7 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	 * resource provider's ActivationSpec documentation for the local
 	 * transaction options of your particular provider.
 	 * <p>This is a shortcut for configuring a dedicated JmsMessageEndpointFactory.
+	 *
 	 * @see JmsMessageEndpointFactory#setTransactionManager
 	 */
 	public void setTransactionManager(Object transactionManager) {
@@ -108,6 +110,7 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	 * "ActiveMQActivationSpec" in the same package), and populates the
 	 * ActivationSpec properties as suggested by the JCA 1.5 specification
 	 * (plus a couple of autodetected vendor-specific properties).
+	 *
 	 * @see DefaultJmsActivationSpecFactory
 	 */
 	public void setActivationSpecFactory(@Nullable JmsActivationSpecFactory activationSpecFactory) {
@@ -124,6 +127,7 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	 * (see {@link StandardJmsActivationSpecFactory#setDestinationResolver}). This is simply
 	 * a shortcut for parameterizing the default JmsActivationSpecFactory; it will replace
 	 * any custom JmsActivationSpecFactory that might have been set before.
+	 *
 	 * @see StandardJmsActivationSpecFactory#setDestinationResolver
 	 */
 	public void setDestinationResolver(DestinationResolver destinationResolver) {
@@ -182,8 +186,7 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	public void setupMessageListener(Object messageListener) {
 		if (messageListener instanceof MessageListener) {
 			setMessageListener((MessageListener) messageListener);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unsupported message listener '" +
 					messageListener.getClass().getName() + "': only '" + MessageListener.class.getName() +
 					"' type is supported");

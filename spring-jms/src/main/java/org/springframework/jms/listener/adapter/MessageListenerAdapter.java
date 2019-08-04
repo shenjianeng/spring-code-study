@@ -70,7 +70,7 @@ import org.springframework.util.ObjectUtils;
  *    void handleMessage(byte[] bytes);
  *    void handleMessage(Serializable obj);
  * }</pre>
- *
+ * <p>
  * This next example handles all {@code Message} types and gets
  * passed the actual (raw) {@code Message} as an argument. Again, no
  * {@code Message} will be sent back as all of these methods return
@@ -82,7 +82,7 @@ import org.springframework.util.ObjectUtils;
  *    void handleMessage(BytesMessage message);
  *    void handleMessage(ObjectMessage message);
  * }</pre>
- *
+ * <p>
  * This next example illustrates a {@code Message} delegate
  * that just consumes the {@code String} contents of
  * {@link javax.jms.TextMessage TextMessages}. Notice also how the
@@ -94,7 +94,7 @@ import org.springframework.util.ObjectUtils;
  * <pre class="code">public interface TextMessageContentDelegate {
  *    void onMessage(String text);
  * }</pre>
- *
+ * <p>
  * This final example illustrates a {@code Message} delegate
  * that just consumes the {@code String} contents of
  * {@link javax.jms.TextMessage TextMessages}. Notice how the return type
@@ -104,13 +104,12 @@ import org.springframework.util.ObjectUtils;
  * <pre class="code">public interface ResponsiveTextMessageContentDelegate {
  *    String handleMessage(String text);
  * }</pre>
- *
+ * <p>
  * For further examples and discussion please do refer to the Spring
  * reference documentation which describes this class (and it's attendant
  * XML configuration) in detail.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setDelegate
  * @see #setDefaultListenerMethod
  * @see #setDefaultResponseDestination
@@ -118,6 +117,7 @@ import org.springframework.util.ObjectUtils;
  * @see org.springframework.jms.support.converter.SimpleMessageConverter
  * @see org.springframework.jms.listener.SessionAwareMessageListener
  * @see org.springframework.jms.listener.AbstractMessageListenerContainer#setMessageListener
+ * @since 2.0
  */
 public class MessageListenerAdapter extends AbstractAdaptableMessageListener implements SubscriptionNameProvider {
 
@@ -141,6 +141,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 	/**
 	 * Create a new {@link MessageListenerAdapter} for the given delegate.
+	 *
 	 * @param delegate the delegate object
 	 */
 	public MessageListenerAdapter(Object delegate) {
@@ -172,6 +173,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * Specify the name of the default listener method to delegate to,
 	 * for the case where no specific listener method has been determined.
 	 * Out-of-the-box value is {@link #ORIGINAL_DEFAULT_LISTENER_METHOD "handleMessage"}.
+	 *
 	 * @see #getListenerMethodName
 	 */
 	public void setDefaultListenerMethod(String defaultListenerMethod) {
@@ -191,6 +193,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * <p>Delegates the message to the target listener method, with appropriate
 	 * conversion of the message argument. If the target method returns a
 	 * non-null object, wrap in a JMS message and send it back.
+	 *
 	 * @param message the incoming JMS message
 	 * @param session the JMS session to operate on
 	 * @throws JMSException if thrown by JMS API methods
@@ -222,8 +225,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 		Object result = invokeListenerMethod(methodName, listenerArguments);
 		if (result != null) {
 			handleResult(result, message, session);
-		}
-		else {
+		} else {
 			logger.trace("No result object given - no result to handle");
 		}
 	}
@@ -233,8 +235,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 		Object delegate = getDelegate();
 		if (delegate != this && delegate instanceof SubscriptionNameProvider) {
 			return ((SubscriptionNameProvider) delegate).getSubscriptionName();
-		}
-		else {
+		} else {
 			return delegate.getClass().getName();
 		}
 	}
@@ -244,9 +245,10 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * handle the given message.
 	 * <p>The default implementation simply returns the configured
 	 * default listener method, if any.
-	 * @param originalMessage the JMS request message
+	 *
+	 * @param originalMessage  the JMS request message
 	 * @param extractedMessage the converted JMS request message,
-	 * to be passed into the listener method as argument
+	 *                         to be passed into the listener method as argument
 	 * @return the name of the listener method (never {@code null})
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see #setDefaultListenerMethod
@@ -265,19 +267,21 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	 * <p>This can be overridden to treat special message content such as arrays
 	 * differently, for example passing in each element of the message array
 	 * as distinct method argument.
+	 *
 	 * @param extractedMessage the content of the message
 	 * @return the array of arguments to be passed into the
 	 * listener method (each element of the array corresponding
 	 * to a distinct method argument)
 	 */
 	protected Object[] buildListenerArguments(Object extractedMessage) {
-		return new Object[] {extractedMessage};
+		return new Object[]{extractedMessage};
 	}
 
 	/**
 	 * Invoke the specified listener method.
+	 *
 	 * @param methodName the name of the listener method
-	 * @param arguments the message arguments to be passed in
+	 * @param arguments  the message arguments to be passed in
 	 * @return the result returned from the listener method
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see #getListenerMethodName
@@ -292,18 +296,15 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 			methodInvoker.setArguments(arguments);
 			methodInvoker.prepare();
 			return methodInvoker.invoke();
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			Throwable targetEx = ex.getTargetException();
 			if (targetEx instanceof JMSException) {
 				throw (JMSException) targetEx;
-			}
-			else {
+			} else {
 				throw new ListenerExecutionFailedException(
 						"Listener method '" + methodName + "' threw exception", targetEx);
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new ListenerExecutionFailedException("Failed to invoke target method '" + methodName +
 					"' with arguments " + ObjectUtils.nullSafeToString(arguments), ex);
 		}

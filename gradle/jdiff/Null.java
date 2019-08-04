@@ -4,6 +4,6 @@
  * argument, even though JDiff doesn't use it.
  */
 public class Null {
-    public Null() {
-    }
+	public Null() {
+	}
 }

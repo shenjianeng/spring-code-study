@@ -125,7 +125,8 @@ public class StatementCreatorUtilsTests {
 		verify(preparedStatement).setObject(1, "test", Types.CHAR);
 	}
 
-	@Test public void testSetParameterValueWithStringAndUnknownType() throws SQLException {
+	@Test
+	public void testSetParameterValueWithStringAndUnknownType() throws SQLException {
 		StatementCreatorUtils.setParameterValue(preparedStatement, 1, SqlTypeValue.TYPE_UNKNOWN, null, "test");
 		verify(preparedStatement).setString(1, "test");
 	}

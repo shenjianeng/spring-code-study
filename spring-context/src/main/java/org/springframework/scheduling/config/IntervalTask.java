@@ -22,9 +22,9 @@ package org.springframework.scheduling.config;
  * context.
  *
  * @author Chris Beams
- * @since 3.2
  * @see ScheduledTaskRegistrar#addFixedRateTask(IntervalTask)
  * @see ScheduledTaskRegistrar#addFixedDelayTask(IntervalTask)
+ * @since 3.2
  */
 public class IntervalTask extends Task {
 
@@ -35,8 +35,9 @@ public class IntervalTask extends Task {
 
 	/**
 	 * Create a new {@code IntervalTask}.
-	 * @param runnable the underlying task to execute
-	 * @param interval how often in milliseconds the task should be executed
+	 *
+	 * @param runnable     the underlying task to execute
+	 * @param interval     how often in milliseconds the task should be executed
 	 * @param initialDelay the initial delay before first execution of the task
 	 */
 	public IntervalTask(Runnable runnable, long interval, long initialDelay) {
@@ -47,6 +48,7 @@ public class IntervalTask extends Task {
 
 	/**
 	 * Create a new {@code IntervalTask} with no initial delay.
+	 *
 	 * @param runnable the underlying task to execute
 	 * @param interval how often in milliseconds the task should be executed
 	 */

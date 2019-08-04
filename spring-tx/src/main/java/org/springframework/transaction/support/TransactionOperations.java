@@ -36,10 +36,11 @@ public interface TransactionOperations {
 	 * a domain object or a collection of domain objects. A RuntimeException thrown
 	 * by the callback is treated as a fatal exception that enforces a rollback.
 	 * Such an exception gets propagated to the caller of the template.
+	 *
 	 * @param action the callback object that specifies the transactional action
 	 * @return a result object returned by the callback, or {@code null} if none
 	 * @throws TransactionException in case of initialization, rollback, or system errors
-	 * @throws RuntimeException if thrown by the TransactionCallback
+	 * @throws RuntimeException     if thrown by the TransactionCallback
 	 */
 	@Nullable
 	<T> T execute(TransactionCallback<T> action) throws TransactionException;

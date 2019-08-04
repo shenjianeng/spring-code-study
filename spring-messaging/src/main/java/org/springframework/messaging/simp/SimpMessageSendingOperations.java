@@ -47,9 +47,10 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 
 	/**
 	 * Send a message to the given user.
-	 * @param user the user that should receive the message.
+	 *
+	 * @param user        the user that should receive the message.
 	 * @param destination the destination to send the message to.
-	 * @param payload the payload to send
+	 * @param payload     the payload to send
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload) throws MessagingException;
 
@@ -79,19 +80,21 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * the above example, implementations of this interface should take notice and
 	 * update the headers in the same instance (rather than copy or re-create it)
 	 * and then set it immutable before sending the final message.
-	 * @param user the user that should receive the message (must not be {@code null})
+	 *
+	 * @param user        the user that should receive the message (must not be {@code null})
 	 * @param destination the destination to send the message to (must not be {@code null})
-	 * @param payload the payload to send (may be {@code null})
-	 * @param headers the message headers (may be {@code null})
+	 * @param payload     the payload to send (may be {@code null})
+	 * @param headers     the message headers (may be {@code null})
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, Map<String, Object> headers)
 			throws MessagingException;
 
 	/**
 	 * Send a message to the given user.
-	 * @param user the user that should receive the message (must not be {@code null})
-	 * @param destination the destination to send the message to (must not be {@code null})
-	 * @param payload the payload to send (may be {@code null})
+	 *
+	 * @param user          the user that should receive the message (must not be {@code null})
+	 * @param destination   the destination to send the message to (must not be {@code null})
+	 * @param payload       the payload to send (may be {@code null})
 	 * @param postProcessor a postProcessor to post-process or modify the created message
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, MessagePostProcessor postProcessor)
@@ -101,13 +104,14 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * Send a message to the given user.
 	 * <p>See {@link #convertAndSend(Object, Object, java.util.Map)} for important
 	 * notes regarding the input headers.
-	 * @param user the user that should receive the message
-	 * @param destination the destination to send the message to
-	 * @param payload the payload to send
-	 * @param headers the message headers
+	 *
+	 * @param user          the user that should receive the message
+	 * @param destination   the destination to send the message to
+	 * @param payload       the payload to send
+	 * @param headers       the message headers
 	 * @param postProcessor a postProcessor to post-process or modify the created message
 	 */
 	void convertAndSendToUser(String user, String destination, Object payload, @Nullable Map<String, Object> headers,
-			@Nullable MessagePostProcessor postProcessor) throws MessagingException;
+							  @Nullable MessagePostProcessor postProcessor) throws MessagingException;
 
 }

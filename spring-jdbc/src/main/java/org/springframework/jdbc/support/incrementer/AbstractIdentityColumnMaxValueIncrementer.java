@@ -39,15 +39,20 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 
 	private boolean deleteSpecificValues = false;
 
-	/** The current cache of values. */
+	/**
+	 * The current cache of values.
+	 */
 	private long[] valueCache;
 
-	/** The next id to serve from the value cache. */
+	/**
+	 * The next id to serve from the value cache.
+	 */
 	private int nextValueIndex = -1;
 
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 * @see #setColumnName
@@ -83,10 +88,10 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 	protected synchronized long getNextKey() throws DataAccessException {
 		if (this.nextValueIndex < 0 || this.nextValueIndex >= getCacheSize()) {
 			/*
-			* Need to use straight JDBC code because we need to make sure that the insert and select
-			* are performed on the same connection (otherwise we can't be sure that @@identity
-			* returns the correct value)
-			*/
+			 * Need to use straight JDBC code because we need to make sure that the insert and select
+			 * are performed on the same connection (otherwise we can't be sure that @@identity
+			 * returns the correct value)
+			 */
 			Connection con = DataSourceUtils.getConnection(getDataSource());
 			Statement stmt = null;
 			try {
@@ -102,17 +107,14 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 							throw new DataAccessResourceFailureException("Identity statement failed after inserting");
 						}
 						this.valueCache[i] = rs.getLong(1);
-					}
-					finally {
+					} finally {
 						JdbcUtils.closeResultSet(rs);
 					}
 				}
 				stmt.executeUpdate(getDeleteStatement(this.valueCache));
-			}
-			catch (SQLException ex) {
+			} catch (SQLException ex) {
 				throw new DataAccessResourceFailureException("Could not increment identity", ex);
-			}
-			finally {
+			} finally {
 				JdbcUtils.closeStatement(stmt);
 				DataSourceUtils.releaseConnection(con, getDataSource());
 			}
@@ -123,12 +125,14 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 
 	/**
 	 * Statement to use to increment the "sequence" value.
+	 *
 	 * @return the SQL statement to use
 	 */
 	protected abstract String getIncrementStatement();
 
 	/**
 	 * Statement to use to obtain the current identity value.
+	 *
 	 * @return the SQL statement to use
 	 */
 	protected abstract String getIdentityStatement();
@@ -139,8 +143,9 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 	 * the current maximum value, or the specifically generated values
 	 * (starting with the lowest minus 1, just preserving the maximum value)
 	 * - according to the {@link #isDeleteSpecificValues()} setting.
+	 *
 	 * @param values the currently generated key values
-	 * (the number of values corresponds to {@link #getCacheSize()})
+	 *               (the number of values corresponds to {@link #getCacheSize()})
 	 * @return the SQL statement to use
 	 */
 	protected String getDeleteStatement(long[] values) {
@@ -152,8 +157,7 @@ public abstract class AbstractIdentityColumnMaxValueIncrementer extends Abstract
 				sb.append(", ").append(values[i]);
 			}
 			sb.append(")");
-		}
-		else {
+		} else {
 			long maxValue = values[values.length - 1];
 			sb.append(" < ").append(maxValue);
 		}

@@ -34,8 +34,8 @@ import static org.junit.Assert.*;
  * and {@link ContextConfiguration}.
  *
  * @author Sam Brannen
- * @since 4.0
  * @see WebTestConfiguration
+ * @since 4.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebTestConfiguration
@@ -69,7 +69,7 @@ public class MetaAnnotationConfigWacTests {
 		assertSame("ServletContext instances must be the same object.", mockServletContext, wac.getServletContext());
 
 		assertEquals("Getting real path for ServletContext resource.",
-			new File("src/main/webapp/index.jsp").getCanonicalPath(), mockServletContext.getRealPath("index.jsp"));
+				new File("src/main/webapp/index.jsp").getCanonicalPath(), mockServletContext.getRealPath("index.jsp"));
 	}
 
 }

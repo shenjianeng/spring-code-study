@@ -69,8 +69,7 @@ public class RequestAndSessionScopedBeanTests {
 		try {
 			wac.getBean(targetBeanName);
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 		}
 	}
@@ -97,8 +96,7 @@ public class RequestAndSessionScopedBeanTests {
 		try {
 			wac.getBean(targetBeanName);
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 		}
 

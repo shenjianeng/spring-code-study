@@ -55,7 +55,8 @@ abstract class AbstractBufferingAsyncClientHttpRequest extends AbstractAsyncClie
 
 	/**
 	 * Abstract template method that writes the given headers and content to the HTTP request.
-	 * @param headers the HTTP headers
+	 *
+	 * @param headers        the HTTP headers
 	 * @param bufferedOutput the body content
 	 * @return the response object for the executed request
 	 */

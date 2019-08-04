@@ -74,7 +74,8 @@ public interface RedirectAttributes extends Model {
 
 	/**
 	 * Add the given flash attribute.
-	 * @param attributeName the attribute name; never {@code null}
+	 *
+	 * @param attributeName  the attribute name; never {@code null}
 	 * @param attributeValue the attribute value; may be {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(String attributeName, @Nullable Object attributeValue);
@@ -82,6 +83,7 @@ public interface RedirectAttributes extends Model {
 	/**
 	 * Add the given flash storage using a
 	 * {@link org.springframework.core.Conventions#getVariableName generated name}.
+	 *
 	 * @param attributeValue the flash attribute value; never {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(Object attributeValue);

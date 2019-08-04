@@ -31,8 +31,8 @@ import org.springframework.cache.interceptor.CacheResolver;
  * cache: {@link CacheResultOperation#getExceptionCacheName()}.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see CacheResultOperation#getExceptionCacheName()
+ * @since 4.1
  */
 public class SimpleExceptionCacheResolver extends AbstractCacheResolver {
 

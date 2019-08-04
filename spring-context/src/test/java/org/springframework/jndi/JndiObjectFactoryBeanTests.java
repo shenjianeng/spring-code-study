@@ -43,8 +43,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 		}
 	}
 
@@ -113,8 +112,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown NamingException");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			// expected
 		}
 	}
@@ -150,8 +148,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown NamingException");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			assertTrue(ex.getMessage().contains("java.lang.String"));
 		}
 	}
@@ -211,8 +208,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -243,8 +239,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}
@@ -346,8 +341,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -361,8 +355,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 		}
 	}
@@ -394,8 +387,7 @@ public class JndiObjectFactoryBeanTests {
 		try {
 			jof.afterPropertiesSet();
 			fail("Should have thrown NamingException");
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			assertTrue(ex.getMessage().contains("org.springframework.tests.sample.beans.DerivedTestBean"));
 		}
 	}

@@ -69,7 +69,7 @@ public class SseIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 	@Parameterized.Parameters(name = "server [{0}] webClient [{1}]")
 	public static Object[][] arguments() {
 		File base = new File(System.getProperty("java.io.tmpdir"));
-		return new Object[][] {
+		return new Object[][]{
 				{new JettyHttpServer(), new ReactorClientHttpConnector()},
 				{new JettyHttpServer(), new JettyClientHttpConnector()},
 				{new ReactorHttpServer(), new ReactorClientHttpConnector()},
@@ -141,7 +141,8 @@ public class SseIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 				.uri("/event")
 				.accept(TEXT_EVENT_STREAM)
 				.retrieve()
-				.bodyToFlux(new ParameterizedTypeReference<ServerSentEvent<Person>>() {});
+				.bodyToFlux(new ParameterizedTypeReference<ServerSentEvent<Person>>() {
+				});
 
 		verifyPersonEvents(result);
 	}
@@ -152,21 +153,22 @@ public class SseIntegrationTests extends AbstractHttpHandlerIntegrationTests {
 				.uri("/event")
 				.accept(TEXT_EVENT_STREAM)
 				.retrieve()
-				.bodyToFlux(new ParameterizedTypeReference<ServerSentEvent<Person>>() {});
+				.bodyToFlux(new ParameterizedTypeReference<ServerSentEvent<Person>>() {
+				});
 
 		verifyPersonEvents(result);
 	}
 
 	private void verifyPersonEvents(Flux<ServerSentEvent<Person>> result) {
 		StepVerifier.create(result)
-				.consumeNextWith( event -> {
+				.consumeNextWith(event -> {
 					assertEquals("0", event.id());
 					assertEquals(new Person("foo 0"), event.data());
 					assertEquals("bar 0", event.comment());
 					assertNull(event.event());
 					assertNull(event.retry());
 				})
-				.consumeNextWith( event -> {
+				.consumeNextWith(event -> {
 					assertEquals("1", event.id());
 					assertEquals(new Person("foo 1"), event.data());
 					assertEquals("bar 1", event.comment());

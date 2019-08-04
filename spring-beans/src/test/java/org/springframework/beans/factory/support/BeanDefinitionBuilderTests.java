@@ -35,7 +35,7 @@ public class BeanDefinitionBuilderTests {
 
 	@Test
 	public void beanClassWithSimpleProperty() {
-		String[] dependsOn = new String[] { "A", "B", "C" };
+		String[] dependsOn = new String[]{"A", "B", "C"};
 		BeanDefinitionBuilder bdb = BeanDefinitionBuilder.rootBeanDefinition(TestBean.class);
 		bdb.setScope(BeanDefinition.SCOPE_PROTOTYPE);
 		bdb.addPropertyValue("age", "15");

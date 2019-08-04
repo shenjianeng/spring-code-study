@@ -37,9 +37,9 @@ import org.springframework.util.Assert;
  * <p>Applications should not use this class directly.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see LoadTimeWeaverAware
  * @see org.springframework.context.ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME
+ * @since 2.5
  */
 public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFactoryAware {
 
@@ -66,6 +66,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 	 * {@code LoadTimeWeaver} will be auto-retrieved from the containing
 	 * {@link BeanFactory}, expecting a bean named
 	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
+	 *
 	 * @param loadTimeWeaver the specific {@code LoadTimeWeaver} that is to be used
 	 */
 	public LoadTimeWeaverAwareProcessor(@Nullable LoadTimeWeaver loadTimeWeaver) {
@@ -77,6 +78,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 	 * <p>The {@code LoadTimeWeaver} will be auto-retrieved from
 	 * the given {@link BeanFactory}, expecting a bean named
 	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
+	 *
 	 * @param beanFactory the BeanFactory to retrieve the LoadTimeWeaver from
 	 */
 	public LoadTimeWeaverAwareProcessor(BeanFactory beanFactory) {

@@ -77,7 +77,7 @@ public class RssFeedViewTests {
 
 		@Override
 		protected List<Item> buildFeedItems(Map<String, Object> model,
-				HttpServletRequest request, HttpServletResponse response) throws Exception {
+											HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 			List<Item> items = new ArrayList<>();
 			for (String name : model.keySet()) {

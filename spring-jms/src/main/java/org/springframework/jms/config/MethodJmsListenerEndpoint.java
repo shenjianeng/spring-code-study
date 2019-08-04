@@ -93,6 +93,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	 * Set the most specific method known for this endpoint's declaration.
 	 * <p>In case of a proxy, this will be the method on the target class
 	 * (if annotated itself, that is, if not just annotated in an interface).
+	 *
 	 * @since 4.2.3
 	 */
 	public void setMostSpecificMethod(@Nullable Method mostSpecificMethod) {
@@ -157,8 +158,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 		if (StringUtils.hasText(responseDestination)) {
 			if (container.isReplyPubSubDomain()) {
 				messageListener.setDefaultResponseTopicName(responseDestination);
-			}
-			else {
+			} else {
 				messageListener.setDefaultResponseQueueName(responseDestination);
 			}
 		}
@@ -179,6 +179,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 
 	/**
 	 * Create an empty {@link MessagingMessageListenerAdapter} instance.
+	 *
 	 * @return a new {@code MessagingMessageListenerAdapter} or subclass thereof
 	 */
 	protected MessagingMessageListenerAdapter createMessageListenerInstance() {

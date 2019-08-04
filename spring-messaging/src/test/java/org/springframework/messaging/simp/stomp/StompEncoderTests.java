@@ -53,13 +53,13 @@ public class StompEncoderTests {
 
 		assertTrue(
 				"CONNECT\naccept-version:1.2\nhost:github.org\n\n\0".equals(frameString) ||
-				"CONNECT\nhost:github.org\naccept-version:1.2\n\n\0".equals(frameString));
+						"CONNECT\nhost:github.org\naccept-version:1.2\n\n\0".equals(frameString));
 	}
 
 	@Test
 	public void encodeFrameWithHeadersThatShouldBeEscaped() {
 		StompHeaderAccessor headers = StompHeaderAccessor.create(StompCommand.DISCONNECT);
-		headers.addNativeHeader("a:\r\n\\b",  "alpha:bravo\r\n\\");
+		headers.addNativeHeader("a:\r\n\\b", "alpha:bravo\r\n\\");
 		Message<byte[]> frame = MessageBuilder.createMessage(new byte[0], headers.getMessageHeaders());
 
 		assertEquals("DISCONNECT\na\\c\\r\\n\\\\b:alpha\\cbravo\\r\\n\\\\\n\n\0",

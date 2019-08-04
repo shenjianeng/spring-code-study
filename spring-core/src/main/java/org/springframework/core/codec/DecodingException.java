@@ -28,14 +28,15 @@ import org.springframework.lang.Nullable;
  * {@code CodecException} would translate to 500 (server error) status.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see Decoder
+ * @since 5.0
  */
 @SuppressWarnings("serial")
 public class DecodingException extends CodecException {
 
 	/**
 	 * Create a new DecodingException.
+	 *
 	 * @param msg the detail message
 	 */
 	public DecodingException(String msg) {
@@ -44,7 +45,8 @@ public class DecodingException extends CodecException {
 
 	/**
 	 * Create a new DecodingException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause root cause for the exception, if any
 	 */
 	public DecodingException(String msg, @Nullable Throwable cause) {

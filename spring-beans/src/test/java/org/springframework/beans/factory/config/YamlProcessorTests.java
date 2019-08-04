@@ -37,7 +37,8 @@ import static org.junit.Assert.*;
  */
 public class YamlProcessorTests {
 
-	private final YamlProcessor processor = new YamlProcessor() {};
+	private final YamlProcessor processor = new YamlProcessor() {
+	};
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
@@ -70,7 +71,8 @@ public class YamlProcessorTests {
 		this.processor.setResources(new ByteArrayResource("foo # a document\nbar: baz".getBytes()));
 		this.exception.expect(ParserException.class);
 		this.exception.expectMessage("line 2, column 1");
-		this.processor.process((properties, map) -> {});
+		this.processor.process((properties, map) -> {
+		});
 	}
 
 	@Test
@@ -78,7 +80,8 @@ public class YamlProcessorTests {
 		this.processor.setResources(new ByteArrayResource("foo: bar\ncd\nspam:\n  foo: baz".getBytes()));
 		this.exception.expect(ScannerException.class);
 		this.exception.expectMessage("line 3, column 1");
-		this.processor.process((properties, map) -> {});
+		this.processor.process((properties, map) -> {
+		});
 	}
 
 	@Test

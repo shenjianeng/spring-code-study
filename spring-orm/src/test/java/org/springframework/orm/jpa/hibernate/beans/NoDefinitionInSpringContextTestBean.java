@@ -27,7 +27,7 @@ public class NoDefinitionInSpringContextTestBean extends TestBean {
 	/*
 	 * Expect instantiation through a non-default constructor, just to be sure that Spring will fail if it tries to instantiate it,
 	 * and will subsequently delegate to the fallback bean instance producer.
- 	 */
+	 */
 	public NoDefinitionInSpringContextTestBean(String name, BeanSource source) {
 		setName(name);
 		setSource(source);

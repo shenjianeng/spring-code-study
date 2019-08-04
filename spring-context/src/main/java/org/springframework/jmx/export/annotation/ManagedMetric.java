@@ -30,8 +30,8 @@ import org.springframework.jmx.support.MetricType;
  * Only valid when used on a JavaBean getter.
  *
  * @author Jennifer Hickey
- * @since 3.0
  * @see org.springframework.jmx.export.metadata.ManagedMetric
+ * @since 3.0
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

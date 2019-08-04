@@ -52,7 +52,9 @@ public class HiddenHttpMethodFilter implements WebFilter {
 			Collections.unmodifiableList(Arrays.asList(HttpMethod.PUT,
 					HttpMethod.DELETE, HttpMethod.PATCH));
 
-	/** Default name of the form parameter with the HTTP method to use. */
+	/**
+	 * Default name of the form parameter with the HTTP method to use.
+	 */
 	public static final String DEFAULT_METHOD_PARAMETER_NAME = "_method";
 
 
@@ -71,8 +73,9 @@ public class HiddenHttpMethodFilter implements WebFilter {
 
 	/**
 	 * Transform an HTTP POST into another method based on {@code methodParamName}.
+	 *
 	 * @param exchange the current server exchange
-	 * @param chain provides a way to delegate to the next filter
+	 * @param chain    provides a way to delegate to the next filter
 	 * @return {@code Mono<Void>} to indicate when request processing is complete
 	 */
 	@Override
@@ -95,8 +98,7 @@ public class HiddenHttpMethodFilter implements WebFilter {
 		Assert.notNull(httpMethod, () -> "HttpMethod '" + methodParamValue + "' not supported");
 		if (ALLOWED_METHODS.contains(httpMethod)) {
 			return exchange.mutate().request(builder -> builder.method(httpMethod)).build();
-		}
-		else {
+		} else {
 			return exchange;
 		}
 	}

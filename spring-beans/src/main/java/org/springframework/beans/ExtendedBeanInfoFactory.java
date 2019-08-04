@@ -33,9 +33,9 @@ import org.springframework.lang.Nullable;
  * {@link BeanInfoFactory} types to take precedence.
  *
  * @author Chris Beams
- * @since 3.2
  * @see BeanInfoFactory
  * @see CachedIntrospectionResults
+ * @since 3.2
  */
 public class ExtendedBeanInfoFactory implements BeanInfoFactory, Ordered {
 

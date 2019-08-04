@@ -31,7 +31,7 @@ public class Spr16217Tests {
 	@Ignore("TODO")
 	public void baseConfigurationIsIncludedWhenFirstSuperclassReferenceIsSkippedInRegisterBeanPhase() {
 		try (AnnotationConfigApplicationContext context =
-					new AnnotationConfigApplicationContext(RegisterBeanPhaseImportingConfiguration.class)) {
+					 new AnnotationConfigApplicationContext(RegisterBeanPhaseImportingConfiguration.class)) {
 			context.getBean("someBean");
 		}
 	}
@@ -39,7 +39,7 @@ public class Spr16217Tests {
 	@Test
 	public void baseConfigurationIsIncludedWhenFirstSuperclassReferenceIsSkippedInParseConfigurationPhase() {
 		try (AnnotationConfigApplicationContext context =
-					new AnnotationConfigApplicationContext(ParseConfigurationPhaseImportingConfiguration.class)) {
+					 new AnnotationConfigApplicationContext(ParseConfigurationPhaseImportingConfiguration.class)) {
 			context.getBean("someBean");
 		}
 	}
@@ -52,8 +52,7 @@ public class Spr16217Tests {
 		context.refresh();
 		try {
 			context.getBean("someBean");
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}

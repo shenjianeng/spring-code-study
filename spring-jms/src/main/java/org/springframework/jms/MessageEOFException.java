@@ -20,8 +20,8 @@ package org.springframework.jms;
  * Runtime exception mirroring the JMS MessageEOFException.
  *
  * @author Mark Pollack
- * @since 1.1
  * @see javax.jms.MessageEOFException
+ * @since 1.1
  */
 @SuppressWarnings("serial")
 public class MessageEOFException extends JmsException {

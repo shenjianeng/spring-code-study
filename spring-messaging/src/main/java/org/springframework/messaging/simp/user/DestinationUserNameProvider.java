@@ -21,8 +21,8 @@ package org.springframework.messaging.simp.user;
  * and therefore not suited for use with "user" destinations.
  *
  * @author Rossen Stoyanchev
- * @since 4.0.1
  * @see org.springframework.messaging.simp.user.UserDestinationResolver
+ * @since 4.0.1
  */
 public interface DestinationUserNameProvider {
 

@@ -29,8 +29,8 @@ package org.springframework.test.context;
  *
  * @author Sam Brannen
  * @author Michail Nikolaev
- * @since 4.0
  * @see ActiveProfiles
+ * @since 4.0
  */
 @FunctionalInterface
 public interface ActiveProfilesResolver {
@@ -38,8 +38,9 @@ public interface ActiveProfilesResolver {
 	/**
 	 * Resolve the <em>bean definition profiles</em> to use when loading an
 	 * {@code ApplicationContext} for the given {@linkplain Class test class}.
+	 *
 	 * @param testClass the test class for which the profiles should be resolved;
-	 * never {@code null}
+	 *                  never {@code null}
 	 * @return the list of bean definition profiles to use when loading the
 	 * {@code ApplicationContext}; never {@code null}
 	 * @see ActiveProfiles#resolver

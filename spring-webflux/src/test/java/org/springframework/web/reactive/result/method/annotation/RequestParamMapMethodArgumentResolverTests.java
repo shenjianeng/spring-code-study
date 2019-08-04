@@ -41,6 +41,7 @@ import static org.springframework.web.method.MvcAnnotationPredicates.requestPara
 
 /**
  * Unit tests for {@link RequestParamMapMethodArgumentResolver}.
+ *
  * @author Rossen Stoyanchev
  */
 public class RequestParamMapMethodArgumentResolverTests {
@@ -69,8 +70,7 @@ public class RequestParamMapMethodArgumentResolverTests {
 			param = this.testMethod.annot(requestParam()).arg(Mono.class, Map.class);
 			this.resolver.supportsParameter(param);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"RequestParamMapMethodArgumentResolver doesn't support reactive type wrapper"));
@@ -80,7 +80,7 @@ public class RequestParamMapMethodArgumentResolverTests {
 	@Test
 	public void resolveMapArgumentWithQueryString() throws Exception {
 		MethodParameter param = this.testMethod.annot(requestParam().name("")).arg(Map.class);
-		Object result= resolve(param, MockServerWebExchange.from(MockServerHttpRequest.get("/path?foo=bar")));
+		Object result = resolve(param, MockServerWebExchange.from(MockServerHttpRequest.get("/path?foo=bar")));
 		assertTrue(result instanceof Map);
 		assertEquals(Collections.singletonMap("foo", "bar"), result);
 	}
@@ -89,7 +89,7 @@ public class RequestParamMapMethodArgumentResolverTests {
 	public void resolveMultiValueMapArgument() throws Exception {
 		MethodParameter param = this.testMethod.annotPresent(RequestParam.class).arg(MultiValueMap.class);
 		ServerWebExchange exchange = MockServerWebExchange.from(MockServerHttpRequest.get("/path?foo=bar&foo=baz"));
-		Object result= resolve(param, exchange);
+		Object result = resolve(param, exchange);
 
 		assertTrue(result instanceof MultiValueMap);
 		assertEquals(Collections.singletonMap("foo", Arrays.asList("bar", "baz")), result);

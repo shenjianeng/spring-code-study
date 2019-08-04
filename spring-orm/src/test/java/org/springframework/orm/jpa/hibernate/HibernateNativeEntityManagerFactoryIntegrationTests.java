@@ -48,7 +48,7 @@ public class HibernateNativeEntityManagerFactoryIntegrationTests extends Abstrac
 
 	@Override
 	protected String[] getConfigLocations() {
-		return new String[] {"/org/springframework/orm/jpa/hibernate/hibernate-manager-native.xml",
+		return new String[]{"/org/springframework/orm/jpa/hibernate/hibernate-manager-native.xml",
 				"/org/springframework/orm/jpa/memdb.xml", "/org/springframework/orm/jpa/inject.xml"};
 	}
 
@@ -71,7 +71,7 @@ public class HibernateNativeEntityManagerFactoryIntegrationTests extends Abstrac
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void testCurrentSession() {
 		String firstName = "Tony";
 		insertPerson(firstName);

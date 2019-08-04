@@ -33,10 +33,10 @@ import java.lang.annotation.Target;
  * <em>meta-annotation</em> to create custom <em>composed annotations</em>.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see ProfileValueSource
  * @see IfProfileValue
  * @see ProfileValueUtils
+ * @since 2.5
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

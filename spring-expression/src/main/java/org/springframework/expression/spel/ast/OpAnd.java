@@ -57,8 +57,7 @@ public class OpAnd extends Operator {
 			Boolean value = operand.getValue(state, Boolean.class);
 			assertValueNotNull(value);
 			return value;
-		}
-		catch (SpelEvaluationException ex) {
+		} catch (SpelEvaluationException ex) {
 			ex.setPosition(operand.getStartPosition());
 			throw ex;
 		}
@@ -90,7 +89,7 @@ public class OpAnd extends Operator {
 		cf.exitCompilationScope();
 		mv.visitJumpInsn(IFNE, elseTarget);
 		mv.visitLdcInsn(0); // FALSE
-		mv.visitJumpInsn(GOTO,endOfIf);
+		mv.visitJumpInsn(GOTO, endOfIf);
 		mv.visitLabel(elseTarget);
 		cf.enterCompilationScope();
 		getRightOperand().generateCode(mv, cf);

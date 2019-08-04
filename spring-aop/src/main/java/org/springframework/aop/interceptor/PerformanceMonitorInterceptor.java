@@ -45,6 +45,7 @@ public class PerformanceMonitorInterceptor extends AbstractMonitoringInterceptor
 	/**
 	 * Create a new PerformanceMonitorInterceptor with a dynamic or static logger,
 	 * according to the given flag.
+	 *
 	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
 	 * @see #setUseDynamicLogger
 	 */
@@ -60,8 +61,7 @@ public class PerformanceMonitorInterceptor extends AbstractMonitoringInterceptor
 		stopWatch.start(name);
 		try {
 			return invocation.proceed();
-		}
-		finally {
+		} finally {
 			stopWatch.stop();
 			writeToLog(logger, stopWatch.shortSummary());
 		}

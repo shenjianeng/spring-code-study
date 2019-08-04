@@ -73,7 +73,6 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see ContextConfiguration
  * @see TestContext
  * @see TestContextManager
@@ -84,10 +83,11 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * @see DirtiesContextTestExecutionListener
  * @see AbstractTransactionalJUnit4SpringContextTests
  * @see org.springframework.test.context.testng.AbstractTestNGSpringContextTests
+ * @since 2.5
  */
 @RunWith(SpringRunner.class)
-@TestExecutionListeners({ ServletTestExecutionListener.class, DirtiesContextBeforeModesTestExecutionListener.class,
-	DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class })
+@TestExecutionListeners({ServletTestExecutionListener.class, DirtiesContextBeforeModesTestExecutionListener.class,
+		DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 public abstract class AbstractJUnit4SpringContextTests implements ApplicationContextAware {
 
 	/**
@@ -106,6 +106,7 @@ public abstract class AbstractJUnit4SpringContextTests implements ApplicationCon
 	/**
 	 * Set the {@link ApplicationContext} to be used by this test instance,
 	 * provided via {@link ApplicationContextAware} semantics.
+	 *
 	 * @param applicationContext the ApplicationContext that this test runs in
 	 */
 	@Override

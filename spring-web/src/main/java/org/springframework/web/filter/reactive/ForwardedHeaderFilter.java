@@ -34,13 +34,13 @@ import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
+ * @see <a href="https://tools.ietf.org/html/rfc7239">https://tools.ietf.org/html/rfc7239</a>
+ * @since 5.0
  * @deprecated as of 5.1 this filter is deprecated in favor of using
  * {@link ForwardedHeaderTransformer} which can be declared as a bean with the
  * name "forwardedHeaderTransformer" or registered explicitly in
  * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder
  * WebHttpHandlerBuilder}.
- * @since 5.0
- * @see <a href="https://tools.ietf.org/html/rfc7239">https://tools.ietf.org/html/rfc7239</a>
  */
 @Deprecated
 public class ForwardedHeaderFilter extends ForwardedHeaderTransformer implements WebFilter {

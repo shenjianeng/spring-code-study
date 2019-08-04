@@ -86,8 +86,7 @@ final class DefaultWebClientBuilder implements WebClient.Builder {
 		if (other.defaultHeaders != null) {
 			this.defaultHeaders = new HttpHeaders();
 			this.defaultHeaders.putAll(other.defaultHeaders);
-		}
-		else {
+		} else {
 			this.defaultHeaders = null;
 		}
 		this.defaultCookies = (other.defaultCookies != null ?
@@ -229,11 +228,9 @@ final class DefaultWebClientBuilder implements WebClient.Builder {
 	private ExchangeFunction initExchangeFunction() {
 		if (this.exchangeFunction != null) {
 			return this.exchangeFunction;
-		}
-		else if (this.connector != null) {
+		} else if (this.connector != null) {
 			return ExchangeFunctions.create(this.connector, this.exchangeStrategies);
-		}
-		else {
+		} else {
 			return ExchangeFunctions.create(new ReactorClientHttpConnector(), this.exchangeStrategies);
 		}
 	}

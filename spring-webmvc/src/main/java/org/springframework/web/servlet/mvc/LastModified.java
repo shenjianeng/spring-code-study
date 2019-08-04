@@ -48,6 +48,7 @@ public interface LastModified {
 	 * <p>The return value will be sent to the HTTP client as Last-Modified header,
 	 * and compared with If-Modified-Since headers that the client sends back.
 	 * The content will only get regenerated if there has been a modification.
+	 *
 	 * @param request current HTTP request
 	 * @return the time the underlying resource was last modified, or -1
 	 * meaning that the content must always be regenerated

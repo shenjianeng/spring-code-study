@@ -85,7 +85,7 @@ public class SpringConfiguratorTests {
 
 
 	@Configuration
-	@ComponentScan(basePackageClasses=SpringConfiguratorTests.class)
+	@ComponentScan(basePackageClasses = SpringConfiguratorTests.class)
 	static class Config {
 
 		@Bean
@@ -136,6 +136,7 @@ public class SpringConfiguratorTests {
 		}
 	}
 
-	private static class EchoService {	}
+	private static class EchoService {
+	}
 
 }

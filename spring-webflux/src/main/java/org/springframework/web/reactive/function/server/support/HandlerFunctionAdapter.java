@@ -42,8 +42,7 @@ public class HandlerFunctionAdapter implements HandlerAdapter {
 		try {
 			Method method = HandlerFunction.class.getMethod("handle", ServerRequest.class);
 			HANDLER_FUNCTION_RETURN_TYPE = new MethodParameter(method, -1);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

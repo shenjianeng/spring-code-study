@@ -91,6 +91,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * in Spring Web's {@link RequestContextHolder} was created by the TestContext
 	 * framework.
 	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 *
 	 * @since 4.2
 	 */
 	public static final String CREATED_BY_THE_TESTCONTEXT_FRAMEWORK = Conventions.getQualifiedAttributeName(
@@ -102,6 +103,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * {@code true}, activation occurs when the {@linkplain TestContext#getTestClass()
 	 * test class} is annotated with {@link WebAppConfiguration @WebAppConfiguration}.
 	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 *
 	 * @since 4.3
 	 */
 	public static final String ACTIVATE_LISTENER = Conventions.getQualifiedAttributeName(
@@ -124,6 +126,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * callback phase via Spring Web's {@link RequestContextHolder}, but only if
 	 * the {@linkplain TestContext#getTestClass() test class} is annotated with
 	 * {@link WebAppConfiguration @WebAppConfiguration}.
+	 *
 	 * @see TestExecutionListener#prepareTestInstance(TestContext)
 	 * @see #setUpRequestContextIfNecessary(TestContext)
 	 */
@@ -137,6 +140,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * {@link RequestContextHolder}, but only if the
 	 * {@linkplain TestContext#getTestClass() test class} is annotated with
 	 * {@link WebAppConfiguration @WebAppConfiguration}.
+	 *
 	 * @see TestExecutionListener#beforeTestMethod(TestContext)
 	 * @see #setUpRequestContextIfNecessary(TestContext)
 	 */
@@ -157,6 +161,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	 * <p>The {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} and
 	 * {@link #POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} will be subsequently
 	 * removed from the test context, regardless of their values.
+	 *
 	 * @see TestExecutionListener#afterTestMethod(TestContext)
 	 */
 	@Override
@@ -167,7 +172,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 			}
 			RequestContextHolder.resetRequestAttributes();
 			testContext.setAttribute(DependencyInjectionTestExecutionListener.REINJECT_DEPENDENCIES_ATTRIBUTE,
-				Boolean.TRUE);
+					Boolean.TRUE);
 		}
 		testContext.removeAttribute(POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE);
 		testContext.removeAttribute(RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE);
@@ -193,8 +198,8 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 			WebApplicationContext wac = (WebApplicationContext) context;
 			ServletContext servletContext = wac.getServletContext();
 			Assert.state(servletContext instanceof MockServletContext, () -> String.format(
-						"The WebApplicationContext for test context %s must be configured with a MockServletContext.",
-						testContext));
+					"The WebApplicationContext for test context %s must be configured with a MockServletContext.",
+					testContext));
 
 			if (logger.isDebugEnabled()) {
 				logger.debug(String.format(

@@ -186,9 +186,11 @@ public class JacksonHintsIntegrationTests extends AbstractRequestMappingIntegrat
 
 	}
 
-	private interface MyJacksonView1 {}
+	private interface MyJacksonView1 {
+	}
 
-	private interface MyJacksonView2 {}
+	private interface MyJacksonView2 {
+	}
 
 
 	@SuppressWarnings("unused")

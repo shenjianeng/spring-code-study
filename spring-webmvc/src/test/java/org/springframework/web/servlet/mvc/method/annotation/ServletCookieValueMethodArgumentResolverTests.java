@@ -81,7 +81,7 @@ public class ServletCookieValueMethodArgumentResolverTests {
 
 
 	public void params(@CookieValue("name") Cookie cookie,
-			@CookieValue(name = "name", defaultValue = "bar") String cookieString) {
+					   @CookieValue(name = "name", defaultValue = "bar") String cookieString) {
 	}
 
 }

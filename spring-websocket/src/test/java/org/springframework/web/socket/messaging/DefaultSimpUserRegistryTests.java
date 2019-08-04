@@ -178,7 +178,7 @@ public class DefaultSimpUserRegistryTests {
 	}
 
 	private Message<byte[]> createMessage(SimpMessageType type, String sessionId, String subscriptionId,
-			String destination) {
+										  String destination) {
 
 		SimpMessageHeaderAccessor accessor = SimpMessageHeaderAccessor.create(type);
 		accessor.setSessionId(sessionId);

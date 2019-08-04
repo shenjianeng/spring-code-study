@@ -42,10 +42,10 @@ import org.springframework.util.concurrent.ListenableFutureTask;
  * a Quartz Scheduler (as plain TaskExecutor backend).
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.quartz.simpl.SimpleThreadPool
  * @see org.springframework.core.task.TaskExecutor
  * @see SchedulerFactoryBean#setTaskExecutor
+ * @since 2.0
  */
 public class SimpleThreadPoolTaskExecutor extends SimpleThreadPool
 		implements AsyncListenableTaskExecutor, SchedulingTaskExecutor, InitializingBean, DisposableBean {
@@ -56,6 +56,7 @@ public class SimpleThreadPoolTaskExecutor extends SimpleThreadPool
 	/**
 	 * Set whether to wait for running jobs to complete on shutdown.
 	 * Default is "false".
+	 *
 	 * @see org.quartz.simpl.SimpleThreadPool#shutdown(boolean)
 	 */
 	public void setWaitForJobsToCompleteOnShutdown(boolean waitForJobsToCompleteOnShutdown) {

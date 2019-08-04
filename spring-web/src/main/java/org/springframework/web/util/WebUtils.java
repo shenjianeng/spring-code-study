@@ -181,6 +181,7 @@ public abstract class WebUtils {
 	/**
 	 * Default character encoding to use when {@code request.getCharacterEncoding}
 	 * returns {@code null}, according to the Servlet spec.
+	 *
 	 * @see ServletRequest#getCharacterEncoding
 	 */
 	public static final String DEFAULT_CHARACTER_ENCODING = "ISO-8859-1";
@@ -200,6 +201,7 @@ public abstract class WebUtils {
 	/**
 	 * Use of response encoding for HTML escaping parameter at the servlet context level
 	 * (i.e. a context-param in {@code web.xml}): "responseEncodedHtmlEscape".
+	 *
 	 * @since 4.1.2
 	 */
 	public static final String RESPONSE_ENCODED_HTML_ESCAPE_CONTEXT_PARAM = "responseEncodedHtmlEscape";
@@ -210,13 +212,19 @@ public abstract class WebUtils {
 	 */
 	public static final String WEB_APP_ROOT_KEY_PARAM = "webAppRootKey";
 
-	/** Default web app root key: "webapp.root". */
+	/**
+	 * Default web app root key: "webapp.root".
+	 */
 	public static final String DEFAULT_WEB_APP_ROOT_KEY = "webapp.root";
 
-	/** Name suffixes in case of image buttons. */
+	/**
+	 * Name suffixes in case of image buttons.
+	 */
 	public static final String[] SUBMIT_IMAGE_SUFFIXES = {".x", ".y"};
 
-	/** Key for the mutex session attribute. */
+	/**
+	 * Key for the mutex session attribute.
+	 */
 	public static final String SESSION_MUTEX_ATTRIBUTE = WebUtils.class.getName() + ".MUTEX";
 
 
@@ -226,9 +234,10 @@ public abstract class WebUtils {
 	 * context-param in {@code web.xml}. Default is "webapp.root".
 	 * <p>Can be used for tools that support substitution with {@code System.getProperty}
 	 * values, like log4j's "${key}" syntax within log file locations.
+	 *
 	 * @param servletContext the servlet context of the web application
 	 * @throws IllegalStateException if the system property is already set,
-	 * or if the WAR file is not expanded
+	 *                               or if the WAR file is not expanded
 	 * @see #WEB_APP_ROOT_KEY_PARAM
 	 * @see #DEFAULT_WEB_APP_ROOT_KEY
 	 * @see WebAppRootListener
@@ -255,6 +264,7 @@ public abstract class WebUtils {
 	/**
 	 * Remove the system property that points to the web app root directory.
 	 * To be called on shutdown of the web application.
+	 *
 	 * @param servletContext the servlet context of the web application
 	 * @see #setWebAppRootSystemProperty
 	 */
@@ -272,6 +282,7 @@ public abstract class WebUtils {
 	 * <p>This method differentiates between no param specified at all and
 	 * an actual boolean value specified, allowing to have a context-specific
 	 * default in case of no setting at the global level.
+	 *
 	 * @param servletContext the servlet context of the web application
 	 * @return whether default HTML escaping is enabled for the given application
 	 * ({@code null} = no explicit default)
@@ -294,6 +305,7 @@ public abstract class WebUtils {
 	 * <p>This method differentiates between no param specified at all and
 	 * an actual boolean value specified, allowing to have a context-specific
 	 * default in case of no setting at the global level.
+	 *
 	 * @param servletContext the servlet context of the web application
 	 * @return whether response encoding is to be used for HTML escaping
 	 * ({@code null} = no explicit default)
@@ -311,6 +323,7 @@ public abstract class WebUtils {
 	/**
 	 * Return the temporary directory for the current web application,
 	 * as provided by the servlet container.
+	 *
 	 * @param servletContext the servlet context of the web application
 	 * @return the File representing the temporary directory
 	 */
@@ -326,8 +339,9 @@ public abstract class WebUtils {
 	 * and throws a FileNotFoundException if the path cannot be resolved to
 	 * a resource (in contrast to ServletContext's {@code getRealPath},
 	 * which returns null).
+	 *
 	 * @param servletContext the servlet context of the web application
-	 * @param path the path within the web application
+	 * @param path           the path within the web application
 	 * @return the corresponding real path
 	 * @throws FileNotFoundException if the path cannot be resolved to a resource
 	 * @see javax.servlet.ServletContext#getRealPath
@@ -342,13 +356,14 @@ public abstract class WebUtils {
 		if (realPath == null) {
 			throw new FileNotFoundException(
 					"ServletContext resource [" + path + "] cannot be resolved to absolute file path - " +
-					"web application archive not expanded?");
+							"web application archive not expanded?");
 		}
 		return realPath;
 	}
 
 	/**
 	 * Determine the session id of the given request, if any.
+	 *
 	 * @param request current HTTP request
 	 * @return the session id, or {@code null} if none
 	 */
@@ -363,8 +378,9 @@ public abstract class WebUtils {
 	 * Check the given request for a session attribute of the given name.
 	 * Returns null if there is no session or if the session has no such attribute.
 	 * Does not create a new session if none has existed before!
+	 *
 	 * @param request current HTTP request
-	 * @param name the name of the session attribute
+	 * @param name    the name of the session attribute
 	 * @return the value of the session attribute, or {@code null} if not found
 	 */
 	@Nullable
@@ -378,8 +394,9 @@ public abstract class WebUtils {
 	 * Check the given request for a session attribute of the given name.
 	 * Throws an exception if there is no session or if the session has no such
 	 * attribute. Does not create a new session if none has existed before!
+	 *
 	 * @param request current HTTP request
-	 * @param name the name of the session attribute
+	 * @param name    the name of the session attribute
 	 * @return the value of the session attribute, or {@code null} if not found
 	 * @throws IllegalStateException if the session attribute could not be found
 	 */
@@ -397,16 +414,16 @@ public abstract class WebUtils {
 	 * Set the session attribute with the given name to the given value.
 	 * Removes the session attribute if value is null, if a session existed at all.
 	 * Does not create a new session if not necessary!
+	 *
 	 * @param request current HTTP request
-	 * @param name the name of the session attribute
-	 * @param value the value of the session attribute
+	 * @param name    the name of the session attribute
+	 * @param value   the value of the session attribute
 	 */
 	public static void setSessionAttribute(HttpServletRequest request, String name, @Nullable Object value) {
 		Assert.notNull(request, "Request must not be null");
 		if (value != null) {
 			request.getSession().setAttribute(name, value);
-		}
-		else {
+		} else {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
 				session.removeAttribute(name);
@@ -429,6 +446,7 @@ public abstract class WebUtils {
 	 * as well, since it will always be the same object reference for the
 	 * same active logical session. However, this is not guaranteed across
 	 * different servlet containers; the only 100% safe way is a session mutex.
+	 *
 	 * @param session the HttpSession to find a mutex for
 	 * @return the mutex object (never {@code null})
 	 * @see #SESSION_MUTEX_ATTRIBUTE
@@ -447,7 +465,8 @@ public abstract class WebUtils {
 	/**
 	 * Return an appropriate request object of the specified type, if available,
 	 * unwrapping the given request as far as necessary.
-	 * @param request the servlet request to introspect
+	 *
+	 * @param request      the servlet request to introspect
 	 * @param requiredType the desired type of request object
 	 * @return the matching request object, or {@code null} if none
 	 * of that type is available
@@ -458,8 +477,7 @@ public abstract class WebUtils {
 		if (requiredType != null) {
 			if (requiredType.isInstance(request)) {
 				return (T) request;
-			}
-			else if (request instanceof ServletRequestWrapper) {
+			} else if (request instanceof ServletRequestWrapper) {
 				return getNativeRequest(((ServletRequestWrapper) request).getRequest(), requiredType);
 			}
 		}
@@ -469,7 +487,8 @@ public abstract class WebUtils {
 	/**
 	 * Return an appropriate response object of the specified type, if available,
 	 * unwrapping the given response as far as necessary.
-	 * @param response the servlet response to introspect
+	 *
+	 * @param response     the servlet response to introspect
 	 * @param requiredType the desired type of response object
 	 * @return the matching response object, or {@code null} if none
 	 * of that type is available
@@ -480,8 +499,7 @@ public abstract class WebUtils {
 		if (requiredType != null) {
 			if (requiredType.isInstance(response)) {
 				return (T) response;
-			}
-			else if (response instanceof ServletResponseWrapper) {
+			} else if (response instanceof ServletResponseWrapper) {
 				return getNativeResponse(((ServletResponseWrapper) response).getResponse(), requiredType);
 			}
 		}
@@ -494,6 +512,7 @@ public abstract class WebUtils {
 	 * <p>Checks the presence of the "javax.servlet.include.request_uri"
 	 * request attribute. Could check any request attribute that is only
 	 * present in an include request.
+	 *
 	 * @param request current servlet request
 	 * @return whether the given request is an include request
 	 */
@@ -515,12 +534,13 @@ public abstract class WebUtils {
 	 * that have been exposed explicitly before.
 	 * <p>Exposes status code 200 by default. Set the "javax.servlet.error.status_code"
 	 * attribute explicitly (before or after) in order to expose a different status code.
-	 * @param request current servlet request
-	 * @param ex the exception encountered
+	 *
+	 * @param request     current servlet request
+	 * @param ex          the exception encountered
 	 * @param servletName the name of the offending servlet
 	 */
 	public static void exposeErrorRequestAttributes(HttpServletRequest request, Throwable ex,
-			@Nullable String servletName) {
+													@Nullable String servletName) {
 
 		exposeRequestAttributeIfNotPresent(request, ERROR_STATUS_CODE_ATTRIBUTE, HttpServletResponse.SC_OK);
 		exposeRequestAttributeIfNotPresent(request, ERROR_EXCEPTION_TYPE_ATTRIBUTE, ex.getClass());
@@ -534,9 +554,10 @@ public abstract class WebUtils {
 
 	/**
 	 * Expose the specified request attribute if not already present.
+	 *
 	 * @param request current servlet request
-	 * @param name the name of the attribute
-	 * @param value the suggested value of the attribute
+	 * @param name    the name of the attribute
+	 * @param value   the suggested value of the attribute
 	 */
 	private static void exposeRequestAttributeIfNotPresent(ServletRequest request, String name, Object value) {
 		if (request.getAttribute(name) == null) {
@@ -553,6 +574,7 @@ public abstract class WebUtils {
 	 * {@code javax.servlet.error.exception},
 	 * {@code javax.servlet.error.request_uri},
 	 * {@code javax.servlet.error.servlet_name}.
+	 *
 	 * @param request current servlet request
 	 */
 	public static void clearErrorRequestAttributes(HttpServletRequest request) {
@@ -567,8 +589,9 @@ public abstract class WebUtils {
 	/**
 	 * Retrieve the first cookie with the given name. Note that multiple
 	 * cookies can have the same name but different paths or domains.
+	 *
 	 * @param request current servlet request
-	 * @param name cookie name
+	 * @param name    cookie name
 	 * @return the first cookie with the given name, or {@code null} if none is found
 	 */
 	@Nullable
@@ -589,8 +612,9 @@ public abstract class WebUtils {
 	 * Check if a specific input type="submit" parameter was sent in the request,
 	 * either via a button (directly with name) or via an image (name + ".x" or
 	 * name + ".y").
+	 *
 	 * @param request current HTTP request
-	 * @param name name of the parameter
+	 * @param name    name of the parameter
 	 * @return if the parameter was sent
 	 * @see #SUBMIT_IMAGE_SUFFIXES
 	 */
@@ -611,8 +635,9 @@ public abstract class WebUtils {
 	 * Obtain a named parameter from the given request parameters.
 	 * <p>See {@link #findParameterValue(java.util.Map, String)}
 	 * for a description of the lookup algorithm.
+	 *
 	 * @param request current HTTP request
-	 * @param name the <i>logical</i> name of the request parameter
+	 * @param name    the <i>logical</i> name of the request parameter
 	 * @return the value of the parameter, or {@code null}
 	 * if the parameter does not exist in given request
 	 */
@@ -639,8 +664,9 @@ public abstract class WebUtils {
 	 * HTML form image button. In this case the parameter in the request would
 	 * actually be of the form <tt>logicalName_value.x = 123</tt>. </li>
 	 * </ol>
+	 *
 	 * @param parameters the available parameter map
-	 * @param name the <i>logical</i> name of the request parameter
+	 * @param name       the <i>logical</i> name of the request parameter
 	 * @return the value of the parameter, or {@code null}
 	 * if the parameter does not exist in given request
 	 */
@@ -651,8 +677,7 @@ public abstract class WebUtils {
 		if (value instanceof String[]) {
 			String[] values = (String[]) value;
 			return (values.length > 0 ? values[0] : null);
-		}
-		else if (value != null) {
+		} else if (value != null) {
 			return value.toString();
 		}
 		// If no value yet, try to get it as a name_value=xyz parameter
@@ -677,9 +702,10 @@ public abstract class WebUtils {
 	 * Maps single values to String and multiple values to String array.
 	 * <p>For example, with a prefix of "spring_", "spring_param1" and
 	 * "spring_param2" result in a Map with "param1" and "param2" as keys.
+	 *
 	 * @param request the HTTP request in which to look for parameters
-	 * @param prefix the beginning of parameter names
-	 * (if this is null or the empty string, all parameters will match)
+	 * @param prefix  the beginning of parameter names
+	 *                (if this is null or the empty string, all parameters will match)
 	 * @return map containing request parameters <b>without the prefix</b>,
 	 * containing either a String or a String array as values
 	 * @see javax.servlet.ServletRequest#getParameterNames
@@ -700,11 +726,9 @@ public abstract class WebUtils {
 				String[] values = request.getParameterValues(paramName);
 				if (values == null || values.length == 0) {
 					// Do nothing, no values found at all.
-				}
-				else if (values.length > 1) {
+				} else if (values.length > 1) {
 					params.put(unprefixed, values);
-				}
-				else {
+				} else {
 					params.put(unprefixed, values[0]);
 				}
 			}
@@ -717,6 +741,7 @@ public abstract class WebUtils {
 	 * like this {@code "q1=a;q1=b;q2=a,b,c"}. The resulting map would contain
 	 * keys {@code "q1"} and {@code "q2"} with values {@code ["a","b"]} and
 	 * {@code ["a","b","c"]} respectively.
+	 *
 	 * @param matrixVariables the unparsed matrix variables string
 	 * @return a map with matrix variable names and values (never {@code null})
 	 * @since 3.2
@@ -736,8 +761,7 @@ public abstract class WebUtils {
 				for (String value : StringUtils.commaDelimitedListToStringArray(rawValue)) {
 					result.add(name, value);
 				}
-			}
-			else {
+			} else {
 				result.add(pair, "");
 			}
 		}
@@ -755,8 +779,8 @@ public abstract class WebUtils {
 	 * to extract and use, or to discard such headers.
 	 *
 	 * @return {@code true} if the request origin is valid, {@code false} otherwise
-	 * @since 4.1.5
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
+	 * @since 4.1.5
 	 */
 	public static boolean isValidOrigin(HttpRequest request, Collection<String> allowedOrigins) {
 		Assert.notNull(request, "Request must not be null");
@@ -765,11 +789,9 @@ public abstract class WebUtils {
 		String origin = request.getHeaders().getOrigin();
 		if (origin == null || allowedOrigins.contains("*")) {
 			return true;
-		}
-		else if (CollectionUtils.isEmpty(allowedOrigins)) {
+		} else if (CollectionUtils.isEmpty(allowedOrigins)) {
 			return isSameOrigin(request);
-		}
-		else {
+		} else {
 			return allowedOrigins.contains(origin);
 		}
 	}
@@ -783,7 +805,7 @@ public abstract class WebUtils {
 	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
 	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
 	 * to extract and use, or to discard such headers.
-
+	 *
 	 * @return {@code true} if the request is a same-origin one, {@code false} in case
 	 * of cross-origin request
 	 * @since 4.2
@@ -804,8 +826,7 @@ public abstract class WebUtils {
 			scheme = servletRequest.getScheme();
 			host = servletRequest.getServerName();
 			port = servletRequest.getServerPort();
-		}
-		else {
+		} else {
 			URI uri = request.getURI();
 			scheme = uri.getScheme();
 			host = uri.getHost();
@@ -822,8 +843,7 @@ public abstract class WebUtils {
 		if (port == -1) {
 			if ("http".equals(scheme) || "ws".equals(scheme)) {
 				port = 80;
-			}
-			else if ("https".equals(scheme) || "wss".equals(scheme)) {
+			} else if ("https".equals(scheme) || "wss".equals(scheme)) {
 				port = 443;
 			}
 		}

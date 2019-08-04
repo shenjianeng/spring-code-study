@@ -46,6 +46,7 @@ public enum HttpMethod {
 
 	/**
 	 * Resolve the given method value to an {@code HttpMethod}.
+	 *
 	 * @param method the method value as a String
 	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
 	 * @since 4.2.4
@@ -59,6 +60,7 @@ public enum HttpMethod {
 	/**
 	 * Determine whether this {@code HttpMethod} matches the given
 	 * method value.
+	 *
 	 * @param method the method value as a String
 	 * @return {@code true} if it matches, {@code false} otherwise
 	 * @since 4.2.4

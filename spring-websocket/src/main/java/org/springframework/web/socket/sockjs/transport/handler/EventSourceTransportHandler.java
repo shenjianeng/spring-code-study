@@ -69,14 +69,14 @@ public class EventSourceTransportHandler extends AbstractHttpSendingTransportHan
 	private class EventSourceStreamingSockJsSession extends StreamingSockJsSession {
 
 		public EventSourceStreamingSockJsSession(String sessionId, SockJsServiceConfig config,
-				WebSocketHandler wsHandler, Map<String, Object> attributes) {
+												 WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 			super(sessionId, config, wsHandler, attributes);
 		}
 
 		@Override
 		protected byte[] getPrelude(ServerHttpRequest request) {
-			return new byte[] { '\r', '\n' };
+			return new byte[]{'\r', '\n'};
 		}
 	}
 

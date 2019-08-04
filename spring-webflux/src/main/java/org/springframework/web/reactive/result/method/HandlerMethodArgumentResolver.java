@@ -33,15 +33,17 @@ public interface HandlerMethodArgumentResolver {
 
 	/**
 	 * Whether this resolver supports the given method parameter.
+	 *
 	 * @param parameter the method parameter
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
 	 * Resolve the value for the method parameter.
-	 * @param parameter the method parameter
+	 *
+	 * @param parameter      the method parameter
 	 * @param bindingContext the binding context to use
-	 * @param exchange the current exchange
+	 * @param exchange       the current exchange
 	 * @return {@code Mono} for the argument value, possibly empty
 	 */
 	Mono<Object> resolveArgument(

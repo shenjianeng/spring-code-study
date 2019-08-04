@@ -119,9 +119,10 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	/**
 	 * Register a {@link ServletContextListener} that closes the given
 	 * application context when the servlet context is destroyed.
-	 * @param servletContext the servlet context to listen to
+	 *
+	 * @param servletContext     the servlet context to listen to
 	 * @param applicationContext the application context that is to be
-	 * closed when {@code servletContext} is destroyed
+	 *                           closed when {@code servletContext} is destroyed
 	 */
 	protected void registerCloseListener(ServletContext servletContext, ApplicationContext applicationContext) {
 		if (applicationContext instanceof ConfigurableApplicationContext) {

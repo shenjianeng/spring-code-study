@@ -89,9 +89,10 @@ class BaseCodecConfigurer implements CodecConfigurer {
 
 	/**
 	 * Internal method that returns the configured writers.
+	 *
 	 * @param forMultipart whether to returns writers for general use ("false"),
-	 * or for multipart requests only ("true"). Generally the two sets are the
-	 * same except for the multipart writer itself.
+	 *                     or for multipart requests only ("true"). Generally the two sets are the
+	 *                     same except for the multipart writer itself.
 	 */
 	protected List<HttpMessageWriter<?>> getWritersInternal(boolean forMultipart) {
 		List<HttpMessageWriter<?>> result = new ArrayList<>();

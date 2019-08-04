@@ -145,7 +145,7 @@ public class ScheduledTasksBeanDefinitionParser extends AbstractSingleBeanDefini
 	}
 
 	private RuntimeBeanReference intervalTaskReference(String runnableBeanName,
-			String initialDelay, String interval, Element taskElement, ParserContext parserContext) {
+													   String initialDelay, String interval, Element taskElement, ParserContext parserContext) {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(
 				"org.springframework.scheduling.config.IntervalTask");
 		builder.addConstructorArgReference(runnableBeanName);
@@ -155,7 +155,7 @@ public class ScheduledTasksBeanDefinitionParser extends AbstractSingleBeanDefini
 	}
 
 	private RuntimeBeanReference cronTaskReference(String runnableBeanName,
-			String cronExpression, Element taskElement, ParserContext parserContext) {
+												   String cronExpression, Element taskElement, ParserContext parserContext) {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(
 				"org.springframework.scheduling.config.CronTask");
 		builder.addConstructorArgReference(runnableBeanName);
@@ -164,7 +164,7 @@ public class ScheduledTasksBeanDefinitionParser extends AbstractSingleBeanDefini
 	}
 
 	private RuntimeBeanReference triggerTaskReference(String runnableBeanName,
-			String triggerBeanName, Element taskElement, ParserContext parserContext) {
+													  String triggerBeanName, Element taskElement, ParserContext parserContext) {
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(
 				"org.springframework.scheduling.config.TriggerTask");
 		builder.addConstructorArgReference(runnableBeanName);
@@ -173,7 +173,7 @@ public class ScheduledTasksBeanDefinitionParser extends AbstractSingleBeanDefini
 	}
 
 	private RuntimeBeanReference beanReference(Element taskElement,
-			ParserContext parserContext, BeanDefinitionBuilder builder) {
+											   ParserContext parserContext, BeanDefinitionBuilder builder) {
 		// Extract the source of the current task
 		builder.getRawBeanDefinition().setSource(parserContext.extractSource(taskElement));
 		String generatedName = parserContext.getReaderContext().generateBeanName(builder.getRawBeanDefinition());

@@ -56,6 +56,7 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	 * registered via {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)}
 	 * which serializes a {@code byte[]} property to and from a Base64-encoded String
 	 * instead of a JSON array.
+	 *
 	 * @see GsonBuilderUtils#gsonBuilderWithBase64EncodedByteArrays()
 	 */
 	public void setBase64EncodeByteArrays(boolean base64EncodeByteArrays) {

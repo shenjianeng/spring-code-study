@@ -27,8 +27,8 @@ import org.springframework.util.ExceptionTypeFilter;
  * The {@link JCacheOperation} implementation for a {@link CacheRemove} operation.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see CacheRemove
+ * @since 4.1
  */
 class CacheRemoveOperation extends AbstractJCacheKeyOperation<CacheRemove> {
 
@@ -52,6 +52,7 @@ class CacheRemoveOperation extends AbstractJCacheKeyOperation<CacheRemove> {
 	/**
 	 * Specify if the cache entry should be removed before invoking the method.
 	 * <p>By default, the cache entry is removed after the method invocation.
+	 *
 	 * @see javax.cache.annotation.CacheRemove#afterInvocation()
 	 */
 	public boolean isEarlyRemove() {

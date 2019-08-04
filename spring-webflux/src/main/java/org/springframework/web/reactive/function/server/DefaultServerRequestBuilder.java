@@ -206,7 +206,7 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 		private final Flux<DataBuffer> body;
 
 		public BuiltServerHttpRequest(String id, String method, URI uri, HttpHeaders headers,
-				MultiValueMap<String, HttpCookie> cookies, Flux<DataBuffer> body) {
+									  MultiValueMap<String, HttpCookie> cookies, Flux<DataBuffer> body) {
 
 			this.id = id;
 			this.method = method;
@@ -233,8 +233,7 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 					String value = matcher.group(3);
 					if (value != null) {
 						value = UriUtils.decode(value, StandardCharsets.UTF_8);
-					}
-					else {
+					} else {
 						value = (StringUtils.hasLength(eq) ? "" : null);
 					}
 					queryParams.add(name, value);
@@ -318,7 +317,7 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 
 		@SuppressWarnings("unchecked")
 		private static Mono<MultiValueMap<String, String>> initFormData(ServerHttpRequest request,
-				List<HttpMessageReader<?>> readers) {
+																		List<HttpMessageReader<?>> readers) {
 
 			try {
 				MediaType contentType = request.getHeaders().getContentType();
@@ -331,8 +330,7 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 							.switchIfEmpty(EMPTY_FORM_DATA)
 							.cache();
 				}
-			}
-			catch (InvalidMediaTypeException ex) {
+			} catch (InvalidMediaTypeException ex) {
 				// Ignore
 			}
 			return EMPTY_FORM_DATA;
@@ -340,7 +338,7 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 
 		@SuppressWarnings("unchecked")
 		private static Mono<MultiValueMap<String, Part>> initMultipartData(ServerHttpRequest request,
-				List<HttpMessageReader<?>> readers) {
+																		   List<HttpMessageReader<?>> readers) {
 
 			try {
 				MediaType contentType = request.getHeaders().getContentType();
@@ -353,12 +351,12 @@ class DefaultServerRequestBuilder implements ServerRequest.Builder {
 							.switchIfEmpty(EMPTY_MULTIPART_DATA)
 							.cache();
 				}
-			}
-			catch (InvalidMediaTypeException ex) {
+			} catch (InvalidMediaTypeException ex) {
 				// Ignore
 			}
 			return EMPTY_MULTIPART_DATA;
 		}
+
 		@Override
 		public ServerHttpRequest getRequest() {
 			return this.request;

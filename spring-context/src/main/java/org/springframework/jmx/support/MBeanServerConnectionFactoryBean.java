@@ -45,11 +45,11 @@ import org.springframework.util.CollectionUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see MBeanServerFactoryBean
  * @see ConnectorServerFactoryBean
  * @see org.springframework.jmx.access.MBeanClientInterceptor#setServer
  * @see org.springframework.jmx.access.NotificationListenerRegistrar#setServer
+ * @since 1.2
  */
 public class MBeanServerConnectionFactoryBean
 		implements FactoryBean<MBeanServerConnection>, BeanClassLoaderAware, InitializingBean, DisposableBean {
@@ -126,8 +126,7 @@ public class MBeanServerConnectionFactoryBean
 
 		if (this.connectOnStartup) {
 			connect();
-		}
-		else {
+		} else {
 			createLazyConnection();
 		}
 	}
@@ -188,6 +187,7 @@ public class MBeanServerConnectionFactoryBean
 	/**
 	 * Lazily creates a {@code JMXConnector} using the configured service URL
 	 * and environment properties.
+	 *
 	 * @see MBeanServerConnectionFactoryBean#setServiceUrl(String)
 	 * @see MBeanServerConnectionFactoryBean#setEnvironment(java.util.Properties)
 	 */

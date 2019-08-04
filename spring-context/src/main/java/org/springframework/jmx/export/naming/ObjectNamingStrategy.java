@@ -28,19 +28,20 @@ import org.springframework.lang.Nullable;
  * when registering beans.
  *
  * @author Rob Harrop
- * @since 1.2
  * @see org.springframework.jmx.export.MBeanExporter
  * @see javax.management.ObjectName
+ * @since 1.2
  */
 @FunctionalInterface
 public interface ObjectNamingStrategy {
 
 	/**
 	 * Obtain an {@code ObjectName} for the supplied bean.
+	 *
 	 * @param managedBean the bean that will be exposed under the
-	 * returned {@code ObjectName}
-	 * @param beanKey the key associated with this bean in the beans map
-	 * passed to the {@code MBeanExporter}
+	 *                    returned {@code ObjectName}
+	 * @param beanKey     the key associated with this bean in the beans map
+	 *                    passed to the {@code MBeanExporter}
 	 * @return the {@code ObjectName} instance
 	 * @throws MalformedObjectNameException if the resulting {@code ObjectName} is invalid
 	 */

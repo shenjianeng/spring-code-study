@@ -81,10 +81,12 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 			public Class<?> getTargetClass() {
 				return descriptor.getDependencyType();
 			}
+
 			@Override
 			public boolean isStatic() {
 				return false;
 			}
+
 			@Override
 			public Object getTarget() {
 				Object target = beanFactory.doResolveDependency(descriptor, beanName, null, null);
@@ -92,11 +94,9 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 					Class<?> type = getTargetClass();
 					if (Map.class == type) {
 						return Collections.emptyMap();
-					}
-					else if (List.class == type) {
+					} else if (List.class == type) {
 						return Collections.emptyList();
-					}
-					else if (Set.class == type || Collection.class == type) {
+					} else if (Set.class == type || Collection.class == type) {
 						return Collections.emptySet();
 					}
 					throw new NoSuchBeanDefinitionException(descriptor.getResolvableType(),
@@ -104,6 +104,7 @@ public class ContextAnnotationAutowireCandidateResolver extends QualifierAnnotat
 				}
 				return target;
 			}
+
 			@Override
 			public void releaseTarget(Object target) {
 			}

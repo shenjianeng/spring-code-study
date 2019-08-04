@@ -136,7 +136,8 @@ public class BodyExtractorsTests {
 	@Test
 	public void toMonoParameterizedTypeReference() {
 		BodyExtractor<Mono<Map<String, String>>, ReactiveHttpInputMessage> extractor =
-				BodyExtractors.toMono(new ParameterizedTypeReference<Map<String, String>>() {});
+				BodyExtractors.toMono(new ParameterizedTypeReference<Map<String, String>>() {
+				});
 
 		DefaultDataBufferFactory factory = new DefaultDataBufferFactory();
 		DefaultDataBuffer dataBuffer =
@@ -146,7 +147,7 @@ public class BodyExtractorsTests {
 		MockServerHttpRequest request = MockServerHttpRequest.post("/").contentType(MediaType.APPLICATION_JSON).body(body);
 		Mono<Map<String, String>> result = extractor.extract(request, this.context);
 
-		Map<String, String > expected = new LinkedHashMap<>();
+		Map<String, String> expected = new LinkedHashMap<>();
 		expected.put("username", "foo");
 		expected.put("password", "bar");
 		StepVerifier.create(result)
@@ -183,7 +184,8 @@ public class BodyExtractorsTests {
 	@Test  // SPR-15758
 	public void toMonoWithEmptyBodyAndNoContentType() {
 		BodyExtractor<Mono<Map<String, String>>, ReactiveHttpInputMessage> extractor =
-				BodyExtractors.toMono(new ParameterizedTypeReference<Map<String, String>>() {});
+				BodyExtractors.toMono(new ParameterizedTypeReference<Map<String, String>>() {
+				});
 
 		MockServerHttpRequest request = MockServerHttpRequest.post("/").body(Flux.empty());
 		Mono<Map<String, String>> result = extractor.extract(request, this.context);
@@ -443,7 +445,8 @@ public class BodyExtractorsTests {
 	}
 
 
-	interface SafeToDeserialize {}
+	interface SafeToDeserialize {
+	}
 
 
 	@SuppressWarnings("unused")

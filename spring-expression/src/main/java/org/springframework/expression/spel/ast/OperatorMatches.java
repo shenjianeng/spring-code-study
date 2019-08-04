@@ -52,11 +52,12 @@ public class OperatorMatches extends Operator {
 
 	/**
 	 * Check the first operand matches the regex specified as the second operand.
+	 *
 	 * @param state the expression state
 	 * @return {@code true} if the first operand matches the regex specified as the
 	 * second operand, otherwise {@code false}
 	 * @throws EvaluationException if there is a problem evaluating the expression
-	 * (e.g. the regex is invalid)
+	 *                             (e.g. the regex is invalid)
 	 */
 	@Override
 	public BooleanTypedValue getValueInternal(ExpressionState state) throws EvaluationException {
@@ -83,12 +84,10 @@ public class OperatorMatches extends Operator {
 			}
 			Matcher matcher = pattern.matcher(new MatcherInput(left, new AccessCount()));
 			return BooleanTypedValue.forValue(matcher.matches());
-		}
-		catch (PatternSyntaxException ex) {
+		} catch (PatternSyntaxException ex) {
 			throw new SpelEvaluationException(
 					rightOp.getStartPosition(), ex, SpelMessage.INVALID_PATTERN, right);
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			throw new SpelEvaluationException(
 					rightOp.getStartPosition(), ex, SpelMessage.FLAWED_PATTERN, right);
 		}

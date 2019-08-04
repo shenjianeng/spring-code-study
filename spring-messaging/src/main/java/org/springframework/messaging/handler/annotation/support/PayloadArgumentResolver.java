@@ -63,6 +63,7 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 	/**
 	 * Create a new {@code PayloadArgumentResolver} with the given
 	 * {@link MessageConverter}.
+	 *
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @since 4.0.9
 	 */
@@ -73,8 +74,9 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 	/**
 	 * Create a new {@code PayloadArgumentResolver} with the given
 	 * {@link MessageConverter} and {@link Validator}.
+	 *
 	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
+	 * @param validator        the Validator to use (optional)
 	 */
 	public PayloadArgumentResolver(MessageConverter messageConverter, Validator validator) {
 		this(messageConverter, validator, true);
@@ -83,14 +85,15 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 	/**
 	 * Create a new {@code PayloadArgumentResolver} with the given
 	 * {@link MessageConverter} and {@link Validator}.
-	 * @param messageConverter the MessageConverter to use (required)
-	 * @param validator the Validator to use (optional)
+	 *
+	 * @param messageConverter     the MessageConverter to use (required)
+	 * @param validator            the Validator to use (optional)
 	 * @param useDefaultResolution if "true" (the default) this resolver supports
-	 * all parameters; if "false" then only arguments with the {@code @Payload}
-	 * annotation are supported.
+	 *                             all parameters; if "false" then only arguments with the {@code @Payload}
+	 *                             annotation are supported.
 	 */
 	public PayloadArgumentResolver(MessageConverter messageConverter, Validator validator,
-			boolean useDefaultResolution) {
+								   boolean useDefaultResolution) {
 
 		Assert.notNull(messageConverter, "MessageConverter must not be null");
 		this.converter = messageConverter;
@@ -119,8 +122,7 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 				BindingResult bindingResult = new BeanPropertyBindingResult(payload, paramName);
 				bindingResult.addError(new ObjectError(paramName, "Payload value must not be empty"));
 				throw new MethodArgumentNotValidException(message, parameter, bindingResult);
-			}
-			else {
+			} else {
 				return null;
 			}
 		}
@@ -130,13 +132,11 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 		if (ClassUtils.isAssignable(targetClass, payloadClass)) {
 			validate(message, parameter, payload);
 			return payload;
-		}
-		else {
+		} else {
 			if (this.converter instanceof SmartMessageConverter) {
 				SmartMessageConverter smartConverter = (SmartMessageConverter) this.converter;
 				payload = smartConverter.fromMessage(message, targetClass, parameter);
-			}
-			else {
+			} else {
 				payload = this.converter.fromMessage(message, targetClass);
 			}
 			if (payload == null) {
@@ -155,19 +155,17 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 
 	/**
 	 * Specify if the given {@code payload} is empty.
+	 *
 	 * @param payload the payload to check (can be {@code null})
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {
 		if (payload == null) {
 			return true;
-		}
-		else if (payload instanceof byte[]) {
+		} else if (payload instanceof byte[]) {
 			return ((byte[]) payload).length == 0;
-		}
-		else if (payload instanceof String) {
+		} else if (payload instanceof String) {
 			return !StringUtils.hasText((String) payload);
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -177,9 +175,10 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 	 * <p>The default implementation checks for {@code @javax.validation.Valid},
 	 * Spring's {@link org.springframework.validation.annotation.Validated},
 	 * and custom annotations whose name starts with "Valid".
-	 * @param message the currently processed message
+	 *
+	 * @param message   the currently processed message
 	 * @param parameter the method parameter
-	 * @param target the target payload object
+	 * @param target    the target payload object
 	 * @throws MethodArgumentNotValidException in case of binding errors
 	 */
 	protected void validate(Message<?> message, MethodParameter parameter, Object target) {
@@ -190,13 +189,12 @@ public class PayloadArgumentResolver implements HandlerMethodArgumentResolver {
 			Validated validatedAnn = AnnotationUtils.getAnnotation(ann, Validated.class);
 			if (validatedAnn != null || ann.annotationType().getSimpleName().startsWith("Valid")) {
 				Object hints = (validatedAnn != null ? validatedAnn.value() : AnnotationUtils.getValue(ann));
-				Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[] {hints});
+				Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[]{hints});
 				BeanPropertyBindingResult bindingResult =
 						new BeanPropertyBindingResult(target, getParameterName(parameter));
 				if (!ObjectUtils.isEmpty(validationHints) && this.validator instanceof SmartValidator) {
 					((SmartValidator) this.validator).validate(target, bindingResult, validationHints);
-				}
-				else {
+				} else {
 					this.validator.validate(target, bindingResult);
 				}
 				if (bindingResult.hasErrors()) {

@@ -30,10 +30,10 @@ import org.springframework.util.Assert;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 4.2
  * @see org.springframework.aop.support.AopUtils
  * @see org.springframework.aop.framework.AopProxyUtils
  * @see ReflectionTestUtils
+ * @since 4.2
  */
 public abstract class AopTestUtils {
 
@@ -43,8 +43,9 @@ public abstract class AopTestUtils {
 	 * {@linkplain AopUtils#isAopProxy proxy}, the target of the proxy will
 	 * be returned; otherwise, the {@code candidate} will be returned
 	 * <em>as is</em>.
+	 *
 	 * @param candidate the instance to check (potentially a Spring AOP proxy;
-	 * never {@code null})
+	 *                  never {@code null})
 	 * @return the target object or the {@code candidate} (never {@code null})
 	 * @throws IllegalStateException if an error occurs while unwrapping a proxy
 	 * @see Advised#getTargetSource()
@@ -60,8 +61,7 @@ public abstract class AopTestUtils {
 					return (T) target;
 				}
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalStateException("Failed to unwrap proxied object", ex);
 		}
 		return (T) candidate;
@@ -75,8 +75,9 @@ public abstract class AopTestUtils {
 	 * {@linkplain AopUtils#isAopProxy proxy}, the ultimate target of all
 	 * nested proxies will be returned; otherwise, the {@code candidate}
 	 * will be returned <em>as is</em>.
+	 *
 	 * @param candidate the instance to check (potentially a Spring AOP proxy;
-	 * never {@code null})
+	 *                  never {@code null})
 	 * @return the target object or the {@code candidate} (never {@code null})
 	 * @throws IllegalStateException if an error occurs while unwrapping a proxy
 	 * @see Advised#getTargetSource()
@@ -92,8 +93,7 @@ public abstract class AopTestUtils {
 					return (T) getUltimateTargetObject(target);
 				}
 			}
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalStateException("Failed to unwrap proxied object", ex);
 		}
 		return (T) candidate;

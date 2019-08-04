@@ -89,8 +89,7 @@ public class DefaultResponseErrorHandlerHttpStatusTests {
 		try {
 			this.handler.handleError(this.response);
 			fail("expected " + this.expectedExceptionClass.getSimpleName());
-		}
-		catch (HttpStatusCodeException ex) {
+		} catch (HttpStatusCodeException ex) {
 			assertEquals("Expected " + this.expectedExceptionClass.getSimpleName(),
 					this.expectedExceptionClass, ex.getClass());
 		}

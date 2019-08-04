@@ -28,9 +28,9 @@ import org.springframework.lang.Nullable;
  * implementing from {@link JCacheConfigurer} directly.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see JCacheConfigurer
  * @see CachingConfigurerSupport
+ * @since 4.1
  */
 public class JCacheConfigurerSupport extends CachingConfigurerSupport implements JCacheConfigurer {
 

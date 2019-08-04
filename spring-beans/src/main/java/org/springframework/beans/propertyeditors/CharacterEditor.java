@@ -36,9 +36,9 @@ import org.springframework.util.StringUtils;
  * @author Juergen Hoeller
  * @author Rob Harrop
  * @author Rick Evans
- * @since 1.2
  * @see Character
  * @see org.springframework.beans.BeanWrapperImpl
+ * @since 1.2
  */
 public class CharacterEditor extends PropertyEditorSupport {
 
@@ -62,6 +62,7 @@ public class CharacterEditor extends PropertyEditorSupport {
 	 * allowed in parsing, i.e. be interpreted as the {@code null} value when
 	 * {@link #setAsText(String) text is being converted}. If {@code false},
 	 * an {@link IllegalArgumentException} will be thrown at that time.
+	 *
 	 * @param allowEmpty if empty strings are to be allowed
 	 */
 	public CharacterEditor(boolean allowEmpty) {
@@ -74,17 +75,13 @@ public class CharacterEditor extends PropertyEditorSupport {
 		if (this.allowEmpty && !StringUtils.hasLength(text)) {
 			// Treat empty String as null value.
 			setValue(null);
-		}
-		else if (text == null) {
+		} else if (text == null) {
 			throw new IllegalArgumentException("null String cannot be converted to char type");
-		}
-		else if (isUnicodeCharacterSequence(text)) {
+		} else if (isUnicodeCharacterSequence(text)) {
 			setAsUnicode(text);
-		}
-		else if (text.length() == 1) {
+		} else if (text.length() == 1) {
 			setValue(Character.valueOf(text.charAt(0)));
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("String [" + text + "] with length " +
 					text.length() + " cannot be converted to char type: neither Unicode nor single character");
 		}

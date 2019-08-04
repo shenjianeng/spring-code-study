@@ -59,7 +59,7 @@ class DefaultRequestPath implements RequestPath {
 		int length = contextPath.length();
 		int counter = 0;
 
-		for (int i=0; i < path.elements().size(); i++) {
+		for (int i = 0; i < path.elements().size(); i++) {
 			PathContainer.Element element = path.elements().get(i);
 			counter += element.value().length();
 			if (length == counter) {
@@ -132,7 +132,7 @@ class DefaultRequestPath implements RequestPath {
 		if (other == null || getClass() != other.getClass()) {
 			return false;
 		}
-		DefaultRequestPath otherPath= (DefaultRequestPath) other;
+		DefaultRequestPath otherPath = (DefaultRequestPath) other;
 		return (this.fullPath.equals(otherPath.fullPath) &&
 				this.contextPath.equals(otherPath.contextPath) &&
 				this.pathWithinApplication.equals(otherPath.pathWithinApplication));

@@ -23,14 +23,15 @@ import javax.management.ObjectName;
  * registered and unregistered via an {@link MBeanExporter}.
  *
  * @author Rob Harrop
- * @since 1.2.2
  * @see org.springframework.jmx.export.MBeanExporter#setListeners
+ * @since 1.2.2
  */
 public interface MBeanExporterListener {
 
 	/**
 	 * Called by {@link MBeanExporter} after an MBean has been <i>successfully</i>
 	 * registered with an {@link javax.management.MBeanServer}.
+	 *
 	 * @param objectName the {@code ObjectName} of the registered MBean
 	 */
 	void mbeanRegistered(ObjectName objectName);
@@ -38,6 +39,7 @@ public interface MBeanExporterListener {
 	/**
 	 * Called by {@link MBeanExporter} after an MBean has been <i>successfully</i>
 	 * unregistered from an {@link javax.management.MBeanServer}.
+	 *
 	 * @param objectName the {@code ObjectName} of the unregistered MBean
 	 */
 	void mbeanUnregistered(ObjectName objectName);

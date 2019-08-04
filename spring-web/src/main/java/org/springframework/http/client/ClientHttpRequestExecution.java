@@ -27,8 +27,8 @@ import org.springframework.http.HttpRequest;
  * or - if the calling interceptor is last - execute the request itself.
  *
  * @author Arjen Poutsma
- * @since 3.1
  * @see ClientHttpRequestInterceptor
+ * @since 3.1
  */
 @FunctionalInterface
 public interface ClientHttpRequestExecution {
@@ -36,8 +36,9 @@ public interface ClientHttpRequestExecution {
 	/**
 	 * Execute the request with the given request attributes and body,
 	 * and return the response.
+	 *
 	 * @param request the request, containing method, URI, and headers
-	 * @param body the body of the request to execute
+	 * @param body    the body of the request to execute
 	 * @return the response
 	 * @throws IOException in case of I/O errors
 	 */

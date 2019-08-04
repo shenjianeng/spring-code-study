@@ -129,26 +129,22 @@ public abstract class AbstractSockJsIntegrationTests {
 	public void teardown() throws Exception {
 		try {
 			this.sockJsClient.stop();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			logger.error("Failed to stop SockJsClient", ex);
 		}
 		try {
 			this.server.undeployConfig();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to undeploy application config", t);
 		}
 		try {
 			this.server.stop();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to stop server", t);
 		}
 		try {
 			this.wac.close();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			logger.error("Failed to close WebApplicationContext", t);
 		}
 	}
@@ -305,14 +301,13 @@ public abstract class AbstractSockJsIntegrationTests {
 
 	private static void awaitEvent(BooleanSupplier condition, long timeToWait, String description) {
 		long timeToSleep = 200;
-		for (int i = 0 ; i < Math.floor(timeToWait / timeToSleep); i++) {
+		for (int i = 0; i < Math.floor(timeToWait / timeToSleep); i++) {
 			if (condition.getAsBoolean()) {
 				return;
 			}
 			try {
 				Thread.sleep(timeToSleep);
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				throw new IllegalStateException("Interrupted while waiting for " + description, e);
 			}
 		}
@@ -373,11 +368,9 @@ public abstract class AbstractSockJsIntegrationTests {
 			TextMessage actual = this.receivedMessages.poll(timeToWait, TimeUnit.MILLISECONDS);
 			if (actual != null) {
 				assertEquals(expected, actual);
-			}
-			else if (this.transportError != null) {
+			} else if (this.transportError != null) {
 				throw new AssertionError("Transport error", this.transportError);
-			}
-			else {
+			} else {
 				fail("Timed out waiting for [" + expected + "]");
 			}
 		}
@@ -429,8 +422,7 @@ public abstract class AbstractSockJsIntegrationTests {
 					try {
 						Thread.sleep(this.sleepDelayMap.get(suffix));
 						break;
-					}
-					catch (InterruptedException e) {
+					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}

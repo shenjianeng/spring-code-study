@@ -33,9 +33,9 @@ import org.springframework.util.Assert;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 3.1
  * @see MockHttpServletRequest#addPart
  * @see MockMultipartFile
+ * @since 3.1
  */
 public class MockPart implements Part {
 
@@ -51,6 +51,7 @@ public class MockPart implements Part {
 
 	/**
 	 * Constructor for a part with byte[] content only.
+	 *
 	 * @see #getHeaders()
 	 */
 	public MockPart(String name, @Nullable byte[] content) {
@@ -59,6 +60,7 @@ public class MockPart implements Part {
 
 	/**
 	 * Constructor for a part with a filename and byte[] content.
+	 *
 	 * @see #getHeaders()
 	 */
 	public MockPart(String name, @Nullable String filename, @Nullable byte[] content) {

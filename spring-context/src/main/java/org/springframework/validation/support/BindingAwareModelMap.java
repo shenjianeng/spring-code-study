@@ -32,8 +32,8 @@ import org.springframework.validation.BindingResult;
  * a regular {@link Map} with String keys will be good enough to return a user model.
  *
  * @author Juergen Hoeller
- * @since 2.5.6
  * @see org.springframework.validation.BindingResult
+ * @since 2.5.6
  */
 @SuppressWarnings("serial")
 public class BindingAwareModelMap extends ExtendedModelMap {

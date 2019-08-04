@@ -33,8 +33,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 3.0
  * @see NumberFormat
+ * @since 3.0
  */
 public class NumberFormatAnnotationFormatterFactory extends EmbeddedValueResolutionSupport
 		implements AnnotationFormatterFactory<NumberFormat> {
@@ -59,16 +59,13 @@ public class NumberFormatAnnotationFormatterFactory extends EmbeddedValueResolut
 		String pattern = resolveEmbeddedValue(annotation.pattern());
 		if (StringUtils.hasLength(pattern)) {
 			return new NumberStyleFormatter(pattern);
-		}
-		else {
+		} else {
 			Style style = annotation.style();
 			if (style == Style.CURRENCY) {
 				return new CurrencyStyleFormatter();
-			}
-			else if (style == Style.PERCENT) {
+			} else if (style == Style.PERCENT) {
 				return new PercentStyleFormatter();
-			}
-			else {
+			} else {
 				return new NumberStyleFormatter();
 			}
 		}

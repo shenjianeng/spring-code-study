@@ -108,8 +108,7 @@ public class SpringSessionSynchronization implements TransactionSynchronization,
 			}
 			// Eagerly disconnect the Session here, to make release mode "on_close" work nicely.
 			session.disconnect();
-		}
-		finally {
+		} finally {
 			// Unbind at this point if it's a new Session...
 			if (this.newSession) {
 				TransactionSynchronizationManager.unbindResource(this.sessionFactory);
@@ -130,8 +129,7 @@ public class SpringSessionSynchronization implements TransactionSynchronization,
 				// Necessary for pre-bound Sessions, to avoid inconsistent state.
 				this.sessionHolder.getSession().clear();
 			}
-		}
-		finally {
+		} finally {
 			this.sessionHolder.setSynchronizedWithTransaction(false);
 			// Call close() at this point if it's a new Session...
 			if (this.newSession) {

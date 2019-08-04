@@ -35,8 +35,9 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 	/**
 	 * Create a new {@code DefaultDataBinderFactory} instance.
+	 *
 	 * @param initializer for global data binder initialization
-	 * (or {@code null} if none)
+	 *                    (or {@code null} if none)
 	 */
 	public DefaultDataBinderFactory(@Nullable WebBindingInitializer initializer) {
 		this.initializer = initializer;
@@ -46,6 +47,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	/**
 	 * Create a new {@link WebDataBinder} for the given target object and
 	 * initialize it through a {@link WebBindingInitializer}.
+	 *
 	 * @throws Exception in case of invalid state or arguments
 	 */
 	@Override
@@ -64,7 +66,8 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	/**
 	 * Extension point to create the WebDataBinder instance.
 	 * By default this is {@code WebRequestDataBinder}.
-	 * @param target the binding target or {@code null} for type conversion only
+	 *
+	 * @param target     the binding target or {@code null} for type conversion only
 	 * @param objectName the binding target object name
 	 * @param webRequest the current request
 	 * @throws Exception in case of invalid state or arguments
@@ -79,6 +82,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	 * Extension point to further initialize the created data binder instance
 	 * (e.g. with {@code @InitBinder} methods) after "global" initialization
 	 * via {@link WebBindingInitializer}.
+	 *
 	 * @param dataBinder the data binder instance to customize
 	 * @param webRequest the current request
 	 * @throws Exception if initialization fails

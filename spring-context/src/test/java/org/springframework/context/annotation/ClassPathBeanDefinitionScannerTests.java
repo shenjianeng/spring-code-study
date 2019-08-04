@@ -149,8 +149,7 @@ public class ClassPathBeanDefinitionScannerTests {
 			scanner.scan("org.springframework.context.annotation3");
 			scanner.scan(BASE_PACKAGE);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("stubFooDao"));
 			assertTrue(ex.getMessage().contains(StubFooDao.class.getName()));
@@ -214,8 +213,7 @@ public class ClassPathBeanDefinitionScannerTests {
 			scanner.scan("org.springframework.context.annotation2");
 			scanner.scan(BASE_PACKAGE);
 			fail("Must have thrown IllegalStateException");
-		}
-		catch (IllegalStateException expected) {
+		} catch (IllegalStateException expected) {
 			assertTrue(expected.getMessage().contains("myNamedDao"));
 			assertTrue(expected.getMessage().contains(NamedStubDao.class.getName()));
 			assertTrue(expected.getMessage().contains(NamedStubDao2.class.getName()));
@@ -438,8 +436,7 @@ public class ClassPathBeanDefinitionScannerTests {
 
 		try {
 			context.getBean("fooService");
-		}
-		catch (BeanCreationException expected) {
+		} catch (BeanCreationException expected) {
 			assertTrue(expected.contains(BeanInstantiationException.class));
 			// @Lookup method not substituted
 		}
@@ -473,8 +470,7 @@ public class ClassPathBeanDefinitionScannerTests {
 			context.refresh();
 			context.getBean("fooService");
 			fail("BeanCreationException expected; fooDao should not have been an autowire-candidate");
-		}
-		catch (BeanCreationException expected) {
+		} catch (BeanCreationException expected) {
 			assertTrue(expected.getMostSpecificCause() instanceof NoSuchBeanDefinitionException);
 		}
 	}

@@ -166,7 +166,7 @@ final class DefaultRenderingResponseBuilder implements RenderingResponse.Builder
 		private final Map<String, Object> model;
 
 		public DefaultRenderingResponse(int statusCode, HttpHeaders headers,
-				MultiValueMap<String, ResponseCookie> cookies, String name, Map<String, Object> model) {
+										MultiValueMap<String, ResponseCookie> cookies, String name, Map<String, Object> model) {
 
 			super(statusCode, headers, cookies, Collections.emptyMap());
 			this.name = name;

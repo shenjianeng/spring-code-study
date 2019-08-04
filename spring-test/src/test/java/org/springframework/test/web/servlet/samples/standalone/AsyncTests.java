@@ -215,8 +215,7 @@ public class AsyncTests {
 				try {
 					Thread.sleep(200);
 					os.write("&someBoolean=true".getBytes(StandardCharsets.UTF_8));
-				}
-				catch (InterruptedException e) {
+				} catch (InterruptedException e) {
 					/* no-op */
 				}
 			};
@@ -250,8 +249,7 @@ public class AsyncTests {
 					try {
 						Thread.sleep(100);
 						deferredResult.setErrorResult(new RuntimeException("Delayed Error"));
-					}
-					catch (InterruptedException e) {
+					} catch (InterruptedException e) {
 						/* no-op */
 					}
 				}

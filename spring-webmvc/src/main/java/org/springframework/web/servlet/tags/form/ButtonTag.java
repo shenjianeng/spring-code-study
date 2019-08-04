@@ -163,6 +163,7 @@ public class ButtonTag extends AbstractHtmlElementTag {
 
 	/**
 	 * Return the default value.
+	 *
 	 * @return the default value if none supplied
 	 */
 	protected String getDefaultValue() {

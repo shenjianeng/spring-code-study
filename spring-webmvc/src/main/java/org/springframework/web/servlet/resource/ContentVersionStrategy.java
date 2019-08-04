@@ -29,8 +29,8 @@ import org.springframework.util.FileCopyUtils;
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
- * @since 4.1
  * @see VersionResourceResolver
+ * @since 4.1
  */
 public class ContentVersionStrategy extends AbstractVersionStrategy {
 
@@ -43,8 +43,7 @@ public class ContentVersionStrategy extends AbstractVersionStrategy {
 		try {
 			byte[] content = FileCopyUtils.copyToByteArray(resource.getInputStream());
 			return DigestUtils.md5DigestAsHex(content);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException("Failed to calculate hash for " + resource, ex);
 		}
 	}

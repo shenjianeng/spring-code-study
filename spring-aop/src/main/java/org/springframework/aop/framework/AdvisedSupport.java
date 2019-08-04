@@ -60,7 +60,9 @@ import org.springframework.util.CollectionUtils;
  */
 public class AdvisedSupport extends ProxyConfig implements Advised {
 
-	/** use serialVersionUID from Spring 2.0 for interoperability. */
+	/**
+	 * use serialVersionUID from Spring 2.0 for interoperability.
+	 */
 	private static final long serialVersionUID = 2651364800145442165L;
 
 
@@ -71,16 +73,24 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	public static final TargetSource EMPTY_TARGET_SOURCE = EmptyTargetSource.INSTANCE;
 
 
-	/** Package-protected to allow direct access for efficiency. */
+	/**
+	 * Package-protected to allow direct access for efficiency.
+	 */
 	TargetSource targetSource = EMPTY_TARGET_SOURCE;
 
-	/** Whether the Advisors are already filtered for the specific target class. */
+	/**
+	 * Whether the Advisors are already filtered for the specific target class.
+	 */
 	private boolean preFiltered = false;
 
-	/** The AdvisorChainFactory to use. */
+	/**
+	 * The AdvisorChainFactory to use.
+	 */
 	AdvisorChainFactory advisorChainFactory = new DefaultAdvisorChainFactory();
 
-	/** Cache with Method as key and advisor chain List as value. */
+	/**
+	 * Cache with Method as key and advisor chain List as value.
+	 */
 	private transient Map<MethodCacheKey, List<Object>> methodCache;
 
 	/**
@@ -111,6 +121,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Create a AdvisedSupport instance with the given parameters.
+	 *
 	 * @param interfaces the proxied interfaces
 	 */
 	public AdvisedSupport(Class<?>... interfaces) {
@@ -122,6 +133,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * Set the given object as target.
 	 * Will create a SingletonTargetSource for the object.
+	 *
 	 * @see #setTargetSource
 	 * @see org.springframework.aop.target.SingletonTargetSource
 	 */
@@ -149,6 +161,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	 * for the case where we want a proxy based on a target class
 	 * (which can be an interface or a concrete class) without having
 	 * a fully capable TargetSource available.
+	 *
 	 * @see #setTargetSource
 	 * @see #setTarget
 	 */
@@ -202,6 +215,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Add a new proxied interface.
+	 *
 	 * @param intf the additional interface to proxy
 	 */
 	public void addInterface(Class<?> intf) {
@@ -218,6 +232,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * Remove a proxied interface.
 	 * <p>Does nothing if the given interface isn't proxied.
+	 *
 	 * @param intf the interface to remove from the proxy
 	 * @return {@code true} if the interface was removed; {@code false}
 	 * if the interface was not found and hence could not be removed
@@ -266,8 +281,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 		int index = indexOf(advisor);
 		if (index == -1) {
 			return false;
-		}
-		else {
+		} else {
 			removeAdvisor(index);
 			return true;
 		}
@@ -318,6 +332,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Add all of the given advisors to this proxy configuration.
+	 *
 	 * @param advisors the advisors to register
 	 */
 	public void addAdvisors(Advisor... advisors) {
@@ -326,6 +341,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Add all of the given advisors to this proxy configuration.
+	 *
 	 * @param advisors the advisors to register
 	 */
 	public void addAdvisors(Collection<Advisor> advisors) {
@@ -401,12 +417,10 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 			// We don't need an IntroductionAdvisor for this kind of introduction:
 			// It's fully self-describing.
 			addAdvisor(pos, new DefaultIntroductionAdvisor(advice, (IntroductionInfo) advice));
-		}
-		else if (advice instanceof DynamicIntroductionAdvice) {
+		} else if (advice instanceof DynamicIntroductionAdvice) {
 			// We need an IntroductionAdvisor for this kind of introduction.
 			throw new AopConfigException("DynamicIntroductionAdvice may only be added as part of IntroductionAdvisor");
-		}
-		else {
+		} else {
 			addAdvisor(pos, new DefaultPointcutAdvisor(advice));
 		}
 	}
@@ -416,8 +430,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 		int index = indexOf(advice);
 		if (index == -1) {
 			return false;
-		}
-		else {
+		} else {
 			removeAdvisor(index);
 			return true;
 		}
@@ -437,6 +450,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Is the given advice included in any advisor within this proxy configuration?
+	 *
 	 * @param advice the advice to check inclusion of
 	 * @return whether this advice instance is included
 	 */
@@ -453,6 +467,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/**
 	 * Count advices of the given class.
+	 *
 	 * @param adviceClass the advice class to check
 	 * @return the count of the interceptors of this class or subclasses
 	 */
@@ -472,7 +487,8 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * Determine a list of {@link org.aopalliance.intercept.MethodInterceptor} objects
 	 * for the given method, based on this configuration.
-	 * @param method the proxied method
+	 *
+	 * @param method      the proxied method
 	 * @param targetClass the target class
 	 * @return a List of MethodInterceptors (may also include InterceptorAndDynamicMethodMatchers)
 	 */
@@ -497,6 +513,7 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * Call this method on a new instance created by the no-arg constructor
 	 * to create an independent copy of the configuration from the given object.
+	 *
 	 * @param other the AdvisedSupport object to copy configuration from
 	 */
 	protected void copyConfigurationFrom(AdvisedSupport other) {
@@ -506,9 +523,10 @@ public class AdvisedSupport extends ProxyConfig implements Advised {
 	/**
 	 * Copy the AOP configuration from the given AdvisedSupport object,
 	 * but allow substitution of a fresh TargetSource and a given interceptor chain.
-	 * @param other the AdvisedSupport object to take proxy configuration from
+	 *
+	 * @param other        the AdvisedSupport object to take proxy configuration from
 	 * @param targetSource the new TargetSource
-	 * @param advisors the Advisors for the chain
+	 * @param advisors     the Advisors for the chain
 	 */
 	protected void copyConfigurationFrom(AdvisedSupport other, TargetSource targetSource, List<Advisor> advisors) {
 		copyFrom(other);

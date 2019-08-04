@@ -42,6 +42,7 @@ public class ManagedTransactionAdapter implements Transaction {
 
 	/**
 	 * Create a new ManagedTransactionAdapter for the given TransactionManager.
+	 *
 	 * @param transactionManager the JTA TransactionManager to wrap
 	 */
 	public ManagedTransactionAdapter(TransactionManager transactionManager) throws SystemException {

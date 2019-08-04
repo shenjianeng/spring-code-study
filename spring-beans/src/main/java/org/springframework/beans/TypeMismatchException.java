@@ -49,8 +49,9 @@ public class TypeMismatchException extends PropertyAccessException {
 
 	/**
 	 * Create a new {@code TypeMismatchException}.
+	 *
 	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
-	 * @param requiredType the required target type
+	 * @param requiredType        the required target type
 	 */
 	public TypeMismatchException(PropertyChangeEvent propertyChangeEvent, Class<?> requiredType) {
 		this(propertyChangeEvent, requiredType, null);
@@ -58,20 +59,21 @@ public class TypeMismatchException extends PropertyAccessException {
 
 	/**
 	 * Create a new {@code TypeMismatchException}.
+	 *
 	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
-	 * @param requiredType the required target type (or {@code null} if not known)
-	 * @param cause the root cause (may be {@code null})
+	 * @param requiredType        the required target type (or {@code null} if not known)
+	 * @param cause               the root cause (may be {@code null})
 	 */
 	public TypeMismatchException(PropertyChangeEvent propertyChangeEvent, @Nullable Class<?> requiredType,
-			@Nullable Throwable cause) {
+								 @Nullable Throwable cause) {
 
 		super(propertyChangeEvent,
 				"Failed to convert property value of type '" +
-				ClassUtils.getDescriptiveType(propertyChangeEvent.getNewValue()) + "'" +
-				(requiredType != null ?
-				" to required type '" + ClassUtils.getQualifiedName(requiredType) + "'" : "") +
-				(propertyChangeEvent.getPropertyName() != null ?
-				" for property '" + propertyChangeEvent.getPropertyName() + "'" : ""),
+						ClassUtils.getDescriptiveType(propertyChangeEvent.getNewValue()) + "'" +
+						(requiredType != null ?
+								" to required type '" + ClassUtils.getQualifiedName(requiredType) + "'" : "") +
+						(propertyChangeEvent.getPropertyName() != null ?
+								" for property '" + propertyChangeEvent.getPropertyName() + "'" : ""),
 				cause);
 		this.propertyName = propertyChangeEvent.getPropertyName();
 		this.value = propertyChangeEvent.getNewValue();
@@ -80,7 +82,8 @@ public class TypeMismatchException extends PropertyAccessException {
 
 	/**
 	 * Create a new {@code TypeMismatchException} without a {@code PropertyChangeEvent}.
-	 * @param value the offending value that couldn't be converted (may be {@code null})
+	 *
+	 * @param value        the offending value that couldn't be converted (may be {@code null})
 	 * @param requiredType the required target type (or {@code null} if not known)
 	 * @see #initPropertyName
 	 */
@@ -90,14 +93,15 @@ public class TypeMismatchException extends PropertyAccessException {
 
 	/**
 	 * Create a new {@code TypeMismatchException} without a {@code PropertyChangeEvent}.
-	 * @param value the offending value that couldn't be converted (may be {@code null})
+	 *
+	 * @param value        the offending value that couldn't be converted (may be {@code null})
 	 * @param requiredType the required target type (or {@code null} if not known)
-	 * @param cause the root cause (may be {@code null})
+	 * @param cause        the root cause (may be {@code null})
 	 * @see #initPropertyName
 	 */
 	public TypeMismatchException(@Nullable Object value, @Nullable Class<?> requiredType, @Nullable Throwable cause) {
 		super("Failed to convert value of type '" + ClassUtils.getDescriptiveType(value) + "'" +
-				(requiredType != null ? " to required type '" + ClassUtils.getQualifiedName(requiredType) + "'" : ""),
+						(requiredType != null ? " to required type '" + ClassUtils.getQualifiedName(requiredType) + "'" : ""),
 				cause);
 		this.value = value;
 		this.requiredType = requiredType;
@@ -107,10 +111,11 @@ public class TypeMismatchException extends PropertyAccessException {
 	/**
 	 * Initialize this exception's property name for exposure through {@link #getPropertyName()},
 	 * as an alternative to having it initialized via a {@link PropertyChangeEvent}.
+	 *
 	 * @param propertyName the property name to expose
-	 * @since 5.0.4
 	 * @see #TypeMismatchException(Object, Class)
 	 * @see #TypeMismatchException(Object, Class, Throwable)
+	 * @since 5.0.4
 	 */
 	public void initPropertyName(String propertyName) {
 		Assert.state(this.propertyName == null, "Property name already initialized");

@@ -56,8 +56,7 @@ public class SimpleUrlHandlerMappingTests {
 		try {
 			wac.refresh();
 			fail("Should have thrown NoSuchBeanDefinitionException");
-		}
-		catch (FatalBeanException ex) {
+		} catch (FatalBeanException ex) {
 			NoSuchBeanDefinitionException nestedEx = (NoSuchBeanDefinitionException) ex.getCause();
 			assertEquals("mainControlle", nestedEx.getBeanName());
 		}

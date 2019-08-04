@@ -5,7 +5,8 @@ package org.springframework.web.servlet.tags.form;
  *
  * @author Scott Andrews
  */
-public class TestTypes { }
+public class TestTypes {
+}
 
 class BeanWithEnum {
 

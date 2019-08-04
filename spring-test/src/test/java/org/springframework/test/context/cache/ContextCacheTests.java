@@ -41,9 +41,9 @@ import static org.springframework.test.context.cache.ContextCacheTestUtils.*;
  *
  * @author Sam Brannen
  * @author Michail Nikolaev
- * @since 3.1
  * @see LruContextCacheTests
  * @see SpringRunnerContextCacheTests
+ * @since 3.1
  */
 public class ContextCacheTests {
 
@@ -72,7 +72,7 @@ public class ContextCacheTests {
 	private void loadCtxAndAssertStats(Class<?> testClass, int expectedSize, int expectedHitCount, int expectedMissCount) {
 		assertNotNull(loadContext(testClass));
 		assertContextCacheStatistics(contextCache, testClass.getName(), expectedSize, expectedHitCount,
-			expectedMissCount);
+				expectedMissCount);
 	}
 
 	@Test
@@ -110,18 +110,18 @@ public class ContextCacheTests {
 
 		// Level 2
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel2TestCase.class, ++size /* L2 */, ++hits /* L1 */,
-			++misses /* L2 */);
+				++misses /* L2 */);
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel2TestCase.class, size, ++hits /* L2 */, misses);
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel2TestCase.class, size, ++hits /* L2 */, misses);
 
 		// Level 3-A
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel3aTestCase.class, ++size /* L3A */, ++hits /* L2 */,
-			++misses /* L3A */);
+				++misses /* L3A */);
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel3aTestCase.class, size, ++hits /* L3A */, misses);
 
 		// Level 3-B
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel3bTestCase.class, ++size /* L3B */, ++hits /* L2 */,
-			++misses /* L3B */);
+				++misses /* L3B */);
 		loadCtxAndAssertStats(ClassHierarchyContextHierarchyLevel3bTestCase.class, size, ++hits /* L3B */, misses);
 	}
 
@@ -130,14 +130,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -145,7 +145,7 @@ public class ContextCacheTests {
 		// Remove Level 1
 		// Should also remove Levels 2, 3-A, and 3-B, leaving nothing.
 		contextCache.remove(getMergedContextConfiguration(testContext3a).getParent().getParent(),
-			HierarchyMode.CURRENT_LEVEL);
+				HierarchyMode.CURRENT_LEVEL);
 		assertContextCacheStatistics(contextCache, "removed level 1", 0, 1, 4);
 		assertParentContextCount(0);
 	}
@@ -155,14 +155,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -170,7 +170,7 @@ public class ContextCacheTests {
 		// Remove Level 1
 		// Should also remove Levels 2, 3-A, and 3-B, leaving nothing.
 		contextCache.remove(getMergedContextConfiguration(testContext3a).getParent().getParent(),
-			HierarchyMode.EXHAUSTIVE);
+				HierarchyMode.EXHAUSTIVE);
 		assertContextCacheStatistics(contextCache, "removed level 1", 0, 1, 4);
 		assertParentContextCount(0);
 	}
@@ -180,14 +180,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -206,14 +206,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -230,14 +230,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -259,14 +259,14 @@ public class ContextCacheTests {
 
 		// Load Level 3-A
 		TestContext testContext3a = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3aTestCase.class, contextCache);
 		testContext3a.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A", 3, 0, 3);
 		assertParentContextCount(2);
 
 		// Load Level 3-B
 		TestContext testContext3b = TestContextTestUtils.buildTestContext(
-			ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
+				ClassHierarchyContextHierarchyLevel3bTestCase.class, contextCache);
 		testContext3b.getApplicationContext();
 		assertContextCacheStatistics(contextCache, "level 3, A and B", 4, 1, 4);
 		assertParentContextCount(2);
@@ -301,12 +301,12 @@ public class ContextCacheTests {
 	private static class CustomAnnotationConfigContextLoader extends AnnotationConfigContextLoader {
 	}
 
-	@ActiveProfiles({ "foo", "bar" })
+	@ActiveProfiles({"foo", "bar"})
 	@ContextConfiguration(classes = Config.class, loader = AnnotationConfigContextLoader.class)
 	private static class FooBarProfilesTestCase {
 	}
 
-	@ActiveProfiles({ "bar", "foo" })
+	@ActiveProfiles({"bar", "foo"})
 	@ContextConfiguration(classes = Config.class, loader = AnnotationConfigContextLoader.class)
 	private static class BarFooProfilesTestCase {
 	}
@@ -315,7 +315,7 @@ public class ContextCacheTests {
 
 		@Override
 		public String[] resolve(Class<?> testClass) {
-			return new String[] { "foo", "bar" };
+			return new String[]{"foo", "bar"};
 		}
 	}
 
@@ -324,7 +324,7 @@ public class ContextCacheTests {
 	private static class FooBarActiveProfilesResolverTestCase {
 	}
 
-	@ContextHierarchy({ @ContextConfiguration })
+	@ContextHierarchy({@ContextConfiguration})
 	private static class ClassHierarchyContextHierarchyLevel1TestCase {
 
 		@Configuration
@@ -333,7 +333,7 @@ public class ContextCacheTests {
 		}
 	}
 
-	@ContextHierarchy({ @ContextConfiguration })
+	@ContextHierarchy({@ContextConfiguration})
 	private static class ClassHierarchyContextHierarchyLevel2TestCase extends
 			ClassHierarchyContextHierarchyLevel1TestCase {
 
@@ -343,7 +343,7 @@ public class ContextCacheTests {
 		}
 	}
 
-	@ContextHierarchy({ @ContextConfiguration })
+	@ContextHierarchy({@ContextConfiguration})
 	private static class ClassHierarchyContextHierarchyLevel3aTestCase extends
 			ClassHierarchyContextHierarchyLevel2TestCase {
 
@@ -353,7 +353,7 @@ public class ContextCacheTests {
 		}
 	}
 
-	@ContextHierarchy({ @ContextConfiguration })
+	@ContextHierarchy({@ContextConfiguration})
 	private static class ClassHierarchyContextHierarchyLevel3bTestCase extends
 			ClassHierarchyContextHierarchyLevel2TestCase {
 

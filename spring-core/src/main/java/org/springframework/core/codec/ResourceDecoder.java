@@ -54,14 +54,14 @@ public class ResourceDecoder extends AbstractDataBufferDecoder<Resource> {
 
 	@Override
 	public Flux<Resource> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+								 @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		return Flux.from(decodeToMono(inputStream, elementType, mimeType, hints));
 	}
 
 	@Override
 	protected Resource decodeDataBuffer(DataBuffer dataBuffer, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+										@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		byte[] bytes = new byte[dataBuffer.readableByteCount()];
 		dataBuffer.read(bytes);
@@ -74,11 +74,9 @@ public class ResourceDecoder extends AbstractDataBufferDecoder<Resource> {
 		Class<?> clazz = elementType.toClass();
 		if (clazz == InputStreamResource.class) {
 			return new InputStreamResource(new ByteArrayInputStream(bytes));
-		}
-		else if (Resource.class.isAssignableFrom(clazz)) {
+		} else if (Resource.class.isAssignableFrom(clazz)) {
 			return new ByteArrayResource(bytes);
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Unsupported resource class: " + clazz);
 		}
 	}

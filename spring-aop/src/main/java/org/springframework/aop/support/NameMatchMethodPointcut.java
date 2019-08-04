@@ -31,8 +31,8 @@ import org.springframework.util.PatternMatchUtils;
  * @author Juergen Hoeller
  * @author Rod Johnson
  * @author Rob Harrop
- * @since 11.02.2004
  * @see #isMatch
+ * @since 11.02.2004
  */
 @SuppressWarnings("serial")
 public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut implements Serializable {
@@ -43,6 +43,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	/**
 	 * Convenience method when we have only a single method name to match.
 	 * Use either this method or {@code setMappedNames}, not both.
+	 *
 	 * @see #setMappedNames
 	 */
 	public void setMappedName(String mappedName) {
@@ -64,6 +65,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	 * before a proxy is used.
 	 * <p><b>NB:</b> This method does not work after the proxy is in
 	 * use, as advice chains will be cached.
+	 *
 	 * @param name name of the additional method that will match
 	 * @return this pointcut to allow for multiple additions in one line
 	 */
@@ -87,6 +89,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	 * Return if the given method name matches the mapped name.
 	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
+	 *
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match

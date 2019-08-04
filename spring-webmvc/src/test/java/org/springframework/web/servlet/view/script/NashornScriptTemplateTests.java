@@ -21,8 +21,10 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.mockito.Mockito.mock;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -72,7 +74,7 @@ public class NashornScriptTemplateTests {
 	}
 
 	private MockHttpServletResponse render(String viewUrl, Map<String, Object> model,
-			Class<?> configuration) throws Exception {
+										   Class<?> configuration) throws Exception {
 
 		ScriptTemplateView view = createViewWithUrl(viewUrl, configuration);
 		MockHttpServletResponse response = new MockHttpServletResponse();

@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
  * Exception thrown when an HTTP 5xx is received.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see DefaultResponseErrorHandler
+ * @since 3.0
  */
 public class HttpServerErrorException extends HttpStatusCodeException {
 
@@ -61,7 +61,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	 * Constructor with a status code and status text, headers, and content.
 	 */
 	public HttpServerErrorException(HttpStatus statusCode, String statusText,
-			@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset charset) {
+									@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset charset) {
 
 		super(statusCode, statusText, headers, body, charset);
 	}
@@ -69,6 +69,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * Create an {@code HttpServerErrorException} or an HTTP status specific sub-class.
+	 *
 	 * @since 5.1
 	 */
 	public static HttpServerErrorException create(
@@ -95,6 +96,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpServerErrorException} for status HTTP 500 Internal Server Error.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -107,6 +109,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpServerErrorException} for status HTTP 501 Not Implemented.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -119,6 +122,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpServerErrorException} for status HTTP HTTP 502 Bad Gateway.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -131,6 +135,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpServerErrorException} for status HTTP 503 Service Unavailable.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -143,6 +148,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 	/**
 	 * {@link HttpServerErrorException} for status HTTP 504 Gateway Timeout.
+	 *
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")

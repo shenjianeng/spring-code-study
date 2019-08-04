@@ -79,8 +79,7 @@ public class RequestHeaderMapMethodArgumentResolverTests {
 		try {
 			this.resolver.supportsParameter(this.paramAlsoUnsupported);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"RequestHeaderMapMethodArgumentResolver doesn't support reactive type wrapper"));
@@ -146,7 +145,7 @@ public class RequestHeaderMapMethodArgumentResolverTests {
 			@RequestHeader Map<?, ?> param1,
 			@RequestHeader MultiValueMap<?, ?> param2,
 			@RequestHeader HttpHeaders param3,
-			Map<?,?> unsupported,
+			Map<?, ?> unsupported,
 			@RequestHeader Mono<Map<?, ?>> alsoUnsupported) {
 	}
 

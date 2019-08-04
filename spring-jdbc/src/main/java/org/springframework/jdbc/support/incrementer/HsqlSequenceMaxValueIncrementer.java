@@ -28,13 +28,14 @@ import javax.sql.DataSource;
  * generating unique keys that was necessary in previous versions of HSQL.
  *
  * @author Thomas Risberg
- * @since 2.5
  * @see HsqlMaxValueIncrementer
+ * @since 2.5
  */
 public class HsqlSequenceMaxValueIncrementer extends AbstractSequenceMaxValueIncrementer {
 
 	/**
 	 * Default constructor for bean property style usage.
+	 *
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -43,7 +44,8 @@ public class HsqlSequenceMaxValueIncrementer extends AbstractSequenceMaxValueInc
 
 	/**
 	 * Convenience constructor.
-	 * @param dataSource the DataSource to use
+	 *
+	 * @param dataSource      the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
 	public HsqlSequenceMaxValueIncrementer(DataSource dataSource, String incrementerName) {

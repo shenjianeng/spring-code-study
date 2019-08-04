@@ -100,11 +100,11 @@ public final class MockServerRequest implements ServerRequest {
 
 
 	private MockServerRequest(HttpMethod method, URI uri, String contextPath, MockHeaders headers,
-			MultiValueMap<String, HttpCookie> cookies, @Nullable Object body,
-			Map<String, Object> attributes, MultiValueMap<String, String> queryParams,
-			Map<String, String> pathVariables, @Nullable WebSession session, @Nullable Principal principal,
-			@Nullable InetSocketAddress remoteAddress, List<HttpMessageReader<?>> messageReaders,
-			@Nullable ServerWebExchange exchange) {
+							  MultiValueMap<String, HttpCookie> cookies, @Nullable Object body,
+							  Map<String, Object> attributes, MultiValueMap<String, String> queryParams,
+							  Map<String, String> pathVariables, @Nullable WebSession session, @Nullable Principal principal,
+							  @Nullable InetSocketAddress remoteAddress, List<HttpMessageReader<?>> messageReaders,
+							  @Nullable ServerWebExchange exchange) {
 
 		this.method = method;
 		this.uri = uri;
@@ -294,6 +294,7 @@ public final class MockServerRequest implements ServerRequest {
 
 		/**
 		 * Sets the request {@link Principal}.
+		 *
 		 * @deprecated in favor of {@link #principal(Principal)}
 		 */
 		@Deprecated

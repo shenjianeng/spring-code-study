@@ -24,14 +24,15 @@ import org.springframework.lang.Nullable;
  * is retried without any intervention by application-level functionality.
  *
  * @author Thomas Risberg
- * @since 2.5
  * @see java.sql.SQLTransientException
+ * @since 2.5
  */
 @SuppressWarnings("serial")
 public abstract class TransientDataAccessException extends DataAccessException {
 
 	/**
 	 * Constructor for TransientDataAccessException.
+	 *
 	 * @param msg the detail message
 	 */
 	public TransientDataAccessException(String msg) {
@@ -40,9 +41,10 @@ public abstract class TransientDataAccessException extends DataAccessException {
 
 	/**
 	 * Constructor for TransientDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (usually from using a underlying
-	 * data access API such as JDBC)
+	 *              data access API such as JDBC)
 	 */
 	public TransientDataAccessException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);

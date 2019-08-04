@@ -49,6 +49,7 @@ public class ChannelRegistration {
 	/**
 	 * Configure the thread pool backing this message channel using a custom
 	 * ThreadPoolTaskExecutor.
+	 *
 	 * @param taskExecutor the executor to use (or {@code null} for a default executor)
 	 */
 	public TaskExecutorRegistration taskExecutor(@Nullable ThreadPoolTaskExecutor taskExecutor) {
@@ -62,6 +63,7 @@ public class ChannelRegistration {
 	/**
 	 * Configure the given interceptors for this message channel,
 	 * adding them to the channel's current list of interceptors.
+	 *
 	 * @since 4.3.12
 	 */
 	public ChannelRegistration interceptors(ChannelInterceptor... interceptors) {
@@ -71,6 +73,7 @@ public class ChannelRegistration {
 
 	/**
 	 * Configure interceptors for the message channel.
+	 *
 	 * @deprecated as of 4.3.12, in favor of {@link #interceptors(ChannelInterceptor...)}
 	 */
 	@Deprecated

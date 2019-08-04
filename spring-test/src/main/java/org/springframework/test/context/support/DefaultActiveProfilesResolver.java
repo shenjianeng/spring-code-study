@@ -37,9 +37,9 @@ import static org.springframework.test.util.MetaAnnotationUtils.findAnnotationDe
  * {@link ActiveProfiles#value}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see ActiveProfiles
  * @see ActiveProfilesResolver
+ * @since 4.1
  */
 public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 
@@ -50,8 +50,9 @@ public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 	 * Resolve the <em>bean definition profiles</em> for the given {@linkplain
 	 * Class test class} based on profiles configured declaratively via
 	 * {@link ActiveProfiles#profiles} or {@link ActiveProfiles#value}.
+	 *
 	 * @param testClass the test class for which the profiles should be resolved;
-	 * never {@code null}
+	 *                  never {@code null}
 	 * @return the list of bean definition profiles to use when loading the
 	 * {@code ApplicationContext}; never {@code null}
 	 */
@@ -67,17 +68,16 @@ public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 		if (descriptor == null) {
 			if (logger.isDebugEnabled()) {
 				logger.debug(String.format(
-					"Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",
-					annotationType.getName(), testClass.getName()));
+						"Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",
+						annotationType.getName(), testClass.getName()));
 			}
-		}
-		else {
+		} else {
 			Class<?> declaringClass = descriptor.getDeclaringClass();
 			ActiveProfiles annotation = descriptor.synthesizeAnnotation();
 
 			if (logger.isTraceEnabled()) {
 				logger.trace(String.format("Retrieved @ActiveProfiles [%s] for declaring class [%s].", annotation,
-					declaringClass.getName()));
+						declaringClass.getName()));
 			}
 
 			for (String profile : annotation.profiles()) {

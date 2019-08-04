@@ -43,8 +43,9 @@ public class ConvertingPropertyEditorAdapter extends PropertyEditorSupport {
 	 * Create a new ConvertingPropertyEditorAdapter for a given
 	 * {@link org.springframework.core.convert.ConversionService}
 	 * and the given target type.
+	 *
 	 * @param conversionService the ConversionService to delegate to
-	 * @param targetDescriptor the target type to convert to
+	 * @param targetDescriptor  the target type to convert to
 	 */
 	public ConvertingPropertyEditorAdapter(ConversionService conversionService, TypeDescriptor targetDescriptor) {
 		Assert.notNull(conversionService, "ConversionService must not be null");
@@ -65,8 +66,7 @@ public class ConvertingPropertyEditorAdapter extends PropertyEditorSupport {
 	public String getAsText() {
 		if (this.canConvertToString) {
 			return (String) this.conversionService.convert(getValue(), this.targetDescriptor, TypeDescriptor.valueOf(String.class));
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

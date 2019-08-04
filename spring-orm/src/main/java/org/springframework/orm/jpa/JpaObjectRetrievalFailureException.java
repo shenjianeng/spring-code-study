@@ -25,8 +25,8 @@ import org.springframework.orm.ObjectRetrievalFailureException;
  * Converts JPA's EntityNotFoundException.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see EntityManagerFactoryUtils#convertJpaAccessExceptionIfPossible
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class JpaObjectRetrievalFailureException extends ObjectRetrievalFailureException {

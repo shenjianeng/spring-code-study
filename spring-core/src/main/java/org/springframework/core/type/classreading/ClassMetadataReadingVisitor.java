@@ -104,8 +104,7 @@ class ClassMetadataReadingVisitor extends ClassVisitor implements ClassMetadata 
 			if (this.className.equals(fqName)) {
 				this.enclosingClassName = fqOuterName;
 				this.independentInnerClass = ((access & Opcodes.ACC_STATIC) != 0);
-			}
-			else if (this.className.equals(fqOuterName)) {
+			} else if (this.className.equals(fqOuterName)) {
 				this.memberClassNames.add(fqName);
 			}
 		}

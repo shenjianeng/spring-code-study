@@ -29,9 +29,9 @@ import java.util.Date;
  * MIME message through a common interface.
  *
  * @author Juergen Hoeller
- * @since 1.1.5
  * @see SimpleMailMessage
  * @see org.springframework.mail.javamail.MimeMessageHelper
+ * @since 1.1.5
  */
 public interface MailMessage {
 

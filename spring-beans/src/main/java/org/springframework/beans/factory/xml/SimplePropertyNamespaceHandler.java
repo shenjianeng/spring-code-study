@@ -37,7 +37,7 @@ import org.springframework.lang.Nullable;
  *
  * <pre class="code">
  * &lt;bean id=&quot;rob&quot; class=&quot;..TestBean&quot; p:name=&quot;Rob Harrop&quot; p:spouse-ref=&quot;sally&quot;/&gt;</pre>
- *
+ * <p>
  * Here the '{@code p:name}' corresponds directly to the '{@code name}'
  * property on class '{@code TestBean}'. The '{@code p:spouse-ref}'
  * attributes corresponds to the '{@code spouse}' property and, rather
@@ -79,8 +79,7 @@ public class SimplePropertyNamespaceHandler implements NamespaceHandler {
 			if (propertyName.endsWith(REF_SUFFIX)) {
 				propertyName = propertyName.substring(0, propertyName.length() - REF_SUFFIX.length());
 				pvs.add(Conventions.attributeNameToPropertyName(propertyName), new RuntimeBeanReference(propertyValue));
-			}
-			else {
+			} else {
 				pvs.add(Conventions.attributeNameToPropertyName(propertyName), propertyValue);
 			}
 		}

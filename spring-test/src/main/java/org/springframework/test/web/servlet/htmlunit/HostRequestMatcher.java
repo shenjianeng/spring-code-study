@@ -50,9 +50,9 @@ import com.gargoylesoftware.htmlunit.WebRequest;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @since 4.2
  * @see UrlRegexRequestMatcher
  * @see org.springframework.test.web.servlet.htmlunit.DelegatingWebConnection
+ * @since 4.2
  */
 public final class HostRequestMatcher implements WebRequestMatcher {
 
@@ -62,6 +62,7 @@ public final class HostRequestMatcher implements WebRequestMatcher {
 	/**
 	 * Create a new {@code HostRequestMatcher} for the given hosts &mdash;
 	 * for example: {@code "localhost"}, {@code "example.com:443"}, etc.
+	 *
 	 * @param hosts the hosts to match on
 	 */
 	public HostRequestMatcher(String... hosts) {

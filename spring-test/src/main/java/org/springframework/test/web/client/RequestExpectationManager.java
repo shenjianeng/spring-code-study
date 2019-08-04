@@ -52,6 +52,7 @@ public interface RequestExpectationManager {
 	/**
 	 * Verify that all expectations have been met.
 	 * <p>This is a delegate for {@link MockRestServiceServer#verify()}.
+	 *
 	 * @throws AssertionError when some expectations were not met
 	 * @see MockRestServiceServer#verify()
 	 */
@@ -60,6 +61,7 @@ public interface RequestExpectationManager {
 	/**
 	 * Reset the internal state removing all expectations and recorded requests.
 	 * <p>This is a delegate for {@link MockRestServiceServer#reset()}.
+	 *
 	 * @see MockRestServiceServer#reset()
 	 */
 	void reset();
@@ -69,10 +71,11 @@ public interface RequestExpectationManager {
 	 * Validate the given actual request against the declared expectations.
 	 * Is successful return the mock response to use or raise an error.
 	 * <p>This is used in {@link MockRestServiceServer} against actual requests.
+	 *
 	 * @param request the request
 	 * @return the response to return if the request was validated.
 	 * @throws AssertionError when some expectations were not met
-	 * @throws IOException in case of any validation errors
+	 * @throws IOException    in case of any validation errors
 	 */
 	ClientHttpResponse validateRequest(ClientHttpRequest request) throws IOException;
 

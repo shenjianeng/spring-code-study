@@ -39,7 +39,7 @@ public class MapAccessor implements CompilablePropertyAccessor {
 
 	@Override
 	public Class<?>[] getSpecificTargetClasses() {
-		return new Class<?>[] {Map.class};
+		return new Class<?>[]{Map.class};
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class MapAccessor implements CompilablePropertyAccessor {
 			CodeFlow.insertCheckCast(mv, "Ljava/util/Map");
 		}
 		mv.visitLdcInsn(propertyName);
-		mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "get","(Ljava/lang/Object;)Ljava/lang/Object;",true);
+		mv.visitMethodInsn(INVOKEINTERFACE, "java/util/Map", "get", "(Ljava/lang/Object;)Ljava/lang/Object;", true);
 	}
 
 

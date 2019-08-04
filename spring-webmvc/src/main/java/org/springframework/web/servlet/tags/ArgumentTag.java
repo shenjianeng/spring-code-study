@@ -48,9 +48,9 @@ import org.springframework.lang.Nullable;
  * </table>
  *
  * @author Nicholas Williams
- * @since 4.0
  * @see MessageTag
  * @see ThemeTag
+ * @since 4.0
  */
 @SuppressWarnings("serial")
 public class ArgumentTag extends BodyTagSupport {
@@ -64,6 +64,7 @@ public class ArgumentTag extends BodyTagSupport {
 	/**
 	 * Set the value of the argument (optional).
 	 * If not set, the tag's body content will get evaluated.
+	 *
 	 * @param value the parameter value
 	 */
 	public void setValue(Object value) {
@@ -77,8 +78,7 @@ public class ArgumentTag extends BodyTagSupport {
 		Object argument = null;
 		if (this.valueSet) {
 			argument = this.value;
-		}
-		else if (getBodyContent() != null) {
+		} else if (getBodyContent() != null) {
 			// Get the value from the tag body
 			argument = getBodyContent().getString().trim();
 		}

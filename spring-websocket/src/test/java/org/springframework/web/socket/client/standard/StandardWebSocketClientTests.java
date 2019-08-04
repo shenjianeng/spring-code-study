@@ -132,7 +132,7 @@ public class StandardWebSocketClientTests {
 	@Test
 	public void clientEndpointConfigWithUserProperties() throws Exception {
 
-		Map<String,Object> userProperties = Collections.singletonMap("foo", "bar");
+		Map<String, Object> userProperties = Collections.singletonMap("foo", "bar");
 
 		URI uri = new URI("ws://localhost/abc");
 		this.wsClient.setUserProperties(userProperties);

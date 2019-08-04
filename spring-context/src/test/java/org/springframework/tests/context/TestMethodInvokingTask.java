@@ -36,15 +36,14 @@ public class TestMethodInvokingTask {
 		synchronized (this.lock) {
 			try {
 				this.lock.wait();
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				// fall through
 			}
 		}
 	}
 
 	public void stop() {
-		synchronized(this.lock) {
+		synchronized (this.lock) {
 			this.lock.notify();
 		}
 	}

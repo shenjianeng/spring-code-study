@@ -42,9 +42,9 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextHierarchy({
-	//
-	@ContextConfiguration(name = "root", classes = AppConfig.class),
-	@ContextConfiguration(name = "dispatcher", classes = WebConfig.class) //
+		//
+		@ContextConfiguration(name = "root", classes = AppConfig.class),
+		@ContextConfiguration(name = "dispatcher", classes = WebConfig.class) //
 })
 public class ControllerIntegrationTests {
 

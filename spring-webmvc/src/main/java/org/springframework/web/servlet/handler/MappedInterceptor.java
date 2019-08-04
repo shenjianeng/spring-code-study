@@ -58,8 +58,9 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Create a new MappedInterceptor instance.
+	 *
 	 * @param includePatterns the path patterns to map (empty for matching to all paths)
-	 * @param interceptor the HandlerInterceptor instance to map to the given patterns
+	 * @param interceptor     the HandlerInterceptor instance to map to the given patterns
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, HandlerInterceptor interceptor) {
 		this(includePatterns, null, interceptor);
@@ -67,12 +68,13 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Create a new MappedInterceptor instance.
+	 *
 	 * @param includePatterns the path patterns to map (empty for matching to all paths)
 	 * @param excludePatterns the path patterns to exclude (empty for no specific excludes)
-	 * @param interceptor the HandlerInterceptor instance to map to the given patterns
+	 * @param interceptor     the HandlerInterceptor instance to map to the given patterns
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, @Nullable String[] excludePatterns,
-			HandlerInterceptor interceptor) {
+							 HandlerInterceptor interceptor) {
 
 		this.includePatterns = includePatterns;
 		this.excludePatterns = excludePatterns;
@@ -82,8 +84,9 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Create a new MappedInterceptor instance.
+	 *
 	 * @param includePatterns the path patterns to map (empty for matching to all paths)
-	 * @param interceptor the WebRequestInterceptor instance to map to the given patterns
+	 * @param interceptor     the WebRequestInterceptor instance to map to the given patterns
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, WebRequestInterceptor interceptor) {
 		this(includePatterns, null, interceptor);
@@ -91,12 +94,13 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Create a new MappedInterceptor instance.
+	 *
 	 * @param includePatterns the path patterns to map (empty for matching to all paths)
 	 * @param excludePatterns the path patterns to exclude (empty for no specific excludes)
-	 * @param interceptor the WebRequestInterceptor instance to map to the given patterns
+	 * @param interceptor     the WebRequestInterceptor instance to map to the given patterns
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, @Nullable String[] excludePatterns,
-			WebRequestInterceptor interceptor) {
+							 WebRequestInterceptor interceptor) {
 
 		this(includePatterns, excludePatterns, new WebRequestHandlerInterceptorAdapter(interceptor));
 	}
@@ -139,7 +143,8 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	/**
 	 * Determine a match for the given lookup path.
-	 * @param lookupPath the current request path
+	 *
+	 * @param lookupPath  the current request path
 	 * @param pathMatcher a path matcher for path pattern matching
 	 * @return {@code true} if the interceptor applies to the given request path
 	 */
@@ -172,14 +177,14 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable ModelAndView modelAndView) throws Exception {
+						   @Nullable ModelAndView modelAndView) throws Exception {
 
 		this.interceptor.postHandle(request, response, handler, modelAndView);
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable Exception ex) throws Exception {
+								@Nullable Exception ex) throws Exception {
 
 		this.interceptor.afterCompletion(request, response, handler, ex);
 	}

@@ -31,6 +31,7 @@ public class HttpMessageConversionException extends NestedRuntimeException {
 
 	/**
 	 * Create a new HttpMessageConversionException.
+	 *
 	 * @param msg the detail message
 	 */
 	public HttpMessageConversionException(String msg) {
@@ -39,7 +40,8 @@ public class HttpMessageConversionException extends NestedRuntimeException {
 
 	/**
 	 * Create a new HttpMessageConversionException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (if any)
 	 */
 	public HttpMessageConversionException(String msg, @Nullable Throwable cause) {

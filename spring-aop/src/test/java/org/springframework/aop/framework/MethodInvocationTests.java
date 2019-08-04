@@ -47,9 +47,9 @@ public class MethodInvocationTests {
 				return returnValue;
 			}
 		});
-			ReflectiveMethodInvocation invocation = new ReflectiveMethodInvocation(proxy, null, //?
-		m, null, null, is // list
-	);
+		ReflectiveMethodInvocation invocation = new ReflectiveMethodInvocation(proxy, null, //?
+				m, null, null, is // list
+		);
 		Object rv = invocation.proceed();
 		assertTrue("correct response", rv == returnValue);
 	}
@@ -70,7 +70,7 @@ public class MethodInvocationTests {
 		Method m = Object.class.getMethod("hashCode");
 		Object proxy = new Object();
 		ReflectiveMethodInvocation invocation =
-			new ReflectiveMethodInvocation(proxy, target, m, null, null, is);
+				new ReflectiveMethodInvocation(proxy, target, m, null, null, is);
 
 		// If it hits target, the test will fail with the UnsupportedOpException
 		// in the inner class above.

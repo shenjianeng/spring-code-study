@@ -53,8 +53,7 @@ public abstract class AbstractTagTests {
 			ThemeResolver tr = new FixedThemeResolver();
 			request.setAttribute(DispatcherServlet.THEME_RESOLVER_ATTRIBUTE, tr);
 			request.setAttribute(DispatcherServlet.THEME_SOURCE_ATTRIBUTE, wac);
-		}
-		else {
+		} else {
 			sc.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, wac);
 		}
 

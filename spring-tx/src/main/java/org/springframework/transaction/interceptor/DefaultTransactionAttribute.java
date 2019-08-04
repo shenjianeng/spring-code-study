@@ -41,6 +41,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	/**
 	 * Create a new DefaultTransactionAttribute, with default settings.
 	 * Can be modified through bean property setters.
+	 *
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -53,6 +54,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 
 	/**
 	 * Copy constructor. Definition can be modified through bean property setters.
+	 *
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -66,8 +68,9 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	/**
 	 * Create a new DefaultTransactionAttribute with the given
 	 * propagation behavior. Can be modified through bean property setters.
+	 *
 	 * @param propagationBehavior one of the propagation constants in the
-	 * TransactionDefinition interface
+	 *                            TransactionDefinition interface
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
 	 * @see #setReadOnly
@@ -81,6 +84,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * Associate a qualifier value with this transaction attribute.
 	 * <p>This may be used for choosing a corresponding transaction manager
 	 * to process this specific transaction.
+	 *
 	 * @since 3.0
 	 */
 	public void setQualifier(@Nullable String qualifier) {
@@ -89,6 +93,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 
 	/**
 	 * Return a qualifier value associated with this transaction attribute.
+	 *
 	 * @since 3.0
 	 */
 	@Override
@@ -100,6 +105,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	/**
 	 * Set a descriptor for this transaction attribute,
 	 * e.g. indicating where the attribute is applying.
+	 *
 	 * @since 4.3.4
 	 */
 	public void setDescriptor(@Nullable String descriptor) {
@@ -109,6 +115,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	/**
 	 * Return a descriptor for this transaction attribute,
 	 * or {@code null} if none.
+	 *
 	 * @since 4.3.4
 	 */
 	@Nullable
@@ -128,6 +135,7 @@ public class DefaultTransactionAttribute extends DefaultTransactionDefinition im
 	 * except that TransactionTemplate also rolls back on undeclared checked exceptions
 	 * (a corner case). For declarative transactions, we expect checked exceptions to be
 	 * intentionally declared as business exceptions, leading to a commit by default.
+	 *
 	 * @see org.springframework.transaction.support.TransactionTemplate#execute
 	 */
 	@Override

@@ -42,12 +42,12 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testJoinPointOnly() {
-		assertParameterNames(getMethod("tjp"), "execution(* *(..))", new String[] {"thisJoinPoint"});
+		assertParameterNames(getMethod("tjp"), "execution(* *(..))", new String[]{"thisJoinPoint"});
 	}
 
 	@Test
 	public void testJoinPointStaticPartOnly() {
-		assertParameterNames(getMethod("tjpsp"), "execution(* *(..))", new String[] {"thisJoinPointStaticPart"});
+		assertParameterNames(getMethod("tjpsp"), "execution(* *(..))", new String[]{"thisJoinPointStaticPart"});
 	}
 
 	@Test
@@ -58,12 +58,12 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testOneThrowable() {
-		assertParameterNames(getMethod("oneThrowable"), "foo()", null, "ex", new String[] {"ex"});
+		assertParameterNames(getMethod("oneThrowable"), "foo()", null, "ex", new String[]{"ex"});
 	}
 
 	@Test
 	public void testOneJPAndOneThrowable() {
-		assertParameterNames(getMethod("jpAndOneThrowable"), "foo()", null, "ex", new String[] {"thisJoinPoint", "ex"});
+		assertParameterNames(getMethod("jpAndOneThrowable"), "foo()", null, "ex", new String[]{"thisJoinPoint", "ex"});
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testReturning() {
-		assertParameterNames(getMethod("oneObject"), "foo()", "obj", null, new String[] {"obj"});
+		assertParameterNames(getMethod("oneObject"), "foo()", "obj", null, new String[]{"obj"});
 	}
 
 	@Test
@@ -97,16 +97,16 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testThisBindingOneCandidate() {
-		assertParameterNames(getMethod("oneObject"), "this(x)", new String[] {"x"});
+		assertParameterNames(getMethod("oneObject"), "this(x)", new String[]{"x"});
 	}
 
 	@Test
 	public void testThisBindingWithAlternateTokenizations() {
-		assertParameterNames(getMethod("oneObject"), "this( x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "this( x)", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "this (x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "this(x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "foo() && this(x)", new String[] {"x"});
+		assertParameterNames(getMethod("oneObject"), "this( x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "this( x)", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "this (x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "this(x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "foo() && this(x)", new String[]{"x"});
 	}
 
 	@Test
@@ -125,16 +125,16 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testTargetBindingOneCandidate() {
-		assertParameterNames(getMethod("oneObject"), "target(x)", new String[] {"x"});
+		assertParameterNames(getMethod("oneObject"), "target(x)", new String[]{"x"});
 	}
 
 	@Test
 	public void testTargetBindingWithAlternateTokenizations() {
-		assertParameterNames(getMethod("oneObject"), "target( x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "target( x)", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "target (x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "target(x )", new String[] {"x"});
-		assertParameterNames(getMethod("oneObject"), "foo() && target(x)", new String[] {"x"});
+		assertParameterNames(getMethod("oneObject"), "target( x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "target( x)", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "target (x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "target(x )", new String[]{"x"});
+		assertParameterNames(getMethod("oneObject"), "foo() && target(x)", new String[]{"x"});
 	}
 
 	@Test
@@ -153,7 +153,7 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testArgsBindingOneObject() {
-		assertParameterNames(getMethod("oneObject"), "args(x)", new String[] {"x"});
+		assertParameterNames(getMethod("oneObject"), "args(x)", new String[]{"x"});
 	}
 
 	@Test
@@ -170,7 +170,7 @@ public class AspectJAdviceParameterNameDiscovererTests {
 
 	@Test
 	public void testArgsOnePrimitive() {
-		assertParameterNames(getMethod("onePrimitive"), "args(count)", new String[] {"count"});
+		assertParameterNames(getMethod("onePrimitive"), "args(count)", new String[]{"count"});
 	}
 
 	@Test
@@ -182,37 +182,37 @@ public class AspectJAdviceParameterNameDiscovererTests {
 	@Test
 	public void testThisAndPrimitive() {
 		assertParameterNames(getMethod("oneObjectOnePrimitive"), "args(count) && this(obj)",
-				new String[] {"obj", "count"});
+				new String[]{"obj", "count"});
 	}
 
 	@Test
 	public void testTargetAndPrimitive() {
 		assertParameterNames(getMethod("oneObjectOnePrimitive"), "args(count) && target(obj)",
-				new String[] {"obj", "count"});
+				new String[]{"obj", "count"});
 	}
 
 	@Test
 	public void testThrowingAndPrimitive() {
 		assertParameterNames(getMethod("oneThrowableOnePrimitive"), "args(count)", null, "ex",
-				new String[] {"ex", "count"});
+				new String[]{"ex", "count"});
 	}
 
 	@Test
 	public void testAllTogetherNow() {
 		assertParameterNames(getMethod("theBigOne"), "this(foo) && args(x)", null, "ex",
-				new String[] {"thisJoinPoint", "ex", "x", "foo"});
+				new String[]{"thisJoinPoint", "ex", "x", "foo"});
 	}
 
 	@Test
 	public void testReferenceBinding() {
-		assertParameterNames(getMethod("onePrimitive"),"somepc(foo)", new String[] {"foo"});
+		assertParameterNames(getMethod("onePrimitive"), "somepc(foo)", new String[]{"foo"});
 	}
 
 	@Test
 	public void testReferenceBindingWithAlternateTokenizations() {
-		assertParameterNames(getMethod("onePrimitive"),"call(bar *) && somepc(foo)", new String[] {"foo"});
-		assertParameterNames(getMethod("onePrimitive"),"somepc ( foo )", new String[] {"foo"});
-		assertParameterNames(getMethod("onePrimitive"),"somepc( foo)", new String[] {"foo"});
+		assertParameterNames(getMethod("onePrimitive"), "call(bar *) && somepc(foo)", new String[]{"foo"});
+		assertParameterNames(getMethod("onePrimitive"), "somepc ( foo )", new String[]{"foo"});
+		assertParameterNames(getMethod("onePrimitive"), "somepc( foo)", new String[]{"foo"});
 	}
 
 
@@ -248,14 +248,14 @@ public class AspectJAdviceParameterNameDiscovererTests {
 		String formattedActualNames = format(discoveredNames);
 
 		assertEquals("Expecting " + parameterNames.length + " parameter names in return set '" +
-				formattedExpectedNames + "', but found " + discoveredNames.length +
-				" '" + formattedActualNames + "'",
+						formattedExpectedNames + "', but found " + discoveredNames.length +
+						" '" + formattedActualNames + "'",
 				parameterNames.length, discoveredNames.length);
 
 		for (int i = 0; i < discoveredNames.length; i++) {
 			assertNotNull("Parameter names must never be null", discoveredNames[i]);
 			assertEquals("Expecting parameter " + i + " to be named '" +
-					parameterNames[i] + "' but was '" + discoveredNames[i] + "'",
+							parameterNames[i] + "' but was '" + discoveredNames[i] + "'",
 					parameterNames[i], discoveredNames[i]);
 		}
 	}
@@ -275,8 +275,7 @@ public class AspectJAdviceParameterNameDiscovererTests {
 		try {
 			discoverer.getParameterNames(method);
 			fail("Expecting " + exceptionType.getName() + " with message '" + message + "'");
-		}
-		catch (RuntimeException expected) {
+		} catch (RuntimeException expected) {
 			assertEquals("Expecting exception of type " + exceptionType.getName(),
 					exceptionType, expected.getClass());
 			assertEquals("Exception message does not match expected", message, expected.getMessage());

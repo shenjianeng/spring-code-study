@@ -43,7 +43,7 @@ public abstract class AbstractBrokerRegistration {
 
 
 	public AbstractBrokerRegistration(SubscribableChannel clientInboundChannel,
-			MessageChannel clientOutboundChannel, @Nullable String[] destinationPrefixes) {
+									  MessageChannel clientOutboundChannel, @Nullable String[] destinationPrefixes) {
 
 		Assert.notNull(clientOutboundChannel, "'clientInboundChannel' must not be null");
 		Assert.notNull(clientOutboundChannel, "'clientOutboundChannel' must not be null");

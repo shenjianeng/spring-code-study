@@ -59,8 +59,7 @@ public class ExceptionHandlingWebHandler extends WebHandlerDecorator {
 		Mono<Void> completion;
 		try {
 			completion = super.handle(exchange);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			completion = Mono.error(ex);
 		}
 

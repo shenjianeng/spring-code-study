@@ -53,23 +53,23 @@ public class AnnotationAttributesTests {
 		nestedAttributes.put("name", "algernon");
 
 		attributes.put("name", "dave");
-		attributes.put("names", new String[] {"dave", "frank", "hal"});
+		attributes.put("names", new String[]{"dave", "frank", "hal"});
 		attributes.put("bool1", true);
 		attributes.put("bool2", false);
 		attributes.put("color", Color.RED);
 		attributes.put("class", Integer.class);
-		attributes.put("classes", new Class<?>[] {Number.class, Short.class, Integer.class});
+		attributes.put("classes", new Class<?>[]{Number.class, Short.class, Integer.class});
 		attributes.put("number", 42);
 		attributes.put("anno", nestedAttributes);
-		attributes.put("annoArray", new AnnotationAttributes[] {nestedAttributes});
+		attributes.put("annoArray", new AnnotationAttributes[]{nestedAttributes});
 
 		assertThat(attributes.getString("name"), equalTo("dave"));
-		assertThat(attributes.getStringArray("names"), equalTo(new String[] {"dave", "frank", "hal"}));
+		assertThat(attributes.getStringArray("names"), equalTo(new String[]{"dave", "frank", "hal"}));
 		assertThat(attributes.getBoolean("bool1"), equalTo(true));
 		assertThat(attributes.getBoolean("bool2"), equalTo(false));
 		assertThat(attributes.<Color>getEnum("color"), equalTo(Color.RED));
 		assertTrue(attributes.getClass("class").equals(Integer.class));
-		assertThat(attributes.getClassArray("classes"), equalTo(new Class<?>[] {Number.class, Short.class, Integer.class}));
+		assertThat(attributes.getClassArray("classes"), equalTo(new Class<?>[]{Number.class, Short.class, Integer.class}));
 		assertThat(attributes.<Integer>getNumber("number"), equalTo(42));
 		assertThat(attributes.getAnnotation("anno").<Integer>getNumber("value"), equalTo(10));
 		assertThat(attributes.getAnnotationArray("annoArray")[0].getString("name"), equalTo("algernon"));
@@ -98,8 +98,8 @@ public class AnnotationAttributesTests {
 		attributes.put("filters", filter);
 
 		// Get back arrays of single elements
-		assertThat(attributes.getStringArray("names"), equalTo(new String[] {"Dogbert"}));
-		assertThat(attributes.getClassArray("classes"), equalTo(new Class<?>[] {Number.class}));
+		assertThat(attributes.getStringArray("names"), equalTo(new String[]{"Dogbert"}));
+		assertThat(attributes.getClassArray("classes"), equalTo(new Class<?>[]{Number.class}));
 
 		AnnotationAttributes[] array = attributes.getAnnotationArray("nestedAttributes");
 		assertNotNull(array);
@@ -117,7 +117,7 @@ public class AnnotationAttributesTests {
 		Filter filter = FilteredClass.class.getAnnotation(Filter.class);
 
 		attributes.put("filter", filter);
-		attributes.put("filters", new Filter[] {filter, filter});
+		attributes.put("filters", new Filter[]{filter, filter});
 
 		Filter retrievedFilter = attributes.getAnnotation("filter", Filter.class);
 		assertThat(retrievedFilter, equalTo(filter));
@@ -184,7 +184,7 @@ public class AnnotationAttributesTests {
 
 	@Test
 	public void getAliasedStringArrayWithImplicitAliases() {
-		String[] value = new String[] {"test.xml"};
+		String[] value = new String[]{"test.xml"};
 		List<String> aliases = Arrays.asList("value", "location1", "location2", "location3", "xmlFile", "groovyScript");
 
 		attributes = new AnnotationAttributes(ImplicitAliasesContextConfig.class);
@@ -218,7 +218,7 @@ public class AnnotationAttributesTests {
 		attributes = new AnnotationAttributes(ImplicitAliasesContextConfig.class);
 		AnnotationUtils.registerDefaultValues(attributes);
 		AnnotationUtils.postProcessAnnotationAttributes(null, attributes, false);
-		aliases.stream().forEach(alias -> assertArrayEquals(new String[] {""}, attributes.getStringArray(alias)));
+		aliases.stream().forEach(alias -> assertArrayEquals(new String[]{""}, attributes.getStringArray(alias)));
 	}
 
 

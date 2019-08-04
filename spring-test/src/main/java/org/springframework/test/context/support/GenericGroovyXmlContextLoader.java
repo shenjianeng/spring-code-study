@@ -28,10 +28,10 @@ import org.springframework.test.context.MergedContextConfiguration;
  * {@code "-context.xml"} and {@code "Context.groovy"}.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see GroovyBeanDefinitionReader
  * @see GenericXmlContextLoader
  * @see AnnotationConfigContextLoader
+ * @since 4.1
  */
 public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 
@@ -39,7 +39,8 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 	 * Load bean definitions into the supplied {@link GenericApplicationContext context}
 	 * from the locations in the supplied {@code MergedContextConfiguration} using a
 	 * {@link GroovyBeanDefinitionReader}.
-	 * @param context the context into which the bean definitions should be loaded
+	 *
+	 * @param context      the context into which the bean definitions should be loaded
 	 * @param mergedConfig the merged context configuration
 	 * @see org.springframework.test.context.support.AbstractGenericContextLoader#loadBeanDefinitions
 	 */
@@ -54,15 +55,16 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 	 */
 	@Override
 	protected String[] getResourceSuffixes() {
-		return new String[] { super.getResourceSuffix(), "Context.groovy" };
+		return new String[]{super.getResourceSuffix(), "Context.groovy"};
 	}
 
 	/**
 	 * {@code GenericGroovyXmlContextLoader} supports both Groovy and XML
 	 * resource types for detection of defaults. Consequently, this method
 	 * is not supported.
-	 * @see #getResourceSuffixes()
+	 *
 	 * @throws UnsupportedOperationException in this implementation
+	 * @see #getResourceSuffixes()
 	 */
 	@Override
 	protected String getResourceSuffix() {

@@ -91,6 +91,7 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 	 * {@code javax.persistence.schema-generation.database.action} property.</b>
 	 * These two schema generation mechanisms - standard JPA versus provider-native -
 	 * are mutually exclusive, e.g. with Hibernate 5.
+	 *
 	 * @see org.springframework.orm.jpa.AbstractEntityManagerFactoryBean#setJpaProperties
 	 */
 	public void setGenerateDdl(boolean generateDdl) {
@@ -109,6 +110,7 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 	 * Set whether to show SQL in the log (or in the console).
 	 * <p>For more specific logging configuration, specify the appropriate
 	 * vendor-specific settings as "jpaProperties".
+	 *
 	 * @see org.springframework.orm.jpa.AbstractEntityManagerFactoryBean#setJpaProperties
 	 */
 	public void setShowSql(boolean showSql) {

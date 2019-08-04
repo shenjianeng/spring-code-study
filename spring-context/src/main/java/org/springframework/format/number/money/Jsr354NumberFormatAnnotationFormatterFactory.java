@@ -42,8 +42,8 @@ import org.springframework.util.StringUtils;
  * with Spring's common {@link NumberFormat} annotation.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see NumberFormat
+ * @since 4.2
  */
 public class Jsr354NumberFormatAnnotationFormatterFactory extends EmbeddedValueResolutionSupport
 		implements AnnotationFormatterFactory<NumberFormat> {
@@ -72,16 +72,13 @@ public class Jsr354NumberFormatAnnotationFormatterFactory extends EmbeddedValueR
 		String pattern = resolveEmbeddedValue(annotation.pattern());
 		if (StringUtils.hasLength(pattern)) {
 			return new PatternDecoratingFormatter(pattern);
-		}
-		else {
+		} else {
 			Style style = annotation.style();
 			if (style == Style.NUMBER) {
 				return new NumberDecoratingFormatter(new NumberStyleFormatter());
-			}
-			else if (style == Style.PERCENT) {
+			} else if (style == Style.PERCENT) {
 				return new NumberDecoratingFormatter(new PercentStyleFormatter());
-			}
-			else {
+			} else {
 				return new NumberDecoratingFormatter(new CurrencyStyleFormatter());
 			}
 		}
@@ -143,19 +140,15 @@ public class Jsr354NumberFormatAnnotationFormatterFactory extends EmbeddedValueR
 					// Could not possibly contain a currency code ->
 					// try with locale and likely let it fail on parse.
 					return Currency.getInstance(locale);
-				}
-				else if (this.pattern.startsWith(CURRENCY_CODE_PATTERN)) {
+				} else if (this.pattern.startsWith(CURRENCY_CODE_PATTERN)) {
 					return Currency.getInstance(text.substring(0, 3));
-				}
-				else if (this.pattern.endsWith(CURRENCY_CODE_PATTERN)) {
+				} else if (this.pattern.endsWith(CURRENCY_CODE_PATTERN)) {
 					return Currency.getInstance(text.substring(text.length() - 3));
-				}
-				else {
+				} else {
 					// A pattern without a currency code...
 					return Currency.getInstance(locale);
 				}
-			}
-			catch (IllegalArgumentException ex) {
+			} catch (IllegalArgumentException ex) {
 				throw new IllegalArgumentException("Cannot determine currency for number value [" + text + "]", ex);
 			}
 		}

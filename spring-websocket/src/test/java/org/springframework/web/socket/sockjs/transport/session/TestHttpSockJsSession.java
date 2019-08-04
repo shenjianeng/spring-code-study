@@ -49,7 +49,7 @@ public class TestHttpSockJsSession extends StreamingSockJsSession {
 
 
 	public TestHttpSockJsSession(String sessionId, SockJsServiceConfig config,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) {
+								 WebSocketHandler wsHandler, Map<String, Object> attributes) {
 
 		super(sessionId, config, wsHandler, attributes);
 	}

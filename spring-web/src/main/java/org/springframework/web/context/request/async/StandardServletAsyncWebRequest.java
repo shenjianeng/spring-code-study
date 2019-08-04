@@ -58,7 +58,8 @@ public class StandardServletAsyncWebRequest extends ServletWebRequest implements
 
 	/**
 	 * Create a new instance for the given request/response pair.
-	 * @param request current HTTP request
+	 *
+	 * @param request  current HTTP request
 	 * @param response current HTTP response
 	 */
 	public StandardServletAsyncWebRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -110,9 +111,9 @@ public class StandardServletAsyncWebRequest extends ServletWebRequest implements
 	public void startAsync() {
 		Assert.state(getRequest().isAsyncSupported(),
 				"Async support must be enabled on a servlet and for all filters involved " +
-				"in async request processing. This is done in Java code using the Servlet API " +
-				"or by adding \"<async-supported>true</async-supported>\" to servlet and " +
-				"filter declarations in web.xml.");
+						"in async request processing. This is done in Java code using the Servlet API " +
+						"or by adding \"<async-supported>true</async-supported>\" to servlet and " +
+						"filter declarations in web.xml.");
 		Assert.state(!isAsyncComplete(), "Async processing has already completed");
 
 		if (isAsyncStarted()) {

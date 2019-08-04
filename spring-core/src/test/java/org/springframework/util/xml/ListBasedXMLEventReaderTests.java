@@ -85,8 +85,7 @@ public class ListBasedXMLEventReaderTests {
 		try {
 			reader.getElementText();
 			fail("Should have thrown XMLStreamException");
-		}
-		catch (XMLStreamException ex) {
+		} catch (XMLStreamException ex) {
 			// expected
 			assertTrue(ex.getMessage().startsWith("Not at START_ELEMENT"));
 		}

@@ -27,18 +27,19 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * which contains information about the error location.
  *
  * @author Juergen Hoeller
- * @since 2.0.2
  * @see #getLineNumber()
  * @see org.xml.sax.SAXParseException
+ * @since 2.0.2
  */
 @SuppressWarnings("serial")
 public class XmlBeanDefinitionStoreException extends BeanDefinitionStoreException {
 
 	/**
 	 * Create a new XmlBeanDefinitionStoreException.
+	 *
 	 * @param resourceDescription description of the resource that the bean definition came from
-	 * @param msg the detail message (used as exception message as-is)
-	 * @param cause the SAXException (typically a SAXParseException) root cause
+	 * @param msg                 the detail message (used as exception message as-is)
+	 * @param cause               the SAXException (typically a SAXParseException) root cause
 	 * @see org.xml.sax.SAXParseException
 	 */
 	public XmlBeanDefinitionStoreException(String resourceDescription, String msg, SAXException cause) {
@@ -47,6 +48,7 @@ public class XmlBeanDefinitionStoreException extends BeanDefinitionStoreExceptio
 
 	/**
 	 * Return the line number in the XML resource that failed.
+	 *
 	 * @return the line number if available (in case of a SAXParseException); -1 else
 	 * @see org.xml.sax.SAXParseException#getLineNumber()
 	 */

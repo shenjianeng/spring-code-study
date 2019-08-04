@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
  *   &lt;property name="proxyInterfaces" value="javax.jms.QueueConnectionFactory"/&gt;
  *   &lt;property name="targetSource" ref="queueConnectionFactoryTarget"/&gt;
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * A {@code createQueueConnection} call on the "queueConnectionFactory" proxy will
  * cause a lazy JNDI lookup for "JmsQueueConnectionFactory" and a subsequent delegating
  * call to the retrieved QueueConnectionFactory's {@code createQueueConnection}.
@@ -53,11 +53,11 @@ import org.springframework.lang.Nullable;
  * ProxyFactoryBean and JndiObjectTargetSource beans).
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #setLookupOnStartup
  * @see #setCache
  * @see org.springframework.aop.framework.ProxyFactoryBean#setTargetSource
  * @see JndiObjectFactoryBean#setProxyInterface
+ * @since 1.1
  */
 public class JndiObjectTargetSource extends JndiObjectLocator implements TargetSource {
 
@@ -76,6 +76,7 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 	 * Set whether to look up the JNDI object on startup. Default is "true".
 	 * <p>Can be turned off to allow for late availability of the JNDI object.
 	 * In this case, the JNDI object will be fetched on first access.
+	 *
 	 * @see #setCache
 	 */
 	public void setLookupOnStartup(boolean lookupOnStartup) {
@@ -87,6 +88,7 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 	 * Default is "true".
 	 * <p>Can be turned off to allow for hot redeployment of JNDI objects.
 	 * In this case, the JNDI object will be fetched for each invocation.
+	 *
 	 * @see #setLookupOnStartup
 	 */
 	public void setCache(boolean cache) {
@@ -100,8 +102,7 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 			Object object = lookup();
 			if (this.cache) {
 				this.cachedObject = object;
-			}
-			else {
+			} else {
 				this.targetClass = object.getClass();
 			}
 		}
@@ -113,11 +114,9 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 	public Class<?> getTargetClass() {
 		if (this.cachedObject != null) {
 			return this.cachedObject.getClass();
-		}
-		else if (this.targetClass != null) {
+		} else if (this.targetClass != null) {
 			return this.targetClass;
-		}
-		else {
+		} else {
 			return getExpectedType();
 		}
 	}
@@ -133,8 +132,7 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 		try {
 			if (this.lookupOnStartup || !this.cache) {
 				return (this.cachedObject != null ? this.cachedObject : lookup());
-			}
-			else {
+			} else {
 				synchronized (this) {
 					if (this.cachedObject == null) {
 						this.cachedObject = lookup();
@@ -142,8 +140,7 @@ public class JndiObjectTargetSource extends JndiObjectLocator implements TargetS
 					return this.cachedObject;
 				}
 			}
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			throw new JndiLookupFailureException("JndiObjectTargetSource failed to obtain new target object", ex);
 		}
 	}

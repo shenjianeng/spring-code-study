@@ -47,7 +47,6 @@ import org.springframework.util.Assert;
  * to combine Java serialization with HTTP-based transport.
  *
  * @author Juergen Hoeller
- * @since 13.05.2003
  * @see #setServiceInterface
  * @see #setServiceUrl
  * @see RmiClientInterceptor
@@ -57,6 +56,7 @@ import org.springframework.util.Assert;
  * @see org.springframework.remoting.RemoteAccessException
  * @see org.springframework.remoting.caucho.HessianProxyFactoryBean
  * @see org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean
+ * @since 13.05.2003
  */
 public class RmiProxyFactoryBean extends RmiClientInterceptor implements FactoryBean<Object>, BeanClassLoaderAware {
 

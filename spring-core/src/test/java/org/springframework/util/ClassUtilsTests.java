@@ -118,8 +118,10 @@ public class ClassUtilsTests {
 
 	@Test
 	public void testIsCacheSafe() {
-		ClassLoader childLoader1 = new ClassLoader(classLoader) {};
-		ClassLoader childLoader2 = new ClassLoader(classLoader) {};
+		ClassLoader childLoader1 = new ClassLoader(classLoader) {
+		};
+		ClassLoader childLoader2 = new ClassLoader(classLoader) {
+		};
 		ClassLoader childLoader3 = new ClassLoader(classLoader) {
 			@Override
 			public Class<?> loadClass(String name) throws ClassNotFoundException {
@@ -127,7 +129,7 @@ public class ClassUtilsTests {
 			}
 		};
 		Class<?> composite = ClassUtils.createCompositeInterface(
-				new Class<?>[] {Serializable.class, Externalizable.class}, childLoader1);
+				new Class<?>[]{Serializable.class, Externalizable.class}, childLoader1);
 
 		assertTrue(ClassUtils.isCacheSafe(String.class, null));
 		assertTrue(ClassUtils.isCacheSafe(String.class, classLoader));

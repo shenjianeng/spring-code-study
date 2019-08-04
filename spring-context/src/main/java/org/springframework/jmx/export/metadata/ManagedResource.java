@@ -24,10 +24,10 @@ import org.springframework.lang.Nullable;
  * Only valid when used on a {@code Class}.
  *
  * @author Rob Harrop
- * @since 1.2
  * @see org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
  * @see org.springframework.jmx.export.naming.MetadataNamingStrategy
  * @see org.springframework.jmx.export.MBeanExporter
+ * @since 1.2
  */
 public class ManagedResource extends AbstractJmxAttribute {
 

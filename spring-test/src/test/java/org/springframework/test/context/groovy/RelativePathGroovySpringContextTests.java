@@ -23,9 +23,9 @@ import org.springframework.test.context.ContextConfiguration;
  * script using a relative path.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see GroovySpringContextTests
  * @see AbsolutePathGroovySpringContextTests
+ * @since 4.1
  */
 @ContextConfiguration(locations = "../groovy/context.groovy", inheritLocations = false)
 public class RelativePathGroovySpringContextTests extends GroovySpringContextTests {

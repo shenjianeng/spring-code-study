@@ -43,6 +43,7 @@ import org.springframework.scheduling.TaskScheduler;
 
 /**
  * User tests for {@link UserRegistryMessageHandler}.
+ *
  * @author Rossen Stoyanchev
  */
 public class UserRegistryMessageHandlerTests {

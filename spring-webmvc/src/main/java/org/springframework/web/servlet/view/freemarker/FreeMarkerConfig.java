@@ -26,9 +26,9 @@ import freemarker.template.Configuration;
  *
  * @author Darren Davison
  * @author Rob Harrop
- * @since 03.03.2004
  * @see FreeMarkerConfigurer
  * @see FreeMarkerView
+ * @since 03.03.2004
  */
 public interface FreeMarkerConfig {
 
@@ -37,6 +37,7 @@ public interface FreeMarkerConfig {
 	 * web application context.
 	 * <p>A FreeMarker Configuration object may be used to set FreeMarker
 	 * properties and shared objects, and allows to retrieve templates.
+	 *
 	 * @return the FreeMarker Configuration
 	 */
 	Configuration getConfiguration();

@@ -37,6 +37,7 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 
 	/**
 	 * Create a new CompositeTransactionAttributeSource for the given sources.
+	 *
 	 * @param transactionAttributeSources the TransactionAttributeSource instances to combine
 	 */
 	public CompositeTransactionAttributeSource(TransactionAttributeSource... transactionAttributeSources) {

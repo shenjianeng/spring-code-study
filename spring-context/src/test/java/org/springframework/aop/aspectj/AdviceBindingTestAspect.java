@@ -46,7 +46,7 @@ class AdviceBindingTestAspect {
 	}
 
 	public void oneIntAndOneObject(int x, Object o) {
-		this.collaborator.oneIntAndOneObject(x,o);
+		this.collaborator.oneIntAndOneObject(x, o);
 	}
 
 	public void needsJoinPoint(JoinPoint tjp) {

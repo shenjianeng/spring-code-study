@@ -40,7 +40,7 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  *
  *     // application-specific &#064;Bean definitions ...
  * }</pre>
- *
+ * <p>
  * The example above is equivalent to the following Spring XML configuration:
  *
  * <pre class="code">
@@ -127,10 +127,10 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
  * {@code @EnableSpringConfigured} (included in the {@code spring-aspects} module)
  *
  * @author Chris Beams
- * @since 3.1
  * @see LoadTimeWeaver
  * @see DefaultContextLoadTimeWeaver
  * @see org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

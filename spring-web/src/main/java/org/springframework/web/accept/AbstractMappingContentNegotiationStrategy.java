@@ -105,6 +105,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 	/**
 	 * An alternative to {@link #resolveMediaTypes(NativeWebRequest)} that accepts
 	 * an already extracted key.
+	 *
 	 * @since 3.2.16
 	 */
 	public List<MediaType> resolveMediaTypeKey(NativeWebRequest webRequest, @Nullable String key)
@@ -128,6 +129,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 
 	/**
 	 * Extract a key from the request to use to look up media types.
+	 *
 	 * @return the lookup key, or {@code null} if none
 	 */
 	@Nullable

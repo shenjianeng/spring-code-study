@@ -155,8 +155,8 @@ public class CssLinkResourceTransformerTests {
 		Resource css = getResource("empty_url_function.css");
 		String expected =
 				".fooStyle {\n" +
-				"\tbackground: transparent url() no-repeat left top;\n" +
-				"}";
+						"\tbackground: transparent url() no-repeat left top;\n" +
+						"}";
 
 		TransformedResource actual = (TransformedResource) this.transformerChain.transform(this.request, css);
 		String result = new String(actual.getByteArray(), StandardCharsets.UTF_8);

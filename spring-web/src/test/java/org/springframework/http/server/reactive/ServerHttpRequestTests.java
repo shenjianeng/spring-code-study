@@ -164,7 +164,7 @@ public class ServerHttpRequestTests {
 		assertEquals(headerValue1, request.getHeaders().get(headerName).get(0));
 		assertEquals(headerValue2, request.getHeaders().get(headerName).get(1));
 
-		request = request.mutate().header(headerName, new String[] { headerValue3 }).build();
+		request = request.mutate().header(headerName, new String[]{headerValue3}).build();
 
 		assertNotNull(request.getHeaders().get(headerName));
 		assertEquals(1, request.getHeaders().get(headerName).size());

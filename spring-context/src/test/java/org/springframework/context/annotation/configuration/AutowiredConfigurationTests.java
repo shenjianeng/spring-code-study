@@ -254,8 +254,7 @@ public class AutowiredConfigurationTests {
 		public TestBean testBean(Optional<Colour> colour, Optional<List<Colour>> colours) {
 			if (!colour.isPresent() && !colours.isPresent()) {
 				return new TestBean("");
-			}
-			else {
+			} else {
 				return new TestBean(colour.get().toString() + "-" + colours.get().get(0).toString());
 			}
 		}
@@ -325,12 +324,14 @@ public class AutowiredConfigurationTests {
 			this.name2 = name;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean() {
 			return new TestBean(name);
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2() {
 			return new TestBean(name2);
 		}
@@ -357,12 +358,14 @@ public class AutowiredConfigurationTests {
 			this.name2 = name;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean() {
 			return new TestBean(name);
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2() {
 			return new TestBean(name2);
 		}
@@ -392,12 +395,14 @@ public class AutowiredConfigurationTests {
 			this.name2 = name;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean() {
 			return new TestBean(name);
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2() {
 			return new TestBean(name2);
 		}
@@ -417,12 +422,14 @@ public class AutowiredConfigurationTests {
 			this.name2 = name;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean() {
 			return new TestBean(name.get());
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2() {
 			return new TestBean(name2.get());
 		}
@@ -437,17 +444,19 @@ public class AutowiredConfigurationTests {
 
 		@Autowired
 		public ValueConfigWithProviderConstructorArguments(@Value("#{systemProperties[myProp]}") Provider<String> name,
-				@Value("#{systemProperties[myProp]}") Provider<String> name2) {
+														   @Value("#{systemProperties[myProp]}") Provider<String> name2) {
 			this.name = name;
 			this.name2 = name2;
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean() {
 			return new TestBean(name.get());
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2() {
 			return new TestBean(name2.get());
 		}
@@ -457,12 +466,14 @@ public class AutowiredConfigurationTests {
 	@Configuration
 	static class ValueConfigWithProviderMethodArguments {
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean(@Value("#{systemProperties[myProp]}") Provider<String> name) {
 			return new TestBean(name.get());
 		}
 
-		@Bean @Scope("prototype")
+		@Bean
+		@Scope("prototype")
 		public TestBean testBean2(@Value("#{systemProperties[myProp]}") Provider<String> name2) {
 			return new TestBean(name2.get());
 		}

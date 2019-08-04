@@ -56,6 +56,7 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 
 	/**
 	 * Constructor that accepts an existing {@link HttpClient} builder.
+	 *
 	 * @since 5.1
 	 */
 	public ReactorNettyWebSocketClient(HttpClient httpClient) {

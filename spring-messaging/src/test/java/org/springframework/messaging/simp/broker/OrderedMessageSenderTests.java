@@ -37,6 +37,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link OrderedMessageSender}.
+ *
  * @author Rossen Stoyanchev
  */
 public class OrderedMessageSenderTests {
@@ -92,8 +93,7 @@ public class OrderedMessageSenderTests {
 			if (actual == 100 || actual == 200) {
 				try {
 					Thread.sleep(200);
-				}
-				catch (InterruptedException ex) {
+				} catch (InterruptedException ex) {
 					result.set(ex.toString());
 					latch.countDown();
 				}

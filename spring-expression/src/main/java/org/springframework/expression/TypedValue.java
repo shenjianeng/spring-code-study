@@ -47,6 +47,7 @@ public class TypedValue {
 	/**
 	 * Create a {@link TypedValue} for a simple object. The {@link TypeDescriptor}
 	 * is inferred from the object, so no generic declarations are preserved.
+	 *
 	 * @param value the object value
 	 */
 	public TypedValue(@Nullable Object value) {
@@ -57,7 +58,8 @@ public class TypedValue {
 	/**
 	 * Create a {@link TypedValue} for a particular value with a particular
 	 * {@link TypeDescriptor} which may contain additional generic declarations.
-	 * @param value the object value
+	 *
+	 * @param value          the object value
 	 * @param typeDescriptor a type descriptor describing the type of the value
 	 */
 	public TypedValue(@Nullable Object value, @Nullable TypeDescriptor typeDescriptor) {

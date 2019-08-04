@@ -64,8 +64,8 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author Rob Winch
  * @author Sam Brannen
- * @since 4.2
  * @see MockMvcWebConnection
+ * @since 4.2
  */
 final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
@@ -90,11 +90,12 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 	/**
 	 * Construct a new {@code HtmlUnitRequestBuilder}.
-	 * @param sessions a {@link Map} from session {@linkplain HttpSession#getId() IDs}
-	 * to currently managed {@link HttpSession} objects; never {@code null}
-	 * @param webClient the WebClient for retrieving cookies
+	 *
+	 * @param sessions   a {@link Map} from session {@linkplain HttpSession#getId() IDs}
+	 *                   to currently managed {@link HttpSession} objects; never {@code null}
+	 * @param webClient  the WebClient for retrieving cookies
 	 * @param webRequest the {@link WebRequest} to transform into a
-	 * {@link MockHttpServletRequest}; never {@code null}
+	 *                   {@link MockHttpServletRequest}; never {@code null}
 	 */
 	public HtmlUnitRequestBuilder(Map<String, MockHttpSession> sessions, WebClient webClient, WebRequest webRequest) {
 		Assert.notNull(sessions, "Sessions Map must not be null");
@@ -207,9 +208,10 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 	 * URL is turned into the contextPath. Otherwise it must conform to
 	 * {@link HttpServletRequest#getContextPath()} which states it can be
 	 * an empty string, or it must start with a "/" and not end with a "/".
+	 *
 	 * @param contextPath a valid contextPath
 	 * @throws IllegalArgumentException if the contextPath is not a valid
-	 * {@link HttpServletRequest#getContextPath()}
+	 *                                  {@link HttpServletRequest#getContextPath()}
 	 */
 	public void setContextPath(@Nullable String contextPath) {
 		MockMvcWebConnection.validateContextPath(contextPath);
@@ -252,12 +254,10 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 			List<String> pathSegments = uriComponents.getPathSegments();
 			if (pathSegments.isEmpty()) {
 				request.setContextPath("");
-			}
-			else {
+			} else {
 				request.setContextPath("/" + pathSegments.get(0));
 			}
-		}
-		else {
+		} else {
 			String path = uriComponents.getPath();
 			Assert.isTrue(path != null && path.startsWith(this.contextPath),
 					() -> "\"" + uriComponents.getPath() +
@@ -327,8 +327,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 					this.sessions.put(sessionid, session);
 				}
 				addSessionCookie(request, sessionid);
-			}
-			else {
+			} else {
 				session.setNew(false);
 			}
 		}
@@ -371,8 +370,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 	private String urlDecode(String value) {
 		try {
 			return URLDecoder.decode(value, "UTF-8");
-		}
-		catch (UnsupportedEncodingException ex) {
+		} catch (UnsupportedEncodingException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
@@ -397,8 +395,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 			int portConnection = this.webRequest.getUrl().getDefaultPort();
 			request.setLocalPort(serverPort);
 			request.setRemotePort(portConnection);
-		}
-		else {
+		} else {
 			request.setRemotePort(serverPort);
 		}
 	}
@@ -420,8 +417,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 				MockHttpServletRequestBuilder copiedParent = MockMvcRequestBuilders.get("/");
 				copiedParent.merge(parent);
 				this.parentBuilder = copiedParent;
-			}
-			else {
+			} else {
 				this.parentBuilder = (RequestBuilder) parent;
 			}
 			if (parent instanceof SmartRequestBuilder) {

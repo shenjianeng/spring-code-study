@@ -32,7 +32,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author Mark Fisher
  * @author Gary Russel
  * @author Stephane Nicoll
@@ -46,7 +45,8 @@ public class SimpleJmsHeaderMapperTests {
 
 	@Test
 	public void jmsReplyToMappedFromHeader() throws JMSException {
-		Destination replyTo = new Destination() {};
+		Destination replyTo = new Destination() {
+		};
 		Message<String> message = initBuilder()
 				.setHeader(JmsHeaders.REPLY_TO, replyTo).build();
 
@@ -117,7 +117,8 @@ public class SimpleJmsHeaderMapperTests {
 	@Test
 	public void jmsReadOnlyPropertiesNotMapped() throws JMSException {
 		Message<String> message = initBuilder()
-				.setHeader(JmsHeaders.DESTINATION, new Destination() {})
+				.setHeader(JmsHeaders.DESTINATION, new Destination() {
+				})
 				.setHeader(JmsHeaders.DELIVERY_MODE, DeliveryMode.NON_PERSISTENT)
 				.setHeader(JmsHeaders.EXPIRATION, 1000L)
 				.setHeader(JmsHeaders.MESSAGE_ID, "abc-123")
@@ -177,7 +178,8 @@ public class SimpleJmsHeaderMapperTests {
 
 	@Test
 	public void userDefinedPropertyWithUnsupportedType() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		Message<String> message = initBuilder()
 				.setHeader("destination", destination)
 				.build();
@@ -304,8 +306,7 @@ public class SimpleJmsHeaderMapperTests {
 			public Object getObjectProperty(String name) throws JMSException {
 				if (name.equals("fail")) {
 					throw new JMSException("illegal property");
-				}
-				else {
+				} else {
 					return super.getObjectProperty(name);
 				}
 			}
@@ -327,7 +328,8 @@ public class SimpleJmsHeaderMapperTests {
 
 	@Test
 	public void destinationMappedToHeader() throws JMSException {
-		Destination destination = new Destination() {};
+		Destination destination = new Destination() {
+		};
 		javax.jms.Message jmsMessage = new StubTextMessage();
 		jmsMessage.setJMSDestination(destination);
 		assertInboundHeader(jmsMessage, JmsHeaders.DESTINATION, destination);
@@ -367,7 +369,8 @@ public class SimpleJmsHeaderMapperTests {
 
 	@Test
 	public void jmsReplyToMappedToHeader() throws JMSException {
-		Destination replyTo = new Destination() {};
+		Destination replyTo = new Destination() {
+		};
 		javax.jms.Message jmsMessage = new StubTextMessage();
 		jmsMessage.setJMSReplyTo(replyTo);
 		assertInboundHeader(jmsMessage, JmsHeaders.REPLY_TO, replyTo);
@@ -464,7 +467,8 @@ public class SimpleJmsHeaderMapperTests {
 	@Test
 	public void attemptToWriteDisallowedReplyToPropertyIsNotFatal() throws JMSException {
 		Message<String> message = initBuilder()
-				.setHeader(JmsHeaders.REPLY_TO, new Destination() {})
+				.setHeader(JmsHeaders.REPLY_TO, new Destination() {
+				})
 				.setHeader("foo", "bar")
 				.build();
 		javax.jms.Message jmsMessage = new StubTextMessage() {
@@ -539,8 +543,7 @@ public class SimpleJmsHeaderMapperTests {
 		Object headerValue = headers.get(headerId);
 		if (value == null) {
 			assertNull(headerValue);
-		}
-		else {
+		} else {
 			assertNotNull(headerValue);
 			assertEquals(value.getClass(), headerValue.getClass());
 			assertEquals(value, headerValue);

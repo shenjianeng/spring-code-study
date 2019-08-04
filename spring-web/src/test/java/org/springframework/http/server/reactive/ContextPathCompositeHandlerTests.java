@@ -54,8 +54,7 @@ public class ContextPathCompositeHandlerTests {
 		try {
 			new ContextPathCompositeHandler(Collections.singletonMap(contextPath, new TestHttpHandler()));
 			fail();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertEquals(expectedError, ex.getMessage());
 		}
 	}

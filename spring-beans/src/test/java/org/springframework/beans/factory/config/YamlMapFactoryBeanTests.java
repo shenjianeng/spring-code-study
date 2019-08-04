@@ -78,6 +78,7 @@ public class YamlMapFactoryBeanTests {
 			public String getDescription() {
 				return "non-existent";
 			}
+
 			@Override
 			public InputStream getInputStream() throws IOException {
 				throw new IOException("planned");

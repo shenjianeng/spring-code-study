@@ -71,15 +71,13 @@ public class PersistenceExceptionTranslationAdvisorTests {
 		try {
 			ri.noThrowsClause();
 			fail();
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertSame(persistenceException1, ex);
 		}
 		try {
 			ri.throwsPersistenceException();
 			fail();
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertSame(persistenceException1, ex);
 		}
 	}
@@ -96,15 +94,13 @@ public class PersistenceExceptionTranslationAdvisorTests {
 		try {
 			ri.noThrowsClause();
 			fail();
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertSame(doNotTranslate, ex);
 		}
 		try {
 			ri.throwsPersistenceException();
 			fail();
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			assertSame(doNotTranslate, ex);
 		}
 	}
@@ -141,20 +137,17 @@ public class PersistenceExceptionTranslationAdvisorTests {
 		try {
 			ri.noThrowsClause();
 			fail();
-		}
-		catch (DataAccessException ex) {
+		} catch (DataAccessException ex) {
 			// Expected
 			assertSame(persistenceException1, ex.getCause());
-		}
-		catch (PersistenceException ex) {
+		} catch (PersistenceException ex) {
 			fail("Should have been translated");
 		}
 
 		try {
 			ri.throwsPersistenceException();
 			fail();
-		}
-		catch (PersistenceException ex) {
+		} catch (PersistenceException ex) {
 			assertSame(persistenceException1, ex);
 		}
 	}

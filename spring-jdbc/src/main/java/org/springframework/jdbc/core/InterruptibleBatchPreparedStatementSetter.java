@@ -37,9 +37,9 @@ package org.springframework.jdbc.core;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @since 2.0
  * @see JdbcTemplate#batchUpdate(String, BatchPreparedStatementSetter)
  * @see org.springframework.jdbc.core.support.AbstractInterruptibleBatchPreparedStatementSetter
+ * @since 2.0
  */
 public interface InterruptibleBatchPreparedStatementSetter extends BatchPreparedStatementSetter {
 
@@ -51,6 +51,7 @@ public interface InterruptibleBatchPreparedStatementSetter extends BatchPrepared
 	 * be ignored! Make sure that you set a corresponding internal flag if you
 	 * detect exhaustion <i>at the beginning</i> of your {@code setValues}
 	 * implementation, letting this method return {@code true} based on the flag.
+	 *
 	 * @param i index of the statement we're issuing in the batch, starting from 0
 	 * @return whether the batch is already exhausted
 	 * @see #setValues

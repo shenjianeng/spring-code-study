@@ -30,6 +30,7 @@ public class DataAccessResourceFailureException extends NonTransientDataAccessRe
 
 	/**
 	 * Constructor for DataAccessResourceFailureException.
+	 *
 	 * @param msg the detail message
 	 */
 	public DataAccessResourceFailureException(String msg) {
@@ -38,7 +39,8 @@ public class DataAccessResourceFailureException extends NonTransientDataAccessRe
 
 	/**
 	 * Constructor for DataAccessResourceFailureException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the data access API in use
 	 */
 	public DataAccessResourceFailureException(String msg, @Nullable Throwable cause) {

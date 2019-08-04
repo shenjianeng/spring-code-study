@@ -71,15 +71,13 @@ class CallableInterceptorChain {
 		for (int i = this.preProcessIndex; i >= 0; i--) {
 			try {
 				this.interceptors.get(i).postProcess(request, task, concurrentResult);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// Save the first exception but invoke all interceptors
 				if (exceptionResult != null) {
 					if (logger.isTraceEnabled()) {
 						logger.trace("Ignoring failure in postProcess method", ex);
 					}
-				}
-				else {
+				} else {
 					exceptionResult = ex;
 				}
 			}
@@ -94,12 +92,10 @@ class CallableInterceptorChain {
 				Object result = interceptor.handleTimeout(request, task);
 				if (result == CallableProcessingInterceptor.RESPONSE_HANDLED) {
 					break;
-				}
-				else if (result != CallableProcessingInterceptor.RESULT_NONE) {
+				} else if (result != CallableProcessingInterceptor.RESULT_NONE) {
 					return result;
 				}
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				return ex;
 			}
 		}
@@ -111,8 +107,7 @@ class CallableInterceptorChain {
 		if (future != null) {
 			try {
 				future.cancel(true);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				// Ignore
 			}
 		}
@@ -125,12 +120,10 @@ class CallableInterceptorChain {
 				Object result = interceptor.handleError(request, task, throwable);
 				if (result == CallableProcessingInterceptor.RESPONSE_HANDLED) {
 					break;
-				}
-				else if (result != CallableProcessingInterceptor.RESULT_NONE) {
+				} else if (result != CallableProcessingInterceptor.RESULT_NONE) {
 					return result;
 				}
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				return ex;
 			}
 		}
@@ -138,11 +131,10 @@ class CallableInterceptorChain {
 	}
 
 	public void triggerAfterCompletion(NativeWebRequest request, Callable<?> task) {
-		for (int i = this.interceptors.size()-1; i >= 0; i--) {
+		for (int i = this.interceptors.size() - 1; i >= 0; i--) {
 			try {
 				this.interceptors.get(i).afterCompletion(request, task);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Ignoring failure in afterCompletion method", ex);
 				}

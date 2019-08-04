@@ -125,7 +125,7 @@ public class ProducesRequestConditionTests {
 
 	@Test
 	public void matchByRequestParameter() {
-		ProducesRequestCondition condition = new ProducesRequestCondition(new String[] {"text/plain"}, new String[] {});
+		ProducesRequestCondition condition = new ProducesRequestCondition(new String[]{"text/plain"}, new String[]{});
 
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/foo.txt");
 
@@ -150,7 +150,7 @@ public class ProducesRequestConditionTests {
 				new FixedContentNegotiationStrategy(MediaType.TEXT_HTML));
 
 		ProducesRequestCondition none = new ProducesRequestCondition(new String[0], null, manager);
-		ProducesRequestCondition html = new ProducesRequestCondition(new String[] {"text/html"}, null, manager);
+		ProducesRequestCondition html = new ProducesRequestCondition(new String[]{"text/html"}, null, manager);
 
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		request.addHeader("Accept", "*/*");
@@ -337,7 +337,7 @@ public class ProducesRequestConditionTests {
 
 	@Test
 	public void instantiateWithProducesAndHeaderConditions() {
-		String[] produces = new String[] {"text/plain"};
+		String[] produces = new String[]{"text/plain"};
 		String[] headers = new String[]{"foo=bar", "accept=application/xml,application/pdf"};
 		ProducesRequestCondition condition = new ProducesRequestCondition(produces, headers);
 

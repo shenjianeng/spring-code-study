@@ -47,6 +47,7 @@ public interface PathContainer {
 
 	/**
 	 * Extract a sub-path from the given offset into the elements list.
+	 *
 	 * @param index the start element index (inclusive)
 	 * @return the sub-path
 	 */
@@ -57,8 +58,9 @@ public interface PathContainer {
 	/**
 	 * Extract a sub-path from the given start offset (inclusive) into the
 	 * element list and to the end offset (exclusive).
+	 *
 	 * @param startIndex the start element index (inclusive)
-	 * @param endIndex the end element index (exclusive)
+	 * @param endIndex   the end element index (exclusive)
 	 * @return the sub-path
 	 */
 	default PathContainer subPath(int startIndex, int endIndex) {
@@ -69,6 +71,7 @@ public interface PathContainer {
 	/**
 	 * Parse the path value into a sequence of {@link Separator Separator} and
 	 * {@link PathSegment PathSegment} elements.
+	 *
 	 * @param path the encoded, raw URL path value to parse
 	 * @return the parsed path
 	 */

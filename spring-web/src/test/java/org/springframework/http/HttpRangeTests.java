@@ -107,7 +107,7 @@ public class HttpRangeTests {
 
 		// 1. At limit..
 		StringBuilder sb = new StringBuilder("bytes=0-0");
-		for (int i=0; i < 99; i++) {
+		for (int i = 0; i < 99; i++) {
 			sb.append(",").append(i).append("-").append(i + 1);
 		}
 		List<HttpRange> ranges = HttpRange.parseRanges(sb.toString());
@@ -115,14 +115,13 @@ public class HttpRangeTests {
 
 		// 2. Above limit..
 		sb = new StringBuilder("bytes=0-0");
-		for (int i=0; i < 100; i++) {
+		for (int i = 0; i < 100; i++) {
 			sb.append(",").append(i).append("-").append(i + 1);
 		}
 		try {
 			HttpRange.parseRanges(sb.toString());
 			fail();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Expected
 		}
 	}
@@ -186,8 +185,7 @@ public class HttpRangeTests {
 		try {
 			HttpRange.toResourceRegions(ranges, resource);
 			fail();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Expected..
 		}
 	}

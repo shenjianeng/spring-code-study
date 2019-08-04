@@ -43,11 +43,12 @@ public class InitBinderDataBinderFactory extends DefaultDataBinderFactory {
 
 	/**
 	 * Create a new InitBinderDataBinderFactory instance.
+	 *
 	 * @param binderMethods {@code @InitBinder} methods
-	 * @param initializer for global data binder initialization
+	 * @param initializer   for global data binder initialization
 	 */
 	public InitBinderDataBinderFactory(@Nullable List<InvocableHandlerMethod> binderMethods,
-			@Nullable WebBindingInitializer initializer) {
+									   @Nullable WebBindingInitializer initializer) {
 
 		super(initializer);
 		this.binderMethods = (binderMethods != null ? binderMethods : Collections.emptyList());
@@ -58,6 +59,7 @@ public class InitBinderDataBinderFactory extends DefaultDataBinderFactory {
 	 * Initialize a WebDataBinder with {@code @InitBinder} methods.
 	 * <p>If the {@code @InitBinder} annotation specifies attributes names,
 	 * it is invoked only if the names include the target object name.
+	 *
 	 * @throws Exception if one of the invoked @{@link InitBinder} methods fails
 	 * @see #isBinderMethodApplicable
 	 */

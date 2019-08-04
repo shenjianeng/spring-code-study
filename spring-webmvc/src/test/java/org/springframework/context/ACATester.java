@@ -33,8 +33,7 @@ public class ACATester implements ApplicationContextAware {
 		if (ctx != null) {
 			try {
 				ctx.getMessage("code1", null, Locale.getDefault());
-			}
-			catch (NoSuchMessageException ex) {
+			} catch (NoSuchMessageException ex) {
 				// expected
 			}
 		}

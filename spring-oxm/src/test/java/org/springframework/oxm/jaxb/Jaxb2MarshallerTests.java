@@ -193,10 +193,10 @@ public class Jaxb2MarshallerTests extends AbstractMarshallerTests<Jaxb2Marshalle
 
 	private void testSupports() throws Exception {
 		assertTrue("Jaxb2Marshaller does not support Flights class", marshaller.supports(Flights.class));
-		assertTrue("Jaxb2Marshaller does not support Flights generic type", marshaller.supports((Type)Flights.class));
+		assertTrue("Jaxb2Marshaller does not support Flights generic type", marshaller.supports((Type) Flights.class));
 
 		assertFalse("Jaxb2Marshaller supports FlightType class", marshaller.supports(FlightType.class));
-		assertFalse("Jaxb2Marshaller supports FlightType type", marshaller.supports((Type)FlightType.class));
+		assertFalse("Jaxb2Marshaller supports FlightType type", marshaller.supports((Type) FlightType.class));
 
 		Method method = ObjectFactory.class.getDeclaredMethod("createFlight", FlightType.class);
 		assertTrue("Jaxb2Marshaller does not support JAXBElement<FlightsType>",
@@ -208,13 +208,13 @@ public class Jaxb2MarshallerTests extends AbstractMarshallerTests<Jaxb2Marshalle
 		assertTrue("Jaxb2Marshaller does not support JAXBElement<FlightsType>", marshaller.supports(flightTypeJAXBElement.getClass()));
 
 		assertFalse("Jaxb2Marshaller supports class not in context path", marshaller.supports(DummyRootElement.class));
-		assertFalse("Jaxb2Marshaller supports type not in context path", marshaller.supports((Type)DummyRootElement.class));
+		assertFalse("Jaxb2Marshaller supports type not in context path", marshaller.supports((Type) DummyRootElement.class));
 		method = getClass().getDeclaredMethod("createDummyRootElement");
 		assertFalse("Jaxb2Marshaller supports JAXBElement not in context path",
 				marshaller.supports(method.getGenericReturnType()));
 
 		assertFalse("Jaxb2Marshaller supports class not in context path", marshaller.supports(DummyType.class));
-		assertFalse("Jaxb2Marshaller supports type not in context path", marshaller.supports((Type)DummyType.class));
+		assertFalse("Jaxb2Marshaller supports type not in context path", marshaller.supports((Type) DummyType.class));
 		method = getClass().getDeclaredMethod("createDummyType");
 		assertFalse("Jaxb2Marshaller supports JAXBElement not in context path",
 				marshaller.supports(method.getGenericReturnType()));
@@ -235,8 +235,7 @@ public class Jaxb2MarshallerTests extends AbstractMarshallerTests<Jaxb2Marshalle
 					// make sure the marshalling does not result in errors
 					Object returnValue = method.invoke(primitives);
 					marshaller.marshal(returnValue, new StreamResult(new ByteArrayOutputStream()));
-				}
-				catch (InvocationTargetException e) {
+				} catch (InvocationTargetException e) {
 					fail(e.getMessage());
 				}
 			}
@@ -260,8 +259,7 @@ public class Jaxb2MarshallerTests extends AbstractMarshallerTests<Jaxb2Marshalle
 					// make sure the marshalling does not result in errors
 					Object returnValue = method.invoke(standardClasses);
 					marshaller.marshal(returnValue, new StreamResult(new ByteArrayOutputStream()));
-				}
-				catch (InvocationTargetException e) {
+				} catch (InvocationTargetException e) {
 					fail(e.getMessage());
 				}
 			}
@@ -279,10 +277,10 @@ public class Jaxb2MarshallerTests extends AbstractMarshallerTests<Jaxb2Marshalle
 		marshaller.setClassesToBeBound(DummyRootElement.class, DummyType.class);
 		marshaller.afterPropertiesSet();
 		assertTrue("Jaxb2Marshaller does not support XmlRootElement class", marshaller.supports(DummyRootElement.class));
-		assertTrue("Jaxb2Marshaller does not support XmlRootElement generic type", marshaller.supports((Type)DummyRootElement.class));
+		assertTrue("Jaxb2Marshaller does not support XmlRootElement generic type", marshaller.supports((Type) DummyRootElement.class));
 
 		assertFalse("Jaxb2Marshaller supports DummyType class", marshaller.supports(DummyType.class));
-		assertFalse("Jaxb2Marshaller supports DummyType type", marshaller.supports((Type)DummyType.class));
+		assertFalse("Jaxb2Marshaller supports DummyType type", marshaller.supports((Type) DummyType.class));
 	}
 
 

@@ -44,12 +44,12 @@ public class StubMvcResult implements MvcResult {
 	private MockHttpServletResponse response;
 
 	public StubMvcResult(MockHttpServletRequest request,
-						Object handler,
-						HandlerInterceptor[] interceptors,
-						Exception resolvedException,
-						ModelAndView mav,
-						FlashMap flashMap,
-						MockHttpServletResponse response) {
+						 Object handler,
+						 HandlerInterceptor[] interceptors,
+						 Exception resolvedException,
+						 ModelAndView mav,
+						 FlashMap flashMap,
+						 MockHttpServletResponse response) {
 		this.request = request;
 		this.handler = handler;
 		this.interceptors = interceptors;

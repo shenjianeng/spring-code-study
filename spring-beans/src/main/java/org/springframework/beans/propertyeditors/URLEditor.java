@@ -37,12 +37,12 @@ import org.springframework.util.Assert;
  * at the time of URL creation; this depends on the specific resource type.
  *
  * @author Juergen Hoeller
- * @since 15.12.2003
  * @see java.net.URL
  * @see org.springframework.core.io.ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
  * @see FileEditor
  * @see InputStreamEditor
+ * @since 15.12.2003
  */
 public class URLEditor extends PropertyEditorSupport {
 
@@ -58,6 +58,7 @@ public class URLEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new URLEditor, using the given ResourceEditor underneath.
+	 *
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public URLEditor(ResourceEditor resourceEditor) {
@@ -72,8 +73,7 @@ public class URLEditor extends PropertyEditorSupport {
 		Resource resource = (Resource) this.resourceEditor.getValue();
 		try {
 			setValue(resource != null ? resource.getURL() : null);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalArgumentException("Could not retrieve URL for " + resource + ": " + ex.getMessage());
 		}
 	}

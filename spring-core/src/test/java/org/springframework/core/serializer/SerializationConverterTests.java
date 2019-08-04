@@ -48,8 +48,7 @@ public class SerializationConverterTests {
 		try {
 			toBytes.convert(new Object());
 			fail("Expected IllegalArgumentException");
-		}
-		catch (SerializationFailedException e) {
+		} catch (SerializationFailedException e) {
 			assertNotNull(e.getCause());
 			assertTrue(e.getCause() instanceof IllegalArgumentException);
 		}
@@ -61,8 +60,7 @@ public class SerializationConverterTests {
 		try {
 			toBytes.convert(new UnSerializable());
 			fail("Expected SerializationFailureException");
-		}
-		catch (SerializationFailedException e) {
+		} catch (SerializationFailedException e) {
 			assertNotNull(e.getCause());
 			assertTrue(e.getCause() instanceof NotSerializableException);
 		}

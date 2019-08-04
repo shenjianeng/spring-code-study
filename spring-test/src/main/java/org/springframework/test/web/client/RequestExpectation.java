@@ -36,6 +36,7 @@ public interface RequestExpectation extends ResponseActions, RequestMatcher, Res
 
 	/**
 	 * Increase the matched request count and check we haven't passed the max count.
+	 *
 	 * @since 5.0.3
 	 */
 	void incrementAndValidate();

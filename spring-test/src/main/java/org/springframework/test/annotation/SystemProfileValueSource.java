@@ -48,6 +48,7 @@ public final class SystemProfileValueSource implements ProfileValueSource {
 	/**
 	 * Get the <em>profile value</em> indicated by the specified key from the
 	 * system properties.
+	 *
 	 * @see System#getProperty(String)
 	 */
 	@Override

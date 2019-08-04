@@ -96,7 +96,7 @@ public class AnnotationScopeMetadataResolverTests {
 	@Test
 	public void customRequestScopeWithAttribute() {
 		AnnotatedBeanDefinition bd = new AnnotatedGenericBeanDefinition(
-			AnnotatedWithCustomRequestScopeWithAttributeOverride.class);
+				AnnotatedWithCustomRequestScopeWithAttributeOverride.class);
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(bd);
 		assertNotNull("resolveScopeMetadata(..) must *never* return null.", scopeMetadata);
 		assertEquals("request", scopeMetadata.getScopeName());

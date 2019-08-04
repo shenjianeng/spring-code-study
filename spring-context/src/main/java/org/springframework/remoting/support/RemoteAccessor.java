@@ -32,9 +32,9 @@ import org.springframework.util.Assert;
  * does not declare {@code java.rmi.RemoteException}.
  *
  * @author Juergen Hoeller
- * @since 13.05.2003
  * @see org.springframework.remoting.RemoteAccessException
  * @see java.rmi.RemoteException
+ * @since 13.05.2003
  */
 public abstract class RemoteAccessor extends RemotingSupport {
 

@@ -74,7 +74,7 @@ public class KotlinScriptTemplateTests {
 
 
 	private MockServerHttpResponse render(String viewUrl, Map<String, Object> model,
-			Locale locale, Class<?> configuration) throws Exception {
+										  Locale locale, Class<?> configuration) throws Exception {
 
 		ScriptTemplateView view = createViewWithUrl(viewUrl, configuration);
 		MockServerHttpRequest request = MockServerHttpRequest.get("/").acceptLanguageAsLocales(locale).build();

@@ -47,8 +47,7 @@ class SingleCharWildcardedPathElement extends PathElement {
 		this.caseSensitive = caseSensitive;
 		if (caseSensitive) {
 			this.text = literalText;
-		}
-		else {
+		} else {
 			this.text = new char[literalText.length];
 			for (int i = 0; i < this.len; i++) {
 				this.text[i] = Character.toLowerCase(literalText[i]);
@@ -68,13 +67,13 @@ class SingleCharWildcardedPathElement extends PathElement {
 		if (!(element instanceof PathSegment)) {
 			return false;
 		}
-		String value = ((PathSegment)element).valueToMatch();
+		String value = ((PathSegment) element).valueToMatch();
 		if (value.length() != this.len) {
 			// Not enough data to match this path element
 			return false;
 		}
 
-		char[] data = ((PathSegment)element).valueToMatchAsChars();
+		char[] data = ((PathSegment) element).valueToMatchAsChars();
 		if (this.caseSensitive) {
 			for (int i = 0; i < this.len; i++) {
 				char ch = this.text[i];
@@ -82,8 +81,7 @@ class SingleCharWildcardedPathElement extends PathElement {
 					return false;
 				}
 			}
-		}
-		else {
+		} else {
 			for (int i = 0; i < this.len; i++) {
 				char ch = this.text[i];
 				// TODO revisit performance if doing a lot of case insensitive matching
@@ -98,19 +96,16 @@ class SingleCharWildcardedPathElement extends PathElement {
 			if (matchingContext.determineRemainingPath) {
 				matchingContext.remainingPathIndex = pathIndex;
 				return true;
-			}
-			else {
+			} else {
 				if (pathIndex == matchingContext.pathLength) {
 					return true;
-				}
-				else {
+				} else {
 					return (matchingContext.isMatchOptionalTrailingSeparator() &&
 							(pathIndex + 1) == matchingContext.pathLength &&
 							matchingContext.isSeparator(pathIndex));
 				}
 			}
-		}
-		else {
+		} else {
 			return (this.next != null && this.next.matches(pathIndex, matchingContext));
 		}
 	}

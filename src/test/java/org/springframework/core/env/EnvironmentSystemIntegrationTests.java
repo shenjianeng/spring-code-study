@@ -158,7 +158,7 @@ public class EnvironmentSystemIntegrationTests {
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(ctx);
 		scanner.scan("org.springframework.core.env.scan2");
 		ctx.refresh();
-		assertThat(scanner.getEnvironment(), is((Environment)ctx.getEnvironment()));
+		assertThat(scanner.getEnvironment(), is((Environment) ctx.getEnvironment()));
 		assertThat(ctx.containsBean(DEV_BEAN_NAME), is(false));
 		assertThat(ctx.containsBean(PROD_BEAN_NAME), is(true));
 	}
@@ -199,7 +199,7 @@ public class EnvironmentSystemIntegrationTests {
 
 		// strange - FSXAC strips leading '/' unless prefixed with 'file:'
 		ConfigurableApplicationContext ctx =
-				new FileSystemXmlApplicationContext(new String[] {"file:" + tmpFile.getPath()}, false);
+				new FileSystemXmlApplicationContext(new String[]{"file:" + tmpFile.getPath()}, false);
 		ctx.setEnvironment(prodEnv);
 		ctx.refresh();
 		assertEnvironmentBeanRegistered(ctx);
@@ -557,8 +557,7 @@ public class EnvironmentSystemIntegrationTests {
 			try {
 				ctx.refresh();
 				fail("expected missing property exception");
-			}
-			catch (MissingRequiredPropertiesException ex) {
+			} catch (MissingRequiredPropertiesException ex) {
 			}
 		}
 

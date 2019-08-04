@@ -23,9 +23,9 @@ import org.aopalliance.aop.Advice;
  * that allows for any {@link Advice} to be configured.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setAdvice
  * @see DefaultPointcutAdvisor
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public abstract class AbstractGenericPointcutAdvisor extends AbstractPointcutAdvisor {

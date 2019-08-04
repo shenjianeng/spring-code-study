@@ -32,11 +32,11 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>This is an SPI class, not used directly by application code.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.web.servlet.DispatcherServlet
  * @see org.springframework.web.HttpRequestHandler
  * @see LastModified
  * @see SimpleControllerHandlerAdapter
+ * @since 2.0
  */
 public class HttpRequestHandlerAdapter implements HandlerAdapter {
 

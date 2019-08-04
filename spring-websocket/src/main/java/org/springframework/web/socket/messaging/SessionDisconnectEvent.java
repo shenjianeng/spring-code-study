@@ -43,27 +43,29 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 
 	/**
 	 * Create a new SessionDisconnectEvent.
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the message (never {@code null})
-	 * @param sessionId the disconnect message
+	 *
+	 * @param source      the component that published the event (never {@code null})
+	 * @param message     the message (never {@code null})
+	 * @param sessionId   the disconnect message
 	 * @param closeStatus the status object
 	 */
 	public SessionDisconnectEvent(Object source, Message<byte[]> message, String sessionId,
-			CloseStatus closeStatus) {
+								  CloseStatus closeStatus) {
 
 		this(source, message, sessionId, closeStatus, null);
 	}
 
 	/**
 	 * Create a new SessionDisconnectEvent.
-	 * @param source the component that published the event (never {@code null})
-	 * @param message the message (never {@code null})
-	 * @param sessionId the disconnect message
+	 *
+	 * @param source      the component that published the event (never {@code null})
+	 * @param message     the message (never {@code null})
+	 * @param sessionId   the disconnect message
 	 * @param closeStatus the status object
-	 * @param user the current session user
+	 * @param user        the current session user
 	 */
 	public SessionDisconnectEvent(Object source, Message<byte[]> message, String sessionId,
-			CloseStatus closeStatus, @Nullable Principal user) {
+								  CloseStatus closeStatus, @Nullable Principal user) {
 
 		super(source, message, user);
 		Assert.notNull(sessionId, "Session id must not be null");

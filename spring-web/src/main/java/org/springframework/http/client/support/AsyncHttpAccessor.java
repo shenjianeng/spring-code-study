@@ -36,14 +36,16 @@ import org.springframework.util.Assert;
  * {@link org.springframework.web.client.AsyncRestTemplate}.
  *
  * @author Arjen Poutsma
- * @since 4.0
  * @see org.springframework.web.client.AsyncRestTemplate
+ * @since 4.0
  * @deprecated as of Spring 5.0, with no direct replacement
  */
 @Deprecated
 public class AsyncHttpAccessor {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = HttpLogging.forLogName(getClass());
 
 	@Nullable
@@ -73,7 +75,8 @@ public class AsyncHttpAccessor {
 	/**
 	 * Create a new {@link org.springframework.http.client.AsyncClientHttpRequest} via this template's
 	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
-	 * @param url the URL to connect to
+	 *
+	 * @param url    the URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc.)
 	 * @return the created request
 	 * @throws IOException in case of I/O errors

@@ -32,9 +32,9 @@ import org.springframework.util.Assert;
  * Spring-managed beans that implement {@link BootstrapContextAware}.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see SpringContextResourceAdapter
  * @see BootstrapContextAware
+ * @since 2.5
  */
 public class ResourceAdapterApplicationContext extends GenericApplicationContext {
 
@@ -43,8 +43,9 @@ public class ResourceAdapterApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Create a new ResourceAdapterApplicationContext for the given BootstrapContext.
+	 *
 	 * @param bootstrapContext the JCA BootstrapContext that the ResourceAdapter
-	 * has been started with
+	 *                         has been started with
 	 */
 	public ResourceAdapterApplicationContext(BootstrapContext bootstrapContext) {
 		Assert.notNull(bootstrapContext, "BootstrapContext must not be null");

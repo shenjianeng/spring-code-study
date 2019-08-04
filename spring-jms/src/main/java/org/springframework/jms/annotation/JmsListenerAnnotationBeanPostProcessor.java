@@ -78,7 +78,6 @@ import org.springframework.util.StringValueResolver;
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
- * @since 4.1
  * @see JmsListener
  * @see EnableJms
  * @see JmsListenerConfigurer
@@ -86,6 +85,7 @@ import org.springframework.util.StringValueResolver;
  * @see JmsListenerEndpointRegistry
  * @see org.springframework.jms.config.JmsListenerEndpoint
  * @see MethodJmsListenerEndpoint
+ * @since 4.1
  */
 public class JmsListenerAnnotationBeanPostProcessor
 		implements MergedBeanDefinitionPostProcessor, Ordered, BeanFactoryAware, SmartInitializingSingleton {
@@ -240,8 +240,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 				if (logger.isTraceEnabled()) {
 					logger.trace("No @JmsListener annotations found on bean type: " + targetClass);
 				}
-			}
-			else {
+			} else {
 				// Non-empty set of methods
 				annotatedMethods.forEach((method, listeners) ->
 						listeners.forEach(listener -> processJmsListener(listener, method, bean)));
@@ -257,9 +256,10 @@ public class JmsListenerAnnotationBeanPostProcessor
 	/**
 	 * Process the given {@link JmsListener} annotation on the given method,
 	 * registering a corresponding endpoint for the given bean instance.
-	 * @param jmsListener the annotation to process
+	 *
+	 * @param jmsListener        the annotation to process
 	 * @param mostSpecificMethod the annotated method
-	 * @param bean the instance to invoke the method on
+	 * @param bean               the instance to invoke the method on
 	 * @see #createMethodJmsListenerEndpoint()
 	 * @see JmsListenerEndpointRegistrar#registerEndpoint
 	 */
@@ -291,8 +291,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 			Assert.state(this.beanFactory != null, "BeanFactory must be set to obtain container factory by bean name");
 			try {
 				factory = this.beanFactory.getBean(containerFactoryBeanName, JmsListenerContainerFactory.class);
-			}
-			catch (NoSuchBeanDefinitionException ex) {
+			} catch (NoSuchBeanDefinitionException ex) {
 				throw new BeanInitializationException("Could not register JMS listener endpoint on [" +
 						mostSpecificMethod + "], no " + JmsListenerContainerFactory.class.getSimpleName() +
 						" with id '" + containerFactoryBeanName + "' was found in the application context", ex);
@@ -305,9 +304,10 @@ public class JmsListenerAnnotationBeanPostProcessor
 	/**
 	 * Instantiate an empty {@link MethodJmsListenerEndpoint} for further
 	 * configuration with provided parameters in {@link #processJmsListener}.
+	 *
 	 * @return a new {@code MethodJmsListenerEndpoint} or subclass thereof
-	 * @since 4.1.9
 	 * @see MethodJmsListenerEndpoint#createMessageListenerInstance()
+	 * @since 4.1.9
 	 */
 	protected MethodJmsListenerEndpoint createMethodJmsListenerEndpoint() {
 		return new MethodJmsListenerEndpoint();
@@ -317,8 +317,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 		if (StringUtils.hasText(jmsListener.id())) {
 			String id = resolve(jmsListener.id());
 			return (id != null ? id : "");
-		}
-		else {
+		} else {
 			return "org.springframework.jms.JmsListenerEndpointContainer#" + this.counter.getAndIncrement();
 		}
 	}
@@ -333,6 +332,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 	 * A {@link MessageHandlerMethodFactory} adapter that offers a configurable underlying
 	 * instance to use. Useful if the factory to use is determined once the endpoints
 	 * have been registered but not created yet.
+	 *
 	 * @see JmsListenerEndpointRegistrar#setMessageHandlerMethodFactory
 	 */
 	private class MessageHandlerMethodFactoryAdapter implements MessageHandlerMethodFactory {

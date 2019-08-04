@@ -27,8 +27,8 @@ import java.util.Base64;
  *
  * @author Juergen Hoeller
  * @author Gary Russell
- * @since 4.1
  * @see java.util.Base64
+ * @since 4.1
  */
 public abstract class Base64Utils {
 
@@ -37,6 +37,7 @@ public abstract class Base64Utils {
 
 	/**
 	 * Base64-encode the given byte array.
+	 *
 	 * @param src the original byte array
 	 * @return the encoded byte array
 	 */
@@ -49,6 +50,7 @@ public abstract class Base64Utils {
 
 	/**
 	 * Base64-decode the given byte array.
+	 *
 	 * @param src the encoded byte array
 	 * @return the original byte array
 	 */
@@ -62,6 +64,7 @@ public abstract class Base64Utils {
 	/**
 	 * Base64-encode the given byte array using the RFC 4648
 	 * "URL and Filename Safe Alphabet".
+	 *
 	 * @param src the original byte array
 	 * @return the encoded byte array
 	 * @since 4.2.4
@@ -76,6 +79,7 @@ public abstract class Base64Utils {
 	/**
 	 * Base64-decode the given byte array using the RFC 4648
 	 * "URL and Filename Safe Alphabet".
+	 *
 	 * @param src the encoded byte array
 	 * @return the original byte array
 	 * @since 4.2.4
@@ -89,6 +93,7 @@ public abstract class Base64Utils {
 
 	/**
 	 * Base64-encode the given byte array to a String.
+	 *
 	 * @param src the original byte array
 	 * @return the encoded byte array as a UTF-8 String
 	 */
@@ -101,6 +106,7 @@ public abstract class Base64Utils {
 
 	/**
 	 * Base64-decode the given byte array from an UTF-8 String.
+	 *
 	 * @param src the encoded UTF-8 String
 	 * @return the original byte array
 	 */
@@ -114,6 +120,7 @@ public abstract class Base64Utils {
 	/**
 	 * Base64-encode the given byte array to a String using the RFC 4648
 	 * "URL and Filename Safe Alphabet".
+	 *
 	 * @param src the original byte array
 	 * @return the encoded byte array as a UTF-8 String
 	 */
@@ -124,6 +131,7 @@ public abstract class Base64Utils {
 	/**
 	 * Base64-decode the given byte array from an UTF-8 String using the RFC 4648
 	 * "URL and Filename Safe Alphabet".
+	 *
 	 * @param src the encoded UTF-8 String
 	 * @return the original byte array
 	 */

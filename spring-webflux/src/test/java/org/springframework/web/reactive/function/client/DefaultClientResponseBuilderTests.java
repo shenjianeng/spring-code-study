@@ -106,8 +106,7 @@ public class DefaultClientResponseBuilderTests {
 		try {
 			result.statusCode();
 			fail("Expected IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// expected
 		}
 	}

@@ -95,8 +95,7 @@ public class MockMvcClientHttpRequestFactory
 			MockClientHttpResponse clientResponse = new MockClientHttpResponse(body, status);
 			clientResponse.getHeaders().putAll(getResponseHeaders(servletResponse));
 			return clientResponse;
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			byte[] body = ex.toString().getBytes(StandardCharsets.UTF_8);
 			return new MockClientHttpResponse(body, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

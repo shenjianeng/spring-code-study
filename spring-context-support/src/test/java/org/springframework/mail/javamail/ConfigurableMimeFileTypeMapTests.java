@@ -53,7 +53,7 @@ public class ConfigurableMimeFileTypeMapTests {
 	@Test
 	public void withAdditionalMappings() throws Exception {
 		ConfigurableMimeFileTypeMap ftm = new ConfigurableMimeFileTypeMap();
-		ftm.setMappings(new String[] {"foo/bar HTM foo", "foo/cpp c++"});
+		ftm.setMappings(new String[]{"foo/bar HTM foo", "foo/cpp c++"});
 		ftm.afterPropertiesSet();
 
 		assertEquals("Invalid content type for HTM - override didn't work", "foo/bar", ftm.getContentType("foobar.HTM"));

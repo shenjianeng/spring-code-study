@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * and delegating to the corresponding accessor that takes a column index.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see java.sql.ResultSet#findColumn
+ * @since 1.2
  */
 public abstract class AbstractLobHandler implements LobHandler {
 

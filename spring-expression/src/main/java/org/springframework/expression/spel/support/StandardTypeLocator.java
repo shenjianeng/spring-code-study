@@ -54,6 +54,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * Create a StandardTypeLocator for the given ClassLoader.
+	 *
 	 * @param classLoader the ClassLoader to delegate to
 	 */
 	public StandardTypeLocator(@Nullable ClassLoader classLoader) {
@@ -66,6 +67,7 @@ public class StandardTypeLocator implements TypeLocator {
 	/**
 	 * Register a new import prefix that will be used when searching for unqualified types.
 	 * Expected format is something like "java.lang".
+	 *
 	 * @param prefix the prefix to register
 	 */
 	public void registerImport(String prefix) {
@@ -74,6 +76,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * Remove that specified prefix from this locator's list of imports.
+	 *
 	 * @param prefix the prefix to remove
 	 */
 	public void removeImport(String prefix) {
@@ -82,6 +85,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 	/**
 	 * Return a list of all the import prefixes registered with this StandardTypeLocator.
+	 *
 	 * @return a list of registered import prefixes
 	 */
 	public List<String> getImportPrefixes() {
@@ -92,6 +96,7 @@ public class StandardTypeLocator implements TypeLocator {
 	/**
 	 * Find a (possibly unqualified) type reference - first using the type name as-is,
 	 * then trying any registered prefixes if the type name cannot be found.
+	 *
 	 * @param typeName the type to locate
 	 * @return the class object for the type
 	 * @throws EvaluationException if the type cannot be found
@@ -101,16 +106,14 @@ public class StandardTypeLocator implements TypeLocator {
 		String nameToLookup = typeName;
 		try {
 			return ClassUtils.forName(nameToLookup, this.classLoader);
-		}
-		catch (ClassNotFoundException ey) {
+		} catch (ClassNotFoundException ey) {
 			// try any registered prefixes before giving up
 		}
 		for (String prefix : this.knownPackagePrefixes) {
 			try {
 				nameToLookup = prefix + '.' + typeName;
 				return ClassUtils.forName(nameToLookup, this.classLoader);
-			}
-			catch (ClassNotFoundException ex) {
+			} catch (ClassNotFoundException ex) {
 				// might be a different prefix
 			}
 		}

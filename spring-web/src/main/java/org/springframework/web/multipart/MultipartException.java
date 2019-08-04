@@ -24,15 +24,16 @@ import org.springframework.lang.Nullable;
  *
  * @author Trevor D. Cook
  * @author Juergen Hoeller
- * @since 29.09.2003
  * @see MultipartResolver#resolveMultipart
  * @see org.springframework.web.multipart.support.MultipartFilter
+ * @since 29.09.2003
  */
 @SuppressWarnings("serial")
 public class MultipartException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for MultipartException.
+	 *
 	 * @param msg the detail message
 	 */
 	public MultipartException(String msg) {
@@ -41,7 +42,8 @@ public class MultipartException extends NestedRuntimeException {
 
 	/**
 	 * Constructor for MultipartException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the multipart parsing API in use
 	 */
 	public MultipartException(String msg, @Nullable Throwable cause) {

@@ -58,6 +58,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	/**
 	 * Creates a new instance with the given URL patterns.
 	 * Each pattern that is not empty and does not start with "/" is prepended with "/".
+	 *
 	 * @param patterns 0 or more URL patterns; if 0 the condition will match to every request.
 	 */
 	public PatternsRequestCondition(String... patterns) {
@@ -67,14 +68,15 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	/**
 	 * Additional constructor with flags for using suffix pattern (.*) and
 	 * trailing slash matches.
-	 * @param patterns the URL patterns to use; if 0, the condition will match to every request.
-	 * @param urlPathHelper for determining the lookup path of a request
-	 * @param pathMatcher for path matching with patterns
+	 *
+	 * @param patterns              the URL patterns to use; if 0, the condition will match to every request.
+	 * @param urlPathHelper         for determining the lookup path of a request
+	 * @param pathMatcher           for path matching with patterns
 	 * @param useSuffixPatternMatch whether to enable matching by suffix (".*")
 	 * @param useTrailingSlashMatch whether to match irrespective of a trailing slash
 	 */
 	public PatternsRequestCondition(String[] patterns, @Nullable UrlPathHelper urlPathHelper,
-			@Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch, boolean useTrailingSlashMatch) {
+									@Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch, boolean useTrailingSlashMatch) {
 
 		this(Arrays.asList(patterns), urlPathHelper, pathMatcher, useSuffixPatternMatch, useTrailingSlashMatch, null);
 	}
@@ -82,16 +84,17 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	/**
 	 * Creates a new instance with the given URL patterns.
 	 * Each pattern that is not empty and does not start with "/" is pre-pended with "/".
-	 * @param patterns the URL patterns to use; if 0, the condition will match to every request.
-	 * @param urlPathHelper a {@link UrlPathHelper} for determining the lookup path for a request
-	 * @param pathMatcher a {@link PathMatcher} for pattern path matching
+	 *
+	 * @param patterns              the URL patterns to use; if 0, the condition will match to every request.
+	 * @param urlPathHelper         a {@link UrlPathHelper} for determining the lookup path for a request
+	 * @param pathMatcher           a {@link PathMatcher} for pattern path matching
 	 * @param useSuffixPatternMatch whether to enable matching by suffix (".*")
 	 * @param useTrailingSlashMatch whether to match irrespective of a trailing slash
-	 * @param fileExtensions a list of file extensions to consider for path matching
+	 * @param fileExtensions        a list of file extensions to consider for path matching
 	 */
 	public PatternsRequestCondition(String[] patterns, @Nullable UrlPathHelper urlPathHelper,
-			@Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch,
-			boolean useTrailingSlashMatch, @Nullable List<String> fileExtensions) {
+									@Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch,
+									boolean useTrailingSlashMatch, @Nullable List<String> fileExtensions) {
 
 		this(Arrays.asList(patterns), urlPathHelper, pathMatcher, useSuffixPatternMatch,
 				useTrailingSlashMatch, fileExtensions);
@@ -101,8 +104,8 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * Private constructor accepting a collection of patterns.
 	 */
 	private PatternsRequestCondition(Collection<String> patterns, @Nullable UrlPathHelper urlPathHelper,
-			@Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch,
-			boolean useTrailingSlashMatch, @Nullable List<String> fileExtensions) {
+									 @Nullable PathMatcher pathMatcher, boolean useSuffixPatternMatch,
+									 boolean useTrailingSlashMatch, @Nullable List<String> fileExtensions) {
 
 		this.patterns = Collections.unmodifiableSet(prependLeadingSlash(patterns));
 		this.pathHelper = (urlPathHelper != null ? urlPathHelper : new UrlPathHelper());
@@ -165,14 +168,11 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 					result.add(this.pathMatcher.combine(pattern1, pattern2));
 				}
 			}
-		}
-		else if (!this.patterns.isEmpty()) {
+		} else if (!this.patterns.isEmpty()) {
 			result.addAll(this.patterns);
-		}
-		else if (!other.patterns.isEmpty()) {
+		} else if (!other.patterns.isEmpty()) {
 			result.addAll(other.patterns);
-		}
-		else {
+		} else {
 			result.add("");
 		}
 		return new PatternsRequestCondition(result, this.pathHelper, this.pathMatcher,
@@ -190,6 +190,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * <li>Pattern match
 	 * <li>Pattern match with "/" appended if the pattern doesn't already end in "/"
 	 * </ul>
+	 *
 	 * @param request the current request
 	 * @return the same instance if the condition contains no patterns;
 	 * or a new condition with sorted matching patterns;
@@ -214,6 +215,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	 * {@link #getMatchingCondition(javax.servlet.http.HttpServletRequest)}.
 	 * This method is provided as an alternative to be used if no request is available
 	 * (e.g. introspection, tooling, etc).
+	 *
 	 * @param lookupPath the lookup path to match to existing patterns
 	 * @return a collection of matching patterns sorted with the closest match at the top
 	 */
@@ -243,8 +245,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 						return pattern + extension;
 					}
 				}
-			}
-			else {
+			} else {
 				boolean hasSuffix = pattern.indexOf('.') != -1;
 				if (!hasSuffix && this.pathMatcher.match(pattern + ".*", lookupPath)) {
 					return pattern + ".*";
@@ -287,11 +288,9 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 		}
 		if (iterator.hasNext()) {
 			return -1;
-		}
-		else if (iteratorOther.hasNext()) {
+		} else if (iteratorOther.hasNext()) {
 			return 1;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}

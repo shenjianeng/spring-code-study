@@ -45,6 +45,7 @@ public interface PersistenceExceptionTranslator {
 	 * DataIntegrityViolationException, for example on constraint violation.
 	 * Implementations may use Spring JDBC's sophisticated exception translation
 	 * to provide further information in the event of SQLException as a root cause.
+	 *
 	 * @param ex a RuntimeException to translate
 	 * @return the corresponding DataAccessException (or {@code null} if the
 	 * exception could not be translated, as in this case it may result from

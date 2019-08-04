@@ -125,8 +125,7 @@ public class DefaultRequestToViewNameTranslatorTests {
 	public void testTrySetUrlPathHelperToNull() {
 		try {
 			this.translator.setUrlPathHelper(null);
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 

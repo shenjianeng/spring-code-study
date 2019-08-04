@@ -32,8 +32,8 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Arjen Poutsma
  * @author Phillip Webb
- * @since 3.2
  * @see <a href="https://tools.ietf.org/html/rfc3986#section-1.2.3">Hierarchical vs Opaque URIs</a>
+ * @since 3.2
  */
 @SuppressWarnings("serial")
 final class OpaqueUriComponents extends UriComponents {
@@ -136,8 +136,7 @@ final class OpaqueUriComponents extends UriComponents {
 	public URI toUri() {
 		try {
 			return new URI(getScheme(), this.ssp, getFragment());
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException("Could not create URI object: " + ex.getMessage(), ex);
 		}
 	}

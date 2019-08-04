@@ -64,7 +64,8 @@ public class PublisherHandlerFunctionIntegrationTests extends AbstractRouterFunc
 
 	@Test
 	public void flux() {
-		ParameterizedTypeReference<List<Person>> reference = new ParameterizedTypeReference<List<Person>>() {};
+		ParameterizedTypeReference<List<Person>> reference = new ParameterizedTypeReference<List<Person>>() {
+		};
 		ResponseEntity<List<Person>> result =
 				restTemplate.exchange("http://localhost:" + port + "/flux", HttpMethod.GET, null, reference);
 

@@ -28,8 +28,8 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Costin Leau
  * @author Stephane Nicoll
- * @since 4.2
  * @see CachedExpressionEvaluator
+ * @since 4.2
  */
 public final class AnnotatedElementKey implements Comparable<AnnotatedElementKey> {
 

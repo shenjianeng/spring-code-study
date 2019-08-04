@@ -127,8 +127,10 @@ public class DefaultRenderingBuilderTests {
 	}
 
 
-	private static class Foo {}
+	private static class Foo {
+	}
 
-	private static class Bar {}
+	private static class Bar {
+	}
 
 }

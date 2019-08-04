@@ -48,10 +48,11 @@ public final class MethodIntrospector {
 	 * Select methods on the given target type based on the lookup of associated metadata.
 	 * <p>Callers define methods of interest through the {@link MetadataLookup} parameter,
 	 * allowing to collect the associated metadata into the result map.
-	 * @param targetType the target type to search methods on
+	 *
+	 * @param targetType     the target type to search methods on
 	 * @param metadataLookup a {@link MetadataLookup} callback to inspect methods of interest,
-	 * returning non-null metadata to be associated with a given method if there is a match,
-	 * or {@code null} for no match
+	 *                       returning non-null metadata to be associated with a given method if there is a match,
+	 *                       or {@code null} for no match
 	 * @return the selected methods associated with their metadata (in the order of retrieval),
 	 * or an empty map in case of no match
 	 */
@@ -87,9 +88,10 @@ public final class MethodIntrospector {
 	/**
 	 * Select methods on the given target type based on a filter.
 	 * <p>Callers define methods of interest through the {@code MethodFilter} parameter.
-	 * @param targetType the target type to search methods on
+	 *
+	 * @param targetType   the target type to search methods on
 	 * @param methodFilter a {@code MethodFilter} to help
-	 * recognize handler methods of interest
+	 *                     recognize handler methods of interest
 	 * @return the selected methods, or an empty set in case of no match
 	 */
 	public static Set<Method> selectMethods(Class<?> targetType, final ReflectionUtils.MethodFilter methodFilter) {
@@ -103,12 +105,13 @@ public final class MethodIntrospector {
 	 * on one of the target type's interfaces or on the target type itself.
 	 * <p>Matches on user-declared interfaces will be preferred since they are likely
 	 * to contain relevant metadata that corresponds to the method on the target class.
-	 * @param method the method to check
+	 *
+	 * @param method     the method to check
 	 * @param targetType the target type to search methods on
-	 * (typically an interface-based JDK proxy)
+	 *                   (typically an interface-based JDK proxy)
 	 * @return a corresponding invocable method on the target type
 	 * @throws IllegalStateException if the given method is not invocable on the given
-	 * target type (typically due to a proxy mismatch)
+	 *                               target type (typically due to a proxy mismatch)
 	 */
 	public static Method selectInvocableMethod(Method method, Class<?> targetType) {
 		if (method.getDeclaringClass().isAssignableFrom(targetType)) {
@@ -120,20 +123,18 @@ public final class MethodIntrospector {
 			for (Class<?> ifc : targetType.getInterfaces()) {
 				try {
 					return ifc.getMethod(methodName, parameterTypes);
-				}
-				catch (NoSuchMethodException ex) {
+				} catch (NoSuchMethodException ex) {
 					// Alright, not on this interface then...
 				}
 			}
 			// A final desperate attempt on the proxy class itself...
 			return targetType.getMethod(methodName, parameterTypes);
-		}
-		catch (NoSuchMethodException ex) {
+		} catch (NoSuchMethodException ex) {
 			throw new IllegalStateException(String.format(
 					"Need to invoke method '%s' declared on target class '%s', " +
-					"but not found in any interface(s) of the exposed proxy type. " +
-					"Either pull the method up to an interface or switch to CGLIB " +
-					"proxies by enforcing proxy-target-class mode in your configuration.",
+							"but not found in any interface(s) of the exposed proxy type. " +
+							"Either pull the method up to an interface or switch to CGLIB " +
+							"proxies by enforcing proxy-target-class mode in your configuration.",
 					method.getName(), method.getDeclaringClass().getSimpleName()));
 		}
 	}
@@ -141,6 +142,7 @@ public final class MethodIntrospector {
 
 	/**
 	 * A callback interface for metadata lookup on a given method.
+	 *
 	 * @param <T> the type of metadata returned
 	 */
 	@FunctionalInterface
@@ -148,6 +150,7 @@ public final class MethodIntrospector {
 
 		/**
 		 * Perform a lookup on the given method and return associated metadata, if any.
+		 *
 		 * @param method the method to inspect
 		 * @return non-null metadata to be associated with a method if there is a match,
 		 * or {@code null} for no match

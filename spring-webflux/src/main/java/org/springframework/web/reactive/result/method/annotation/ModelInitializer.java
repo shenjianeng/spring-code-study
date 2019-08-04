@@ -67,14 +67,15 @@ class ModelInitializer {
 	 * Initialize the {@link org.springframework.ui.Model Model} based on a
 	 * (type-level) {@code @SessionAttributes} annotation and
 	 * {@code @ModelAttribute} methods.
-	 * @param handlerMethod the target controller method
+	 *
+	 * @param handlerMethod  the target controller method
 	 * @param bindingContext the context containing the model
-	 * @param exchange the current exchange
+	 * @param exchange       the current exchange
 	 * @return a {@code Mono} for when the model is populated.
 	 */
 	@SuppressWarnings("Convert2MethodRef")
 	public Mono<Void> initModel(HandlerMethod handlerMethod, InitBinderBindingContext bindingContext,
-			ServerWebExchange exchange) {
+								ServerWebExchange exchange) {
 
 		List<InvocableHandlerMethod> modelMethods =
 				this.methodResolver.getModelAttributeMethods(handlerMethod);
@@ -93,17 +94,17 @@ class ModelInitializer {
 					bindingContext.setSessionContext(sessionAttributesHandler, session);
 					return invokeModelAttributeMethods(bindingContext, modelMethods, exchange)
 							.doOnSuccess(aVoid ->
-								findModelAttributes(handlerMethod, sessionAttributesHandler).forEach(name -> {
-									if (!bindingContext.getModel().containsAttribute(name)) {
-										Object value = session.getRequiredAttribute(name);
-										bindingContext.getModel().addAttribute(name, value);
-									}
-								}));
+									findModelAttributes(handlerMethod, sessionAttributesHandler).forEach(name -> {
+										if (!bindingContext.getModel().containsAttribute(name)) {
+											Object value = session.getRequiredAttribute(name);
+											bindingContext.getModel().addAttribute(name, value);
+										}
+									}));
 				});
 	}
 
 	private Mono<Void> invokeModelAttributeMethods(BindingContext bindingContext,
-			List<InvocableHandlerMethod> modelMethods, ServerWebExchange exchange) {
+												   List<InvocableHandlerMethod> modelMethods, ServerWebExchange exchange) {
 
 		List<Mono<HandlerResult>> resultList = new ArrayList<>();
 		modelMethods.forEach(invocable -> resultList.add(invocable.invoke(exchange, bindingContext)));
@@ -130,7 +131,7 @@ class ModelInitializer {
 		return Mono.empty();
 	}
 
-	private boolean isAsyncVoidType(ResolvableType type, @Nullable  ReactiveAdapter adapter) {
+	private boolean isAsyncVoidType(ResolvableType type, @Nullable ReactiveAdapter adapter) {
 		return (adapter != null && (adapter.isNoValue() || type.resolveGeneric() == Void.class));
 	}
 
@@ -142,9 +143,11 @@ class ModelInitializer {
 				.orElseGet(() -> Conventions.getVariableNameForParameter(param));
 	}
 
-	/** Find {@code @ModelAttribute} arguments also listed as {@code @SessionAttributes}. */
+	/**
+	 * Find {@code @ModelAttribute} arguments also listed as {@code @SessionAttributes}.
+	 */
 	private List<String> findModelAttributes(HandlerMethod handlerMethod,
-			SessionAttributesHandler sessionAttributesHandler) {
+											 SessionAttributesHandler sessionAttributesHandler) {
 
 		List<String> result = new ArrayList<>();
 		for (MethodParameter parameter : handlerMethod.getMethodParameters()) {
@@ -163,6 +166,7 @@ class ModelInitializer {
 	 * Derive the model attribute name for the given method parameter based on
 	 * a {@code @ModelAttribute} parameter annotation (if present) or falling
 	 * back on parameter type based conventions.
+	 *
 	 * @param parameter a descriptor for the method parameter
 	 * @return the derived name
 	 * @see Conventions#getVariableNameForParameter(MethodParameter)

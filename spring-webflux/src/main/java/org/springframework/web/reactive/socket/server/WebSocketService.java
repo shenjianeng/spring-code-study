@@ -29,14 +29,15 @@ import org.springframework.web.server.ServerWebExchange;
  * requests defined in the SockJS protocol.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see org.springframework.web.reactive.socket.server.support.HandshakeWebSocketService
+ * @since 5.0
  */
 public interface WebSocketService {
 
 	/**
 	 * Handle the request with the given {@link WebSocketHandler}.
-	 * @param exchange the current exchange
+	 *
+	 * @param exchange         the current exchange
 	 * @param webSocketHandler handler for WebSocket session
 	 * @return a {@code Mono<Void>} that completes when application handling of
 	 * the WebSocket session completes.

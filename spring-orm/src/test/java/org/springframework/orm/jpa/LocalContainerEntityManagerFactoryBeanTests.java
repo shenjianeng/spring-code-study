@@ -189,8 +189,7 @@ public class LocalContainerEntityManagerFactoryBeanTests extends AbstractEntityM
 		try {
 			jpatm.commit(txStatus);
 			fail("Should have thrown OptimisticLockingFailureException");
-		}
-		catch (OptimisticLockingFailureException ex) {
+		} catch (OptimisticLockingFailureException ex) {
 			// expected
 		}
 
@@ -252,8 +251,7 @@ public class LocalContainerEntityManagerFactoryBeanTests extends AbstractEntityM
 		try {
 			createEntityManagerFactoryBean("org/springframework/orm/jpa/domain/persistence.xml", null, "call me Bob");
 			fail("Should not create factory with this name");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Ok
 		}
 	}
@@ -299,8 +297,7 @@ public class LocalContainerEntityManagerFactoryBeanTests extends AbstractEntityM
 		try {
 			containerEmfb.afterPropertiesSet();
 			fail();
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// Ok
 		}
 	}

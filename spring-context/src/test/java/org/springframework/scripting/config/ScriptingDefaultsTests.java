@@ -36,10 +36,10 @@ import static org.junit.Assert.*;
 public class ScriptingDefaultsTests {
 
 	private static final String CONFIG =
-		"org/springframework/scripting/config/scriptingDefaultsTests.xml";
+			"org/springframework/scripting/config/scriptingDefaultsTests.xml";
 
 	private static final String PROXY_CONFIG =
-		"org/springframework/scripting/config/scriptingDefaultsProxyTargetClassTests.xml";
+			"org/springframework/scripting/config/scriptingDefaultsProxyTargetClassTests.xml";
 
 
 	@Test

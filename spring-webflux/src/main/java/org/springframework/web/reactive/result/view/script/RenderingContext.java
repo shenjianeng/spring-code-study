@@ -44,13 +44,13 @@ public class RenderingContext {
 	 * Create a new {@code RenderingContext}.
 	 *
 	 * @param applicationContext the application context
-	 * @param locale the locale of the rendered template
-	 * @param templateLoader a function that takes a template path as input and returns
-	 * the template content as a String
-	 * @param url the URL of the rendered template
+	 * @param locale             the locale of the rendered template
+	 * @param templateLoader     a function that takes a template path as input and returns
+	 *                           the template content as a String
+	 * @param url                the URL of the rendered template
 	 */
 	public RenderingContext(ApplicationContext applicationContext, Locale locale,
-			Function<String, String> templateLoader, String url) {
+							Function<String, String> templateLoader, String url) {
 
 		this.applicationContext = applicationContext;
 		this.locale = locale;

@@ -204,7 +204,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	private Mono<HandlerResult> handleException(Throwable exception, HandlerMethod handlerMethod,
-			BindingContext bindingContext, ServerWebExchange exchange) {
+												BindingContext bindingContext, ServerWebExchange exchange) {
 
 		Assert.state(this.methodResolver != null, "Not initialized");
 
@@ -224,12 +224,10 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 				Throwable cause = exception.getCause();
 				if (cause != null) {
 					return invocable.invoke(exchange, bindingContext, exception, cause, handlerMethod);
-				}
-				else {
+				} else {
 					return invocable.invoke(exchange, bindingContext, exception, handlerMethod);
 				}
-			}
-			catch (Throwable invocationEx) {
+			} catch (Throwable invocationEx) {
 				if (logger.isWarnEnabled()) {
 					logger.warn(exchange.getLogPrefix() + "Failure in @ExceptionHandler " + invocable, invocationEx);
 				}

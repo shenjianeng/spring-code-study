@@ -73,8 +73,7 @@ public class GroovyMarkupViewTests {
 		try {
 			view.setApplicationContext(this.webAppContext);
 			fail();
-		}
-		catch (ApplicationContextException ex) {
+		} catch (ApplicationContextException ex) {
 			assertTrue(ex.getMessage().contains("GroovyMarkupConfig"));
 		}
 	}

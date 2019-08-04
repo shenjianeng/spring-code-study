@@ -279,8 +279,7 @@ public class UrlPathHelperTests {
 		try {
 			request.setAttribute(WEBSPHERE_URI_ATTRIBUTE, "/test/foo/");
 			tomcatDefaultServletFolder();
-		}
-		finally {
+		} finally {
 			UrlPathHelper.websphereComplianceFlag = false;
 		}
 	}
@@ -301,7 +300,8 @@ public class UrlPathHelperTests {
 	}
 
 	// test the root mapping for /foo/* w/o a trailing slash - <host>/<context>/foo
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void tomcatCasualServletRootWithMissingSlash() throws Exception {
 		request.setContextPath("/test");
 		request.setPathInfo(null);

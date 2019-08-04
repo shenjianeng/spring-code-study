@@ -40,7 +40,8 @@ public interface Transport {
 
 	/**
 	 * Connect the transport.
-	 * @param request the transport request.
+	 *
+	 * @param request          the transport request.
 	 * @param webSocketHandler the application handler to delegate lifecycle events to.
 	 * @return a future to indicate success or failure to connect.
 	 */

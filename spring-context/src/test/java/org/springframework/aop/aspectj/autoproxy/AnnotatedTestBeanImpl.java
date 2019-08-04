@@ -37,7 +37,7 @@ class AnnotatedTestBeanImpl implements AnnotatedTestBean {
 	@Override
 	@TestAnnotation("array value")
 	public String[] doArray() {
-		return new String[] {"doThis", "doThat"};
+		return new String[]{"doThis", "doThat"};
 	}
 
 	// not annotated

@@ -102,8 +102,7 @@ public class SimpleUrlHandlerMappingIntegrationTests extends AbstractHttpHandler
 		RequestEntity<Void> request = RequestEntity.get(url).build();
 		try {
 			new RestTemplate().exchange(request, byte[].class);
-		}
-		catch (HttpClientErrorException ex) {
+		} catch (HttpClientErrorException ex) {
 			assertEquals(HttpStatus.NOT_FOUND, ex.getStatusCode());
 		}
 	}

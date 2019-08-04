@@ -40,6 +40,7 @@ public class CompositeCacheOperationSource implements CacheOperationSource, Seri
 
 	/**
 	 * Create a new CompositeCacheOperationSource for the given sources.
+	 *
 	 * @param cacheOperationSources the CacheOperationSource instances to combine
 	 */
 	public CompositeCacheOperationSource(CacheOperationSource... cacheOperationSources) {

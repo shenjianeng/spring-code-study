@@ -28,8 +28,8 @@ import org.springframework.format.Formatter;
  * following Joda-Time's parsing rules for a Period.
  *
  * @author Juergen Hoeller
- * @since 4.2.4
  * @see Period#parse
+ * @since 4.2.4
  */
 class PeriodFormatter implements Formatter<Period> {
 

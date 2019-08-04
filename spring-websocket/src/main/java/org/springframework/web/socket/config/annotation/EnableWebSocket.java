@@ -47,10 +47,10 @@ import org.springframework.context.annotation.Import;
  * 	   &#064;Override
  * 	   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
  *         registry.addHandler(echoWebSocketHandler(), "/echo").withSockJS();
- * 	   }
+ *       }
  *
- *	   &#064;Override
- *	   public WebSocketHandler echoWebSocketHandler() {
+ * 	   &#064;Override
+ * 	   public WebSocketHandler echoWebSocketHandler() {
  *         return new EchoWebSocketHandler();
  *     }
  * }

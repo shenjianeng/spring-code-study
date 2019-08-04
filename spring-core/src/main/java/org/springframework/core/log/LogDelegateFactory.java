@@ -32,8 +32,8 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 5.1
  * @see org.apache.commons.logging.LogFactory
+ * @since 5.1
  */
 public final class LogDelegateFactory {
 
@@ -49,7 +49,8 @@ public final class LogDelegateFactory {
 	 * don't happen to share a suitable parent package (e.g. logging for the web
 	 * and lower-level http and codec packages). For such cases the primary
 	 * (class-based) logger can be wrapped with a shared fallback logger.
-	 * @param primaryLogger primary logger to try first
+	 *
+	 * @param primaryLogger   primary logger to try first
 	 * @param secondaryLogger secondary logger
 	 * @param tertiaryLoggers optional vararg of further fallback loggers
 	 * @return the resulting composite logger for the related categories
@@ -67,6 +68,7 @@ public final class LogDelegateFactory {
 	 * because its output is either too verbose or otherwise deemed as optional
 	 * or unnecessary to see at any log level by default under the normal package
 	 * based log hierarchy.
+	 *
 	 * @param clazz the class for which to create a logger
 	 * @return a logger for the hidden category ("_" + fully-qualified class name)
 	 */

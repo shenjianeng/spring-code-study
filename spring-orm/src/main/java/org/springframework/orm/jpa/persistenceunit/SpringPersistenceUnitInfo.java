@@ -33,8 +33,8 @@ import org.springframework.util.Assert;
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Costin Leau
- * @since 2.0
  * @see PersistenceUnitManager
+ * @since 2.0
  */
 class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 

@@ -156,12 +156,12 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 3.1
  * @see PropertySources
  * @see Configuration
  * @see org.springframework.core.env.PropertySource
  * @see org.springframework.core.env.ConfigurableEnvironment#getPropertySources()
  * @see org.springframework.core.env.MutablePropertySources
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -172,6 +172,7 @@ public @interface PropertySource {
 	/**
 	 * Indicate the name of this property source. If omitted, a name will
 	 * be generated based on the description of the underlying resource.
+	 *
 	 * @see org.springframework.core.env.PropertySource#getName()
 	 * @see org.springframework.core.io.Resource#getDescription()
 	 */
@@ -197,12 +198,14 @@ public @interface PropertySource {
 	 * ignored.
 	 * <p>{@code true} is appropriate if the properties file is completely optional.
 	 * Default is {@code false}.
+	 *
 	 * @since 4.0
 	 */
 	boolean ignoreResourceNotFound() default false;
 
 	/**
 	 * A specific character encoding for the given resources, e.g. "UTF-8".
+	 *
 	 * @since 4.3
 	 */
 	String encoding() default "";
@@ -210,9 +213,10 @@ public @interface PropertySource {
 	/**
 	 * Specify a custom {@link PropertySourceFactory}, if any.
 	 * <p>By default, a default factory for standard resource files will be used.
-	 * @since 4.3
+	 *
 	 * @see org.springframework.core.io.support.DefaultPropertySourceFactory
 	 * @see org.springframework.core.io.support.ResourcePropertySource
+	 * @since 4.3
 	 */
 	Class<? extends PropertySourceFactory> factory() default PropertySourceFactory.class;
 

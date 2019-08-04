@@ -28,11 +28,11 @@ import org.springframework.lang.Nullable;
  *
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 3.2
  * @see #setPattern
  * @see #setIso
  * @see #setStyle
  * @see DateTimeFormatterFactory
+ * @since 3.2
  */
 public class DateTimeFormatterFactoryBean extends DateTimeFormatterFactory
 		implements FactoryBean<DateTimeFormatter>, InitializingBean {

@@ -43,8 +43,8 @@ import org.springframework.util.Assert;
  * {@link org.springframework.web.context.WebApplicationContext#SCOPE_APPLICATION "application"}.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.web.context.ContextCleanupListener
+ * @since 3.0
  */
 public class ServletContextScope implements Scope, DisposableBean {
 
@@ -55,6 +55,7 @@ public class ServletContextScope implements Scope, DisposableBean {
 
 	/**
 	 * Create a new Scope wrapper for the given ServletContext.
+	 *
 	 * @param servletContext the ServletContext to wrap
 	 */
 	public ServletContextScope(ServletContext servletContext) {
@@ -83,8 +84,7 @@ public class ServletContextScope implements Scope, DisposableBean {
 			}
 			this.servletContext.removeAttribute(name);
 			return scopedObject;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -112,6 +112,7 @@ public class ServletContextScope implements Scope, DisposableBean {
 	/**
 	 * Invoke all registered destruction callbacks.
 	 * To be called on ServletContext shutdown.
+	 *
 	 * @see org.springframework.web.context.ContextCleanupListener
 	 */
 	@Override

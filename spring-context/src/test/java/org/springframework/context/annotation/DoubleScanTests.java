@@ -24,7 +24,7 @@ public class DoubleScanTests extends SimpleScanTests {
 
 	@Override
 	protected String[] getConfigLocations() {
-		return new String[] {"doubleScanTests.xml"};
+		return new String[]{"doubleScanTests.xml"};
 	}
 
 }

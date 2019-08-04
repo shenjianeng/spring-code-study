@@ -73,6 +73,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Create a new GenericWebApplicationContext.
+	 *
 	 * @see #setServletContext
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -83,6 +84,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Create a new GenericWebApplicationContext for the given ServletContext.
+	 *
 	 * @param servletContext the ServletContext to run in
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -93,6 +95,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Create a new GenericWebApplicationContext with the given DefaultListableBeanFactory.
+	 *
 	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
 	 * @see #setServletContext
 	 * @see #registerBeanDefinition
@@ -104,7 +107,8 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Create a new GenericWebApplicationContext with the given DefaultListableBeanFactory.
-	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
+	 *
+	 * @param beanFactory    the DefaultListableBeanFactory instance to use for this context
 	 * @param servletContext the ServletContext to run in
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -144,6 +148,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * Register ServletContextAwareProcessor.
+	 *
 	 * @see ServletContextAwareProcessor
 	 */
 	@Override
@@ -158,6 +163,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * This implementation supports file paths beneath the root of the ServletContext.
+	 *
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -168,6 +174,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * This implementation supports pattern matching in unexpanded WARs too.
+	 *
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override
@@ -236,7 +243,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 		if (StringUtils.hasText(configLocation)) {
 			throw new UnsupportedOperationException(
 					"GenericWebApplicationContext does not support setConfigLocation(). " +
-					"Do you still have an 'contextConfigLocations' init-param set?");
+							"Do you still have an 'contextConfigLocations' init-param set?");
 		}
 	}
 
@@ -245,7 +252,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 		if (!ObjectUtils.isEmpty(configLocations)) {
 			throw new UnsupportedOperationException(
 					"GenericWebApplicationContext does not support setConfigLocations(). " +
-					"Do you still have an 'contextConfigLocations' init-param set?");
+							"Do you still have an 'contextConfigLocations' init-param set?");
 		}
 	}
 

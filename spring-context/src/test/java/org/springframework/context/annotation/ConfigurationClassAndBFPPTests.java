@@ -68,7 +68,8 @@ public class ConfigurationClassAndBFPPTests {
 
 	@Configuration
 	static class AutowiredConfigWithBFPPAsInstanceMethod {
-		@Autowired TestBean autowiredTestBean;
+		@Autowired
+		TestBean autowiredTestBean;
 
 		@Bean
 		public BeanFactoryPostProcessor bfpp() {
@@ -84,7 +85,8 @@ public class ConfigurationClassAndBFPPTests {
 
 	@Configuration
 	static class AutowiredConfigWithBFPPAsStaticMethod {
-		@Autowired TestBean autowiredTestBean;
+		@Autowired
+		TestBean autowiredTestBean;
 
 		@Bean
 		public static final BeanFactoryPostProcessor bfpp() {

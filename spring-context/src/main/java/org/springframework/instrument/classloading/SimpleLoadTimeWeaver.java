@@ -31,10 +31,10 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see #getInstrumentableClassLoader()
  * @see SimpleInstrumentableClassLoader
  * @see ReflectiveLoadTimeWeaver
+ * @since 2.0
  */
 public class SimpleLoadTimeWeaver implements LoadTimeWeaver {
 
@@ -44,6 +44,7 @@ public class SimpleLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new {@code SimpleLoadTimeWeaver} for the current context
 	 * {@code ClassLoader}.
+	 *
 	 * @see SimpleInstrumentableClassLoader
 	 */
 	public SimpleLoadTimeWeaver() {
@@ -53,8 +54,9 @@ public class SimpleLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new {@code SimpleLoadTimeWeaver} for the given
 	 * {@code ClassLoader}.
+	 *
 	 * @param classLoader the {@code ClassLoader} to build a simple
-	 * instrumentable {@code ClassLoader} on top of
+	 *                    instrumentable {@code ClassLoader} on top of
 	 */
 	public SimpleLoadTimeWeaver(SimpleInstrumentableClassLoader classLoader) {
 		Assert.notNull(classLoader, "ClassLoader must not be null");

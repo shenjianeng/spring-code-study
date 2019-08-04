@@ -64,6 +64,7 @@ public class NativeMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	/**
 	 * A protected constructor to create new headers.
+	 *
 	 * @param nativeHeaders native headers to create the message with (may be {@code null})
 	 */
 	protected NativeMessageHeaderAccessor(@Nullable Map<String, List<String>> nativeHeaders) {

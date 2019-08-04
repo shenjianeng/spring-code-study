@@ -38,10 +38,18 @@ public class PropertySourceTests {
 	@Test
 	@SuppressWarnings("serial")
 	public void equals() {
-		Map<String, Object> map1 = new HashMap<String, Object>() {{ put("a", "b"); }};
-		Map<String, Object> map2 = new HashMap<String, Object>() {{ put("c", "d"); }};
-		Properties props1 = new Properties() {{ setProperty("a", "b"); }};
-		Properties props2 = new Properties() {{ setProperty("c", "d"); }};
+		Map<String, Object> map1 = new HashMap<String, Object>() {{
+			put("a", "b");
+		}};
+		Map<String, Object> map2 = new HashMap<String, Object>() {{
+			put("c", "d");
+		}};
+		Properties props1 = new Properties() {{
+			setProperty("a", "b");
+		}};
+		Properties props2 = new Properties() {{
+			setProperty("c", "d");
+		}};
 
 		MapPropertySource mps = new MapPropertySource("mps", map1);
 		assertThat(mps, equalTo(mps));
@@ -62,8 +70,12 @@ public class PropertySourceTests {
 	@Test
 	@SuppressWarnings("serial")
 	public void collectionsOperations() {
-		Map<String, Object> map1 = new HashMap<String, Object>() {{ put("a", "b"); }};
-		Map<String, Object> map2 = new HashMap<String, Object>() {{ put("c", "d"); }};
+		Map<String, Object> map1 = new HashMap<String, Object>() {{
+			put("a", "b");
+		}};
+		Map<String, Object> map2 = new HashMap<String, Object>() {{
+			put("c", "d");
+		}};
 
 		PropertySource<?> ps1 = new MapPropertySource("ps1", map1);
 		ps1.getSource();

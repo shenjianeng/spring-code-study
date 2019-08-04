@@ -41,8 +41,8 @@ import org.springframework.web.server.ServerWebExchange;
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
- * @since 5.0
  * @see RequestParamMethodArgumentResolver
+ * @since 5.0
  */
 public class RequestParamMapMethodArgumentResolver extends HandlerMethodArgumentResolverSupport
 		implements SyncHandlerMethodArgumentResolver {

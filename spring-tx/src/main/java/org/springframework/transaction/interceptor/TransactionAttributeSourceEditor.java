@@ -43,8 +43,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 26.04.2003
  * @see TransactionAttributeEditor
+ * @since 26.04.2003
  */
 public class TransactionAttributeSourceEditor extends PropertyEditorSupport {
 

@@ -37,8 +37,7 @@ final class PropertiesToStringConverter implements Converter<Properties, String>
 			ByteArrayOutputStream os = new ByteArrayOutputStream(256);
 			source.store(os, null);
 			return os.toString("ISO-8859-1");
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// Should never happen.
 			throw new IllegalArgumentException("Failed to store [" + source + "] into String", ex);
 		}

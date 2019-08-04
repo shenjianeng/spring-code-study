@@ -57,6 +57,7 @@ public class PackagePrivateBeanMethodInheritanceTests {
 
 	public static class Foo {
 		final Bar bar;
+
 		public Foo(Bar bar) {
 			this.bar = bar;
 		}

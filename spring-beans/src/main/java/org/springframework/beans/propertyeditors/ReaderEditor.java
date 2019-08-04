@@ -36,11 +36,11 @@ import org.springframework.util.Assert;
  * <p>Note that such readers usually do not get closed by Spring itself!
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see java.io.Reader
  * @see org.springframework.core.io.ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
  * @see InputStreamEditor
+ * @since 4.2
  */
 public class ReaderEditor extends PropertyEditorSupport {
 
@@ -56,6 +56,7 @@ public class ReaderEditor extends PropertyEditorSupport {
 
 	/**
 	 * Create a new ReaderEditor, using the given ResourceEditor underneath.
+	 *
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public ReaderEditor(ResourceEditor resourceEditor) {
@@ -70,8 +71,7 @@ public class ReaderEditor extends PropertyEditorSupport {
 		Resource resource = (Resource) this.resourceEditor.getValue();
 		try {
 			setValue(resource != null ? new EncodedResource(resource).getReader() : null);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalArgumentException("Failed to retrieve Reader for " + resource, ex);
 		}
 	}

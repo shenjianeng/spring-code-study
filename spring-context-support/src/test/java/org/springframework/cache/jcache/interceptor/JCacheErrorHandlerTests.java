@@ -101,8 +101,7 @@ public class JCacheErrorHandlerTests {
 
 		try {
 			this.simpleService.getFail(0L);
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("Test exception", ex.getMessage());
 		}
 		verify(this.errorHandler).handleCachePutError(

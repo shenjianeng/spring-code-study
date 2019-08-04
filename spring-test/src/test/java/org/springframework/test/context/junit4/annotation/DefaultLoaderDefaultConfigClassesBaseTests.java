@@ -35,8 +35,8 @@ import static org.junit.Assert.*;
  * {@link DelegatingSmartContextLoader}.
  *
  * @author Sam Brannen
- * @since 3.1
  * @see DefaultConfigClassesBaseTests
+ * @since 3.1
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration

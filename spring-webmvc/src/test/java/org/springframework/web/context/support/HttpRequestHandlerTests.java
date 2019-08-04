@@ -76,8 +76,7 @@ public class HttpRequestHandlerTests {
 			request.setParameter("exception", "ServletException");
 			servlet.service(request, response);
 			fail("Should have thrown ServletException");
-		}
-		catch (ServletException ex) {
+		} catch (ServletException ex) {
 			assertEquals("test", ex.getMessage());
 		}
 
@@ -85,8 +84,7 @@ public class HttpRequestHandlerTests {
 			request.setParameter("exception", "IOException");
 			servlet.service(request, response);
 			fail("Should have thrown IOException");
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			assertEquals("test", ex.getMessage());
 		}
 	}

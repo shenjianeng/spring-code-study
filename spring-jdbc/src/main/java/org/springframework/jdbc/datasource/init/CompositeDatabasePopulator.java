@@ -40,6 +40,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * Create an empty {@code CompositeDatabasePopulator}.
+	 *
 	 * @see #setPopulators
 	 * @see #addPopulators
 	 */
@@ -48,6 +49,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * Create a {@code CompositeDatabasePopulator} with the given populators.
+	 *
 	 * @param populators one or more populators to delegate to
 	 * @since 4.3
 	 */
@@ -57,6 +59,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 	/**
 	 * Create a {@code CompositeDatabasePopulator} with the given populators.
+	 *
 	 * @param populators one or more populators to delegate to
 	 * @since 4.3
 	 */

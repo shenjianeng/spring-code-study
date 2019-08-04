@@ -91,6 +91,7 @@ public class WebSocketTransport implements Transport, Lifecycle {
 					public void onSuccess(@Nullable WebSocketSession webSocketSession) {
 						// WebSocket session ready, SockJS Session not yet
 					}
+
 					@Override
 					public void onFailure(Throwable ex) {
 						future.setException(ex);
@@ -105,8 +106,7 @@ public class WebSocketTransport implements Transport, Lifecycle {
 		if (!isRunning()) {
 			if (this.webSocketClient instanceof Lifecycle) {
 				((Lifecycle) this.webSocketClient).start();
-			}
-			else {
+			} else {
 				this.running = true;
 			}
 		}
@@ -117,8 +117,7 @@ public class WebSocketTransport implements Transport, Lifecycle {
 		if (isRunning()) {
 			if (this.webSocketClient instanceof Lifecycle) {
 				((Lifecycle) this.webSocketClient).stop();
-			}
-			else {
+			} else {
 				this.running = false;
 			}
 		}
@@ -128,8 +127,7 @@ public class WebSocketTransport implements Transport, Lifecycle {
 	public boolean isRunning() {
 		if (this.webSocketClient instanceof Lifecycle) {
 			return ((Lifecycle) this.webSocketClient).isRunning();
-		}
-		else {
+		} else {
 			return this.running;
 		}
 	}

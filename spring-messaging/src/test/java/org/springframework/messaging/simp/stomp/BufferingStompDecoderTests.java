@@ -157,8 +157,7 @@ public class BufferingStompDecoderTests {
 			String chunk2 = "\nPayload2a";
 			stompDecoder.decode(toByteBuffer(chunk2));
 			fail("Expected exception");
-		}
-		catch (StompConversionException ex) {
+		} catch (StompConversionException ex) {
 			// expected
 		}
 	}

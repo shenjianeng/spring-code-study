@@ -36,8 +36,8 @@ import org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo;
  *
  * @author Juergen Hoeller
  * @author Joris Kuipers
- * @since 4.1
  * @see Configuration#addPackage
+ * @since 4.1
  */
 class SpringHibernateJpaPersistenceProvider extends HibernatePersistenceProvider {
 

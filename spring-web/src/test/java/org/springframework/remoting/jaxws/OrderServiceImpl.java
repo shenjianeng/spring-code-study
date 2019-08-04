@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 /**
  * @author Juergen Hoeller
  */
-@WebService(serviceName="OrderService", portName="OrderService",
+@WebService(serviceName = "OrderService", portName = "OrderService",
 		endpointInterface = "org.springframework.remoting.jaxws.OrderService")
 public class OrderServiceImpl implements OrderService {
 

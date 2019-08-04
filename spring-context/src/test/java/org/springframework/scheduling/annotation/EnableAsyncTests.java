@@ -101,8 +101,7 @@ public class EnableAsyncTests {
 		try {
 			ctx.refresh();
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		} catch (UnsatisfiedDependencyException ex) {
 			assertTrue(ex.getCause() instanceof BeanNotOfRequiredTypeException);
 		}
 		ctx.close();
@@ -116,8 +115,7 @@ public class EnableAsyncTests {
 		try {
 			ctx.refresh();
 			fail("Should have thrown UnsatisfiedDependencyException");
-		}
-		catch (UnsatisfiedDependencyException ex) {
+		} catch (UnsatisfiedDependencyException ex) {
 			assertTrue(ex.getCause() instanceof BeanNotOfRequiredTypeException);
 		}
 
@@ -209,9 +207,9 @@ public class EnableAsyncTests {
 		asyncBean.work();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> asyncBean.getThreadOfExecution() != null);
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> asyncBean.getThreadOfExecution() != null);
 		assertThat(asyncBean.getThreadOfExecution().getName(), startsWith("Custom-"));
 		ctx.close();
 	}
@@ -227,9 +225,9 @@ public class EnableAsyncTests {
 		asyncBean.work();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> asyncBean.getThreadOfExecution() != null);
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> asyncBean.getThreadOfExecution() != null);
 		assertThat(asyncBean.getThreadOfExecution().getName(), startsWith("Custom-"));
 		ctx.close();
 	}
@@ -249,9 +247,9 @@ public class EnableAsyncTests {
 		asyncBean.fail();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.untilAsserted(() -> exceptionHandler.assertCalledWith(method, UnsupportedOperationException.class));
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.untilAsserted(() -> exceptionHandler.assertCalledWith(method, UnsupportedOperationException.class));
 		ctx.close();
 	}
 
@@ -266,9 +264,9 @@ public class EnableAsyncTests {
 		asyncBean.work();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> asyncBean.getThreadOfExecution() != null);
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> asyncBean.getThreadOfExecution() != null);
 		assertThat(asyncBean.getThreadOfExecution().getName(), startsWith("Post-"));
 		ctx.close();
 	}
@@ -288,9 +286,9 @@ public class EnableAsyncTests {
 		asyncBean.fail();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.untilAsserted(() -> exceptionHandler.assertCalledWith(method, UnsupportedOperationException.class));
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.untilAsserted(() -> exceptionHandler.assertCalledWith(method, UnsupportedOperationException.class));
 		ctx.close();
 	}
 
@@ -303,9 +301,9 @@ public class EnableAsyncTests {
 		asyncBean.work();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> asyncBean.getThreadOfExecution() != null);
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> asyncBean.getThreadOfExecution() != null);
 		assertThat(asyncBean.getThreadOfExecution().getName(), startsWith("Custom-"));
 		ctx.close();
 	}
@@ -319,9 +317,9 @@ public class EnableAsyncTests {
 		asyncBean.work();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(()-> asyncBean.getThreadOfExecution() != null);
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> asyncBean.getThreadOfExecution() != null);
 		assertThat(asyncBean.getThreadOfExecution().getName(), startsWith("Custom-"));
 		ctx.close();
 	}

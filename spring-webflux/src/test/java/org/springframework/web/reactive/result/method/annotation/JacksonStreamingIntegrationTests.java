@@ -100,7 +100,7 @@ public class JacksonStreamingIntegrationTests extends AbstractHttpHandlerIntegra
 	static class JacksonStreamingController {
 
 		@GetMapping(value = "/stream",
-				produces = { APPLICATION_STREAM_JSON_VALUE, "application/stream+x-jackson-smile" })
+				produces = {APPLICATION_STREAM_JSON_VALUE, "application/stream+x-jackson-smile"})
 		Flux<Person> person() {
 			return testInterval(Duration.ofMillis(100), 50).map(l -> new Person("foo " + l));
 		}

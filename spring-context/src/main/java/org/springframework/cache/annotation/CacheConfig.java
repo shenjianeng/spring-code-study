@@ -62,6 +62,7 @@ public @interface CacheConfig {
 	 * is set already.
 	 * <p>If no resolver and no cache manager are set at the operation level, and no cache
 	 * resolver is set via {@link #cacheResolver}, this one is used instead of the default.
+	 *
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 */
 	String cacheManager() default "";

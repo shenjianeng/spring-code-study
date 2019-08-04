@@ -28,6 +28,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Unit tests for {@link RequestedContentTypeResolverBuilder}.
+ *
  * @author Rossen Stoyanchev
  */
 public class RequestedContentTypeResolverBuilderTests {

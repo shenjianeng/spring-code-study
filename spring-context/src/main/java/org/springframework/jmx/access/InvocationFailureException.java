@@ -23,8 +23,8 @@ import org.springframework.jmx.JmxException;
  * a reflection exception or an exception thrown by the target method itself).
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see MBeanClientInterceptor
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class InvocationFailureException extends JmxException {
@@ -32,6 +32,7 @@ public class InvocationFailureException extends JmxException {
 	/**
 	 * Create a new {@code InvocationFailureException} with the supplied
 	 * error message.
+	 *
 	 * @param msg the detail message
 	 */
 	public InvocationFailureException(String msg) {
@@ -41,7 +42,8 @@ public class InvocationFailureException extends JmxException {
 	/**
 	 * Create a new {@code InvocationFailureException} with the
 	 * specified error message and root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public InvocationFailureException(String msg, Throwable cause) {

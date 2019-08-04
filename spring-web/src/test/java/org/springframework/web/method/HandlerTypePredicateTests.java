@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link HandlerTypePredicate}.
+ *
  * @author Rossen Stoyanchev
  */
 public class HandlerTypePredicateTests {
@@ -53,14 +54,18 @@ public class HandlerTypePredicateTests {
 
 
 	@Controller
-	private static class HtmlController {}
+	private static class HtmlController {
+	}
 
 	@RestController
-	private static class ApiController {}
+	private static class ApiController {
+	}
 
 	@RestController
-	private static class AnotherApiController implements Special {}
+	private static class AnotherApiController implements Special {
+	}
 
-	interface Special {}
+	interface Special {
+	}
 
 }

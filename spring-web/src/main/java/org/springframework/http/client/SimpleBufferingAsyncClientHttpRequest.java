@@ -34,8 +34,8 @@ import org.springframework.util.concurrent.ListenableFuture;
  * {@link org.springframework.http.client.SimpleClientHttpRequestFactory}.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see org.springframework.http.client.SimpleClientHttpRequestFactory#createRequest
+ * @since 3.0
  * @deprecated as of Spring 5.0, with no direct replacement
  */
 @Deprecated
@@ -49,7 +49,7 @@ final class SimpleBufferingAsyncClientHttpRequest extends AbstractBufferingAsync
 
 
 	SimpleBufferingAsyncClientHttpRequest(HttpURLConnection connection,
-			boolean outputStreaming, AsyncListenableTaskExecutor taskExecutor) {
+										  boolean outputStreaming, AsyncListenableTaskExecutor taskExecutor) {
 
 		this.connection = connection;
 		this.outputStreaming = outputStreaming;
@@ -66,8 +66,7 @@ final class SimpleBufferingAsyncClientHttpRequest extends AbstractBufferingAsync
 	public URI getURI() {
 		try {
 			return this.connection.getURL().toURI();
-		}
-		catch (URISyntaxException ex) {
+		} catch (URISyntaxException ex) {
 			throw new IllegalStateException("Could not get HttpURLConnection URI: " + ex.getMessage(), ex);
 		}
 	}
@@ -90,8 +89,7 @@ final class SimpleBufferingAsyncClientHttpRequest extends AbstractBufferingAsync
 				connection.connect();
 				if (connection.getDoOutput()) {
 					FileCopyUtils.copy(bufferedOutput, connection.getOutputStream());
-				}
-				else {
+				} else {
 					// Immediately trigger the request in a no-output scenario as well
 					connection.getResponseCode();
 				}

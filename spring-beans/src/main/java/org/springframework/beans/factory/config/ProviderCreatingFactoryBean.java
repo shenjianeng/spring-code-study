@@ -36,9 +36,9 @@ import org.springframework.util.Assert;
  * alternative to JSR-330's {@code @Inject} annotation-driven approach.
  *
  * @author Juergen Hoeller
- * @since 3.0.2
  * @see javax.inject.Provider
  * @see ObjectFactoryCreatingFactoryBean
+ * @since 3.0.2
  */
 public class ProviderCreatingFactoryBean extends AbstractFactoryBean<Provider<Object>> {
 

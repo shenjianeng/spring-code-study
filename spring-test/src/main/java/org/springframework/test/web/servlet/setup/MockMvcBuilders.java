@@ -29,9 +29,9 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
- * @since 3.2
  * @see #webAppContextSetup(WebApplicationContext)
  * @see #standaloneSetup(Object...)
+ * @since 3.2
  */
 public final class MockMvcBuilders {
 
@@ -69,8 +69,9 @@ public final class MockMvcBuilders {
 	 * option for testing a majority of controllers. In such cases, a much
 	 * smaller number of tests can be used to focus on testing and verifying
 	 * the actual Spring MVC configuration.
+	 *
 	 * @param controllers one or more {@code @Controller} instances to test
-	 * (specified {@code Class} will be turned into instance)
+	 *                    (specified {@code Class} will be turned into instance)
 	 */
 	public static StandaloneMockMvcBuilder standaloneSetup(Object... controllers) {
 		return new StandaloneMockMvcBuilder(controllers);

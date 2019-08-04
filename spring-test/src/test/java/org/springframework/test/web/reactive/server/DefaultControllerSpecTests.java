@@ -37,6 +37,7 @@ import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link DefaultControllerSpec}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DefaultControllerSpecTests {

@@ -33,8 +33,9 @@ public class MaxUploadSizeExceededException extends MultipartException {
 
 	/**
 	 * Constructor for MaxUploadSizeExceededException.
+	 *
 	 * @param maxUploadSize the maximum upload size allowed,
-	 * or -1 if the size limit isn't known
+	 *                      or -1 if the size limit isn't known
 	 */
 	public MaxUploadSizeExceededException(long maxUploadSize) {
 		this(maxUploadSize, null);
@@ -42,9 +43,10 @@ public class MaxUploadSizeExceededException extends MultipartException {
 
 	/**
 	 * Constructor for MaxUploadSizeExceededException.
+	 *
 	 * @param maxUploadSize the maximum upload size allowed,
-	 * or -1 if the size limit isn't known
-	 * @param ex root cause from multipart parsing API in use
+	 *                      or -1 if the size limit isn't known
+	 * @param ex            root cause from multipart parsing API in use
 	 */
 	public MaxUploadSizeExceededException(long maxUploadSize, @Nullable Throwable ex) {
 		super("Maximum upload size " + (maxUploadSize >= 0 ? "of " + maxUploadSize + " bytes " : "") + "exceeded", ex);

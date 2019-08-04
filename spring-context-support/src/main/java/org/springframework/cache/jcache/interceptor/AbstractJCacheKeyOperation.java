@@ -28,9 +28,9 @@ import org.springframework.cache.interceptor.KeyGenerator;
 /**
  * A base {@link JCacheOperation} that operates with a key.
  *
+ * @param <A> the annotation type
  * @author Stephane Nicoll
  * @since 4.1
- * @param <A> the annotation type
  */
 abstract class AbstractJCacheKeyOperation<A extends Annotation> extends AbstractJCacheOperation<A> {
 
@@ -41,12 +41,13 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 
 	/**
 	 * Create a new instance.
+	 *
 	 * @param methodDetails the {@link CacheMethodDetails} related to the cached method
 	 * @param cacheResolver the cache resolver to resolve regular caches
-	 * @param keyGenerator the key generator to compute cache keys
+	 * @param keyGenerator  the key generator to compute cache keys
 	 */
 	protected AbstractJCacheKeyOperation(CacheMethodDetails<A> methodDetails,
-			CacheResolver cacheResolver, KeyGenerator keyGenerator) {
+										 CacheResolver cacheResolver, KeyGenerator keyGenerator) {
 
 		super(methodDetails, cacheResolver);
 		this.keyGenerator = keyGenerator;
@@ -69,6 +70,7 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 	 * of the key. If none are annotated, all parameters except the parameter annotated
 	 * with {@link javax.cache.annotation.CacheValue} should be part of the key.
 	 * <p>The method arguments must match the signature of the related method invocation
+	 *
 	 * @param values the parameters value for a particular invocation
 	 * @return the {@link CacheInvocationParameter} instances for the parameters to be
 	 * used to compute the key

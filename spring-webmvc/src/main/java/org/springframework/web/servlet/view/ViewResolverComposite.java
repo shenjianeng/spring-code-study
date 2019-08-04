@@ -78,7 +78,7 @@ public class ViewResolverComposite implements ViewResolver, Ordered, Initializin
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		for (ViewResolver viewResolver : this.viewResolvers) {
 			if (viewResolver instanceof ApplicationContextAware) {
-				((ApplicationContextAware)viewResolver).setApplicationContext(applicationContext);
+				((ApplicationContextAware) viewResolver).setApplicationContext(applicationContext);
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class ViewResolverComposite implements ViewResolver, Ordered, Initializin
 	public void setServletContext(ServletContext servletContext) {
 		for (ViewResolver viewResolver : this.viewResolvers) {
 			if (viewResolver instanceof ServletContextAware) {
-				((ServletContextAware)viewResolver).setServletContext(servletContext);
+				((ServletContextAware) viewResolver).setServletContext(servletContext);
 			}
 		}
 	}

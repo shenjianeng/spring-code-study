@@ -169,7 +169,7 @@ public class MessageBrokerConfigurationTests {
 		Message<?> message = MessageBuilder.createMessage(new byte[0], headers.getMessageHeaders());
 
 		// subscribe
-		broker.handleMessage(createConnectMessage("sess1", new long[] {0,0}));
+		broker.handleMessage(createConnectMessage("sess1", new long[]{0, 0}));
 		broker.handleMessage(message);
 
 		headers = StompHeaderAccessor.create(StompCommand.SEND);
@@ -366,7 +366,8 @@ public class MessageBrokerConfigurationTests {
 
 	@Test
 	public void simpValidatorDefault() {
-		AbstractMessageBrokerConfiguration config = new BaseTestMessageBrokerConfig() {};
+		AbstractMessageBrokerConfiguration config = new BaseTestMessageBrokerConfig() {
+		};
 		config.setApplicationContext(new StaticApplicationContext());
 
 		assertThat(config.simpValidator(), Matchers.notNullValue());
@@ -390,7 +391,8 @@ public class MessageBrokerConfigurationTests {
 	public void simpValidatorMvc() {
 		StaticApplicationContext appCxt = new StaticApplicationContext();
 		appCxt.registerSingleton("mvcValidator", TestValidator.class);
-		AbstractMessageBrokerConfiguration config = new BaseTestMessageBrokerConfig() {};
+		AbstractMessageBrokerConfiguration config = new BaseTestMessageBrokerConfig() {
+		};
 		config.setApplicationContext(appCxt);
 
 		assertThat(config.simpValidator(), Matchers.notNullValue());
@@ -495,7 +497,7 @@ public class MessageBrokerConfigurationTests {
 		TestChannel outChannel = context.getBean("clientOutboundChannel", TestChannel.class);
 		MessageChannel brokerChannel = context.getBean("brokerChannel", MessageChannel.class);
 
-		inChannel.send(createConnectMessage("sess1", new long[] {0,0}));
+		inChannel.send(createConnectMessage("sess1", new long[]{0, 0}));
 
 		// 1. Subscribe to user destination
 
@@ -631,7 +633,8 @@ public class MessageBrokerConfigurationTests {
 	@Configuration
 	static class CustomConfig extends BaseTestMessageBrokerConfig {
 
-		private ChannelInterceptor interceptor = new ChannelInterceptor() {};
+		private ChannelInterceptor interceptor = new ChannelInterceptor() {
+		};
 
 		@Override
 		protected void configureClientInboundChannel(ChannelRegistration registration) {
@@ -750,16 +753,24 @@ public class MessageBrokerConfigurationTests {
 		}
 
 		@Override
-		public SimpUser getUser(String userName) { return null; }
+		public SimpUser getUser(String userName) {
+			return null;
+		}
 
 		@Override
-		public Set<SimpUser> getUsers() { return null; }
+		public Set<SimpUser> getUsers() {
+			return null;
+		}
 
 		@Override
-		public int getUserCount() { return 0; }
+		public int getUserCount() {
+			return 0;
+		}
 
 		@Override
-		public Set<SimpSubscription> findSubscriptions(SimpSubscriptionMatcher matcher) { return null; }
+		public Set<SimpSubscription> findSubscriptions(SimpSubscriptionMatcher matcher) {
+			return null;
+		}
 	}
 
 

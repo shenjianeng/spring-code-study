@@ -95,8 +95,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 			// required in OpenJPA case
 			query.executeUpdate();
 			fail("Should have thrown a RuntimeException");
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			// expected
 		}
 	}
@@ -110,8 +109,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 			// throw exception on first access or on getReference itself.
 			notThere.getFirstName();
 			fail("Should have thrown an EntityNotFoundException or ObjectNotFoundException");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			assertTrue(ex.getClass().getName().endsWith("NotFoundException"));
 		}
 	}
@@ -136,8 +134,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 			assertNotNull(newTony.getDriversLicense());
 
 			newTony.getDriversLicense().getSerialNumber();
-		}
-		finally {
+		} finally {
 			deleteFromTables("person", "drivers_license");
 		}
 	}
@@ -167,8 +164,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			sharedEntityManager.getTransaction();
 			fail("Should not be able to create transactions on container managed EntityManager");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 		}
 	}
 
@@ -198,8 +194,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			assertNull(q.getSingleResult());
 			fail("Should have thrown NoResultException");
-		}
-		catch (NoResultException ex) {
+		} catch (NoResultException ex) {
 			// expected
 		}
 	}
@@ -216,8 +211,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			assertNull(q.getSingleResult());
 			fail("Should have thrown NoResultException");
-		}
-		catch (NoResultException ex) {
+		} catch (NoResultException ex) {
 			// expected
 		}
 	}
@@ -232,8 +226,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			assertNull(q.getSingleResult());
 			fail("Should have thrown NoResultException");
-		}
-		catch (NoResultException ex) {
+		} catch (NoResultException ex) {
 			// expected
 		}
 	}
@@ -251,8 +244,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			assertNull(q.getSingleResult());
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			// We would typically expect an IllegalStateException, but Hibernate throws a
 			// PersistenceException. So we assert the contents of the exception message instead.
 			assertTrue(ex.getMessage().contains("closed"));
@@ -262,8 +254,7 @@ public abstract class AbstractContainerEntityManagerFactoryIntegrationTests
 		try {
 			assertNull(q.getSingleResult());
 			fail("Should have thrown NoResultException");
-		}
-		catch (NoResultException ex) {
+		} catch (NoResultException ex) {
 			// expected
 		}
 	}

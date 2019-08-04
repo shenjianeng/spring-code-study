@@ -61,6 +61,7 @@ public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicati
 	/**
 	 * Specify the order value for this registry.
 	 * <p>Default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 *
 	 * @since 5.0.8
 	 */
 	public void setOrder(int order) {
@@ -101,8 +102,7 @@ public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicati
 					session.addSubscription(id, destination);
 				}
 			}
-		}
-		else if (event instanceof SessionConnectedEvent) {
+		} else if (event instanceof SessionConnectedEvent) {
 			Principal user = subProtocolEvent.getUser();
 			if (user == null) {
 				return;
@@ -121,8 +121,7 @@ public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicati
 				simpUser.addSession(session);
 				this.sessions.put(sessionId, session);
 			}
-		}
-		else if (event instanceof SessionDisconnectEvent) {
+		} else if (event instanceof SessionDisconnectEvent) {
 			synchronized (this.sessionLock) {
 				LocalSimpSession session = this.sessions.remove(sessionId);
 				if (session != null) {
@@ -133,8 +132,7 @@ public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicati
 					}
 				}
 			}
-		}
-		else if (event instanceof SessionUnsubscribeEvent) {
+		} else if (event instanceof SessionUnsubscribeEvent) {
 			LocalSimpSession session = this.sessions.get(sessionId);
 			if (session != null) {
 				String subscriptionId = accessor.getSubscriptionId();

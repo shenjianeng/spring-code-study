@@ -37,15 +37,16 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see WebFluxConfigurationSupport
  * @see DelegatingWebFluxConfiguration
+ * @since 5.0
  */
 public interface WebFluxConfigurer {
 
 	/**
 	 * Configure how the content type requested for the response is resolved
 	 * when handling requests with annotated controllers.
+	 *
 	 * @param builder for configuring the resolvers to use
 	 */
 	default void configureContentTypeResolver(RequestedContentTypeResolverBuilder builder) {
@@ -57,6 +58,7 @@ public interface WebFluxConfigurer {
 	 * annotated controllers and functional endpoints. Annotated controllers can
 	 * further declare more fine-grained configuration via
 	 * {@link org.springframework.web.bind.annotation.CrossOrigin @CrossOrigin}.
+	 *
 	 * @see CorsRegistry
 	 */
 	default void addCorsMappings(CorsRegistry registry) {
@@ -67,6 +69,7 @@ public interface WebFluxConfigurer {
 	 * <p>The configured path matching options will be used for mapping to
 	 * annotated controllers and also
 	 * {@link #addResourceHandlers(ResourceHandlerRegistry) static resources}.
+	 *
 	 * @param configurer the {@link PathMatchConfigurer} instance
 	 */
 	default void configurePathMatching(PathMatchConfigurer configurer) {
@@ -74,6 +77,7 @@ public interface WebFluxConfigurer {
 
 	/**
 	 * Add resource handlers for serving static resources.
+	 *
 	 * @see ResourceHandlerRegistry
 	 */
 	default void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -81,6 +85,7 @@ public interface WebFluxConfigurer {
 
 	/**
 	 * Configure resolvers for custom {@code @RequestMapping} method arguments.
+	 *
 	 * @param configurer to configurer to use
 	 */
 	default void configureArgumentResolvers(ArgumentResolverConfigurer configurer) {
@@ -90,6 +95,7 @@ public interface WebFluxConfigurer {
 	 * Configure custom HTTP message readers and writers or override built-in ones.
 	 * <p>The configured readers and writers will be used for both annotated
 	 * controllers and functional endpoints.
+	 *
 	 * @param configurer the configurer to use
 	 */
 	default void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {

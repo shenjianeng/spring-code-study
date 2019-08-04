@@ -42,15 +42,16 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 
 	/**
 	 * Create a new RefreshableScriptTargetSource.
-	 * @param beanFactory the BeanFactory to fetch the scripted bean from
-	 * @param beanName the name of the target bean
+	 *
+	 * @param beanFactory   the BeanFactory to fetch the scripted bean from
+	 * @param beanName      the name of the target bean
 	 * @param scriptFactory the ScriptFactory to delegate to for determining
-	 * whether a refresh is required
-	 * @param scriptSource the ScriptSource for the script definition
+	 *                      whether a refresh is required
+	 * @param scriptSource  the ScriptSource for the script definition
 	 * @param isFactoryBean whether the target script defines a FactoryBean
 	 */
 	public RefreshableScriptTargetSource(BeanFactory beanFactory, String beanName,
-			ScriptFactory scriptFactory, ScriptSource scriptSource, boolean isFactoryBean) {
+										 ScriptFactory scriptFactory, ScriptSource scriptSource, boolean isFactoryBean) {
 
 		super(beanFactory, beanName);
 		Assert.notNull(scriptFactory, "ScriptFactory must not be null");
@@ -64,6 +65,7 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 	/**
 	 * Determine whether a refresh is required through calling
 	 * ScriptFactory's {@code requiresScriptedObjectRefresh} method.
+	 *
 	 * @see ScriptFactory#requiresScriptedObjectRefresh(ScriptSource)
 	 */
 	@Override

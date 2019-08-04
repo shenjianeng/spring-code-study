@@ -55,10 +55,10 @@ import org.springframework.util.xml.StaxUtils;
  * annotated with {@link XmlRootElement} and {@link XmlType}. Note that this converter
  * does not support writing.
  *
+ * @param <T> the converted object type
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.2
- * @param <T> the converted object type
  */
 @SuppressWarnings("rawtypes")
 public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
@@ -154,11 +154,9 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 			while (event != XMLStreamReader.END_DOCUMENT) {
 				if (elementClass.isAnnotationPresent(XmlRootElement.class)) {
 					result.add(unmarshaller.unmarshal(streamReader));
-				}
-				else if (elementClass.isAnnotationPresent(XmlType.class)) {
+				} else if (elementClass.isAnnotationPresent(XmlType.class)) {
 					result.add(unmarshaller.unmarshal(streamReader, elementClass).getValue());
-				}
-				else {
+				} else {
 					// should not happen, since we check in canRead(Type)
 					throw new HttpMessageNotReadableException(
 							"Cannot unmarshal to [" + elementClass + "]", inputMessage);
@@ -166,16 +164,13 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 				event = moveToNextElement(streamReader);
 			}
 			return result;
-		}
-		catch (XMLStreamException ex) {
+		} catch (XMLStreamException ex) {
 			throw new HttpMessageNotReadableException(
 					"Failed to read XML stream: " + ex.getMessage(), ex, inputMessage);
-		}
-		catch (UnmarshalException ex) {
+		} catch (UnmarshalException ex) {
 			throw new HttpMessageNotReadableException(
 					"Could not unmarshal to [" + elementClass + "]: " + ex.getMessage(), ex, inputMessage);
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw new HttpMessageConversionException("Invalid JAXB setup: " + ex.getMessage(), ex);
 		}
 	}
@@ -183,6 +178,7 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	/**
 	 * Create a Collection of the given type, with the given initial capacity
 	 * (if supported by the Collection type).
+	 *
 	 * @param collectionClass the type of Collection to instantiate
 	 * @return the created Collection instance
 	 */
@@ -191,19 +187,15 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 		if (!collectionClass.isInterface()) {
 			try {
 				return (T) ReflectionUtils.accessibleConstructor(collectionClass).newInstance();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalArgumentException(
 						"Could not instantiate collection class: " + collectionClass.getName(), ex);
 			}
-		}
-		else if (List.class == collectionClass) {
+		} else if (List.class == collectionClass) {
 			return (T) new ArrayList();
-		}
-		else if (SortedSet.class == collectionClass) {
+		} else if (SortedSet.class == collectionClass) {
 			return (T) new TreeSet();
-		}
-		else {
+		} else {
 			return (T) new LinkedHashSet();
 		}
 	}
@@ -249,6 +241,7 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	 * objects.
 	 * <p>Can be overridden in subclasses, adding further initialization of the factory.
 	 * The resulting factory is cached, so this method will only be called once.
+	 *
 	 * @see StaxUtils#createDefensiveInputFactory()
 	 */
 	protected XMLInputFactory createXmlInputFactory() {

@@ -51,10 +51,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @since 2.5
  * @see java.sql.SQLTransientException
  * @see java.sql.SQLTransientException
  * @see java.sql.SQLRecoverableException
+ * @since 2.5
  */
 public class SQLExceptionSubclassTranslator extends AbstractFallbackSQLExceptionTranslator {
 
@@ -68,35 +68,26 @@ public class SQLExceptionSubclassTranslator extends AbstractFallbackSQLException
 		if (ex instanceof SQLTransientException) {
 			if (ex instanceof SQLTransientConnectionException) {
 				return new TransientDataAccessResourceException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLTransactionRollbackException) {
+			} else if (ex instanceof SQLTransactionRollbackException) {
 				return new ConcurrencyFailureException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLTimeoutException) {
+			} else if (ex instanceof SQLTimeoutException) {
 				return new QueryTimeoutException(buildMessage(task, sql, ex), ex);
 			}
-		}
-		else if (ex instanceof SQLNonTransientException) {
+		} else if (ex instanceof SQLNonTransientException) {
 			if (ex instanceof SQLNonTransientConnectionException) {
 				return new DataAccessResourceFailureException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLDataException) {
+			} else if (ex instanceof SQLDataException) {
 				return new DataIntegrityViolationException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLIntegrityConstraintViolationException) {
+			} else if (ex instanceof SQLIntegrityConstraintViolationException) {
 				return new DataIntegrityViolationException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLInvalidAuthorizationSpecException) {
+			} else if (ex instanceof SQLInvalidAuthorizationSpecException) {
 				return new PermissionDeniedDataAccessException(buildMessage(task, sql, ex), ex);
-			}
-			else if (ex instanceof SQLSyntaxErrorException) {
+			} else if (ex instanceof SQLSyntaxErrorException) {
 				return new BadSqlGrammarException(task, (sql != null ? sql : ""), ex);
-			}
-			else if (ex instanceof SQLFeatureNotSupportedException) {
+			} else if (ex instanceof SQLFeatureNotSupportedException) {
 				return new InvalidDataAccessApiUsageException(buildMessage(task, sql, ex), ex);
 			}
-		}
-		else if (ex instanceof SQLRecoverableException) {
+		} else if (ex instanceof SQLRecoverableException) {
 			return new RecoverableDataAccessException(buildMessage(task, sql, ex), ex);
 		}
 

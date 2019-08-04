@@ -82,7 +82,7 @@ class IndexedStereotypesProvider implements StereotypesProvider {
 	}
 
 	private Element collectStereotypes(Set<Element> seen, Set<String> stereotypes, Element element,
-			AnnotationMirror annotation) {
+									   AnnotationMirror annotation) {
 
 		if (isIndexedAnnotation(annotation)) {
 			stereotypes.add(this.typeHelper.getType(element));

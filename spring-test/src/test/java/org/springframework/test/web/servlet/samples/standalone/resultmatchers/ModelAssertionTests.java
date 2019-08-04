@@ -61,27 +61,27 @@ public class ModelAssertionTests {
 	@Test
 	public void testAttributeEqualTo() throws Exception {
 		mockMvc.perform(get("/"))
-			.andExpect(model().attribute("integer", 3))
-			.andExpect(model().attribute("string", "a string value"))
-			.andExpect(model().attribute("integer", equalTo(3))) // Hamcrest...
-			.andExpect(model().attribute("string", equalTo("a string value")))
-			.andExpect(model().attribute("globalAttrName", equalTo("Global Attribute Value")));
+				.andExpect(model().attribute("integer", 3))
+				.andExpect(model().attribute("string", "a string value"))
+				.andExpect(model().attribute("integer", equalTo(3))) // Hamcrest...
+				.andExpect(model().attribute("string", equalTo("a string value")))
+				.andExpect(model().attribute("globalAttrName", equalTo("Global Attribute Value")));
 	}
 
 	@Test
 	public void testAttributeExists() throws Exception {
 		mockMvc.perform(get("/"))
-			.andExpect(model().attributeExists("integer", "string", "person"))
-			.andExpect(model().attribute("integer", notNullValue()))  // Hamcrest...
-			.andExpect(model().attribute("INTEGER", nullValue()));
+				.andExpect(model().attributeExists("integer", "string", "person"))
+				.andExpect(model().attribute("integer", notNullValue()))  // Hamcrest...
+				.andExpect(model().attribute("INTEGER", nullValue()));
 	}
 
 	@Test
 	public void testAttributeHamcrestMatchers() throws Exception {
 		mockMvc.perform(get("/"))
-			.andExpect(model().attribute("integer", equalTo(3)))
-			.andExpect(model().attribute("string", allOf(startsWith("a string"), endsWith("value"))))
-			.andExpect(model().attribute("person", hasProperty("name", equalTo("a name"))));
+				.andExpect(model().attribute("integer", equalTo(3)))
+				.andExpect(model().attribute("string", allOf(startsWith("a string"), endsWith("value"))))
+				.andExpect(model().attribute("person", hasProperty("name", equalTo("a name"))));
 	}
 
 	@Test

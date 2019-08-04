@@ -46,11 +46,11 @@ import org.springframework.web.servlet.ModelAndView;
  * parameters etc.
  *
  * @author Juergen Hoeller
- * @since 1.1.5
  * @see javax.servlet.Servlet
  * @see javax.servlet.http.HttpServlet
  * @see SimpleServletPostProcessor
  * @see org.springframework.web.servlet.mvc.ServletWrappingController
+ * @since 1.1.5
  */
 public class SimpleServletHandlerAdapter implements HandlerAdapter {
 

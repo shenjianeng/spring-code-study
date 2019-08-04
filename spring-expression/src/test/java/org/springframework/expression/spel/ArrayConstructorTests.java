@@ -89,7 +89,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 	public void typeArrayConstructors() {
 		evaluate("new String[]{'a','b','c','d'}[1]", "b", String.class);
 		evaluateAndCheckError("new String[]{'a','b','c','d'}.size()", SpelMessage.METHOD_NOT_FOUND, 30, "size()",
-			"java.lang.String[]");
+				"java.lang.String[]");
 		evaluate("new String[]{'a','b','c','d'}.length", 4, Integer.class);
 	}
 
@@ -102,8 +102,8 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 	public void multiDimensionalArray() {
 		evaluate("new String[2][2]", "[Ljava.lang.String;[2]{[2]{null,null},[2]{null,null}}", String[][].class);
 		evaluate("new String[3][2][1]",
-			"[[Ljava.lang.String;[3]{[2]{[1]{null},[1]{null}},[2]{[1]{null},[1]{null}},[2]{[1]{null},[1]{null}}}",
-			String[][][].class);
+				"[[Ljava.lang.String;[3]{[2]{[1]{null},[1]{null}},[2]{[1]{null},[1]{null}},[2]{[1]{null},[1]{null}}}",
+				String[][][].class);
 	}
 
 	@Test
@@ -131,8 +131,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof boolean[]) {
+		} else if (o instanceof boolean[]) {
 			boolean[] array = (boolean[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -140,8 +139,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof char[]) {
+		} else if (o instanceof char[]) {
 			char[] array = (char[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -149,8 +147,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof long[]) {
+		} else if (o instanceof long[]) {
 			long[] array = (long[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -158,8 +155,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof short[]) {
+		} else if (o instanceof short[]) {
 			short[] array = (short[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -167,8 +163,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof double[]) {
+		} else if (o instanceof double[]) {
 			double[] array = (double[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -176,8 +171,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof float[]) {
+		} else if (o instanceof float[]) {
 			float[] array = (float[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -185,8 +179,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else if (o instanceof byte[]) {
+		} else if (o instanceof byte[]) {
 			byte[] array = (byte[]) o;
 			for (int i = 0; i < array.length; i++) {
 				if (i > 0) {
@@ -194,8 +187,7 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 				}
 				s.append(array[i]);
 			}
-		}
-		else {
+		} else {
 			fail("Not supported " + o.getClass());
 		}
 		s.append(']');

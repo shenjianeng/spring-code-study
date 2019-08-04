@@ -39,9 +39,9 @@ import org.springframework.util.Assert;
  * Spring transaction synchronization.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see javax.transaction.Transaction#registerSynchronization
  * @see org.springframework.transaction.support.TransactionSynchronization
+ * @since 2.0
  */
 public class SpringJtaSynchronizationAdapter implements Synchronization {
 
@@ -58,6 +58,7 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	/**
 	 * Create a new SpringJtaSynchronizationAdapter for the given Spring
 	 * TransactionSynchronization and JTA TransactionManager.
+	 *
 	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
 	 */
 	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization) {
@@ -72,14 +73,15 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * since WebLogic Server is known to automatically mark the transaction as
 	 * rollback-only in case of a {@code beforeCompletion} exception. Hence,
 	 * on WLS, this constructor is equivalent to the single-arg constructor.
+	 *
 	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
-	 * @param jtaUserTransaction the JTA UserTransaction to use for rollback-only
-	 * setting in case of an exception thrown in {@code beforeCompletion}
-	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
-	 * in such a scenario, which is required by the JTA specification as of JTA 1.1).
+	 * @param jtaUserTransaction    the JTA UserTransaction to use for rollback-only
+	 *                              setting in case of an exception thrown in {@code beforeCompletion}
+	 *                              (can be omitted if the JTA provider itself marks the transaction rollback-only
+	 *                              in such a scenario, which is required by the JTA specification as of JTA 1.1).
 	 */
 	public SpringJtaSynchronizationAdapter(TransactionSynchronization springSynchronization,
-			@Nullable UserTransaction jtaUserTransaction) {
+										   @Nullable UserTransaction jtaUserTransaction) {
 
 		this(springSynchronization);
 		if (jtaUserTransaction != null && !jtaUserTransaction.getClass().getName().startsWith("weblogic.")) {
@@ -94,11 +96,12 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * since WebLogic Server is known to automatically mark the transaction as
 	 * rollback-only in case of a {@code beforeCompletion} exception. Hence,
 	 * on WLS, this constructor is equivalent to the single-arg constructor.
+	 *
 	 * @param springSynchronization the Spring TransactionSynchronization to delegate to
 	 * @param jtaTransactionManager the JTA TransactionManager to use for rollback-only
-	 * setting in case of an exception thrown in {@code beforeCompletion}
-	 * (can be omitted if the JTA provider itself marks the transaction rollback-only
-	 * in such a scenario, which is required by the JTA specification as of JTA 1.1)
+	 *                              setting in case of an exception thrown in {@code beforeCompletion}
+	 *                              (can be omitted if the JTA provider itself marks the transaction rollback-only
+	 *                              in such a scenario, which is required by the JTA specification as of JTA 1.1)
 	 */
 	public SpringJtaSynchronizationAdapter(
 			TransactionSynchronization springSynchronization, @Nullable TransactionManager jtaTransactionManager) {
@@ -113,6 +116,7 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	/**
 	 * JTA {@code beforeCompletion} callback: just invoked before commit.
 	 * <p>In case of an exception, the JTA transaction will be marked as rollback-only.
+	 *
 	 * @see org.springframework.transaction.support.TransactionSynchronization#beforeCommit
 	 */
 	@Override
@@ -120,12 +124,10 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 		try {
 			boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
 			this.springSynchronization.beforeCommit(readOnly);
-		}
-		catch (RuntimeException | Error ex) {
+		} catch (RuntimeException | Error ex) {
 			setRollbackOnlyIfPossible();
 			throw ex;
-		}
-		finally {
+		} finally {
 			// Process Spring's beforeCompletion early, in order to avoid issues
 			// with strict JTA implementations that issue warnings when doing JDBC
 			// operations after transaction completion (e.g. Connection.getWarnings).
@@ -141,22 +143,19 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 		if (this.jtaTransaction != null) {
 			try {
 				this.jtaTransaction.setRollbackOnly();
-			}
-			catch (UnsupportedOperationException ex) {
+			} catch (UnsupportedOperationException ex) {
 				// Probably Hibernate's WebSphereExtendedJTATransactionLookup pseudo JTA stuff...
 				logger.debug("JTA transaction handle does not support setRollbackOnly method - " +
 						"relying on JTA provider to mark the transaction as rollback-only based on " +
 						"the exception thrown from beforeCompletion", ex);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				logger.error("Could not set JTA transaction rollback-only", ex);
 			}
-		}
-		else {
+		} else {
 			logger.debug("No JTA transaction handle available and/or running on WebLogic - " +
-						"relying on JTA provider to mark the transaction as rollback-only based on " +
-						"the exception thrown from beforeCompletion");
-			}
+					"relying on JTA provider to mark the transaction as rollback-only based on " +
+					"the exception thrown from beforeCompletion");
+		}
 	}
 
 	/**
@@ -164,6 +163,7 @@ public class SpringJtaSynchronizationAdapter implements Synchronization {
 	 * <p>Needs to invoke the Spring synchronization's {@code beforeCompletion}
 	 * at this late stage in case of a rollback, since there is no corresponding
 	 * callback with JTA.
+	 *
 	 * @see org.springframework.transaction.support.TransactionSynchronization#beforeCompletion
 	 * @see org.springframework.transaction.support.TransactionSynchronization#afterCompletion
 	 */

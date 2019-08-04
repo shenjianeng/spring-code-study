@@ -37,12 +37,13 @@ public abstract class ExpressionUtils {
 	 * Determines if there is a type converter available in the specified context and
 	 * attempts to use it to convert the supplied value to the specified type. Throws an
 	 * exception if conversion is not possible.
-	 * @param context the evaluation context that may define a type converter
+	 *
+	 * @param context    the evaluation context that may define a type converter
 	 * @param typedValue the value to convert and a type descriptor describing it
 	 * @param targetType the type to attempt conversion to
 	 * @return the converted value
 	 * @throws EvaluationException if there is a problem during conversion or conversion
-	 * of the value to the specified type is not supported
+	 *                             of the value to the specified type is not supported
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable

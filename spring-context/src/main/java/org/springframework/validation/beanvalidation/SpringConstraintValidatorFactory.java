@@ -32,9 +32,9 @@ import org.springframework.util.Assert;
  * for declarative use in a web application, e.g. with JAX-RS or JAX-WS.
  *
  * @author Juergen Hoeller
- * @since 3.0
  * @see org.springframework.beans.factory.config.AutowireCapableBeanFactory#createBean(Class)
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
+ * @since 3.0
  */
 public class SpringConstraintValidatorFactory implements ConstraintValidatorFactory {
 
@@ -43,6 +43,7 @@ public class SpringConstraintValidatorFactory implements ConstraintValidatorFact
 
 	/**
 	 * Create a new SpringConstraintValidatorFactory for the given BeanFactory.
+	 *
 	 * @param beanFactory the target BeanFactory
 	 */
 	public SpringConstraintValidatorFactory(AutowireCapableBeanFactory beanFactory) {

@@ -41,8 +41,7 @@ public class JndiTemplateEditor extends PropertyEditorSupport {
 		if ("".equals(text)) {
 			// empty environment
 			setValue(new JndiTemplate());
-		}
-		else {
+		} else {
 			// we have a non-empty properties string
 			this.propertiesEditor.setAsText(text);
 			Properties props = (Properties) this.propertiesEditor.getValue();

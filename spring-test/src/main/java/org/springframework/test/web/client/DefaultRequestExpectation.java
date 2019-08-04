@@ -45,6 +45,7 @@ public class DefaultRequestExpectation implements RequestExpectation {
 	/**
 	 * Create a new request expectation that should be called a number of times
 	 * as indicated by {@code RequestCount}.
+	 *
 	 * @param expectedCount the expected request expectedCount
 	 */
 	public DefaultRequestExpectation(ExpectedCount expectedCount, RequestMatcher requestMatcher) {

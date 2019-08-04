@@ -38,13 +38,14 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * </pre>
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see WebTestClientConfigurer
+ * @since 5.0
  */
 public interface MockServerConfigurer {
 
 	/**
 	 * Invoked immediately, i.e. before this method returns.
+	 *
 	 * @param serverSpec the serverSpec to which the configurer is added
 	 */
 	default void afterConfigureAdded(WebTestClient.MockServerSpec<?> serverSpec) {
@@ -53,8 +54,9 @@ public interface MockServerConfigurer {
 	/**
 	 * Invoked just before the mock server is built. Use this hook to inspect
 	 * and/or modify application-declared filters and exception handlers.
+	 *
 	 * @param builder the builder for the {@code HttpHandler} that will handle
-	 * requests (i.e. the mock server)
+	 *                requests (i.e. the mock server)
 	 */
 	default void beforeServerCreated(WebHttpHandlerBuilder builder) {
 	}

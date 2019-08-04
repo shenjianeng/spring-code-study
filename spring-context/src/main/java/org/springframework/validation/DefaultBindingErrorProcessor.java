@@ -34,7 +34,6 @@ import org.springframework.util.StringUtils;
  *
  * @author Alef Arendsen
  * @author Juergen Hoeller
- * @since 1.2
  * @see #MISSING_FIELD_ERROR_CODE
  * @see DataBinder#setBindingErrorProcessor
  * @see BeanPropertyBindingResult#addError
@@ -42,6 +41,7 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.PropertyAccessException#getErrorCode
  * @see org.springframework.beans.TypeMismatchException#ERROR_CODE
  * @see org.springframework.beans.MethodInvocationException#ERROR_CODE
+ * @since 1.2
  */
 public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 
@@ -86,15 +86,16 @@ public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 	 * Invoked for each missing required field and each type mismatch.
 	 * <p>The default implementation returns a single argument indicating the field name
 	 * (of type DefaultMessageSourceResolvable, with "objectName.field" and "field" as codes).
+	 *
 	 * @param objectName the name of the target object
-	 * @param field the field that caused the binding error
+	 * @param field      the field that caused the binding error
 	 * @return the Object array that represents the FieldError arguments
 	 * @see org.springframework.validation.FieldError#getArguments
 	 * @see org.springframework.context.support.DefaultMessageSourceResolvable
 	 */
 	protected Object[] getArgumentsForBindError(String objectName, String field) {
-		String[] codes = new String[] {objectName + Errors.NESTED_PATH_SEPARATOR + field, field};
-		return new Object[] {new DefaultMessageSourceResolvable(codes, field)};
+		String[] codes = new String[]{objectName + Errors.NESTED_PATH_SEPARATOR + field, field};
+		return new Object[]{new DefaultMessageSourceResolvable(codes, field)};
 	}
 
 }

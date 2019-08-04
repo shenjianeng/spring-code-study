@@ -49,20 +49,21 @@ import org.springframework.web.server.ServerWebExchange;
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
- * @since 5.0
  * @see PathVariableMapMethodArgumentResolver
+ * @since 5.0
  */
 public class PathVariableMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
 	 * Create a new {@link PathVariableMethodArgumentResolver}.
-	 * @param factory a bean factory to use for resolving {@code ${...}}
-	 * placeholder and {@code #{...}} SpEL expressions in default values;
-	 * or {@code null} if default values are not expected to contain expressions
+	 *
+	 * @param factory  a bean factory to use for resolving {@code ${...}}
+	 *                 placeholder and {@code #{...}} SpEL expressions in default values;
+	 *                 or {@code null} if default values are not expected to contain expressions
 	 * @param registry for checking reactive type wrappers
 	 */
 	public PathVariableMethodArgumentResolver(@Nullable ConfigurableBeanFactory factory,
-			ReactiveAdapterRegistry registry) {
+											  ReactiveAdapterRegistry registry) {
 
 		super(factory, registry);
 	}

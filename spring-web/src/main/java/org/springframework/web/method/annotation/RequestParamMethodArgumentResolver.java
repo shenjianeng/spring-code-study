@@ -70,8 +70,8 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @since 3.1
  * @see RequestParamMapMethodArgumentResolver
+ * @since 3.1
  */
 public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver
 		implements UriComponentsContributor {
@@ -83,10 +83,11 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	/**
 	 * Create a new {@link RequestParamMethodArgumentResolver} instance.
+	 *
 	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 *                             that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
+	 *                             is treated as a request parameter even if it isn't annotated, the
+	 *                             request parameter name is derived from the method parameter name.
 	 */
 	public RequestParamMethodArgumentResolver(boolean useDefaultResolution) {
 		this.useDefaultResolution = useDefaultResolution;
@@ -94,16 +95,17 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	/**
 	 * Create a new {@link RequestParamMethodArgumentResolver} instance.
-	 * @param beanFactory a bean factory used for resolving  ${...} placeholder
-	 * and #{...} SpEL expressions in default values, or {@code null} if default
-	 * values are not expected to contain expressions
+	 *
+	 * @param beanFactory          a bean factory used for resolving  ${...} placeholder
+	 *                             and #{...} SpEL expressions in default values, or {@code null} if default
+	 *                             values are not expected to contain expressions
 	 * @param useDefaultResolution in default resolution mode a method argument
-	 * that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
-	 * is treated as a request parameter even if it isn't annotated, the
-	 * request parameter name is derived from the method parameter name.
+	 *                             that is a simple type, as defined in {@link BeanUtils#isSimpleProperty},
+	 *                             is treated as a request parameter even if it isn't annotated, the
+	 *                             request parameter name is derived from the method parameter name.
 	 */
 	public RequestParamMethodArgumentResolver(@Nullable ConfigurableBeanFactory beanFactory,
-			boolean useDefaultResolution) {
+											  boolean useDefaultResolution) {
 
 		super(beanFactory);
 		this.useDefaultResolution = useDefaultResolution;
@@ -127,23 +129,19 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 			if (Map.class.isAssignableFrom(parameter.nestedIfOptional().getNestedParameterType())) {
 				RequestParam requestParam = parameter.getParameterAnnotation(RequestParam.class);
 				return (requestParam != null && StringUtils.hasText(requestParam.name()));
-			}
-			else {
+			} else {
 				return true;
 			}
-		}
-		else {
+		} else {
 			if (parameter.hasParameterAnnotation(RequestPart.class)) {
 				return false;
 			}
 			parameter = parameter.nestedIfOptional();
 			if (MultipartResolutionDelegate.isMultipartArgument(parameter)) {
 				return true;
-			}
-			else if (this.useDefaultResolution) {
+			} else if (this.useDefaultResolution) {
 				return BeanUtils.isSimpleProperty(parameter.getNestedParameterType());
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
@@ -192,12 +190,10 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 		if (MultipartResolutionDelegate.isMultipartArgument(parameter)) {
 			if (servletRequest == null || !MultipartResolutionDelegate.isMultipartRequest(servletRequest)) {
 				throw new MultipartException("Current request is not a multipart request");
-			}
-			else {
+			} else {
 				throw new MissingServletRequestPartException(name);
 			}
-		}
-		else {
+		} else {
 			throw new MissingServletRequestParameterException(name,
 					parameter.getNestedParameterType().getSimpleName());
 		}
@@ -205,7 +201,7 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 	@Override
 	public void contributeMethodArgument(MethodParameter parameter, @Nullable Object value,
-			UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
+										 UriComponentsBuilder builder, Map<String, Object> uriVariables, ConversionService conversionService) {
 
 		Class<?> paramType = parameter.getNestedParameterType();
 		if (Map.class.isAssignableFrom(paramType) || MultipartFile.class == paramType || Part.class == paramType) {
@@ -223,14 +219,12 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 				return;
 			}
 			builder.queryParam(name);
-		}
-		else if (value instanceof Collection) {
+		} else if (value instanceof Collection) {
 			for (Object element : (Collection<?>) value) {
 				element = formatUriValue(conversionService, TypeDescriptor.nested(parameter, 1), element);
 				builder.queryParam(name, element);
 			}
-		}
-		else {
+		} else {
 			builder.queryParam(name, formatUriValue(conversionService, new TypeDescriptor(parameter), value));
 		}
 	}
@@ -241,14 +235,11 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueMethod
 
 		if (value == null) {
 			return null;
-		}
-		else if (value instanceof String) {
+		} else if (value instanceof String) {
 			return (String) value;
-		}
-		else if (cs != null) {
+		} else if (cs != null) {
 			return (String) cs.convert(value, sourceType, STRING_TYPE_DESCRIPTOR);
-		}
-		else {
+		} else {
 			return value.toString();
 		}
 	}

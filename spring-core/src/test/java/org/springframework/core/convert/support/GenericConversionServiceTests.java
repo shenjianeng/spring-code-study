@@ -264,7 +264,7 @@ public class GenericConversionServiceTests {
 	public void testInterfaceArrayToStringArray() {
 		conversionService.addConverter(new MyBaseInterfaceToStringConverter());
 		conversionService.addConverter(new ArrayToArrayConverter(conversionService));
-		String[] converted = conversionService.convert(new MyInterface[] {new MyInterfaceImplementer()}, String[].class);
+		String[] converted = conversionService.convert(new MyInterface[]{new MyInterfaceImplementer()}, String[].class);
 		assertEquals("RESULT", converted[0]);
 	}
 
@@ -272,14 +272,14 @@ public class GenericConversionServiceTests {
 	public void testObjectArrayToStringArray() {
 		conversionService.addConverter(new MyBaseInterfaceToStringConverter());
 		conversionService.addConverter(new ArrayToArrayConverter(conversionService));
-		String[] converted = conversionService.convert(new MyInterfaceImplementer[] {new MyInterfaceImplementer()}, String[].class);
+		String[] converted = conversionService.convert(new MyInterfaceImplementer[]{new MyInterfaceImplementer()}, String[].class);
 		assertEquals("RESULT", converted[0]);
 	}
 
 	@Test
 	public void testStringArrayToResourceArray() {
 		conversionService.addConverter(new MyStringArrayToResourceArrayConverter());
-		Resource[] converted = conversionService.convert(new String[] { "x1", "z3" }, Resource[].class);
+		Resource[] converted = conversionService.convert(new String[]{"x1", "z3"}, Resource[].class);
 		List<String> descriptions = Arrays.stream(converted).map(Resource::getDescription).sorted(naturalOrder()).collect(toList());
 		assertEquals(Arrays.asList("1", "3"), descriptions);
 	}
@@ -287,15 +287,15 @@ public class GenericConversionServiceTests {
 	@Test
 	public void testStringArrayToIntegerArray() {
 		conversionService.addConverter(new MyStringArrayToIntegerArrayConverter());
-		Integer[] converted = conversionService.convert(new String[] {"x1", "z3"}, Integer[].class);
-		assertArrayEquals(new Integer[] { 1, 3 }, converted);
+		Integer[] converted = conversionService.convert(new String[]{"x1", "z3"}, Integer[].class);
+		assertArrayEquals(new Integer[]{1, 3}, converted);
 	}
 
 	@Test
 	public void testStringToIntegerArray() {
 		conversionService.addConverter(new MyStringToIntegerArrayConverter());
 		Integer[] converted = conversionService.convert("x1,z3", Integer[].class);
-		assertArrayEquals(new Integer[] { 1, 3 }, converted);
+		assertArrayEquals(new Integer[]{1, 3}, converted);
 	}
 
 	@Test
@@ -496,8 +496,7 @@ public class GenericConversionServiceTests {
 		try {
 			conversionService.addConverter(converter);
 			fail("Did not throw IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("Only conditional converters may return null convertible types", ex.getMessage());
 		}
 	}
@@ -514,7 +513,7 @@ public class GenericConversionServiceTests {
 	@Test
 	public void convertOptimizeArray() {
 		// SPR-9566
-		byte[] byteArray = new byte[] { 1, 2, 3 };
+		byte[] byteArray = new byte[]{1, 2, 3};
 		byte[] converted = conversionService.convert(byteArray, byte[].class);
 		assertSame(byteArray, converted);
 	}
@@ -602,8 +601,7 @@ public class GenericConversionServiceTests {
 		try {
 			conversionService.convert("test", TypeDescriptor.valueOf(String.class), new TypeDescriptor(getClass().getField("integerCollection")));
 			fail("Should have thrown ConverterNotFoundException");
-		}
-		catch (ConverterNotFoundException ex) {
+		} catch (ConverterNotFoundException ex) {
 			// expected
 		}
 	}
@@ -712,7 +710,7 @@ public class GenericConversionServiceTests {
 	}
 
 
-	private static class MyStringToIntegerArrayConverter implements Converter<String, Integer[]>	{
+	private static class MyStringToIntegerArrayConverter implements Converter<String, Integer[]> {
 
 		@Override
 		public Integer[] convert(String source) {
@@ -724,10 +722,12 @@ public class GenericConversionServiceTests {
 
 	private static class WithCopyConstructor {
 
-		WithCopyConstructor() {}
+		WithCopyConstructor() {
+		}
 
 		@SuppressWarnings("unused")
-		WithCopyConstructor(WithCopyConstructor value) {}
+		WithCopyConstructor(WithCopyConstructor value) {
+		}
 	}
 
 

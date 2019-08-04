@@ -53,8 +53,7 @@ abstract class WebSocketNamespaceUtils {
 		Element handlerElem = DomUtils.getChildElementByTagName(element, "handshake-handler");
 		if (handlerElem != null) {
 			handlerRef = new RuntimeBeanReference(handlerElem.getAttribute("ref"));
-		}
-		else {
+		} else {
 			RootBeanDefinition defaultHandlerDef = new RootBeanDefinition(DefaultHandshakeHandler.class);
 			defaultHandlerDef.setSource(source);
 			defaultHandlerDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -80,8 +79,7 @@ abstract class WebSocketNamespaceUtils {
 			String customTaskSchedulerName = sockJsElement.getAttribute("scheduler");
 			if (!customTaskSchedulerName.isEmpty()) {
 				scheduler = new RuntimeBeanReference(customTaskSchedulerName);
-			}
-			else {
+			} else {
 				scheduler = registerScheduler(schedulerName, context, source);
 			}
 			sockJsServiceDef.getConstructorArgumentValues().addIndexedArgumentValue(0, scheduler);
@@ -94,8 +92,7 @@ abstract class WebSocketNamespaceUtils {
 				}
 				ManagedList<?> transportHandlers = parseBeanSubElements(transportHandlersElement, context);
 				sockJsServiceDef.getConstructorArgumentValues().addIndexedArgumentValue(1, transportHandlers);
-			}
-			else if (handshakeHandler != null) {
+			} else if (handshakeHandler != null) {
 				RuntimeBeanReference handshakeHandlerRef = new RuntimeBeanReference(handshakeHandler.getAttribute("ref"));
 				RootBeanDefinition transportHandler = new RootBeanDefinition(WebSocketTransportHandler.class);
 				transportHandler.setSource(source);

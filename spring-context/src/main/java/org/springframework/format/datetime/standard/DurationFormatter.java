@@ -27,8 +27,8 @@ import org.springframework.format.Formatter;
  * following JSR-310's parsing rules for a Duration.
  *
  * @author Juergen Hoeller
- * @since 4.2.4
  * @see Duration#parse
+ * @since 4.2.4
  */
 class DurationFormatter implements Formatter<Duration> {
 

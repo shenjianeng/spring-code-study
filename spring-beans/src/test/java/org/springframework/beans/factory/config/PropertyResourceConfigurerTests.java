@@ -56,8 +56,8 @@ import static org.springframework.tests.TestResourceUtils.*;
  * @author Juergen Hoeller
  * @author Chris Beams
  * @author Phillip Webb
- * @since 02.10.2003
  * @see PropertyPlaceholderConfigurerTests
+ * @since 02.10.2003
  */
 public class PropertyResourceConfigurerTests {
 
@@ -271,8 +271,7 @@ public class PropertyResourceConfigurerTests {
 			poc.setOrder(0); // won't actually do anything since we're not processing through an app ctx
 			try {
 				poc.postProcessBeanFactory(factory);
-			}
-			catch (BeanInitializationException ex) {
+			} catch (BeanInitializationException ex) {
 				// prove that the processor chokes on the invalid key
 				assertTrue(ex.getMessage().toLowerCase().contains("argh"));
 			}
@@ -336,8 +335,7 @@ public class PropertyResourceConfigurerTests {
 			ChildBeanDefinition bd = new ChildBeanDefinition("${parent}", pvs2);
 			factory.registerBeanDefinition("parent1", parent);
 			factory.registerBeanDefinition("tb1", bd);
-		}
-		else {
+		} else {
 			MutablePropertyValues pvs = new MutablePropertyValues();
 			pvs.add("age", "${age}");
 			pvs.add("name", "name${var}${var}${");
@@ -353,7 +351,7 @@ public class PropertyResourceConfigurerTests {
 		cas.addGenericArgumentValue("${var}name${age}");
 
 		MutablePropertyValues pvs = new MutablePropertyValues();
-		pvs.add("stringArray", new String[] {"${os.name}", "${age}"});
+		pvs.add("stringArray", new String[]{"${os.name}", "${age}"});
 
 		List<Object> friends = new ManagedList<>();
 		friends.add("na${age}me");
@@ -482,8 +480,7 @@ public class PropertyResourceConfigurerTests {
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("user.dir"));
 		}
@@ -499,8 +496,7 @@ public class PropertyResourceConfigurerTests {
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 			assertTrue(ex.getMessage().contains("ref"));
 		}
@@ -613,8 +609,7 @@ public class PropertyResourceConfigurerTests {
 		try {
 			ppc.postProcessBeanFactory(factory);
 			fail("Should have thrown BeanDefinitionStoreException");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// expected
 		}
 	}

@@ -39,8 +39,8 @@ import static org.springframework.test.util.MetaAnnotationUtils.*;
  * Unit tests for {@link MetaAnnotationUtils}.
  *
  * @author Sam Brannen
- * @since 4.0
  * @see OverriddenMetaAnnotationAttributesTests
+ * @since 4.0
  */
 public class MetaAnnotationUtilsTests {
 
@@ -57,7 +57,7 @@ public class MetaAnnotationUtilsTests {
 	}
 
 	private void assertAtComponentOnComposedAnnotation(Class<?> startClass, Class<?> rootDeclaringClass,
-			Class<?> declaringClass, String name, Class<? extends Annotation> composedAnnotationType) {
+													   Class<?> declaringClass, String name, Class<? extends Annotation> composedAnnotationType) {
 
 		AnnotationDescriptor<Component> descriptor = findAnnotationDescriptor(startClass, Component.class);
 		assertNotNull("AnnotationDescriptor should not be null", descriptor);
@@ -77,7 +77,7 @@ public class MetaAnnotationUtilsTests {
 	}
 
 	private void assertAtComponentOnComposedAnnotationForMultipleCandidateTypes(Class<?> startClass,
-			Class<?> rootDeclaringClass, String name, Class<? extends Annotation> composedAnnotationType) {
+																				Class<?> rootDeclaringClass, String name, Class<? extends Annotation> composedAnnotationType) {
 
 		assertAtComponentOnComposedAnnotationForMultipleCandidateTypes(
 				startClass, rootDeclaringClass, composedAnnotationType, name, composedAnnotationType);
@@ -85,8 +85,8 @@ public class MetaAnnotationUtilsTests {
 
 	@SuppressWarnings("unchecked")
 	private void assertAtComponentOnComposedAnnotationForMultipleCandidateTypes(Class<?> startClass,
-			Class<?> rootDeclaringClass, Class<?> declaringClass, String name,
-			Class<? extends Annotation> composedAnnotationType) {
+																				Class<?> rootDeclaringClass, Class<?> declaringClass, String name,
+																				Class<? extends Annotation> composedAnnotationType) {
 
 		Class<Component> annotationType = Component.class;
 		UntypedAnnotationDescriptor descriptor = findAnnotationDescriptorForTypes(
@@ -216,7 +216,7 @@ public class MetaAnnotationUtilsTests {
 		assertNotNull("composedAnnotation should not be null", descriptor.getComposedAnnotation());
 		assertEquals("composedAnnotationType", MetaConfig.class, descriptor.getComposedAnnotationType());
 
-		assertArrayEquals("configured classes", new Class<?>[] {String.class},
+		assertArrayEquals("configured classes", new Class<?>[]{String.class},
 				descriptor.getAnnotationAttributes().getClassArray("classes"));
 	}
 
@@ -376,8 +376,8 @@ public class MetaAnnotationUtilsTests {
 		assertNotNull(descriptor);
 		assertEquals(startClass, descriptor.getRootDeclaringClass());
 		assertEquals(annotationType, descriptor.getAnnotationType());
-		assertArrayEquals(new Class<?>[] {}, ((ContextConfiguration) descriptor.getAnnotation()).value());
-		assertArrayEquals(new Class<?>[] {MetaConfig.DevConfig.class, MetaConfig.ProductionConfig.class},
+		assertArrayEquals(new Class<?>[]{}, ((ContextConfiguration) descriptor.getAnnotation()).value());
+		assertArrayEquals(new Class<?>[]{MetaConfig.DevConfig.class, MetaConfig.ProductionConfig.class},
 				descriptor.getAnnotationAttributes().getClassArray("classes"));
 		assertNotNull(descriptor.getComposedAnnotation());
 		assertEquals(MetaConfig.class, descriptor.getComposedAnnotationType());
@@ -395,8 +395,8 @@ public class MetaAnnotationUtilsTests {
 		assertNotNull(descriptor);
 		assertEquals(startClass, descriptor.getRootDeclaringClass());
 		assertEquals(annotationType, descriptor.getAnnotationType());
-		assertArrayEquals(new Class<?>[] {}, ((ContextConfiguration) descriptor.getAnnotation()).value());
-		assertArrayEquals(new Class<?>[] {MetaAnnotationUtilsTests.class},
+		assertArrayEquals(new Class<?>[]{}, ((ContextConfiguration) descriptor.getAnnotation()).value());
+		assertArrayEquals(new Class<?>[]{MetaAnnotationUtilsTests.class},
 				descriptor.getAnnotationAttributes().getClassArray("classes"));
 		assertNotNull(descriptor.getComposedAnnotation());
 		assertEquals(MetaConfig.class, descriptor.getComposedAnnotationType());
@@ -547,7 +547,7 @@ public class MetaAnnotationUtilsTests {
 		}
 
 
-		Class<?>[] classes() default { DevConfig.class, ProductionConfig.class };
+		Class<?>[] classes() default {DevConfig.class, ProductionConfig.class};
 	}
 
 	// -------------------------------------------------------------------------

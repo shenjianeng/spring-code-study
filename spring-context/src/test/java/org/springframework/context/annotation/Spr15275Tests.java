@@ -83,6 +83,7 @@ public class Spr15275Tests {
 				public Foo getObject() {
 					return new Foo("x");
 				}
+
 				@Override
 				public Class<?> getObjectType() {
 					return Foo.class;
@@ -108,6 +109,7 @@ public class Spr15275Tests {
 				public Foo createInstance() {
 					return new Foo("x");
 				}
+
 				@Override
 				public Class<?> getObjectType() {
 					return Foo.class;
@@ -133,6 +135,7 @@ public class Spr15275Tests {
 				public FooInterface createInstance() {
 					return new Foo("x");
 				}
+
 				@Override
 				public Class<?> getObjectType() {
 					return FooInterface.class;
@@ -158,6 +161,7 @@ public class Spr15275Tests {
 				public FooInterface createInstance() {
 					return new Foo("x");
 				}
+
 				@Override
 				public Class<?> getObjectType() {
 					return Foo.class;

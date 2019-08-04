@@ -31,23 +31,24 @@ import javax.mail.internet.MimeMessage;
  * See {@link MimeMessageHelper MimeMessageHelper's javadoc} for an example.
  *
  * @author Juergen Hoeller
- * @since 07.10.2003
  * @see JavaMailSender#send(MimeMessagePreparator)
  * @see JavaMailSender#send(MimeMessagePreparator[])
  * @see MimeMessageHelper
+ * @since 07.10.2003
  */
 @FunctionalInterface
 public interface MimeMessagePreparator {
 
 	/**
 	 * Prepare the given new MimeMessage instance.
+	 *
 	 * @param mimeMessage the message to prepare
 	 * @throws javax.mail.MessagingException passing any exceptions thrown by MimeMessage
-	 * methods through for automatic conversion to the MailException hierarchy
-	 * @throws java.io.IOException passing any exceptions thrown by MimeMessage methods
-	 * through for automatic conversion to the MailException hierarchy
-	 * @throws Exception if mail preparation failed, for example when a
-	 * FreeMarker template cannot be rendered for the mail text
+	 *                                       methods through for automatic conversion to the MailException hierarchy
+	 * @throws java.io.IOException           passing any exceptions thrown by MimeMessage methods
+	 *                                       through for automatic conversion to the MailException hierarchy
+	 * @throws Exception                     if mail preparation failed, for example when a
+	 *                                       FreeMarker template cannot be rendered for the mail text
 	 */
 	void prepare(MimeMessage mimeMessage) throws Exception;
 

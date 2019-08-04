@@ -57,7 +57,6 @@ package org.springframework.core.env;
  * of property sources prior to application context {@code refresh()}.
  *
  * @author Chris Beams
- * @since 3.1
  * @see PropertyResolver
  * @see EnvironmentCapable
  * @see ConfigurableEnvironment
@@ -67,6 +66,7 @@ package org.springframework.core.env;
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#setEnvironment
  * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
+ * @since 3.1
  */
 public interface Environment extends PropertyResolver {
 
@@ -79,6 +79,7 @@ public interface Environment extends PropertyResolver {
 	 * {@link ConfigurableEnvironment#setActiveProfiles(String...)}.
 	 * <p>If no profiles have explicitly been specified as active, then any
 	 * {@linkplain #getDefaultProfiles() default profiles} will automatically be activated.
+	 *
 	 * @see #getDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
@@ -88,6 +89,7 @@ public interface Environment extends PropertyResolver {
 	/**
 	 * Return the set of profiles to be active by default when no active profiles have
 	 * been set explicitly.
+	 *
 	 * @see #getActiveProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
@@ -101,8 +103,9 @@ public interface Environment extends PropertyResolver {
 	 * i.e. the method will return {@code true} if the given profile is <em>not</em> active.
 	 * For example, {@code env.acceptsProfiles("p1", "!p2")} will return {@code true} if
 	 * profile 'p1' is active or 'p2' is not active.
+	 *
 	 * @throws IllegalArgumentException if called with zero arguments
-	 * or if any profile is {@code null}, empty, or whitespace only
+	 *                                  or if any profile is {@code null}, empty, or whitespace only
 	 * @see #getActiveProfiles
 	 * @see #getDefaultProfiles
 	 * @see #acceptsProfiles(Profiles)

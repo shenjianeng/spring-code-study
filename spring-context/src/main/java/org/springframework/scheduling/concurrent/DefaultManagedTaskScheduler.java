@@ -47,6 +47,7 @@ public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler impleme
 
 	/**
 	 * Set the JNDI template to use for JNDI lookups.
+	 *
 	 * @see org.springframework.jndi.JndiAccessor#setJndiTemplate
 	 */
 	public void setJndiTemplate(JndiTemplate jndiTemplate) {
@@ -55,6 +56,7 @@ public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler impleme
 
 	/**
 	 * Set the JNDI environment to use for JNDI lookups.
+	 *
 	 * @see org.springframework.jndi.JndiAccessor#setJndiEnvironment
 	 */
 	public void setJndiEnvironment(Properties jndiEnvironment) {
@@ -65,6 +67,7 @@ public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler impleme
 	 * Set whether the lookup occurs in a Java EE container, i.e. if the prefix
 	 * "java:comp/env/" needs to be added if the JNDI name doesn't already
 	 * contain it. PersistenceAnnotationBeanPostProcessor's default is "true".
+	 *
 	 * @see org.springframework.jndi.JndiLocatorSupport#setResourceRef
 	 */
 	public void setResourceRef(boolean resourceRef) {
@@ -76,6 +79,7 @@ public class DefaultManagedTaskScheduler extends ConcurrentTaskScheduler impleme
 	 * replacing the default JNDI name "java:comp/DefaultManagedScheduledExecutorService".
 	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
 	 * to the current environment naming context if "resourceRef" is set to "true".
+	 *
 	 * @see #setConcurrentExecutor
 	 * @see #setResourceRef
 	 */

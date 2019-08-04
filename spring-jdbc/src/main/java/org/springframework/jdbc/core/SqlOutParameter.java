@@ -40,7 +40,8 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
+	 *
+	 * @param name    name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 */
 	public SqlOutParameter(String name, int sqlType) {
@@ -49,10 +50,11 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
+	 *
+	 * @param name    name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param scale the number of digits after the decimal point
-	 * (for DECIMAL and NUMERIC types)
+	 * @param scale   the number of digits after the decimal point
+	 *                (for DECIMAL and NUMERIC types)
 	 */
 	public SqlOutParameter(String name, int sqlType, int scale) {
 		super(name, sqlType, scale);
@@ -60,8 +62,9 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
+	 *
+	 * @param name     name of the parameter, as used in input and output maps
+	 * @param sqlType  the parameter SQL type according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
 	 */
 	public SqlOutParameter(String name, int sqlType, @Nullable String typeName) {
@@ -70,9 +73,10 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
-	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param typeName the type name of the parameter (optional)
+	 *
+	 * @param name          name of the parameter, as used in input and output maps
+	 * @param sqlType       the parameter SQL type according to {@code java.sql.Types}
+	 * @param typeName      the type name of the parameter (optional)
 	 * @param sqlReturnType custom value handler for complex type (optional)
 	 */
 	public SqlOutParameter(String name, int sqlType, @Nullable String typeName, @Nullable SqlReturnType sqlReturnType) {
@@ -82,9 +86,10 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
+	 *
+	 * @param name    name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rse the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
+	 * @param rse     the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
 	 */
 	public SqlOutParameter(String name, int sqlType, ResultSetExtractor<?> rse) {
 		super(name, sqlType, rse);
@@ -92,9 +97,10 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name name of the parameter, as used in input and output maps
+	 *
+	 * @param name    name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rch the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
+	 * @param rch     the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
 	 */
 	public SqlOutParameter(String name, int sqlType, RowCallbackHandler rch) {
 		super(name, sqlType, rch);
@@ -102,9 +108,10 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 	/**
 	 * Create a new SqlOutParameter.
-	 * @param name the name of the parameter, as used in input and output maps
+	 *
+	 * @param name    the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
-	 * @param rm the {@link RowMapper} to use for parsing the {@link ResultSet}
+	 * @param rm      the {@link RowMapper} to use for parsing the {@link ResultSet}
 	 */
 	public SqlOutParameter(String name, int sqlType, RowMapper<?> rm) {
 		super(name, sqlType, rm);

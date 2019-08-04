@@ -81,12 +81,12 @@ public class MessageWriterResultHandlerTests {
 			writerList.add(new ResourceHttpMessageWriter());
 			writerList.add(new EncoderHttpMessageWriter<>(new Jaxb2XmlEncoder()));
 			writerList.add(new EncoderHttpMessageWriter<>(new Jackson2JsonEncoder()));
-		}
-		else {
+		} else {
 			writerList = Arrays.asList(writers);
 		}
 		RequestedContentTypeResolver resolver = new RequestedContentTypeResolverBuilder().build();
-		return new AbstractMessageWriterResultHandler(writerList, resolver) {};
+		return new AbstractMessageWriterResultHandler(writerList, resolver) {
+		};
 	}
 
 
@@ -239,7 +239,7 @@ public class MessageWriterResultHandlerTests {
 	}
 
 
-	@SuppressWarnings({ "serial" })
+	@SuppressWarnings({"serial"})
 	private static class SimpleBean implements Identifiable {
 
 		private Long id;
@@ -266,33 +266,60 @@ public class MessageWriterResultHandlerTests {
 	@SuppressWarnings("unused")
 	private static class TestController {
 
-		Resource resource() { return null; }
+		Resource resource() {
+			return null;
+		}
 
-		String string() { return null; }
+		String string() {
+			return null;
+		}
 
-		void voidReturn() { }
+		void voidReturn() {
+		}
 
-		Mono<Void> monoVoid() { return null; }
+		Mono<Void> monoVoid() {
+			return null;
+		}
 
-		Completable completable() { return null; }
+		Completable completable() {
+			return null;
+		}
 
-		io.reactivex.Completable rxJava2Completable() { return null; }
+		io.reactivex.Completable rxJava2Completable() {
+			return null;
+		}
 
-		Flux<Void> fluxVoid() { return null; }
+		Flux<Void> fluxVoid() {
+			return null;
+		}
 
-		Observable<Void> observableVoid() { return null; }
+		Observable<Void> observableVoid() {
+			return null;
+		}
 
-		io.reactivex.Observable<Void> rxJava2ObservableVoid() { return null; }
+		io.reactivex.Observable<Void> rxJava2ObservableVoid() {
+			return null;
+		}
 
-		Flowable<Void> flowableVoid() { return null; }
+		Flowable<Void> flowableVoid() {
+			return null;
+		}
 
-		OutputStream outputStream() { return null; }
+		OutputStream outputStream() {
+			return null;
+		}
 
-		List<ParentClass> listParentClass() { return null; }
+		List<ParentClass> listParentClass() {
+			return null;
+		}
 
-		Identifiable identifiable() { return null; }
+		Identifiable identifiable() {
+			return null;
+		}
 
-		List<Identifiable> listIdentifiable() { return null; }
+		List<Identifiable> listIdentifiable() {
+			return null;
+		}
 	}
 
 }

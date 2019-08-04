@@ -59,7 +59,7 @@ public class SockJsWebSocketHandler extends TextWebSocketHandler implements SubP
 
 
 	public SockJsWebSocketHandler(SockJsServiceConfig serviceConfig, WebSocketHandler webSocketHandler,
-			WebSocketServerSockJsSession sockJsSession) {
+								  WebSocketServerSockJsSession sockJsSession) {
 
 		Assert.notNull(serviceConfig, "serviceConfig must not be null");
 		Assert.notNull(webSocketHandler, "webSocketHandler must not be null");

@@ -56,7 +56,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		Object value = state.lookupLocalVariable("foo");
 		assertNull(value);
 
-		state.setLocalVariable("foo",34);
+		state.setLocalVariable("foo", 34);
 		value = state.lookupLocalVariable("foo");
 		assertEquals(34, value);
 
@@ -71,12 +71,12 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		TypedValue typedValue = state.lookupVariable("foo");
 		assertEquals(TypedValue.NULL, typedValue);
 
-		state.setVariable("foo",34);
+		state.setVariable("foo", 34);
 		typedValue = state.lookupVariable("foo");
 		assertEquals(34, typedValue.getValue());
 		assertEquals(Integer.class, typedValue.getTypeDescriptor().getType());
 
-		state.setVariable("foo","abc");
+		state.setVariable("foo", "abc");
 		typedValue = state.lookupVariable("foo");
 		assertEquals("abc", typedValue.getValue());
 		assertEquals(String.class, typedValue.getTypeDescriptor().getType());
@@ -88,7 +88,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		TypedValue typedValue = state.lookupVariable("foo");
 		assertEquals(TypedValue.NULL, typedValue);
 
-		state.setLocalVariable("foo",34);
+		state.setLocalVariable("foo", 34);
 		typedValue = state.lookupVariable("foo");
 		assertEquals(TypedValue.NULL, typedValue);
 
@@ -101,13 +101,13 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		ExpressionState state = getState();
 		assertEquals(null, state.lookupLocalVariable("foo"));
 
-		state.setLocalVariable("foo",12);
+		state.setLocalVariable("foo", 12);
 		assertEquals(12, state.lookupLocalVariable("foo"));
 
 		state.enterScope(null);
 		assertEquals(12, state.lookupLocalVariable("foo"));  // found in upper scope
 
-		state.setLocalVariable("foo","abc");
+		state.setLocalVariable("foo", "abc");
 		assertEquals("abc", state.lookupLocalVariable("foo"));  // found in nested scope
 
 		state.exitScope();
@@ -140,8 +140,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		try {
 			state.popActiveContextObject();
 			fail("stack should be empty...");
-		}
-		catch (IllegalStateException ese) {
+		} catch (IllegalStateException ese) {
 			// success
 		}
 
@@ -166,7 +165,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		ExpressionState state = getState();
 		assertNull(state.lookupLocalVariable("foo"));
 
-		state.enterScope("foo",34);
+		state.enterScope("foo", 34);
 		assertEquals(34, state.lookupLocalVariable("foo"));
 
 		state.enterScope(null);
@@ -185,7 +184,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		EvaluationContext ctx = getContext();
 		// TypedValue root = ctx.getRootObject();
 		// supplied should override root on context
-		ExpressionState state = new ExpressionState(ctx,new TypedValue("i am a string"));
+		ExpressionState state = new ExpressionState(ctx, new TypedValue("i am a string"));
 		TypedValue stateRoot = state.getRootContextObject();
 		assertEquals(String.class, stateRoot.getTypeDescriptor().getType());
 		assertEquals("i am a string", stateRoot.getValue());
@@ -197,7 +196,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		assertNull(state.lookupLocalVariable("foo"));
 		assertNull(state.lookupLocalVariable("goo"));
 
-		Map<String,Object> m = new HashMap<>();
+		Map<String, Object> m = new HashMap<>();
 		m.put("foo", 34);
 		m.put("goo", "abc");
 
@@ -206,7 +205,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		assertEquals("abc", state.lookupLocalVariable("goo"));
 
 		state.enterScope(null);
-		state.setLocalVariable("foo",12);
+		state.setLocalVariable("foo", 12);
 		assertEquals(12, state.lookupLocalVariable("foo"));
 		assertEquals("abc", state.lookupLocalVariable("goo"));
 
@@ -220,20 +219,18 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 	public void testOperators() {
 		ExpressionState state = getState();
 		try {
-			state.operate(Operation.ADD,1,2);
+			state.operate(Operation.ADD, 1, 2);
 			fail("should have failed");
-		}
-		catch (EvaluationException ee) {
-			SpelEvaluationException sEx = (SpelEvaluationException)ee;
+		} catch (EvaluationException ee) {
+			SpelEvaluationException sEx = (SpelEvaluationException) ee;
 			assertEquals(SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES, sEx.getMessageCode());
 		}
 
 		try {
-			state.operate(Operation.ADD,null,null);
+			state.operate(Operation.ADD, null, null);
 			fail("should have failed");
-		}
-		catch (EvaluationException ee) {
-			SpelEvaluationException sEx = (SpelEvaluationException)ee;
+		} catch (EvaluationException ee) {
+			SpelEvaluationException sEx = (SpelEvaluationException) ee;
 			assertEquals(SpelMessage.OPERATOR_NOT_SUPPORTED_BETWEEN_TYPES, sEx.getMessageCode());
 		}
 	}
@@ -252,9 +249,8 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		try {
 			state.findType("someMadeUpName");
 			fail("Should have failed to find it");
-		}
-		catch (EvaluationException ee) {
-			SpelEvaluationException sEx = (SpelEvaluationException)ee;
+		} catch (EvaluationException ee) {
+			SpelEvaluationException sEx = (SpelEvaluationException) ee;
 			assertEquals(SpelMessage.TYPE_NOT_FOUND, sEx.getMessageCode());
 		}
 	}
@@ -265,7 +261,7 @@ public class ExpressionStateTests extends AbstractExpressionTests {
 		String s = (String) state.convertValue(34, TypeDescriptor.valueOf(String.class));
 		assertEquals("34", s);
 
-		s = (String)state.convertValue(new TypedValue(34), TypeDescriptor.valueOf(String.class));
+		s = (String) state.convertValue(new TypedValue(34), TypeDescriptor.valueOf(String.class));
 		assertEquals("34", s);
 	}
 

@@ -63,7 +63,7 @@ public class ConvertingComparatorTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowOnNullType() throws Exception {
 		new ConvertingComparator<String, Integer>(this.comparator,
-			this.conversionService, null);
+				this.conversionService, null);
 	}
 
 	@Test
@@ -138,7 +138,9 @@ public class ConvertingComparatorTests {
 			assertThat(o2, instanceOf(Integer.class));
 			this.called = true;
 			return super.compare(o1, o2);
-		};
+		}
+
+		;
 
 		public void assertCalled() {
 			assertThat(this.called, is(true));

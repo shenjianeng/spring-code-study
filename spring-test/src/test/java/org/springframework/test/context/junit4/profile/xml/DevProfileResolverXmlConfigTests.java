@@ -28,7 +28,7 @@ public class DevProfileResolverXmlConfigTests extends DevProfileXmlConfigTests i
 
 	@Override
 	public String[] resolve(Class<?> testClass) {
-		return new String[] { "dev" };
+		return new String[]{"dev"};
 	}
 
 }

@@ -49,6 +49,7 @@ public class BindException extends Exception implements BindingResult {
 
 	/**
 	 * Create a new BindException instance for a BindingResult.
+	 *
 	 * @param bindingResult the BindingResult instance to wrap
 	 */
 	public BindException(BindingResult bindingResult) {
@@ -58,7 +59,8 @@ public class BindException extends Exception implements BindingResult {
 
 	/**
 	 * Create a new BindException instance for a target bean.
-	 * @param target target bean to bind onto
+	 *
+	 * @param target     target bean to bind onto
 	 * @param objectName the name of the target object
 	 * @see BeanPropertyBindingResult
 	 */
@@ -71,6 +73,7 @@ public class BindException extends Exception implements BindingResult {
 	/**
 	 * Return the BindingResult that this BindException wraps.
 	 * Will typically be a BeanPropertyBindingResult.
+	 *
 	 * @see BeanPropertyBindingResult
 	 */
 	public final BindingResult getBindingResult() {

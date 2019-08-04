@@ -27,10 +27,10 @@ import org.springframework.lang.Nullable;
  * from an underlying {@linkplain #getSource source} such as an
  * {@code Annotation} or a {@code Map}.
  *
- * @author Sam Brannen
- * @since 4.2
  * @param <S> the type of source supported by this extractor
+ * @author Sam Brannen
  * @see SynthesizedAnnotationInvocationHandler
+ * @since 4.2
  */
 interface AnnotationAttributeExtractor<S> {
 
@@ -43,6 +43,7 @@ interface AnnotationAttributeExtractor<S> {
 	/**
 	 * Get the element that is annotated with an annotation of the annotation
 	 * type supported by this extractor.
+	 *
 	 * @return the annotated element, or {@code null} if unknown
 	 */
 	@Nullable
@@ -56,8 +57,9 @@ interface AnnotationAttributeExtractor<S> {
 	/**
 	 * Get the attribute value from the underlying {@linkplain #getSource source}
 	 * that corresponds to the supplied attribute method.
+	 *
 	 * @param attributeMethod an attribute method from the annotation type
-	 * supported by this extractor
+	 *                        supported by this extractor
 	 * @return the value of the annotation attribute
 	 */
 	@Nullable

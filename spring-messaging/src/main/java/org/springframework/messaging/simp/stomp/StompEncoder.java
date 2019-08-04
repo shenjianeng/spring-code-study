@@ -42,10 +42,10 @@ import org.springframework.util.Assert;
  *
  * @author Andy Wilkinson
  * @author Rossen Stoyanchev
- * @since 4.0
  * @see StompDecoder
+ * @since 4.0
  */
-public class StompEncoder  {
+public class StompEncoder {
 
 	private static final byte LF = '\n';
 
@@ -66,8 +66,7 @@ public class StompEncoder  {
 					if (size() > HEADER_KEY_CACHE_LIMIT) {
 						headerKeyAccessCache.remove(eldest.getKey());
 						return true;
-					}
-					else {
+					} else {
 						return false;
 					}
 				}
@@ -76,6 +75,7 @@ public class StompEncoder  {
 
 	/**
 	 * Encodes the given STOMP {@code message} into a {@code byte[]}.
+	 *
 	 * @param message the message to encode
 	 * @return the encoded message
 	 */
@@ -85,6 +85,7 @@ public class StompEncoder  {
 
 	/**
 	 * Encodes the given payload and headers into a {@code byte[]}.
+	 *
 	 * @param headers the headers
 	 * @param payload the payload
 	 * @return the encoded message
@@ -100,9 +101,7 @@ public class StompEncoder  {
 			if (SimpMessageType.HEARTBEAT.equals(SimpMessageHeaderAccessor.getMessageType(headers))) {
 				logger.trace("Encoding heartbeat");
 				output.write(StompDecoder.HEARTBEAT_PAYLOAD);
-			}
-
-			else {
+			} else {
 				StompCommand command = StompHeaderAccessor.getCommand(headers);
 				if (command == null) {
 					throw new IllegalStateException("Missing STOMP command: " + headers);
@@ -117,17 +116,16 @@ public class StompEncoder  {
 			}
 
 			return baos.toByteArray();
-		}
-		catch (IOException ex) {
-			throw new StompConversionException("Failed to encode STOMP frame, headers=" + headers,  ex);
+		} catch (IOException ex) {
+			throw new StompConversionException("Failed to encode STOMP frame, headers=" + headers, ex);
 		}
 	}
 
 	private void writeHeaders(StompCommand command, Map<String, Object> headers, byte[] payload,
-			DataOutputStream output) throws IOException {
+							  DataOutputStream output) throws IOException {
 
 		@SuppressWarnings("unchecked")
-		Map<String,List<String>> nativeHeaders =
+		Map<String, List<String>> nativeHeaders =
 				(Map<String, List<String>>) headers.get(NativeMessageHeaderAccessor.NATIVE_HEADERS);
 
 		if (logger.isTraceEnabled()) {
@@ -201,20 +199,16 @@ public class StompEncoder  {
 			if (c == '\\') {
 				sb = getStringBuilder(sb, inString, i);
 				sb.append("\\\\");
-			}
-			else if (c == ':') {
+			} else if (c == ':') {
 				sb = getStringBuilder(sb, inString, i);
 				sb.append("\\c");
-			}
-			else if (c == '\n') {
+			} else if (c == '\n') {
 				sb = getStringBuilder(sb, inString, i);
 				sb.append("\\n");
-			}
-			else if (c == '\r') {
+			} else if (c == '\r') {
 				sb = getStringBuilder(sb, inString, i);
 				sb.append("\\r");
-			}
-			else if (sb != null){
+			} else if (sb != null) {
 				sb.append(c);
 			}
 		}

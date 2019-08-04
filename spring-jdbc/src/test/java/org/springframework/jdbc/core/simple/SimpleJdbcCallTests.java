@@ -87,8 +87,7 @@ public class SimpleJdbcCallTests {
 		thrown.expect(exceptionCause(sameInstance(sqlException)));
 		try {
 			sproc.execute();
-		}
-		finally {
+		} finally {
 			verify(callableStatement).close();
 			verify(connection, atLeastOnce()).close();
 		}
@@ -247,12 +246,11 @@ public class SimpleJdbcCallTests {
 		if (isFunction) {
 			given(callableStatement.getObject(1)).willReturn(4L);
 			given(connection.prepareCall("{? = call add_invoice(?, ?)}")
-					).willReturn(callableStatement);
-		}
-		else {
+			).willReturn(callableStatement);
+		} else {
 			given(callableStatement.getObject(3)).willReturn(4L);
 			given(connection.prepareCall("{call add_invoice(?, ?, ?)}")
-					).willReturn(callableStatement);
+			).willReturn(callableStatement);
 		}
 	}
 
@@ -261,8 +259,7 @@ public class SimpleJdbcCallTests {
 			verify(callableStatement).registerOutParameter(1, 4);
 			verify(callableStatement).setObject(2, 1103, 4);
 			verify(callableStatement).setObject(3, 3, 4);
-		}
-		else {
+		} else {
 			verify(callableStatement).setObject(1, 1103, 4);
 			verify(callableStatement).setObject(2, 3, 4);
 			verify(callableStatement).registerOutParameter(3, 4);
@@ -285,12 +282,11 @@ public class SimpleJdbcCallTests {
 		given(procedureColumnsResultSet.next()).willReturn(true, true, true, false);
 		given(procedureColumnsResultSet.getInt("DATA_TYPE")).willReturn(4);
 		if (isFunction) {
-			given(procedureColumnsResultSet.getString("COLUMN_NAME")).willReturn(null,"amount", "custid");
+			given(procedureColumnsResultSet.getString("COLUMN_NAME")).willReturn(null, "amount", "custid");
 			given(procedureColumnsResultSet.getInt("COLUMN_TYPE")).willReturn(5, 1, 1);
 			given(connection.prepareCall("{? = call ADD_INVOICE(?, ?)}")).willReturn(callableStatement);
 			given(callableStatement.getObject(1)).willReturn(4L);
-		}
-		else {
+		} else {
 			given(procedureColumnsResultSet.getString("COLUMN_NAME")).willReturn("amount", "custid", "newid");
 			given(procedureColumnsResultSet.getInt("COLUMN_TYPE")).willReturn(1, 1, 4);
 			given(connection.prepareCall("{call ADD_INVOICE(?, ?, ?)}")).willReturn(callableStatement);
@@ -306,8 +302,7 @@ public class SimpleJdbcCallTests {
 			verify(callableStatement).registerOutParameter(1, 4);
 			verify(callableStatement).setObject(2, 1103, 4);
 			verify(callableStatement).setObject(3, 3, 4);
-		}
-		else {
+		} else {
 			verify(callableStatement).setObject(1, 1103, 4);
 			verify(callableStatement).setObject(2, 3, 4);
 			verify(callableStatement).registerOutParameter(3, 4);

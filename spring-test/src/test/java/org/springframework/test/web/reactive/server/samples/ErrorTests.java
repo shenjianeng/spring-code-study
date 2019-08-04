@@ -43,7 +43,7 @@ public class ErrorTests {
 
 
 	@Test
-	public void notFound(){
+	public void notFound() {
 		this.client.get().uri("/invalid")
 				.exchange()
 				.expectStatus().isNotFound()

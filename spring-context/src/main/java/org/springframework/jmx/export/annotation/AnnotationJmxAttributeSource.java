@@ -43,10 +43,10 @@ import org.springframework.util.StringValueResolver;
  * @author Juergen Hoeller
  * @author Jennifer Hickey
  * @author Stephane Nicoll
- * @since 1.2
  * @see ManagedResource
  * @see ManagedAttribute
  * @see ManagedOperation
+ * @since 1.2
  */
 public class AnnotationJmxAttributeSource implements JmxAttributeSource, BeanFactoryAware {
 

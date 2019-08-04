@@ -177,8 +177,7 @@ public class XmlBeanCollectionTests {
 		try {
 			this.beanFactory.getBean("jumble2");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof BeanDefinitionStoreException);
 			assertTrue(ex.getCause().getMessage().contains("rod2"));
 		}
@@ -350,7 +349,7 @@ public class XmlBeanCollectionTests {
 	@Test
 	public void testClassList() throws Exception {
 		HasMap hasMap = (HasMap) this.beanFactory.getBean("classList");
-		assertTrue(hasMap.getClassList().size()== 2);
+		assertTrue(hasMap.getClassList().size() == 2);
 		assertTrue(hasMap.getClassList().get(0).equals(String.class));
 		assertTrue(hasMap.getClassList().get(1).equals(Exception.class));
 	}

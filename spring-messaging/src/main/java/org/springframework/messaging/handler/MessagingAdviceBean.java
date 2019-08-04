@@ -51,6 +51,7 @@ public interface MessagingAdviceBean extends Ordered {
 
 	/**
 	 * Whether this {@link MessagingAdviceBean} applies to the given bean type.
+	 *
 	 * @param beanType the type of the bean to check
 	 */
 	boolean isApplicableToBeanType(Class<?> beanType);

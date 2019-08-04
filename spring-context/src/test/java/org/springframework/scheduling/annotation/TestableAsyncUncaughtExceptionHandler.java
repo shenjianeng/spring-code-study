@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 
 /**
  * A {@link AsyncUncaughtExceptionHandler} implementation used for testing purposes.
+ *
  * @author Stephane Nicoll
  */
 class TestableAsyncUncaughtExceptionHandler
@@ -67,8 +68,7 @@ class TestableAsyncUncaughtExceptionHandler
 	public void await(long timeout) {
 		try {
 			this.latch.await(timeout, TimeUnit.MILLISECONDS);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Thread.currentThread().interrupt();
 		}
 	}

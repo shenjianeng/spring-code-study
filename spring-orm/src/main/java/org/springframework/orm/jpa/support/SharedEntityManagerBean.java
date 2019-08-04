@@ -43,11 +43,11 @@ import org.springframework.util.Assert;
  * always needs an EntityManagerFactory in order to create new transactional EntityManager instances.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setEntityManagerFactory
  * @see #setEntityManagerInterface
  * @see org.springframework.orm.jpa.LocalEntityManagerFactoryBean
  * @see org.springframework.orm.jpa.JpaTransactionManager
+ * @since 2.0
  */
 public class SharedEntityManagerBean extends EntityManagerFactoryAccessor
 		implements FactoryBean<EntityManager>, InitializingBean {
@@ -66,6 +66,7 @@ public class SharedEntityManagerBean extends EntityManagerFactoryAccessor
 	 * <p>Default is the EntityManager interface as defined by the
 	 * EntityManagerFactoryInfo, if available. Else, the standard
 	 * {@code javax.persistence.EntityManager} interface will be used.
+	 *
 	 * @see org.springframework.orm.jpa.EntityManagerFactoryInfo#getEntityManagerInterface()
 	 * @see javax.persistence.EntityManager
 	 */
@@ -97,8 +98,7 @@ public class SharedEntityManagerBean extends EntityManagerFactoryAccessor
 					this.entityManagerInterface = EntityManager.class;
 				}
 			}
-		}
-		else {
+		} else {
 			if (this.entityManagerInterface == null) {
 				this.entityManagerInterface = EntityManager.class;
 			}

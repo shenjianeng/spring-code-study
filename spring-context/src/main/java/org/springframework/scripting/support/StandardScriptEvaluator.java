@@ -38,8 +38,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Juergen Hoeller
  * @author Costin Leau
- * @since 4.0
  * @see ScriptEngine#eval(String)
+ * @since 4.0
  */
 public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAware {
 
@@ -61,6 +61,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 
 	/**
 	 * Construct a new {@code StandardScriptEvaluator} for the given class loader.
+	 *
 	 * @param classLoader the class loader to use for script engine detection
 	 */
 	public StandardScriptEvaluator(ClassLoader classLoader) {
@@ -70,6 +71,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 	/**
 	 * Construct a new {@code StandardScriptEvaluator} for the given JSR-223
 	 * {@link ScriptEngineManager} to obtain script engines from.
+	 *
 	 * @param scriptEngineManager the ScriptEngineManager (or subclass thereof) to use
 	 * @since 4.2.2
 	 */
@@ -83,6 +85,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 	 * <p>This is effectively an alias for {@link #setEngineName "engineName"},
 	 * potentially (but not yet) providing common abbreviations for certain languages
 	 * beyond what the JSR-223 script engine factory exposes.
+	 *
 	 * @see #setEngineName
 	 */
 	public void setLanguage(String language) {
@@ -92,8 +95,9 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 	/**
 	 * Set the name of the script engine for evaluating the scripts (e.g. "Groovy"),
 	 * as exposed by the JSR-223 script engine factory.
-	 * @since 4.2.2
+	 *
 	 * @see #setLanguage
+	 * @since 4.2.2
 	 */
 	public void setEngineName(String engineName) {
 		this.engineName = engineName;
@@ -102,10 +106,11 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 	/**
 	 * Set the globally scoped bindings on the underlying script engine manager,
 	 * shared by all scripts, as an alternative to script argument bindings.
-	 * @since 4.2.2
+	 *
 	 * @see #evaluate(ScriptSource, Map)
 	 * @see javax.script.ScriptEngineManager#setBindings(Bindings)
 	 * @see javax.script.SimpleBindings
+	 * @since 4.2.2
 	 */
 	public void setGlobalBindings(Map<String, Object> globalBindings) {
 		Bindings bindings = StandardScriptUtils.getBindings(globalBindings);
@@ -143,22 +148,20 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 		try {
 			if (CollectionUtils.isEmpty(argumentBindings)) {
 				return engine.eval(script.getScriptAsString());
-			}
-			else {
+			} else {
 				Bindings bindings = StandardScriptUtils.getBindings(argumentBindings);
 				return engine.eval(script.getScriptAsString(), bindings);
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new ScriptCompilationException(script, "Cannot access script for ScriptEngine", ex);
-		}
-		catch (ScriptException ex) {
+		} catch (ScriptException ex) {
 			throw new ScriptCompilationException(script, new StandardScriptEvalException(ex));
 		}
 	}
 
 	/**
 	 * Obtain the JSR-223 ScriptEngine to use for the given script.
+	 *
 	 * @param script the script to evaluate
 	 * @return the ScriptEngine (never {@code null})
 	 */
@@ -171,8 +174,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 
 		if (StringUtils.hasText(this.engineName)) {
 			return StandardScriptUtils.retrieveEngineByName(scriptEngineManager, this.engineName);
-		}
-		else if (script instanceof ResourceScriptSource) {
+		} else if (script instanceof ResourceScriptSource) {
 			Resource resource = ((ResourceScriptSource) script).getResource();
 			String extension = StringUtils.getFilenameExtension(resource.getFilename());
 			if (extension == null) {
@@ -184,8 +186,7 @@ public class StandardScriptEvaluator implements ScriptEvaluator, BeanClassLoader
 				throw new IllegalStateException("No matching engine found for file extension '" + extension + "'");
 			}
 			return engine;
-		}
-		else {
+		} else {
 			throw new IllegalStateException(
 					"No script language defined, and no resource associated with script: " + script);
 		}

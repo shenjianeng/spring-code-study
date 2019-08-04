@@ -28,30 +28,32 @@ import javax.jms.Session;
  *
  * @author Mark Pollack
  * @author Juergen Hoeller
- * @since 1.1
  * @see org.springframework.jms.core.JmsTemplate#setMessageConverter
  * @see org.springframework.jms.listener.adapter.MessageListenerAdapter#setMessageConverter
  * @see org.springframework.jms.remoting.JmsInvokerClientInterceptor#setMessageConverter
  * @see org.springframework.jms.remoting.JmsInvokerServiceExporter#setMessageConverter
+ * @since 1.1
  */
 public interface MessageConverter {
 
 	/**
 	 * Convert a Java object to a JMS Message using the supplied session
 	 * to create the message object.
-	 * @param object the object to convert
+	 *
+	 * @param object  the object to convert
 	 * @param session the Session to use for creating a JMS Message
 	 * @return the JMS Message
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @throws javax.jms.JMSException     if thrown by JMS API methods
 	 * @throws MessageConversionException in case of conversion failure
 	 */
 	Message toMessage(Object object, Session session) throws JMSException, MessageConversionException;
 
 	/**
 	 * Convert from a JMS Message to a Java object.
+	 *
 	 * @param message the message to convert
 	 * @return the converted Java object
-	 * @throws javax.jms.JMSException if thrown by JMS API methods
+	 * @throws javax.jms.JMSException     if thrown by JMS API methods
 	 * @throws MessageConversionException in case of conversion failure
 	 */
 	Object fromMessage(Message message) throws JMSException, MessageConversionException;

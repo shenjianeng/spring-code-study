@@ -43,8 +43,9 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * Create a new BeanComponentDefinition for the given bean.
+	 *
 	 * @param beanDefinition the BeanDefinition
-	 * @param beanName the name of the bean
+	 * @param beanName       the name of the bean
 	 */
 	public BeanComponentDefinition(BeanDefinition beanDefinition, String beanName) {
 		this(new BeanDefinitionHolder(beanDefinition, beanName));
@@ -52,9 +53,10 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * Create a new BeanComponentDefinition for the given bean.
+	 *
 	 * @param beanDefinition the BeanDefinition
-	 * @param beanName the name of the bean
-	 * @param aliases alias names for the bean, or {@code null} if none
+	 * @param beanName       the name of the bean
+	 * @param aliases        alias names for the bean, or {@code null} if none
 	 */
 	public BeanComponentDefinition(BeanDefinition beanDefinition, String beanName, @Nullable String[] aliases) {
 		this(new BeanDefinitionHolder(beanDefinition, beanName, aliases));
@@ -62,8 +64,9 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * Create a new BeanComponentDefinition for the given bean.
+	 *
 	 * @param beanDefinitionHolder the BeanDefinitionHolder encapsulating
-	 * the bean definition as well as the name of the bean
+	 *                             the bean definition as well as the name of the bean
 	 */
 	public BeanComponentDefinition(BeanDefinitionHolder beanDefinitionHolder) {
 		super(beanDefinitionHolder);
@@ -75,11 +78,9 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 			Object value = propertyValue.getValue();
 			if (value instanceof BeanDefinitionHolder) {
 				innerBeans.add(((BeanDefinitionHolder) value).getBeanDefinition());
-			}
-			else if (value instanceof BeanDefinition) {
+			} else if (value instanceof BeanDefinition) {
 				innerBeans.add((BeanDefinition) value);
-			}
-			else if (value instanceof BeanReference) {
+			} else if (value instanceof BeanReference) {
 				references.add((BeanReference) value);
 			}
 		}
@@ -100,7 +101,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	@Override
 	public BeanDefinition[] getBeanDefinitions() {
-		return new BeanDefinition[] {getBeanDefinition()};
+		return new BeanDefinition[]{getBeanDefinition()};
 	}
 
 	@Override
@@ -116,6 +117,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 	/**
 	 * This implementation returns this ComponentDefinition's description.
+	 *
 	 * @see #getDescription()
 	 */
 	@Override

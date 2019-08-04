@@ -50,12 +50,12 @@ import org.springframework.lang.Nullable;
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
- * @since 2.0
  * @see ConfigurableBeanFactory#registerScope
  * @see CustomScopeConfigurer
  * @see org.springframework.aop.scope.ScopedProxyFactoryBean
  * @see org.springframework.web.context.request.RequestScope
  * @see org.springframework.web.context.request.SessionScope
+ * @since 2.0
  */
 public interface Scope {
 
@@ -65,9 +65,10 @@ public interface Scope {
 	 * if not found in the underlying storage mechanism.
 	 * <p>This is the central operation of a Scope, and the only operation
 	 * that is absolutely required.
-	 * @param name the name of the object to retrieve
+	 *
+	 * @param name          the name of the object to retrieve
 	 * @param objectFactory the {@link ObjectFactory} to use to create the scoped
-	 * object if it is not present in the underlying storage mechanism
+	 *                      object if it is not present in the underlying storage mechanism
 	 * @return the desired object (never {@code null})
 	 * @throws IllegalStateException if the underlying scope is not currently active
 	 */
@@ -84,6 +85,7 @@ public interface Scope {
 	 * <p><b>Note: This is an optional operation.</b> Implementations may throw
 	 * {@link UnsupportedOperationException} if they do not support explicitly
 	 * removing an object.
+	 *
 	 * @param name the name of the object to remove
 	 * @return the removed object, or {@code null} if no object was present
 	 * @throws IllegalStateException if the underlying scope is not currently active
@@ -110,12 +112,13 @@ public interface Scope {
 	 * If a scoped object gets removed via this facade's {@link #remove(String)}
 	 * method, any registered destruction callback should be removed as well,
 	 * assuming that the removed object will be reused or manually destroyed.
-	 * @param name the name of the object to execute the destruction callback for
+	 *
+	 * @param name     the name of the object to execute the destruction callback for
 	 * @param callback the destruction callback to be executed.
-	 * Note that the passed-in Runnable will never throw an exception,
-	 * so it can safely be executed without an enclosing try-catch block.
-	 * Furthermore, the Runnable will usually be serializable, provided
-	 * that its target object is serializable as well.
+	 *                 Note that the passed-in Runnable will never throw an exception,
+	 *                 so it can safely be executed without an enclosing try-catch block.
+	 *                 Furthermore, the Runnable will usually be serializable, provided
+	 *                 that its target object is serializable as well.
 	 * @throws IllegalStateException if the underlying scope is not currently active
 	 * @see org.springframework.beans.factory.DisposableBean
 	 * @see org.springframework.beans.factory.support.AbstractBeanDefinition#getDestroyMethodName()
@@ -126,6 +129,7 @@ public interface Scope {
 	/**
 	 * Resolve the contextual object for the given key, if any.
 	 * E.g. the HttpServletRequest object for key "request".
+	 *
 	 * @param key the contextual key
 	 * @return the corresponding object, or {@code null} if none found
 	 * @throws IllegalStateException if the underlying scope is not currently active
@@ -144,6 +148,7 @@ public interface Scope {
 	 * <p><b>Note: This is an optional operation.</b> It is perfectly valid to
 	 * return {@code null} in an implementation of this method if the
 	 * underlying storage mechanism has no obvious candidate for such an ID.
+	 *
 	 * @return the conversation ID, or {@code null} if there is no
 	 * conversation ID for the current scope
 	 * @throws IllegalStateException if the underlying scope is not currently active

@@ -60,8 +60,8 @@ import org.springframework.core.annotation.AliasFor;
  * since the event publisher can only handle runtime exceptions.
  *
  * @author Stephane Nicoll
- * @since 4.2
  * @see EventListenerMethodProcessor
+ * @since 4.2
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

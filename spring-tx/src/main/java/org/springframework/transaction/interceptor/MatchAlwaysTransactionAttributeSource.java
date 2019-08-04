@@ -31,9 +31,9 @@ import org.springframework.util.ObjectUtils;
  * methods being handled by a transaction interceptor.
  *
  * @author Colin Sampaleanu
- * @since 15.10.2003
  * @see org.springframework.transaction.interceptor.TransactionProxyFactoryBean
  * @see org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
+ * @since 15.10.2003
  */
 @SuppressWarnings("serial")
 public class MatchAlwaysTransactionAttributeSource implements TransactionAttributeSource, Serializable {
@@ -44,6 +44,7 @@ public class MatchAlwaysTransactionAttributeSource implements TransactionAttribu
 	/**
 	 * Allows a transaction attribute to be specified, using the String form, for
 	 * example, "PROPAGATION_REQUIRED".
+	 *
 	 * @param transactionAttribute the String form of the transactionAttribute to use.
 	 * @see org.springframework.transaction.interceptor.TransactionAttributeEditor
 	 */

@@ -55,11 +55,11 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
  * @author Sivaprasad Valluru
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
- * @since 4.1
  * @see TilesConfigurerBeanDefinitionParser
  * @see FreeMarkerConfigurerBeanDefinitionParser
  * @see GroovyMarkupConfigurerBeanDefinitionParser
  * @see ScriptTemplateConfigurerBeanDefinitionParser
+ * @since 4.1
  */
 public class ViewResolversBeanDefinitionParser implements BeanDefinitionParser {
 
@@ -75,7 +75,7 @@ public class ViewResolversBeanDefinitionParser implements BeanDefinitionParser {
 
 		ManagedList<Object> resolvers = new ManagedList<>(4);
 		resolvers.setSource(context.extractSource(element));
-		String[] names = new String[] {
+		String[] names = new String[]{
 				"jsp", "tiles", "bean-name", "freemarker", "groovy", "script-template", "bean", "ref"};
 
 		for (Element resolverElement : DomUtils.getChildElementsByTagName(element, names)) {
@@ -90,29 +90,23 @@ public class ViewResolversBeanDefinitionParser implements BeanDefinitionParser {
 				resolverBeanDef.getPropertyValues().add("prefix", "/WEB-INF/");
 				resolverBeanDef.getPropertyValues().add("suffix", ".jsp");
 				addUrlBasedViewResolverProperties(resolverElement, resolverBeanDef);
-			}
-			else if ("tiles".equals(name)) {
+			} else if ("tiles".equals(name)) {
 				resolverBeanDef = new RootBeanDefinition(TilesViewResolver.class);
 				addUrlBasedViewResolverProperties(resolverElement, resolverBeanDef);
-			}
-			else if ("freemarker".equals(name)) {
+			} else if ("freemarker".equals(name)) {
 				resolverBeanDef = new RootBeanDefinition(FreeMarkerViewResolver.class);
 				resolverBeanDef.getPropertyValues().add("suffix", ".ftl");
 				addUrlBasedViewResolverProperties(resolverElement, resolverBeanDef);
-			}
-			else if ("groovy".equals(name)) {
+			} else if ("groovy".equals(name)) {
 				resolverBeanDef = new RootBeanDefinition(GroovyMarkupViewResolver.class);
 				resolverBeanDef.getPropertyValues().add("suffix", ".tpl");
 				addUrlBasedViewResolverProperties(resolverElement, resolverBeanDef);
-			}
-			else if ("script-template".equals(name)) {
+			} else if ("script-template".equals(name)) {
 				resolverBeanDef = new RootBeanDefinition(ScriptTemplateViewResolver.class);
 				addUrlBasedViewResolverProperties(resolverElement, resolverBeanDef);
-			}
-			else if ("bean-name".equals(name)) {
+			} else if ("bean-name".equals(name)) {
 				resolverBeanDef = new RootBeanDefinition(BeanNameViewResolver.class);
-			}
-			else {
+			} else {
 				// Should never happen
 				throw new IllegalStateException("Unexpected element name: " + name);
 			}
@@ -126,20 +120,18 @@ public class ViewResolversBeanDefinitionParser implements BeanDefinitionParser {
 		compositeResolverBeanDef.setSource(source);
 		compositeResolverBeanDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 
-		names = new String[] {"content-negotiation"};
+		names = new String[]{"content-negotiation"};
 		List<Element> contentNegotiationElements = DomUtils.getChildElementsByTagName(element, names);
 		if (contentNegotiationElements.isEmpty()) {
 			compositeResolverBeanDef.getPropertyValues().add("viewResolvers", resolvers);
-		}
-		else if (contentNegotiationElements.size() == 1) {
+		} else if (contentNegotiationElements.size() == 1) {
 			BeanDefinition beanDef = createContentNegotiatingViewResolver(contentNegotiationElements.get(0), context);
 			beanDef.getPropertyValues().add("viewResolvers", resolvers);
 			ManagedList<Object> list = new ManagedList<>(1);
 			list.add(beanDef);
 			compositeResolverBeanDef.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);
 			compositeResolverBeanDef.getPropertyValues().add("viewResolvers", list);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Only one <content-negotiation> element is allowed.");
 		}
 

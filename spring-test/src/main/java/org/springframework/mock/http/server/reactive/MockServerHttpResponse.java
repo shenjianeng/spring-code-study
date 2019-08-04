@@ -76,8 +76,9 @@ public class MockServerHttpResponse extends AbstractServerHttpResponse {
 	 * <p>By default, response body content is consumed in full and cached for
 	 * subsequent access in tests. Use this option to take control over how the
 	 * response body is consumed.
+	 *
 	 * @param writeHandler the write handler to use returning {@code Mono<Void>}
-	 * when the body has been "written" (i.e. consumed).
+	 *                     when the body has been "written" (i.e. consumed).
 	 */
 	public void setWriteHandler(Function<Flux<DataBuffer>, Mono<Void>> writeHandler) {
 		Assert.notNull(writeHandler, "'writeHandler' is required");

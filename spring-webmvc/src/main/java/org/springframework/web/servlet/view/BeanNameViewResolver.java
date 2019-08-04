@@ -47,10 +47,10 @@ import org.springframework.web.servlet.ViewResolver;
  * a {@link UrlBasedViewResolver}.
  *
  * @author Juergen Hoeller
- * @since 18.06.2003
  * @see XmlViewResolver
  * @see ResourceBundleViewResolver
  * @see UrlBasedViewResolver
+ * @since 18.06.2003
  */
 public class BeanNameViewResolver extends WebApplicationObjectSupport implements ViewResolver, Ordered {
 
@@ -60,6 +60,7 @@ public class BeanNameViewResolver extends WebApplicationObjectSupport implements
 	/**
 	 * Specify the order value for this ViewResolver bean.
 	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 *
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {

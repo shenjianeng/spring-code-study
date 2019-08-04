@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Tests proving that regardless the proxy strategy used (JDK interface-based vs. CGLIB
  * subclass-based), discovery of advice-oriented annotations is consistent.
- *
+ * <p>
  * For example, Spring's @Transactional may be declared at the interface or class level,
  * and whether interface or subclass proxies are used, the @Transactional annotation must
  * be discovered in a consistent fashion.
@@ -101,31 +101,39 @@ public class ProxyAnnotationDiscoveryTests {
 }
 
 @Configuration
-@EnableTransactionManagement(proxyTargetClass=false)
-class PTCFalse { }
+@EnableTransactionManagement(proxyTargetClass = false)
+class PTCFalse {
+}
 
 @Configuration
-@EnableTransactionManagement(proxyTargetClass=true)
-class PTCTrue { }
+@EnableTransactionManagement(proxyTargetClass = true)
+class PTCTrue {
+}
 
 interface NonAnnotatedService {
 	void m();
 }
 
 interface AnnotatedService {
-	@Transactional void m();
+	@Transactional
+	void m();
 }
 
 class NonAnnotatedServiceImpl implements AnnotatedService {
 	@Override
-	public void m() { }
+	public void m() {
+	}
 }
 
 class AnnotatedServiceImpl implements NonAnnotatedService {
 	@Override
-	@Transactional public void m() { }
+	@Transactional
+	public void m() {
+	}
 }
 
 class AnnotatedServiceWithoutInterface {
-	@Transactional public void m() { }
+	@Transactional
+	public void m() {
+	}
 }

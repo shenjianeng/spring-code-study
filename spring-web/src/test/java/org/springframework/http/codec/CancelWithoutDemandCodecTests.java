@@ -49,6 +49,7 @@ import org.springframework.util.MimeType;
 
 /**
  * Test scenarios for data buffer leaks.
+ *
  * @author Rossen Stoyanchev
  */
 public class CancelWithoutDemandCodecTests {
@@ -154,7 +155,6 @@ public class CancelWithoutDemandCodecTests {
 		writer.write(Mono.just(event), ResolvableType.forClass(ServerSentEvent.class), MediaType.TEXT_EVENT_STREAM,
 				outputMessage, Collections.emptyMap()).block(Duration.ofSeconds(5));
 	}
-
 
 
 	private static class CancellingOutputMessage implements ReactiveHttpOutputMessage {

@@ -38,8 +38,8 @@ import org.springframework.transaction.TransactionException;
  * <p><b>NOTE: Spring's JPA support requires JPA 2.1 or higher, as of Spring 5.0.</b>
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see JpaTransactionManager#setJpaDialect
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class DefaultJpaDialect implements JpaDialect, Serializable {
@@ -52,6 +52,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	 * is no state to be kept for a standard JPA transaction. Hence, subclasses do not
 	 * have to care about the return value ({@code null}) of this implementation
 	 * and are free to return their own transaction data Object.
+	 *
 	 * @see javax.persistence.EntityTransaction#begin
 	 * @see org.springframework.transaction.InvalidIsolationLevelException
 	 * @see #cleanupTransaction
@@ -81,6 +82,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	/**
 	 * This implementation does nothing, since the default {@code beginTransaction}
 	 * implementation does not require any cleanup.
+	 *
 	 * @see #beginTransaction
 	 */
 	@Override
@@ -105,6 +107,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	 * <p>If the JPA implementation returns a Connection handle that it expects
 	 * the application to close after use, the dialect implementation needs to invoke
 	 * {@code Connection.close()} (or some other method with similar effect) here.
+	 *
 	 * @see java.sql.Connection#close()
 	 */
 	@Override
@@ -119,6 +122,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 
 	/**
 	 * This implementation delegates to EntityManagerFactoryUtils.
+	 *
 	 * @see EntityManagerFactoryUtils#convertJpaAccessExceptionIfPossible
 	 */
 	@Override

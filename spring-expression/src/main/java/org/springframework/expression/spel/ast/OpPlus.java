@@ -65,14 +65,11 @@ public class OpPlus extends Operator {
 			if (operandOne instanceof Number) {
 				if (operandOne instanceof Double) {
 					this.exitTypeDescriptor = "D";
-				}
-				else if (operandOne instanceof Float) {
+				} else if (operandOne instanceof Float) {
 					this.exitTypeDescriptor = "F";
-				}
-				else if (operandOne instanceof Long) {
+				} else if (operandOne instanceof Long) {
 					this.exitTypeDescriptor = "J";
-				}
-				else if (operandOne instanceof Integer) {
+				} else if (operandOne instanceof Integer) {
 					this.exitTypeDescriptor = "I";
 				}
 				return new TypedValue(operandOne);
@@ -93,29 +90,23 @@ public class OpPlus extends Operator {
 				BigDecimal leftBigDecimal = NumberUtils.convertNumberToTargetClass(leftNumber, BigDecimal.class);
 				BigDecimal rightBigDecimal = NumberUtils.convertNumberToTargetClass(rightNumber, BigDecimal.class);
 				return new TypedValue(leftBigDecimal.add(rightBigDecimal));
-			}
-			else if (leftNumber instanceof Double || rightNumber instanceof Double) {
+			} else if (leftNumber instanceof Double || rightNumber instanceof Double) {
 				this.exitTypeDescriptor = "D";
 				return new TypedValue(leftNumber.doubleValue() + rightNumber.doubleValue());
-			}
-			else if (leftNumber instanceof Float || rightNumber instanceof Float) {
+			} else if (leftNumber instanceof Float || rightNumber instanceof Float) {
 				this.exitTypeDescriptor = "F";
 				return new TypedValue(leftNumber.floatValue() + rightNumber.floatValue());
-			}
-			else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
+			} else if (leftNumber instanceof BigInteger || rightNumber instanceof BigInteger) {
 				BigInteger leftBigInteger = NumberUtils.convertNumberToTargetClass(leftNumber, BigInteger.class);
 				BigInteger rightBigInteger = NumberUtils.convertNumberToTargetClass(rightNumber, BigInteger.class);
 				return new TypedValue(leftBigInteger.add(rightBigInteger));
-			}
-			else if (leftNumber instanceof Long || rightNumber instanceof Long) {
+			} else if (leftNumber instanceof Long || rightNumber instanceof Long) {
 				this.exitTypeDescriptor = "J";
 				return new TypedValue(leftNumber.longValue() + rightNumber.longValue());
-			}
-			else if (CodeFlow.isIntegerForNumericOp(leftNumber) || CodeFlow.isIntegerForNumericOp(rightNumber)) {
+			} else if (CodeFlow.isIntegerForNumericOp(leftNumber) || CodeFlow.isIntegerForNumericOp(rightNumber)) {
 				this.exitTypeDescriptor = "I";
 				return new TypedValue(leftNumber.intValue() + rightNumber.intValue());
-			}
-			else {
+			} else {
 				// Unknown Number subtypes -> best guess is double addition
 				return new TypedValue(leftNumber.doubleValue() + rightNumber.doubleValue());
 			}
@@ -158,6 +149,7 @@ public class OpPlus extends Operator {
 	/**
 	 * Convert operand value to string using registered converter or using
 	 * {@code toString} method.
+	 *
 	 * @param value typed value to be converted
 	 * @param state expression state
 	 * @return {@code TypedValue} instance converted to {@code String}
@@ -191,13 +183,12 @@ public class OpPlus extends Operator {
 	 */
 	private void walk(MethodVisitor mv, CodeFlow cf, @Nullable SpelNodeImpl operand) {
 		if (operand instanceof OpPlus) {
-			OpPlus plus = (OpPlus)operand;
+			OpPlus plus = (OpPlus) operand;
 			walk(mv, cf, plus.getLeftOperand());
 			walk(mv, cf, plus.getRightOperand());
-		}
-		else if (operand != null) {
+		} else if (operand != null) {
 			cf.enterCompilationScope();
-			operand.generateCode(mv,cf);
+			operand.generateCode(mv, cf);
 			if (!"Ljava/lang/String".equals(cf.lastDescriptor())) {
 				mv.visitTypeInsn(CHECKCAST, "java/lang/String");
 			}
@@ -215,8 +206,7 @@ public class OpPlus extends Operator {
 			walk(mv, cf, getLeftOperand());
 			walk(mv, cf, getRightOperand());
 			mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
-		}
-		else {
+		} else {
 			this.children[0].generateCode(mv, cf);
 			String leftDesc = this.children[0].exitTypeDescriptor;
 			String exitDesc = this.exitTypeDescriptor;

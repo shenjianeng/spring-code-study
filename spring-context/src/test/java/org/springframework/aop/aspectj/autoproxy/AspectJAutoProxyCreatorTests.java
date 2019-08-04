@@ -584,13 +584,11 @@ class RetryAspect {
 				try {
 					o = jp.proceed();
 					this.commitCalls++;
-				}
-				catch (RetryableException re) {
+				} catch (RetryableException re) {
 					this.rollbackCalls++;
 					throw re;
 				}
-			}
-			catch (RetryableException re) {
+			} catch (RetryableException re) {
 				retry = true;
 			}
 		}

@@ -29,8 +29,8 @@ import org.springframework.core.annotation.OrderUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see SimpleMetadataAwareAspectInstanceFactory
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class SingletonMetadataAwareAspectInstanceFactory extends SingletonAspectInstanceFactory
@@ -41,8 +41,9 @@ public class SingletonMetadataAwareAspectInstanceFactory extends SingletonAspect
 
 	/**
 	 * Create a new SingletonMetadataAwareAspectInstanceFactory for the given aspect.
+	 *
 	 * @param aspectInstance the singleton aspect instance
-	 * @param aspectName the name of the aspect
+	 * @param aspectName     the name of the aspect
 	 */
 	public SingletonMetadataAwareAspectInstanceFactory(Object aspectInstance, String aspectName) {
 		super(aspectInstance);

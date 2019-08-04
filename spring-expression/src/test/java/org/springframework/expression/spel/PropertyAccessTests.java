@@ -76,21 +76,19 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 	 */
 	@Test
 	public void testAccessingOnNullObject() {
-		SpelExpression expr = (SpelExpression)parser.parseExpression("madeup");
+		SpelExpression expr = (SpelExpression) parser.parseExpression("madeup");
 		EvaluationContext context = new StandardEvaluationContext(null);
 		try {
 			expr.getValue(context);
 			fail("Should have failed - default property resolver cannot resolve on null");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			checkException(ex, SpelMessage.PROPERTY_OR_FIELD_NOT_READABLE_ON_NULL);
 		}
 		assertFalse(expr.isWritable(context));
 		try {
 			expr.setValue(context, "abc");
 			fail("Should have failed - default property resolver cannot resolve on null");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			checkException(ex, SpelMessage.PROPERTY_OR_FIELD_NOT_WRITABLE_ON_NULL);
 		}
 	}
@@ -99,8 +97,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 		if (ex instanceof SpelEvaluationException) {
 			SpelMessage sm = ((SpelEvaluationException) ex).getMessageCode();
 			assertEquals("Expected exception type did not occur", expectedMessage, sm);
-		}
-		else {
+		} else {
 			fail("Should be a SpelException " + ex);
 		}
 	}
@@ -133,8 +130,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 		try {
 			expr.setValue(ctx, "not allowed");
 			fail("Should not have been allowed");
-		}
-		catch (EvaluationException ex) {
+		} catch (EvaluationException ex) {
 			// success - message will be: EL1063E:(pos 20): A problem occurred whilst attempting to set the property
 			// 'flibbles': 'Cannot set flibbles to an object of type 'class java.lang.String''
 			// System.out.println(e.getMessage());
@@ -147,20 +143,20 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 
 		// reflective property accessor is the only one by default
 		List<PropertyAccessor> propertyAccessors = ctx.getPropertyAccessors();
-		assertEquals(1,propertyAccessors.size());
+		assertEquals(1, propertyAccessors.size());
 
 		StringyPropertyAccessor spa = new StringyPropertyAccessor();
 		ctx.addPropertyAccessor(spa);
-		assertEquals(2,ctx.getPropertyAccessors().size());
+		assertEquals(2, ctx.getPropertyAccessors().size());
 
 		List<PropertyAccessor> copy = new ArrayList<>();
 		copy.addAll(ctx.getPropertyAccessors());
 		assertTrue(ctx.removePropertyAccessor(spa));
 		assertFalse(ctx.removePropertyAccessor(spa));
-		assertEquals(1,ctx.getPropertyAccessors().size());
+		assertEquals(1, ctx.getPropertyAccessors().size());
 
 		ctx.setPropertyAccessors(copy);
-		assertEquals(2,ctx.getPropertyAccessors().size());
+		assertEquals(2, ctx.getPropertyAccessors().size());
 	}
 
 	@Test
@@ -209,8 +205,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 		try {
 			parser.parseExpression("name='p3'").getValue(context, target);
 			fail("Should have thrown SpelEvaluationException");
-		}
-		catch (SpelEvaluationException ex) {
+		} catch (SpelEvaluationException ex) {
 			// expected
 		}
 	}
@@ -261,8 +256,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 		try {
 			parser.parseExpression("name.substring(1)").getValue(context, target);
 			fail("Should have thrown SpelEvaluationException");
-		}
-		catch (SpelEvaluationException ex) {
+		} catch (SpelEvaluationException ex) {
 			// expected
 		}
 	}
@@ -293,7 +287,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 
 		@Override
 		public Class<?>[] getSpecificTargetClasses() {
-			return new Class<?>[] {String.class};
+			return new Class<?>[]{String.class};
 		}
 
 		@Override
@@ -328,8 +322,7 @@ public class PropertyAccessTests extends AbstractExpressionTests {
 			try {
 				flibbles = (Integer) context.getTypeConverter().convertValue(newValue,
 						TypeDescriptor.forObject(newValue), TypeDescriptor.valueOf(Integer.class));
-			}
-			catch (EvaluationException ex) {
+			} catch (EvaluationException ex) {
 				throw new AccessException("Cannot set flibbles to an object of type '" + newValue.getClass() + "'");
 			}
 		}

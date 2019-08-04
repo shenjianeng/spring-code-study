@@ -31,9 +31,9 @@ import org.springframework.scheduling.config.TaskManagementConfigUtils;
  * {@code @EnableScheduling}'s javadoc for complete usage details.
  *
  * @author Chris Beams
- * @since 3.1
  * @see EnableScheduling
  * @see ScheduledAnnotationBeanPostProcessor
+ * @since 3.1
  */
 @Configuration
 @Role(BeanDefinition.ROLE_INFRASTRUCTURE)

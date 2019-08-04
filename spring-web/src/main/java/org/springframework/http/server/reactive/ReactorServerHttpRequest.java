@@ -72,24 +72,20 @@ class ReactorServerHttpRequest extends AbstractServerHttpRequest {
 			final int portIndex;
 			if (header.startsWith("[")) {
 				portIndex = header.indexOf(':', header.indexOf(']'));
-			}
-			else {
+			} else {
 				portIndex = header.indexOf(':');
 			}
 			if (portIndex != -1) {
 				try {
 					return new URI(scheme, null, header.substring(0, portIndex),
 							Integer.parseInt(header.substring(portIndex + 1)), null, null, null);
-				}
-				catch (NumberFormatException ex) {
+				} catch (NumberFormatException ex) {
 					throw new URISyntaxException(header, "Unable to parse port", portIndex);
 				}
-			}
-			else {
+			} else {
 				return new URI(scheme, header, null, null);
 			}
-		}
-		else {
+		} else {
 			InetSocketAddress localAddress = request.hostAddress();
 			return new URI(scheme, null, localAddress.getHostString(),
 					localAddress.getPort(), null, null, null);

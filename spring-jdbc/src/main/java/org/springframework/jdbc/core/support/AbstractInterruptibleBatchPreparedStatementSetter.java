@@ -27,8 +27,8 @@ import org.springframework.jdbc.core.InterruptibleBatchPreparedStatementSetter;
  * into a single callback method {@link #setValuesIfAvailable}.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see #setValuesIfAvailable
+ * @since 2.0
  */
 public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 		implements InterruptibleBatchPreparedStatementSetter {
@@ -66,13 +66,14 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 	/**
 	 * Check for available values and set them on the given PreparedStatement.
 	 * If no values are available anymore, return {@code false}.
+	 *
 	 * @param ps the PreparedStatement we'll invoke setter methods on
-	 * @param i index of the statement we're issuing in the batch, starting from 0
+	 * @param i  index of the statement we're issuing in the batch, starting from 0
 	 * @return whether there were values to apply (that is, whether the applied
 	 * parameters should be added to the batch and this method should be called
 	 * for a further iteration)
 	 * @throws SQLException if a SQLException is encountered
-	 * (i.e. there is no need to catch SQLException)
+	 *                      (i.e. there is no need to catch SQLException)
 	 */
 	protected abstract boolean setValuesIfAvailable(PreparedStatement ps, int i) throws SQLException;
 

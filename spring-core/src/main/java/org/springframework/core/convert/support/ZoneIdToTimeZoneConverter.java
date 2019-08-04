@@ -31,8 +31,8 @@ import org.springframework.core.convert.converter.Converter;
  * {@link java.util.Date#from(java.time.Instant)} and {@link java.util.Date#toInstant()}.
  *
  * @author Juergen Hoeller
- * @since 4.0
  * @see TimeZone#getTimeZone(java.time.ZoneId)
+ * @since 4.0
  */
 final class ZoneIdToTimeZoneConverter implements Converter<ZoneId, TimeZone> {
 

@@ -45,11 +45,11 @@ import org.springframework.util.CollectionUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see #setMappings
  * @see #setMappingLocation
  * @see #setMappingLocations
  * @see org.springframework.jmx.export.MBeanExporter#setBeans
+ * @since 1.2
  */
 public class KeyNamingStrategy implements ObjectNamingStrategy, InitializingBean {
 
@@ -94,7 +94,7 @@ public class KeyNamingStrategy implements ObjectNamingStrategy, InitializingBean
 	 * containing object name mappings.
 	 */
 	public void setMappingLocation(Resource location) {
-		this.mappingLocations = new Resource[] {location};
+		this.mappingLocations = new Resource[]{location};
 	}
 
 	/**

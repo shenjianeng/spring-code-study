@@ -31,7 +31,9 @@ import static org.junit.Assert.*;
  */
 public abstract class AbstractListableBeanFactoryTests extends AbstractBeanFactoryTests {
 
-	/** Subclasses must initialize this */
+	/**
+	 * Subclasses must initialize this
+	 */
 	protected ListableBeanFactory getListableBeanFactory() {
 		BeanFactory bf = getBeanFactory();
 		if (!(bf instanceof ListableBeanFactory)) {
@@ -61,7 +63,7 @@ public abstract class AbstractListableBeanFactoryTests extends AbstractBeanFacto
 		int countIncludingFactoryBeans = count + 2;
 		String[] names = getListableBeanFactory().getBeanNamesForType(TestBean.class, true, true);
 		assertTrue("We should have " + countIncludingFactoryBeans +
-				" beans for class org.springframework.tests.sample.beans.TestBean, not " + names.length,
+						" beans for class org.springframework.tests.sample.beans.TestBean, not " + names.length,
 				names.length == countIncludingFactoryBeans);
 	}
 
@@ -78,11 +80,11 @@ public abstract class AbstractListableBeanFactoryTests extends AbstractBeanFacto
 	@Test
 	public void getCountForFactoryClass() {
 		assertTrue("Should have 2 factories, not " +
-				getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length,
+						getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length,
 				getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length == 2);
 
 		assertTrue("Should have 2 factories, not " +
-				getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length,
+						getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length,
 				getListableBeanFactory().getBeanNamesForType(FactoryBean.class).length == 2);
 	}
 

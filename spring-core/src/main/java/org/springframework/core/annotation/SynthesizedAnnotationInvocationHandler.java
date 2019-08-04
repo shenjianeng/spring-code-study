@@ -36,10 +36,10 @@ import org.springframework.util.StringUtils;
  * functionality.
  *
  * @author Sam Brannen
- * @since 4.2
  * @see Annotation
  * @see AnnotationAttributeExtractor
  * @see AnnotationUtils#synthesizeAnnotation(Annotation, AnnotatedElement)
+ * @since 4.2
  */
 class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 
@@ -51,6 +51,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	/**
 	 * Construct a new {@code SynthesizedAnnotationInvocationHandler} for
 	 * the supplied {@link AnnotationAttributeExtractor}.
+	 *
 	 * @param attributeExtractor the extractor to delegate to
 	 */
 	SynthesizedAnnotationInvocationHandler(AnnotationAttributeExtractor<?> attributeExtractor) {
@@ -98,8 +99,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 			// Synthesize nested annotations before returning them.
 			if (value instanceof Annotation) {
 				value = AnnotationUtils.synthesizeAnnotation((Annotation) value, this.attributeExtractor.getAnnotatedElement());
-			}
-			else if (value instanceof Annotation[]) {
+			} else if (value instanceof Annotation[]) {
 				value = AnnotationUtils.synthesizeAnnotationArray((Annotation[]) value, this.attributeExtractor.getAnnotatedElement());
 			}
 
@@ -117,6 +117,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	/**
 	 * Clone the provided array, ensuring that original component type is
 	 * retained.
+	 *
 	 * @param array the array to clone
 	 */
 	private Object cloneArray(Object array) {
@@ -151,6 +152,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 
 	/**
 	 * See {@link Annotation#equals(Object)} for a definition of the required algorithm.
+	 *
 	 * @param other the other object to compare against
 	 */
 	private boolean annotationEquals(Object other) {
@@ -183,8 +185,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 			int hashCode;
 			if (value.getClass().isArray()) {
 				hashCode = hashCodeForArray(value);
-			}
-			else {
+			} else {
 				hashCode = value.hashCode();
 			}
 			result += (127 * attributeMethod.getName().hashCode()) ^ hashCode;
@@ -198,6 +199,7 @@ class SynthesizedAnnotationInvocationHandler implements InvocationHandler {
 	 * in Spring's {@link ObjectUtils} because those hash code generation
 	 * algorithms do not comply with the requirements specified in
 	 * {@link Annotation#hashCode()}.
+	 *
 	 * @param array the array to compute the hash code for
 	 */
 	private int hashCodeForArray(Object array) {

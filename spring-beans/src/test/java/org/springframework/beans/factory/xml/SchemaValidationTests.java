@@ -39,8 +39,7 @@ public class SchemaValidationTests {
 		try {
 			reader.loadBeanDefinitions(new ClassPathResource("invalidPerSchema.xml", getClass()));
 			fail("Should not be able to parse a file with errors");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			assertTrue(ex.getCause() instanceof SAXParseException);
 		}
 	}
@@ -53,8 +52,7 @@ public class SchemaValidationTests {
 		try {
 			reader.loadBeanDefinitions(new ClassPathResource("invalidPerSchema.xml", getClass()));
 			fail("Should not be able to parse a file with errors");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			assertTrue(ex.getCause() instanceof SAXParseException);
 		}
 	}

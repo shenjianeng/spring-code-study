@@ -57,11 +57,9 @@ public abstract class AbstractPrefixVersionStrategy implements VersionStrategy {
 	public String addVersion(String path, String version) {
 		if (path.startsWith(".")) {
 			return path;
-		}
-		else if (this.prefix.endsWith("/") || path.startsWith("/")) {
+		} else if (this.prefix.endsWith("/") || path.startsWith("/")) {
 			return this.prefix + path;
-		}
-		else {
+		} else {
 			return this.prefix + '/' + path;
 		}
 	}

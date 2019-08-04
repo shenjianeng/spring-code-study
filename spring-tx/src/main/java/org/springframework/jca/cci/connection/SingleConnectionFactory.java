@@ -46,30 +46,37 @@ import org.springframework.util.Assert;
  * factory lazily create a Connection via a given target ConnectionFactory.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see #getConnection()
  * @see javax.resource.cci.Connection#close()
  * @see org.springframework.jca.cci.core.CciTemplate
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class SingleConnectionFactory extends DelegatingConnectionFactory implements DisposableBean {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Wrapped Connection. */
+	/**
+	 * Wrapped Connection.
+	 */
 	@Nullable
 	private Connection target;
 
-	/** Proxy Connection. */
+	/**
+	 * Proxy Connection.
+	 */
 	@Nullable
 	private Connection connection;
 
-	/** Synchronization monitor for the shared Connection. */
+	/**
+	 * Synchronization monitor for the shared Connection.
+	 */
 	private final Object connectionMonitor = new Object();
 
 
 	/**
 	 * Create a new SingleConnectionFactory for bean-style usage.
+	 *
 	 * @see #setTargetConnectionFactory
 	 */
 	public SingleConnectionFactory() {
@@ -78,6 +85,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * Create a new SingleConnectionFactory that always returns the
 	 * given Connection.
+	 *
 	 * @param target the single Connection
 	 */
 	public SingleConnectionFactory(Connection target) {
@@ -90,6 +98,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	 * Create a new SingleConnectionFactory that always returns a single
 	 * Connection which it will lazily create via the given target
 	 * ConnectionFactory.
+	 *
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
@@ -141,6 +150,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	 * Initialize the single underlying Connection.
 	 * <p>Closes and reinitializes the Connection if an underlying
 	 * Connection is present already.
+	 *
 	 * @throws javax.resource.ResourceException if thrown by CCI API methods
 	 */
 	public void initConnection() throws ResourceException {
@@ -176,6 +186,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * Create a CCI Connection via this template's ConnectionFactory.
+	 *
 	 * @return the new CCI Connection
 	 * @throws javax.resource.ResourceException if thrown by CCI API methods
 	 */
@@ -188,6 +199,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	/**
 	 * Prepare the given Connection before it is exposed.
 	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 *
 	 * @param con the Connection to prepare
 	 */
 	protected void prepareConnection(Connection con) throws ResourceException {
@@ -195,13 +207,13 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	/**
 	 * Close the given Connection.
+	 *
 	 * @param con the Connection to close
 	 */
 	protected void closeConnection(Connection con) {
 		try {
 			con.close();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			logger.warn("Could not close shared CCI Connection", ex);
 		}
 	}
@@ -211,13 +223,14 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	 * but suppresses close calls. This is useful for allowing application code to
 	 * handle a special framework Connection just like an ordinary Connection from a
 	 * CCI ConnectionFactory.
+	 *
 	 * @param target the original Connection to wrap
 	 * @return the wrapped Connection
 	 */
 	protected Connection getCloseSuppressingConnectionProxy(Connection target) {
 		return (Connection) Proxy.newProxyInstance(
 				Connection.class.getClassLoader(),
-				new Class<?>[] {Connection.class},
+				new Class<?>[]{Connection.class},
 				new CloseSuppressingInvocationHandler(target));
 	}
 
@@ -239,19 +252,16 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 			if (method.getName().equals("equals")) {
 				// Only consider equal when proxies are identical.
 				return (proxy == args[0]);
-			}
-			else if (method.getName().equals("hashCode")) {
+			} else if (method.getName().equals("hashCode")) {
 				// Use hashCode of Connection proxy.
 				return System.identityHashCode(proxy);
-			}
-			else if (method.getName().equals("close")) {
+			} else if (method.getName().equals("close")) {
 				// Handle close method: don't pass the call on.
 				return null;
 			}
 			try {
 				return method.invoke(this.target, args);
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
 			}
 		}

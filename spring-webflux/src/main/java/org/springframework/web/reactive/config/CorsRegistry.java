@@ -44,10 +44,10 @@ public class CorsRegistry {
 	 *
 	 * <p>The following defaults are applied to the {@link CorsRegistration}:
 	 * <ul>
-	 *     <li>Allow all origins.</li>
-	 *     <li>Allow "simple" methods {@code GET}, {@code HEAD} and {@code POST}.</li>
-	 *     <li>Allow all headers.</li>
-	 *     <li>Set max age to 1800 seconds (30 minutes).</li>
+	 * <li>Allow all origins.</li>
+	 * <li>Allow "simple" methods {@code GET}, {@code HEAD} and {@code POST}.</li>
+	 * <li>Allow all headers.</li>
+	 * <li>Set max age to 1800 seconds (30 minutes).</li>
 	 * </ul>
 	 */
 	public CorsRegistration addMapping(String pathPattern) {

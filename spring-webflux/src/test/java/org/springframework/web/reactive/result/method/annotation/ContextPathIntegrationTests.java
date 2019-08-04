@@ -75,8 +75,7 @@ public class ContextPathIntegrationTests {
 			url = "http://localhost:" + server.getPort() + "/webApp2/test";
 			actual = restTemplate.getForObject(url, String.class);
 			assertEquals("Tested in /webApp2", actual);
-		}
-		finally {
+		} finally {
 			server.stop();
 		}
 	}
@@ -105,12 +104,10 @@ public class ContextPathIntegrationTests {
 			String url = "http://localhost:" + server.getPort() + "/app/api/test";
 			actual = restTemplate.getForObject(url, String.class);
 			assertEquals("Tested in /app/api", actual);
-		}
-		finally {
+		} finally {
 			server.stop();
 		}
 	}
-
 
 
 	@EnableWebFlux

@@ -57,9 +57,9 @@ public class SimpleThreadScopeTests {
 		thread2.start();
 		// Assert
 		Awaitility.await()
-					.atMost(500, TimeUnit.MILLISECONDS)
-					.pollInterval(10, TimeUnit.MILLISECONDS)
-					.until(() -> (beans[0] != null) && (beans[1] != null));
+				.atMost(500, TimeUnit.MILLISECONDS)
+				.pollInterval(10, TimeUnit.MILLISECONDS)
+				.until(() -> (beans[0] != null) && (beans[1] != null));
 		assertNotSame(beans[0], beans[1]);
 	}
 

@@ -27,8 +27,8 @@ import org.springframework.beans.factory.Aware;
  *
  * @author Juergen Hoeller
  * @author Chris Beams
- * @since 2.5
  * @see javax.resource.spi.BootstrapContext
+ * @since 2.5
  */
 public interface BootstrapContextAware extends Aware {
 
@@ -38,6 +38,7 @@ public interface BootstrapContextAware extends Aware {
 	 * callback like InitializingBean's {@code afterPropertiesSet} or a
 	 * custom init-method. Invoked after ApplicationContextAware's
 	 * {@code setApplicationContext}.
+	 *
 	 * @param bootstrapContext the BootstrapContext object to be used by this object
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext

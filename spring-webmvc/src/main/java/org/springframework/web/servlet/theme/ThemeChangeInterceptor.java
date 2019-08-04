@@ -29,8 +29,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  * via a configurable request parameter (default parameter name: "theme").
  *
  * @author Juergen Hoeller
- * @since 20.06.2003
  * @see org.springframework.web.servlet.ThemeResolver
+ * @since 20.06.2003
  */
 public class ThemeChangeInterceptor extends HandlerInterceptorAdapter {
 

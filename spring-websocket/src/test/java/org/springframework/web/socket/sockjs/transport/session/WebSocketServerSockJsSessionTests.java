@@ -149,7 +149,7 @@ public class WebSocketServerSockJsSessionTests extends AbstractSockJsSessionTest
 		private final List<String> heartbeatSchedulingEvents = new ArrayList<>();
 
 		public TestWebSocketServerSockJsSession(SockJsServiceConfig config, WebSocketHandler handler,
-				Map<String, Object> attributes) {
+												Map<String, Object> attributes) {
 
 			super("1", config, handler, attributes);
 		}

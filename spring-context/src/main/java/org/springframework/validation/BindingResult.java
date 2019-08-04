@@ -34,13 +34,13 @@ import org.springframework.lang.Nullable;
  * a {@link Validator} on it (e.g. as part of a unit test).
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see DataBinder
  * @see Errors
  * @see Validator
  * @see BeanPropertyBindingResult
  * @see DirectFieldBindingResult
  * @see MapBindingResult
+ * @since 2.0
  */
 public interface BindingResult extends Errors {
 
@@ -71,6 +71,7 @@ public interface BindingResult extends Errors {
 	 * form controllers will do this for you when rendering a form view.
 	 * When building the ModelAndView instance yourself, you need to include
 	 * the attributes from the model Map returned by this method.
+	 *
 	 * @see #getObjectName()
 	 * @see #MODEL_KEY_PREFIX
 	 * @see org.springframework.web.servlet.ModelAndView
@@ -81,6 +82,7 @@ public interface BindingResult extends Errors {
 	/**
 	 * Extract the raw field value for the given field.
 	 * Typically used for comparison purposes.
+	 *
 	 * @param field the field to check
 	 * @return the current value of the field in its raw form, or {@code null} if not known
 	 */
@@ -89,10 +91,11 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Find a custom property editor for the given type and property.
-	 * @param field the path of the property (name or nested path), or
-	 * {@code null} if looking for an editor for all properties of the given type
+	 *
+	 * @param field     the path of the property (name or nested path), or
+	 *                  {@code null} if looking for an editor for all properties of the given type
 	 * @param valueType the type of the property (can be {@code null} if a property
-	 * is given but should be specified in any case for consistency checking)
+	 *                  is given but should be specified in any case for consistency checking)
 	 * @return the registered editor, or {@code null} if none
 	 */
 	@Nullable
@@ -100,6 +103,7 @@ public interface BindingResult extends Errors {
 
 	/**
 	 * Return the underlying PropertyEditorRegistry.
+	 *
 	 * @return the PropertyEditorRegistry, or {@code null} if none
 	 * available for this BindingResult
 	 */
@@ -109,6 +113,7 @@ public interface BindingResult extends Errors {
 	/**
 	 * Resolve the given error code into message codes.
 	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 *
 	 * @param errorCode the error code to resolve into message codes
 	 * @return the resolved message codes
 	 */
@@ -117,8 +122,9 @@ public interface BindingResult extends Errors {
 	/**
 	 * Resolve the given error code into message codes for the given field.
 	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 *
 	 * @param errorCode the error code to resolve into message codes
-	 * @param field the field to resolve message codes for
+	 * @param field     the field to resolve message codes for
 	 * @return the resolved message codes
 	 */
 	String[] resolveMessageCodes(String errorCode, String field);
@@ -126,6 +132,7 @@ public interface BindingResult extends Errors {
 	/**
 	 * Add a custom {@link ObjectError} or {@link FieldError} to the errors list.
 	 * <p>Intended to be used by cooperating strategies such as {@link BindingErrorProcessor}.
+	 *
 	 * @see ObjectError
 	 * @see FieldError
 	 * @see BindingErrorProcessor
@@ -138,8 +145,9 @@ public interface BindingResult extends Errors {
 	 * the original field values available through {@link #getFieldValue}.
 	 * In case of a registered error, the rejected value will be exposed
 	 * for each affected field.
+	 *
 	 * @param field the field to record the value for
-	 * @param type the type of the field
+	 * @param type  the type of the field
 	 * @param value the original value
 	 * @since 5.0.4
 	 */
@@ -150,6 +158,7 @@ public interface BindingResult extends Errors {
 	 * Mark the specified disallowed field as suppressed.
 	 * <p>The data binder invokes this for each field value that was
 	 * detected to target a disallowed field.
+	 *
 	 * @see DataBinder#setAllowedFields
 	 */
 	default void recordSuppressedField(String field) {
@@ -159,6 +168,7 @@ public interface BindingResult extends Errors {
 	 * Return the list of fields that were suppressed during the bind process.
 	 * <p>Can be used to determine whether any field values were targeting
 	 * disallowed fields.
+	 *
 	 * @see DataBinder#setAllowedFields
 	 */
 	default String[] getSuppressedFields() {

@@ -42,9 +42,10 @@ public class ConstructorArgumentEntry implements ParseState.Entry {
 	/**
 	 * Creates a new instance of the {@link ConstructorArgumentEntry} class
 	 * representing a constructor argument at the supplied {@code index}.
+	 *
 	 * @param index the index of the constructor argument
 	 * @throws IllegalArgumentException if the supplied {@code index}
-	 * is less than zero
+	 *                                  is less than zero
 	 */
 	public ConstructorArgumentEntry(int index) {
 		Assert.isTrue(index >= 0, "Constructor argument index must be greater than or equal to zero");

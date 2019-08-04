@@ -164,19 +164,19 @@ public class EnableJmsTests extends AbstractJmsAnnotationDrivenTests {
 	@Test
 	public void composedJmsListeners() {
 		try (ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(
-			EnableJmsDefaultContainerFactoryConfig.class, ComposedJmsListenersBean.class)) {
+				EnableJmsDefaultContainerFactoryConfig.class, ComposedJmsListenersBean.class)) {
 			JmsListenerContainerTestFactory simpleFactory = context.getBean("jmsListenerContainerFactory",
-				JmsListenerContainerTestFactory.class);
+					JmsListenerContainerTestFactory.class);
 			assertEquals(2, simpleFactory.getListenerContainers().size());
 
 			MethodJmsListenerEndpoint first = (MethodJmsListenerEndpoint) simpleFactory.getListenerContainer(
-				"first").getEndpoint();
+					"first").getEndpoint();
 			assertEquals("first", first.getId());
 			assertEquals("orderQueue", first.getDestination());
 			assertNull(first.getConcurrency());
 
 			MethodJmsListenerEndpoint second = (MethodJmsListenerEndpoint) simpleFactory.getListenerContainer(
-				"second").getEndpoint();
+					"second").getEndpoint();
 			assertEquals("second", second.getId());
 			assertEquals("billingQueue", second.getDestination());
 			assertEquals("2-10", second.getConcurrency());

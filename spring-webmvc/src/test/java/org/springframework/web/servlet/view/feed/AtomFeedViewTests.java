@@ -65,7 +65,7 @@ public class AtomFeedViewTests {
 	private static class MyAtomFeedView extends AbstractAtomFeedView {
 
 		@Override
-		protected void buildFeedMetadata(Map<String, Object>model, Feed feed, HttpServletRequest request) {
+		protected void buildFeedMetadata(Map<String, Object> model, Feed feed, HttpServletRequest request) {
 			feed.setTitle("Test Feed");
 		}
 

@@ -221,7 +221,7 @@ public class CommonsMultipartResolverTests {
 	}
 
 	private void doTestBinding(MockCommonsMultipartResolver resolver, MockHttpServletRequest originalRequest,
-			MultipartHttpServletRequest request) throws UnsupportedEncodingException {
+							   MultipartHttpServletRequest request) throws UnsupportedEncodingException {
 
 		MultipartTestBean1 mtb1 = new MultipartTestBean1();
 		assertArrayEquals(null, mtb1.getField1());
@@ -335,9 +335,10 @@ public class CommonsMultipartResolverTests {
 
 		MultipartFilter filter = new MultipartFilter() {
 			private boolean invoked = false;
+
 			@Override
 			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-					FilterChain filterChain) throws ServletException, IOException {
+											FilterChain filterChain) throws ServletException, IOException {
 				super.doFilterInternal(request, response, filterChain);
 				super.doFilterInternal(request, response, filterChain);
 				if (invoked) {
@@ -379,13 +380,13 @@ public class CommonsMultipartResolverTests {
 					}
 					List<FileItem> fileItems = new ArrayList<>();
 					MockFileItem fileItem1 = new MockFileItem(
-						"field1", "type1", empty ? "" : "field1.txt", empty ? "" : "text1");
+							"field1", "type1", empty ? "" : "field1.txt", empty ? "" : "text1");
 					MockFileItem fileItem1x = new MockFileItem(
-						"field1", "type1", empty ? "" : "field1.txt", empty ? "" : "text1");
+							"field1", "type1", empty ? "" : "field1.txt", empty ? "" : "text1");
 					MockFileItem fileItem2 = new MockFileItem(
-						"field2", "type2", empty ? "" : "C:\\mypath/field2.txt", empty ? "" : "text2");
+							"field2", "type2", empty ? "" : "C:\\mypath/field2.txt", empty ? "" : "text2");
 					MockFileItem fileItem2x = new MockFileItem(
-						"field2x", "type2", empty ? "" : "C:/mypath\\field2x.txt", empty ? "" : "text2");
+							"field2x", "type2", empty ? "" : "C:/mypath\\field2x.txt", empty ? "" : "text2");
 					MockFileItem fileItem3 = new MockFileItem("field3", null, null, "value3");
 					MockFileItem fileItem4 = new MockFileItem("field4", "text/html; charset=iso-8859-1", null, "value4");
 					MockFileItem fileItem5 = new MockFileItem("field4", null, null, "value5");

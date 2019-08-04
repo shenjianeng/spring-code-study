@@ -38,8 +38,8 @@ import org.springframework.util.CollectionUtils;
  *
  * @author Chris Beams
  * @author Stephane Nicoll
- * @since 3.1
  * @see EnableTransactionManagement
+ * @since 3.1
  */
 @Configuration
 public abstract class AbstractTransactionManagementConfiguration implements ImportAware {

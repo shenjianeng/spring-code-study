@@ -41,7 +41,7 @@ public class JsonPathExpectationsHelperTests {
 			"'emptyString': '',              " + //
 			"'emptyArray':  [],              " + //
 			"'emptyMap':    {}               " + //
-	"}";
+			"}";
 
 	private static final String SIMPSONS = "{ 'familyMembers': [ " + //
 			"{'name': 'Homer' }, " + //
@@ -49,7 +49,7 @@ public class JsonPathExpectationsHelperTests {
 			"{'name': 'Bart'  }, " + //
 			"{'name': 'Lisa'  }, " + //
 			"{'name': 'Maggie'}  " + //
-	" ] }";
+			" ] }";
 
 	@Rule
 	public final ExpectedException exception = ExpectedException.none();

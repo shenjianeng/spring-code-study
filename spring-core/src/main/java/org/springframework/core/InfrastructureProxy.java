@@ -30,8 +30,8 @@ package org.springframework.core;
  * object with new behavior, such as AOP proxies, do <i>not</i> qualify here!
  *
  * @author Juergen Hoeller
- * @since 2.5.4
  * @see org.springframework.transaction.support.TransactionSynchronizationManager
+ * @since 2.5.4
  */
 public interface InfrastructureProxy {
 

@@ -25,8 +25,8 @@ import org.springframework.jmx.JmxException;
  * will <i>typically</i> be available via the {@link #getCause()} property.
  *
  * @author Rob Harrop
- * @since 2.0
  * @see NotificationPublisher
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class UnableToSendNotificationException extends JmxException {
@@ -34,6 +34,7 @@ public class UnableToSendNotificationException extends JmxException {
 	/**
 	 * Create a new instance of the {@link UnableToSendNotificationException}
 	 * class with the specified error message.
+	 *
 	 * @param msg the detail message
 	 */
 	public UnableToSendNotificationException(String msg) {
@@ -43,7 +44,8 @@ public class UnableToSendNotificationException extends JmxException {
 	/**
 	 * Create a new instance of the {@link UnableToSendNotificationException}
 	 * with the specified error message and root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public UnableToSendNotificationException(String msg, Throwable cause) {

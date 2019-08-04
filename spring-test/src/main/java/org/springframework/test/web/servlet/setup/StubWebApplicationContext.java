@@ -135,7 +135,7 @@ class StubWebApplicationContext implements WebApplicationContext {
 
 	@Override
 	public Environment getEnvironment() {
-		return this.environment ;
+		return this.environment;
 	}
 
 	public void addBean(String name, Object bean) {
@@ -288,7 +288,7 @@ class StubWebApplicationContext implements WebApplicationContext {
 	@Override
 	@Nullable
 	public <A extends Annotation> A findAnnotationOnBean(String beanName, Class<A> annotationType)
-			throws NoSuchBeanDefinitionException{
+			throws NoSuchBeanDefinitionException {
 
 		return this.beanFactory.findAnnotationOnBean(beanName, annotationType);
 	}
@@ -425,7 +425,7 @@ class StubWebApplicationContext implements WebApplicationContext {
 		@Override
 		@Nullable
 		public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,
-				@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) {
+										@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) {
 			throw new UnsupportedOperationException("Dependency resolution not supported");
 		}
 

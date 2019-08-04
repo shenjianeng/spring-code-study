@@ -110,7 +110,6 @@ import org.springframework.util.xml.StaxUtils;
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
- * @since 3.0
  * @see #setContextPath
  * @see #setClassesToBeBound
  * @see #setJaxbContextProperties
@@ -121,6 +120,7 @@ import org.springframework.util.xml.StaxUtils;
  * @see #setMarshallerListener
  * @see #setUnmarshallerListener
  * @see #setAdapters
+ * @since 3.0
  */
 public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, GenericMarshaller, GenericUnmarshaller,
 		BeanClassLoaderAware, InitializingBean {
@@ -131,7 +131,9 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			(publicId, systemId) -> new InputSource(new StringReader(""));
 
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -273,6 +275,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * Set the JAXB {@code Marshaller} properties.
 	 * <p>These properties will be set on the underlying JAXB {@code Marshaller},
 	 * and allow for features such as indentation.
+	 *
 	 * @param properties the properties
 	 * @see javax.xml.bind.Marshaller#setProperty(String, Object)
 	 * @see javax.xml.bind.Marshaller#JAXB_ENCODING
@@ -287,6 +290,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Set the JAXB {@code Unmarshaller} properties.
 	 * <p>These properties will be set on the underlying JAXB {@code Unmarshaller}.
+	 *
 	 * @param properties the properties
 	 * @see javax.xml.bind.Unmarshaller#setProperty(String, Object)
 	 */
@@ -328,7 +332,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * Set the schema resource to use for validation.
 	 */
 	public void setSchema(Resource schemaResource) {
-		this.schemaResources = new Resource[] {schemaResource};
+		this.schemaResources = new Resource[]{schemaResource};
 	}
 
 	/**
@@ -341,6 +345,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Set the schema language.
 	 * Default is the W3C XML Schema: {@code http://www.w3.org/2001/XMLSchema"}.
+	 *
 	 * @see XMLConstants#W3C_XML_SCHEMA_NS_URI
 	 * @see XMLConstants#RELAXNG_NS_URI
 	 */
@@ -350,6 +355,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Set the resource resolver, as used to load the schema resources.
+	 *
 	 * @see SchemaFactory#setResourceResolver(org.w3c.dom.ls.LSResourceResolver)
 	 * @see #setSchema
 	 * @see #setSchemas
@@ -384,6 +390,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * <p>This property is typically enabled in combination with usage of classes like
 	 * {@link org.springframework.web.servlet.view.xml.MarshallingView MarshallingView},
 	 * since the {@code ModelAndView} does not offer type parameter information at runtime.
+	 *
 	 * @see #supports(Class)
 	 * @see #supports(Type)
 	 */
@@ -399,6 +406,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	 * for defining the bindings in an external definition file, thus keeping the classes
 	 * annotations free. Setting this property to {@code false} supports these
 	 * JAXB implementations.
+	 *
 	 * @see #supports(Class)
 	 * @see #supports(Type)
 	 */
@@ -408,6 +416,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 	/**
 	 * Specify a JAXB mapped class for partial unmarshalling.
+	 *
 	 * @see javax.xml.bind.Unmarshaller#unmarshal(javax.xml.transform.Source, Class)
 	 */
 	public void setMappedClass(Class<?> mappedClass) {
@@ -497,19 +506,15 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 				try {
 					if (StringUtils.hasLength(this.contextPath)) {
 						context = createJaxbContextFromContextPath(this.contextPath);
-					}
-					else if (!ObjectUtils.isEmpty(this.classesToBeBound)) {
+					} else if (!ObjectUtils.isEmpty(this.classesToBeBound)) {
 						context = createJaxbContextFromClasses(this.classesToBeBound);
-					}
-					else if (!ObjectUtils.isEmpty(this.packagesToScan)) {
+					} else if (!ObjectUtils.isEmpty(this.packagesToScan)) {
 						context = createJaxbContextFromPackages(this.packagesToScan);
-					}
-					else {
+					} else {
 						context = JAXBContext.newInstance();
 					}
 					this.jaxbContext = context;
-				}
-				catch (JAXBException ex) {
+				} catch (JAXBException ex) {
 					throw convertJaxbException(ex);
 				}
 			}
@@ -524,18 +529,15 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 		if (this.jaxbContextProperties != null) {
 			if (this.beanClassLoader != null) {
 				return JAXBContext.newInstance(contextPath, this.beanClassLoader, this.jaxbContextProperties);
-			}
-			else {
+			} else {
 				// analogous to the JAXBContext.newInstance(String) implementation
 				return JAXBContext.newInstance(contextPath, Thread.currentThread().getContextClassLoader(),
 						this.jaxbContextProperties);
 			}
-		}
-		else {
+		} else {
 			if (this.beanClassLoader != null) {
 				return JAXBContext.newInstance(contextPath, this.beanClassLoader);
-			}
-			else {
+			} else {
 				return JAXBContext.newInstance(contextPath);
 			}
 		}
@@ -548,8 +550,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 		}
 		if (this.jaxbContextProperties != null) {
 			return JAXBContext.newInstance(classesToBeBound, this.jaxbContextProperties);
-		}
-		else {
+		} else {
 			return JAXBContext.newInstance(classesToBeBound);
 		}
 	}
@@ -567,8 +568,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 		this.classesToBeBound = jaxb2Classes;
 		if (this.jaxbContextProperties != null) {
 			return JAXBContext.newInstance(jaxb2Classes, this.jaxbContextProperties);
-		}
-		else {
+		} else {
 			return JAXBContext.newInstance(jaxb2Classes);
 		}
 	}
@@ -616,14 +616,12 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 					return ((classArgument.isArray() && Byte.TYPE == classArgument.getComponentType()) ||
 							isPrimitiveWrapper(classArgument) || isStandardClass(classArgument) ||
 							supportsInternal(classArgument, false));
-				}
-				else if (typeArgument instanceof GenericArrayType) {
+				} else if (typeArgument instanceof GenericArrayType) {
 					GenericArrayType arrayType = (GenericArrayType) typeArgument;
 					return (Byte.TYPE == arrayType.getGenericComponentType());
 				}
 			}
-		}
-		else if (genericType instanceof Class) {
+		} else if (genericType instanceof Class) {
 			Class<?> clazz = (Class<?>) genericType;
 			return supportsInternal(clazz, this.checkForXmlRootElement);
 		}
@@ -643,8 +641,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 				}
 			}
 			return false;
-		}
-		else if (!ObjectUtils.isEmpty(this.classesToBeBound)) {
+		} else if (!ObjectUtils.isEmpty(this.classesToBeBound)) {
 			return Arrays.asList(this.classesToBeBound).contains(clazz);
 		}
 		return false;
@@ -703,12 +700,10 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			}
 			if (StaxUtils.isStaxResult(result)) {
 				marshalStaxResult(marshaller, graph, result);
-			}
-			else {
+			} else {
 				marshaller.marshal(graph, result);
 			}
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw convertJaxbException(ex);
 		}
 	}
@@ -722,8 +717,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			Marshaller marshaller = getJaxbContext().createMarshaller();
 			initJaxbMarshaller(marshaller);
 			return marshaller;
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw convertJaxbException(ex);
 		}
 	}
@@ -732,13 +726,11 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 		XMLStreamWriter streamWriter = StaxUtils.getXMLStreamWriter(staxResult);
 		if (streamWriter != null) {
 			jaxbMarshaller.marshal(graph, streamWriter);
-		}
-		else {
+		} else {
 			XMLEventWriter eventWriter = StaxUtils.getXMLEventWriter(staxResult);
 			if (eventWriter != null) {
 				jaxbMarshaller.marshal(graph, eventWriter);
-			}
-			else {
+			} else {
 				throw new IllegalArgumentException("StAX Result contains neither XMLStreamWriter nor XMLEventConsumer");
 			}
 		}
@@ -795,22 +787,18 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			}
 			if (StaxUtils.isStaxSource(source)) {
 				return unmarshalStaxSource(unmarshaller, source);
-			}
-			else if (this.mappedClass != null) {
+			} else if (this.mappedClass != null) {
 				return unmarshaller.unmarshal(source, this.mappedClass).getValue();
-			}
-			else {
+			} else {
 				return unmarshaller.unmarshal(source);
 			}
-		}
-		catch (NullPointerException ex) {
+		} catch (NullPointerException ex) {
 			if (!isSupportDtd()) {
 				throw new UnmarshallingFailureException("NPE while unmarshalling: " +
 						"This can happen due to the presence of DTD declarations which are disabled.", ex);
 			}
 			throw ex;
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw convertJaxbException(ex);
 		}
 	}
@@ -824,8 +812,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			Unmarshaller unmarshaller = getJaxbContext().createUnmarshaller();
 			initJaxbUnmarshaller(unmarshaller);
 			return unmarshaller;
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw convertJaxbException(ex);
 		}
 	}
@@ -836,15 +823,13 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			return (this.mappedClass != null ?
 					jaxbUnmarshaller.unmarshal(streamReader, this.mappedClass).getValue() :
 					jaxbUnmarshaller.unmarshal(streamReader));
-		}
-		else {
+		} else {
 			XMLEventReader eventReader = StaxUtils.getXMLEventReader(staxSource);
 			if (eventReader != null) {
 				return (this.mappedClass != null ?
 						jaxbUnmarshaller.unmarshal(eventReader, this.mappedClass).getValue() :
 						jaxbUnmarshaller.unmarshal(eventReader));
-			}
-			else {
+			} else {
 				throw new IllegalArgumentException("StaxSource contains neither XMLStreamReader nor XMLEventReader");
 			}
 		}
@@ -863,16 +848,13 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			SAXSource saxSource = (SAXSource) source;
 			xmlReader = saxSource.getXMLReader();
 			inputSource = saxSource.getInputSource();
-		}
-		else if (source instanceof StreamSource) {
+		} else if (source instanceof StreamSource) {
 			StreamSource streamSource = (StreamSource) source;
 			if (streamSource.getInputStream() != null) {
 				inputSource = new InputSource(streamSource.getInputStream());
-			}
-			else if (streamSource.getReader() != null) {
+			} else if (streamSource.getReader() != null) {
 				inputSource = new InputSource(streamSource.getReader());
-			}
-			else {
+			} else {
 				inputSource = new InputSource(streamSource.getSystemId());
 			}
 		}
@@ -888,8 +870,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 				xmlReader.setEntityResolver(NO_OP_ENTITY_RESOLVER);
 			}
 			return new SAXSource(xmlReader, inputSource);
-		}
-		catch (SAXException ex) {
+		} catch (SAXException ex) {
 			logger.info("Processing of external entities could not be disabled", ex);
 			return source;
 		}
@@ -930,20 +911,18 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	/**
 	 * Convert the given {@code JAXBException} to an appropriate exception
 	 * from the {@code org.springframework.oxm} hierarchy.
+	 *
 	 * @param ex {@code JAXBException} that occurred
 	 * @return the corresponding {@code XmlMappingException}
 	 */
 	protected XmlMappingException convertJaxbException(JAXBException ex) {
 		if (ex instanceof ValidationException) {
 			return new ValidationFailureException("JAXB validation exception", ex);
-		}
-		else if (ex instanceof MarshalException) {
+		} else if (ex instanceof MarshalException) {
 			return new MarshallingFailureException("JAXB marshalling exception", ex);
-		}
-		else if (ex instanceof UnmarshalException) {
+		} else if (ex instanceof UnmarshalException) {
 			return new UnmarshallingFailureException("JAXB unmarshalling exception", ex);
-		}
-		else {
+		} else {
 			// fallback
 			return new UncategorizedMappingException("Unknown JAXB exception", ex);
 		}
@@ -960,7 +939,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 		@Override
 		public String addMtomAttachment(byte[] data, int offset, int length, String mimeType,
-				String elementNamespace, String elementLocalName) {
+										String elementNamespace, String elementLocalName) {
 			ByteArrayDataSource dataSource = new ByteArrayDataSource(mimeType, data, offset, length);
 			return addMtomAttachment(new DataHandler(dataSource), elementNamespace, elementLocalName);
 		}
@@ -972,8 +951,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			this.mimeContainer.addAttachment("<" + contentId + ">", dataHandler);
 			try {
 				contentId = URLEncoder.encode(contentId, "UTF-8");
-			}
-			catch (UnsupportedEncodingException ex) {
+			} catch (UnsupportedEncodingException ex) {
 				// ignore
 			}
 			return CID + contentId;
@@ -983,8 +961,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			try {
 				URI uri = new URI(elementNamespace);
 				return uri.getHost();
-			}
-			catch (URISyntaxException ex) {
+			} catch (URISyntaxException ex) {
 				// ignore
 			}
 			return dataHandler.getName();
@@ -1017,8 +994,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			try {
 				DataHandler dataHandler = getAttachmentAsDataHandler(cid);
 				return FileCopyUtils.copyToByteArray(dataHandler.getInputStream());
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new UnmarshallingFailureException("Could not read attachment", ex);
 			}
 		}
@@ -1029,8 +1005,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 				contentId = contentId.substring(CID.length());
 				try {
 					contentId = URLDecoder.decode(contentId, "UTF-8");
-				}
-				catch (UnsupportedEncodingException ex) {
+				} catch (UnsupportedEncodingException ex) {
 					// ignore
 				}
 				contentId = '<' + contentId + '>';

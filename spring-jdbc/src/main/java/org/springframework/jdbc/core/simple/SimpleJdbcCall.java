@@ -54,15 +54,16 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
  *
  * @author Thomas Risberg
  * @author Stephane Nicoll
- * @since 2.5
  * @see java.sql.DatabaseMetaData
  * @see org.springframework.jdbc.core.JdbcTemplate
+ * @since 2.5
  */
 public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOperations {
 
 	/**
 	 * Constructor that takes one parameter with the JDBC DataSource to use when
 	 * creating the underlying JdbcTemplate.
+	 *
 	 * @param dataSource the {@code DataSource} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */
@@ -72,6 +73,7 @@ public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOp
 
 	/**
 	 * Alternative Constructor that takes one parameter with the JdbcTemplate to be used.
+	 *
 	 * @param jdbcTemplate the {@code JdbcTemplate} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */

@@ -337,7 +337,7 @@ public class ReflectionTestUtilsTests {
 	@Test
 	public void invokeMethodWithPrimitiveVarArgsAsSingleArgument() {
 		// IntelliJ IDEA 11 won't accept int assignment here
-		Integer sum = invokeMethod(component, "add", new int[] { 1, 2, 3, 4 });
+		Integer sum = invokeMethod(component, "add", new int[]{1, 2, 3, 4});
 		assertEquals("add(1,2,3,4)", 10, sum.intValue());
 	}
 

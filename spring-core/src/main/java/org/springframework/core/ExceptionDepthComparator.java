@@ -37,6 +37,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * Create a new ExceptionDepthComparator for the given exception.
+	 *
 	 * @param exception the target exception to compare to when sorting by depth
 	 */
 	public ExceptionDepthComparator(Throwable exception) {
@@ -46,6 +47,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * Create a new ExceptionDepthComparator for the given exception type.
+	 *
 	 * @param exceptionType the target exception type to compare to when sorting by depth
 	 */
 	public ExceptionDepthComparator(Class<? extends Throwable> exceptionType) {
@@ -76,7 +78,8 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 	/**
 	 * Obtain the closest match from the given exception types for the given target exception.
-	 * @param exceptionTypes the collection of exception types
+	 *
+	 * @param exceptionTypes  the collection of exception types
 	 * @param targetException the target exception to find a match for
 	 * @return the closest matching exception type from the given collection
 	 */

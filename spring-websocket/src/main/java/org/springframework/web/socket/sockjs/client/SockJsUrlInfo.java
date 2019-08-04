@@ -103,8 +103,7 @@ public class SockJsUrlInfo {
 			if (!scheme.startsWith("ws")) {
 				scheme = ("https".equals(scheme) ? "wss" : "ws");
 			}
-		}
-		else {
+		} else {
 			if (!scheme.startsWith("http")) {
 				scheme = ("wss".equals(scheme) ? "https" : "http");
 			}

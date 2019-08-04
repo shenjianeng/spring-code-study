@@ -61,6 +61,7 @@ public class LeakAwareDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * Creates a new {@code LeakAwareDataBufferFactory} by wrapping the given delegate.
+	 *
 	 * @param delegate the delegate buffer factory to wrap.
 	 */
 	public LeakAwareDataBufferFactory(DataBufferFactory delegate) {
@@ -83,8 +84,7 @@ public class LeakAwareDataBufferFactory implements DataBufferFactory {
 			if (Instant.now().isBefore(start.plus(Duration.ofSeconds(5)))) {
 				try {
 					Thread.sleep(50);
-				}
-				catch (InterruptedException ex) {
+				} catch (InterruptedException ex) {
 					// ignore
 				}
 				continue;

@@ -79,8 +79,7 @@ public class AnnotationTransactionNamespaceHandlerTests {
 		try {
 			testBean.exceptional(new IllegalArgumentException("foo"));
 			fail("Should NEVER get here");
-		}
-		catch (Throwable throwable) {
+		} catch (Throwable throwable) {
 			assertEquals("Should have another started transaction", 2, ptm.begun);
 			assertEquals("Should have 1 rolled back transaction", 1, ptm.rollbacks);
 		}

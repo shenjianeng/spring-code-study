@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
  * of this contract.
  *
  * @author Rossen Stoyanchev
- * @since 4.1
  * @see AbstractXhrTransport
+ * @since 4.1
  */
 public interface InfoReceiver {
 
@@ -39,6 +39,7 @@ public interface InfoReceiver {
 	 * Perform an HTTP request to the SockJS "Info" URL.
 	 * and return the resulting JSON response content, or raise an exception.
 	 * <p>Note that as of 4.2 this method accepts a {@code headers} parameter.
+	 *
 	 * @param infoUrl the URL to obtain SockJS server information from
 	 * @param headers the headers to use for the request
 	 * @return the body of the response

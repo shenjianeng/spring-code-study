@@ -114,47 +114,62 @@ public class ControllerAdviceBeanTests {
 	// ControllerAdvice classes
 
 	@ControllerAdvice
-	static class SimpleControllerAdvice {}
+	static class SimpleControllerAdvice {
+	}
 
 	@ControllerAdvice(annotations = ControllerAnnotation.class)
-	static class AnnotationSupport {}
+	static class AnnotationSupport {
+	}
 
 	@ControllerAdvice(basePackageClasses = MarkerClass.class)
-	static class MarkerClassSupport {}
+	static class MarkerClassSupport {
+	}
 
 	@ControllerAdvice(assignableTypes = {ControllerInterface.class,
 			AbstractController.class})
-	static class AssignableTypesSupport {}
+	static class AssignableTypesSupport {
+	}
 
 	@ControllerAdvice(basePackages = "org.springframework.web.method")
-	static class BasePackageSupport {}
+	static class BasePackageSupport {
+	}
 
 	@ControllerAdvice("org.springframework.web.method")
-	static class BasePackageValueSupport {}
+	static class BasePackageValueSupport {
+	}
 
 	@ControllerAdvice(annotations = ControllerAnnotation.class, assignableTypes = ControllerInterface.class)
-	static class MultipleSelectorsSupport {}
+	static class MultipleSelectorsSupport {
+	}
 
 	@ControllerAdvice(basePackages = "java.util", annotations = {RestController.class})
-	static class ShouldNotMatch {}
+	static class ShouldNotMatch {
+	}
 
 
 	// Support classes
 
-	static class MarkerClass {}
+	static class MarkerClass {
+	}
 
 	@Retention(RetentionPolicy.RUNTIME)
-	static @interface ControllerAnnotation {}
+	static @interface ControllerAnnotation {
+	}
 
 	@ControllerAnnotation
-	public static class AnnotatedController {}
+	public static class AnnotatedController {
+	}
 
-	static interface ControllerInterface {}
+	static interface ControllerInterface {
+	}
 
-	static class ImplementationController implements ControllerInterface {}
+	static class ImplementationController implements ControllerInterface {
+	}
 
-	static abstract class AbstractController {}
+	static abstract class AbstractController {
+	}
 
-	static class InheritanceController extends AbstractController {}
+	static class InheritanceController extends AbstractController {
+	}
 
 }

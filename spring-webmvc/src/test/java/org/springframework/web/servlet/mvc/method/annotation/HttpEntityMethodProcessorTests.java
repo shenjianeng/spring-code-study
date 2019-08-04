@@ -185,7 +185,7 @@ public class HttpEntityMethodProcessorTests {
 
 	@Test  // SPR-13423
 	public void handleReturnValueCharSequence() throws Exception {
-		List<HttpMessageConverter<?>>converters = new ArrayList<>();
+		List<HttpMessageConverter<?>> converters = new ArrayList<>();
 		converters.add(new ByteArrayHttpMessageConverter());
 		converters.add(new StringHttpMessageConverter());
 
@@ -231,7 +231,7 @@ public class HttpEntityMethodProcessorTests {
 	}
 
 
-	@SuppressWarnings({ "serial" })
+	@SuppressWarnings({"serial"})
 	private static class SimpleBean implements Identifiable {
 
 		private Long id;

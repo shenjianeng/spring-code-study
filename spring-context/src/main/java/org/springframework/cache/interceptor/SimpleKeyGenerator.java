@@ -30,9 +30,9 @@ import java.lang.reflect.Method;
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
- * @since 4.0
  * @see SimpleKey
  * @see org.springframework.cache.annotation.CachingConfigurer
+ * @since 4.0
  */
 public class SimpleKeyGenerator implements KeyGenerator {
 

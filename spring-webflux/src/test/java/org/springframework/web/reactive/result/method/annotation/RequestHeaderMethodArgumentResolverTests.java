@@ -102,8 +102,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 		try {
 			this.resolver.supportsParameter(this.paramMono);
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"RequestHeaderMethodArgumentResolver doesn't support reactive type wrapper"));
@@ -133,7 +132,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 
 		Object result = mono.block();
 		assertTrue(result instanceof String[]);
-		assertArrayEquals(new String[] {"foo", "bar"}, (String[]) result);
+		assertArrayEquals(new String[]{"foo", "bar"}, (String[]) result);
 	}
 
 	@Test
@@ -158,8 +157,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 			Object result = mono.block();
 			assertTrue(result instanceof String);
 			assertEquals("bar", result);
-		}
-		finally {
+		} finally {
 			System.clearProperty("systemProperty");
 		}
 	}
@@ -178,8 +176,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 			Object result = mono.block();
 			assertTrue(result instanceof String);
 			assertEquals(expected, result);
-		}
-		finally {
+		} finally {
 			System.clearProperty("systemProperty");
 		}
 	}
@@ -198,8 +195,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 			Object result = mono.block();
 			assertTrue(result instanceof String);
 			assertEquals(expected, result);
-		}
-		finally {
+		} finally {
 			System.clearProperty("systemProperty");
 		}
 	}
@@ -248,7 +244,7 @@ public class RequestHeaderMethodArgumentResolverTests {
 	public void params(
 			@RequestHeader(name = "name", defaultValue = "bar") String param1,
 			@RequestHeader("name") String[] param2,
-			@RequestHeader(name = "name", defaultValue="#{systemProperties.systemProperty}") String param3,
+			@RequestHeader(name = "name", defaultValue = "#{systemProperties.systemProperty}") String param3,
 			@RequestHeader("#{systemProperties.systemProperty}") String param4,
 			@RequestHeader("${systemProperty}") String param5,
 			@RequestHeader("name") Map<?, ?> unsupported,

@@ -41,8 +41,7 @@ public class BufferedSimpleAsyncHttpRequestFactoryTests extends AbstractAsyncHtt
 		super.httpMethods();
 		try {
 			assertHttpMethod("patch", HttpMethod.PATCH);
-		}
-		catch (ProtocolException ex) {
+		} catch (ProtocolException ex) {
 			// Currently HttpURLConnection does not support HTTP PATCH
 		}
 	}

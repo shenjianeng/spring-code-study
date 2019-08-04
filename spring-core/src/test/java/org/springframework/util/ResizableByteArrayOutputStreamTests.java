@@ -70,13 +70,13 @@ public class ResizableByteArrayOutputStreamTests {
 	}
 
 	@Test
-	public void write() throws Exception{
+	public void write() throws Exception {
 		this.baos.write(helloBytes);
 		assertByteArrayEqualsString(this.baos);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void failResize() throws Exception{
+	public void failResize() throws Exception {
 		this.baos.write(helloBytes);
 		this.baos.resize(5);
 	}

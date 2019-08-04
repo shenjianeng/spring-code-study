@@ -35,8 +35,8 @@ import static org.springframework.jdbc.datasource.init.ScriptUtils.*;
  * @author Phillip Webb
  * @author Chris Baldwin
  * @author Nicolas Debeissat
- * @since 4.0.3
  * @see ScriptUtilsIntegrationTests
+ * @since 4.0.3
  */
 public class ScriptUtilsUnitTests {
 
@@ -83,7 +83,7 @@ public class ScriptUtilsUnitTests {
 		splitSqlScript(script, DEFAULT_STATEMENT_SEPARATOR, statements);
 		assertEquals("wrong number of statements", 1, statements.size());
 		assertEquals("script should have been 'stripped' but not actually 'split'", script.replace('\n', ' '),
-			statements.get(0));
+				statements.get(0));
 	}
 
 	@Test  // SPR-13218
@@ -202,7 +202,7 @@ public class ScriptUtilsUnitTests {
 
 		assertFalse(containsSqlScriptDelimiters("select 1; select '\\n\n';", "\n"));
 		assertTrue(containsSqlScriptDelimiters("select 1\n select 2", "\n"));
-		
+
 		assertFalse(containsSqlScriptDelimiters("select 1\n select 2", "\n\n"));
 		assertTrue(containsSqlScriptDelimiters("select 1\n\n select 2", "\n\n"));
 

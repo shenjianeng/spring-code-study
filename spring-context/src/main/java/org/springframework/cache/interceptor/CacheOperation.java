@@ -51,6 +51,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 	/**
 	 * Create a new {@link CacheOperation} instance from the given builder.
+	 *
 	 * @since 4.3
 	 */
 	protected CacheOperation(Builder b) {
@@ -97,6 +98,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 	/**
 	 * This implementation compares the {@code toString()} results.
+	 *
 	 * @see #toString()
 	 */
 	@Override
@@ -106,6 +108,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 	/**
 	 * This implementation returns {@code toString()}'s hash code.
+	 *
 	 * @see #toString()
 	 */
 	@Override
@@ -118,6 +121,7 @@ public abstract class CacheOperation implements BasicOperation {
 	 * <p>Returned value is produced by calling {@link Builder#getOperationDescription()}
 	 * during object construction. This method is used in {@link #hashCode} and
 	 * {@link #equals}.
+	 *
 	 * @see Builder#getOperationDescription()
 	 */
 	@Override
@@ -128,6 +132,7 @@ public abstract class CacheOperation implements BasicOperation {
 
 	/**
 	 * Base class for builders that can be used to create a {@link CacheOperation}.
+	 *
 	 * @since 4.3
 	 */
 	public abstract static class Builder {

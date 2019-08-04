@@ -97,8 +97,8 @@ public class RestTemplateXhrTransport extends AbstractXhrTransport {
 
 	@Override
 	protected void connectInternal(final TransportRequest transportRequest, final WebSocketHandler handler,
-			final URI receiveUrl, final HttpHeaders handshakeHeaders, final XhrClientSockJsSession session,
-			final SettableListenableFuture<WebSocketSession> connectFuture) {
+								   final URI receiveUrl, final HttpHeaders handshakeHeaders, final XhrClientSockJsSession session,
+								   final SettableListenableFuture<WebSocketSession> connectFuture) {
 
 		getTaskExecutor().execute(() -> {
 			HttpHeaders httpHeaders = transportRequest.getHttpRequestHeaders();
@@ -116,12 +116,10 @@ public class RestTemplateXhrTransport extends AbstractXhrTransport {
 					}
 					getRestTemplate().execute(receiveUrl, HttpMethod.POST, requestCallback, responseExtractor);
 					requestCallback = requestCallbackAfterHandshake;
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					if (!connectFuture.isDone()) {
 						connectFuture.setException(ex);
-					}
-					else {
+					} else {
 						session.handleTransportError(ex);
 						session.afterTransportClosed(new CloseStatus(1006, ex.getMessage()));
 					}
@@ -237,8 +235,7 @@ public class RestTemplateXhrTransport extends AbstractXhrTransport {
 				}
 				if (b == '\n') {
 					handleFrame(os);
-				}
-				else {
+				} else {
 					os.write(b);
 				}
 			}

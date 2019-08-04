@@ -46,7 +46,9 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	protected static final Log logger = LogFactory.getLog(NameMatchCacheOperationSource.class);
 
 
-	/** Keys are method names; values are TransactionAttributes. */
+	/**
+	 * Keys are method names; values are TransactionAttributes.
+	 */
 	private Map<String, Collection<CacheOperation>> nameMap = new LinkedHashMap<>();
 
 
@@ -54,6 +56,7 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	 * Set a name/attribute map, consisting of method names
 	 * (e.g. "myMethod") and CacheOperation instances
 	 * (or Strings to be converted to CacheOperation instances).
+	 *
 	 * @see CacheOperation
 	 */
 	public void setNameMap(Map<String, Collection<CacheOperation>> nameMap) {
@@ -64,8 +67,9 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	 * Add an attribute for a cacheable method.
 	 * <p>Method names can be exact matches, or of the pattern "xxx*",
 	 * "*xxx" or "*xxx*" for matching multiple methods.
+	 *
 	 * @param methodName the name of the method
-	 * @param ops operation associated with the method
+	 * @param ops        operation associated with the method
 	 */
 	public void addCacheMethod(String methodName, Collection<CacheOperation> ops) {
 		if (logger.isDebugEnabled()) {
@@ -100,6 +104,7 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	 * Return if the given method name matches the mapped name.
 	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
 	 * as well as direct equality. Can be overridden in subclasses.
+	 *
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match

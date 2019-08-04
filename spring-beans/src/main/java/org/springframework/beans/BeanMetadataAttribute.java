@@ -40,7 +40,8 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 
 	/**
 	 * Create a new AttributeValue instance.
-	 * @param name the name of the attribute (never {@code null})
+	 *
+	 * @param name  the name of the attribute (never {@code null})
 	 * @param value the value of the attribute (possibly before type conversion)
 	 */
 	public BeanMetadataAttribute(String name, @Nullable Object value) {

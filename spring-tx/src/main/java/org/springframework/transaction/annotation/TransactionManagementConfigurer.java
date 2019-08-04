@@ -37,9 +37,9 @@ import org.springframework.transaction.PlatformTransactionManager;
  * of the {@code PlatformTransactionManager} bean.
  *
  * @author Chris Beams
- * @since 3.1
  * @see EnableTransactionManagement
  * @see org.springframework.context.annotation.Primary
+ * @since 3.1
  */
 public interface TransactionManagementConfigurer {
 

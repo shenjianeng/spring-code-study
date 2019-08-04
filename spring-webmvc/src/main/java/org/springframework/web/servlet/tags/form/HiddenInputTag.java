@@ -103,6 +103,7 @@ public class HiddenInputTag extends AbstractHtmlElementTag {
 	/**
 	 * Writes the HTML '{@code input}' tag to the supplied {@link TagWriter} including the
 	 * databound value.
+	 *
 	 * @see #writeDefaultAttributes(TagWriter)
 	 * @see #getBoundValue()
 	 */

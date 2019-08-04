@@ -42,9 +42,9 @@ import org.springframework.util.ClassUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see MBeanClientInterceptor
  * @see InvalidInvocationException
+ * @since 1.2
  */
 public class MBeanProxyFactoryBean extends MBeanClientInterceptor
 		implements FactoryBean<Object>, BeanClassLoaderAware, InitializingBean {
@@ -64,6 +64,7 @@ public class MBeanProxyFactoryBean extends MBeanClientInterceptor
 	 * <p>This will usually be a management interface that matches the target MBean,
 	 * exposing bean property setters and getters for MBean attributes and
 	 * conventional Java methods for MBean operations.
+	 *
 	 * @see #setObjectName
 	 */
 	public void setProxyInterface(Class<?> proxyInterface) {
@@ -88,8 +89,7 @@ public class MBeanProxyFactoryBean extends MBeanClientInterceptor
 			if (this.proxyInterface == null) {
 				throw new IllegalArgumentException("Property 'proxyInterface' or 'managementInterface' is required");
 			}
-		}
-		else {
+		} else {
 			if (getManagementInterface() == null) {
 				setManagementInterface(this.proxyInterface);
 			}

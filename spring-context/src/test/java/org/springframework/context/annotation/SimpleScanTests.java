@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
 public class SimpleScanTests {
 
 	protected String[] getConfigLocations() {
-		return new String[] {"simpleScanTests.xml"};
+		return new String[]{"simpleScanTests.xml"};
 	}
 
 	@Test

@@ -69,6 +69,7 @@ import static org.springframework.web.reactive.result.method.RequestMappingInfo.
 
 /**
  * Unit tests for {@link RequestMappingInfoHandlerMapping}.
+ *
  * @author Rossen Stoyanchev
  */
 public class RequestMappingInfoHandlerMappingTests {
@@ -431,7 +432,8 @@ public class RequestMappingInfoHandlerMappingTests {
 			return headers;
 		}
 
-		public void dummy() { }
+		public void dummy() {
+		}
 	}
 
 
@@ -470,8 +472,7 @@ public class RequestMappingInfoHandlerMappingTests {
 						.params(annot.params()).headers(annot.headers())
 						.consumes(annot.consumes()).produces(annot.produces())
 						.options(options).build();
-			}
-			else {
+			} else {
 				return null;
 			}
 		}

@@ -47,8 +47,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredIntParameter(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
@@ -57,16 +56,14 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredIntParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
 		try {
 			ServletRequestUtils.getRequiredIntParameter(request, "paramEmpty");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -74,13 +71,13 @@ public class ServletRequestUtilsTests {
 	@Test
 	public void testIntParameters() throws ServletRequestBindingException {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.addParameter("param", new String[] {"1", "2", "3"});
+		request.addParameter("param", new String[]{"1", "2", "3"});
 
 		request.addParameter("param2", "1");
 		request.addParameter("param2", "2");
 		request.addParameter("param2", "bogus");
 
-		int[] array = new int[] {1, 2, 3};
+		int[] array = new int[]{1, 2, 3};
 		int[] values = ServletRequestUtils.getRequiredIntParameters(request, "param");
 		assertEquals(3, values.length);
 		for (int i = 0; i < array.length; i++) {
@@ -90,8 +87,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredIntParameters(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -111,8 +107,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredLongParameter(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
@@ -121,16 +116,14 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredLongParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
 		try {
 			ServletRequestUtils.getRequiredLongParameter(request, "paramEmpty");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -138,14 +131,14 @@ public class ServletRequestUtilsTests {
 	@Test
 	public void testLongParameters() throws ServletRequestBindingException {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.setParameter("param", new String[] {"1", "2", "3"});
+		request.setParameter("param", new String[]{"1", "2", "3"});
 
 		request.setParameter("param2", "0");
 		request.setParameter("param2", "1");
 		request.addParameter("param2", "2");
 		request.addParameter("param2", "bogus");
 
-		long[] array = new long[] {1L, 2L, 3L};
+		long[] array = new long[]{1L, 2L, 3L};
 		long[] values = ServletRequestUtils.getRequiredLongParameters(request, "param");
 		assertEquals(3, values.length);
 		for (int i = 0; i < array.length; i++) {
@@ -155,12 +148,11 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredLongParameters(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
-		request.setParameter("param2", new String[] {"1", "2"});
+		request.setParameter("param2", new String[]{"1", "2"});
 		values = ServletRequestUtils.getRequiredLongParameters(request, "param2");
 		assertEquals(2, values.length);
 		assertEquals(1, values[0]);
@@ -170,8 +162,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredLongParameters(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -191,8 +182,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredFloatParameter(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
@@ -201,16 +191,14 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredFloatParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
 		try {
 			ServletRequestUtils.getRequiredFloatParameter(request, "paramEmpty");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -218,13 +206,13 @@ public class ServletRequestUtilsTests {
 	@Test
 	public void testFloatParameters() throws ServletRequestBindingException {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.addParameter("param", new String[] {"1.5", "2.5", "3"});
+		request.addParameter("param", new String[]{"1.5", "2.5", "3"});
 
 		request.addParameter("param2", "1.5");
 		request.addParameter("param2", "2");
 		request.addParameter("param2", "bogus");
 
-		float[] array = new float[] {1.5F, 2.5F, 3};
+		float[] array = new float[]{1.5F, 2.5F, 3};
 		float[] values = ServletRequestUtils.getRequiredFloatParameters(request, "param");
 		assertEquals(3, values.length);
 		for (int i = 0; i < array.length; i++) {
@@ -234,8 +222,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredFloatParameters(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -255,8 +242,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredDoubleParameter(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
@@ -265,16 +251,14 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredDoubleParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
 		try {
 			ServletRequestUtils.getRequiredDoubleParameter(request, "paramEmpty");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -282,13 +266,13 @@ public class ServletRequestUtilsTests {
 	@Test
 	public void testDoubleParameters() throws ServletRequestBindingException {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.addParameter("param", new String[] {"1.5", "2.5", "3"});
+		request.addParameter("param", new String[]{"1.5", "2.5", "3"});
 
 		request.addParameter("param2", "1.5");
 		request.addParameter("param2", "2");
 		request.addParameter("param2", "bogus");
 
-		double[] array = new double[] {1.5, 2.5, 3};
+		double[] array = new double[]{1.5, 2.5, 3};
 		double[] values = ServletRequestUtils.getRequiredDoubleParameters(request, "param");
 		assertEquals(3, values.length);
 		for (int i = 0; i < array.length; i++) {
@@ -298,8 +282,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredDoubleParameters(request, "param2");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 	}
@@ -325,8 +308,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredBooleanParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 
@@ -341,20 +323,20 @@ public class ServletRequestUtilsTests {
 	@Test
 	public void testBooleanParameters() throws ServletRequestBindingException {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.addParameter("param", new String[] {"true", "yes", "off", "1", "bogus"});
+		request.addParameter("param", new String[]{"true", "yes", "off", "1", "bogus"});
 
 		request.addParameter("param2", "false");
 		request.addParameter("param2", "true");
 		request.addParameter("param2", "");
 
-		boolean[] array = new boolean[] {true, true, false, true, false};
+		boolean[] array = new boolean[]{true, true, false, true, false};
 		boolean[] values = ServletRequestUtils.getRequiredBooleanParameters(request, "param");
 		assertEquals(array.length, values.length);
 		for (int i = 0; i < array.length; i++) {
 			assertEquals(array[i], values[i]);
 		}
 
-		array = new boolean[] {false, true, false};
+		array = new boolean[]{false, true, false};
 		values = ServletRequestUtils.getRequiredBooleanParameters(request, "param2");
 		assertEquals(array.length, values.length);
 		for (int i = 0; i < array.length; i++) {
@@ -378,8 +360,7 @@ public class ServletRequestUtilsTests {
 		try {
 			ServletRequestUtils.getRequiredStringParameter(request, "param3");
 			fail("Should have thrown ServletRequestBindingException");
-		}
-		catch (ServletRequestBindingException ex) {
+		} catch (ServletRequestBindingException ex) {
 			// expected
 		}
 

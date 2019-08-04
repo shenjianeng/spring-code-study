@@ -33,6 +33,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Exercise the {@link PathPatternParser}.
+ *
  * @author Andy Clement
  */
 public class PathPatternParserTests {
@@ -124,12 +125,12 @@ public class PathPatternParserTests {
 		pathPattern = checkStructure("/{var:\\\\}");
 		PathElement next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		assertMatches(pathPattern,"/\\");
+		assertMatches(pathPattern, "/\\");
 
 		pathPattern = checkStructure("/{var:\\/}");
 		next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		assertNoMatch(pathPattern,"/aaa");
+		assertNoMatch(pathPattern, "/aaa");
 
 		pathPattern = checkStructure("/{var:a{1,2}}");
 		next = pathPattern.getHeadSection().next;
@@ -138,25 +139,25 @@ public class PathPatternParserTests {
 		pathPattern = checkStructure("/{var:[^\\/]*}");
 		next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		PathPattern.PathMatchInfo result = matchAndExtract(pathPattern,"/foo");
+		PathPattern.PathMatchInfo result = matchAndExtract(pathPattern, "/foo");
 		assertEquals("foo", result.getUriVariables().get("var"));
 
 		pathPattern = checkStructure("/{var:\\[*}");
 		next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		result = matchAndExtract(pathPattern,"/[[[");
+		result = matchAndExtract(pathPattern, "/[[[");
 		assertEquals("[[[", result.getUriVariables().get("var"));
 
 		pathPattern = checkStructure("/{var:[\\{]*}");
 		next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		result = matchAndExtract(pathPattern,"/{{{");
+		result = matchAndExtract(pathPattern, "/{{{");
 		assertEquals("{{{", result.getUriVariables().get("var"));
 
 		pathPattern = checkStructure("/{var:[\\}]*}");
 		next = pathPattern.getHeadSection().next;
 		assertEquals(CaptureVariablePathElement.class.getName(), next.getClass().getName());
-		result = matchAndExtract(pathPattern,"/}}}");
+		result = matchAndExtract(pathPattern, "/}}}");
 		assertEquals("}}}", result.getUriVariables().get("var"));
 
 		pathPattern = checkStructure("*");
@@ -187,18 +188,18 @@ public class PathPatternParserTests {
 		checkStructure("/{foo}/{bar}/{wibble}");
 		checkStructure("/{mobile-number}"); // gh-23101
 	}
-	
+
 	@Test
 	public void noEncoding() {
 		// Check no encoding of expressions or constraints
 		PathPattern pp = parse("/{var:f o}");
-		assertEquals("Separator(/) CaptureVariable({var:f o})",pp.toChainString());
+		assertEquals("Separator(/) CaptureVariable({var:f o})", pp.toChainString());
 
 		pp = parse("/{var:f o}_");
-		assertEquals("Separator(/) Regex({var:f o}_)",pp.toChainString());
-		
+		assertEquals("Separator(/) Regex({var:f o}_)", pp.toChainString());
+
 		pp = parse("{foo:f o}_ _{bar:b\\|o}");
-		assertEquals("Regex({foo:f o}_ _{bar:b\\|o})",pp.toChainString());
+		assertEquals("Regex({foo:f o}_ _{bar:b\\|o})", pp.toChainString());
 	}
 
 	@Test
@@ -246,15 +247,13 @@ public class PathPatternParserTests {
 		try {
 			pp.matchAndExtract(toPSC("/foo"));
 			fail("Should have raised exception");
-		}
-		catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException iae) {
 			assertEquals("No capture groups allowed in the constraint regex: foo(bar)", iae.getMessage());
 		}
 		try {
 			pp.matchAndExtract(toPSC("/foobar"));
 			fail("Should have raised exception");
-		}
-		catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException iae) {
 			assertEquals("No capture groups allowed in the constraint regex: foo(bar)", iae.getMessage());
 		}
 	}
@@ -431,13 +430,12 @@ public class PathPatternParserTests {
 	}
 
 	private void checkError(String pattern, int expectedPos, PatternMessage expectedMessage,
-			String... expectedInserts) {
+							String... expectedInserts) {
 
 		try {
 			pathPattern = parse(pattern);
 			fail("Expected to fail");
-		}
-		catch (PatternParseException ppe) {
+		} catch (PatternParseException ppe) {
 			assertEquals(ppe.toDetailedString(), expectedPos, ppe.getPosition());
 			assertEquals(ppe.toDetailedString(), expectedMessage, ppe.getMessageType());
 			if (expectedInserts.length != 0) {
@@ -474,7 +472,7 @@ public class PathPatternParserTests {
 	private void assertNoMatch(PathPattern pp, String path) {
 		assertFalse(pp.matches(PathPatternTests.toPathContainer(path)));
 	}
-	
+
 	private PathPattern.PathMatchInfo matchAndExtract(PathPattern pp, String path) {
 		return pp.matchAndExtract(PathPatternTests.toPathContainer(path));
 	}

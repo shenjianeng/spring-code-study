@@ -74,7 +74,7 @@ import org.springframework.core.Ordered;
  *
  * &lt;/beans&gt;
  * </pre>
- *
+ * <p>
  * In both of the scenarios above, {@code @EnableCaching} and {@code
  * <cache:annotation-driven/>} are responsible for registering the necessary Spring
  * components that power annotation-driven cache management, such as the
@@ -127,7 +127,7 @@ import org.springframework.core.Ordered;
  *         return new MyKeyGenerator();
  *     }
  * }</pre>
- *
+ * <p>
  * This approach may be desirable simply because it is more explicit, or it may be
  * necessary in order to distinguish between two {@code CacheManager} beans present in the
  * same container.
@@ -160,11 +160,11 @@ import org.springframework.core.Ordered;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see CachingConfigurer
  * @see CachingConfigurationSelector
  * @see ProxyCachingConfiguration
  * @see org.springframework.cache.aspectj.AspectJCachingConfiguration
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

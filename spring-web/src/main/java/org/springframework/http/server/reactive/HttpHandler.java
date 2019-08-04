@@ -37,14 +37,15 @@ import reactor.core.publisher.Mono;
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see ContextPathCompositeHandler
+ * @since 5.0
  */
 public interface HttpHandler {
 
 	/**
 	 * Handle the given request and write to the response.
-	 * @param request current request
+	 *
+	 * @param request  current request
 	 * @param response current response
 	 * @return indicates completion of request handling
 	 */

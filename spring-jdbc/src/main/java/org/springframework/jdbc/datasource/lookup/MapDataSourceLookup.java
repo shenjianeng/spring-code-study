@@ -48,8 +48,9 @@ public class MapDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * Create a new instance of the {@link MapDataSourceLookup} class.
+	 *
 	 * @param dataSources the {@link Map} of {@link DataSource DataSources}; the keys
-	 * are {@link String Strings}, the values are actual {@link DataSource} instances.
+	 *                    are {@link String Strings}, the values are actual {@link DataSource} instances.
 	 */
 	public MapDataSourceLookup(Map<String, DataSource> dataSources) {
 		setDataSources(dataSources);
@@ -57,8 +58,9 @@ public class MapDataSourceLookup implements DataSourceLookup {
 
 	/**
 	 * Create a new instance of the {@link MapDataSourceLookup} class.
+	 *
 	 * @param dataSourceName the name under which the supplied {@link DataSource} is to be added
-	 * @param dataSource the {@link DataSource} to be added
+	 * @param dataSource     the {@link DataSource} to be added
 	 */
 	public MapDataSourceLookup(String dataSourceName, DataSource dataSource) {
 		addDataSource(dataSourceName, dataSource);
@@ -70,6 +72,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	 * are {@link String Strings}, the values are actual {@link DataSource} instances.
 	 * <p>If the supplied {@link Map} is {@code null}, then this method
 	 * call effectively has no effect.
+	 *
 	 * @param dataSources said {@link Map} of {@link DataSource DataSources}
 	 */
 	public void setDataSources(@Nullable Map<String, DataSource> dataSources) {
@@ -81,6 +84,7 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	/**
 	 * Get the {@link Map} of {@link DataSource DataSources} maintained by this object.
 	 * <p>The returned {@link Map} is {@link Collections#unmodifiableMap(java.util.Map) unmodifiable}.
+	 *
 	 * @return said {@link Map} of {@link DataSource DataSources} (never {@code null})
 	 */
 	public Map<String, DataSource> getDataSources() {
@@ -90,8 +94,9 @@ public class MapDataSourceLookup implements DataSourceLookup {
 	/**
 	 * Add the supplied {@link DataSource} to the map of {@link DataSource DataSources}
 	 * maintained by this object.
+	 *
 	 * @param dataSourceName the name under which the supplied {@link DataSource} is to be added
-	 * @param dataSource the {@link DataSource} to be so added
+	 * @param dataSource     the {@link DataSource} to be so added
 	 */
 	public void addDataSource(String dataSourceName, DataSource dataSource) {
 		Assert.notNull(dataSourceName, "DataSource name must not be null");

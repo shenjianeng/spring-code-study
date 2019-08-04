@@ -27,11 +27,11 @@ import org.springframework.lang.Nullable;
  * Tag collection class used to hold managed List elements, which may
  * include runtime bean references (to be resolved into bean objects).
  *
+ * @param <E> the element type
  * @author Rod Johnson
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 27.05.2003
- * @param <E> the element type
  */
 @SuppressWarnings("serial")
 public class ManagedList<E> extends ArrayList<E> implements Mergeable, BeanMetadataElement {

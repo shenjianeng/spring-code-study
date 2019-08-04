@@ -246,7 +246,6 @@ public class HandlerMethodMappingTests {
 	}
 
 
-
 	private static class MyHandlerMethodMapping extends AbstractHandlerMethodMapping<String> {
 
 		private UrlPathHelper pathHelper = new UrlPathHelper();

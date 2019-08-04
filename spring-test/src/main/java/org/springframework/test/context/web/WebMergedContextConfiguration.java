@@ -44,13 +44,13 @@ import org.springframework.util.StringUtils;
  * that was loaded using properties of this {@code WebMergedContextConfiguration}.
  *
  * @author Sam Brannen
- * @since 3.2
  * @see WebAppConfiguration
  * @see MergedContextConfiguration
  * @see org.springframework.test.context.ContextConfiguration
  * @see org.springframework.test.context.ActiveProfiles
  * @see org.springframework.test.context.ContextConfigurationAttributes
  * @see org.springframework.test.context.SmartContextLoader#loadContext(MergedContextConfiguration)
+ * @since 3.2
  */
 public class WebMergedContextConfiguration extends MergedContextConfiguration {
 
@@ -64,6 +64,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	 * all properties from the supplied {@code MergedContextConfiguration}.
 	 * <p>If an <em>empty</em> value is supplied for the {@code resourceBasePath}
 	 * an empty string will be used.
+	 *
 	 * @param resourceBasePath the resource path to the root directory of the web application
 	 * @since 4.1
 	 */
@@ -83,28 +84,29 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	 * If an <em>empty</em> value is supplied for the {@code resourceBasePath}
 	 * an empty string will be used. Furthermore, active profiles will be sorted,
 	 * and duplicate profiles will be removed.
-	 * @param testClass the test class for which the configuration was merged
-	 * @param locations the merged resource locations
-	 * @param classes the merged annotated classes
-	 * @param contextInitializerClasses the merged context initializer classes
-	 * @param activeProfiles the merged active bean definition profiles
-	 * @param propertySourceLocations the merged {@code PropertySource} locations
-	 * @param propertySourceProperties the merged {@code PropertySource} properties
-	 * @param resourceBasePath the resource path to the root directory of the web application
-	 * @param contextLoader the resolved {@code ContextLoader}
+	 *
+	 * @param testClass                       the test class for which the configuration was merged
+	 * @param locations                       the merged resource locations
+	 * @param classes                         the merged annotated classes
+	 * @param contextInitializerClasses       the merged context initializer classes
+	 * @param activeProfiles                  the merged active bean definition profiles
+	 * @param propertySourceLocations         the merged {@code PropertySource} locations
+	 * @param propertySourceProperties        the merged {@code PropertySource} properties
+	 * @param resourceBasePath                the resource path to the root directory of the web application
+	 * @param contextLoader                   the resolved {@code ContextLoader}
 	 * @param cacheAwareContextLoaderDelegate a cache-aware context loader
-	 * delegate with which to retrieve the parent context
-	 * @param parent the parent configuration or {@code null} if there is no parent
+	 *                                        delegate with which to retrieve the parent context
+	 * @param parent                          the parent configuration or {@code null} if there is no parent
 	 * @since 4.1
 	 */
 	public WebMergedContextConfiguration(Class<?> testClass, @Nullable String[] locations, @Nullable Class<?>[] classes,
-			@Nullable Set<Class<? extends ApplicationContextInitializer<?>>> contextInitializerClasses,
-			@Nullable String[] activeProfiles, @Nullable String[] propertySourceLocations, @Nullable String[] propertySourceProperties,
-			String resourceBasePath, ContextLoader contextLoader,
-			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate, @Nullable MergedContextConfiguration parent) {
+										 @Nullable Set<Class<? extends ApplicationContextInitializer<?>>> contextInitializerClasses,
+										 @Nullable String[] activeProfiles, @Nullable String[] propertySourceLocations, @Nullable String[] propertySourceProperties,
+										 String resourceBasePath, ContextLoader contextLoader,
+										 CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate, @Nullable MergedContextConfiguration parent) {
 
 		this(testClass, locations, classes, contextInitializerClasses, activeProfiles, propertySourceLocations,
-			propertySourceProperties, null, resourceBasePath, contextLoader, cacheAwareContextLoaderDelegate, parent);
+				propertySourceProperties, null, resourceBasePath, contextLoader, cacheAwareContextLoaderDelegate, parent);
 	}
 
 	/**
@@ -118,29 +120,30 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	 * If an <em>empty</em> value is supplied for the {@code resourceBasePath}
 	 * an empty string will be used. Furthermore, active profiles will be sorted,
 	 * and duplicate profiles will be removed.
-	 * @param testClass the test class for which the configuration was merged
-	 * @param locations the merged context resource locations
-	 * @param classes the merged annotated classes
-	 * @param contextInitializerClasses the merged context initializer classes
-	 * @param activeProfiles the merged active bean definition profiles
-	 * @param propertySourceLocations the merged {@code PropertySource} locations
-	 * @param propertySourceProperties the merged {@code PropertySource} properties
-	 * @param contextCustomizers the context customizers
-	 * @param resourceBasePath the resource path to the root directory of the web application
-	 * @param contextLoader the resolved {@code ContextLoader}
+	 *
+	 * @param testClass                       the test class for which the configuration was merged
+	 * @param locations                       the merged context resource locations
+	 * @param classes                         the merged annotated classes
+	 * @param contextInitializerClasses       the merged context initializer classes
+	 * @param activeProfiles                  the merged active bean definition profiles
+	 * @param propertySourceLocations         the merged {@code PropertySource} locations
+	 * @param propertySourceProperties        the merged {@code PropertySource} properties
+	 * @param contextCustomizers              the context customizers
+	 * @param resourceBasePath                the resource path to the root directory of the web application
+	 * @param contextLoader                   the resolved {@code ContextLoader}
 	 * @param cacheAwareContextLoaderDelegate a cache-aware context loader
-	 * delegate with which to retrieve the parent context
-	 * @param parent the parent configuration or {@code null} if there is no parent
+	 *                                        delegate with which to retrieve the parent context
+	 * @param parent                          the parent configuration or {@code null} if there is no parent
 	 * @since 4.3
 	 */
 	public WebMergedContextConfiguration(Class<?> testClass, @Nullable String[] locations, @Nullable Class<?>[] classes,
-			@Nullable Set<Class<? extends ApplicationContextInitializer<?>>> contextInitializerClasses,
-			@Nullable String[] activeProfiles, @Nullable String[] propertySourceLocations, @Nullable String[] propertySourceProperties,
-			@Nullable Set<ContextCustomizer> contextCustomizers, String resourceBasePath, ContextLoader contextLoader,
-			CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate, @Nullable MergedContextConfiguration parent) {
+										 @Nullable Set<Class<? extends ApplicationContextInitializer<?>>> contextInitializerClasses,
+										 @Nullable String[] activeProfiles, @Nullable String[] propertySourceLocations, @Nullable String[] propertySourceProperties,
+										 @Nullable Set<ContextCustomizer> contextCustomizers, String resourceBasePath, ContextLoader contextLoader,
+										 CacheAwareContextLoaderDelegate cacheAwareContextLoaderDelegate, @Nullable MergedContextConfiguration parent) {
 
 		super(testClass, locations, classes, contextInitializerClasses, activeProfiles, propertySourceLocations,
-			propertySourceProperties, contextCustomizers, contextLoader, cacheAwareContextLoaderDelegate, parent);
+				propertySourceProperties, contextCustomizers, contextLoader, cacheAwareContextLoaderDelegate, parent);
 
 		this.resourceBasePath = (StringUtils.hasText(resourceBasePath) ? resourceBasePath : "");
 	}
@@ -148,6 +151,7 @@ public class WebMergedContextConfiguration extends MergedContextConfiguration {
 	/**
 	 * Get the resource path to the root directory of the web application for the
 	 * {@linkplain #getTestClass() test class}, configured via {@code @WebAppConfiguration}.
+	 *
 	 * @see WebAppConfiguration
 	 */
 	public String getResourceBasePath() {

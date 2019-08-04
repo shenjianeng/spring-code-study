@@ -45,10 +45,10 @@ import org.springframework.web.context.WebApplicationContext;
  * {@code WebApplicationContext} that will be passed to the
  * {@code DispatcherServlet}.
  *
+ * @param <B> a self reference to the builder type
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
  * @since 4.0
- * @param <B> a self reference to the builder type
  */
 public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>>
 		extends MockMvcBuilderSupport implements ConfigurableMockMvcBuilder<B> {

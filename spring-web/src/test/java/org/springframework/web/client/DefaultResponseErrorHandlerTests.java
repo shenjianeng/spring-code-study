@@ -70,8 +70,7 @@ public class DefaultResponseErrorHandlerTests {
 		try {
 			handler.handleError(response);
 			fail("expected HttpClientErrorException");
-		}
-		catch (HttpClientErrorException ex) {
+		} catch (HttpClientErrorException ex) {
 			assertSame(headers, ex.getResponseHeaders());
 		}
 	}

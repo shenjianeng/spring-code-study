@@ -48,8 +48,8 @@ import javax.servlet.jsp.JspException;
  * </table>
  *
  * @author Juergen Hoeller
- * @since 04.03.2003
  * @see HtmlEscapingAwareTag#setHtmlEscape
+ * @since 04.03.2003
  */
 @SuppressWarnings("serial")
 public class HtmlEscapeTag extends RequestContextAwareTag {

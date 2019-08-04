@@ -61,8 +61,7 @@ public class EhCacheCacheManagerTests extends AbstractTransactionSupportingCache
 	protected EhCacheCacheManager getCacheManager(boolean transactionAware) {
 		if (transactionAware) {
 			return transactionalCacheManager;
-		}
-		else {
+		} else {
 			return cacheManager;
 		}
 	}

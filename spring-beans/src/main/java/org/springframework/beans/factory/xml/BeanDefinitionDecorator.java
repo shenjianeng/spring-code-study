@@ -51,9 +51,9 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
  * {@link NamespaceHandler} for the namespace in which the custom tag resides.
  *
  * @author Rob Harrop
- * @since 2.0
  * @see NamespaceHandler
  * @see BeanDefinitionParser
+ * @since 2.0
  */
 public interface BeanDefinitionDecorator {
 

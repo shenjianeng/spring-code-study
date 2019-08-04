@@ -274,8 +274,7 @@ public class RequestPartMethodArgumentResolverTests {
 		try {
 			testResolveArgument(new SimpleBean(null), paramValidRequestPart);
 			fail("Expected exception");
-		}
-		catch (MethodArgumentNotValidException ex) {
+		} catch (MethodArgumentNotValidException ex) {
 			assertEquals("requestPart", ex.getBindingResult().getObjectName());
 			assertEquals(1, ex.getBindingResult().getErrorCount());
 			assertNotNull(ex.getBindingResult().getFieldError("name"));
@@ -292,8 +291,7 @@ public class RequestPartMethodArgumentResolverTests {
 		try {
 			testResolveArgument(null, paramValidRequestPart);
 			fail("Expected exception");
-		}
-		catch (MissingServletRequestPartException ex) {
+		} catch (MissingServletRequestPartException ex) {
 			assertEquals("requestPart", ex.getRequestPartName());
 		}
 	}
@@ -560,7 +558,7 @@ public class RequestPartMethodArgumentResolverTests {
 
 		@Override
 		public WebDataBinder createBinder(NativeWebRequest webRequest, @Nullable Object target,
-				String objectName) throws Exception {
+										  String objectName) throws Exception {
 
 			LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
 			validator.afterPropertiesSet();
@@ -574,7 +572,7 @@ public class RequestPartMethodArgumentResolverTests {
 	@SuppressWarnings("unused")
 	public void handle(
 			@RequestPart SimpleBean requestPart,
-			@RequestPart(value="requestPart", required=false) SimpleBean namedRequestPart,
+			@RequestPart(value = "requestPart", required = false) SimpleBean namedRequestPart,
 			@Valid @RequestPart("requestPart") SimpleBean validRequestPart,
 			@RequestPart("requestPart") MultipartFile multipartFile,
 			@RequestPart("requestPart") List<MultipartFile> multipartFileList,

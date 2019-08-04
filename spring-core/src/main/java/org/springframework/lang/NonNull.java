@@ -39,10 +39,10 @@ import javax.annotation.meta.TypeQualifierNickname;
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
- * @since 5.0
  * @see NonNullApi
  * @see NonNullFields
  * @see Nullable
+ * @since 5.0
  */
 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

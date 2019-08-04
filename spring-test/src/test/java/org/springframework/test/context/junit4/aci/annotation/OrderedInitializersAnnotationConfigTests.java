@@ -51,8 +51,8 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 // Note: the ordering of the config classes is intentionally: global, two, one.
 // Note: the ordering of the initializers is intentionally: two, one.
-@ContextConfiguration(classes = { GlobalConfig.class, ConfigTwo.class, ConfigOne.class }, initializers = {
-	OrderedTwoInitializer.class, OrderedOneInitializer.class })
+@ContextConfiguration(classes = {GlobalConfig.class, ConfigTwo.class, ConfigOne.class}, initializers = {
+		OrderedTwoInitializer.class, OrderedOneInitializer.class})
 public class OrderedInitializersAnnotationConfigTests {
 
 	private static final String PROFILE_GLOBAL = "global";

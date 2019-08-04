@@ -30,8 +30,8 @@ import org.springframework.test.annotation.TestAnnotationUtils;
  * annotation by repeating the test the specified number of times.
  *
  * @author Sam Brannen
- * @since 3.0
  * @see #evaluate()
+ * @since 3.0
  */
 public class SpringRepeat extends Statement {
 
@@ -48,7 +48,8 @@ public class SpringRepeat extends Statement {
 	 * Construct a new {@code SpringRepeat} statement for the supplied
 	 * {@code testMethod}, retrieving the configured repeat count from the
 	 * {@code @Repeat} annotation on the supplied method.
-	 * @param next the next {@code Statement} in the execution chain
+	 *
+	 * @param next       the next {@code Statement} in the execution chain
 	 * @param testMethod the current test method
 	 * @see TestAnnotationUtils#getRepeatCount(Method)
 	 */
@@ -59,9 +60,10 @@ public class SpringRepeat extends Statement {
 	/**
 	 * Construct a new {@code SpringRepeat} statement for the supplied
 	 * {@code testMethod} and {@code repeat} count.
-	 * @param next the next {@code Statement} in the execution chain
+	 *
+	 * @param next       the next {@code Statement} in the execution chain
 	 * @param testMethod the current test method
-	 * @param repeat the configured repeat count for the current test method
+	 * @param repeat     the configured repeat count for the current test method
 	 */
 	public SpringRepeat(Statement next, Method testMethod, int repeat) {
 		this.next = next;

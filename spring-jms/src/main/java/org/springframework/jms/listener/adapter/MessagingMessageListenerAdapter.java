@@ -43,10 +43,10 @@ import org.springframework.util.Assert;
  * method arguments if necessary.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see Message
  * @see JmsHeaderMapper
  * @see InvocableHandlerMethod
+ * @since 4.1
  */
 public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageListener {
 
@@ -77,8 +77,7 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 		Object result = invokeHandler(jmsMessage, session, message);
 		if (result != null) {
 			handleResult(result, jmsMessage, session);
-		}
-		else {
+		} else {
 			logger.trace("No result object given - no result to handle");
 		}
 	}
@@ -97,8 +96,7 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 	protected Message<?> toMessagingMessage(javax.jms.Message jmsMessage) {
 		try {
 			return (Message<?>) getMessagingMessageConverter().fromMessage(jmsMessage);
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			throw new MessageConversionException("Could not convert JMS message", ex);
 		}
 	}
@@ -112,12 +110,10 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 		InvocableHandlerMethod handlerMethod = getHandlerMethod();
 		try {
 			return handlerMethod.invoke(message, jmsMessage, session);
-		}
-		catch (MessagingException ex) {
+		} catch (MessagingException ex) {
 			throw new ListenerExecutionFailedException(
 					createMessagingErrorMessage("Listener method could not be invoked with incoming message"), ex);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new ListenerExecutionFailedException("Listener method '" +
 					handlerMethod.getMethod().toGenericString() + "' threw exception", ex);
 		}

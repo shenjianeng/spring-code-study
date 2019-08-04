@@ -90,7 +90,7 @@ public abstract class AbstractWebSocketIntegrationTests {
 	@Parameters(name = "client[{0}] - server [{1}]")
 	public static Object[][] arguments() throws IOException {
 
-		WebSocketClient[] clients = new WebSocketClient[] {
+		WebSocketClient[] clients = new WebSocketClient[]{
 				new TomcatWebSocketClient(),
 				new JettyWebSocketClient(),
 				new ReactorNettyWebSocketClient(),

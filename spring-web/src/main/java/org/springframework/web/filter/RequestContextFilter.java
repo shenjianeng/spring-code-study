@@ -41,11 +41,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @author Juergen Hoeller
  * @author Rod Johnson
  * @author Rossen Stoyanchev
- * @since 2.0
  * @see org.springframework.context.i18n.LocaleContextHolder
  * @see org.springframework.web.context.request.RequestContextHolder
  * @see org.springframework.web.context.request.RequestContextListener
  * @see org.springframework.web.servlet.DispatcherServlet
+ * @since 2.0
  */
 public class RequestContextFilter extends OncePerRequestFilter {
 
@@ -97,8 +97,7 @@ public class RequestContextFilter extends OncePerRequestFilter {
 
 		try {
 			filterChain.doFilter(request, response);
-		}
-		finally {
+		} finally {
 			resetContextHolders();
 			if (logger.isTraceEnabled()) {
 				logger.trace("Cleared thread-bound request context: " + request);

@@ -68,8 +68,7 @@ public class ScheduledAndTransactionalAnnotationIntegrationTests {
 		try {
 			ctx.refresh();
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getRootCause() instanceof IllegalStateException);
 		}
 	}

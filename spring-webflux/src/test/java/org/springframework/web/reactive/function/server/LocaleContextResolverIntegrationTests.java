@@ -104,7 +104,7 @@ public class LocaleContextResolverIntegrationTests extends AbstractRouterFunctio
 
 		@Override
 		public Mono<Void> render(@Nullable Map<String, ?> model, @Nullable MediaType contentType,
-				ServerWebExchange exchange) {
+								 ServerWebExchange exchange) {
 			exchange.getResponse().getHeaders().setContentLanguage(locale);
 			return Mono.empty();
 		}

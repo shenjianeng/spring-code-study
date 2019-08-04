@@ -72,8 +72,7 @@ public class ValidatorFactoryTests {
 			String path = cv.getPropertyPath().toString();
 			if ("name".equals(path) || "address.street".equals(path)) {
 				assertTrue(cv.getConstraintDescriptor().getAnnotation() instanceof NotNull);
-			}
-			else {
+			} else {
 				fail("Invalid constraint violation with path '" + path + "'");
 			}
 		}
@@ -99,8 +98,7 @@ public class ValidatorFactoryTests {
 			String path = cv.getPropertyPath().toString();
 			if ("name".equals(path) || "address.street".equals(path)) {
 				assertTrue(cv.getConstraintDescriptor().getAnnotation() instanceof NotNull);
-			}
-			else {
+			} else {
 				fail("Invalid constraint violation with path '" + path + "'");
 			}
 		}
@@ -423,6 +421,7 @@ public class ValidatorFactoryTests {
 		public String getValue() {
 			return value;
 		}
+
 		public void setValue(String value) {
 			this.value = value;
 		}
@@ -431,12 +430,12 @@ public class ValidatorFactoryTests {
 
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
-	@Constraint(validatedBy=InnerValidator.class)
+	@Constraint(validatedBy = InnerValidator.class)
 	public static @interface InnerValid {
 
 		String message() default "NOT VALID";
 
-		Class<?>[] groups() default { };
+		Class<?>[] groups() default {};
 
 		Class<? extends Payload>[] payload() default {};
 	}

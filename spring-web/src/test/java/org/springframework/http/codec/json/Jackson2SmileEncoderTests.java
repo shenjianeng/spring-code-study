@@ -66,8 +66,7 @@ public class Jackson2SmileEncoderTests extends AbstractEncoderTestCase<Jackson2S
 						.readValue(DataBufferTestUtils.dumpBytes(dataBuffer));
 				assertEquals(expected, actual);
 				release(dataBuffer);
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				throw new UncheckedIOException(ex);
 			}
 		};
@@ -128,11 +127,11 @@ public class Jackson2SmileEncoderTests extends AbstractEncoderTestCase<Jackson2S
 		ResolvableType type = ResolvableType.forClass(Pojo.class);
 
 		testEncodeAll(input, type, step -> step
-				.consumeNextWith(expect(pojo1, Pojo.class))
-				.consumeNextWith(expect(pojo2, Pojo.class))
-				.consumeNextWith(expect(pojo3, Pojo.class))
-				.verifyComplete(),
-		STREAM_SMILE_MIME_TYPE, null);
+						.consumeNextWith(expect(pojo1, Pojo.class))
+						.consumeNextWith(expect(pojo2, Pojo.class))
+						.consumeNextWith(expect(pojo3, Pojo.class))
+						.verifyComplete(),
+				STREAM_SMILE_MIME_TYPE, null);
 	}
 
 
@@ -142,17 +141,14 @@ public class Jackson2SmileEncoderTests extends AbstractEncoderTestCase<Jackson2S
 				Object actual = this.mapper.reader().forType(expectedType)
 						.readValue(dataBuffer.asInputStream());
 				assertEquals(expected, actual);
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				throw new UncheckedIOException(e);
-			}
-			finally {
+			} finally {
 				release(dataBuffer);
 			}
 		};
 
 	}
-
 
 
 }

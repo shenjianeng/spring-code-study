@@ -80,7 +80,8 @@ public class AspectJWeavingEnabler
 
 	/**
 	 * Enable AspectJ weaving with the given {@link LoadTimeWeaver}.
-	 * @param weaverToUse the LoadTimeWeaver to apply to (or {@code null} for a default weaver)
+	 *
+	 * @param weaverToUse     the LoadTimeWeaver to apply to (or {@code null} for a default weaver)
 	 * @param beanClassLoader the class loader to create a default weaver for (if necessary)
 	 */
 	public static void enableAspectJWeaving(
@@ -89,8 +90,7 @@ public class AspectJWeavingEnabler
 		if (weaverToUse == null) {
 			if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
 				weaverToUse = new InstrumentationLoadTimeWeaver(beanClassLoader);
-			}
-			else {
+			} else {
 				throw new IllegalStateException("No LoadTimeWeaver available");
 			}
 		}
@@ -102,6 +102,7 @@ public class AspectJWeavingEnabler
 	/**
 	 * ClassFileTransformer decorator that suppresses processing of AspectJ
 	 * classes in order to avoid potential LinkageErrors.
+	 *
 	 * @see org.springframework.context.annotation.LoadTimeWeavingConfiguration
 	 */
 	private static class AspectJClassBypassingClassFileTransformer implements ClassFileTransformer {
@@ -114,7 +115,7 @@ public class AspectJWeavingEnabler
 
 		@Override
 		public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-				ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+								ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
 			if (className.startsWith("org.aspectj") || className.startsWith("org/aspectj")) {
 				return classfileBuffer;

@@ -39,9 +39,9 @@ import org.springframework.util.ClassUtils;
  * to the client (who might or might not log it properly).
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see RemoteExporter#setRegisterTraceInterceptor
  * @see RemoteExporter#getProxyForService
+ * @since 1.2
  */
 public class RemoteInvocationTraceInterceptor implements MethodInterceptor {
 
@@ -59,8 +59,9 @@ public class RemoteInvocationTraceInterceptor implements MethodInterceptor {
 
 	/**
 	 * Create a new RemoteInvocationTraceInterceptor.
+	 *
 	 * @param exporterName the name of the remote exporter
-	 * (to be used as context information in log messages)
+	 *                     (to be used as context information in log messages)
 	 */
 	public RemoteInvocationTraceInterceptor(String exporterName) {
 		this.exporterNameClause = exporterName + " ";
@@ -81,15 +82,13 @@ public class RemoteInvocationTraceInterceptor implements MethodInterceptor {
 						ClassUtils.getQualifiedMethodName(method));
 			}
 			return retVal;
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			if (ex instanceof RuntimeException || ex instanceof Error) {
 				if (logger.isWarnEnabled()) {
 					logger.warn("Processing of " + this.exporterNameClause + "remote call resulted in fatal exception: " +
 							ClassUtils.getQualifiedMethodName(method), ex);
 				}
-			}
-			else {
+			} else {
 				if (logger.isInfoEnabled()) {
 					logger.info("Processing of " + this.exporterNameClause + "remote call resulted in exception: " +
 							ClassUtils.getQualifiedMethodName(method), ex);

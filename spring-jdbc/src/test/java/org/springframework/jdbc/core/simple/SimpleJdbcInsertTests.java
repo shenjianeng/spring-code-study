@@ -80,8 +80,7 @@ public class SimpleJdbcInsertTests {
 		thrown.expect(InvalidDataAccessApiUsageException.class);
 		try {
 			insert.execute(new HashMap<>());
-		}
-		finally {
+		} finally {
 			verify(resultSet).close();
 		}
 	}

@@ -141,7 +141,7 @@ public class DateFormatterTests {
 
 	@Test
 	public void shouldSupportJodaStylePatterns() throws Exception {
-		String[] chars = { "S", "M", "-" };
+		String[] chars = {"S", "M", "-"};
 		for (String d : chars) {
 			for (String t : chars) {
 				String style = d + t;
@@ -149,8 +149,7 @@ public class DateFormatterTests {
 					Date date = getDate(2009, Calendar.JUNE, 10, 14, 23, 0, 0);
 					if (t.equals("-")) {
 						date = getDate(2009, Calendar.JUNE, 10);
-					}
-					else if (d.equals("-")) {
+					} else if (d.equals("-")) {
 						date = getDate(1970, Calendar.JANUARY, 1, 14, 23, 0, 0);
 					}
 					testJodaStylePatterns(style, Locale.US, date);
@@ -190,7 +189,7 @@ public class DateFormatterTests {
 		formatter.setPattern("yyyy");
 		Date date = getDate(2009, Calendar.JUNE, 1, 14, 23, 5, 3);
 
-		assertThat("uses pattern",formatter.print(date, Locale.US), is("2009"));
+		assertThat("uses pattern", formatter.print(date, Locale.US), is("2009"));
 
 		formatter.setPattern("");
 		assertThat("uses ISO", formatter.print(date, Locale.US), is("2009-06-01T14:23:05.003Z"));

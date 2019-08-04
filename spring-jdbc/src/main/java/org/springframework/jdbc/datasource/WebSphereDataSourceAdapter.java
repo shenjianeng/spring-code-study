@@ -55,18 +55,18 @@ import org.springframework.util.StringUtils;
  *     &lt;/bean&gt;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
- *
+ * <p>
  * Thanks to Ricardo Olivieri for submitting the original implementation
  * of this approach!
  *
  * @author Juergen Hoeller
  * @author <a href="mailto:lari.hotari@sagire.fi">Lari Hotari</a>
  * @author <a href="mailto:roliv@us.ibm.com">Ricardo N. Olivieri</a>
- * @since 2.0.3
  * @see com.ibm.websphere.rsadapter.JDBCConnectionSpec
  * @see com.ibm.websphere.rsadapter.WSDataSource#getConnection(com.ibm.websphere.rsadapter.JDBCConnectionSpec)
  * @see org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionIsolationLevel()
  * @see org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()
+ * @since 2.0.3
  */
 public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter {
 
@@ -104,8 +104,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 			this.setReadOnlyMethod = jdbcConnSpecClass.getMethod("setReadOnly", Boolean.class);
 			this.setUserNameMethod = jdbcConnSpecClass.getMethod("setUserName", String.class);
 			this.setPasswordMethod = jdbcConnSpecClass.getMethod("setPassword", String.class);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException(
 					"Could not initialize WebSphereDataSourceAdapter because WebSphere API classes are not available: " + ex);
 		}
@@ -129,6 +128,7 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	/**
 	 * Builds a WebSphere JDBCConnectionSpec object for the current settings
 	 * and calls {@code WSDataSource.getConnection(JDBCConnectionSpec)}.
+	 *
 	 * @see #createConnectionSpec
 	 * @see com.ibm.websphere.rsadapter.WSDataSource#getConnection(com.ibm.websphere.rsadapter.JDBCConnectionSpec)
 	 */
@@ -154,15 +154,16 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	 * Can be overridden in subclasses to customize the JDBCConnectionSpec object
 	 * (<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/topic/com.ibm.websphere.javadoc.doc/public_html/api/com/ibm/websphere/rsadapter/JDBCConnectionSpec.html">JDBCConnectionSpec javadoc</a>;
 	 * <a href="https://www.ibm.com/developerworks/websphere/library/techarticles/0404_tang/0404_tang.html">IBM developerWorks article</a>).
+	 *
 	 * @param isolationLevel the isolation level to apply (or {@code null} if none)
-	 * @param readOnlyFlag the read-only flag to apply (or {@code null} if none)
-	 * @param username the username to apply ({@code null} or empty indicates the default)
-	 * @param password the password to apply (may be {@code null} or empty)
+	 * @param readOnlyFlag   the read-only flag to apply (or {@code null} if none)
+	 * @param username       the username to apply ({@code null} or empty indicates the default)
+	 * @param password       the password to apply (may be {@code null} or empty)
 	 * @throws SQLException if thrown by JDBCConnectionSpec API methods
 	 * @see com.ibm.websphere.rsadapter.JDBCConnectionSpec
 	 */
 	protected Object createConnectionSpec(@Nullable Integer isolationLevel, @Nullable Boolean readOnlyFlag,
-			@Nullable String username, @Nullable String password) throws SQLException {
+										  @Nullable String username, @Nullable String password) throws SQLException {
 
 		Object connSpec = invokeJdbcMethod(this.newJdbcConnSpecMethod, null);
 		Assert.state(connSpec != null, "No JDBCConnectionSpec");
@@ -187,11 +188,9 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 			throws SQLException {
 		try {
 			return method.invoke(target, args);
-		}
-		catch (IllegalAccessException ex) {
+		} catch (IllegalAccessException ex) {
 			ReflectionUtils.handleReflectionException(ex);
-		}
-		catch (InvocationTargetException ex) {
+		} catch (InvocationTargetException ex) {
 			if (ex.getTargetException() instanceof SQLException) {
 				throw (SQLException) ex.getTargetException();
 			}

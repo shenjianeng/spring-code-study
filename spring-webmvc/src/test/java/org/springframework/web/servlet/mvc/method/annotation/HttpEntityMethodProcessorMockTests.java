@@ -683,8 +683,7 @@ public class HttpEntityMethodProcessorMockTests {
 		assertTrue(mavContainer.isRequestHandled());
 		if (body != null) {
 			assertResponseBody(body);
-		}
-		else {
+		} else {
 			assertEquals(0, servletResponse.getContentAsByteArray().length);
 		}
 		if (etag != null) {
@@ -700,7 +699,7 @@ public class HttpEntityMethodProcessorMockTests {
 
 	@SuppressWarnings("unused")
 	public ResponseEntity<String> handle1(HttpEntity<String> httpEntity, ResponseEntity<String> entity,
-			int i, RequestEntity<String> requestEntity) {
+										  int i, RequestEntity<String> requestEntity) {
 
 		return entity;
 	}

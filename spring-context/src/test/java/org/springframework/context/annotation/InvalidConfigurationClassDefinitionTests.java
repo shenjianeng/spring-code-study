@@ -36,7 +36,8 @@ public class InvalidConfigurationClassDefinitionTests {
 	@Test
 	public void configurationClassesMayNotBeFinal() {
 		@Configuration
-		final class Config { }
+		final class Config {
+		}
 
 		BeanDefinition configBeanDef = rootBeanDefinition(Config.class).getBeanDefinition();
 		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
@@ -46,8 +47,7 @@ public class InvalidConfigurationClassDefinitionTests {
 			ConfigurationClassPostProcessor pp = new ConfigurationClassPostProcessor();
 			pp.postProcessBeanFactory(beanFactory);
 			fail("expected exception");
-		}
-		catch (BeanDefinitionParsingException ex) {
+		} catch (BeanDefinitionParsingException ex) {
 			assertTrue(ex.getMessage(), ex.getMessage().contains("Remove the final modifier"));
 		}
 	}

@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
  * @author Mark Fisher
  * @author Juergen Hoeller
  * @author Christian Dupuis
- * @since 2.5
  * @see AnnotationConfigUtils
+ * @since 2.5
  */
 public class AnnotationConfigBeanDefinitionParser implements BeanDefinitionParser {
 

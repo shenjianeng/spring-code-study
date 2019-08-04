@@ -29,8 +29,8 @@ import org.springframework.util.StringUtils;
  * a message via a {@link org.springframework.context.MessageSource}.
  *
  * @author Juergen Hoeller
- * @since 13.02.2004
  * @see org.springframework.context.MessageSource#getMessage(MessageSourceResolvable, java.util.Locale)
+ * @since 13.02.2004
  */
 @SuppressWarnings("serial")
 public class DefaultMessageSourceResolvable implements MessageSourceResolvable, Serializable {
@@ -47,14 +47,16 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 	/**
 	 * Create a new DefaultMessageSourceResolvable.
+	 *
 	 * @param code the code to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String code) {
-		this(new String[] {code}, null, null);
+		this(new String[]{code}, null, null);
 	}
 
 	/**
 	 * Create a new DefaultMessageSourceResolvable.
+	 *
 	 * @param codes the codes to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String[] codes) {
@@ -63,7 +65,8 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 	/**
 	 * Create a new DefaultMessageSourceResolvable.
-	 * @param codes the codes to be used to resolve this message
+	 *
+	 * @param codes          the codes to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String[] codes, String defaultMessage) {
@@ -72,7 +75,8 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 	/**
 	 * Create a new DefaultMessageSourceResolvable.
-	 * @param codes the codes to be used to resolve this message
+	 *
+	 * @param codes     the codes to be used to resolve this message
 	 * @param arguments the array of arguments to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String[] codes, Object[] arguments) {
@@ -81,8 +85,9 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 	/**
 	 * Create a new DefaultMessageSourceResolvable.
-	 * @param codes the codes to be used to resolve this message
-	 * @param arguments the array of arguments to be used to resolve this message
+	 *
+	 * @param codes          the codes to be used to resolve this message
+	 * @param arguments      the array of arguments to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(
@@ -95,6 +100,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 	/**
 	 * Copy constructor: Create a new instance from another resolvable.
+	 *
 	 * @param resolvable the resolvable to copy from
 	 */
 	public DefaultMessageSourceResolvable(MessageSourceResolvable resolvable) {
@@ -132,13 +138,14 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	/**
 	 * Indicate whether the specified default message needs to be rendered for
 	 * substituting placeholders and/or {@link java.text.MessageFormat} escaping.
+	 *
 	 * @return {@code true} if the default message may contain argument placeholders;
 	 * {@code false} if it definitely does not contain placeholders or custom escaping
 	 * and can therefore be simply exposed as-is
-	 * @since 5.1.7
 	 * @see #getDefaultMessage()
 	 * @see #getArguments()
 	 * @see AbstractMessageSource#renderDefaultMessage
+	 * @since 5.1.7
 	 */
 	public boolean shouldRenderDefaultMessage() {
 		return true;
@@ -161,6 +168,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	 * The default implementation exposes the attributes of this MessageSourceResolvable.
 	 * <p>To be overridden in more specific subclasses, potentially including the
 	 * resolvable content through {@code resolvableToString()}.
+	 *
 	 * @see #resolvableToString()
 	 */
 	@Override

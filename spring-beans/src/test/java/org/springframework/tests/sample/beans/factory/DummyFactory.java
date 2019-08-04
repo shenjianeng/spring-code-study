@@ -79,6 +79,7 @@ public class DummyFactory
 
 	/**
 	 * Return if the bean managed by this factory is a singleton.
+	 *
 	 * @see FactoryBean#isSingleton()
 	 */
 	@Override
@@ -153,14 +154,14 @@ public class DummyFactory
 	/**
 	 * Return the managed object, supporting both singleton
 	 * and prototype mode.
+	 *
 	 * @see FactoryBean#getObject()
 	 */
 	@Override
 	public Object getObject() throws BeansException {
 		if (isSingleton()) {
 			return this.testBean;
-		}
-		else {
+		} else {
 			TestBean prototype = new TestBean("prototype created at " + System.currentTimeMillis(), 11);
 			if (this.beanFactory != null) {
 				this.beanFactory.applyBeanPostProcessorsBeforeInitialization(prototype, this.beanName);

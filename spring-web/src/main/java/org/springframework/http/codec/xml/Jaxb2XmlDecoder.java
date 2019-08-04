@@ -56,13 +56,14 @@ import org.springframework.util.xml.StaxUtils;
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
- * @since 5.0
  * @see Jaxb2XmlEncoder
+ * @since 5.0
  */
 public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * The default value for JAXB annotations.
+	 *
 	 * @see XmlRootElement#name()
 	 * @see XmlRootElement#namespace()
 	 * @see XmlType#name()
@@ -84,6 +85,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * Create a {@code Jaxb2XmlDecoder} with the specified MIME types.
+	 *
 	 * @param supportedMimeTypes supported MIME types
 	 * @since 5.1.9
 	 */
@@ -94,6 +96,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * Configure a processor function to customize Unmarshaller instances.
+	 *
 	 * @param processor the function to use
 	 * @since 5.1.3
 	 */
@@ -103,6 +106,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
 	 * Return the configured processor for customizing Unmarshaller instances.
+	 *
 	 * @since 5.1.3
 	 */
 	public Function<Unmarshaller, Unmarshaller> getUnmarshallerProcessor() {
@@ -119,7 +123,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	@Override
 	public Flux<Object> decode(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+							   @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		Flux<XMLEvent> xmlEventFlux = this.xmlEventDecoder.decode(
 				inputStream, ResolvableType.forClass(XMLEvent.class), mimeType, hints);
@@ -140,7 +144,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	@Override
 	public Mono<Object> decodeToMono(Publisher<DataBuffer> inputStream, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+									 @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		return decode(inputStream, elementType, mimeType, hints).singleOrEmpty();
 	}
@@ -151,16 +155,13 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 			XMLEventReader eventReader = StaxUtils.createXMLEventReader(events);
 			if (outputClass.isAnnotationPresent(XmlRootElement.class)) {
 				return unmarshaller.unmarshal(eventReader);
-			}
-			else {
+			} else {
 				JAXBElement<?> jaxbElement = unmarshaller.unmarshal(eventReader, outputClass);
 				return jaxbElement.getValue();
 			}
-		}
-		catch (UnmarshalException ex) {
+		} catch (UnmarshalException ex) {
 			throw new DecodingException("Could not unmarshal XML to " + outputClass, ex);
-		}
-		catch (JAXBException ex) {
+		} catch (JAXBException ex) {
 			throw new CodecException("Invalid JAXB configuration", ex);
 		}
 	}
@@ -182,13 +183,11 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 			XmlRootElement annotation = outputClass.getAnnotation(XmlRootElement.class);
 			localPart = annotation.name();
 			namespaceUri = annotation.namespace();
-		}
-		else if (outputClass.isAnnotationPresent(XmlType.class)) {
+		} else if (outputClass.isAnnotationPresent(XmlType.class)) {
 			XmlType annotation = outputClass.getAnnotation(XmlType.class);
 			localPart = annotation.name();
 			namespaceUri = annotation.namespace();
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Output class [" + outputClass.getName() +
 					"] is neither annotated with @XmlRootElement nor @XmlType");
 		}
@@ -201,8 +200,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 			if (outputClassPackage != null && outputClassPackage.isAnnotationPresent(XmlSchema.class)) {
 				XmlSchema annotation = outputClassPackage.getAnnotation(XmlSchema.class);
 				namespaceUri = annotation.namespace();
-			}
-			else {
+			} else {
 				namespaceUri = XMLConstants.NULL_NS_URI;
 			}
 		}

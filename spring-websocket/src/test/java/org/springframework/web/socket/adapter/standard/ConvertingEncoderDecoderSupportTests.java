@@ -235,7 +235,7 @@ public class ConvertingEncoderDecoderSupportTests {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof MyType) {
-				return ((MyType)obj).value.equals(value);
+				return ((MyType) obj).value.equals(value);
 			}
 			return false;
 		}

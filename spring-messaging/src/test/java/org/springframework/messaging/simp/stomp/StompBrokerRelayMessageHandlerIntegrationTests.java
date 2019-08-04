@@ -118,8 +118,7 @@ public class StompBrokerRelayMessageHandlerIntegrationTests {
 		try {
 			logger.debug("STOMP broker relay stats: " + this.relay.getStatsInfo());
 			this.relay.stop();
-		}
-		finally {
+		} finally {
 			stopActiveMqBrokerAndAwait();
 		}
 	}
@@ -318,7 +317,7 @@ public class StompBrokerRelayMessageHandlerIntegrationTests {
 		}
 
 		public boolean matchMessage(Message<?> message) {
-			for (int i = 0 ; i < this.expected.length; i++) {
+			for (int i = 0; i < this.expected.length; i++) {
 				if (this.expected[i].match(message)) {
 					this.actual[i] = message;
 					return true;
@@ -377,7 +376,7 @@ public class StompBrokerRelayMessageHandlerIntegrationTests {
 		}
 
 		public static MessageExchangeBuilder subscribeWithReceipt(String sessionId, String subscriptionId,
-				String destination, String receiptId) {
+																  String destination, String receiptId) {
 
 			StompHeaderAccessor headers = StompHeaderAccessor.create(StompCommand.SUBSCRIBE);
 			headers.setSessionId(sessionId);
@@ -467,7 +466,7 @@ public class StompBrokerRelayMessageHandlerIntegrationTests {
 
 		@Override
 		public String toString() {
-			return "command=" + this.command  + ", session=\"" + this.sessionId + "\"";
+			return "command=" + this.command + ", session=\"" + this.sessionId + "\"";
 		}
 	}
 
@@ -517,8 +516,7 @@ public class StompBrokerRelayMessageHandlerIntegrationTests {
 			}
 			if (payload instanceof byte[] && this.payload instanceof byte[]) {
 				return Arrays.equals((byte[]) payload, (byte[]) this.payload);
-			}
-			else {
+			} else {
 				return this.payload.equals(payload);
 			}
 		}

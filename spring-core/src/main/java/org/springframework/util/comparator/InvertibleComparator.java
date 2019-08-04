@@ -26,10 +26,10 @@ import org.springframework.util.Assert;
  * whether comparison results should be treated in forward (standard
  * ascending) order or flipped for reverse (descending) order.
  *
+ * @param <T> the type of objects that may be compared by this comparator
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 1.2.2
- * @param <T> the type of objects that may be compared by this comparator
  * @deprecated as of Spring Framework 5.0, in favor of the standard JDK 8
  * {@link Comparator#reversed()}
  */
@@ -45,6 +45,7 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 	/**
 	 * Create an InvertibleComparator that sorts ascending by default.
 	 * For the actual comparison, the specified Comparator will be used.
+	 *
 	 * @param comparator the comparator to decorate
 	 */
 	public InvertibleComparator(Comparator<T> comparator) {
@@ -55,8 +56,9 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 	/**
 	 * Create an InvertibleComparator that sorts based on the provided order.
 	 * For the actual comparison, the specified Comparator will be used.
+	 *
 	 * @param comparator the comparator to decorate
-	 * @param ascending the sort order: ascending (true) or descending (false)
+	 * @param ascending  the sort order: ascending (true) or descending (false)
 	 */
 	public InvertibleComparator(Comparator<T> comparator, boolean ascending) {
 		Assert.notNull(comparator, "Comparator must not be null");
@@ -96,8 +98,7 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 			if (!this.ascending) {
 				if (Integer.MIN_VALUE == result) {
 					result = Integer.MAX_VALUE;
-				}
-				else {
+				} else {
 					result *= -1;
 				}
 			}

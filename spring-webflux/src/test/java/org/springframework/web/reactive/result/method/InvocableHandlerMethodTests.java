@@ -94,8 +94,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			mono.block();
 			fail("Expected IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertThat(ex.getMessage(), is("Could not resolve parameter [0] in " +
 					method.toGenericString() + ": No suitable resolver"));
 		}
@@ -127,8 +126,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			mono.block();
 			fail("Expected UnsupportedMediaTypeStatusException");
-		}
-		catch (UnsupportedMediaTypeStatusException ex) {
+		} catch (UnsupportedMediaTypeStatusException ex) {
 			assertThat(ex.getMessage(), is("415 UNSUPPORTED_MEDIA_TYPE \"boo\""));
 		}
 	}
@@ -142,8 +140,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			mono.block();
 			fail("Expected IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertNotNull("Exception not wrapped", ex.getCause());
 			assertTrue(ex.getCause() instanceof IllegalArgumentException);
 			assertTrue(ex.getMessage().contains("Controller ["));
@@ -161,8 +158,7 @@ public class InvocableHandlerMethodTests {
 		try {
 			mono.block();
 			fail("Expected IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertThat(ex.getMessage(), is("boo"));
 		}
 	}

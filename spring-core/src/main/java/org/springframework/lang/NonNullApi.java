@@ -36,10 +36,10 @@ import javax.annotation.meta.TypeQualifierDefault;
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
- * @since 5.0
  * @see NonNullFields
  * @see Nullable
  * @see NonNull
+ * @since 5.0
  */
 @Target(ElementType.PACKAGE)
 @Retention(RetentionPolicy.RUNTIME)

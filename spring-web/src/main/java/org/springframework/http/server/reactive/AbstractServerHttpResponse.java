@@ -99,8 +99,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	public boolean setStatusCode(@Nullable HttpStatus status) {
 		if (this.state.get() == State.COMMITTED) {
 			return false;
-		}
-		else {
+		} else {
 			this.statusCode = (status != null ? status.value() : null);
 			return true;
 		}
@@ -114,6 +113,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * Set the HTTP status code of the response.
+	 *
 	 * @param statusCode the HTTP status as an integer value
 	 * @since 5.0.1
 	 */
@@ -123,6 +123,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * Return the HTTP status code of the response.
+	 *
 	 * @return the HTTP status as an integer value
 	 * @since 5.0.1
 	 */
@@ -150,8 +151,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 		if (this.state.get() == State.COMMITTED) {
 			throw new IllegalStateException("Can't add the cookie " + cookie +
 					"because the HTTP response has already been committed");
-		}
-		else {
+		} else {
 			getCookies().add(cookie.getName(), cookie);
 		}
 	}
@@ -207,6 +207,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * A variant of {@link #doCommit(Supplier)} for a response without no body.
+	 *
 	 * @return a completion publisher
 	 */
 	protected Mono<Void> doCommit() {
@@ -216,6 +217,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	/**
 	 * Apply {@link #beforeCommit(Supplier) beforeCommit} actions, apply the
 	 * response status and headers/cookies, and write the response body.
+	 *
 	 * @param writeAction the action to write the response body (may be {@code null})
 	 * @return a completion publisher
 	 */
@@ -245,12 +247,14 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
 	 * Write to the underlying the response.
+	 *
 	 * @param body the publisher to write with
 	 */
 	protected abstract Mono<Void> writeWithInternal(Publisher<? extends DataBuffer> body);
 
 	/**
 	 * Write to the underlying the response, and flush after each {@code Publisher<DataBuffer>}.
+	 *
 	 * @param body the publisher to write and flush with
 	 */
 	protected abstract Mono<Void> writeAndFlushWithInternal(Publisher<? extends Publisher<? extends DataBuffer>> body);

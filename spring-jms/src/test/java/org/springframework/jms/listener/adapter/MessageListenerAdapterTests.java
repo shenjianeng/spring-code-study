@@ -306,8 +306,7 @@ public class MessageListenerAdapterTests {
 		try {
 			adapter.onMessage(sentTextMessage, session);
 			fail("expected CouldNotSendReplyException with InvalidDestinationException");
-		}
-		catch (ReplyFailureException ex) {
+		} catch (ReplyFailureException ex) {
 			assertEquals(InvalidDestinationException.class, ex.getCause().getClass());
 		}
 
@@ -345,8 +344,7 @@ public class MessageListenerAdapterTests {
 		try {
 			adapter.onMessage(sentTextMessage, session);
 			fail("expected CouldNotSendReplyException with JMSException");
-		}
-		catch (ReplyFailureException ex) {
+		} catch (ReplyFailureException ex) {
 			assertEquals(JMSException.class, ex.getCause().getClass());
 		}
 
@@ -372,8 +370,7 @@ public class MessageListenerAdapterTests {
 		try {
 			adapter.onMessage(message, session);
 			fail("expected ListenerExecutionFailedException");
-		}
-		catch (ListenerExecutionFailedException ex) { /* expected */ }
+		} catch (ListenerExecutionFailedException ex) { /* expected */ }
 	}
 
 	@Test
@@ -393,8 +390,7 @@ public class MessageListenerAdapterTests {
 		try {
 			adapter.onMessage(sentTextMessage, session);
 			fail("expected CouldNotSendReplyException with MessageConversionException");
-		}
-		catch (ReplyFailureException ex) {
+		} catch (ReplyFailureException ex) {
 			assertEquals(MessageConversionException.class, ex.getCause().getClass());
 		}
 	}

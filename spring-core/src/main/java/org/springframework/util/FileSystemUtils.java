@@ -32,10 +32,10 @@ import org.springframework.lang.Nullable;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 2.5.3
  * @see java.io.File
  * @see java.nio.file.Path
  * @see java.nio.file.Files
+ * @since 2.5.3
  */
 public abstract class FileSystemUtils {
 
@@ -47,6 +47,7 @@ public abstract class FileSystemUtils {
 	 * errors. Consider using {@link #deleteRecursively(Path)} for NIO-style
 	 * handling of I/O errors, clearly differentiating between non-existence
 	 * and failure to delete an existing file.
+	 *
 	 * @param root the root {@code File} to delete
 	 * @return {@code true} if the {@code File} was successfully deleted,
 	 * otherwise {@code false}
@@ -58,8 +59,7 @@ public abstract class FileSystemUtils {
 
 		try {
 			return deleteRecursively(root.toPath());
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return false;
 		}
 	}
@@ -67,6 +67,7 @@ public abstract class FileSystemUtils {
 	/**
 	 * Delete the supplied {@link File} - for directories,
 	 * recursively delete any nested directories or files as well.
+	 *
 	 * @param root the root {@code File} to delete
 	 * @return {@code true} if the {@code File} existed and was deleted,
 	 * or {@code false} it it did not exist
@@ -87,6 +88,7 @@ public abstract class FileSystemUtils {
 				Files.delete(file);
 				return FileVisitResult.CONTINUE;
 			}
+
 			@Override
 			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
 				Files.delete(dir);
@@ -99,7 +101,8 @@ public abstract class FileSystemUtils {
 	/**
 	 * Recursively copy the contents of the {@code src} file/directory
 	 * to the {@code dest} file/directory.
-	 * @param src the source directory
+	 *
+	 * @param src  the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors
 	 */
@@ -112,7 +115,8 @@ public abstract class FileSystemUtils {
 	/**
 	 * Recursively copy the contents of the {@code src} file/directory
 	 * to the {@code dest} file/directory.
-	 * @param src the source directory
+	 *
+	 * @param src  the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors
 	 * @since 5.0
@@ -129,17 +133,16 @@ public abstract class FileSystemUtils {
 					Files.createDirectories(dest.resolve(src.relativize(dir)));
 					return FileVisitResult.CONTINUE;
 				}
+
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 					Files.copy(file, dest.resolve(src.relativize(file)), StandardCopyOption.REPLACE_EXISTING);
 					return FileVisitResult.CONTINUE;
 				}
 			});
-		}
-		else if (srcAttr.isRegularFile()) {
+		} else if (srcAttr.isRegularFile()) {
 			Files.copy(src, dest);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Source File must denote a directory or file");
 		}
 	}

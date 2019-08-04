@@ -46,7 +46,7 @@ public class TagUtilsTests {
 
 		// non-existent scope
 		assertEquals("TagUtils.getScope(..) with a non-existent scope argument must " +
-				"just return the default scope (PageContext.PAGE_SCOPE).", PageContext.PAGE_SCOPE,
+						"just return the default scope (PageContext.PAGE_SCOPE).", PageContext.PAGE_SCOPE,
 				TagUtils.getScope("bla"));
 	}
 
@@ -111,14 +111,14 @@ public class TagUtilsTests {
 
 	@Test(expected = IllegalStateException.class)
 	public void assertHasAncestorOfTypeThrowsExceptionOnFail() throws Exception {
-				Tag a = new TagA();
-				Tag b = new TagB();
-				Tag anotherB = new TagB();
+		Tag a = new TagA();
+		Tag b = new TagB();
+		Tag anotherB = new TagB();
 
-				a.setParent(b);
-				b.setParent(anotherB);
+		a.setParent(b);
+		b.setParent(anotherB);
 
-				TagUtils.assertHasAncestorOfType(a, TagC.class, "a", "c");
+		TagUtils.assertHasAncestorOfType(a, TagC.class, "a", "c");
 	}
 
 	@Test

@@ -50,8 +50,9 @@ public abstract class AbstractExpressionTests {
 	/**
 	 * Evaluate an expression and check that the actual result matches the
 	 * expectedValue and the class of the result matches the expectedClassOfResult.
-	 * @param expression the expression to evaluate
-	 * @param expectedValue the expected result for evaluating the expression
+	 *
+	 * @param expression         the expression to evaluate
+	 * @param expectedValue      the expected result for evaluating the expression
 	 * @param expectedResultType the expected class of the evaluation result
 	 */
 	public void evaluate(String expression, Object expectedValue, Class<?> expectedResultType) {
@@ -80,8 +81,7 @@ public abstract class AbstractExpressionTests {
 		if (expectedValue instanceof String) {
 			assertEquals("Did not get expected value for expression '" + expression + "'.", expectedValue,
 					AbstractExpressionTests.stringValueOf(value));
-		}
-		else {
+		} else {
 			assertEquals("Did not get expected value for expression '" + expression + "'.", expectedValue, value);
 		}
 	}
@@ -114,10 +114,11 @@ public abstract class AbstractExpressionTests {
 	 * expectedValue and the class of the result matches the expectedClassOfResult.
 	 * This method can also check if the expression is writable (for example,
 	 * it is a variable or property reference).
-	 * @param expression the expression to evaluate
-	 * @param expectedValue the expected result for evaluating the expression
+	 *
+	 * @param expression            the expression to evaluate
+	 * @param expectedValue         the expected result for evaluating the expression
 	 * @param expectedClassOfResult the expected class of the evaluation result
-	 * @param shouldBeWritable should the parsed expression be writable?
+	 * @param shouldBeWritable      should the parsed expression be writable?
 	 */
 	public void evaluate(String expression, Object expectedValue, Class<?> expectedClassOfResult, boolean shouldBeWritable) {
 		Expression expr = parser.parseExpression(expression);
@@ -138,8 +139,7 @@ public abstract class AbstractExpressionTests {
 		if (expectedValue instanceof String) {
 			assertEquals("Did not get expected value for expression '" + expression + "'.", expectedValue,
 					AbstractExpressionTests.stringValueOf(value));
-		}
-		else {
+		} else {
 			assertEquals("Did not get expected value for expression '" + expression + "'.", expectedValue, value);
 		}
 		assertTrue("Type of the result was not as expected.  Expected '" + expectedClassOfResult +
@@ -158,7 +158,8 @@ public abstract class AbstractExpressionTests {
 	 * Evaluate the specified expression and ensure the expected message comes out.
 	 * The message may have inserts and they will be checked if otherProperties is specified.
 	 * The first entry in otherProperties should always be the position.
-	 * @param expression the expression to evaluate
+	 *
+	 * @param expression      the expression to evaluate
 	 * @param expectedMessage the expected message
 	 * @param otherProperties the expected inserts within the message
 	 */
@@ -170,14 +171,15 @@ public abstract class AbstractExpressionTests {
 	 * Evaluate the specified expression and ensure the expected message comes out.
 	 * The message may have inserts and they will be checked if otherProperties is specified.
 	 * The first entry in otherProperties should always be the position.
-	 * @param expression the expression to evaluate
+	 *
+	 * @param expression         the expression to evaluate
 	 * @param expectedReturnType ask the expression return value to be of this type if possible
-	 * ({@code null} indicates don't ask for conversion)
-	 * @param expectedMessage the expected message
-	 * @param otherProperties the expected inserts within the message
+	 *                           ({@code null} indicates don't ask for conversion)
+	 * @param expectedMessage    the expected message
+	 * @param otherProperties    the expected inserts within the message
 	 */
 	protected void evaluateAndCheckError(String expression, Class<?> expectedReturnType, SpelMessage expectedMessage,
-			Object... otherProperties) {
+										 Object... otherProperties) {
 		try {
 			Expression expr = parser.parseExpression(expression);
 			if (expr == null) {
@@ -185,13 +187,11 @@ public abstract class AbstractExpressionTests {
 			}
 			if (expectedReturnType != null) {
 				expr.getValue(context, expectedReturnType);
-			}
-			else {
+			} else {
 				expr.getValue(context);
 			}
 			fail("Should have failed with message " + expectedMessage);
-		}
-		catch (EvaluationException ee) {
+		} catch (EvaluationException ee) {
 			SpelEvaluationException ex = (SpelEvaluationException) ee;
 			if (ex.getMessageCode() != expectedMessage) {
 				assertEquals("Failed to get expected message", expectedMessage, ex.getMessageCode());
@@ -216,14 +216,12 @@ public abstract class AbstractExpressionTests {
 								fail("Insert does not match, expected 'null' but insert value was '" +
 										inserts[i - 1] + "'");
 							}
-						}
-						else if (inserts[i - 1] == null) {
+						} else if (inserts[i - 1] == null) {
 							if (otherProperties[i] != null) {
 								fail("Insert does not match, expected '" + otherProperties[i] +
 										"' but insert value was 'null'");
 							}
-						}
-						else if (!inserts[i - 1].equals(otherProperties[i])) {
+						} else if (!inserts[i - 1].equals(otherProperties[i])) {
 							fail("Insert does not match, expected '" + otherProperties[i] +
 									"' but insert value was '" + inserts[i - 1] + "'");
 						}
@@ -237,7 +235,8 @@ public abstract class AbstractExpressionTests {
 	 * Parse the specified expression and ensure the expected message comes out.
 	 * The message may have inserts and they will be checked if otherProperties is specified.
 	 * The first entry in otherProperties should always be the position.
-	 * @param expression the expression to evaluate
+	 *
+	 * @param expression      the expression to evaluate
 	 * @param expectedMessage the expected message
 	 * @param otherProperties the expected inserts within the message
 	 */
@@ -246,9 +245,8 @@ public abstract class AbstractExpressionTests {
 			Expression expr = parser.parseExpression(expression);
 			SpelUtilities.printAbstractSyntaxTree(System.out, expr);
 			fail("Parsing should have failed!");
-		}
-		catch (ParseException pe) {
-			SpelParseException ex = (SpelParseException)pe;
+		} catch (ParseException pe) {
+			SpelParseException ex = (SpelParseException) pe;
 			if (ex.getMessageCode() != expectedMessage) {
 				assertEquals("Failed to get expected message", expectedMessage, ex.getMessageCode());
 			}
@@ -284,6 +282,7 @@ public abstract class AbstractExpressionTests {
 
 	/**
 	 * Produce a nice string representation of the input object.
+	 *
 	 * @param value object to be formatted
 	 * @return a nice string
 	 */
@@ -306,8 +305,7 @@ public abstract class AbstractExpressionTests {
 						sb.append(stringValueOf(l[j]));
 					}
 					sb.append("}");
-				}
-				else if (primitiveType == Long.TYPE) {
+				} else if (primitiveType == Long.TYPE) {
 					long[] l = (long[]) value;
 					sb.append("long[").append(l.length).append("]{");
 					for (int j = 0; j < l.length; j++) {
@@ -317,13 +315,11 @@ public abstract class AbstractExpressionTests {
 						sb.append(stringValueOf(l[j]));
 					}
 					sb.append("}");
-				}
-				else {
+				} else {
 					throw new RuntimeException("Please implement support for type " + primitiveType.getName() +
 							" in ExpressionTestCase.stringValueOf()");
 				}
-			}
-			else if (value.getClass().getComponentType().isArray()) {
+			} else if (value.getClass().getComponentType().isArray()) {
 				List<Object> l = Arrays.asList((Object[]) value);
 				if (!isNested) {
 					sb.append(value.getClass().getComponentType().getName());
@@ -338,8 +334,7 @@ public abstract class AbstractExpressionTests {
 					sb.append(stringValueOf(object, true));
 				}
 				sb.append("}");
-			}
-			else {
+			} else {
 				List<Object> l = Arrays.asList((Object[]) value);
 				if (!isNested) {
 					sb.append(value.getClass().getComponentType().getName());
@@ -356,8 +351,7 @@ public abstract class AbstractExpressionTests {
 				sb.append("}");
 			}
 			return sb.toString();
-		}
-		else {
+		} else {
 			return value.toString();
 		}
 	}

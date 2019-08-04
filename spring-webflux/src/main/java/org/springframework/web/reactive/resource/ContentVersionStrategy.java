@@ -34,8 +34,8 @@ import org.springframework.util.StreamUtils;
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
- * @since 5.0
  * @see VersionResourceResolver
+ * @since 5.0
  */
 public class ContentVersionStrategy extends AbstractFileNameVersionStrategy {
 

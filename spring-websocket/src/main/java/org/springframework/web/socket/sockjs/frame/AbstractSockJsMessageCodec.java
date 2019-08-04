@@ -63,8 +63,7 @@ public abstract class AbstractSockJsMessageCodec implements SockJsMessageCodec {
 					result.append('0');
 				}
 				result.append(hex);
-			}
-			else {
+			} else {
 				result.append(c);
 			}
 		}

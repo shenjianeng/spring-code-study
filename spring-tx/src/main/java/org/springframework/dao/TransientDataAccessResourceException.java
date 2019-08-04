@@ -21,14 +21,15 @@ package org.springframework.dao;
  * and the operation can be retried.
  *
  * @author Thomas Risberg
- * @since 2.5
  * @see java.sql.SQLTransientConnectionException
+ * @since 2.5
  */
 @SuppressWarnings("serial")
 public class TransientDataAccessResourceException extends TransientDataAccessException {
 
 	/**
 	 * Constructor for TransientDataAccessResourceException.
+	 *
 	 * @param msg the detail message
 	 */
 	public TransientDataAccessResourceException(String msg) {
@@ -37,7 +38,8 @@ public class TransientDataAccessResourceException extends TransientDataAccessExc
 
 	/**
 	 * Constructor for TransientDataAccessResourceException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the data access API in use
 	 */
 	public TransientDataAccessResourceException(String msg, Throwable cause) {

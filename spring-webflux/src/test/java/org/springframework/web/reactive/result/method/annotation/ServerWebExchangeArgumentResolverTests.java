@@ -45,6 +45,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Unit tests for {@link ServerWebExchangeArgumentResolver}.
+ *
  * @author Rossen Stoyanchev
  */
 public class ServerWebExchangeArgumentResolverTests {
@@ -75,8 +76,7 @@ public class ServerWebExchangeArgumentResolverTests {
 		try {
 			this.resolver.supportsParameter(this.testMethod.arg(Mono.class, ServerWebExchange.class));
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue("Unexpected error message:\n" + ex.getMessage(),
 					ex.getMessage().startsWith(
 							"ServerWebExchangeArgumentResolver doesn't support reactive type wrapper"));
@@ -107,7 +107,6 @@ public class ServerWebExchangeArgumentResolverTests {
 		assertEquals(UriComponentsBuilder.class, value.getClass());
 		assertEquals("https://example.org:9999/next", ((UriComponentsBuilder) value).path("/next").toUriString());
 	}
-
 
 
 	@SuppressWarnings("unused")

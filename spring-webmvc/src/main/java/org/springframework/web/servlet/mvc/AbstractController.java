@@ -108,9 +108,10 @@ public abstract class AbstractController extends WebContentGenerator implements 
 
 	/**
 	 * Create a new AbstractController.
+	 *
 	 * @param restrictDefaultSupportedMethods {@code true} if this
-	 * controller should support HTTP methods GET, HEAD and POST by default,
-	 * or {@code false} if it should be unrestricted
+	 *                                        controller should support HTTP methods GET, HEAD and POST by default,
+	 *                                        or {@code false} if it should be unrestricted
 	 * @since 4.3
 	 */
 	public AbstractController(boolean restrictDefaultSupportedMethods) {
@@ -133,6 +134,7 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	 * as well, since it will always be the same object reference for the
 	 * same active logical session. However, this is not guaranteed across
 	 * different servlet containers; the only 100% safe way is a session mutex.
+	 *
 	 * @see AbstractController#handleRequestInternal
 	 * @see org.springframework.web.util.HttpSessionMutexListener
 	 * @see org.springframework.web.util.WebUtils#getSessionMutex(javax.servlet.http.HttpSession)
@@ -180,6 +182,7 @@ public abstract class AbstractController extends WebContentGenerator implements 
 	/**
 	 * Template method. Subclasses must implement this.
 	 * The contract is the same as for {@code handleRequest}.
+	 *
 	 * @see #handleRequest
 	 */
 	@Nullable

@@ -27,8 +27,8 @@ import org.springframework.lang.Nullable;
  * sub-classes to override only the methods they're interested in.
  *
  * @author Stephane Nicoll
- * @since 4.1
  * @see CachingConfigurer
+ * @since 4.1
  */
 public class CachingConfigurerSupport implements CachingConfigurer {
 

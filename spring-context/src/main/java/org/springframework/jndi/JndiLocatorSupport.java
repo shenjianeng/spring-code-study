@@ -33,14 +33,16 @@ import org.springframework.util.Assert;
  * <strong>false</strong>) and no other scheme (e.g. "java:") is given.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #setJndiTemplate
  * @see #setJndiEnvironment
  * @see #setResourceRef
+ * @since 1.1
  */
 public abstract class JndiLocatorSupport extends JndiAccessor {
 
-	/** JNDI prefix used in a Java EE container. */
+	/**
+	 * JNDI prefix used in a Java EE container.
+	 */
 	public static final String CONTAINER_PREFIX = "java:comp/env/";
 
 
@@ -67,8 +69,9 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 
 	/**
 	 * Perform an actual JNDI lookup for the given name via the JndiTemplate.
-   * <p>If the name doesn't begin with "java:comp/env/", this prefix is added
+	 * <p>If the name doesn't begin with "java:comp/env/", this prefix is added
 	 * if "resourceRef" is set to "true".
+	 *
 	 * @param jndiName the JNDI name to look up
 	 * @return the obtained object
 	 * @throws NamingException if the JNDI lookup failed
@@ -82,7 +85,8 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 	 * Perform an actual JNDI lookup for the given name via the JndiTemplate.
 	 * <p>If the name doesn't begin with "java:comp/env/", this prefix is added
 	 * if "resourceRef" is set to "true".
-	 * @param jndiName the JNDI name to look up
+	 *
+	 * @param jndiName     the JNDI name to look up
 	 * @param requiredType the required type of the object
 	 * @return the obtained object
 	 * @throws NamingException if the JNDI lookup failed
@@ -94,8 +98,7 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 		T jndiObject;
 		try {
 			jndiObject = getJndiTemplate().lookup(convertedName, requiredType);
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			if (!convertedName.equals(jndiName)) {
 				// Try fallback to originally specified name...
 				if (logger.isDebugEnabled()) {
@@ -103,8 +106,7 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 							"] not found - trying original name [" + jndiName + "]. " + ex);
 				}
 				jndiObject = getJndiTemplate().lookup(jndiName, requiredType);
-			}
-			else {
+			} else {
 				throw ex;
 			}
 		}
@@ -118,6 +120,7 @@ public abstract class JndiLocatorSupport extends JndiAccessor {
 	 * Convert the given JNDI name into the actual JNDI name to use.
 	 * <p>The default implementation applies the "java:comp/env/" prefix if
 	 * "resourceRef" is "true" and no other scheme (e.g. "java:") is given.
+	 *
 	 * @param jndiName the original JNDI name
 	 * @return the JNDI name to use
 	 * @see #CONTAINER_PREFIX

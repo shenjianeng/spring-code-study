@@ -125,7 +125,7 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 
 	@Override
 	public Mono<Void> upgrade(ServerWebExchange exchange, WebSocketHandler handler,
-			@Nullable String subProtocol, Supplier<HandshakeInfo> handshakeInfoFactory){
+							  @Nullable String subProtocol, Supplier<HandshakeInfo> handshakeInfoFactory) {
 
 		ServerHttpRequest request = exchange.getRequest();
 		ServerHttpResponse response = exchange.getResponse();
@@ -147,8 +147,7 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 		try {
 			WsServerContainer container = getContainer(servletRequest);
 			container.doUpgrade(servletRequest, servletResponse, config, Collections.emptyMap());
-		}
-		catch (ServletException | IOException ex) {
+		} catch (ServletException | IOException ex) {
 			return Mono.error(ex);
 		}
 

@@ -48,14 +48,14 @@ import org.springframework.util.ObjectUtils;
  * annotation provides a convenient and declarative way of adding property sources to the
  * enclosing {@code Environment}.
  *
- * @author Chris Beams
- * @since 3.1
  * @param <T> the source type
+ * @author Chris Beams
  * @see PropertySources
  * @see PropertyResolver
  * @see PropertySourcesPropertyResolver
  * @see MutablePropertySources
  * @see org.springframework.context.annotation.PropertySource
+ * @since 3.1
  */
 public abstract class PropertySource<T> {
 
@@ -107,6 +107,7 @@ public abstract class PropertySource<T> {
 	 * <p>This implementation simply checks for a {@code null} return value
 	 * from {@link #getProperty(String)}. Subclasses may wish to implement
 	 * a more efficient algorithm if possible.
+	 *
 	 * @param name the property name to find
 	 */
 	public boolean containsProperty(String name) {
@@ -116,6 +117,7 @@ public abstract class PropertySource<T> {
 	/**
 	 * Return the value associated with the given name,
 	 * or {@code null} if not found.
+	 *
 	 * @param name the property to find
 	 * @see PropertyResolver#getRequiredProperty(String)
 	 */
@@ -153,6 +155,7 @@ public abstract class PropertySource<T> {
 	 * <p>This variable verbosity is useful as a property source such as system properties
 	 * or environment variables may contain an arbitrary number of property pairs,
 	 * potentially leading to difficult to read exception and log messages.
+	 *
 	 * @see Log#isDebugEnabled()
 	 */
 	@Override
@@ -160,8 +163,7 @@ public abstract class PropertySource<T> {
 		if (logger.isDebugEnabled()) {
 			return getClass().getSimpleName() + "@" + System.identityHashCode(this) +
 					" {name='" + this.name + "', properties=" + this.source + "}";
-		}
-		else {
+		} else {
 			return getClass().getSimpleName() + " {name='" + this.name + "'}";
 		}
 	}
@@ -182,6 +184,7 @@ public abstract class PropertySource<T> {
 	 * The returned {@code PropertySource} will throw {@code UnsupportedOperationException}
 	 * if any methods other than {@code equals(Object)}, {@code hashCode()}, and {@code toString()}
 	 * are called.
+	 *
 	 * @param name the name of the comparison {@code PropertySource} to be created and returned.
 	 */
 	public static PropertySource<?> named(String name) {
@@ -197,6 +200,7 @@ public abstract class PropertySource<T> {
 	 * {@code ApplicationContext}.  In such cases, a stub should be used to hold the
 	 * intended default position/order of the property source, then be replaced
 	 * during context refresh.
+	 *
 	 * @see org.springframework.context.support.AbstractApplicationContext#initPropertySources()
 	 * @see org.springframework.web.context.support.StandardServletEnvironment
 	 * @see org.springframework.web.context.support.ServletContextPropertySource

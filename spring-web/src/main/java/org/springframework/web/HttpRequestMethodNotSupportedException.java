@@ -45,6 +45,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * Create a new HttpRequestMethodNotSupportedException.
+	 *
 	 * @param method the unsupported HTTP request method
 	 */
 	public HttpRequestMethodNotSupportedException(String method) {
@@ -53,8 +54,9 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * Create a new HttpRequestMethodNotSupportedException.
+	 *
 	 * @param method the unsupported HTTP request method
-	 * @param msg the detail message
+	 * @param msg    the detail message
 	 */
 	public HttpRequestMethodNotSupportedException(String method, String msg) {
 		this(method, null, msg);
@@ -62,7 +64,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * Create a new HttpRequestMethodNotSupportedException.
-	 * @param method the unsupported HTTP request method
+	 *
+	 * @param method           the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable Collection<String> supportedMethods) {
@@ -71,7 +74,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * Create a new HttpRequestMethodNotSupportedException.
-	 * @param method the unsupported HTTP request method
+	 *
+	 * @param method           the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable String[] supportedMethods) {
@@ -80,9 +84,10 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 	/**
 	 * Create a new HttpRequestMethodNotSupportedException.
-	 * @param method the unsupported HTTP request method
+	 *
+	 * @param method           the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods
-	 * @param msg the detail message
+	 * @param msg              the detail message
 	 */
 	public HttpRequestMethodNotSupportedException(String method, @Nullable String[] supportedMethods, String msg) {
 		super(msg);
@@ -109,6 +114,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	/**
 	 * Return the actually supported HTTP methods as {@link HttpMethod} instances,
 	 * or {@code null} if not known.
+	 *
 	 * @since 3.2
 	 */
 	@Nullable

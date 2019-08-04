@@ -40,10 +40,11 @@ public class RequestMatchResult {
 
 	/**
 	 * Create an instance with a matching pattern.
+	 *
 	 * @param matchingPattern the matching pattern, possibly not the same as the
-	 * input pattern, e.g. inputPattern="/foo" and matchingPattern="/foo/".
-	 * @param lookupPath the lookup path extracted from the request
-	 * @param pathMatcher the PathMatcher used
+	 *                        input pattern, e.g. inputPattern="/foo" and matchingPattern="/foo/".
+	 * @param lookupPath      the lookup path extracted from the request
+	 * @param pathMatcher     the PathMatcher used
 	 */
 	public RequestMatchResult(String matchingPattern, String lookupPath, PathMatcher pathMatcher) {
 		Assert.hasText(matchingPattern, "'matchingPattern' is required");
@@ -58,6 +59,7 @@ public class RequestMatchResult {
 	/**
 	 * Extract URI template variables from the matching pattern as defined in
 	 * {@link PathMatcher#extractUriTemplateVariables}.
+	 *
 	 * @return a map with URI template variables
 	 */
 	public Map<String, String> extractUriTemplateVariables() {

@@ -31,8 +31,8 @@ import org.springframework.web.server.ServerWebExchange;
  * Resolves method argument value of type {@link java.security.Principal}.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see ServerWebExchangeArgumentResolver
+ * @since 5.0
  */
 public class PrincipalArgumentResolver extends HandlerMethodArgumentResolverSupport {
 

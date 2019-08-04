@@ -43,6 +43,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Unit tests for {@link FilteringWebHandler}.
+ *
  * @author Rossen Stoyanchev
  */
 public class FilteringWebHandlerTests {

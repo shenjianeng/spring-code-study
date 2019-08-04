@@ -62,9 +62,9 @@ public class ObjectUtilsTests {
 	@Test
 	public void isCompatibleWithThrowsClause() {
 		Class<?>[] empty = new Class<?>[0];
-		Class<?>[] exception = new Class<?>[] {Exception.class};
-		Class<?>[] sqlAndIO = new Class<?>[] {SQLException.class, IOException.class};
-		Class<?>[] throwable = new Class<?>[] {Throwable.class};
+		Class<?>[] exception = new Class<?>[]{Exception.class};
+		Class<?>[] sqlAndIO = new Class<?>[]{SQLException.class, IOException.class};
+		Class<?>[] throwable = new Class<?>[]{Throwable.class};
 
 		assertTrue(ObjectUtils.isCompatibleWithThrowsClause(new RuntimeException()));
 		assertTrue(ObjectUtils.isCompatibleWithThrowsClause(new RuntimeException(), empty));
@@ -102,8 +102,8 @@ public class ObjectUtilsTests {
 		assertTrue(isEmpty(new Object[0]));
 		assertTrue(isEmpty(new Integer[0]));
 
-		assertFalse(isEmpty(new int[] {42}));
-		assertFalse(isEmpty(new Integer[] {42}));
+		assertFalse(isEmpty(new int[]{42}));
+		assertFalse(isEmpty(new Integer[]{42}));
 	}
 
 	@Test
@@ -145,7 +145,7 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void toObjectArray() {
-		int[] a = new int[] {1, 2, 3, 4, 5};
+		int[] a = new int[]{1, 2, 3, 4, 5};
 		Integer[] wrapper = (Integer[]) ObjectUtils.toObjectArray(a);
 		assertTrue(wrapper.length == 5);
 		for (int i = 0; i < wrapper.length; i++) {
@@ -162,7 +162,7 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void toObjectArrayWithEmptyPrimitiveArray() {
-		Object[] objects = ObjectUtils.toObjectArray(new byte[] {});
+		Object[] objects = ObjectUtils.toObjectArray(new byte[]{});
 		assertNotNull(objects);
 		assertEquals(0, objects.length);
 	}
@@ -175,13 +175,13 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void toObjectArrayWithNonPrimitiveArray() {
-		String[] source = new String[] {"Bingo"};
+		String[] source = new String[]{"Bingo"};
 		assertArrayEquals(source, ObjectUtils.toObjectArray(source));
 	}
 
 	@Test
 	public void addObjectToArraySunnyDay() {
-		String[] array = new String[] {"foo", "bar"};
+		String[] array = new String[]{"foo", "bar"};
 		String newElement = "baz";
 		Object[] newArray = ObjectUtils.addObjectToArray(array, newElement);
 		assertEquals(3, newArray.length);
@@ -200,7 +200,7 @@ public class ObjectUtilsTests {
 	@Test
 	public void addObjectToSingleNonNullElementArray() {
 		String existingElement = "foo";
-		String[] array = new String[] {existingElement};
+		String[] array = new String[]{existingElement};
 		String newElement = "bar";
 		String[] newArray = ObjectUtils.addObjectToArray(array, newElement);
 		assertEquals(2, newArray.length);
@@ -210,7 +210,7 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void addObjectToSingleNullElementArray() {
-		String[] array = new String[] {null};
+		String[] array = new String[]{null};
 		String newElement = "bar";
 		String[] newArray = ObjectUtils.addObjectToArray(array, newElement);
 		assertEquals(2, newArray.length);
@@ -235,8 +235,8 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void nullSafeEqualsWithArrays() throws Exception {
-		assertTrue(ObjectUtils.nullSafeEquals(new String[] {"a", "b", "c"}, new String[] {"a", "b", "c"}));
-		assertTrue(ObjectUtils.nullSafeEquals(new int[] {1, 2, 3}, new int[] {1, 2, 3}));
+		assertTrue(ObjectUtils.nullSafeEquals(new String[]{"a", "b", "c"}, new String[]{"a", "b", "c"}));
+		assertTrue(ObjectUtils.nullSafeEquals(new int[]{1, 2, 3}, new int[]{1, 2, 3}));
 	}
 
 	@Test
@@ -530,63 +530,63 @@ public class ObjectUtilsTests {
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingBooleanArray() {
-		Object array = new boolean[] {true, false};
+		Object array = new boolean[]{true, false};
 		int expected = ObjectUtils.nullSafeHashCode((boolean[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingByteArray() {
-		Object array = new byte[] {6, 39};
+		Object array = new byte[]{6, 39};
 		int expected = ObjectUtils.nullSafeHashCode((byte[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingCharArray() {
-		Object array = new char[] {'l', 'M'};
+		Object array = new char[]{'l', 'M'};
 		int expected = ObjectUtils.nullSafeHashCode((char[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingDoubleArray() {
-		Object array = new double[] {68930.993, 9022.009};
+		Object array = new double[]{68930.993, 9022.009};
 		int expected = ObjectUtils.nullSafeHashCode((double[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingFloatArray() {
-		Object array = new float[] {9.9f, 9.54f};
+		Object array = new float[]{9.9f, 9.54f};
 		int expected = ObjectUtils.nullSafeHashCode((float[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingIntArray() {
-		Object array = new int[] {89, 32};
+		Object array = new int[]{89, 32};
 		int expected = ObjectUtils.nullSafeHashCode((int[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingLongArray() {
-		Object array = new long[] {4389, 320};
+		Object array = new long[]{4389, 320};
 		int expected = ObjectUtils.nullSafeHashCode((long[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingObjectArray() {
-		Object array = new Object[] {"Luke", "Anakin"};
+		Object array = new Object[]{"Luke", "Anakin"};
 		int expected = ObjectUtils.nullSafeHashCode((Object[]) array);
 		assertEqualHashCodes(expected, array);
 	}
 
 	@Test
 	public void nullSafeHashCodeWithObjectBeingShortArray() {
-		Object array = new short[] {5, 3};
+		Object array = new short[]{5, 3};
 		int expected = ObjectUtils.nullSafeHashCode((short[]) array);
 		assertEqualHashCodes(expected, array);
 	}

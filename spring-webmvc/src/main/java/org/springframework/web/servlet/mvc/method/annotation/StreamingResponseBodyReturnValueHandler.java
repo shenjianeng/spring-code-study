@@ -48,8 +48,7 @@ public class StreamingResponseBodyReturnValueHandler implements HandlerMethodRet
 	public boolean supportsReturnType(MethodParameter returnType) {
 		if (StreamingResponseBody.class.isAssignableFrom(returnType.getParameterType())) {
 			return true;
-		}
-		else if (ResponseEntity.class.isAssignableFrom(returnType.getParameterType())) {
+		} else if (ResponseEntity.class.isAssignableFrom(returnType.getParameterType())) {
 			Class<?> bodyType = ResolvableType.forMethodParameter(returnType).getGeneric().resolve();
 			return (bodyType != null && StreamingResponseBody.class.isAssignableFrom(bodyType));
 		}
@@ -59,7 +58,7 @@ public class StreamingResponseBodyReturnValueHandler implements HandlerMethodRet
 	@Override
 	@SuppressWarnings("resource")
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);

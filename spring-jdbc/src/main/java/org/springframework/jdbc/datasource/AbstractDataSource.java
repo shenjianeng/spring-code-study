@@ -33,12 +33,14 @@ import org.apache.commons.logging.LogFactory;
  * {@link #getLoginTimeout()}, {@link #setLoginTimeout(int)}, and so forth.
  *
  * @author Juergen Hoeller
- * @since 07.05.2003
  * @see DriverManagerDataSource
+ * @since 07.05.2003
  */
 public abstract class AbstractDataSource implements DataSource {
 
-	/** Logger available to subclasses. */
+	/**
+	 * Logger available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 

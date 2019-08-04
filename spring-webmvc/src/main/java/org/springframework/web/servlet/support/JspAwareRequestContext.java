@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
  * scope, in addition to the fallback locale strategy provided by the base class.
  *
  * @author Juergen Hoeller
- * @since 1.1.4
  * @see #getFallbackLocale
+ * @since 1.1.4
  */
 public class JspAwareRequestContext extends RequestContext {
 
@@ -45,6 +45,7 @@ public class JspAwareRequestContext extends RequestContext {
 	/**
 	 * Create a new JspAwareRequestContext for the given page context,
 	 * using the request attributes for Errors retrieval.
+	 *
 	 * @param pageContext current JSP page context
 	 */
 	public JspAwareRequestContext(PageContext pageContext) {
@@ -54,9 +55,10 @@ public class JspAwareRequestContext extends RequestContext {
 	/**
 	 * Create a new JspAwareRequestContext for the given page context,
 	 * using the given model attributes for Errors retrieval.
+	 *
 	 * @param pageContext current JSP page context
-	 * @param model the model attributes for the current view
-	 * (can be {@code null}, using the request attributes for Errors retrieval)
+	 * @param model       the model attributes for the current view
+	 *                    (can be {@code null}, using the request attributes for Errors retrieval)
 	 */
 	public JspAwareRequestContext(PageContext pageContext, @Nullable Map<String, Object> model) {
 		super((HttpServletRequest) pageContext.getRequest(), (HttpServletResponse) pageContext.getResponse(),

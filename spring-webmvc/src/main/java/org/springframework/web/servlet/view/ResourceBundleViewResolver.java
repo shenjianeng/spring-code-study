@@ -63,11 +63,13 @@ import org.springframework.web.servlet.View;
 public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 		implements Ordered, InitializingBean, DisposableBean {
 
-	/** The default basename if no other basename is supplied. */
+	/**
+	 * The default basename if no other basename is supplied.
+	 */
 	public static final String DEFAULT_BASENAME = "views";
 
 
-	private String[] basenames = new String[] {DEFAULT_BASENAME};
+	private String[] basenames = new String[]{DEFAULT_BASENAME};
 
 	private ClassLoader bundleClassLoader = Thread.currentThread().getContextClassLoader();
 
@@ -96,6 +98,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
 	 * This means that "test.theme" is effectively equivalent to "test/theme",
 	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 *
 	 * @see #setBasenames
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -117,6 +120,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
 	 * This means that "test.theme" is effectively equivalent to "test/theme",
 	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 *
 	 * @see #setBasename
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -171,6 +175,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	/**
 	 * Specify the order value for this ViewResolver bean.
 	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 *
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -184,6 +189,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Eagerly initialize Locales if necessary.
+	 *
 	 * @see #setLocalesToInitialize
 	 */
 	@Override
@@ -201,8 +207,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 		BeanFactory factory = initFactory(locale);
 		try {
 			return factory.getBean(viewName, View.class);
-		}
-		catch (NoSuchBeanDefinitionException ex) {
+		} catch (NoSuchBeanDefinitionException ex) {
 			// Allow for ViewResolver chaining...
 			return null;
 		}
@@ -212,6 +217,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	 * Initialize the View {@link BeanFactory} from the {@code ResourceBundle},
 	 * for the given {@link Locale locale}.
 	 * <p>Synchronized because of access by parallel threads.
+	 *
 	 * @param locale the target {@code Locale}
 	 * @return the View factory for the given Locale
 	 * @throws BeansException in case of initialization errors
@@ -268,8 +274,9 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 	/**
 	 * Obtain the resource bundle for the given basename and {@link Locale}.
+	 *
 	 * @param basename the basename to look for
-	 * @param locale the {@code Locale} to look for
+	 * @param locale   the {@code Locale} to look for
 	 * @return the corresponding {@code ResourceBundle}
 	 * @throws MissingResourceException if no matching bundle could be found
 	 * @see ResourceBundle#getBundle(String, Locale, ClassLoader)

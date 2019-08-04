@@ -38,7 +38,7 @@ public class Inventor {
 	private String nationality;
 	private String[] inventions;
 	public String randomField;
-	public Map<String,String> testMap;
+	public Map<String, String> testMap;
 	private boolean wonNobelPrize;
 	private PlaceOfBirth[] placesLived;
 	private List<PlaceOfBirth> placesLivedList = new ArrayList<>();
@@ -47,11 +47,11 @@ public class Inventor {
 	private boolean accessedThroughGetSet;
 	public List<Integer> listOfInteger = new ArrayList<>();
 	public List<Boolean> booleanList = new ArrayList<>();
-	public Map<String,Boolean> mapOfStringToBoolean = new LinkedHashMap<>();
-	public Map<Integer,String> mapOfNumbersUpToTen = new LinkedHashMap<>();
+	public Map<String, Boolean> mapOfStringToBoolean = new LinkedHashMap<>();
+	public Map<Integer, String> mapOfNumbersUpToTen = new LinkedHashMap<>();
 	public List<Integer> listOfNumbersUpToTen = new ArrayList<>();
 	public List<Integer> listOneFive = new ArrayList<>();
-	public String[] stringArrayOfThreeItems = new String[]{"1","2","3"};
+	public String[] stringArrayOfThreeItems = new String[]{"1", "2", "3"};
 	private String foo;
 	public int counter;
 
@@ -84,21 +84,21 @@ public class Inventor {
 		listOfNumbersUpToTen.add(8);
 		listOfNumbersUpToTen.add(9);
 		listOfNumbersUpToTen.add(10);
-		mapOfNumbersUpToTen.put(1,"one");
-		mapOfNumbersUpToTen.put(2,"two");
-		mapOfNumbersUpToTen.put(3,"three");
-		mapOfNumbersUpToTen.put(4,"four");
-		mapOfNumbersUpToTen.put(5,"five");
-		mapOfNumbersUpToTen.put(6,"six");
-		mapOfNumbersUpToTen.put(7,"seven");
-		mapOfNumbersUpToTen.put(8,"eight");
-		mapOfNumbersUpToTen.put(9,"nine");
-		mapOfNumbersUpToTen.put(10,"ten");
+		mapOfNumbersUpToTen.put(1, "one");
+		mapOfNumbersUpToTen.put(2, "two");
+		mapOfNumbersUpToTen.put(3, "three");
+		mapOfNumbersUpToTen.put(4, "four");
+		mapOfNumbersUpToTen.put(5, "five");
+		mapOfNumbersUpToTen.put(6, "six");
+		mapOfNumbersUpToTen.put(7, "seven");
+		mapOfNumbersUpToTen.put(8, "eight");
+		mapOfNumbersUpToTen.put(9, "nine");
+		mapOfNumbersUpToTen.put(10, "ten");
 	}
 
 	public void setPlaceOfBirth(PlaceOfBirth placeOfBirth2) {
 		placeOfBirth = placeOfBirth2;
-		this.placesLived = new PlaceOfBirth[] { placeOfBirth2 };
+		this.placesLived = new PlaceOfBirth[]{placeOfBirth2};
 		this.placesLivedList.add(placeOfBirth2);
 	}
 
@@ -116,20 +116,21 @@ public class Inventor {
 
 	public int throwException(int valueIn) throws Exception {
 		counter++;
-		if (valueIn==1) {
+		if (valueIn == 1) {
 			throw new IllegalArgumentException("IllegalArgumentException for 1");
 		}
-		if (valueIn==2) {
+		if (valueIn == 2) {
 			throw new RuntimeException("RuntimeException for 2");
 		}
-		if (valueIn==4) {
+		if (valueIn == 4) {
 			throw new TestException();
 		}
 		return valueIn;
 	}
 
 	@SuppressWarnings("serial")
-	static class TestException extends Exception {}
+	static class TestException extends Exception {
+	}
 
 	public String throwException(PlaceOfBirth pob) {
 		return pob.getCity();
@@ -214,10 +215,19 @@ public class Inventor {
 		this.accessedThroughGetSet = b;
 	}
 
-	public Date getBirthdate() { return birthdate;}
+	public Date getBirthdate() {
+		return birthdate;
+	}
 
-	public String getFoo() { return foo; }
-	public void setFoo(String s) { foo = s; }
+	public String getFoo() {
+		return foo;
+	}
 
-	public String getNationality() { return nationality; }
+	public void setFoo(String s) {
+		foo = s;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
 }

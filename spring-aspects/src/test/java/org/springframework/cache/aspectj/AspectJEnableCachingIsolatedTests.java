@@ -91,8 +91,7 @@ public class AspectJEnableCachingIsolatedTests {
 	public void multipleCacheManagerBeans() {
 		try {
 			load(MultiCacheManagerConfig.class);
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("bean of type CacheManager"));
 		}
 	}
@@ -106,8 +105,7 @@ public class AspectJEnableCachingIsolatedTests {
 	public void multipleCachingConfigurers() {
 		try {
 			load(MultiCacheManagerConfigurer.class, EnableCachingConfig.class);
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			Throwable root = ex.getRootCause();
 			assertTrue(root instanceof IllegalStateException);
 			assertTrue(ex.getMessage().contains("implementations of CachingConfigurer"));
@@ -118,8 +116,7 @@ public class AspectJEnableCachingIsolatedTests {
 	public void noCacheManagerBeans() {
 		try {
 			load(EmptyConfig.class);
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("no bean of type CacheManager"));
 		}
 	}

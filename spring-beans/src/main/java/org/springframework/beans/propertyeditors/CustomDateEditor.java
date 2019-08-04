@@ -37,10 +37,10 @@ import org.springframework.util.StringUtils;
  * {@code binder.registerCustomEditor}.
  *
  * @author Juergen Hoeller
- * @since 28.04.2003
  * @see java.util.Date
  * @see java.text.DateFormat
  * @see org.springframework.validation.DataBinder#registerCustomEditor
+ * @since 28.04.2003
  */
 public class CustomDateEditor extends PropertyEditorSupport {
 
@@ -57,6 +57,7 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	 * <p>The "allowEmpty" parameter states if an empty String should
 	 * be allowed for parsing, i.e. get interpreted as null value.
 	 * Otherwise, an IllegalArgumentException gets thrown in that case.
+	 *
 	 * @param dateFormat the DateFormat to use for parsing and rendering
 	 * @param allowEmpty if empty strings should be allowed
 	 */
@@ -80,8 +81,9 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	 * with an "exactDateLength" specified, prepended zeros in the day or month
 	 * part may still allow for a shorter year part, so consider this as just
 	 * one more assertion that gets you closer to the intended date format.
-	 * @param dateFormat the DateFormat to use for parsing and rendering
-	 * @param allowEmpty if empty strings should be allowed
+	 *
+	 * @param dateFormat      the DateFormat to use for parsing and rendering
+	 * @param allowEmpty      if empty strings should be allowed
 	 * @param exactDateLength the exact expected length of the date String
 	 */
 	public CustomDateEditor(DateFormat dateFormat, boolean allowEmpty, int exactDateLength) {
@@ -99,16 +101,13 @@ public class CustomDateEditor extends PropertyEditorSupport {
 		if (this.allowEmpty && !StringUtils.hasText(text)) {
 			// Treat empty String as null value.
 			setValue(null);
-		}
-		else if (text != null && this.exactDateLength >= 0 && text.length() != this.exactDateLength) {
+		} else if (text != null && this.exactDateLength >= 0 && text.length() != this.exactDateLength) {
 			throw new IllegalArgumentException(
 					"Could not parse date: it is not exactly" + this.exactDateLength + "characters long");
-		}
-		else {
+		} else {
 			try {
 				setValue(this.dateFormat.parse(text));
-			}
-			catch (ParseException ex) {
+			} catch (ParseException ex) {
 				throw new IllegalArgumentException("Could not parse date: " + ex.getMessage(), ex);
 			}
 		}

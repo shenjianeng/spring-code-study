@@ -60,6 +60,7 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	/**
 	 * Declared as a {@link LinkedMultiValueMap} instead of a {@link MultiValueMap}
 	 * to ensure that the hierarchical ordering of the entries is preserved.
+	 *
 	 * @see AnnotationReadingVisitorUtils#getMergedAnnotationAttributes
 	 */
 	protected final LinkedMultiValueMap<String, AnnotationAttributes> attributesMap = new LinkedMultiValueMap<>(4);

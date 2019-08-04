@@ -29,9 +29,9 @@ import org.springframework.transaction.TransactionTimedOutException;
  * in order to determine a transactional timeout.
  *
  * @author Juergen Hoeller
- * @since 02.02.2004
  * @see org.springframework.jdbc.datasource.DataSourceTransactionManager#doBegin
  * @see org.springframework.jdbc.datasource.DataSourceUtils#applyTransactionTimeout
+ * @since 02.02.2004
  */
 public abstract class ResourceHolderSupport implements ResourceHolder {
 
@@ -72,8 +72,9 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 	 * Reset the rollback-only status for this resource transaction.
 	 * <p>Only really intended to be called after custom rollback steps which
 	 * keep the original resource in action, e.g. in case of a savepoint.
-	 * @since 5.0
+	 *
 	 * @see org.springframework.transaction.SavepointManager#rollbackToSavepoint
+	 * @since 5.0
 	 */
 	public void resetRollbackOnly() {
 		this.rollbackOnly = false;
@@ -88,6 +89,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Set the timeout for this object in seconds.
+	 *
 	 * @param seconds number of seconds until expiration
 	 */
 	public void setTimeoutInSeconds(int seconds) {
@@ -96,6 +98,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Set the timeout for this object in milliseconds.
+	 *
 	 * @param millis number of milliseconds until expiration
 	 */
 	public void setTimeoutInMillis(long millis) {
@@ -111,6 +114,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Return the expiration deadline of this object.
+	 *
 	 * @return the deadline as Date object
 	 */
 	@Nullable
@@ -121,6 +125,7 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 	/**
 	 * Return the time to live for this object in seconds.
 	 * Rounds up eagerly, e.g. 9.00001 still to 10.
+	 *
 	 * @return number of seconds until expiration
 	 * @throws TransactionTimedOutException if the deadline has already been reached
 	 */
@@ -133,10 +138,11 @@ public abstract class ResourceHolderSupport implements ResourceHolder {
 
 	/**
 	 * Return the time to live for this object in milliseconds.
+	 *
 	 * @return number of milliseconds until expiration
 	 * @throws TransactionTimedOutException if the deadline has already been reached
 	 */
-	public long getTimeToLiveInMillis() throws TransactionTimedOutException{
+	public long getTimeToLiveInMillis() throws TransactionTimedOutException {
 		if (this.deadline == null) {
 			throw new IllegalStateException("No timeout specified for this resource holder");
 		}

@@ -47,12 +47,12 @@ import static org.junit.Assert.*;
  * <em>parameterized test instance</em>.
  *
  * @author Sam Brannen
- * @since 2.5
  * @see org.springframework.test.context.junit4.rules.ParameterizedSpringRuleTests
+ * @since 2.5
  */
 @RunWith(Parameterized.class)
 @ContextConfiguration
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class})
 public class ParameterizedDependencyInjectionTests {
 
 	private static final AtomicInteger invocationCount = new AtomicInteger();
@@ -74,7 +74,7 @@ public class ParameterizedDependencyInjectionTests {
 
 	@Parameters(name = "bean [{0}], employee [{1}]")
 	public static String[][] employeeData() {
-		return new String[][] { { "employee1", "John Smith" }, { "employee2", "Jane Smith" } };
+		return new String[][]{{"employee1", "John Smith"}, {"employee2", "Jane Smith"}};
 	}
 
 	@BeforeClass
@@ -97,13 +97,13 @@ public class ParameterizedDependencyInjectionTests {
 		// Verifying 'parameterized' support:
 		Employee employee = this.applicationContext.getBean(this.employeeBeanName, Employee.class);
 		assertEquals("Name of the employee configured as bean [" + this.employeeBeanName + "].", this.employeeName,
-			employee.getName());
+				employee.getName());
 	}
 
 	@AfterClass
 	public static void verifyNumParameterizedRuns() {
 		assertEquals("Number of times the parameterized test method was executed.", employeeData().length,
-			invocationCount.get());
+				invocationCount.get());
 	}
 
 }

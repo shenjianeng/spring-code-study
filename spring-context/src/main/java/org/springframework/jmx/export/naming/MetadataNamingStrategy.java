@@ -43,9 +43,9 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see ObjectNamingStrategy
  * @see org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource
+ * @since 1.2
  */
 public class MetadataNamingStrategy implements ObjectNamingStrategy, InitializingBean {
 
@@ -69,6 +69,7 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 	/**
 	 * Create a new {@code MetadataNamingStrategy} for the given
 	 * {@code JmxAttributeSource}.
+	 *
 	 * @param attributeSource the JmxAttributeSource to use
 	 */
 	public MetadataNamingStrategy(JmxAttributeSource attributeSource) {
@@ -118,13 +119,11 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 		// Check that an object name has been specified.
 		if (mr != null && StringUtils.hasText(mr.getObjectName())) {
 			return ObjectNameManager.getInstance(mr.getObjectName());
-		}
-		else {
+		} else {
 			Assert.state(beanKey != null, "No ManagedResource attribute and no bean key specified");
 			try {
 				return ObjectNameManager.getInstance(beanKey);
-			}
-			catch (MalformedObjectNameException ex) {
+			} catch (MalformedObjectNameException ex) {
 				String domain = this.defaultDomain;
 				if (domain == null) {
 					domain = ClassUtils.getPackageName(managedClass);

@@ -221,7 +221,7 @@ public class ServletRequestDataBinderTests {
 	@Test
 	public void testMultipleValuesForParameter() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		String[] original = new String[] {"Tony", "Rod"};
+		String[] original = new String[]{"Tony", "Rod"};
 		request.addParameter("forname", original);
 
 		ServletRequestParameterPropertyValues pvs = new ServletRequestParameterPropertyValues(request);

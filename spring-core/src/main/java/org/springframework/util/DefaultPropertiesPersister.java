@@ -46,10 +46,10 @@ import java.util.Properties;
  * "defaultEncoding" and "fileEncodings" properties).
  *
  * @author Juergen Hoeller
- * @since 10.03.2004
  * @see java.util.Properties
  * @see java.util.Properties#load
  * @see java.util.Properties#store
+ * @since 10.03.2004
  */
 public class DefaultPropertiesPersister implements PropertiesPersister {
 

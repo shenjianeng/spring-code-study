@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class NestedBeansElementTests {
 	private final Resource XML =
-		new ClassPathResource("NestedBeansElementTests-context.xml", this.getClass());
+			new ClassPathResource("NestedBeansElementTests-context.xml", this.getClass());
 
 	@Test
 	public void getBean_withoutActiveProfile() {

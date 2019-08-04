@@ -58,6 +58,7 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * Create a {@code ControllerAdviceBean} using the given bean instance.
+	 *
 	 * @param bean the bean instance
 	 */
 	public ControllerAdviceBean(Object bean) {
@@ -66,7 +67,8 @@ public class ControllerAdviceBean implements Ordered {
 
 	/**
 	 * Create a {@code ControllerAdviceBean} using the given bean name.
-	 * @param beanName the name of the bean
+	 *
+	 * @param beanName    the name of the bean
 	 * @param beanFactory a BeanFactory that can be used later to resolve the bean
 	 */
 	public ControllerAdviceBean(String beanName, @Nullable BeanFactory beanFactory) {
@@ -88,8 +90,7 @@ public class ControllerAdviceBean implements Ordered {
 			}
 			beanType = this.beanFactory.getType(beanName);
 			this.order = initOrderFromBeanType(beanType);
-		}
-		else {
+		} else {
 			Assert.notNull(bean, "Bean must not be null");
 			beanType = bean.getClass();
 			this.order = initOrderFromBean(bean);
@@ -105,8 +106,7 @@ public class ControllerAdviceBean implements Ordered {
 					.assignableType(annotation.assignableTypes())
 					.annotation(annotation.annotations())
 					.build();
-		}
-		else {
+		} else {
 			this.beanTypePredicate = HandlerTypePredicate.forAnyHandlerType();
 		}
 	}
@@ -148,9 +148,10 @@ public class ControllerAdviceBean implements Ordered {
 	/**
 	 * Check whether the given bean type should be assisted by this
 	 * {@code @ControllerAdvice} instance.
+	 *
 	 * @param beanType the type of the bean to check
-	 * @since 4.0
 	 * @see org.springframework.web.bind.annotation.ControllerAdvice
+	 * @since 4.0
 	 */
 	public boolean isApplicableToBeanType(@Nullable Class<?> beanType) {
 		return this.beanTypePredicate.test(beanType);

@@ -24,8 +24,8 @@ import org.springframework.util.Assert;
  * Representation of an alias that has been registered during the parsing process.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see ReaderEventListener#aliasRegistered(AliasDefinition)
+ * @since 2.0
  */
 public class AliasDefinition implements BeanMetadataElement {
 
@@ -39,8 +39,9 @@ public class AliasDefinition implements BeanMetadataElement {
 
 	/**
 	 * Create a new AliasDefinition.
+	 *
 	 * @param beanName the canonical name of the bean
-	 * @param alias the alias registered for the bean
+	 * @param alias    the alias registered for the bean
 	 */
 	public AliasDefinition(String beanName, String alias) {
 		this(beanName, alias, null);
@@ -48,9 +49,10 @@ public class AliasDefinition implements BeanMetadataElement {
 
 	/**
 	 * Create a new AliasDefinition.
+	 *
 	 * @param beanName the canonical name of the bean
-	 * @param alias the alias registered for the bean
-	 * @param source the source object (may be {@code null})
+	 * @param alias    the alias registered for the bean
+	 * @param source   the source object (may be {@code null})
 	 */
 	public AliasDefinition(String beanName, String alias, @Nullable Object source) {
 		Assert.notNull(beanName, "Bean name must not be null");

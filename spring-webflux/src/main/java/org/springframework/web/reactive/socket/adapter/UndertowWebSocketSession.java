@@ -52,7 +52,7 @@ public class UndertowWebSocketSession extends AbstractListenerWebSocketSession<W
 	}
 
 	public UndertowWebSocketSession(WebSocketChannel channel, HandshakeInfo info,
-			DataBufferFactory factory, @Nullable MonoProcessor<Void> completionMono) {
+									DataBufferFactory factory, @Nullable MonoProcessor<Void> completionMono) {
 
 		super(channel, ObjectUtils.getIdentityHexString(channel), info, factory, completionMono);
 		suspendReceiving();
@@ -81,20 +81,16 @@ public class UndertowWebSocketSession extends AbstractListenerWebSocketSession<W
 			getSendProcessor().setReadyToSend(false);
 			String text = new String(buffer.array(), StandardCharsets.UTF_8);
 			WebSockets.sendText(text, getDelegate(), new SendProcessorCallback(message.getPayload()));
-		}
-		else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.BINARY.equals(message.getType())) {
 			getSendProcessor().setReadyToSend(false);
 			WebSockets.sendBinary(buffer, getDelegate(), new SendProcessorCallback(message.getPayload()));
-		}
-		else if (WebSocketMessage.Type.PING.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PING.equals(message.getType())) {
 			getSendProcessor().setReadyToSend(false);
 			WebSockets.sendPing(buffer, getDelegate(), new SendProcessorCallback(message.getPayload()));
-		}
-		else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
+		} else if (WebSocketMessage.Type.PONG.equals(message.getType())) {
 			getSendProcessor().setReadyToSend(false);
 			WebSockets.sendPong(buffer, getDelegate(), new SendProcessorCallback(message.getPayload()));
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Unexpected message type: " + message.getType());
 		}
 		return true;

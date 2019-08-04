@@ -33,9 +33,9 @@ import javax.xml.ws.WebServiceProvider;
  * ships an internal HTTP server.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see javax.jws.WebService
  * @see javax.xml.ws.Endpoint#publish(String)
+ * @since 2.5
  */
 public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 
@@ -53,6 +53,7 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 	 * <p>For each actual publication address, the service name will be
 	 * appended to this base address. E.g. service name "OrderService"
 	 * -> "http://localhost:8080/OrderService".
+	 *
 	 * @see javax.xml.ws.Endpoint#publish(String)
 	 * @see javax.jws.WebService#serviceName()
 	 */
@@ -73,7 +74,8 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 
 	/**
 	 * Calculate the full endpoint address for the given endpoint.
-	 * @param endpoint the JAX-WS Provider Endpoint object
+	 *
+	 * @param endpoint    the JAX-WS Provider Endpoint object
 	 * @param serviceName the given service name
 	 * @return the full endpoint address
 	 */

@@ -43,10 +43,11 @@ public interface ContextCustomizerFactory {
 	 * Create a {@link ContextCustomizer} that should be used to customize a
 	 * {@link org.springframework.context.ConfigurableApplicationContext ConfigurableApplicationContext}
 	 * before it is refreshed.
-	 * @param testClass the test class
+	 *
+	 * @param testClass        the test class
 	 * @param configAttributes the list of context configuration attributes for
-	 * the test class, ordered <em>bottom-up</em> (i.e., as if we were traversing
-	 * up the class hierarchy); never {@code null} or empty
+	 *                         the test class, ordered <em>bottom-up</em> (i.e., as if we were traversing
+	 *                         up the class hierarchy); never {@code null} or empty
 	 * @return a {@link ContextCustomizer} or {@code null} if no customizer should
 	 * be used
 	 */

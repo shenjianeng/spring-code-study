@@ -98,7 +98,7 @@ public class PropertiesFactoryBeanTests {
 		props3.setProperty("spider", "man");
 		props3.setProperty("bat", "man");
 
-		pfb.setPropertiesArray(new Properties[] {props1, props2, props3});
+		pfb.setPropertiesArray(new Properties[]{props1, props2, props3});
 		pfb.afterPropertiesSet();
 
 		Properties props = pfb.getObject();

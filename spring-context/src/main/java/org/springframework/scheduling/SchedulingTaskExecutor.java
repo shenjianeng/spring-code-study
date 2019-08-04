@@ -34,10 +34,10 @@ import org.springframework.core.task.AsyncTaskExecutor;
  * to remain compatible with both Spring 4.0 and Spring 3.x.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see SchedulingAwareRunnable
  * @see org.springframework.core.task.TaskExecutor
  * @see org.springframework.scheduling.commonj.WorkManagerTaskExecutor
+ * @since 2.0
  */
 public interface SchedulingTaskExecutor extends AsyncTaskExecutor {
 
@@ -51,6 +51,7 @@ public interface SchedulingTaskExecutor extends AsyncTaskExecutor {
 	 * are free to ignore this flag and hence the {@code SchedulingTaskExecutor}
 	 * interface overall. However, thread pools will usually indicated a preference
 	 * for short-lived tasks, allowing for more fine-grained scheduling.
+	 *
 	 * @return {@code true} if this executor prefers short-lived tasks (the default),
 	 * {@code false} otherwise (for treatment like a regular {@code TaskExecutor})
 	 */

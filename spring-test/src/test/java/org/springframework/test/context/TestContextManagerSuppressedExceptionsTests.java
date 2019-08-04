@@ -28,21 +28,21 @@ import static org.junit.Assert.*;
  * TestExecutionListeners}.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see Throwable#getSuppressed()
+ * @since 5.0
  */
 public class TestContextManagerSuppressedExceptionsTests {
 
 	@Test
 	public void afterTestExecution() throws Exception {
 		test("afterTestExecution", FailingAfterTestExecutionTestCase.class,
-			(tcm, c, m) -> tcm.afterTestExecution(this, m, null));
+				(tcm, c, m) -> tcm.afterTestExecution(this, m, null));
 	}
 
 	@Test
 	public void afterTestMethod() throws Exception {
 		test("afterTestMethod", FailingAfterTestMethodTestCase.class,
-			(tcm, c, m) -> tcm.afterTestMethod(this, m, null));
+				(tcm, c, m) -> tcm.afterTestMethod(this, m, null));
 	}
 
 	@Test
@@ -58,8 +58,7 @@ public class TestContextManagerSuppressedExceptionsTests {
 			Method testMethod = getClass().getMethod("toString");
 			callback.invoke(testContextManager, testClass, testMethod);
 			fail("should have thrown an AssertionError");
-		}
-		catch (AssertionError err) {
+		} catch (AssertionError err) {
 			// 'after' callbacks are reversed, so 2 comes before 1.
 			assertEquals(useCase + "-2", err.getMessage());
 			Throwable[] suppressed = err.getSuppressed();
@@ -125,15 +124,15 @@ public class TestContextManagerSuppressedExceptionsTests {
 		}
 	}
 
-	@TestExecutionListeners({ FailingAfterTestExecutionListener1.class, FailingAfterTestExecutionListener2.class })
+	@TestExecutionListeners({FailingAfterTestExecutionListener1.class, FailingAfterTestExecutionListener2.class})
 	private static class FailingAfterTestExecutionTestCase {
 	}
 
-	@TestExecutionListeners({ FailingAfterTestMethodListener1.class, FailingAfterTestMethodListener2.class })
+	@TestExecutionListeners({FailingAfterTestMethodListener1.class, FailingAfterTestMethodListener2.class})
 	private static class FailingAfterTestMethodTestCase {
 	}
 
-	@TestExecutionListeners({ FailingAfterTestClassListener1.class, FailingAfterTestClassListener2.class })
+	@TestExecutionListeners({FailingAfterTestClassListener1.class, FailingAfterTestClassListener2.class})
 	private static class FailingAfterTestClassTestCase {
 	}
 

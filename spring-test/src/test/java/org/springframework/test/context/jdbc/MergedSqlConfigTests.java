@@ -42,7 +42,7 @@ public class MergedSqlConfigTests {
 		assertEquals("separator", DEFAULT_STATEMENT_SEPARATOR, cfg.getSeparator());
 		assertEquals("commentPrefix", DEFAULT_COMMENT_PREFIX, cfg.getCommentPrefix());
 		assertEquals("blockCommentStartDelimiter", DEFAULT_BLOCK_COMMENT_START_DELIMITER,
-			cfg.getBlockCommentStartDelimiter());
+				cfg.getBlockCommentStartDelimiter());
 		assertEquals("blockCommentEndDelimiter", DEFAULT_BLOCK_COMMENT_END_DELIMITER, cfg.getBlockCommentEndDelimiter());
 		assertEquals("errorMode", FAIL_ON_ERROR, cfg.getErrorMode());
 	}
@@ -111,7 +111,7 @@ public class MergedSqlConfigTests {
 		assertEquals("separator", "\n", cfg.getSeparator());
 		assertEquals("commentPrefix", DEFAULT_COMMENT_PREFIX, cfg.getCommentPrefix());
 		assertEquals("blockCommentStartDelimiter", DEFAULT_BLOCK_COMMENT_START_DELIMITER,
-			cfg.getBlockCommentStartDelimiter());
+				cfg.getBlockCommentStartDelimiter());
 		assertEquals("blockCommentEndDelimiter", DEFAULT_BLOCK_COMMENT_END_DELIMITER, cfg.getBlockCommentEndDelimiter());
 		assertEquals("errorMode", IGNORE_FAILED_DROPS, cfg.getErrorMode());
 	}
@@ -130,7 +130,7 @@ public class MergedSqlConfigTests {
 		assertEquals("separator", "@@", cfg.getSeparator());
 		assertEquals("commentPrefix", DEFAULT_COMMENT_PREFIX, cfg.getCommentPrefix());
 		assertEquals("blockCommentStartDelimiter", DEFAULT_BLOCK_COMMENT_START_DELIMITER,
-			cfg.getBlockCommentStartDelimiter());
+				cfg.getBlockCommentStartDelimiter());
 		assertEquals("blockCommentEndDelimiter", DEFAULT_BLOCK_COMMENT_END_DELIMITER, cfg.getBlockCommentEndDelimiter());
 		assertEquals("errorMode", CONTINUE_ON_ERROR, cfg.getErrorMode());
 	}

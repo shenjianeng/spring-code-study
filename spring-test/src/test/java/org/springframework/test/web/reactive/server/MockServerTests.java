@@ -34,6 +34,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test scenarios involving a mock server.
+ *
  * @author Rossen Stoyanchev
  */
 public class MockServerTests {
@@ -48,8 +49,7 @@ public class MockServerTests {
 						return exchange.getSession()
 								.doOnNext(session -> session.getAttributes().put("foo", "bar"))
 								.then();
-					}
-					else {
+					} else {
 						return exchange.getSession()
 								.map(session -> session.getAttributeOrDefault("foo", "none"))
 								.flatMap(value -> {
@@ -120,8 +120,7 @@ public class MockServerTests {
 					if (exchange.getRequest().getURI().getPath().equals("/cookie")) {
 						response.addCookie(ResponseCookie.from("a", "alpha").path("/pathA").build());
 						response.addCookie(ResponseCookie.from("b", "beta").path("/pathB").build());
-					}
-					else {
+					} else {
 						response.setStatusCode(HttpStatus.NOT_FOUND);
 					}
 					return response.setComplete();

@@ -29,8 +29,8 @@ import org.springframework.util.concurrent.ListenableFuture;
  * {@link AbstractAsyncReturnValueHandler}.
  *
  * @author Rossen Stoyanchev
- * @since 4.2
  * @see AbstractAsyncReturnValueHandler
+ * @since 4.2
  */
 public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodReturnValueHandler {
 
@@ -42,8 +42,9 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * <p><strong>Note:</strong> this method will only be invoked after
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * is called and it returns {@code true}.
+	 *
 	 * @param returnValue the value returned from the handler method
-	 * @param returnType the type of the return value
+	 * @param returnType  the type of the return value
 	 * @return {@code true} if the return value type represents an async value
 	 */
 	boolean isAsyncReturnValue(Object returnValue, MethodParameter returnType);
@@ -57,8 +58,9 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	 * <p><strong>Note:</strong> this method will only be invoked after
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
 	 * is called and it returns {@code true}.
+	 *
 	 * @param returnValue the value returned from the handler method
-	 * @param returnType the type of the return value
+	 * @param returnType  the type of the return value
 	 * @return the resulting ListenableFuture, or {@code null} in which case
 	 * no further handling will be performed
 	 */

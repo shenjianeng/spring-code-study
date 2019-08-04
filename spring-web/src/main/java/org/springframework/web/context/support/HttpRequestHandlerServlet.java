@@ -43,9 +43,9 @@ import org.springframework.web.context.WebApplicationContext;
  * (with advanced mapping and interception facilities being available there).
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.web.HttpRequestHandler
  * @see org.springframework.web.servlet.DispatcherServlet
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class HttpRequestHandlerServlet extends HttpServlet {
@@ -70,15 +70,13 @@ public class HttpRequestHandlerServlet extends HttpServlet {
 		LocaleContextHolder.setLocale(request.getLocale());
 		try {
 			this.target.handleRequest(request, response);
-		}
-		catch (HttpRequestMethodNotSupportedException ex) {
+		} catch (HttpRequestMethodNotSupportedException ex) {
 			String[] supportedMethods = ex.getSupportedMethods();
 			if (supportedMethods != null) {
 				response.setHeader("Allow", StringUtils.arrayToDelimitedString(supportedMethods, ", "));
 			}
 			response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, ex.getMessage());
-		}
-		finally {
+		} finally {
 			LocaleContextHolder.resetLocaleContext();
 		}
 	}

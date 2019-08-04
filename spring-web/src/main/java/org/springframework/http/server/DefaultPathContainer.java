@@ -100,8 +100,7 @@ final class DefaultPathContainer implements PathContainer {
 		if (path.length() > 0 && path.startsWith(separator)) {
 			begin = separator.length();
 			elements.add(separatorElement);
-		}
-		else {
+		} else {
 			begin = 0;
 		}
 		while (begin < path.length()) {
@@ -125,8 +124,7 @@ final class DefaultPathContainer implements PathContainer {
 		if (index == -1) {
 			String valueToMatch = StringUtils.uriDecode(segment, charset);
 			return new DefaultPathSegment(segment, valueToMatch, EMPTY_MAP);
-		}
-		else {
+		} else {
 			String valueToMatch = StringUtils.uriDecode(segment.substring(0, index), charset);
 			String pathParameterContent = segment.substring(index);
 			MultiValueMap<String, String> parameters = parsePathParams(pathParameterContent, charset);
@@ -161,8 +159,7 @@ final class DefaultPathContainer implements PathContainer {
 						output.add(name, StringUtils.uriDecode(v, charset));
 					}
 				}
-			}
-			else {
+			} else {
 				String name = StringUtils.uriDecode(input, charset);
 				if (StringUtils.hasText(name)) {
 					output.add(input, "");

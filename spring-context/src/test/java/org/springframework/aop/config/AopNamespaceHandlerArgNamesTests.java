@@ -39,8 +39,7 @@ public class AopNamespaceHandlerArgNamesTests {
 		try {
 			new ClassPathXmlApplicationContext(getClass().getSimpleName() + "-error.xml", getClass());
 			fail("Expected BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.contains(IllegalArgumentException.class));
 		}
 	}

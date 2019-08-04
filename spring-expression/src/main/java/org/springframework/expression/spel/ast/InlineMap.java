@@ -62,15 +62,13 @@ public class InlineMap extends SpelNodeImpl {
 						isConstant = false;
 						break;
 					}
-				}
-				else if (child instanceof InlineMap) {
+				} else if (child instanceof InlineMap) {
 					InlineMap inlineMap = (InlineMap) child;
 					if (!inlineMap.isConstant()) {
 						isConstant = false;
 						break;
 					}
-				}
-				else if (!(c % 2 == 0 && child instanceof PropertyOrFieldReference)) {
+				} else if (!(c % 2 == 0 && child instanceof PropertyOrFieldReference)) {
 					isConstant = false;
 					break;
 				}
@@ -86,20 +84,16 @@ public class InlineMap extends SpelNodeImpl {
 				Object value = null;
 				if (keyChild instanceof Literal) {
 					key = ((Literal) keyChild).getLiteralValue().getValue();
-				}
-				else if (keyChild instanceof PropertyOrFieldReference) {
+				} else if (keyChild instanceof PropertyOrFieldReference) {
 					key = ((PropertyOrFieldReference) keyChild).getName();
-				}
-				else {
+				} else {
 					return;
 				}
 				if (valueChild instanceof Literal) {
 					value = ((Literal) valueChild).getLiteralValue().getValue();
-				}
-				else if (valueChild instanceof InlineList) {
+				} else if (valueChild instanceof InlineList) {
 					value = ((InlineList) valueChild).getConstantValue();
-				}
-				else if (valueChild instanceof InlineMap) {
+				} else if (valueChild instanceof InlineMap) {
 					value = ((InlineMap) valueChild).getConstantValue();
 				}
 				constantMap.put(key, value);
@@ -112,8 +106,7 @@ public class InlineMap extends SpelNodeImpl {
 	public TypedValue getValueInternal(ExpressionState expressionState) throws EvaluationException {
 		if (this.constant != null) {
 			return this.constant;
-		}
-		else {
+		} else {
 			Map<Object, Object> returnValue = new LinkedHashMap<>();
 			int childcount = getChildCount();
 			for (int c = 0; c < childcount; c++) {
@@ -123,12 +116,11 @@ public class InlineMap extends SpelNodeImpl {
 				if (keyChild instanceof PropertyOrFieldReference) {
 					PropertyOrFieldReference reference = (PropertyOrFieldReference) keyChild;
 					key = reference.getName();
-				}
-				else {
+				} else {
 					key = keyChild.getValue(expressionState);
 				}
 				Object value = getChild(c).getValue(expressionState);
-				returnValue.put(key,  value);
+				returnValue.put(key, value);
 			}
 			return new TypedValue(returnValue);
 		}

@@ -48,14 +48,20 @@ import org.springframework.util.Assert;
  */
 public abstract class ApplicationObjectSupport implements ApplicationContextAware {
 
-	/** Logger that is available to subclasses. */
+	/**
+	 * Logger that is available to subclasses.
+	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** ApplicationContext this object runs in. */
+	/**
+	 * ApplicationContext this object runs in.
+	 */
 	@Nullable
 	private ApplicationContext applicationContext;
 
-	/** MessageSourceAccessor for easy message access. */
+	/**
+	 * MessageSourceAccessor for easy message access.
+	 */
 	@Nullable
 	private MessageSourceAccessor messageSourceAccessor;
 
@@ -66,8 +72,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 			// Reset internal context state.
 			this.applicationContext = null;
 			this.messageSourceAccessor = null;
-		}
-		else if (this.applicationContext == null) {
+		} else if (this.applicationContext == null) {
 			// Initialize with passed-in context.
 			if (!requiredContextClass().isInstance(context)) {
 				throw new ApplicationContextException(
@@ -76,13 +81,12 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 			this.applicationContext = context;
 			this.messageSourceAccessor = new MessageSourceAccessor(context);
 			initApplicationContext(context);
-		}
-		else {
+		} else {
 			// Ignore reinitialization if same context passed in.
 			if (this.applicationContext != context) {
 				throw new ApplicationContextException(
 						"Cannot reinitialize with different application context: current one is [" +
-						this.applicationContext + "], passed-in one is [" + context + "]");
+								this.applicationContext + "], passed-in one is [" + context + "]");
 			}
 		}
 	}
@@ -91,6 +95,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * Determine whether this application object needs to run in an ApplicationContext.
 	 * <p>Default is "false". Can be overridden to enforce running in a context
 	 * (i.e. to throw IllegalStateException on accessors if outside a context).
+	 *
 	 * @see #getApplicationContext
 	 * @see #getMessageSourceAccessor
 	 */
@@ -102,6 +107,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * Determine the context class that any context passed to
 	 * {@code setApplicationContext} must be an instance of.
 	 * Can be overridden in subclasses.
+	 *
 	 * @see #setApplicationContext
 	 */
 	protected Class<?> requiredContextClass() {
@@ -115,9 +121,10 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * but rather just on first initialization of this object's context reference.
 	 * <p>The default implementation calls the overloaded {@link #initApplicationContext()}
 	 * method without ApplicationContext reference.
+	 *
 	 * @param context the containing ApplicationContext
 	 * @throws ApplicationContextException in case of initialization errors
-	 * @throws BeansException if thrown by ApplicationContext methods
+	 * @throws BeansException              if thrown by ApplicationContext methods
 	 * @see #setApplicationContext
 	 */
 	protected void initApplicationContext(ApplicationContext context) throws BeansException {
@@ -128,8 +135,9 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	 * Subclasses can override this for custom initialization behavior.
 	 * <p>The default implementation is empty. Called by
 	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}.
+	 *
 	 * @throws ApplicationContextException in case of initialization errors
-	 * @throws BeansException if thrown by ApplicationContext methods
+	 * @throws BeansException              if thrown by ApplicationContext methods
 	 * @see #setApplicationContext
 	 */
 	protected void initApplicationContext() throws BeansException {
@@ -138,6 +146,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * Return the ApplicationContext that this object is associated with.
+	 *
 	 * @throws IllegalStateException if not running in an ApplicationContext
 	 */
 	@Nullable
@@ -151,6 +160,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 	/**
 	 * Obtain the ApplicationContext for actual use.
+	 *
 	 * @return the ApplicationContext (never {@code null})
 	 * @throws IllegalStateException in case of no ApplicationContext set
 	 * @since 5.0
@@ -164,6 +174,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	/**
 	 * Return a MessageSourceAccessor for the application context
 	 * used by this object, for easy message access.
+	 *
 	 * @throws IllegalStateException if not running in an ApplicationContext
 	 */
 	@Nullable

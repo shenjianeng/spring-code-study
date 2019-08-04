@@ -32,11 +32,11 @@ import org.springframework.util.StringUtils;
  * @author Juergen Hoeller
  * @author Phillip Webb
  * @author Chris Baldwin
- * @since 2.5.4
  * @see org.springframework.jdbc.core.JdbcTemplate
  * @see org.springframework.jdbc.datasource.init.ScriptUtils
  * @see org.springframework.jdbc.datasource.init.ResourceDatabasePopulator
  * @see org.springframework.jdbc.datasource.init.DatabasePopulatorUtils
+ * @since 2.5.4
  */
 public abstract class JdbcTestUtils {
 
@@ -45,8 +45,9 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * Count the rows in the given table.
+	 *
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName name of the table to count rows in
+	 * @param tableName    name of the table to count rows in
 	 * @return the number of rows in the table
 	 */
 	public static int countRowsInTable(JdbcTemplate jdbcTemplate, String tableName) {
@@ -62,9 +63,10 @@ public abstract class JdbcTestUtils {
 	 * the provided where clause is {@code "name = 'Bob' and age > 25"}, the
 	 * resulting SQL statement to execute will be
 	 * {@code "SELECT COUNT(0) FROM person WHERE name = 'Bob' and age > 25"}.
+	 *
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName the name of the table to count rows in
-	 * @param whereClause the {@code WHERE} clause to append to the query
+	 * @param tableName    the name of the table to count rows in
+	 * @param whereClause  the {@code WHERE} clause to append to the query
 	 * @return the number of rows in the table that match the provided
 	 * {@code WHERE} clause
 	 */
@@ -79,8 +81,9 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * Delete all rows from the specified tables.
+	 *
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableNames the names of the tables to delete from
+	 * @param tableNames   the names of the tables to delete from
 	 * @return the total number of rows deleted from all specified tables
 	 */
 	public static int deleteFromTables(JdbcTemplate jdbcTemplate, String... tableNames) {
@@ -105,13 +108,14 @@ public abstract class JdbcTestUtils {
 	 * {@code "DELETE FROM person WHERE name = 'Bob' and age > 25"}.
 	 * <p>As an alternative to hard-coded values, the {@code "?"} placeholder can
 	 * be used within the {@code WHERE} clause, binding to the given arguments.
+	 *
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableName the name of the table to delete rows from
-	 * @param whereClause the {@code WHERE} clause to append to the query
-	 * @param args arguments to bind to the query (leaving it to the PreparedStatement
-	 * to guess the corresponding SQL type); may also contain {@link SqlParameterValue}
-	 * objects which indicate not only the argument value but also the SQL type and
-	 * optionally the scale.
+	 * @param tableName    the name of the table to delete rows from
+	 * @param whereClause  the {@code WHERE} clause to append to the query
+	 * @param args         arguments to bind to the query (leaving it to the PreparedStatement
+	 *                     to guess the corresponding SQL type); may also contain {@link SqlParameterValue}
+	 *                     objects which indicate not only the argument value but also the SQL type and
+	 *                     optionally the scale.
 	 * @return the number of rows deleted from the table
 	 */
 	public static int deleteFromTableWhere(
@@ -130,8 +134,9 @@ public abstract class JdbcTestUtils {
 
 	/**
 	 * Drop the specified tables.
+	 *
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
-	 * @param tableNames the names of the tables to drop
+	 * @param tableNames   the names of the tables to drop
 	 */
 	public static void dropTables(JdbcTemplate jdbcTemplate, String... tableNames) {
 		for (String tableName : tableNames) {

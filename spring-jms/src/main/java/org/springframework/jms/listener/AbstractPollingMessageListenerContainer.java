@@ -69,10 +69,10 @@ import org.springframework.util.Assert;
  * including dynamic scaling of concurrent consumers and automatic self recovery.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see #createListenerConsumer
  * @see #receiveAndExecute
  * @see #setTransactionManager
+ * @since 2.0.3
  */
 public abstract class AbstractPollingMessageListenerContainer extends AbstractMessageListenerContainer {
 
@@ -119,6 +119,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	 * {@link org.springframework.jms.connection.JmsTransactionManager} provides. Check
 	 * {@link AbstractMessageListenerContainer}'s javadoc for
 	 * a discussion of transaction choices and message redelivery scenarios.
+	 *
 	 * @see #setSessionTransacted(boolean)
 	 * @see org.springframework.transaction.jta.JtaTransactionManager
 	 * @see org.springframework.jms.connection.JmsTransactionManager
@@ -139,6 +140,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Specify the transaction name to use for transactional wrapping.
 	 * Default is the bean name of this listener container, if any.
+	 *
 	 * @see org.springframework.transaction.TransactionDefinition#getName()
 	 */
 	public void setTransactionName(String transactionName) {
@@ -148,6 +150,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Specify the transaction timeout to use for transactional wrapping, in <b>seconds</b>.
 	 * Default is none, using the transaction manager's default timeout.
+	 *
 	 * @see org.springframework.transaction.TransactionDefinition#getTimeout()
 	 * @see #setReceiveTimeout
 	 */
@@ -164,6 +167,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	 * feasible if not running within a transaction manager and generally
 	 * discouraged since such a listener container cannot cleanly shut down.
 	 * A negative value such as -1 indicates a no-wait receive operation.
+	 *
 	 * @see #receiveFromConsumer(MessageConsumer, long)
 	 * @see javax.jms.MessageConsumer#receive(long)
 	 * @see javax.jms.MessageConsumer#receiveNoWait()
@@ -176,6 +180,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 	/**
 	 * Return the receive timeout (ms) configured for this listener container.
+	 *
 	 * @since 4.2
 	 */
 	protected long getReceiveTimeout() {
@@ -209,6 +214,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Create a MessageConsumer for the given JMS Session,
 	 * registering a MessageListener for the specified listener.
+	 *
 	 * @param session the JMS Session to work on
 	 * @return the MessageConsumer
 	 * @throws javax.jms.JMSException if thrown by JMS methods
@@ -227,7 +233,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Execute the listener for a message received from the given consumer,
 	 * wrapping the entire operation in an external transaction if demanded.
-	 * @param session the JMS Session to work on
+	 *
+	 * @param session  the JMS Session to work on
 	 * @param consumer the MessageConsumer to work on
 	 * @return whether a message has been received
 	 * @throws JMSException if thrown by JMS methods
@@ -243,16 +250,13 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 			boolean messageReceived;
 			try {
 				messageReceived = doReceiveAndExecute(invoker, session, consumer, status);
-			}
-			catch (JMSException | RuntimeException | Error ex) {
+			} catch (JMSException | RuntimeException | Error ex) {
 				rollbackOnException(this.transactionManager, status, ex);
 				throw ex;
 			}
 			this.transactionManager.commit(status);
 			return messageReceived;
-		}
-
-		else {
+		} else {
 			// Execute receive outside of transaction.
 			return doReceiveAndExecute(invoker, session, consumer, null);
 		}
@@ -261,15 +265,16 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Actually execute the listener for a message received from the given consumer,
 	 * fetching all requires resources and invoking the listener.
-	 * @param session the JMS Session to work on
+	 *
+	 * @param session  the JMS Session to work on
 	 * @param consumer the MessageConsumer to work on
-	 * @param status the TransactionStatus (may be {@code null})
+	 * @param status   the TransactionStatus (may be {@code null})
 	 * @return whether a message has been received
 	 * @throws JMSException if thrown by JMS methods
 	 * @see #doExecuteListener(javax.jms.Session, javax.jms.Message)
 	 */
 	protected boolean doReceiveAndExecute(Object invoker, @Nullable Session session,
-			@Nullable MessageConsumer consumer, @Nullable TransactionStatus status) throws JMSException {
+										  @Nullable MessageConsumer consumer, @Nullable TransactionStatus status) throws JMSException {
 
 		Connection conToClose = null;
 		Session sessionToClose = null;
@@ -286,8 +291,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 				Connection conToUse;
 				if (sharedConnectionEnabled()) {
 					conToUse = getSharedConnection();
-				}
-				else {
+				} else {
 					conToUse = createConnection();
 					conToClose = conToUse;
 					conToUse.start();
@@ -316,8 +320,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 				}
 				try {
 					doExecuteListener(sessionToUse, message);
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					if (status != null) {
 						if (logger.isDebugEnabled()) {
 							logger.debug("Rolling back transaction because of listener exception thrown: " + ex);
@@ -330,16 +333,14 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 					if (ex instanceof JMSException) {
 						throw (JMSException) ex;
 					}
-				}
-				finally {
+				} finally {
 					if (exposeResource) {
 						TransactionSynchronizationManager.unbindResource(obtainConnectionFactory());
 					}
 				}
 				// Indicate that a message has been received.
 				return true;
-			}
-			else {
+			} else {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Consumer [" + consumerToUse + "] of " + (transactional ? "transactional " : "") +
 							"session [" + sessionToUse + "] did not receive a message");
@@ -352,8 +353,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 				// Indicate that no message has been received.
 				return false;
 			}
-		}
-		finally {
+		} finally {
 			JmsUtils.closeMessageConsumer(consumerToClose);
 			JmsUtils.closeSession(sessionToClose);
 			ConnectionFactoryUtils.releaseConnection(conToClose, getConnectionFactory(), true);
@@ -364,6 +364,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	 * This implementation checks whether the Session is externally synchronized.
 	 * In this case, the Session is not locally transacted, despite the listener
 	 * container's "sessionTransacted" flag being set to "true".
+	 *
 	 * @see org.springframework.jms.connection.JmsResourceHolder
 	 */
 	@Override
@@ -380,6 +381,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Determine whether to trigger a commit after no message has been received.
 	 * This is a good idea on any modern-day JMS provider.
+	 *
 	 * @param session the current JMS Session which received no message
 	 * @return whether to call {@link #commitIfNecessary} on the given Session
 	 */
@@ -389,19 +391,18 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 	/**
 	 * Perform a rollback, handling rollback exceptions properly.
+	 *
 	 * @param status object representing the transaction
-	 * @param ex the thrown listener exception or error
+	 * @param ex     the thrown listener exception or error
 	 */
 	private void rollbackOnException(PlatformTransactionManager manager, TransactionStatus status, Throwable ex) {
 		logger.debug("Initiating transaction rollback on listener exception", ex);
 		try {
 			manager.rollback(status);
-		}
-		catch (RuntimeException ex2) {
+		} catch (RuntimeException ex2) {
 			logger.error("Listener exception overridden by rollback exception", ex);
 			throw ex2;
-		}
-		catch (Error err) {
+		} catch (Error err) {
 			logger.error("Listener exception overridden by rollback error", ex);
 			throw err;
 		}
@@ -409,6 +410,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 	/**
 	 * Receive a message from the given consumer.
+	 *
 	 * @param consumer the MessageConsumer to use
 	 * @return the Message, or {@code null} if none
 	 * @throws JMSException if thrown by JMS methods
@@ -422,6 +424,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	 * Template method that gets called right when a new message has been received,
 	 * before attempting to process it. Allows subclasses to react to the event
 	 * of an actual incoming message, for example adapting their consumer count.
+	 *
 	 * @param invoker the invoker object (passed through)
 	 * @param session the receiving JMS Session
 	 */
@@ -432,6 +435,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	 * Template method that gets called when <i>no</i> message has been received,
 	 * before returning to the receive loop again. Allows subclasses to react to
 	 * the event of no incoming message, for example marking the invoker as idle.
+	 *
 	 * @param invoker the invoker object (passed through)
 	 * @param session the receiving JMS Session
 	 */
@@ -441,6 +445,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Fetch an appropriate Connection from the given JmsResourceHolder.
 	 * <p>This implementation accepts any JMS 1.1 Connection.
+	 *
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Connection fetched from the holder,
 	 * or {@code null} if none found
@@ -453,6 +458,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	/**
 	 * Fetch an appropriate Session from the given JmsResourceHolder.
 	 * <p>This implementation accepts any JMS 1.1 Session.
+	 *
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Session fetched from the holder,
 	 * or {@code null} if none found
@@ -485,8 +491,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 			if (AbstractPollingMessageListenerContainer.this.sharedConnectionEnabled()) {
 				Connection sharedCon = AbstractPollingMessageListenerContainer.this.getSharedConnection();
 				return new SingleConnectionFactory(sharedCon).createConnection();
-			}
-			else {
+			} else {
 				return AbstractPollingMessageListenerContainer.this.createConnection();
 			}
 		}

@@ -103,7 +103,7 @@ public class IndexingTests {
 
 		@Override
 		public Class<?>[] getSpecificTargetClasses() {
-			return new Class<?>[] {Map.class};
+			return new Class<?>[]{Map.class};
 		}
 
 	}
@@ -191,8 +191,7 @@ public class IndexingTests {
 		expression = parser.parseExpression("property[0]");
 		try {
 			expression.setValue(this, "4");
-		}
-		catch (EvaluationException ex) {
+		} catch (EvaluationException ex) {
 			assertTrue(ex.getMessage().startsWith("EL1053E"));
 		}
 	}
@@ -252,8 +251,7 @@ public class IndexingTests {
 		expression = parser.parseExpression("property[0]");
 		try {
 			assertEquals("bar", expression.getValue(this));
-		}
-		catch (EvaluationException ex) {
+		} catch (EvaluationException ex) {
 			assertTrue(ex.getMessage().startsWith("EL1027E"));
 		}
 	}
@@ -270,8 +268,7 @@ public class IndexingTests {
 		expression = parser.parseExpression("property[0]");
 		try {
 			assertEquals("bar", expression.getValue(this));
-		}
-		catch (EvaluationException ex) {
+		} catch (EvaluationException ex) {
 			assertTrue(ex.getMessage().startsWith("EL1053E"));
 		}
 	}
@@ -288,8 +285,7 @@ public class IndexingTests {
 		expression = parser.parseExpression("property2[0]");
 		try {
 			assertEquals("bar", expression.getValue(this));
-		}
-		catch (EvaluationException ex) {
+		} catch (EvaluationException ex) {
 			assertTrue(ex.getMessage().startsWith("EL1053E"));
 		}
 	}
@@ -298,7 +294,7 @@ public class IndexingTests {
 
 	@Test
 	public void indexIntoGenericPropertyContainingArray() {
-		String[] property = new String[] { "bar" };
+		String[] property = new String[]{"bar"};
 		this.property = property;
 		SpelExpressionParser parser = new SpelExpressionParser();
 		Expression expression = parser.parseExpression("property");

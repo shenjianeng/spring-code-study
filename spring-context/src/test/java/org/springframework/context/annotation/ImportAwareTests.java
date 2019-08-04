@@ -128,7 +128,7 @@ public class ImportAwareTests {
 
 
 	@Configuration
-	@EnableImportedConfig(foo="xyz")
+	@EnableImportedConfig(foo = "xyz")
 	static class IndirectlyImportingConfig {
 	}
 

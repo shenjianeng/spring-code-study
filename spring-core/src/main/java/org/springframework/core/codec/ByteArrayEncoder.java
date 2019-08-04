@@ -49,8 +49,8 @@ public class ByteArrayEncoder extends AbstractEncoder<byte[]> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends byte[]> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
+								   DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
+								   @Nullable Map<String, Object> hints) {
 
 		return Flux.from(inputStream).map(bytes -> {
 			DataBuffer dataBuffer = bufferFactory.wrap(bytes);

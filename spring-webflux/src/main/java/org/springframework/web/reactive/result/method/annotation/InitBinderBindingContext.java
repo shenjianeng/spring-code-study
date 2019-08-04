@@ -51,7 +51,7 @@ class InitBinderBindingContext extends BindingContext {
 
 
 	InitBinderBindingContext(@Nullable WebBindingInitializer initializer,
-			List<SyncInvocableHandlerMethod> binderMethods) {
+							 List<SyncInvocableHandlerMethod> binderMethods) {
 
 		super(initializer);
 		this.binderMethods = binderMethods;
@@ -106,8 +106,7 @@ class InitBinderBindingContext extends BindingContext {
 		this.saveModelOperation = () -> {
 			if (getSessionStatus().isComplete()) {
 				attributesHandler.cleanupAttributes(session);
-			}
-			else {
+			} else {
 				attributesHandler.storeAttributes(session, getModel().asMap());
 			}
 		};

@@ -29,6 +29,7 @@ public class BeanEntry implements ParseState.Entry {
 
 	/**
 	 * Creates a new instance of {@link BeanEntry} class.
+	 *
 	 * @param beanDefinitionName the name of the associated bean definition
 	 */
 	public BeanEntry(String beanDefinitionName) {

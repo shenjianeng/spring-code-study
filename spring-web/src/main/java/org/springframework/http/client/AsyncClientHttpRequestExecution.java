@@ -29,8 +29,8 @@ import org.springframework.util.concurrent.ListenableFuture;
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
- * @since 4.3
  * @see AsyncClientHttpRequestInterceptor
+ * @since 4.3
  * @deprecated as of Spring 5.0, in favor of
  * {@link org.springframework.web.reactive.function.client.ExchangeFilterFunction}
  */
@@ -40,8 +40,9 @@ public interface AsyncClientHttpRequestExecution {
 	/**
 	 * Resume the request execution by invoking the next interceptor in the chain
 	 * or executing the request to the remote service.
+	 *
 	 * @param request the HTTP request, containing the HTTP method and headers
-	 * @param body the body of the request
+	 * @param body    the body of the request
 	 * @return a corresponding future handle
 	 * @throws IOException in case of I/O errors
 	 */

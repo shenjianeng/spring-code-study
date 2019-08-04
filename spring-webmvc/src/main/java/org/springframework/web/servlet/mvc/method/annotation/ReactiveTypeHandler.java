@@ -113,12 +113,13 @@ class ReactiveTypeHandler {
 	/**
 	 * Process the given reactive return value and decide whether to adapt it
 	 * to a {@link ResponseBodyEmitter} or a {@link DeferredResult}.
+	 *
 	 * @return an emitter for streaming, or {@code null} if handled internally
 	 * with a {@link DeferredResult}
 	 */
 	@Nullable
 	public ResponseBodyEmitter handleValue(Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mav, NativeWebRequest request) throws Exception {
+										   ModelAndViewContainer mav, NativeWebRequest request) throws Exception {
 
 		Assert.notNull(returnValue, "Expected return value");
 		ReactiveAdapter adapter = this.adapterRegistry.getAdapter(returnValue.getClass());
@@ -278,12 +279,10 @@ class ReactiveTypeHandler {
 		private void schedule() {
 			try {
 				this.taskExecutor.execute(this);
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				try {
 					terminate();
-				}
-				finally {
+				} finally {
 					this.executing.decrementAndGet();
 					this.elementRef.lazySet(null);
 				}
@@ -307,8 +306,7 @@ class ReactiveTypeHandler {
 				try {
 					send(element);
 					this.subscription.request(1);
-				}
-				catch (final Throwable ex) {
+				} catch (final Throwable ex) {
 					if (logger.isTraceEnabled()) {
 						logger.trace("Send for " + this.emitter + " failed: " + ex);
 					}
@@ -326,8 +324,7 @@ class ReactiveTypeHandler {
 						logger.trace("Publisher for " + this.emitter + " failed: " + ex);
 					}
 					this.emitter.completeWithError(ex);
-				}
-				else {
+				} else {
 					if (logger.isTraceEnabled()) {
 						logger.trace("Publisher for " + this.emitter + " completed");
 					}
@@ -363,8 +360,7 @@ class ReactiveTypeHandler {
 			if (element instanceof ServerSentEvent) {
 				ServerSentEvent<?> event = (ServerSentEvent<?>) element;
 				((SseEmitter) getEmitter()).send(adapt(event));
-			}
-			else {
+			} else {
 				getEmitter().send(element, MediaType.APPLICATION_JSON);
 			}
 		}
@@ -462,11 +458,9 @@ class ReactiveTypeHandler {
 		public void onComplete() {
 			if (this.values.size() > 1 || this.multiValueSource) {
 				this.result.setResult(this.values);
-			}
-			else if (this.values.size() == 1) {
+			} else if (this.values.size() == 1) {
 				this.result.setResult(this.values.get(0));
-			}
-			else {
+			} else {
 				this.result.setResult(null);
 			}
 		}

@@ -25,17 +25,18 @@ import org.springframework.util.Assert;
  * A Comparator that will safely compare nulls to be lower or higher than
  * other objects. Can decorate a given Comparator or work on Comparables.
  *
+ * @param <T> the type of objects that may be compared by this comparator
  * @author Keith Donald
  * @author Juergen Hoeller
- * @since 1.2.2
- * @param <T> the type of objects that may be compared by this comparator
  * @see Comparable
+ * @since 1.2.2
  */
 public class NullSafeComparator<T> implements Comparator<T> {
 
 	/**
 	 * A shared default instance of this comparator, treating nulls lower
 	 * than non-null objects.
+	 *
 	 * @see Comparators#nullsLow()
 	 */
 	@SuppressWarnings("rawtypes")
@@ -44,6 +45,7 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	/**
 	 * A shared default instance of this comparator, treating nulls higher
 	 * than non-null objects.
+	 *
 	 * @see Comparators#nullsHigh()
 	 */
 	@SuppressWarnings("rawtypes")
@@ -64,6 +66,7 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	 * <p>As a convenience, you can use the default shared instances:
 	 * {@code NullSafeComparator.NULLS_LOW} and
 	 * {@code NullSafeComparator.NULLS_HIGH}.
+	 *
 	 * @param nullsLow whether to treat nulls lower or higher than non-null objects
 	 * @see Comparable
 	 * @see #NULLS_LOW
@@ -81,8 +84,9 @@ public class NullSafeComparator<T> implements Comparator<T> {
 	 * <p>When comparing two non-null objects, the specified Comparator will be used.
 	 * The given underlying Comparator must be able to handle the elements that this
 	 * Comparator will be applied to.
+	 *
 	 * @param comparator the comparator to use when comparing two non-null objects
-	 * @param nullsLow whether to treat nulls lower or higher than non-null objects
+	 * @param nullsLow   whether to treat nulls lower or higher than non-null objects
 	 */
 	public NullSafeComparator(Comparator<T> comparator, boolean nullsLow) {
 		Assert.notNull(comparator, "Non-null Comparator is required");

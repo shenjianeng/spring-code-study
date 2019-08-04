@@ -31,8 +31,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
- * @since 17.06.2003
  * @see #setDefaultThemeName
+ * @since 17.06.2003
  */
 public class FixedThemeResolver extends AbstractThemeResolver {
 

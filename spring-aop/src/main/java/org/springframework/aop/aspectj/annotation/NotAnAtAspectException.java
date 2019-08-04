@@ -34,6 +34,7 @@ public class NotAnAtAspectException extends AopConfigException {
 
 	/**
 	 * Create a new NotAnAtAspectException for the given class.
+	 *
 	 * @param nonAspectClass the offending class
 	 */
 	public NotAnAtAspectException(Class<?> nonAspectClass) {

@@ -41,10 +41,10 @@ import org.springframework.lang.Nullable;
  * {@code UnsupportedOperationException}s.
  *
  * @author Arjen Poutsma
- * @since 3.0
  * @see XMLEventWriter
  * @see XMLStreamWriter
  * @see javax.xml.transform.Transformer
+ * @since 3.0
  */
 class StaxResult extends SAXResult {
 
@@ -57,6 +57,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Construct a new instance of the {@code StaxResult} with the specified {@code XMLEventWriter}.
+	 *
 	 * @param eventWriter the {@code XMLEventWriter} to write to
 	 */
 	public StaxResult(XMLEventWriter eventWriter) {
@@ -68,6 +69,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Construct a new instance of the {@code StaxResult} with the specified {@code XMLStreamWriter}.
+	 *
 	 * @param streamWriter the {@code XMLStreamWriter} to write to
 	 */
 	public StaxResult(XMLStreamWriter streamWriter) {
@@ -82,6 +84,7 @@ class StaxResult extends SAXResult {
 	 * Return the {@code XMLEventWriter} used by this {@code StaxResult}.
 	 * <p>If this {@code StaxResult} was created with an {@code XMLStreamWriter},
 	 * the result will be {@code null}.
+	 *
 	 * @return the StAX event writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLEventWriter)
 	 */
@@ -94,6 +97,7 @@ class StaxResult extends SAXResult {
 	 * Return the {@code XMLStreamWriter} used by this {@code StaxResult}.
 	 * <p>If this {@code StaxResult} was created with an {@code XMLEventConsumer},
 	 * the result will be {@code null}.
+	 *
 	 * @return the StAX stream writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLStreamWriter)
 	 */
@@ -105,6 +109,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Throws an {@code UnsupportedOperationException}.
+	 *
 	 * @throws UnsupportedOperationException always
 	 */
 	@Override
@@ -114,6 +119,7 @@ class StaxResult extends SAXResult {
 
 	/**
 	 * Throws an {@code UnsupportedOperationException}.
+	 *
 	 * @throws UnsupportedOperationException always
 	 */
 	@Override

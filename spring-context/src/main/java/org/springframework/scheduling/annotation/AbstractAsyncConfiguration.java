@@ -36,8 +36,8 @@ import org.springframework.util.CollectionUtils;
  * @author Chris Beams
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 3.1
  * @see EnableAsync
+ * @since 3.1
  */
 @Configuration
 public abstract class AbstractAsyncConfiguration implements ImportAware {

@@ -70,8 +70,7 @@ public class TestObject implements ITestObject, ITestInterface, Comparable<Objec
 	public int compareTo(Object o) {
 		if (this.name != null && o instanceof TestObject) {
 			return this.name.compareTo(((TestObject) o).getName());
-		}
-		else {
+		} else {
 			return 1;
 		}
 	}

@@ -29,9 +29,9 @@ import org.springframework.lang.Nullable;
  * of Maps via the "map" element in XML bean definitions.
  *
  * @author Juergen Hoeller
- * @since 09.12.2003
  * @see SetFactoryBean
  * @see ListFactoryBean
+ * @since 09.12.2003
  */
 public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 
@@ -54,6 +54,7 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 	 * Set the class to use for the target Map. Can be populated with a fully
 	 * qualified class name when defined in a Spring application context.
 	 * <p>Default is a linked HashMap, keeping the registration order.
+	 *
 	 * @see java.util.LinkedHashMap
 	 */
 	@SuppressWarnings("rawtypes")
@@ -83,8 +84,7 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 		Map<Object, Object> result = null;
 		if (this.targetMapClass != null) {
 			result = BeanUtils.instantiateClass(this.targetMapClass);
-		}
-		else {
+		} else {
 			result = new LinkedHashMap<>(this.sourceMap.size());
 		}
 		Class<?> keyType = null;
@@ -101,8 +101,7 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 				Object convertedValue = converter.convertIfNecessary(entry.getValue(), valueType);
 				result.put(convertedKey, convertedValue);
 			}
-		}
-		else {
+		} else {
 			result.putAll(this.sourceMap);
 		}
 		return result;

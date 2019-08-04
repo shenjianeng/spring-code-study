@@ -38,8 +38,8 @@ import org.springframework.util.Assert;
  * delegate to the target {@link ConnectionFactory}.
  *
  * @author Juergen Hoeller
- * @since 1.2
  * @see #getConnection
+ * @since 1.2
  */
 @SuppressWarnings("serial")
 public class DelegatingConnectionFactory implements ConnectionFactory, InitializingBean {
@@ -65,6 +65,7 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Initializ
 
 	/**
 	 * Obtain the target {@code ConnectionFactory} for actual use (never {@code null}).
+	 *
 	 * @since 5.0
 	 */
 	protected ConnectionFactory obtainTargetConnectionFactory() {

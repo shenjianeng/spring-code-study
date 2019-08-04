@@ -28,6 +28,7 @@ public class TypeMismatchDataAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * Constructor for TypeMismatchDataAccessException.
+	 *
 	 * @param msg the detail message
 	 */
 	public TypeMismatchDataAccessException(String msg) {
@@ -36,7 +37,8 @@ public class TypeMismatchDataAccessException extends InvalidDataAccessResourceUs
 
 	/**
 	 * Constructor for TypeMismatchDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the data access API in use
 	 */
 	public TypeMismatchDataAccessException(String msg, Throwable cause) {

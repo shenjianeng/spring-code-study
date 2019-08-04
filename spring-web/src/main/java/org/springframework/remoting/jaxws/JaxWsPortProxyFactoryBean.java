@@ -29,9 +29,9 @@ import org.springframework.util.Assert;
  * Inherits configuration properties from {@link JaxWsPortClientInterceptor}.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see #setServiceInterface
  * @see LocalJaxWsServiceFactoryBean
+ * @since 2.5
  */
 public class JaxWsPortProxyFactoryBean extends JaxWsPortClientInterceptor implements FactoryBean<Object> {
 

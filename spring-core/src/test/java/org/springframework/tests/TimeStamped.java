@@ -26,6 +26,7 @@ public interface TimeStamped {
 
 	/**
 	 * Return the timestamp for this object.
+	 *
 	 * @return long the timestamp for this object,
 	 * as returned by System.currentTimeMillis()
 	 */

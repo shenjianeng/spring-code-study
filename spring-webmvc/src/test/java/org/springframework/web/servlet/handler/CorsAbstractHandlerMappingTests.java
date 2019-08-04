@@ -43,6 +43,7 @@ import org.springframework.web.servlet.support.WebContentGenerator;
 
 /**
  * Unit tests for CORS-related handling in {@link AbstractHandlerMapping}.
+ *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  */
@@ -188,9 +189,8 @@ public class CorsAbstractHandlerMappingTests {
 			Object handler = chain.getHandler();
 			assertTrue(handler.getClass().getSimpleName().equals("PreFlightHandler"));
 			DirectFieldAccessor accessor = new DirectFieldAccessor(handler);
-			return (CorsConfiguration)accessor.getPropertyValue("config");
-		}
-		else {
+			return (CorsConfiguration) accessor.getPropertyValue("config");
+		} else {
 			HandlerInterceptor[] interceptors = chain.getInterceptors();
 			if (interceptors != null) {
 				for (HandlerInterceptor interceptor : interceptors) {

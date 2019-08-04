@@ -49,9 +49,9 @@ import java.lang.annotation.Target;
  * to resort to {@code @Inject Provider<TargetBean>} or the like instead.
  *
  * @author Juergen Hoeller
- * @since 4.1
  * @see org.springframework.beans.factory.BeanFactory#getBean(Class, Object...)
  * @see org.springframework.beans.factory.BeanFactory#getBean(String, Object...)
+ * @since 4.1
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

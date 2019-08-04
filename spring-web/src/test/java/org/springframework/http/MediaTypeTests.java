@@ -236,7 +236,7 @@ public class MediaTypeTests {
 		Comparator<MediaType> comp = MediaType.SPECIFICITY_COMPARATOR;
 
 		// equal
-		assertEquals("Invalid comparison result", 0, comp.compare(audioBasic,audioBasic));
+		assertEquals("Invalid comparison result", 0, comp.compare(audioBasic, audioBasic));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio, audio));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio07, audio07));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio03, audio03));
@@ -340,7 +340,7 @@ public class MediaTypeTests {
 		Comparator<MediaType> comp = MediaType.QUALITY_VALUE_COMPARATOR;
 
 		// equal
-		assertEquals("Invalid comparison result", 0, comp.compare(audioBasic,audioBasic));
+		assertEquals("Invalid comparison result", 0, comp.compare(audioBasic, audioBasic));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio, audio));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio07, audio07));
 		assertEquals("Invalid comparison result", 0, comp.compare(audio03, audio03));

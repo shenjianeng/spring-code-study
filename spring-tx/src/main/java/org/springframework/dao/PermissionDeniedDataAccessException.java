@@ -28,9 +28,10 @@ public class PermissionDeniedDataAccessException extends NonTransientDataAccessE
 
 	/**
 	 * Constructor for PermissionDeniedDataAccessException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the underlying data access API,
-	 * such as JDBC
+	 *              such as JDBC
 	 */
 	public PermissionDeniedDataAccessException(String msg, Throwable cause) {
 		super(msg, cause);

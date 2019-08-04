@@ -270,7 +270,7 @@ public class XStreamMarshallerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public void omitFields() throws Exception {
 		Map omittedFieldsMap = Collections.singletonMap(Flight.class, "flightNumber");
 		marshaller.setOmittedFields(omittedFieldsMap);
@@ -280,7 +280,7 @@ public class XStreamMarshallerTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public void implicitCollections() throws Exception {
 		Flights flights = new Flights();
 		flights.getFlights().add(flight);
@@ -345,13 +345,13 @@ public class XStreamMarshallerTests {
 	}
 
 
-	private static void assertXpathExists(String xPathExpression, String inXMLString){
+	private static void assertXpathExists(String xPathExpression, String inXMLString) {
 		Source source = Input.fromString(inXMLString).build();
 		Iterable<Node> nodes = new JAXPXPathEngine().selectNodes(xPathExpression, source);
 		assertTrue("Expecting to find matches for Xpath " + xPathExpression, count(nodes) > 0);
 	}
 
-	private static void assertXpathNotExists(String xPathExpression, String inXMLString){
+	private static void assertXpathNotExists(String xPathExpression, String inXMLString) {
 		Source source = Input.fromString(inXMLString).build();
 		Iterable<Node> nodes = new JAXPXPathEngine().selectNodes(xPathExpression, source);
 		assertEquals("Should be zero matches for Xpath " + xPathExpression, 0, count(nodes));

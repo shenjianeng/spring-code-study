@@ -48,10 +48,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * Platform, simply run {@link SpringJUnitJupiterTestSuite} as a JUnit 4 test.
  *
  * @author Sam Brannen
- * @since 5.1
  * @see SpringExtensionTests
  * @see SpringExtension
  * @see RegisterExtension
+ * @since 5.1
  */
 @ContextConfiguration(classes = TestConfig.class)
 @TestPropertySource(properties = "enigma = 42")
@@ -208,7 +208,7 @@ class RegisterExtensionSpringExtensionTests {
 
 	@Test
 	void junitAndSpringMethodInjectionCombined(@Autowired Cat kittyCat, TestInfo testInfo,
-			ApplicationContext context, TestReporter testReporter) {
+											   ApplicationContext context, TestReporter testReporter) {
 
 		assertNotNull(testInfo, "TestInfo should have been injected by JUnit");
 		assertNotNull(testReporter, "TestReporter should have been injected by JUnit");

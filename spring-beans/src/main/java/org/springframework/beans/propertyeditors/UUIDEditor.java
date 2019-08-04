@@ -26,8 +26,8 @@ import org.springframework.util.StringUtils;
  * String representations into UUID objects and back.
  *
  * @author Juergen Hoeller
- * @since 3.0.1
  * @see java.util.UUID
+ * @since 3.0.1
  */
 public class UUIDEditor extends PropertyEditorSupport {
 
@@ -35,8 +35,7 @@ public class UUIDEditor extends PropertyEditorSupport {
 	public void setAsText(String text) throws IllegalArgumentException {
 		if (StringUtils.hasText(text)) {
 			setValue(UUID.fromString(text));
-		}
-		else {
+		} else {
 			setValue(null);
 		}
 	}

@@ -53,8 +53,7 @@ public class BeanUtilsTests {
 			// give interface
 			BeanUtils.instantiateClass(List.class);
 			fail("Should have thrown FatalBeanException");
-		}
-		catch (FatalBeanException ex) {
+		} catch (FatalBeanException ex) {
 			// expected
 		}
 
@@ -62,8 +61,7 @@ public class BeanUtilsTests {
 			// give class without default constructor
 			BeanUtils.instantiateClass(CustomDateEditor.class);
 			fail("Should have thrown FatalBeanException");
-		}
-		catch (FatalBeanException ex) {
+		} catch (FatalBeanException ex) {
 			// expected
 		}
 	}
@@ -210,16 +208,14 @@ public class BeanUtilsTests {
 		try {
 			BeanUtils.resolveSignature("doSomething(", MethodSignatureBean.class);
 			fail("Should not be able to parse with opening but no closing paren.");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// success
 		}
 
 		try {
 			BeanUtils.resolveSignature("doSomething)", MethodSignatureBean.class);
 			fail("Should not be able to parse with closing but no opening paren.");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// success
 		}
 	}

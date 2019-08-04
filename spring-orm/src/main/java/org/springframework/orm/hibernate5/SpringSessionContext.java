@@ -58,6 +58,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 
 	/**
 	 * Create a new SpringSessionContext for the given Hibernate SessionFactory.
+	 *
 	 * @param sessionFactory the SessionFactory to provide current Sessions for
 	 */
 	public SpringSessionContext(SessionFactoryImplementor sessionFactory) {
@@ -68,8 +69,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 			if (this.transactionManager != null) {
 				this.jtaSessionContext = new SpringJtaSessionContext(sessionFactory);
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			LogFactory.getLog(SpringSessionContext.class).warn(
 					"Could not introspect Hibernate JtaPlatform for SpringJtaSessionContext", ex);
 		}
@@ -85,8 +85,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 		Object value = TransactionSynchronizationManager.getResource(this.sessionFactory);
 		if (value instanceof Session) {
 			return (Session) value;
-		}
-		else if (value instanceof SessionHolder) {
+		} else if (value instanceof SessionHolder) {
 			// HibernateTransactionManager
 			SessionHolder sessionHolder = (SessionHolder) value;
 			Session session = sessionHolder.getSession();
@@ -105,8 +104,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 				}
 			}
 			return session;
-		}
-		else if (value instanceof EntityManagerHolder) {
+		} else if (value instanceof EntityManagerHolder) {
 			// JpaTransactionManager
 			return ((EntityManagerHolder) value).getEntityManager().unwrap(Session.class);
 		}
@@ -121,8 +119,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 					}
 					return session;
 				}
-			}
-			catch (SystemException ex) {
+			} catch (SystemException ex) {
 				throw new HibernateException("JTA TransactionManager found but status check failed", ex);
 			}
 		}
@@ -138,8 +135,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 			TransactionSynchronizationManager.bindResource(this.sessionFactory, sessionHolder);
 			sessionHolder.setSynchronizedWithTransaction(true);
 			return session;
-		}
-		else {
+		} else {
 			throw new HibernateException("Could not obtain transaction-synchronized Session for current thread");
 		}
 	}

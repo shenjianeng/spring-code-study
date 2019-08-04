@@ -86,7 +86,7 @@ public class ContextHierarchyDirtiesContextTests {
 	}
 
 	private void runTestAndVerifyHierarchies(Class<? extends FooTestCase> testClass, boolean isFooContextActive,
-			boolean isBarContextActive, boolean isBazContextActive) {
+											 boolean isBarContextActive, boolean isBazContextActive) {
 
 		JUnitCore jUnitCore = new JUnitCore();
 		Result result = jUnitCore.run(testClass);

@@ -241,16 +241,20 @@ public class ControllerMethodResolverTests {
 	static class TestController {
 
 		@InitBinder
-		void initDataBinder() {}
+		void initDataBinder() {
+		}
 
 		@ModelAttribute
-		void initModel() {}
+		void initModel() {
+		}
 
 		@GetMapping
-		void handle() {}
+		void handle() {
+		}
 
 		@ExceptionHandler
-		void handleException(ResponseStatusException ex) {}
+		void handleException(ResponseStatusException ex) {
+		}
 
 	}
 
@@ -259,13 +263,16 @@ public class ControllerMethodResolverTests {
 	static class TestControllerAdvice {
 
 		@InitBinder
-		void initDataBinder() {}
+		void initDataBinder() {
+		}
 
 		@ModelAttribute
-		void initModel() {}
+		void initModel() {
+		}
 
 		@ExceptionHandler
-		void handleException(IllegalStateException ex) {}
+		void handleException(IllegalStateException ex) {
+		}
 
 	}
 

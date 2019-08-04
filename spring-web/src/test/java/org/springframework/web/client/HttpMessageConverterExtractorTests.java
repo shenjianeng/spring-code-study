@@ -171,7 +171,8 @@ public class HttpMessageConverterExtractorTests {
 		MediaType contentType = MediaType.TEXT_PLAIN;
 		responseHeaders.setContentType(contentType);
 		String expected = "Foo";
-		ParameterizedTypeReference<List<String>> reference = new ParameterizedTypeReference<List<String>>() {};
+		ParameterizedTypeReference<List<String>> reference = new ParameterizedTypeReference<List<String>>() {
+		};
 		Type type = reference.getType();
 		extractor = new HttpMessageConverterExtractor<List<String>>(type, createConverterList(converter));
 		given(response.getRawStatusCode()).willReturn(HttpStatus.OK.value());

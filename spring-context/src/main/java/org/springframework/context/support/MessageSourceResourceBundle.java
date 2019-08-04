@@ -31,10 +31,10 @@ import org.springframework.util.Assert;
  * Used for example to expose a Spring MessageSource to JSTL web views.
  *
  * @author Juergen Hoeller
- * @since 27.02.2003
  * @see org.springframework.context.MessageSource
  * @see java.util.ResourceBundle
  * @see org.springframework.web.servlet.support.JstlUtils#exposeLocalizationContext
+ * @since 27.02.2003
  */
 public class MessageSourceResourceBundle extends ResourceBundle {
 
@@ -45,6 +45,7 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 
 	/**
 	 * Create a new MessageSourceResourceBundle for the given MessageSource and Locale.
+	 *
 	 * @param source the MessageSource to retrieve messages from
 	 * @param locale the Locale to retrieve messages for
 	 */
@@ -56,6 +57,7 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 
 	/**
 	 * Create a new MessageSourceResourceBundle for the given MessageSource and Locale.
+	 *
 	 * @param source the MessageSource to retrieve messages from
 	 * @param locale the Locale to retrieve messages for
 	 * @param parent the parent ResourceBundle to delegate to if no local message found
@@ -75,8 +77,7 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 	protected Object handleGetObject(String key) {
 		try {
 			return this.messageSource.getMessage(key, null, this.locale);
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			return null;
 		}
 	}
@@ -92,8 +93,7 @@ public class MessageSourceResourceBundle extends ResourceBundle {
 		try {
 			this.messageSource.getMessage(key, null, this.locale);
 			return true;
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			return false;
 		}
 	}

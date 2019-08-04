@@ -63,6 +63,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 /**
  * Tests with {@link Filter}'s.
+ *
  * @author Rob Winch
  */
 public class FilterTests {
@@ -70,8 +71,8 @@ public class FilterTests {
 	@Test
 	public void whenFiltersCompleteMvcProcessesRequest() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilters(new ContinueFilter()).build()
-			.perform(post("/persons").param("name", "Andy"))
+				.addFilters(new ContinueFilter()).build()
+				.perform(post("/persons").param("name", "Andy"))
 				.andExpect(status().isFound())
 				.andExpect(redirectedUrl("/person/1"))
 				.andExpect(model().size(1))
@@ -83,32 +84,32 @@ public class FilterTests {
 	@Test
 	public void filtersProcessRequest() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilters(new ContinueFilter(), new RedirectFilter()).build()
-			.perform(post("/persons").param("name", "Andy"))
+				.addFilters(new ContinueFilter(), new RedirectFilter()).build()
+				.perform(post("/persons").param("name", "Andy"))
 				.andExpect(redirectedUrl("/login"));
 	}
 
 	@Test
 	public void filterMappedBySuffix() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilter(new RedirectFilter(), "*.html").build()
-			.perform(post("/persons.html").param("name", "Andy"))
+				.addFilter(new RedirectFilter(), "*.html").build()
+				.perform(post("/persons.html").param("name", "Andy"))
 				.andExpect(redirectedUrl("/login"));
 	}
 
 	@Test
 	public void filterWithExactMapping() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilter(new RedirectFilter(), "/p", "/persons").build()
-			.perform(post("/persons").param("name", "Andy"))
+				.addFilter(new RedirectFilter(), "/p", "/persons").build()
+				.perform(post("/persons").param("name", "Andy"))
 				.andExpect(redirectedUrl("/login"));
 	}
 
 	@Test
 	public void filterSkipped() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilter(new RedirectFilter(), "/p", "/person").build()
-			.perform(post("/persons").param("name", "Andy"))
+				.addFilter(new RedirectFilter(), "/p", "/person").build()
+				.perform(post("/persons").param("name", "Andy"))
 				.andExpect(status().isFound())
 				.andExpect(redirectedUrl("/person/1"))
 				.andExpect(model().size(1))
@@ -120,8 +121,8 @@ public class FilterTests {
 	@Test
 	public void filterWrapsRequestResponse() throws Exception {
 		standaloneSetup(new PersonController())
-			.addFilters(new WrappingRequestResponseFilter()).build()
-			.perform(post("/user"))
+				.addFilters(new WrappingRequestResponseFilter()).build()
+				.perform(post("/user"))
 				.andExpect(model().attribute("principal", WrappingRequestResponseFilter.PRINCIPAL_NAME));
 	}
 
@@ -147,7 +148,7 @@ public class FilterTests {
 	@Controller
 	private static class PersonController {
 
-		@PostMapping(path="/persons")
+		@PostMapping(path = "/persons")
 		public String save(@Valid Person person, Errors errors, RedirectAttributes redirectAttrs) {
 			if (errors.hasErrors()) {
 				return "person/add";
@@ -178,7 +179,7 @@ public class FilterTests {
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request,
-				HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+										HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 			filterChain.doFilter(request, response);
 		}
@@ -191,7 +192,7 @@ public class FilterTests {
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-				FilterChain filterChain) throws ServletException, IOException {
+										FilterChain filterChain) throws ServletException, IOException {
 
 			filterChain.doFilter(new HttpServletRequestWrapper(request) {
 
@@ -216,7 +217,7 @@ public class FilterTests {
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-				FilterChain filterChain) throws ServletException, IOException {
+										FilterChain filterChain) throws ServletException, IOException {
 
 			response.sendRedirect("/login");
 		}

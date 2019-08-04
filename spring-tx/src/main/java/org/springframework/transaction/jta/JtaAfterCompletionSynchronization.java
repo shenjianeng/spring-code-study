@@ -30,9 +30,9 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
  * Applied when participating in an existing (non-Spring) JTA transaction.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see TransactionSynchronization#afterCommit
  * @see TransactionSynchronization#afterCompletion
+ * @since 2.0
  */
 public class JtaAfterCompletionSynchronization implements Synchronization {
 
@@ -41,6 +41,7 @@ public class JtaAfterCompletionSynchronization implements Synchronization {
 
 	/**
 	 * Create a new JtaAfterCompletionSynchronization for the given synchronization objects.
+	 *
 	 * @param synchronizations the List of TransactionSynchronization objects
 	 * @see org.springframework.transaction.support.TransactionSynchronization
 	 */
@@ -59,8 +60,7 @@ public class JtaAfterCompletionSynchronization implements Synchronization {
 			case Status.STATUS_COMMITTED:
 				try {
 					TransactionSynchronizationUtils.invokeAfterCommit(this.synchronizations);
-				}
-				finally {
+				} finally {
 					TransactionSynchronizationUtils.invokeAfterCompletion(
 							this.synchronizations, TransactionSynchronization.STATUS_COMMITTED);
 				}

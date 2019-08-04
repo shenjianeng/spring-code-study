@@ -29,6 +29,6 @@ public class DevProfileResolverAnnotationConfigTests extends DevProfileAnnotatio
 
 	@Override
 	public String[] resolve(Class<?> testClass) {
-		return new String[] { "dev" };
+		return new String[]{"dev"};
 	}
 }

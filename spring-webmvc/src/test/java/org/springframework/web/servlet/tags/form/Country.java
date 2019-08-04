@@ -23,7 +23,7 @@ import java.util.List;
  * @author Rob Harrop
  * @author Sam Brannen
  */
-@SuppressWarnings({ "rawtypes", "unchecked" })
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Country {
 
 	public static final Country COUNTRY_AT = new Country("AT", "Austria");

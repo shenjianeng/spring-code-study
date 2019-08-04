@@ -361,8 +361,7 @@ public class InputTagTests extends AbstractFormTagTests {
 		try {
 			this.tag.setDynamicAttribute(null, "type", "radio");
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("Attribute type=\"radio\" is not allowed", e.getMessage());
 		}
 	}
@@ -372,8 +371,7 @@ public class InputTagTests extends AbstractFormTagTests {
 		try {
 			this.tag.setDynamicAttribute(null, "type", "checkbox");
 			fail("Expected exception");
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("Attribute type=\"checkbox\" is not allowed", e.getMessage());
 		}
 	}

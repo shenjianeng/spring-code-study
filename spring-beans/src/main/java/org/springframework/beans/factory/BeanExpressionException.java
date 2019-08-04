@@ -29,6 +29,7 @@ public class BeanExpressionException extends FatalBeanException {
 
 	/**
 	 * Create a new BeanExpressionException with the specified message.
+	 *
 	 * @param msg the detail message
 	 */
 	public BeanExpressionException(String msg) {
@@ -38,7 +39,8 @@ public class BeanExpressionException extends FatalBeanException {
 	/**
 	 * Create a new BeanExpressionException with the specified message
 	 * and root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause
 	 */
 	public BeanExpressionException(String msg, Throwable cause) {

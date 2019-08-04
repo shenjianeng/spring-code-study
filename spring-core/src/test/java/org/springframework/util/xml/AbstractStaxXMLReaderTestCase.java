@@ -212,7 +212,7 @@ public abstract class AbstractStaxXMLReaderTestCase {
 		public Object[] adaptArguments(Object[] arguments) {
 			if (arguments.length == 3 && arguments[0] instanceof char[]
 					&& arguments[1] instanceof Integer && arguments[2] instanceof Integer) {
-				return new Object[] {new String((char[]) arguments[0], (Integer) arguments[1], (Integer) arguments[2])};
+				return new Object[]{new String((char[]) arguments[0], (Integer) arguments[1], (Integer) arguments[2])};
 			}
 			return arguments;
 		}

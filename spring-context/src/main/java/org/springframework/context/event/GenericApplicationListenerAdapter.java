@@ -33,8 +33,8 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
- * @since 3.0
  * @see org.springframework.context.ApplicationListener#onApplicationEvent
+ * @since 3.0
  */
 public class GenericApplicationListenerAdapter implements GenericApplicationListener, SmartApplicationListener {
 
@@ -49,6 +49,7 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 
 	/**
 	 * Create a new GenericApplicationListener for the given delegate.
+	 *
 	 * @param delegate the delegate listener to be invoked
 	 */
 	@SuppressWarnings("unchecked")
@@ -70,8 +71,7 @@ public class GenericApplicationListenerAdapter implements GenericApplicationList
 		if (this.delegate instanceof SmartApplicationListener) {
 			Class<? extends ApplicationEvent> eventClass = (Class<? extends ApplicationEvent>) eventType.resolve();
 			return (eventClass != null && ((SmartApplicationListener) this.delegate).supportsEventType(eventClass));
-		}
-		else {
+		} else {
 			return (this.declaredEventType == null || this.declaredEventType.isAssignableFrom(eventType));
 		}
 	}

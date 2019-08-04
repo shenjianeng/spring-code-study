@@ -25,14 +25,15 @@ import org.springframework.util.concurrent.ListenableFuture;
  * tasks for {@link ListenableFuture ListenableFutures}.
  *
  * @author Arjen Poutsma
- * @since 4.0
  * @see ListenableFuture
+ * @since 4.0
  */
 public interface AsyncListenableTaskExecutor extends AsyncTaskExecutor {
 
 	/**
 	 * Submit a {@code Runnable} task for execution, receiving a {@code ListenableFuture}
 	 * representing that task. The Future will return a {@code null} result upon completion.
+	 *
 	 * @param task the {@code Runnable} to execute (never {@code null})
 	 * @return a {@code ListenableFuture} representing pending completion of the task
 	 * @throws TaskRejectedException if the given task was not accepted
@@ -43,6 +44,7 @@ public interface AsyncListenableTaskExecutor extends AsyncTaskExecutor {
 	 * Submit a {@code Callable} task for execution, receiving a {@code ListenableFuture}
 	 * representing that task. The Future will return the Callable's result upon
 	 * completion.
+	 *
 	 * @param task the {@code Callable} to execute (never {@code null})
 	 * @return a {@code ListenableFuture} representing pending completion of the task
 	 * @throws TaskRejectedException if the given task was not accepted

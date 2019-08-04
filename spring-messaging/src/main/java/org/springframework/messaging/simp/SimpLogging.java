@@ -35,8 +35,8 @@ import org.springframework.core.log.LogDelegateFactory;
  * simply enable logging for "org.springframework.messaging".
  *
  * @author Rossen Stoyanchev
- * @since 5.1
  * @see LogDelegateFactory
+ * @since 5.1
  */
 public abstract class SimpLogging {
 
@@ -48,6 +48,7 @@ public abstract class SimpLogging {
 	 * Create a primary logger for the given class and wrap it with a composite
 	 * that delegates to it or to the fallback logger named
 	 * "org.springframework.web.SimpLogging", if the primary is not enabled.
+	 *
 	 * @param primaryLoggerClass the class for the name of the primary logger
 	 * @return the resulting composite logger
 	 */
@@ -60,6 +61,7 @@ public abstract class SimpLogging {
 	 * Wrap the given primary logger with a composite logger that delegates to
 	 * either the primary or to the shared fallback logger
 	 * "org.springframework.web.HttpLogging", if the primary is not enabled.
+	 *
 	 * @param primaryLogger the primary logger to use
 	 * @return the resulting composite logger
 	 */

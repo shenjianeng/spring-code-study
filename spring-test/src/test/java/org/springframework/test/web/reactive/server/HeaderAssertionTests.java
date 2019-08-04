@@ -39,6 +39,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for {@link HeaderAssertions}.
+ *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  */
@@ -56,24 +57,21 @@ public class HeaderAssertionTests {
 		try {
 			assertions.valueEquals("what?!", "bar");
 			fail("Missing header expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// expected
 		}
 
 		try {
 			assertions.valueEquals("foo", "what?!");
 			fail("Wrong value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// expected
 		}
 
 		try {
 			assertions.valueEquals("foo", "bar", "what?!");
 			fail("Wrong # of values expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// expected
 		}
 	}
@@ -91,16 +89,14 @@ public class HeaderAssertionTests {
 		try {
 			assertions.valueEquals("foo", "bar", "what?!");
 			fail("Wrong value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// expected
 		}
 
 		try {
 			assertions.valueEquals("foo", "bar");
 			fail("Too few values expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// expected
 		}
 
@@ -118,8 +114,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.valueMatches("Content-Type", ".*ISO-8859-1.*");
 			fail("Wrong pattern expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			Throwable cause = error.getCause();
 			assertNotNull(cause);
 			assertEquals("Response header 'Content-Type'=[application/json;charset=UTF-8] " +
@@ -148,8 +143,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.exists("Framework");
 			fail("Header should not exist");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			Throwable cause = error.getCause();
 			assertNotNull(cause);
 			assertEquals("Response header 'Framework' does not exist", cause.getMessage());
@@ -168,8 +162,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.doesNotExist("Content-Type");
 			fail("Existing header expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			Throwable cause = error.getCause();
 			assertNotNull(cause);
 			assertEquals("Response header 'Content-Type' exists with " +
@@ -189,8 +182,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.contentTypeCompatibleWith(MediaType.TEXT_XML);
 			fail("MediaTypes not compatible expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			Throwable cause = error.getCause();
 			assertNotNull(cause);
 			assertEquals("Response header 'Content-Type'=[application/xml] " +
@@ -212,8 +204,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.cacheControl(CacheControl.noStore());
 			fail("Wrong value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -228,8 +219,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.expires(expires.toInstant().toEpochMilli() + 1);
 			fail("Wrong value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}
@@ -244,8 +234,7 @@ public class HeaderAssertionTests {
 		try {
 			assertions.lastModified(lastModified.toInstant().toEpochMilli() + 1);
 			fail("Wrong value expected");
-		}
-		catch (AssertionError error) {
+		} catch (AssertionError error) {
 			// Expected
 		}
 	}

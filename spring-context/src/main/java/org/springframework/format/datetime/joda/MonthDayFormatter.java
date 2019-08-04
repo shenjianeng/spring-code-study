@@ -28,8 +28,8 @@ import org.springframework.format.Formatter;
  * following Joda-Time's parsing rules for a MonthDay.
  *
  * @author Juergen Hoeller
- * @since 4.2.4
  * @see MonthDay#parse
+ * @since 4.2.4
  */
 class MonthDayFormatter implements Formatter<MonthDay> {
 

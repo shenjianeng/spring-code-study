@@ -73,7 +73,7 @@ public class DefaultMockMvcBuilderTests {
 
 		DefaultMockMvcBuilder builder = webAppContextSetup(child);
 		assertSame(builder.initWebAppContext(),
-			WebApplicationContextUtils.getRequiredWebApplicationContext(this.servletContext));
+				WebApplicationContextUtils.getRequiredWebApplicationContext(this.servletContext));
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class DefaultMockMvcBuilderTests {
 
 		DefaultMockMvcBuilder builder = webAppContextSetup(child);
 		assertSame(builder.initWebAppContext().getParent(),
-			WebApplicationContextUtils.getRequiredWebApplicationContext(this.servletContext));
+				WebApplicationContextUtils.getRequiredWebApplicationContext(this.servletContext));
 	}
 
 	/**

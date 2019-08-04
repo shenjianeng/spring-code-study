@@ -35,9 +35,9 @@ import org.springframework.lang.Nullable;
  * For unrestricted resolution, choose {@link ReflectiveMethodResolver} instead.
  *
  * @author Juergen Hoeller
- * @since 4.3.15
  * @see #forInstanceMethodInvocation()
  * @see DataBindingPropertyAccessor
+ * @since 4.3.15
  */
 public final class DataBindingMethodResolver extends ReflectiveMethodResolver {
 
@@ -48,7 +48,7 @@ public final class DataBindingMethodResolver extends ReflectiveMethodResolver {
 	@Override
 	@Nullable
 	public MethodExecutor resolve(EvaluationContext context, Object targetObject, String name,
-			List<TypeDescriptor> argumentTypes) throws AccessException {
+								  List<TypeDescriptor> argumentTypes) throws AccessException {
 
 		if (targetObject instanceof Class) {
 			throw new IllegalArgumentException("DataBindingMethodResolver does not support Class targets");

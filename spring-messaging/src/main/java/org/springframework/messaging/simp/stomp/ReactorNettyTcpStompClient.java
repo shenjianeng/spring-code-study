@@ -43,6 +43,7 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 
 	/**
 	 * Create an instance with the given host and port.
+	 *
 	 * @param host the host
 	 * @param port the port
 	 */
@@ -52,6 +53,7 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 
 	/**
 	 * Create an instance with a pre-configured TCP client.
+	 *
 	 * @param tcpClient the client to use
 	 */
 	public ReactorNettyTcpStompClient(TcpOperations<byte[]> tcpClient) {
@@ -69,6 +71,7 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 	/**
 	 * Connect and notify the given {@link StompSessionHandler} when connected
 	 * on the STOMP level.
+	 *
 	 * @param handler the handler for the STOMP session
 	 * @return a ListenableFuture for access to the session when ready for use
 	 */
@@ -79,8 +82,9 @@ public class ReactorNettyTcpStompClient extends StompClientSupport {
 	/**
 	 * An overloaded version of {@link #connect(StompSessionHandler)} that
 	 * accepts headers to use for the STOMP CONNECT frame.
+	 *
 	 * @param connectHeaders headers to add to the CONNECT frame
-	 * @param handler the handler for the STOMP session
+	 * @param handler        the handler for the STOMP session
 	 * @return a ListenableFuture for access to the session when ready for use
 	 */
 	public ListenableFuture<StompSession> connect(@Nullable StompHeaders connectHeaders, StompSessionHandler handler) {

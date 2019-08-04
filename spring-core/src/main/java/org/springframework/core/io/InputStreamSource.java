@@ -32,11 +32,11 @@ import java.io.InputStream;
  * attachments, for example.
  *
  * @author Juergen Hoeller
- * @since 20.01.2004
  * @see java.io.InputStream
  * @see Resource
  * @see InputStreamResource
  * @see ByteArrayResource
+ * @since 20.01.2004
  */
 public interface InputStreamSource {
 
@@ -47,9 +47,10 @@ public interface InputStreamSource {
 	 * as JavaMail, which needs to be able to read the stream multiple times when
 	 * creating mail attachments. For such a use case, it is <i>required</i>
 	 * that each {@code getInputStream()} call returns a fresh stream.
+	 *
 	 * @return the input stream for the underlying resource (must not be {@code null})
 	 * @throws java.io.FileNotFoundException if the underlying resource doesn't exist
-	 * @throws IOException if the content stream could not be opened
+	 * @throws IOException                   if the content stream could not be opened
 	 */
 	InputStream getInputStream() throws IOException;
 

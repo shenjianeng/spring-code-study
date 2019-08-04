@@ -106,8 +106,7 @@ public class JmsListenerAnnotationBeanPostProcessorTests {
 			assertEquals(MetaAnnotationTestBean.class.getMethod("handleIt", String.class),
 					methodEndpoint.getMostSpecificMethod());
 			assertEquals("metaTestQueue", ((AbstractJmsListenerEndpoint) endpoint).getDestination());
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -134,8 +133,7 @@ public class JmsListenerAnnotationBeanPostProcessorTests {
 			ReflectionUtils.makeAccessible(method);
 			Object destination = ReflectionUtils.invokeMethod(method, endpoint);
 			assertEquals("SendTo annotation not found on proxy", "foobar", destination);
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}
@@ -162,8 +160,7 @@ public class JmsListenerAnnotationBeanPostProcessorTests {
 			ReflectionUtils.makeAccessible(method);
 			Object destination = ReflectionUtils.invokeMethod(method, endpoint);
 			assertEquals("SendTo annotation not found on proxy", "foobar", destination);
-		}
-		finally {
+		} finally {
 			context.close();
 		}
 	}

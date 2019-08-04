@@ -27,6 +27,7 @@ public interface SimpSubscriptionMatcher {
 
 	/**
 	 * Match the given subscription.
+	 *
 	 * @param subscription the subscription to match
 	 * @return {@code true} in case of a match, {@code false} otherwise
 	 */

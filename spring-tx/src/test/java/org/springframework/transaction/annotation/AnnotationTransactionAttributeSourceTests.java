@@ -562,7 +562,7 @@ public class AnnotationTransactionAttributeSourceTests {
 		}
 
 		@Override
-		@Transactional(propagation = Propagation.REQUIRES_NEW, isolation=Isolation.REPEATABLE_READ,
+		@Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ,
 				timeout = 5, readOnly = true, rollbackFor = Exception.class, noRollbackFor = IOException.class)
 		public int getAge() {
 			return age;

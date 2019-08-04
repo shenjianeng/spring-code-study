@@ -128,6 +128,7 @@ public class DelegatingWebMvcConfigurationTests {
 			public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 				converters.add(stringConverter);
 			}
+
 			@Override
 			public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 				converters.add(0, customConverter);

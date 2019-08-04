@@ -27,8 +27,8 @@ import org.springframework.util.StringUtils;
  * {@link PropertySource} that reads init parameters from a {@link ServletConfig} object.
  *
  * @author Chris Beams
- * @since 3.1
  * @see ServletContextPropertySource
+ * @since 3.1
  */
 public class ServletConfigPropertySource extends EnumerablePropertySource<ServletConfig> {
 

@@ -25,9 +25,9 @@ package org.springframework.core.style;
  * instance underneath.
  *
  * @author Keith Donald
- * @since 1.2.2
  * @see ValueStyler
  * @see DefaultValueStyler
+ * @since 1.2.2
  */
 public abstract class StylerUtils {
 
@@ -39,6 +39,7 @@ public abstract class StylerUtils {
 
 	/**
 	 * Style the specified value according to default conventions.
+	 *
 	 * @param value the Object value to style
 	 * @return the styled String
 	 * @see DefaultValueStyler

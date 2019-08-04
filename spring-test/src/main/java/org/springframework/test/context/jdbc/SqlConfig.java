@@ -55,8 +55,8 @@ import java.lang.annotation.Target;
  *
  * @author Sam Brannen
  * @author Tadaya Tsuyukubo
- * @since 4.1
  * @see Sql
+ * @since 4.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -82,6 +82,7 @@ public @interface SqlConfig {
 	 * {@code ApplicationContext}.</li>
 	 * <li>The {@code DataSource} to use is named {@code "dataSource"}.</li>
 	 * </ol>
+	 *
 	 * @see org.springframework.test.context.transaction.TestContextTransactionUtils#retrieveDataSource
 	 */
 	String dataSource() default "";
@@ -106,6 +107,7 @@ public @interface SqlConfig {
 	 * <li>The {@code PlatformTransactionManager} to use is named
 	 * {@code "transactionManager"}.</li>
 	 * </ol>
+	 *
 	 * @see org.springframework.test.context.transaction.TestContextTransactionUtils#retrieveTransactionManager
 	 */
 	String transactionManager() default "";
@@ -117,6 +119,7 @@ public @interface SqlConfig {
 	 * <p>Can be set to {@link TransactionMode#ISOLATED} to ensure that the SQL
 	 * scripts are executed in a new, isolated transaction that will be immediately
 	 * committed.
+	 *
 	 * @see TransactionMode
 	 */
 	TransactionMode transactionMode() default TransactionMode.DEFAULT;
@@ -137,6 +140,7 @@ public @interface SqlConfig {
 	 * {@link org.springframework.jdbc.datasource.init.ScriptUtils#EOF_STATEMENT_SEPARATOR}
 	 * to signal that each script contains a single statement without a
 	 * separator.
+	 *
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_STATEMENT_SEPARATOR
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#EOF_STATEMENT_SEPARATOR
 	 */
@@ -145,6 +149,7 @@ public @interface SqlConfig {
 	/**
 	 * The prefix that identifies single-line comments within the SQL scripts.
 	 * <p>Implicitly defaults to {@code "--"}.
+	 *
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_COMMENT_PREFIX
 	 */
 	String commentPrefix() default "";
@@ -152,6 +157,7 @@ public @interface SqlConfig {
 	/**
 	 * The start delimiter that identifies block comments within the SQL scripts.
 	 * <p>Implicitly defaults to {@code "/*"}.
+	 *
 	 * @see #blockCommentEndDelimiter
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_BLOCK_COMMENT_START_DELIMITER
 	 */
@@ -160,6 +166,7 @@ public @interface SqlConfig {
 	/**
 	 * The end delimiter that identifies block comments within the SQL scripts.
 	 * <p>Implicitly defaults to <code>"*&#47;"</code>.
+	 *
 	 * @see #blockCommentStartDelimiter
 	 * @see org.springframework.jdbc.datasource.init.ScriptUtils#DEFAULT_BLOCK_COMMENT_END_DELIMITER
 	 */
@@ -169,6 +176,7 @@ public @interface SqlConfig {
 	 * The <em>mode</em> to use when an error is encountered while executing an
 	 * SQL statement.
 	 * <p>Defaults to {@link ErrorMode#DEFAULT DEFAULT}.
+	 *
 	 * @see ErrorMode
 	 */
 	ErrorMode errorMode() default ErrorMode.DEFAULT;
@@ -230,6 +238,7 @@ public @interface SqlConfig {
 		 * {@link org.springframework.test.context.transaction.TransactionalTestExecutionListener TransactionalTestExecutionListener}.
 		 * </ul>
 		 * </ol>
+		 *
 		 * @see #ISOLATED
 		 * @see org.springframework.test.context.transaction.TestContextTransactionUtils#retrieveDataSource
 		 * @see org.springframework.test.context.transaction.TestContextTransactionUtils#retrieveTransactionManager
@@ -275,6 +284,7 @@ public @interface SqlConfig {
 		 * <p>This is effectively the default error mode so that if a script
 		 * is accidentally executed, it will fail fast if any SQL statement in
 		 * the script results in an error.
+		 *
 		 * @see #CONTINUE_ON_ERROR
 		 */
 		FAIL_ON_ERROR,
@@ -284,6 +294,7 @@ public @interface SqlConfig {
 		 * propagated as exceptions.
 		 * <p>{@code CONTINUE_ON_ERROR} is the logical <em>opposite</em> of
 		 * {@code FAIL_ON_ERROR} and a <em>superset</em> of {@code IGNORE_FAILED_DROPS}.
+		 *
 		 * @see #FAIL_ON_ERROR
 		 * @see #IGNORE_FAILED_DROPS
 		 */
@@ -293,6 +304,7 @@ public @interface SqlConfig {
 		 * Indicates that failed SQL {@code DROP} statements can be ignored.
 		 * <p>This is useful for a non-embedded database whose SQL dialect does
 		 * not support an {@code IF EXISTS} clause in a {@code DROP} statement.
+		 *
 		 * @see #CONTINUE_ON_ERROR
 		 */
 		IGNORE_FAILED_DROPS

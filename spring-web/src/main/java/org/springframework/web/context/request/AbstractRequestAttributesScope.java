@@ -64,8 +64,7 @@ public abstract class AbstractRequestAttributesScope implements Scope {
 		if (scopedObject != null) {
 			attributes.removeAttribute(name, getScope());
 			return scopedObject;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -86,6 +85,7 @@ public abstract class AbstractRequestAttributesScope implements Scope {
 
 	/**
 	 * Template method that determines the actual target scope.
+	 *
 	 * @return the target scope, in the form of an appropriate
 	 * {@link RequestAttributes} constant
 	 * @see RequestAttributes#SCOPE_REQUEST

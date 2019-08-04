@@ -97,14 +97,15 @@ public class HandlerResultMatchers {
 	 * mockMvc.perform(get("/"))
 	 *     .andExpect(handler().methodCall(on(SimpleController.class).handle()));
 	 * </pre>
+	 *
 	 * @param obj either the value returned from a "mock" controller invocation
-	 * or the "mock" controller itself after an invocation
+	 *            or the "mock" controller itself after an invocation
 	 */
 	public ResultMatcher methodCall(final Object obj) {
 		return result -> {
 			if (!(obj instanceof MethodInvocationInfo)) {
 				fail(String.format("The supplied object [%s] is not an instance of %s. " +
-						"Ensure that you invoke the handler method via MvcUriComponentsBuilder.on().",
+								"Ensure that you invoke the handler method via MvcUriComponentsBuilder.on().",
 						obj, MethodInvocationInfo.class.getName()));
 			}
 			MethodInvocationInfo invocationInfo = (MethodInvocationInfo) obj;

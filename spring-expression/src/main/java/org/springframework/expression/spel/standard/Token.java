@@ -40,8 +40,9 @@ class Token {
 	/**
 	 * Constructor for use when there is no particular data for the token
 	 * (e.g. TRUE or '+')
+	 *
 	 * @param startPos the exact start
-	 * @param endPos the index to the last character
+	 * @param endPos   the index to the last character
 	 */
 	Token(TokenKind tokenKind, int startPos, int endPos) {
 		this.kind = tokenKind;
@@ -65,7 +66,7 @@ class Token {
 
 	public boolean isNumericRelationalOperator() {
 		return (this.kind == TokenKind.GT || this.kind == TokenKind.GE || this.kind == TokenKind.LT ||
-				this.kind == TokenKind.LE || this.kind==TokenKind.EQ || this.kind==TokenKind.NE);
+				this.kind == TokenKind.LE || this.kind == TokenKind.EQ || this.kind == TokenKind.NE);
 	}
 
 	public String stringValue() {

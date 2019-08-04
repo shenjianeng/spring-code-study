@@ -57,7 +57,7 @@ import org.springframework.util.xml.StaxUtils;
  *     &lt;child&gt;bar&lt;/child&gt;
  * &lt;/root&gt;
  * </pre>
- *
+ * <p>
  * this decoder will produce a {@link Flux} with the following events:
  *
  * <ol>
@@ -96,15 +96,14 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 	@Override
 	@SuppressWarnings({"rawtypes", "unchecked"})  // on JDK 9 where XMLEventReader is Iterator<Object>
 	public Flux<XMLEvent> decode(Publisher<DataBuffer> input, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+								 @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		if (this.useAalto) {
 			AaltoDataBufferToXmlEvent mapper = new AaltoDataBufferToXmlEvent();
 			return Flux.from(input)
 					.flatMapIterable(mapper)
 					.doFinally(signalType -> mapper.endOfInput());
-		}
-		else {
+		} else {
 			return DataBufferUtils.join(input).
 					flatMapIterable(buffer -> {
 						try {
@@ -113,11 +112,9 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 							List<XMLEvent> result = new ArrayList<>();
 							eventReader.forEachRemaining(event -> result.add((XMLEvent) event));
 							return result;
-						}
-						catch (XMLStreamException ex) {
+						} catch (XMLStreamException ex) {
 							throw Exceptions.propagate(ex);
-						}
-						finally {
+						} finally {
 							DataBufferUtils.release(buffer);
 						}
 					});
@@ -148,8 +145,7 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 					if (this.streamReader.next() == AsyncXMLStreamReader.EVENT_INCOMPLETE) {
 						// no more events with what currently has been fed to the reader
 						break;
-					}
-					else {
+					} else {
 						XMLEvent event = this.eventAllocator.allocate(this.streamReader);
 						events.add(event);
 						if (event.isEndDocument()) {
@@ -158,11 +154,9 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 					}
 				}
 				return events;
-			}
-			catch (XMLStreamException ex) {
+			} catch (XMLStreamException ex) {
 				throw Exceptions.propagate(ex);
-			}
-			finally {
+			} finally {
 				DataBufferUtils.release(dataBuffer);
 			}
 		}

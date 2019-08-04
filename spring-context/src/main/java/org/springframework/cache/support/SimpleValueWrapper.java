@@ -34,6 +34,7 @@ public class SimpleValueWrapper implements ValueWrapper {
 
 	/**
 	 * Create a new SimpleValueWrapper instance for exposing the given value.
+	 *
 	 * @param value the value to expose (may be {@code null})
 	 */
 	public SimpleValueWrapper(@Nullable Object value) {

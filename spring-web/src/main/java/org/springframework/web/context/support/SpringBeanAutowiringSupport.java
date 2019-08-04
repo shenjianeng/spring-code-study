@@ -50,8 +50,8 @@ import org.springframework.web.context.WebApplicationContext;
  * based on the ServletContext.
  *
  * @author Juergen Hoeller
- * @since 2.5.1
  * @see WebApplicationObjectSupport
+ * @since 2.5.1
  */
 public abstract class SpringBeanAutowiringSupport {
 
@@ -62,6 +62,7 @@ public abstract class SpringBeanAutowiringSupport {
 	 * This constructor performs injection on this instance,
 	 * based on the current web application context.
 	 * <p>Intended for use as a base class.
+	 *
 	 * @see #processInjectionBasedOnCurrentContext
 	 */
 	public SpringBeanAutowiringSupport() {
@@ -73,6 +74,7 @@ public abstract class SpringBeanAutowiringSupport {
 	 * Process {@code @Autowired} injection for the given target object,
 	 * based on the current web application context.
 	 * <p>Intended for use as a delegate.
+	 *
 	 * @param target the target object to process
 	 * @see org.springframework.web.context.ContextLoader#getCurrentWebApplicationContext()
 	 */
@@ -83,8 +85,7 @@ public abstract class SpringBeanAutowiringSupport {
 			AutowiredAnnotationBeanPostProcessor bpp = new AutowiredAnnotationBeanPostProcessor();
 			bpp.setBeanFactory(cc.getAutowireCapableBeanFactory());
 			bpp.processInjection(target);
-		}
-		else {
+		} else {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Current WebApplicationContext is not available for processing of " +
 						ClassUtils.getShortName(target.getClass()) + ": " +
@@ -98,7 +99,8 @@ public abstract class SpringBeanAutowiringSupport {
 	 * Process {@code @Autowired} injection for the given target object,
 	 * based on the current root web application context as stored in the ServletContext.
 	 * <p>Intended for use as a delegate.
-	 * @param target the target object to process
+	 *
+	 * @param target         the target object to process
 	 * @param servletContext the ServletContext to find the Spring web application context in
 	 * @see WebApplicationContextUtils#getWebApplicationContext(javax.servlet.ServletContext)
 	 */

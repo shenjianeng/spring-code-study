@@ -49,12 +49,12 @@ public class DeclarationOrderIndependenceTests {
 
 	@Test
 	public void testTargetIsSerializable() {
-		assertTrue("target bean is serializable",this.target instanceof Serializable);
+		assertTrue("target bean is serializable", this.target instanceof Serializable);
 	}
 
 	@Test
 	public void testTargetIsBeanNameAware() {
-		assertTrue("target bean is bean name aware",this.target instanceof BeanNameAware);
+		assertTrue("target bean is bean name aware", this.target instanceof BeanNameAware);
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class DeclarationOrderIndependenceTests {
 		AspectCollaborator collab = new AspectCollaborator();
 		this.aspect.setCollaborator(collab);
 		this.target.doSomething();
-		assertTrue("before advice fired",collab.beforeFired);
+		assertTrue("before advice fired", collab.beforeFired);
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class DeclarationOrderIndependenceTests {
 		AspectCollaborator collab = new AspectCollaborator();
 		this.aspect.setCollaborator(collab);
 		this.target.getX();
-		assertTrue("around advice fired",collab.aroundFired);
+		assertTrue("around advice fired", collab.aroundFired);
 	}
 
 	@Test
@@ -78,11 +78,13 @@ public class DeclarationOrderIndependenceTests {
 		AspectCollaborator collab = new AspectCollaborator();
 		this.aspect.setCollaborator(collab);
 		this.target.getX();
-		assertTrue("after returning advice fired",collab.afterReturningFired);
+		assertTrue("after returning advice fired", collab.afterReturningFired);
 	}
 
 
-	/** public visibility is required */
+	/**
+	 * public visibility is required
+	 */
 	public static class BeanNameAwareMixin implements BeanNameAware {
 
 		@SuppressWarnings("unused")
@@ -95,7 +97,9 @@ public class DeclarationOrderIndependenceTests {
 
 	}
 
-	/** public visibility is required */
+	/**
+	 * public visibility is required
+	 */
 	@SuppressWarnings("serial")
 	public static class SerializableMixin implements Serializable {
 	}
@@ -107,7 +111,9 @@ class TopsyTurvyAspect {
 
 	interface Collaborator {
 		void beforeAdviceFired();
+
 		void afterReturningAdviceFired();
+
 		void aroundAdviceFired();
 	}
 

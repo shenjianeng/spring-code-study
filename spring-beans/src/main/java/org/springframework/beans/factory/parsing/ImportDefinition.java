@@ -25,8 +25,8 @@ import org.springframework.util.Assert;
  * Representation of an import that has been processed during the parsing process.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see ReaderEventListener#importProcessed(ImportDefinition)
+ * @since 2.0
  */
 public class ImportDefinition implements BeanMetadataElement {
 
@@ -41,6 +41,7 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * Create a new ImportDefinition.
+	 *
 	 * @param importedResource the location of the imported resource
 	 */
 	public ImportDefinition(String importedResource) {
@@ -49,8 +50,9 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * Create a new ImportDefinition.
+	 *
 	 * @param importedResource the location of the imported resource
-	 * @param source the source object (may be {@code null})
+	 * @param source           the source object (may be {@code null})
 	 */
 	public ImportDefinition(String importedResource, @Nullable Object source) {
 		this(importedResource, null, source);
@@ -58,8 +60,9 @@ public class ImportDefinition implements BeanMetadataElement {
 
 	/**
 	 * Create a new ImportDefinition.
+	 *
 	 * @param importedResource the location of the imported resource
-	 * @param source the source object (may be {@code null})
+	 * @param source           the source object (may be {@code null})
 	 */
 	public ImportDefinition(String importedResource, @Nullable Resource[] actualResources, @Nullable Object source) {
 		Assert.notNull(importedResource, "Imported resource must not be null");

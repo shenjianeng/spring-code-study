@@ -39,7 +39,7 @@ public class RequestParameterTests {
 	public void queryParameter() throws Exception {
 
 		standaloneSetup(new PersonController()).build()
-			.perform(get("/search?name=George").accept(MediaType.APPLICATION_JSON))
+				.perform(get("/search?name=George").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(jsonPath("$.name").value("George"));
@@ -49,7 +49,7 @@ public class RequestParameterTests {
 	@Controller
 	private class PersonController {
 
-		@RequestMapping(value="/search")
+		@RequestMapping(value = "/search")
 		@ResponseBody
 		public Person get(@RequestParam String name) {
 			Person person = new Person(name);

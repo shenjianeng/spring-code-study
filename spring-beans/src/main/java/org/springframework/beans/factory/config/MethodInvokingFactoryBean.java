@@ -77,9 +77,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
- * @since 21.11.2003
  * @see MethodInvokingBean
  * @see org.springframework.util.MethodInvoker
+ * @since 21.11.2003
  */
 public class MethodInvokingFactoryBean extends MethodInvokingBean implements FactoryBean<Object> {
 
@@ -87,7 +87,9 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 
 	private boolean initialized = false;
 
-	/** Method call result in the singleton case. */
+	/**
+	 * Method call result in the singleton case.
+	 */
 	@Nullable
 	private Object singletonObject;
 
@@ -124,8 +126,7 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 			}
 			// Singleton: return shared object.
 			return this.singletonObject;
-		}
-		else {
+		} else {
 			// Prototype: new object on each call.
 			return invokeWithTargetException();
 		}

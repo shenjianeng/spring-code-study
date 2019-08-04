@@ -106,8 +106,7 @@ public class JndiDestinationResolverTests {
 		try {
 			resolver.resolveDestinationName(session, DESTINATION_NAME, true);
 			fail("expected DestinationResolutionException");
-		}
-		catch (DestinationResolutionException ex) {
+		} catch (DestinationResolutionException ex) {
 			// expected
 		}
 	}

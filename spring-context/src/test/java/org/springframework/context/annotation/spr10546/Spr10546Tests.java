@@ -29,7 +29,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author Rob Winch
  */
 public class Spr10546Tests {
@@ -46,7 +45,7 @@ public class Spr10546Tests {
 
 	@Test
 	public void enclosingConfigFirstParentDefinesBean() {
-		assertLoadsMyBean(AEnclosingConfig.class,AEnclosingConfig.ChildConfig.class);
+		assertLoadsMyBean(AEnclosingConfig.class, AEnclosingConfig.ChildConfig.class);
 	}
 
 	/**
@@ -61,70 +60,76 @@ public class Spr10546Tests {
 	 */
 	@Test
 	public void enclosingConfigFirstParentDefinesBeanWithScanning() {
-		AnnotationConfigApplicationContext ctx= new AnnotationConfigApplicationContext();
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		context = ctx;
 		ctx.scan(AEnclosingConfig.class.getPackage().getName());
 		ctx.refresh();
-		assertThat(context.getBean("myBean",String.class), equalTo("myBean"));
+		assertThat(context.getBean("myBean", String.class), equalTo("myBean"));
 	}
 
 	@Test
 	public void enclosingConfigFirstParentDefinesBeanWithImportResource() {
-		assertLoadsMyBean(AEnclosingWithImportResourceConfig.class,AEnclosingWithImportResourceConfig.ChildConfig.class);
+		assertLoadsMyBean(AEnclosingWithImportResourceConfig.class, AEnclosingWithImportResourceConfig.ChildConfig.class);
 	}
 
 	@Configuration
 	static class AEnclosingWithImportResourceConfig {
 		@Configuration
-		public static class ChildConfig extends ParentWithImportResourceConfig {}
+		public static class ChildConfig extends ParentWithImportResourceConfig {
+		}
 	}
 
 	@Test
 	public void enclosingConfigFirstParentDefinesBeanWithComponentScan() {
-		assertLoadsMyBean(AEnclosingWithComponentScanConfig.class,AEnclosingWithComponentScanConfig.ChildConfig.class);
+		assertLoadsMyBean(AEnclosingWithComponentScanConfig.class, AEnclosingWithComponentScanConfig.ChildConfig.class);
 	}
 
 	@Configuration
 	static class AEnclosingWithComponentScanConfig {
 		@Configuration
-		public static class ChildConfig extends ParentWithComponentScanConfig {}
+		public static class ChildConfig extends ParentWithComponentScanConfig {
+		}
 	}
 
 	@Test
 	public void enclosingConfigFirstParentWithParentDefinesBean() {
-		assertLoadsMyBean(AEnclosingWithGrandparentConfig.class,AEnclosingWithGrandparentConfig.ChildConfig.class);
+		assertLoadsMyBean(AEnclosingWithGrandparentConfig.class, AEnclosingWithGrandparentConfig.ChildConfig.class);
 	}
 
 	@Configuration
 	static class AEnclosingWithGrandparentConfig {
 		@Configuration
-		public static class ChildConfig extends ParentWithParentConfig {}
+		public static class ChildConfig extends ParentWithParentConfig {
+		}
 	}
 
 	@Test
 	public void importChildConfigThenChildConfig() {
-		assertLoadsMyBean(ImportChildConfig.class,ChildConfig.class);
+		assertLoadsMyBean(ImportChildConfig.class, ChildConfig.class);
 	}
 
 	@Configuration
-	static class ChildConfig extends ParentConfig {}
+	static class ChildConfig extends ParentConfig {
+	}
 
 	@Configuration
 	@Import(ChildConfig.class)
-	static class ImportChildConfig {}
+	static class ImportChildConfig {
+	}
 
 
 	// These worked prior, but validating they continue to work
 
 	@Test
 	public void enclosingConfigFirstParentDefinesBeanWithImport() {
-		assertLoadsMyBean(AEnclosingWithImportConfig.class,AEnclosingWithImportConfig.ChildConfig.class);
+		assertLoadsMyBean(AEnclosingWithImportConfig.class, AEnclosingWithImportConfig.ChildConfig.class);
 	}
 
 	@Configuration
 	static class AEnclosingWithImportConfig {
 		@Configuration
-		public static class ChildConfig extends ParentWithImportConfig {}
+		public static class ChildConfig extends ParentWithImportConfig {
+		}
 	}
 
 	@Test
@@ -144,6 +149,6 @@ public class Spr10546Tests {
 
 	private void assertLoadsMyBean(Class<?>... annotatedClasses) {
 		context = new AnnotationConfigApplicationContext(annotatedClasses);
-		assertThat(context.getBean("myBean",String.class), equalTo("myBean"));
+		assertThat(context.getBean("myBean", String.class), equalTo("myBean"));
 	}
 }

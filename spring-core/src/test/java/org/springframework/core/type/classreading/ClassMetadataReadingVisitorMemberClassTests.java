@@ -23,8 +23,8 @@ import org.springframework.core.type.ClassMetadata;
 
 /**
  * @author Chris Beams
- * @since 3.1
  * @see AbstractClassMetadataMemberClassTests
+ * @since 3.1
  */
 public class ClassMetadataReadingVisitorMemberClassTests
 		extends AbstractClassMetadataMemberClassTests {
@@ -33,10 +33,9 @@ public class ClassMetadataReadingVisitorMemberClassTests
 	public ClassMetadata getClassMetadataFor(Class<?> clazz) {
 		try {
 			MetadataReader reader =
-				new SimpleMetadataReaderFactory().getMetadataReader(clazz.getName());
+					new SimpleMetadataReaderFactory().getMetadataReader(clazz.getName());
 			return reader.getAnnotationMetadata();
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

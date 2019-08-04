@@ -36,11 +36,11 @@ import org.springframework.util.Assert;
  * {@link JaxWsPortClientInterceptor} and {@link JaxWsPortProxyFactoryBean}.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see javax.xml.ws.Service
  * @see LocalJaxWsServiceFactoryBean
  * @see JaxWsPortClientInterceptor
  * @see JaxWsPortProxyFactoryBean
+ * @since 2.5
  */
 public class LocalJaxWsServiceFactory {
 
@@ -65,6 +65,7 @@ public class LocalJaxWsServiceFactory {
 
 	/**
 	 * Set the URL of the WSDL document that describes the service.
+	 *
 	 * @see #setWsdlDocumentResource(Resource)
 	 */
 	public void setWsdlDocumentUrl(@Nullable URL wsdlDocumentUrl) {
@@ -73,6 +74,7 @@ public class LocalJaxWsServiceFactory {
 
 	/**
 	 * Set the WSDL document URL as a {@link Resource}.
+	 *
 	 * @since 3.2
 	 */
 	public void setWsdlDocumentResource(Resource wsdlDocumentResource) throws IOException {
@@ -123,8 +125,9 @@ public class LocalJaxWsServiceFactory {
 	/**
 	 * Specify WebServiceFeature objects (e.g. as inner bean definitions)
 	 * to apply to JAX-WS service creation.
-	 * @since 4.0
+	 *
 	 * @see Service#create(QName, WebServiceFeature...)
+	 * @since 4.0
 	 */
 	public void setServiceFeatures(WebServiceFeature... serviceFeatures) {
 		this.serviceFeatures = serviceFeatures;
@@ -133,6 +136,7 @@ public class LocalJaxWsServiceFactory {
 	/**
 	 * Set the JDK concurrent executor to use for asynchronous executions
 	 * that require callbacks.
+	 *
 	 * @see javax.xml.ws.Service#setExecutor
 	 */
 	public void setExecutor(Executor executor) {
@@ -142,6 +146,7 @@ public class LocalJaxWsServiceFactory {
 	/**
 	 * Set the JAX-WS HandlerResolver to use for all proxies and dispatchers
 	 * created through this factory.
+	 *
 	 * @see javax.xml.ws.Service#setHandlerResolver
 	 */
 	public void setHandlerResolver(HandlerResolver handlerResolver) {
@@ -151,6 +156,7 @@ public class LocalJaxWsServiceFactory {
 
 	/**
 	 * Create a JAX-WS Service according to the parameters of this factory.
+	 *
 	 * @see #setServiceName
 	 * @see #setWsdlDocumentUrl
 	 */
@@ -160,10 +166,9 @@ public class LocalJaxWsServiceFactory {
 
 		if (this.serviceFeatures != null) {
 			service = (this.wsdlDocumentUrl != null ?
-				Service.create(this.wsdlDocumentUrl, getQName(this.serviceName), this.serviceFeatures) :
-				Service.create(getQName(this.serviceName), this.serviceFeatures));
-		}
-		else {
+					Service.create(this.wsdlDocumentUrl, getQName(this.serviceName), this.serviceFeatures) :
+					Service.create(getQName(this.serviceName), this.serviceFeatures));
+		} else {
 			service = (this.wsdlDocumentUrl != null ?
 					Service.create(this.wsdlDocumentUrl, getQName(this.serviceName)) :
 					Service.create(getQName(this.serviceName)));
@@ -182,6 +187,7 @@ public class LocalJaxWsServiceFactory {
 	/**
 	 * Return a QName for the given name, relative to the namespace URI
 	 * of this factory, if given.
+	 *
 	 * @see #setNamespaceUri
 	 */
 	protected QName getQName(String name) {

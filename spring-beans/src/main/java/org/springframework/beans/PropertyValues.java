@@ -31,13 +31,14 @@ import org.springframework.lang.Nullable;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 13 May 2001
  * @see PropertyValue
+ * @since 13 May 2001
  */
 public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * Return an {@link Iterator} over the property values.
+	 *
 	 * @since 5.1
 	 */
 	@Override
@@ -47,6 +48,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * Return a {@link Spliterator} over the property values.
+	 *
 	 * @since 5.1
 	 */
 	@Override
@@ -56,6 +58,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * Return a sequential {@link Stream} containing the property values.
+	 *
 	 * @since 5.1
 	 */
 	default Stream<PropertyValue> stream() {
@@ -69,6 +72,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * Return the property value with the given name, if any.
+	 *
 	 * @param propertyName the name to search for
 	 * @return the property value, or {@code null} if none
 	 */
@@ -78,6 +82,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	/**
 	 * Return the changes since the previous PropertyValues.
 	 * Subclasses should also override {@code equals}.
+	 *
 	 * @param old old property values
 	 * @return the updated or new properties.
 	 * Return empty PropertyValues if there are no changes.
@@ -87,6 +92,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
 	 * Is there a property value (or other processing entry) for this property?
+	 *
 	 * @param propertyName the name of the property we're interested in
 	 * @return whether there is a property value for this property
 	 */

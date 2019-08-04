@@ -38,12 +38,12 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
- * @since 1.2
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator)
  * @see CciTemplate#execute(javax.resource.cci.InteractionSpec, RecordCreator, RecordExtractor)
  * @see CciTemplate#createIndexedRecord(String)
  * @see CciTemplate#createMappedRecord(String)
  * @see CciTemplate#setOutputRecordCreator(RecordCreator)
+ * @since 1.2
  */
 @FunctionalInterface
 public interface RecordCreator {
@@ -53,11 +53,12 @@ public interface RecordCreator {
 	 * <p>For use as <i>input</i> creator with CciTemplate's {@code execute} methods,
 	 * this method should create a <i>populated</i> Record instance. For use as
 	 * <i>output</i> Record creator, it should return an <i>empty</i> Record instance.
+	 *
 	 * @param recordFactory the CCI RecordFactory (never {@code null}, but not guaranteed to be
-	 * supported by the connector: its create methods might throw NotSupportedException)
+	 *                      supported by the connector: its create methods might throw NotSupportedException)
 	 * @return the Record instance
-	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
-	 * to a DataAccessException
+	 * @throws ResourceException   if thrown by a CCI method, to be auto-converted
+	 *                             to a DataAccessException
 	 * @throws DataAccessException in case of custom exceptions
 	 */
 	Record createRecord(RecordFactory recordFactory) throws ResourceException, DataAccessException;

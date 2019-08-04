@@ -52,12 +52,12 @@ import org.springframework.mail.MailSender;
  * messages in your mock implementations of the various {@code send} methods.
  *
  * @author Juergen Hoeller
- * @since 07.10.2003
  * @see javax.mail.internet.MimeMessage
  * @see javax.mail.Session
  * @see JavaMailSenderImpl
  * @see MimeMessagePreparator
  * @see MimeMessageHelper
+ * @since 07.10.2003
  */
 public interface JavaMailSender extends MailSender {
 
@@ -65,6 +65,7 @@ public interface JavaMailSender extends MailSender {
 	 * Create a new JavaMail MimeMessage for the underlying JavaMail Session
 	 * of this sender. Needs to be called to create MimeMessage instances
 	 * that can be prepared by the client and passed to send(MimeMessage).
+	 *
 	 * @return the new MimeMessage instance
 	 * @see #send(MimeMessage)
 	 * @see #send(MimeMessage[])
@@ -74,21 +75,20 @@ public interface JavaMailSender extends MailSender {
 	/**
 	 * Create a new JavaMail MimeMessage for the underlying JavaMail Session
 	 * of this sender, using the given input stream as the message source.
+	 *
 	 * @param contentStream the raw MIME input stream for the message
 	 * @return the new MimeMessage instance
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of message creation failure
-	*/
+	 * @throws org.springframework.mail.MailParseException in case of message creation failure
+	 */
 	MimeMessage createMimeMessage(InputStream contentStream) throws MailException;
 
 	/**
 	 * Send the given JavaMail MIME message.
 	 * The message needs to have been created with {@link #createMimeMessage()}.
+	 *
 	 * @param mimeMessage message to send
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending the message
+	 * @throws org.springframework.mail.MailAuthenticationException in case of authentication failure
+	 * @throws org.springframework.mail.MailSendException           in case of failure when sending the message
 	 * @see #createMimeMessage
 	 */
 	void send(MimeMessage mimeMessage) throws MailException;
@@ -96,11 +96,10 @@ public interface JavaMailSender extends MailSender {
 	/**
 	 * Send the given array of JavaMail MIME messages in batch.
 	 * The messages need to have been created with {@link #createMimeMessage()}.
+	 *
 	 * @param mimeMessages messages to send
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending a message
+	 * @throws org.springframework.mail.MailAuthenticationException in case of authentication failure
+	 * @throws org.springframework.mail.MailSendException           in case of failure when sending a message
 	 * @see #createMimeMessage
 	 */
 	void send(MimeMessage... mimeMessages) throws MailException;
@@ -110,15 +109,12 @@ public interface JavaMailSender extends MailSender {
 	 * <p>Alternative way to prepare MimeMessage instances, instead of
 	 * {@link #createMimeMessage()} and {@link #send(MimeMessage)} calls.
 	 * Takes care of proper exception conversion.
+	 *
 	 * @param mimeMessagePreparator the preparator to use
-	 * @throws org.springframework.mail.MailPreparationException
-	 * in case of failure when preparing the message
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of failure when parsing the message
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending the message
+	 * @throws org.springframework.mail.MailPreparationException    in case of failure when preparing the message
+	 * @throws org.springframework.mail.MailParseException          in case of failure when parsing the message
+	 * @throws org.springframework.mail.MailAuthenticationException in case of authentication failure
+	 * @throws org.springframework.mail.MailSendException           in case of failure when sending the message
 	 */
 	void send(MimeMessagePreparator mimeMessagePreparator) throws MailException;
 
@@ -127,15 +123,12 @@ public interface JavaMailSender extends MailSender {
 	 * <p>Alternative way to prepare MimeMessage instances, instead of
 	 * {@link #createMimeMessage()} and {@link #send(MimeMessage[])} calls.
 	 * Takes care of proper exception conversion.
+	 *
 	 * @param mimeMessagePreparators the preparator to use
-	 * @throws org.springframework.mail.MailPreparationException
-	 * in case of failure when preparing a message
-	 * @throws org.springframework.mail.MailParseException
-	 * in case of failure when parsing a message
-	 * @throws org.springframework.mail.MailAuthenticationException
-	 * in case of authentication failure
-	 * @throws org.springframework.mail.MailSendException
-	 * in case of failure when sending a message
+	 * @throws org.springframework.mail.MailPreparationException    in case of failure when preparing a message
+	 * @throws org.springframework.mail.MailParseException          in case of failure when parsing a message
+	 * @throws org.springframework.mail.MailAuthenticationException in case of authentication failure
+	 * @throws org.springframework.mail.MailSendException           in case of failure when sending a message
 	 */
 	void send(MimeMessagePreparator... mimeMessagePreparators) throws MailException;
 

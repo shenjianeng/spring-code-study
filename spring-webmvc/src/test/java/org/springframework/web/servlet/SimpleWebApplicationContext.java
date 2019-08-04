@@ -106,8 +106,7 @@ public class SimpleWebApplicationContext extends StaticWebApplicationContext {
 		public Theme getTheme(String themeName) {
 			if (AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME.equals(themeName)) {
 				return new SimpleTheme(AbstractThemeResolver.ORIGINAL_DEFAULT_THEME_NAME, this.messageSource);
-			}
-			else {
+			} else {
 				return null;
 			}
 		}

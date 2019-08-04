@@ -33,7 +33,8 @@ public class ServiceInvocationCounter {
 
 
 	@Pointcut("execution(* example.scannable.FooService+.*(..))")
-	public void serviceExecution() {}
+	public void serviceExecution() {
+	}
 
 	@Before("serviceExecution()")
 	public void countUse() {

@@ -32,7 +32,8 @@ public class InvalidTimeoutException extends TransactionUsageException {
 
 	/**
 	 * Constructor for InvalidTimeoutException.
-	 * @param msg the detail message
+	 *
+	 * @param msg     the detail message
 	 * @param timeout the invalid timeout value
 	 */
 	public InvalidTimeoutException(String msg, int timeout) {

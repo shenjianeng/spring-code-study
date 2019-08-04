@@ -67,8 +67,7 @@ final class ObjectToCollectionConverter implements ConditionalGenericConverter {
 
 		if (elementDesc == null || elementDesc.isCollection()) {
 			target.add(source);
-		}
-		else {
+		} else {
 			Object singleElement = this.conversionService.convert(source, sourceType, elementDesc);
 			target.add(singleElement);
 		}

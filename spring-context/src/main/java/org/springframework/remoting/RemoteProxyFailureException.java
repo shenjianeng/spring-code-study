@@ -22,15 +22,16 @@ package org.springframework.remoting;
  * when a method was not found on the underlying RMI stub.
  *
  * @author Juergen Hoeller
- * @since 1.2.8
  * @see RemoteInvocationFailureException
+ * @since 1.2.8
  */
 @SuppressWarnings("serial")
 public class RemoteProxyFailureException extends RemoteAccessException {
 
 	/**
 	 * Constructor for RemoteProxyFailureException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the remoting API in use
 	 */
 	public RemoteProxyFailureException(String msg, Throwable cause) {

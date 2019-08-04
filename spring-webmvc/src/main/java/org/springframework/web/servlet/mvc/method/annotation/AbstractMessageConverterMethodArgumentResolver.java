@@ -93,10 +93,11 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * Constructor with converters and {@code Request~} and {@code ResponseBodyAdvice}.
+	 *
 	 * @since 4.2
 	 */
 	public AbstractMessageConverterMethodArgumentResolver(List<HttpMessageConverter<?>> converters,
-			@Nullable List<Object> requestResponseBodyAdvice) {
+														  @Nullable List<Object> requestResponseBodyAdvice) {
 
 		Assert.notEmpty(converters, "'messageConverters' must not be empty");
 		this.messageConverters = converters;
@@ -132,17 +133,18 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	/**
 	 * Create the method argument value of the expected parameter type by
 	 * reading from the given request.
-	 * @param <T> the expected type of the argument value to be created
+	 *
+	 * @param <T>        the expected type of the argument value to be created
 	 * @param webRequest the current request
-	 * @param parameter the method parameter descriptor (may be {@code null})
-	 * @param paramType the type of the argument value to be created
+	 * @param parameter  the method parameter descriptor (may be {@code null})
+	 * @param paramType  the type of the argument value to be created
 	 * @return the created method argument value
-	 * @throws IOException if the reading from the request fails
+	 * @throws IOException                        if the reading from the request fails
 	 * @throws HttpMediaTypeNotSupportedException if no suitable message converter is found
 	 */
 	@Nullable
 	protected <T> Object readWithMessageConverters(NativeWebRequest webRequest, MethodParameter parameter,
-			Type paramType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
+												   Type paramType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
 
 		HttpInputMessage inputMessage = createInputMessage(webRequest);
 		return readWithMessageConverters(inputMessage, parameter, paramType);
@@ -151,26 +153,26 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	/**
 	 * Create the method argument value of the expected parameter type by reading
 	 * from the given HttpInputMessage.
-	 * @param <T> the expected type of the argument value to be created
+	 *
+	 * @param <T>          the expected type of the argument value to be created
 	 * @param inputMessage the HTTP input message representing the current request
-	 * @param parameter the method parameter descriptor
-	 * @param targetType the target type, not necessarily the same as the method
-	 * parameter type, e.g. for {@code HttpEntity<String>}.
+	 * @param parameter    the method parameter descriptor
+	 * @param targetType   the target type, not necessarily the same as the method
+	 *                     parameter type, e.g. for {@code HttpEntity<String>}.
 	 * @return the created method argument value
-	 * @throws IOException if the reading from the request fails
+	 * @throws IOException                        if the reading from the request fails
 	 * @throws HttpMediaTypeNotSupportedException if no suitable message converter is found
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
 	protected <T> Object readWithMessageConverters(HttpInputMessage inputMessage, MethodParameter parameter,
-			Type targetType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
+												   Type targetType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
 
 		MediaType contentType;
 		boolean noContentType = false;
 		try {
 			contentType = inputMessage.getHeaders().getContentType();
-		}
-		catch (InvalidMediaTypeException ex) {
+		} catch (InvalidMediaTypeException ex) {
 			throw new HttpMediaTypeNotSupportedException(ex.getMessage());
 		}
 		if (contentType == null) {
@@ -204,15 +206,13 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 						body = (genericConverter != null ? genericConverter.read(targetType, contextClass, msgToUse) :
 								((HttpMessageConverter<T>) converter).read(targetClass, msgToUse));
 						body = getAdvice().afterBodyRead(body, msgToUse, parameter, targetType, converterType);
-					}
-					else {
+					} else {
 						body = getAdvice().handleEmptyBody(null, message, parameter, targetType, converterType);
 					}
 					break;
 				}
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new HttpMessageNotReadableException("I/O error while reading input message", ex, inputMessage);
 		}
 
@@ -236,6 +236,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * Create a new {@link HttpInputMessage} from the given {@link NativeWebRequest}.
+	 *
 	 * @param webRequest the web request to create an input message from
 	 * @return the input message
 	 */
@@ -250,10 +251,11 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	 * <p>The default implementation checks for {@code @javax.validation.Valid},
 	 * Spring's {@link org.springframework.validation.annotation.Validated},
 	 * and custom annotations whose name starts with "Valid".
-	 * @param binder the DataBinder to be used
+	 *
+	 * @param binder    the DataBinder to be used
 	 * @param parameter the method parameter descriptor
-	 * @since 4.1.5
 	 * @see #isBindExceptionRequired
+	 * @since 4.1.5
 	 */
 	protected void validateIfApplicable(WebDataBinder binder, MethodParameter parameter) {
 		Annotation[] annotations = parameter.getParameterAnnotations();
@@ -261,7 +263,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 			Validated validatedAnn = AnnotationUtils.getAnnotation(ann, Validated.class);
 			if (validatedAnn != null || ann.annotationType().getSimpleName().startsWith("Valid")) {
 				Object hints = (validatedAnn != null ? validatedAnn.value() : AnnotationUtils.getValue(ann));
-				Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[] {hints});
+				Object[] validationHints = (hints instanceof Object[] ? (Object[]) hints : new Object[]{hints});
 				binder.validate(validationHints);
 				break;
 			}
@@ -270,7 +272,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * Whether to raise a fatal bind exception on validation errors.
-	 * @param binder the data binder used to perform data binding
+	 *
+	 * @param binder    the data binder used to perform data binding
 	 * @param parameter the method parameter descriptor
 	 * @return {@code true} if the next method argument is not of type {@link Errors}
 	 * @since 4.1.5
@@ -284,7 +287,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	/**
 	 * Adapt the given argument against the method parameter, if necessary.
-	 * @param arg the resolved argument
+	 *
+	 * @param arg       the resolved argument
 	 * @param parameter the method parameter descriptor
 	 * @return the adapted argument, or the original resolved argument as-is
 	 * @since 4.3.5
@@ -295,8 +299,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 			if (arg == null || (arg instanceof Collection && ((Collection<?>) arg).isEmpty()) ||
 					(arg instanceof Object[] && ((Object[]) arg).length == 0)) {
 				return Optional.empty();
-			}
-			else {
+			} else {
 				return Optional.of(arg);
 			}
 		}
@@ -318,14 +321,12 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 				inputStream.mark(1);
 				this.body = (inputStream.read() != -1 ? inputStream : null);
 				inputStream.reset();
-			}
-			else {
+			} else {
 				PushbackInputStream pushbackInputStream = new PushbackInputStream(inputStream);
 				int b = pushbackInputStream.read();
 				if (b == -1) {
 					this.body = null;
-				}
-				else {
+				} else {
 					this.body = pushbackInputStream;
 					pushbackInputStream.unread(b);
 				}

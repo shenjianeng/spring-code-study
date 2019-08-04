@@ -31,8 +31,8 @@ import org.springframework.lang.Nullable;
  * this processor with its underlying bean factory.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see BootstrapContextAware
+ * @since 2.5
  */
 class BootstrapContextAwareProcessor implements BeanPostProcessor {
 

@@ -41,7 +41,6 @@ public class DuplicatePostProcessingTests {
 	}
 
 
-
 	static class Config {
 
 		@Bean

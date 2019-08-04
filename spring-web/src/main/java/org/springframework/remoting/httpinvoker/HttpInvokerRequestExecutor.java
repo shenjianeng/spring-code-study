@@ -38,21 +38,22 @@ import org.springframework.remoting.support.RemoteInvocationResult;
  * </ul>
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see HttpInvokerClientInterceptor#setHttpInvokerRequestExecutor
+ * @since 1.1
  */
 @FunctionalInterface
 public interface HttpInvokerRequestExecutor {
 
 	/**
 	 * Execute a request to send the given remote invocation.
-	 * @param config the HTTP invoker configuration that specifies the
-	 * target service
+	 *
+	 * @param config     the HTTP invoker configuration that specifies the
+	 *                   target service
 	 * @param invocation the RemoteInvocation to execute
 	 * @return the RemoteInvocationResult object
-	 * @throws IOException if thrown by I/O operations
+	 * @throws IOException            if thrown by I/O operations
 	 * @throws ClassNotFoundException if thrown during deserialization
-	 * @throws Exception in case of general errors
+	 * @throws Exception              in case of general errors
 	 */
 	RemoteInvocationResult executeRequest(HttpInvokerClientConfiguration config, RemoteInvocation invocation)
 			throws Exception;

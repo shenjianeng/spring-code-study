@@ -25,16 +25,17 @@ import org.springframework.lang.Nullable;
  * A base class for {@link RequestCondition} types providing implementations of
  * {@link #equals(Object)}, {@link #hashCode()}, and {@link #toString()}.
  *
+ * @param <T> the type of objects that this RequestCondition can be combined
+ *            with and compared to
  * @author Rossen Stoyanchev
  * @since 3.1
- * @param <T> the type of objects that this RequestCondition can be combined
- * with and compared to
  */
 public abstract class AbstractRequestCondition<T extends AbstractRequestCondition<T>> implements RequestCondition<T> {
 
 	/**
 	 * Indicates whether this condition is empty, i.e. whether or not it
 	 * contains any discrete items.
+	 *
 	 * @return {@code true} if empty; {@code false} otherwise
 	 */
 	public boolean isEmpty() {
@@ -44,6 +45,7 @@ public abstract class AbstractRequestCondition<T extends AbstractRequestConditio
 	/**
 	 * Return the discrete items a request condition is composed of.
 	 * <p>For example URL patterns, HTTP request methods, param expressions, etc.
+	 *
 	 * @return a collection of objects (never {@code null})
 	 */
 	protected abstract Collection<?> getContent();
@@ -75,7 +77,7 @@ public abstract class AbstractRequestCondition<T extends AbstractRequestConditio
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder("[");
-		for (Iterator<?> iterator = getContent().iterator(); iterator.hasNext();) {
+		for (Iterator<?> iterator = getContent().iterator(); iterator.hasNext(); ) {
 			Object expression = iterator.next();
 			builder.append(expression.toString());
 			if (iterator.hasNext()) {

@@ -35,6 +35,7 @@ public class QosSettings {
 
 	/**
 	 * Create a new instance with the default settings.
+	 *
 	 * @see Message#DEFAULT_DELIVERY_MODE
 	 * @see Message#DEFAULT_PRIORITY
 	 * @see Message#DEFAULT_TIME_TO_LIVE
@@ -56,6 +57,7 @@ public class QosSettings {
 	/**
 	 * Set the delivery mode to use when sending a message.
 	 * Default is the JMS Message default: "PERSISTENT".
+	 *
 	 * @param deliveryMode the delivery mode to use
 	 * @see javax.jms.DeliveryMode#PERSISTENT
 	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
@@ -75,6 +77,7 @@ public class QosSettings {
 
 	/**
 	 * Set the priority of a message when sending.
+	 *
 	 * @see javax.jms.Message#DEFAULT_PRIORITY
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
 	 */
@@ -91,6 +94,7 @@ public class QosSettings {
 
 	/**
 	 * Set the time-to-live of the message when sending.
+	 *
 	 * @param timeToLive the message's lifetime (in milliseconds)
 	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)

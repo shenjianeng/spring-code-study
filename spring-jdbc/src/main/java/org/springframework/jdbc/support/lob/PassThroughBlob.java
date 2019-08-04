@@ -63,8 +63,7 @@ class PassThroughBlob implements Blob {
 	public InputStream getBinaryStream() throws SQLException {
 		if (this.content != null) {
 			return new ByteArrayInputStream(this.content);
-		}
-		else {
+		} else {
 			return (this.binaryStream != null ? this.binaryStream : StreamUtils.emptyInput());
 		}
 	}

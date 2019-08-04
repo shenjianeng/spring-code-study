@@ -72,7 +72,7 @@ public class SQLErrorCodes {
 	 * in which case we can not use the bean name for lookup.
 	 */
 	public void setDatabaseProductName(@Nullable String databaseProductName) {
-		this.databaseProductNames = new String[] {databaseProductName};
+		this.databaseProductNames = new String[]{databaseProductName};
 	}
 
 	@Nullable
@@ -200,12 +200,10 @@ public class SQLErrorCodes {
 			try {
 				this.customSqlExceptionTranslator =
 						ReflectionUtils.accessibleConstructor(customTranslatorClass).newInstance();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalStateException("Unable to instantiate custom translator", ex);
 			}
-		}
-		else {
+		} else {
 			this.customSqlExceptionTranslator = null;
 		}
 	}

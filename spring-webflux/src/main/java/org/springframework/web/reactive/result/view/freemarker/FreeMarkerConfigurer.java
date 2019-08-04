@@ -55,7 +55,7 @@ import org.springframework.util.Assert;
  * &lt;#import "/spring.ftl" as spring/&gt;
  * &lt;@spring.bind "person.age"/&gt;
  * age is ${spring.status.value}</pre>
- *
+ * <p>
  * Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
  *
  * @author Rossen Stoyanchev
@@ -88,6 +88,7 @@ public class FreeMarkerConfigurer extends FreeMarkerConfigurationFactory
 	 * Initialize FreeMarkerConfigurationFactory's Configuration
 	 * if not overridden by a pre-configured FreeMarker Configuration.
 	 * <p>Sets up a ClassTemplateLoader to use for loading Spring macros.
+	 *
 	 * @see #createConfiguration
 	 * @see #setConfiguration
 	 */

@@ -28,8 +28,8 @@ import org.springframework.core.type.AnnotationMetadata;
  *
  * @author Chris Beams
  * @author Juergen Hoeller
- * @since 3.1
  * @see EnableAspectJAutoProxy
+ * @since 3.1
  */
 class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 

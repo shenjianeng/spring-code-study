@@ -52,6 +52,7 @@ final class JodaTimeConverters {
 
 	/**
 	 * Install the converters into the converter registry.
+	 *
 	 * @param registry the converter registry
 	 */
 	@SuppressWarnings("deprecation")
@@ -159,6 +160,7 @@ final class JodaTimeConverters {
 
 	/**
 	 * Used when printing a {@code java.util.Date} field with a ReadableInstantPrinter.
+	 *
 	 * @see MillisecondInstantPrinter
 	 * @see JodaDateTimeFormatAnnotationFormatterFactory
 	 */
@@ -173,6 +175,7 @@ final class JodaTimeConverters {
 
 	/**
 	 * Used when printing a {@code java.util.Calendar} field with a ReadableInstantPrinter.
+	 *
 	 * @see MillisecondInstantPrinter
 	 * @see JodaDateTimeFormatAnnotationFormatterFactory
 	 */
@@ -187,6 +190,7 @@ final class JodaTimeConverters {
 
 	/**
 	 * Used when printing a Long field with a ReadableInstantPrinter.
+	 *
 	 * @see MillisecondInstantPrinter
 	 * @see JodaDateTimeFormatAnnotationFormatterFactory
 	 */

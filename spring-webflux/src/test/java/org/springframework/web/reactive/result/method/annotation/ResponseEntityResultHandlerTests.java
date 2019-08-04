@@ -72,6 +72,7 @@ import static org.springframework.web.reactive.HandlerMapping.*;
  * <li>{@code MessageWriterResultHandlerTests},
  * <li>{@code ContentNegotiatingResultHandlerSupportTests}
  * </ul>
+ *
  * @author Rossen Stoyanchev
  */
 public class ResponseEntityResultHandlerTests {
@@ -94,8 +95,7 @@ public class ResponseEntityResultHandlerTests {
 			writerList.add(new EncoderHttpMessageWriter<>(new Jaxb2XmlEncoder()));
 			writerList.add(new EncoderHttpMessageWriter<>(new Jackson2JsonEncoder()));
 			writerList.add(new EncoderHttpMessageWriter<>(CharSequenceEncoder.allMimeTypes()));
-		}
-		else {
+		} else {
 			writerList = Arrays.asList(writers);
 		}
 		RequestedContentTypeResolver resolver = new RequestedContentTypeResolverBuilder().build();
@@ -276,7 +276,7 @@ public class ResponseEntityResultHandlerTests {
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/path")
 				.ifNoneMatch(eTag)
 				.ifModifiedSince(currentTime.toEpochMilli())
-				);
+		);
 
 		ResponseEntity<String> entity = ok().eTag(eTag).lastModified(oneMinAgo.toEpochMilli()).body("body");
 		MethodParameter returnType = on(TestController.class).resolveReturnType(entity(String.class));
@@ -297,7 +297,7 @@ public class ResponseEntityResultHandlerTests {
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/path")
 				.ifNoneMatch(etag)
 				.ifModifiedSince(currentTime.toEpochMilli())
-				);
+		);
 
 		ResponseEntity<String> entity = ok().eTag(newEtag).lastModified(oneMinAgo.toEpochMilli()).body("body");
 		MethodParameter returnType = on(TestController.class).resolveReturnType(entity(String.class));
@@ -351,7 +351,6 @@ public class ResponseEntityResultHandlerTests {
 	}
 
 
-
 	private void testHandle(Object returnValue, MethodParameter returnType) {
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/path"));
 		HandlerResult result = handlerResult(returnValue, returnType);
@@ -383,13 +382,12 @@ public class ResponseEntityResultHandlerTests {
 	}
 
 	private void assertConditionalResponse(MockServerWebExchange exchange, HttpStatus status,
-			String body, String etag, Instant lastModified) throws Exception {
+										   String body, String etag, Instant lastModified) throws Exception {
 
 		assertEquals(status, exchange.getResponse().getStatusCode());
 		if (body != null) {
 			assertResponseBody(exchange, body);
-		}
-		else {
+		} else {
 			assertResponseBodyIsEmpty(exchange);
 		}
 		if (etag != null) {
@@ -406,27 +404,49 @@ public class ResponseEntityResultHandlerTests {
 	@SuppressWarnings("unused")
 	private static class TestController {
 
-		ResponseEntity<String> responseEntityString() { return null; }
+		ResponseEntity<String> responseEntityString() {
+			return null;
+		}
 
-		ResponseEntity<Void> responseEntityVoid() { return null; }
+		ResponseEntity<Void> responseEntityVoid() {
+			return null;
+		}
 
-		HttpHeaders httpHeaders() { return null; }
+		HttpHeaders httpHeaders() {
+			return null;
+		}
 
-		Mono<ResponseEntity<String>> mono() { return null; }
+		Mono<ResponseEntity<String>> mono() {
+			return null;
+		}
 
-		Single<ResponseEntity<String>> single() { return null; }
+		Single<ResponseEntity<String>> single() {
+			return null;
+		}
 
-		CompletableFuture<ResponseEntity<String>> completableFuture() { return null; }
+		CompletableFuture<ResponseEntity<String>> completableFuture() {
+			return null;
+		}
 
-		String string() { return null; }
+		String string() {
+			return null;
+		}
 
-		Completable completable() { return null; }
+		Completable completable() {
+			return null;
+		}
 
-		Mono<ResponseEntity<?>> monoResponseEntityWildcard() { return null; }
+		Mono<ResponseEntity<?>> monoResponseEntityWildcard() {
+			return null;
+		}
 
-		Flux<?> fluxWildcard() { return null; }
+		Flux<?> fluxWildcard() {
+			return null;
+		}
 
-		Object object() { return null; }
+		Object object() {
+			return null;
+		}
 	}
 
 }

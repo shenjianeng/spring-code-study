@@ -86,6 +86,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 	/**
 	 * A constructor accepting a {@link WebSocketPolicy} to be used when
 	 * creating the {@link WebSocketServerFactory} instance.
+	 *
 	 * @param policy the policy to use
 	 * @since 4.3.5
 	 */
@@ -96,6 +97,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 
 	/**
 	 * A constructor accepting a {@link WebSocketServerFactory}.
+	 *
 	 * @param factory the pre-configured factory to use
 	 */
 	public JettyRequestUpgradeStrategy(WebSocketServerFactory factory) {
@@ -125,8 +127,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 					return container.getHandler();
 				});
 				this.factory.start();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new IllegalStateException("Unable to start Jetty WebSocketServerFactory", ex);
 			}
 		}
@@ -139,8 +140,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 			if (this.factory != null) {
 				try {
 					this.factory.stop();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new IllegalStateException("Unable to stop Jetty WebSocketServerFactory", ex);
 				}
 			}
@@ -155,7 +155,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 
 	@Override
 	public String[] getSupportedVersions() {
-		return new String[] { String.valueOf(HandshakeRFC6455.VERSION) };
+		return new String[]{String.valueOf(HandshakeRFC6455.VERSION)};
 	}
 
 	@Override
@@ -177,8 +177,8 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 
 	@Override
 	public void upgrade(ServerHttpRequest request, ServerHttpResponse response,
-			String selectedProtocol, List<WebSocketExtension> selectedExtensions, Principal user,
-			WebSocketHandler wsHandler, Map<String, Object> attributes) throws HandshakeFailureException {
+						String selectedProtocol, List<WebSocketExtension> selectedExtensions, Principal user,
+						WebSocketHandler wsHandler, Map<String, Object> attributes) throws HandshakeFailureException {
 
 		Assert.isInstanceOf(ServletServerHttpRequest.class, request, "ServletServerHttpRequest required");
 		HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
@@ -197,12 +197,10 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 		try {
 			containerHolder.set(container);
 			this.factory.acceptWebSocket(servletRequest, servletResponse);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new HandshakeFailureException(
 					"Response update failed during upgrade to WebSocket: " + request.getURI(), ex);
-		}
-		finally {
+		} finally {
 			containerHolder.remove();
 		}
 	}
@@ -223,8 +221,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 			this.selectedProtocol = protocol;
 			if (CollectionUtils.isEmpty(extensions)) {
 				this.extensionConfigs = new ArrayList<>(0);
-			}
-			else {
+			} else {
 				this.extensionConfigs = new ArrayList<>(extensions.size());
 				for (WebSocketExtension extension : extensions) {
 					this.extensionConfigs.add(new WebSocketToJettyExtensionConfigAdapter(extension));

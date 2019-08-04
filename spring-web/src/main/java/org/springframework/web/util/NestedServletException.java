@@ -35,15 +35,17 @@ import org.springframework.lang.Nullable;
  * class is unavoidable, as this class needs to derive from ServletException.
  *
  * @author Juergen Hoeller
- * @since 1.2.5
  * @see #getMessage
  * @see #printStackTrace
  * @see org.springframework.core.NestedCheckedException
  * @see org.springframework.core.NestedRuntimeException
+ * @since 1.2.5
  */
 public class NestedServletException extends ServletException {
 
-	/** Use serialVersionUID from Spring 1.2 for interoperability. */
+	/**
+	 * Use serialVersionUID from Spring 1.2 for interoperability.
+	 */
 	private static final long serialVersionUID = -5292377985529381145L;
 
 	static {
@@ -55,6 +57,7 @@ public class NestedServletException extends ServletException {
 
 	/**
 	 * Construct a {@code NestedServletException} with the specified detail message.
+	 *
 	 * @param msg the detail message
 	 */
 	public NestedServletException(String msg) {
@@ -64,7 +67,8 @@ public class NestedServletException extends ServletException {
 	/**
 	 * Construct a {@code NestedServletException} with the specified detail message
 	 * and nested exception.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the nested exception
 	 */
 	public NestedServletException(@Nullable String msg, @Nullable Throwable cause) {

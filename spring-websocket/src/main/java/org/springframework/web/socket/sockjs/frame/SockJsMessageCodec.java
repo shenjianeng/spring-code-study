@@ -39,6 +39,7 @@ public interface SockJsMessageCodec {
 	 * JSON quoting to each message, there are some additional JSON Unicode escaping
 	 * rules. See the "JSON Unicode Encoding" section of SockJS protocol (i.e. the
 	 * protocol test suite).
+	 *
 	 * @param messages the messages to encode
 	 * @return the content for a SockJS message frame (never {@code null})
 	 */
@@ -46,6 +47,7 @@ public interface SockJsMessageCodec {
 
 	/**
 	 * Decode the given SockJS message frame.
+	 *
 	 * @param content the SockJS message frame
 	 * @return an array of messages, or {@code null} if none
 	 * @throws IOException if the content could not be parsed
@@ -55,6 +57,7 @@ public interface SockJsMessageCodec {
 
 	/**
 	 * Decode the given SockJS message frame.
+	 *
 	 * @param content the SockJS message frame
 	 * @return an array of messages, or {@code null} if none
 	 * @throws IOException if the content could not be parsed

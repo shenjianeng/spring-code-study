@@ -31,9 +31,9 @@ import org.springframework.util.Assert;
  * solely exposing the standard Executor interface to a client.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see java.util.concurrent.Executor
  * @see org.springframework.core.task.TaskExecutor
+ * @since 2.5
  */
 public class ConcurrentExecutorAdapter implements Executor {
 
@@ -42,6 +42,7 @@ public class ConcurrentExecutorAdapter implements Executor {
 
 	/**
 	 * Create a new ConcurrentExecutorAdapter for the given Spring TaskExecutor.
+	 *
 	 * @param taskExecutor the Spring TaskExecutor to wrap
 	 */
 	public ConcurrentExecutorAdapter(TaskExecutor taskExecutor) {

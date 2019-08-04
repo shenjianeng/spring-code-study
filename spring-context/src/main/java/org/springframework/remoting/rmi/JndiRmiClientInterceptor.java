@@ -56,13 +56,12 @@ import org.springframework.util.Assert;
  *
  * <pre class="code">&lt;property name="jndiEnvironment"&gt;
  * 	 &lt;props>
- *		 &lt;prop key="java.naming.factory.initial"&gt;com.sun.jndi.cosnaming.CNCtxFactory&lt;/prop&gt;
- *		 &lt;prop key="java.naming.provider.url"&gt;iiop://localhost:1050&lt;/prop&gt;
- *	 &lt;/props&gt;
+ * 		 &lt;prop key="java.naming.factory.initial"&gt;com.sun.jndi.cosnaming.CNCtxFactory&lt;/prop&gt;
+ * 		 &lt;prop key="java.naming.provider.url"&gt;iiop://localhost:1050&lt;/prop&gt;
+ * 	 &lt;/props&gt;
  * &lt;/property&gt;</pre>
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #setJndiTemplate
  * @see #setJndiEnvironment
  * @see #setJndiName
@@ -71,6 +70,7 @@ import org.springframework.util.Assert;
  * @see org.springframework.remoting.RemoteAccessException
  * @see java.rmi.RemoteException
  * @see java.rmi.Remote
+ * @since 1.1
  */
 public class JndiRmiClientInterceptor extends JndiObjectLocator implements MethodInterceptor, InitializingBean {
 
@@ -131,6 +131,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Set whether to look up the RMI stub on startup. Default is "true".
 	 * <p>Can be turned off to allow for late start of the RMI server.
 	 * In this case, the RMI stub will be fetched on first access.
+	 *
 	 * @see #setCacheStub
 	 */
 	public void setLookupStubOnStartup(boolean lookupStubOnStartup) {
@@ -142,6 +143,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Default is "true".
 	 * <p>Can be turned off to allow for hot restart of the RMI server.
 	 * In this case, the RMI stub will be fetched for each invocation.
+	 *
 	 * @see #setLookupStubOnStartup
 	 */
 	public void setCacheStub(boolean cacheStub) {
@@ -155,6 +157,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * If a cached RMI stub throws an RMI exception that indicates a
 	 * remote connect failure, a fresh proxy will be fetched and the
 	 * invocation will be retried.
+	 *
 	 * @see java.rmi.ConnectException
 	 * @see java.rmi.ConnectIOException
 	 * @see java.rmi.NoSuchObjectException
@@ -184,6 +187,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 	/**
 	 * Fetches the RMI stub on startup, if necessary.
+	 *
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setLookupStubOnStartup
 	 * @see #lookupStub
@@ -195,8 +199,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 			if (logger.isDebugEnabled()) {
 				if (remoteObj instanceof RmiInvocationHandler) {
 					logger.debug("JNDI RMI object [" + getJndiName() + "] is an RMI invoker");
-				}
-				else if (getServiceInterface() != null) {
+				} else if (getServiceInterface() != null) {
 					boolean isImpl = getServiceInterface().isInstance(remoteObj);
 					logger.debug("Using service interface [" + getServiceInterface().getName() +
 							"] for JNDI RMI object [" + getJndiName() + "] - " +
@@ -215,6 +218,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * else called for each invocation by {@link #getStub()}.
 	 * <p>The default implementation retrieves the service from the
 	 * JNDI environment. This can be overridden in subclasses.
+	 *
 	 * @return the RMI stub to store in this interceptor
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setCacheStub
@@ -223,8 +227,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	protected Object lookupStub() throws RemoteLookupFailureException {
 		try {
 			return lookup();
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			throw new RemoteLookupFailureException("JNDI lookup for RMI service [" + getJndiName() + "] failed", ex);
 		}
 	}
@@ -236,15 +239,15 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * each invocation. This can be overridden in subclasses, for example in
 	 * order to cache a stub for a given amount of time before recreating it,
 	 * or to test the stub whether it is still alive.
+	 *
 	 * @return the RMI stub to use for an invocation
-	 * @throws NamingException if stub creation failed
+	 * @throws NamingException              if stub creation failed
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 */
 	protected Object getStub() throws NamingException, RemoteLookupFailureException {
 		if (!this.cacheStub || (this.lookupStubOnStartup && !this.refreshStubOnConnectFailure)) {
 			return (this.cachedStub != null ? this.cachedStub : lookupStub());
-		}
-		else {
+		} else {
 			synchronized (this.stubMonitor) {
 				if (this.cachedStub == null) {
 					this.cachedStub = lookupStub();
@@ -259,6 +262,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Fetches an RMI stub and delegates to {@link #doInvoke}.
 	 * If configured to refresh on connect failure, it will call
 	 * {@link #refreshAndRetry} on corresponding RMI exceptions.
+	 *
 	 * @see #getStub
 	 * @see #doInvoke
 	 * @see #refreshAndRetry
@@ -271,27 +275,22 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 		Object stub;
 		try {
 			stub = getStub();
-		}
-		catch (NamingException ex) {
+		} catch (NamingException ex) {
 			throw new RemoteLookupFailureException("JNDI lookup for RMI service [" + getJndiName() + "] failed", ex);
 		}
 
 		Context ctx = (this.exposeAccessContext ? getJndiTemplate().getContext() : null);
 		try {
 			return doInvoke(invocation, stub);
-		}
-		catch (RemoteConnectFailureException ex) {
+		} catch (RemoteConnectFailureException ex) {
 			return handleRemoteConnectFailure(invocation, ex);
-		}
-		catch (RemoteException ex) {
+		} catch (RemoteException ex) {
 			if (isConnectFailure(ex)) {
 				return handleRemoteConnectFailure(invocation, ex);
-			}
-			else {
+			} else {
 				throw ex;
 			}
-		}
-		finally {
+		} finally {
 			getJndiTemplate().releaseContext(ctx);
 		}
 	}
@@ -300,6 +299,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Determine whether the given RMI exception indicates a connect failure.
 	 * <p>The default implementation delegates to
 	 * {@link RmiClientInterceptorUtils#isConnectFailure}.
+	 *
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 */
@@ -311,8 +311,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Refresh the stub and retry the remote invocation if necessary.
 	 * <p>If not configured to refresh on connect failure, this method
 	 * simply rethrows the original exception.
+	 *
 	 * @param invocation the invocation that failed
-	 * @param ex the exception raised on remote invocation
+	 * @param ex         the exception raised on remote invocation
 	 * @return the result value of the new invocation, if succeeded
 	 * @throws Throwable an exception raised by the new invocation, if failed too.
 	 */
@@ -320,13 +321,11 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 		if (this.refreshStubOnConnectFailure) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Could not connect to RMI service [" + getJndiName() + "] - retrying", ex);
-			}
-			else if (logger.isInfoEnabled()) {
+			} else if (logger.isInfoEnabled()) {
 				logger.info("Could not connect to RMI service [" + getJndiName() + "] - retrying");
 			}
 			return refreshAndRetry(invocation);
-		}
-		else {
+		} else {
 			throw ex;
 		}
 	}
@@ -334,6 +333,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * Refresh the RMI stub and retry the given invocation.
 	 * Called by invoke on connect failure.
+	 *
 	 * @param invocation the AOP method invocation
 	 * @return the invocation result, if any
 	 * @throws Throwable in case of invocation failure
@@ -355,8 +355,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 	/**
 	 * Perform the given invocation on the given RMI stub.
+	 *
 	 * @param invocation the AOP method invocation
-	 * @param stub the RMI stub to invoke
+	 * @param stub       the RMI stub to invoke
 	 * @return the invocation result, if any
 	 * @throws Throwable in case of invocation failure
 	 */
@@ -366,29 +367,23 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 			// RMI invoker
 			try {
 				return doInvoke(invocation, (RmiInvocationHandler) stub);
-			}
-			catch (RemoteException ex) {
+			} catch (RemoteException ex) {
 				throw convertRmiAccessException(ex, invocation.getMethod());
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				throw ex.getTargetException();
-			}
-			catch (Throwable ex) {
+			} catch (Throwable ex) {
 				throw new RemoteInvocationFailureException("Invocation of method [" + invocation.getMethod() +
 						"] failed in RMI service [" + getJndiName() + "]", ex);
 			}
-		}
-		else {
+		} else {
 			// traditional RMI stub
 			try {
 				return RmiClientInterceptorUtils.invokeRemoteMethod(invocation, stub);
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				Throwable targetEx = ex.getTargetException();
 				if (targetEx instanceof RemoteException) {
 					throw convertRmiAccessException((RemoteException) targetEx, invocation.getMethod());
-				}
-				else {
+				} else {
 					throw targetEx;
 				}
 			}
@@ -398,12 +393,13 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	/**
 	 * Apply the given AOP method invocation to the given {@link RmiInvocationHandler}.
 	 * <p>The default implementation delegates to {@link #createRemoteInvocation}.
-	 * @param methodInvocation the current AOP method invocation
+	 *
+	 * @param methodInvocation  the current AOP method invocation
 	 * @param invocationHandler the RmiInvocationHandler to apply the invocation to
 	 * @return the invocation result
-	 * @throws RemoteException in case of communication errors
-	 * @throws NoSuchMethodException if the method name could not be resolved
-	 * @throws IllegalAccessException if the method could not be accessed
+	 * @throws RemoteException           in case of communication errors
+	 * @throws NoSuchMethodException     if the method name could not be resolved
+	 * @throws IllegalAccessException    if the method could not be accessed
 	 * @throws InvocationTargetException if the method invocation resulted in an exception
 	 * @see org.springframework.remoting.support.RemoteInvocation
 	 */
@@ -425,6 +421,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * subclasses, containing additional invocation parameters (e.g. user credentials).
 	 * <p>Note that it is preferable to build a custom RemoteInvocationFactory
 	 * as a reusable strategy, instead of overriding this method.
+	 *
 	 * @param methodInvocation the current AOP method invocation
 	 * @return the RemoteInvocation object
 	 * @see RemoteInvocationFactory#createRemoteInvocation
@@ -437,8 +434,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	 * Convert the given RMI RemoteException that happened during remote access
 	 * to Spring's RemoteAccessException if the method signature does not declare
 	 * RemoteException. Else, return the original RemoteException.
+	 *
 	 * @param method the invoked method
-	 * @param ex the RemoteException that happened
+	 * @param ex     the RemoteException that happened
 	 * @return the exception to be thrown to the caller
 	 */
 	private Exception convertRmiAccessException(RemoteException ex, Method method) {

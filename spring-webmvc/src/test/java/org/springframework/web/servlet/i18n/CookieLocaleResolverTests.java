@@ -91,8 +91,7 @@ public class CookieLocaleResolverTests {
 		try {
 			resolver.resolveLocaleContext(request);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("LanguageKoekje"));
 			assertTrue(ex.getMessage().contains("++ GMT+1"));
 		}
@@ -126,8 +125,7 @@ public class CookieLocaleResolverTests {
 		try {
 			resolver.resolveLocaleContext(request);
 			fail("Should have thrown IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertTrue(ex.getMessage().contains("LanguageKoekje"));
 			assertTrue(ex.getMessage().contains("nl X-MT"));
 		}

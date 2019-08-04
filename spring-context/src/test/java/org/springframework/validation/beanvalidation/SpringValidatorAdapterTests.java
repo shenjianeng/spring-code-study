@@ -337,8 +337,7 @@ public class SpringValidatorAdapterTests {
 			boolean matched = ObjectUtils.nullSafeEquals(fieldValue, comparingFieldValue);
 			if (matched) {
 				return true;
-			}
-			else {
+			} else {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(message)
 						.addPropertyNode(field)
@@ -476,8 +475,7 @@ public class SpringValidatorAdapterTests {
 								.addPropertyNode(field.getName())
 								.addConstraintViolation();
 					}
-				}
-				catch (IllegalAccessException ex) {
+				} catch (IllegalAccessException ex) {
 					throw new IllegalStateException(ex);
 				}
 			});

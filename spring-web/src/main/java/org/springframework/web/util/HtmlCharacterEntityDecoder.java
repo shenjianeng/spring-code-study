@@ -97,8 +97,7 @@ class HtmlCharacterEntityDecoder {
 			if (skipUntilIndex - this.currentPosition > 3) {
 				this.decodedMessage.append(this.originalMessage, this.currentPosition, skipUntilIndex);
 				this.currentPosition = skipUntilIndex;
-			}
-			else {
+			} else {
 				while (this.currentPosition < skipUntilIndex) {
 					this.decodedMessage.append(this.originalMessage.charAt(this.currentPosition++));
 				}
@@ -112,8 +111,7 @@ class HtmlCharacterEntityDecoder {
 			boolean wasProcessable = isNumberedReference ? processNumberedReference() : processNamedReference();
 			if (wasProcessable) {
 				this.currentPosition = this.nextSemicolonPosition + 1;
-			}
-			else {
+			} else {
 				char currentChar = this.originalMessage.charAt(this.currentPosition);
 				this.decodedMessage.append(currentChar);
 				this.currentPosition++;
@@ -130,8 +128,7 @@ class HtmlCharacterEntityDecoder {
 					Integer.parseInt(getReferenceSubstring(3), 16));
 			this.decodedMessage.append((char) value);
 			return true;
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			return false;
 		}
 	}

@@ -193,7 +193,7 @@ abstract class ConstructorInjectedOverrides {
  * @author Juergen Hoeller
  * @since 09.11.2003
  */
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings({"serial", "unused"})
 class DerivedConstructorDependenciesBean extends ConstructorDependenciesBean {
 
 	boolean initialized;
@@ -403,6 +403,7 @@ class FactoryMethods {
 
 /**
  * Fixed method replacer for String return types
+ *
  * @author Rod Johnson
  */
 class FixedMethodReplacer implements MethodReplacer {
@@ -515,7 +516,7 @@ abstract class OverrideOneMethod extends MethodReplaceCandidate implements Overr
 
 	@Override
 	public String replaceMe(String someParam) {
-		return "replaceMe:"  + someParam;
+		return "replaceMe:" + someParam;
 	}
 }
 

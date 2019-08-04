@@ -48,7 +48,7 @@ import org.springframework.util.IdGenerator;
  * <pre class="code">
  * MessageBuilder.withPayload("foo").setHeader("key1", "value1").setHeader("key2", "value2");
  * </pre>
- *
+ * <p>
  * A second option is to create {@link org.springframework.messaging.support.GenericMessage}
  * passing a payload as {@link Object} and headers as a {@link Map java.util.Map}:
  * <pre class="code">
@@ -57,7 +57,7 @@ import org.springframework.util.IdGenerator;
  * headers.put("key2", "value2");
  * new GenericMessage("foo", headers);
  * </pre>
- *
+ * <p>
  * A third option is to use {@link org.springframework.messaging.support.MessageHeaderAccessor}
  * or one of its subclasses to create specific categories of headers.
  *
@@ -65,16 +65,16 @@ import org.springframework.util.IdGenerator;
  * @author Mark Fisher
  * @author Gary Russell
  * @author Juergen Hoeller
- * @since 4.0
  * @see org.springframework.messaging.support.MessageBuilder
  * @see org.springframework.messaging.support.MessageHeaderAccessor
+ * @since 4.0
  */
 public class MessageHeaders implements Map<String, Object>, Serializable {
 
 	/**
 	 * UUID for none.
 	 */
-	public static final UUID ID_VALUE_NONE = new UUID(0,0);
+	public static final UUID ID_VALUE_NONE = new UUID(0, 0);
 
 	/**
 	 * The key for the Message ID. This is an automatically generated UUID and
@@ -121,6 +121,7 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	/**
 	 * Construct a {@link MessageHeaders} with the given headers. An {@link #ID} and
 	 * {@link #TIMESTAMP} headers will also be added, overriding any existing values.
+	 *
 	 * @param headers a map with headers to add
 	 */
 	public MessageHeaders(@Nullable Map<String, Object> headers) {
@@ -129,8 +130,9 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 
 	/**
 	 * Constructor providing control over the ID and TIMESTAMP header values.
-	 * @param headers a map with headers to add
-	 * @param id the {@link #ID} header value
+	 *
+	 * @param headers   a map with headers to add
+	 * @param id        the {@link #ID} header value
 	 * @param timestamp the {@link #TIMESTAMP} header value
 	 */
 	protected MessageHeaders(@Nullable Map<String, Object> headers, @Nullable UUID id, @Nullable Long timestamp) {
@@ -138,21 +140,17 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 
 		if (id == null) {
 			this.headers.put(ID, getIdGenerator().generateId());
-		}
-		else if (id == ID_VALUE_NONE) {
+		} else if (id == ID_VALUE_NONE) {
 			this.headers.remove(ID);
-		}
-		else {
+		} else {
 			this.headers.put(ID, id);
 		}
 
 		if (timestamp == null) {
 			this.headers.put(TIMESTAMP, System.currentTimeMillis());
-		}
-		else if (timestamp < 0) {
+		} else if (timestamp < 0) {
 			this.headers.remove(TIMESTAMP);
-		}
-		else {
+		} else {
 			this.headers.put(TIMESTAMP, timestamp);
 		}
 	}
@@ -160,7 +158,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	/**
 	 * Copy constructor which allows for ignoring certain entries.
 	 * Used for serialization without non-serializable entries.
-	 * @param original the MessageHeaders to copy
+	 *
+	 * @param original     the MessageHeaders to copy
 	 * @param keysToIgnore the keys of the entries to ignore
 	 */
 	private MessageHeaders(MessageHeaders original, Set<String> keysToIgnore) {
@@ -302,8 +301,7 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 		if (keysToIgnore.isEmpty()) {
 			// All entries are serializable -> serialize the regular MessageHeaders instance
 			out.defaultWriteObject();
-		}
-		else {
+		} else {
 			// Some non-serializable entries -> serialize a temporary MessageHeaders copy
 			if (logger.isDebugEnabled()) {
 				logger.debug("Ignoring non-serializable message headers: " + keysToIgnore);

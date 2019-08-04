@@ -77,8 +77,8 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends ResourceRegion> input,
-			DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
-			@Nullable Map<String, Object> hints) {
+								   DataBufferFactory bufferFactory, ResolvableType elementType, @Nullable MimeType mimeType,
+								   @Nullable Map<String, Object> hints) {
 
 		Assert.notNull(input, "'inputStream' must not be null");
 		Assert.notNull(bufferFactory, "'bufferFactory' must not be null");
@@ -93,8 +93,7 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 						}
 						return writeResourceRegion(region, bufferFactory, hints);
 					});
-		}
-		else {
+		} else {
 			final String boundaryString = Hints.getRequiredHint(hints, BOUNDARY_STRING_HINT);
 			byte[] startBoundary = toAsciiBytes("\r\n--" + boundaryString + "\r\n");
 			byte[] contentType = mimeType != null ? toAsciiBytes("Content-Type: " + mimeType + "\r\n") : new byte[0];
@@ -149,14 +148,14 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 		if (contentLength.isPresent()) {
 			long length = contentLength.getAsLong();
 			return toAsciiBytes("Content-Range: bytes " + start + '-' + end + '/' + length + "\r\n\r\n");
-		}
-		else {
+		} else {
 			return toAsciiBytes("Content-Range: bytes " + start + '-' + end + "\r\n\r\n");
 		}
 	}
 
 	/**
 	 * Determine, if possible, the contentLength of the given resource without reading it.
+	 *
 	 * @param resource the resource instance
 	 * @return the contentLength of the resource
 	 */
@@ -166,8 +165,7 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 		if (InputStreamResource.class != resource.getClass()) {
 			try {
 				return OptionalLong.of(resource.contentLength());
-			}
-			catch (IOException ignored) {
+			} catch (IOException ignored) {
 			}
 		}
 		return OptionalLong.empty();

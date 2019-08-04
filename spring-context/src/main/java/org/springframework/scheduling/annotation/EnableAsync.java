@@ -41,7 +41,7 @@ import org.springframework.core.Ordered;
  * public class AppConfig {
  *
  * }</pre>
- *
+ * <p>
  * {@code MyAsyncBean} is a user-defined type with one or more methods annotated with
  * either Spring's {@code @Async} annotation, the EJB 3.1 {@code @javax.ejb.Asynchronous}
  * annotation, or any custom annotation specified via the {@link #annotation} attribute.
@@ -129,7 +129,7 @@ import org.springframework.core.Ordered;
  *
  * &lt;/beans&gt;
  * </pre>
- *
+ * <p>
  * The above XML-based and JavaConfig-based examples are equivalent except for the
  * setting of the <em>thread name prefix</em> of the {@code Executor}; this is because
  * the {@code <task:executor>} element does not expose such an attribute. This
@@ -151,10 +151,10 @@ import org.springframework.core.Ordered;
  * @author Juergen Hoeller
  * @author Stephane Nicoll
  * @author Sam Brannen
- * @since 3.1
  * @see Async
  * @see AsyncConfigurer
  * @see AsyncConfigurationSelector
+ * @since 3.1
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

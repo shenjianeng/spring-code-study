@@ -55,7 +55,7 @@ public class SharedHttpSessionConfigurer implements MockMvcConfigurer {
 
 	@Override
 	public RequestPostProcessor beforeMockMvcCreated(ConfigurableMockMvcBuilder<?> builder,
-			WebApplicationContext context) {
+													 WebApplicationContext context) {
 
 		return request -> {
 			if (this.session != null) {

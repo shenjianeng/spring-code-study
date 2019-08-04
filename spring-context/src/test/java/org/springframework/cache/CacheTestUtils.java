@@ -33,6 +33,7 @@ public class CacheTestUtils {
 
 	/**
 	 * Create a {@link SimpleCacheManager} with the specified cache(s).
+	 *
 	 * @param cacheNames the names of the caches to create
 	 */
 	public static CacheManager createSimpleCacheManager(String... cacheNames) {

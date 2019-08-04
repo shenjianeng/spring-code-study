@@ -73,6 +73,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * <p>This does not override the built-in support for resolving handler
 	 * method arguments. To customize the built-in support for argument
 	 * resolution, configure {@code SimpAnnotationMethodMessageHandler} directly.
+	 *
 	 * @param argumentResolvers the resolvers to register (initially an empty list)
 	 * @since 4.1.1
 	 */
@@ -84,6 +85,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * <p>Using this option does not override the built-in support for handling
 	 * return values. To customize the built-in support for handling return
 	 * values, configure  {@code SimpAnnotationMethodMessageHandler} directly.
+	 *
 	 * @param returnValueHandlers the handlers to register (initially an empty list)
 	 * @since 4.1.1
 	 */
@@ -97,6 +99,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	 * <p>The provided list, initially empty, can be used to add message converters
 	 * while the boolean return value is used to determine if default message should
 	 * be added as well.
+	 *
 	 * @param messageConverters the converters to configure (initially an empty list)
 	 * @return whether to also add default converter or not
 	 */

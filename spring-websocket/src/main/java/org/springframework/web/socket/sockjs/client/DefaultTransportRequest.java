@@ -76,8 +76,8 @@ class DefaultTransportRequest implements TransportRequest {
 
 
 	public DefaultTransportRequest(SockJsUrlInfo sockJsUrlInfo,
-			@Nullable HttpHeaders handshakeHeaders, @Nullable HttpHeaders httpRequestHeaders,
-			Transport transport, TransportType serverTransportType, SockJsMessageCodec codec) {
+								   @Nullable HttpHeaders handshakeHeaders, @Nullable HttpHeaders httpRequestHeaders,
+								   Transport transport, TransportType serverTransportType, SockJsMessageCodec codec) {
 
 		Assert.notNull(sockJsUrlInfo, "SockJsUrlInfo is required");
 		Assert.notNull(transport, "Transport is required");
@@ -162,8 +162,7 @@ class DefaultTransportRequest implements TransportRequest {
 			}
 			Date timeoutDate = new Date(System.currentTimeMillis() + this.timeoutValue);
 			this.timeoutScheduler.schedule(connectHandler, timeoutDate);
-		}
-		else if (logger.isTraceEnabled()) {
+		} else if (logger.isTraceEnabled()) {
 			logger.trace("Connect timeout task not scheduled (no TaskScheduler configured).");
 		}
 	}
@@ -198,8 +197,7 @@ class DefaultTransportRequest implements TransportRequest {
 		public void onSuccess(@Nullable WebSocketSession session) {
 			if (this.handled.compareAndSet(false, true)) {
 				this.future.set(session);
-			}
-			else if (logger.isErrorEnabled()) {
+			} else if (logger.isErrorEnabled()) {
 				logger.error("Connect success/failure already handled for " + DefaultTransportRequest.this);
 			}
 		}
@@ -224,8 +222,7 @@ class DefaultTransportRequest implements TransportRequest {
 				if (fallbackRequest != null) {
 					logger.error(DefaultTransportRequest.this + " failed. Falling back on next transport.", ex);
 					fallbackRequest.connect(this.handler, this.future);
-				}
-				else {
+				} else {
 					logger.error("No more fallback transports after " + DefaultTransportRequest.this, ex);
 					if (ex != null) {
 						this.future.setException(ex);
@@ -236,13 +233,11 @@ class DefaultTransportRequest implements TransportRequest {
 						for (Runnable runnable : timeoutTasks) {
 							runnable.run();
 						}
-					}
-					catch (Throwable ex2) {
+					} catch (Throwable ex2) {
 						logger.error("Transport failed to run timeout tasks for " + DefaultTransportRequest.this, ex2);
 					}
 				}
-			}
-			else {
+			} else {
 				logger.error("Connect success/failure events already took place for " +
 						DefaultTransportRequest.this + ". Ignoring this additional failure event.", ex);
 			}

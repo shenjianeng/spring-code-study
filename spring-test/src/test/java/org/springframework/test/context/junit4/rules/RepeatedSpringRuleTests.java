@@ -45,21 +45,21 @@ public class RepeatedSpringRuleTests extends RepeatedSpringRunnerTests {
 
 	@Parameters(name = "{0}")
 	public static Object[][] repetitionData() {
-		return new Object[][] {//
-			{ NonAnnotatedRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1 },//
-			{ DefaultRepeatValueRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1 },//
-			{ NegativeRepeatValueRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1 },//
-			{ RepeatedFiveTimesRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 5 },//
-			{ RepeatedFiveTimesViaMetaAnnotationRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 5 },//
-			{ TimedRepeatedTestCase.class.getSimpleName(), 3, 4, 4, (5 + 1 + 4 + 10) } //
+		return new Object[][]{//
+				{NonAnnotatedRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1},//
+				{DefaultRepeatValueRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1},//
+				{NegativeRepeatValueRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 1},//
+				{RepeatedFiveTimesRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 5},//
+				{RepeatedFiveTimesViaMetaAnnotationRepeatedTestCase.class.getSimpleName(), 0, 1, 1, 5},//
+				{TimedRepeatedTestCase.class.getSimpleName(), 3, 4, 4, (5 + 1 + 4 + 10)} //
 		};
 	}
 
 	public RepeatedSpringRuleTests(String testClassName, int expectedFailureCount, int expectedTestStartedCount,
-			int expectedTestFinishedCount, int expectedInvocationCount) throws Exception {
+								   int expectedTestFinishedCount, int expectedInvocationCount) throws Exception {
 
 		super(testClassName, expectedFailureCount, expectedTestStartedCount, expectedTestFinishedCount,
-			expectedInvocationCount);
+				expectedInvocationCount);
 	}
 
 	@Override

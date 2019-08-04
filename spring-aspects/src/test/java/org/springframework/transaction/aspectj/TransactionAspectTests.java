@@ -106,8 +106,7 @@ public class TransactionAspectTests {
 		try {
 			testRollback(() -> annotationOnlyOnClassWithNoInterface.echo(ex), false);
 			fail("Should have thrown Exception");
-		}
-		catch (Exception ex2) {
+		} catch (Exception ex2) {
 			assertSame(ex, ex2);
 		}
 	}
@@ -118,8 +117,7 @@ public class TransactionAspectTests {
 		try {
 			testRollback(() -> annotationOnlyOnClassWithNoInterface.echo(ex), true);
 			fail("Should have thrown RuntimeException");
-		}
-		catch (RuntimeException ex2) {
+		} catch (RuntimeException ex2) {
 			assertSame(ex, ex2);
 		}
 	}
@@ -130,8 +128,7 @@ public class TransactionAspectTests {
 		try {
 			testRollback(() -> new SubclassOfClassWithTransactionalAnnotation().echo(ex), false);
 			fail("Should have thrown Exception");
-		}
-		catch (Exception ex2) {
+		} catch (Exception ex2) {
 			assertSame(ex, ex2);
 		}
 	}
@@ -142,8 +139,7 @@ public class TransactionAspectTests {
 		try {
 			testRollback(() -> new SubclassOfClassWithTransactionalMethodAnnotation().echo(ex), false);
 			fail("Should have thrown Exception");
-		}
-		catch (Exception ex2) {
+		} catch (Exception ex2) {
 			assertSame(ex, ex2);
 		}
 	}
@@ -167,8 +163,7 @@ public class TransactionAspectTests {
 		assertEquals(0, txManager.begun);
 		try {
 			toc.performTransactionalOperation();
-		}
-		finally {
+		} finally {
 			assertEquals(1, txManager.begun);
 			assertEquals(rollback ? 0 : 1, txManager.commits);
 			assertEquals(rollback ? 1 : 0, txManager.rollbacks);
@@ -180,14 +175,12 @@ public class TransactionAspectTests {
 		assertEquals(0, txManager.begun);
 		try {
 			toc.performTransactionalOperation();
-		}
-		catch (Throwable t) {
+		} catch (Throwable t) {
 			if (expected == null) {
 				fail("Expected " + expected);
 			}
 			assertSame(expected, t);
-		}
-		finally {
+		} finally {
 			assertEquals(0, txManager.begun);
 		}
 	}

@@ -67,7 +67,7 @@ public class PropertyDependentAspectTests {
 		assertTrue("Proxy didn't get created", counter instanceof Advised);
 
 		counter.increment();
-		JoinPointMonitorAspect callCountingAspect = (JoinPointMonitorAspect)context.getBean("monitoringAspect");
+		JoinPointMonitorAspect callCountingAspect = (JoinPointMonitorAspect) context.getBean("monitoringAspect");
 		assertEquals("Advise didn't get executed", 1, callCountingAspect.beforeExecutions);
 		assertEquals("Advise didn't get executed", 1, callCountingAspect.aroundExecutions);
 	}
@@ -78,7 +78,7 @@ public class PropertyDependentAspectTests {
 		assertTrue("Proxy didn't get created", counter instanceof Advised);
 
 		counter.increment();
-		JoinPointMonitorAtAspectJAspect callCountingAspect = (JoinPointMonitorAtAspectJAspect)context.getBean("monitoringAspect");
+		JoinPointMonitorAtAspectJAspect callCountingAspect = (JoinPointMonitorAtAspectJAspect) context.getBean("monitoringAspect");
 		assertEquals("Advise didn't get executed", 1, callCountingAspect.beforeExecutions);
 		assertEquals("Advise didn't get executed", 1, callCountingAspect.aroundExecutions);
 	}

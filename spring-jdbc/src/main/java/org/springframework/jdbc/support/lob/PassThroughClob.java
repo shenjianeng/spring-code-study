@@ -78,11 +78,9 @@ class PassThroughClob implements Clob {
 	public Reader getCharacterStream() throws SQLException {
 		if (this.content != null) {
 			return new StringReader(this.content);
-		}
-		else if (this.characterStream != null) {
+		} else if (this.characterStream != null) {
 			return this.characterStream;
-		}
-		else {
+		} else {
 			return new InputStreamReader(
 					(this.asciiStream != null ? this.asciiStream : StreamUtils.emptyInput()),
 					StandardCharsets.US_ASCII);
@@ -94,16 +92,13 @@ class PassThroughClob implements Clob {
 		try {
 			if (this.content != null) {
 				return new ByteArrayInputStream(this.content.getBytes(StandardCharsets.US_ASCII));
-			}
-			else if (this.characterStream != null) {
+			} else if (this.characterStream != null) {
 				String tempContent = FileCopyUtils.copyToString(this.characterStream);
 				return new ByteArrayInputStream(tempContent.getBytes(StandardCharsets.US_ASCII));
-			}
-			else {
+			} else {
 				return (this.asciiStream != null ? this.asciiStream : StreamUtils.emptyInput());
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new SQLException("Failed to read stream content: " + ex);
 		}
 	}

@@ -58,8 +58,7 @@ public class ConcurrentBeanFactoryTests {
 		try {
 			DATE_1 = DATE_FORMAT.parse("2004/08/08");
 			DATE_2 = DATE_FORMAT.parse("2000/02/02");
-		}
-		catch (ParseException e) {
+		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -104,7 +103,7 @@ public class ConcurrentBeanFactoryTests {
 			run.setDaemon(true);
 			set.add(run);
 		}
-		for (Iterator<TestRun> it = new HashSet<>(set).iterator(); it.hasNext();) {
+		for (Iterator<TestRun> it = new HashSet<>(set).iterator(); it.hasNext(); ) {
 			TestRun run = it.next();
 			run.start();
 		}
@@ -113,8 +112,7 @@ public class ConcurrentBeanFactoryTests {
 			while (!set.isEmpty() && ex == null) {
 				try {
 					set.wait();
-				}
-				catch (InterruptedException e) {
+				} catch (InterruptedException e) {
 					logger.info(e.toString());
 				}
 				logger.info(set.size() + " threads still active.");
@@ -142,11 +140,9 @@ public class ConcurrentBeanFactoryTests {
 				for (int i = 0; i < 10000; i++) {
 					performTest();
 				}
-			}
-			catch (Throwable e) {
+			} catch (Throwable e) {
 				ex = e;
-			}
-			finally {
+			} finally {
 				synchronized (set) {
 					set.remove(this);
 					set.notifyAll();

@@ -54,7 +54,7 @@ public class DefaultClientRequestBuilderTests {
 		ClientRequest result = ClientRequest.from(other)
 				.headers(httpHeaders -> httpHeaders.set("foo", "baar"))
 				.cookies(cookies -> cookies.set("baz", "quux"))
-		.build();
+				.build();
 		assertEquals(new URI("https://example.com"), result.url());
 		assertEquals(GET, result.method());
 		assertEquals(1, result.headers().size());
@@ -163,7 +163,8 @@ public class DefaultClientRequestBuilderTests {
 	public void bodyParameterizedTypeReference() {
 		String body = "foo";
 		Publisher<String> publisher = Mono.just(body);
-		ParameterizedTypeReference<String> typeReference = new ParameterizedTypeReference<String>() {};
+		ParameterizedTypeReference<String> typeReference = new ParameterizedTypeReference<String>() {
+		};
 		ClientRequest result = ClientRequest.create(POST, URI.create("https://example.com"))
 				.body(publisher, typeReference).build();
 

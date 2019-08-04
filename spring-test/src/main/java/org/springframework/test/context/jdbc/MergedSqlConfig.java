@@ -32,8 +32,8 @@ import org.springframework.util.Assert;
  * <p>Explicit local configuration attributes override global configuration attributes.
  *
  * @author Sam Brannen
- * @since 4.1
  * @see SqlConfig
+ * @since 4.1
  */
 class MergedSqlConfig {
 
@@ -83,8 +83,7 @@ class MergedSqlConfig {
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			// Otherwise, use local attributes only.
 			attributes = AnnotationUtils.getAnnotationAttributes(localSqlConfig, false, false);
 		}
@@ -185,7 +184,7 @@ class MergedSqlConfig {
 
 
 	private static <E extends Enum<?>> E getEnum(AnnotationAttributes attributes, String attributeName,
-			E inheritedOrDefaultValue, E defaultValue) {
+												 E inheritedOrDefaultValue, E defaultValue) {
 
 		E value = attributes.getEnum(attributeName);
 		if (value == inheritedOrDefaultValue) {

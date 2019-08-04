@@ -35,13 +35,13 @@ import org.springframework.util.StringUtils;
  *
  * @author Phillip Webb
  * @author Sam Brannen
- * @since 3.2
  * @see #createDateTimeFormatter()
  * @see #createDateTimeFormatter(DateTimeFormatter)
  * @see #setPattern
  * @see #setStyle
  * @see #setIso
  * @see DateTimeFormatterFactoryBean
+ * @since 3.2
  */
 public class DateTimeFormatterFactory {
 
@@ -66,6 +66,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Create a new {@code DateTimeFormatterFactory} instance.
+	 *
 	 * @param pattern the pattern to use to format date values
 	 */
 	public DateTimeFormatterFactory(String pattern) {
@@ -75,6 +76,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the pattern to use to format date values.
+	 *
 	 * @param pattern the format pattern
 	 */
 	public void setPattern(String pattern) {
@@ -83,6 +85,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the ISO format used to format date values.
+	 *
 	 * @param iso the ISO format
 	 */
 	public void setIso(ISO iso) {
@@ -100,6 +103,7 @@ public class DateTimeFormatterFactory {
 	 * <li>'F' = Full</li>
 	 * <li>'-' = Omitted</li>
 	 * </ul>
+	 *
 	 * @param style two characters from the set {"S", "M", "L", "F", "-"}
 	 */
 	public void setStyle(String style) {
@@ -108,6 +112,7 @@ public class DateTimeFormatterFactory {
 
 	/**
 	 * Set the {@code TimeZone} to normalize the date values into, if any.
+	 *
 	 * @param timeZone the time zone
 	 */
 	public void setTimeZone(TimeZone timeZone) {
@@ -119,6 +124,7 @@ public class DateTimeFormatterFactory {
 	 * Create a new {@code DateTimeFormatter} using this factory.
 	 * <p>If no specific pattern or style has been defined,
 	 * {@link DateTimeFormat#mediumDateTime() medium date time format} will be used.
+	 *
 	 * @return a new date time formatter
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
 	 */
@@ -130,16 +136,16 @@ public class DateTimeFormatterFactory {
 	 * Create a new {@code DateTimeFormatter} using this factory.
 	 * <p>If no specific pattern or style has been defined,
 	 * the supplied {@code fallbackFormatter} will be used.
+	 *
 	 * @param fallbackFormatter the fall-back formatter to use
-	 * when no specific factory properties have been set
+	 *                          when no specific factory properties have been set
 	 * @return a new date time formatter
 	 */
 	public DateTimeFormatter createDateTimeFormatter(DateTimeFormatter fallbackFormatter) {
 		DateTimeFormatter dateTimeFormatter = null;
 		if (StringUtils.hasLength(this.pattern)) {
 			dateTimeFormatter = DateTimeFormat.forPattern(this.pattern);
-		}
-		else if (this.iso != null && this.iso != ISO.NONE) {
+		} else if (this.iso != null && this.iso != ISO.NONE) {
 			switch (this.iso) {
 				case DATE:
 					dateTimeFormatter = ISODateTimeFormat.date();
@@ -153,8 +159,7 @@ public class DateTimeFormatterFactory {
 				default:
 					throw new IllegalStateException("Unsupported ISO format: " + this.iso);
 			}
-		}
-		else if (StringUtils.hasLength(this.style)) {
+		} else if (StringUtils.hasLength(this.style)) {
 			dateTimeFormatter = DateTimeFormat.forStyle(this.style);
 		}
 

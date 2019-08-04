@@ -105,7 +105,7 @@ public class UrlBasedViewResolverTests {
 
 		@Override
 		protected Mono<Void> renderInternal(Map<String, Object> attributes, MediaType contentType,
-				ServerWebExchange exchange) {
+											ServerWebExchange exchange) {
 
 			return Mono.empty();
 		}

@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  * PersistenceExceptionTranslator} interface, which are subsequently asked to translate
  * candidate exceptions.
  *
-
+ *
  * <p>All of Spring's applicable resource factories (e.g.
  * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean})
  * implement the {@code PersistenceExceptionTranslator} interface out of the box.
@@ -49,11 +49,11 @@ import org.springframework.util.Assert;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see PersistenceExceptionTranslationAdvisor
  * @see org.springframework.stereotype.Repository
  * @see org.springframework.dao.DataAccessException
  * @see org.springframework.dao.support.PersistenceExceptionTranslator
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class PersistenceExceptionTranslationPostProcessor extends AbstractBeanFactoryAwareAdvisingPostProcessor {
@@ -67,6 +67,7 @@ public class PersistenceExceptionTranslationPostProcessor extends AbstractBeanFa
 	 * <p>This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate that a class has a
 	 * repository role.
+	 *
 	 * @param repositoryAnnotationType the desired annotation type
 	 */
 	public void setRepositoryAnnotationType(Class<? extends Annotation> repositoryAnnotationType) {

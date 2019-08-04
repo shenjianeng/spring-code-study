@@ -41,12 +41,12 @@ import org.springframework.lang.Nullable;
  * (such as the JCA WorkManager) to be specified through bean properties.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see #setResourceAdapter
  * @see #setBootstrapContext
  * @see #setWorkManager
  * @see javax.resource.spi.ResourceAdapter#start(javax.resource.spi.BootstrapContext)
  * @see javax.resource.spi.ResourceAdapter#stop()
+ * @since 2.0.3
  */
 public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>, InitializingBean, DisposableBean {
 
@@ -68,6 +68,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	 * with its default configuration.
 	 * <p>Alternatively, specify a pre-configured ResourceAdapter instance
 	 * through the "resourceAdapter" property.
+	 *
 	 * @see #setResourceAdapter
 	 */
 	public void setResourceAdapterClass(Class<? extends ResourceAdapter> resourceAdapterClass) {
@@ -88,6 +89,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	 * Specify the JCA BootstrapContext to use for starting the ResourceAdapter.
 	 * <p>Alternatively, you can specify the individual parts (such as the
 	 * JCA WorkManager) as individual references.
+	 *
 	 * @see #setWorkManager
 	 * @see #setXaTerminator
 	 */
@@ -97,6 +99,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Specify the JCA WorkManager to use for bootstrapping the ResourceAdapter.
+	 *
 	 * @see #setBootstrapContext
 	 */
 	public void setWorkManager(WorkManager workManager) {
@@ -105,6 +108,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Specify the JCA XATerminator to use for bootstrapping the ResourceAdapter.
+	 *
 	 * @see #setBootstrapContext
 	 */
 	public void setXaTerminator(XATerminator xaTerminator) {
@@ -114,6 +118,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Builds the BootstrapContext and starts the ResourceAdapter with it.
+	 *
 	 * @see javax.resource.spi.ResourceAdapter#start(javax.resource.spi.BootstrapContext)
 	 */
 	@Override
@@ -147,6 +152,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 	/**
 	 * Stops the ResourceAdapter.
+	 *
 	 * @see javax.resource.spi.ResourceAdapter#stop()
 	 */
 	@Override

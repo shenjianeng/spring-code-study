@@ -75,8 +75,7 @@ public class CollectionFactoryTests {
 			// cannot be cast to a Color.
 			ints.add(42);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		} catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -93,8 +92,7 @@ public class CollectionFactoryTests {
 			// to a Color.
 			ints.add(42);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		} catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -121,8 +119,7 @@ public class CollectionFactoryTests {
 			// cast to a Color.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		} catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -139,8 +136,7 @@ public class CollectionFactoryTests {
 			// Color.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		} catch (ClassCastException e) {
 			/* expected */
 		}
 	}
@@ -157,8 +153,7 @@ public class CollectionFactoryTests {
 			// cast to a List.
 			map.put("foo", 1);
 			fail("Should have thrown a ClassCastException");
-		}
-		catch (ClassCastException e) {
+		} catch (ClassCastException e) {
 			/* expected */
 		}
 	}

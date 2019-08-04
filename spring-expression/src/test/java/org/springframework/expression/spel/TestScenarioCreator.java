@@ -41,6 +41,7 @@ public class TestScenarioCreator {
 
 	/**
 	 * Register some Java reflect methods as well known functions that can be called from an expression.
+	 *
 	 * @param testContext the test evaluation context
 	 */
 	private static void populateFunctions(StandardEvaluationContext testContext) {
@@ -55,14 +56,14 @@ public class TestScenarioCreator {
 					TestScenarioCreator.class.getDeclaredMethod("varargsFunctionReverseStringsAndMerge", String[].class));
 			testContext.registerFunction("varargsFunctionReverseStringsAndMerge2",
 					TestScenarioCreator.class.getDeclaredMethod("varargsFunctionReverseStringsAndMerge2", Integer.TYPE, String[].class));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
 	}
 
 	/**
 	 * Register some variables that can be referenced from the tests
+	 *
 	 * @param testContext the test evaluation context
 	 */
 	private static void populateVariables(StandardEvaluationContext testContext) {
@@ -72,6 +73,7 @@ public class TestScenarioCreator {
 	/**
 	 * Create the root context object, an Inventor instance. Non-qualified property
 	 * and method references will be resolved against this context object.
+	 *
 	 * @param testContext the evaluation context in which to set the root object
 	 */
 	private static void setupRootContextObject(StandardEvaluationContext testContext) {
@@ -79,9 +81,9 @@ public class TestScenarioCreator {
 		c.set(1856, 7, 9);
 		Inventor tesla = new Inventor("Nikola Tesla", c.getTime(), "Serbian");
 		tesla.setPlaceOfBirth(new PlaceOfBirth("SmilJan"));
-		tesla.setInventions(new String[] { "Telephone repeater", "Rotating magnetic field principle",
+		tesla.setInventions(new String[]{"Telephone repeater", "Rotating magnetic field principle",
 				"Polyphase alternating-current system", "Induction motor", "Alternating-current power transmission",
-				"Tesla coil transformer", "Wireless communication", "Radio", "Fluorescent lights" });
+				"Tesla coil transformer", "Wireless communication", "Radio", "Fluorescent lights"});
 		testContext.setRootObject(tesla);
 	}
 
@@ -97,7 +99,7 @@ public class TestScenarioCreator {
 	}
 
 	public static int[] reverseInt(int i, int j, int k) {
-		return new int[] { k, j, i };
+		return new int[]{k, j, i};
 	}
 
 	public static String reverseString(String input) {

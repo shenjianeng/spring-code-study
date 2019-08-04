@@ -45,8 +45,8 @@ import org.springframework.util.StringUtils;
  *
  * @author Phillip Webb
  * @author Chris Beams
- * @since 3.2
  * @see EnableMBeanExport
+ * @since 3.2
  */
 @Configuration
 public class MBeanExportConfiguration implements ImportAware, EnvironmentAware, BeanFactoryAware {
@@ -113,8 +113,7 @@ public class MBeanExportConfiguration implements ImportAware, EnvironmentAware, 
 		if (StringUtils.hasText(server)) {
 			Assert.state(this.beanFactory != null, "No BeanFactory set");
 			exporter.setServer(this.beanFactory.getBean(server, MBeanServer.class));
-		}
-		else {
+		} else {
 			SpecificPlatform specificPlatform = SpecificPlatform.get();
 			if (specificPlatform != null) {
 				MBeanServer mbeanServer = specificPlatform.getMBeanServer();
@@ -144,8 +143,7 @@ public class MBeanExportConfiguration implements ImportAware, EnvironmentAware, 
 			public MBeanServer getMBeanServer() {
 				try {
 					return new JndiLocatorDelegate().lookup("java:comp/env/jmx/runtime", MBeanServer.class);
-				}
-				catch (NamingException ex) {
+				} catch (NamingException ex) {
 					throw new MBeanServerNotFoundException("Failed to retrieve WebLogic MBeanServer from JNDI", ex);
 				}
 			}

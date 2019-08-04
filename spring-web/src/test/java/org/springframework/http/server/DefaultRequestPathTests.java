@@ -23,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Unit tests for {@link DefaultRequestPath}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DefaultRequestPathTests {

@@ -43,7 +43,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
- * @since 4.0
  * @see #setDateStyle
  * @see #setTimeStyle
  * @see #setDateTimeStyle
@@ -51,6 +50,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  * @see org.springframework.format.FormatterRegistrar#registerFormatters
  * @see org.springframework.format.datetime.DateFormatterRegistrar
  * @see org.springframework.format.datetime.joda.DateTimeFormatterFactoryBean
+ * @since 4.0
  */
 public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 
@@ -116,6 +116,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * <p>This formatter will be used for the {@link LocalDate} type.
 	 * When specified, the {@link #setDateStyle dateStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.
+	 *
 	 * @param formatter the formatter to use
 	 * @see #setTimeFormatter
 	 * @see #setDateTimeFormatter
@@ -129,6 +130,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * <p>This formatter will be used for the {@link LocalTime} and {@link OffsetTime}
 	 * types. When specified, the {@link #setTimeStyle timeStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.
+	 *
 	 * @param formatter the formatter to use
 	 * @see #setDateFormatter
 	 * @see #setDateTimeFormatter
@@ -143,6 +145,7 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 	 * and {@link OffsetDateTime} types. When specified, the
 	 * {@link #setDateTimeStyle dateTimeStyle} and
 	 * {@link #setUseIsoFormat useIsoFormat} properties will be ignored.
+	 *
 	 * @param formatter the formatter to use
 	 * @see #setDateFormatter
 	 * @see #setTimeFormatter
@@ -211,9 +214,12 @@ public class DateTimeFormatterRegistrar implements FormatterRegistrar {
 
 	private DateTimeFormatter getFallbackFormatter(Type type) {
 		switch (type) {
-			case DATE: return DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
-			case TIME: return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
-			default: return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+			case DATE:
+				return DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+			case TIME:
+				return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+			default:
+				return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 		}
 	}
 

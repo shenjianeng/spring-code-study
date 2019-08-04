@@ -41,8 +41,8 @@ import org.springframework.util.MimeTypeUtils;
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see StringDecoder
+ * @since 5.0
  */
 public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 
@@ -68,8 +68,8 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 
 	@Override
 	public Flux<DataBuffer> encode(Publisher<? extends CharSequence> inputStream,
-			DataBufferFactory bufferFactory, ResolvableType elementType,
-			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
+								   DataBufferFactory bufferFactory, ResolvableType elementType,
+								   @Nullable MimeType mimeType, @Nullable Map<String, Object> hints) {
 
 		Charset charset = getCharset(mimeType);
 
@@ -86,11 +86,9 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 			try {
 				dataBuffer.write(charSequence, charset);
 				release = false;
-			}
-			catch (CoderMalfunctionError ex) {
+			} catch (CoderMalfunctionError ex) {
 				throw new EncodingException("String encoding error: " + ex.getMessage(), ex);
-			}
-			finally {
+			} finally {
 				if (release) {
 					DataBufferUtils.release(dataBuffer);
 				}
@@ -109,8 +107,7 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 	private Charset getCharset(@Nullable MimeType mimeType) {
 		if (mimeType != null && mimeType.getCharset() != null) {
 			return mimeType.getCharset();
-		}
-		else {
+		} else {
 			return DEFAULT_CHARSET;
 		}
 	}

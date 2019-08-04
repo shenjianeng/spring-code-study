@@ -54,7 +54,6 @@ public class ReactiveReturnTypeTests {
 	}
 
 
-
 	@RestController
 	static class ReactiveController {
 

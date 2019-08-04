@@ -34,6 +34,7 @@ public class DefaultSerializer implements Serializer<Object> {
 	/**
 	 * Writes the source object to an output stream using Java serialization.
 	 * The source object must implement {@link Serializable}.
+	 *
 	 * @see ObjectOutputStream#writeObject(Object)
 	 */
 	@Override

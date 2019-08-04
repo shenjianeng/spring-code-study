@@ -69,8 +69,7 @@ public class ComponentScanParserTests {
 			assertTrue(context.containsBean("stubFooDao"));
 			assertFalse(context.containsBean("scopedProxyTestBean"));
 			context.close();
-		}
-		finally {
+		} finally {
 			System.clearProperty("basePackage");
 			System.clearProperty("scanInclude");
 			System.clearProperty("scanExclude");
@@ -135,8 +134,8 @@ public class ComponentScanParserTests {
 			context.close();
 		}
 		{ // ensure the same works for AbstractRefreshableApplicationContext impls too
-			ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(new String[] { xmlLocation },
-				false);
+			ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(new String[]{xmlLocation},
+					false);
 			context.getEnvironment().setActiveProfiles(ProfileAnnotatedComponent.PROFILE_NAME);
 			context.refresh();
 			assertThat(context.containsBean(ProfileAnnotatedComponent.BEAN_NAME), is(true));

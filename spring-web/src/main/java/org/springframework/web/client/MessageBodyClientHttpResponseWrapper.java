@@ -31,8 +31,8 @@ import org.springframework.lang.Nullable;
  * by actually reading the input stream.
  *
  * @author Brian Clozel
- * @since 4.1.5
  * @see <a href="https://tools.ietf.org/html/rfc7230#section-3.3.3">RFC 7230 Section 3.3.3</a>
+ * @since 4.1.5
  */
 class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 
@@ -54,6 +54,7 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 	 * <li>a response status of {@code 1XX}, {@code 204} or {@code 304}</li>
 	 * <li>a {@code Content-Length} header of {@code 0}</li>
 	 * </ul>
+	 *
 	 * @return {@code true} if the response has a message body, {@code false} otherwise
 	 * @throws IOException in case of I/O errors
 	 */
@@ -76,6 +77,7 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 	 * <li>if no bytes are available, the message body is empty</li>
 	 * <li>otherwise it is not empty and the stream is reset to its start for further reading</li>
 	 * </ul>
+	 *
 	 * @return {@code true} if the response has a zero-length message body, {@code false} otherwise
 	 * @throws IOException in case of I/O errors
 	 */
@@ -90,19 +92,16 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 			body.mark(1);
 			if (body.read() == -1) {
 				return true;
-			}
-			else {
+			} else {
 				body.reset();
 				return false;
 			}
-		}
-		else {
+		} else {
 			this.pushbackInputStream = new PushbackInputStream(body);
 			int b = this.pushbackInputStream.read();
 			if (b == -1) {
 				return true;
-			}
-			else {
+			} else {
 				this.pushbackInputStream.unread(b);
 				return false;
 			}

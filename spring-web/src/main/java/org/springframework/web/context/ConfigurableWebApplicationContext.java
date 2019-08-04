@@ -33,10 +33,10 @@ import org.springframework.lang.Nullable;
  * They do not cause an initialization of the context on their own.
  *
  * @author Juergen Hoeller
- * @since 05.12.2003
  * @see #refresh
  * @see ContextLoader#createWebApplicationContext
  * @see org.springframework.web.servlet.FrameworkServlet#createWebApplicationContext
+ * @since 05.12.2003
  */
 public interface ConfigurableWebApplicationContext extends WebApplicationContext, ConfigurableApplicationContext {
 
@@ -47,6 +47,7 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 
 	/**
 	 * Name of the ServletConfig environment bean in the factory.
+	 *
 	 * @see javax.servlet.ServletConfig
 	 */
 	String SERVLET_CONFIG_BEAN_NAME = "servletConfig";
@@ -56,6 +57,7 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 	 * Set the ServletContext for this web application context.
 	 * <p>Does not cause an initialization of the context: refresh needs to be
 	 * called after the setting of all configuration properties.
+	 *
 	 * @see #refresh()
 	 */
 	void setServletContext(@Nullable ServletContext servletContext);
@@ -63,6 +65,7 @@ public interface ConfigurableWebApplicationContext extends WebApplicationContext
 	/**
 	 * Set the ServletConfig for this web application context.
 	 * Only called for a WebApplicationContext that belongs to a specific Servlet.
+	 *
 	 * @see #refresh()
 	 */
 	void setServletConfig(@Nullable ServletConfig servletConfig);

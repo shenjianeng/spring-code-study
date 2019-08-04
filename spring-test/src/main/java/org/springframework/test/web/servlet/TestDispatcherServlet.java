@@ -74,8 +74,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 			MockAsyncContext asyncContext;
 			if (request.getAsyncContext() instanceof MockAsyncContext) {
 				asyncContext = (MockAsyncContext) request.getAsyncContext();
-			}
-			else {
+			} else {
 				MockHttpServletRequest mockRequest = WebUtils.getNativeRequest(request, MockHttpServletRequest.class);
 				Assert.notNull(mockRequest, "Expected MockHttpServletRequest");
 				asyncContext = (MockAsyncContext) mockRequest.getAsyncContext();
@@ -137,7 +136,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 
 	@Override
 	protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,
-			@Nullable Object handler, Exception ex) throws Exception {
+												   @Nullable Object handler, Exception ex) throws Exception {
 
 		ModelAndView mav = super.processHandlerException(request, response, handler, ex);
 

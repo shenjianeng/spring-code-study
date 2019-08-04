@@ -68,11 +68,11 @@ import org.springframework.util.MethodInvoker;
  *
  * @author Juergen Hoeller
  * @author Alef Arendsen
- * @since 18.02.2004
  * @see #setTargetBeanName
  * @see #setTargetObject
  * @see #setTargetMethod
  * @see #setConcurrent
+ * @since 18.02.2004
  */
 public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethodInvoker
 		implements FactoryBean<JobDetail>, BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, InitializingBean {
@@ -111,6 +111,7 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	/**
 	 * Set the group of the job.
 	 * <p>Default is the default group of the Scheduler.
+	 *
 	 * @see org.quartz.Scheduler#DEFAULT_GROUP
 	 */
 	public void setGroup(String group) {
@@ -189,6 +190,7 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	/**
 	 * Callback for post-processing the JobDetail to be exposed by this FactoryBean.
 	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 *
 	 * @param jobDetail the JobDetail prepared by this FactoryBean
 	 */
 	protected void postProcessJobDetail(JobDetail jobDetail) {
@@ -265,18 +267,15 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 			Assert.state(this.methodInvoker != null, "No MethodInvoker set");
 			try {
 				context.setResult(this.methodInvoker.invoke());
-			}
-			catch (InvocationTargetException ex) {
+			} catch (InvocationTargetException ex) {
 				if (ex.getTargetException() instanceof JobExecutionException) {
 					// -> JobExecutionException, to be logged at info level by Quartz
 					throw (JobExecutionException) ex.getTargetException();
-				}
-				else {
+				} else {
 					// -> "unhandled exception", to be logged at error level by Quartz
 					throw new JobMethodInvocationFailedException(this.methodInvoker, ex.getTargetException());
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				// -> "unhandled exception", to be logged at error level by Quartz
 				throw new JobMethodInvocationFailedException(this.methodInvoker, ex);
 			}

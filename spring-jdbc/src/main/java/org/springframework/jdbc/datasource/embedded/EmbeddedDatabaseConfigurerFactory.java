@@ -35,6 +35,7 @@ final class EmbeddedDatabaseConfigurerFactory {
 
 	/**
 	 * Return a configurer instance for the given embedded database type.
+	 *
 	 * @param type the embedded database type (HSQL, H2 or Derby)
 	 * @return the configurer instance
 	 * @throws IllegalStateException if the driver for the specified database type is not available
@@ -52,8 +53,7 @@ final class EmbeddedDatabaseConfigurerFactory {
 				default:
 					throw new UnsupportedOperationException("Embedded database type [" + type + "] is not supported");
 			}
-		}
-		catch (ClassNotFoundException | NoClassDefFoundError ex) {
+		} catch (ClassNotFoundException | NoClassDefFoundError ex) {
 			throw new IllegalStateException("Driver for test database type [" + type + "] is not available", ex);
 		}
 	}

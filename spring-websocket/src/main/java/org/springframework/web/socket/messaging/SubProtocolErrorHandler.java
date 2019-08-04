@@ -22,9 +22,9 @@ import org.springframework.messaging.Message;
 /**
  * A contract for handling sub-protocol errors sent to clients.
  *
+ * @param <P> the message payload type
  * @author Rossen Stoyanchev
  * @since 4.2
- * @param <P> the message payload type
  */
 public interface SubProtocolErrorHandler<P> {
 
@@ -35,9 +35,10 @@ public interface SubProtocolErrorHandler<P> {
 	 * after sending an ERROR frame. To prevent an ERROR frame from being sent,
 	 * a handler could return {@code null} and send a notification message
 	 * through the broker instead, e.g. via a user destination.
+	 *
 	 * @param clientMessage the client message related to the error, possibly
-	 * {@code null} if error occurred while parsing a WebSocket message
-	 * @param ex the cause for the error, never {@code null}
+	 *                      {@code null} if error occurred while parsing a WebSocket message
+	 * @param ex            the cause for the error, never {@code null}
 	 * @return the error message to send to the client, or {@code null} in which
 	 * case no message will be sent.
 	 */
@@ -49,6 +50,7 @@ public interface SubProtocolErrorHandler<P> {
 	 * {@link org.springframework.messaging.simp.stomp.StompBrokerRelayMessageHandler
 	 * "broke relay"} because connectivity failed or the external broker sent an
 	 * error message, etc.
+	 *
 	 * @param errorMessage the error message, never {@code null}
 	 * @return the error message to send to the client, or {@code null} in which
 	 * case no message will be sent.

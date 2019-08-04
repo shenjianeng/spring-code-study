@@ -133,16 +133,14 @@ public class AnnotationTransactionInterceptorTests {
 		try {
 			proxy.doSomethingErroneous();
 			fail("Should throw IllegalStateException");
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertGetTransactionAndRollbackCount(1);
 		}
 
 		try {
 			proxy.doSomethingElseErroneous();
 			fail("Should throw IllegalArgumentException");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertGetTransactionAndRollbackCount(2);
 		}
 	}

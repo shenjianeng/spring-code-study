@@ -75,7 +75,6 @@ import org.springframework.util.ClassUtils;
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
- * @since 2.0
  * @see #setPersistenceXmlLocation
  * @see #setJpaProperties
  * @see #setJpaVendorAdapter
@@ -85,6 +84,7 @@ import org.springframework.util.ClassUtils;
  * @see LocalEntityManagerFactoryBean
  * @see org.springframework.orm.jpa.support.SharedEntityManagerBean
  * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory
+ * @since 2.0
  */
 @SuppressWarnings("serial")
 public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManagerFactoryBean
@@ -110,6 +110,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * and linking it in here. {@code persistence.xml} location, DataSource
 	 * configuration and LoadTimeWeaver will be defined on that separate
 	 * DefaultPersistenceUnitManager bean in such a scenario.
+	 *
 	 * @see #setPersistenceXmlLocation
 	 * @see #setDataSource
 	 * @see #setLoadTimeWeaver
@@ -124,9 +125,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * we want to use. This is a Spring resource location.
 	 * <p>Default is "classpath:META-INF/persistence.xml".
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @param persistenceXmlLocation a Spring resource String
-	 * identifying the location of the {@code persistence.xml} file
-	 * that this LocalContainerEntityManagerFactoryBean should parse
+	 *                               identifying the location of the {@code persistence.xml} file
+	 *                               that this LocalContainerEntityManagerFactoryBean should parse
 	 * @see #setPersistenceUnitManager
 	 */
 	public void setPersistenceXmlLocation(String persistenceXmlLocation) {
@@ -137,6 +139,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * Uses the specified persistence unit name as the name of the default
 	 * persistence unit, if applicable.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @see DefaultPersistenceUnitManager#setDefaultPersistenceUnitName
 	 */
 	@Override
@@ -153,8 +156,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * (nearest root directory). To be overridden if unit-specific resolution
 	 * does not work and the classpath root is not appropriate either.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
-	 * @since 4.3.3
+	 *
 	 * @see DefaultPersistenceUnitManager#setDefaultPersistenceUnitRootLocation
+	 * @since 4.3.3
 	 */
 	public void setPersistenceUnitRootLocation(String defaultPersistenceUnitRootLocation) {
 		this.internalPersistenceUnitManager.setDefaultPersistenceUnitRootLocation(defaultPersistenceUnitRootLocation);
@@ -180,8 +184,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * {@code persistence.xml} file (in which case we assume it is only meant to be
 	 * used with the persistence units defined there, like in standard JPA).
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @param packagesToScan one or more base packages to search, analogous to
-	 * Spring's component-scan configuration for regular Spring components
+	 *                       Spring's component-scan configuration for regular Spring components
 	 * @see #setPersistenceUnitManager
 	 * @see DefaultPersistenceUnitManager#setPackagesToScan
 	 */
@@ -208,6 +213,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * {@code META-INF/orm.xml} here will register that file even if it happens
 	 * to be co-located with a {@code persistence.xml} file.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @see #setPersistenceUnitManager
 	 * @see DefaultPersistenceUnitManager#setMappingResources
 	 */
@@ -219,9 +225,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * Specify the JPA 2.0 shared cache mode for this persistence unit,
 	 * overriding a value in {@code persistence.xml} if set.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
-	 * @since 4.0
+	 *
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getSharedCacheMode()
 	 * @see #setPersistenceUnitManager
+	 * @since 4.0
 	 */
 	public void setSharedCacheMode(SharedCacheMode sharedCacheMode) {
 		this.internalPersistenceUnitManager.setSharedCacheMode(sharedCacheMode);
@@ -231,9 +238,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * Specify the JPA 2.0 validation mode for this persistence unit,
 	 * overriding a value in {@code persistence.xml} if set.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
-	 * @since 4.0
+	 *
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getValidationMode()
 	 * @see #setPersistenceUnitManager
+	 * @since 4.0
 	 */
 	public void setValidationMode(ValidationMode validationMode) {
 		this.internalPersistenceUnitManager.setValidationMode(validationMode);
@@ -250,6 +258,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * Note that this variant typically works for JTA transaction management as well;
 	 * if it does not, consider using the explicit {@link #setJtaDataSource} instead.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getNonJtaDataSource()
 	 * @see #setPersistenceUnitManager
 	 */
@@ -267,6 +276,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * on the PersistenceUnitInfo passed to the PersistenceProvider, as well as
 	 * overriding data source configuration in {@code persistence.xml} (if any).
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getJtaDataSource()
 	 * @see #setPersistenceUnitManager
 	 */
@@ -282,6 +292,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * classes and jar files, in addition to the metadata read from
 	 * {@code persistence.xml}.
 	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 *
 	 * @see #setPersistenceUnitManager
 	 */
 	public void setPersistenceUnitPostProcessors(PersistenceUnitPostProcessor... postProcessors) {
@@ -307,6 +318,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * <p><b>NOTE:</b> Only applied if no external PersistenceUnitManager specified.
 	 * Otherwise, the external {@link #setPersistenceUnitManager PersistenceUnitManager}
 	 * is responsible for the weaving configuration.
+	 *
 	 * @see org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
 	 * @see org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver
 	 */
@@ -351,7 +363,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 			if (providerClassName == null) {
 				throw new IllegalArgumentException(
 						"No PersistenceProvider specified in EntityManagerFactory configuration, " +
-						"and chosen PersistenceUnitInfo does not specify a provider class name either");
+								"and chosen PersistenceUnitInfo does not specify a provider class name either");
 			}
 			Class<?> providerClass = ClassUtils.resolveClassName(providerClassName, getBeanClassLoader());
 			provider = (PersistenceProvider) BeanUtils.instantiateClass(providerClass);
@@ -376,14 +388,14 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * {@code persistence.xml}, as defined in the JPA specification.
 	 * If no entity manager name was specified, it takes the first info in the
 	 * array as returned by the reader. Otherwise, it checks for a matching name.
+	 *
 	 * @param persistenceUnitManager the PersistenceUnitManager to obtain from
 	 * @return the chosen PersistenceUnitInfo
 	 */
 	protected PersistenceUnitInfo determinePersistenceUnitInfo(PersistenceUnitManager persistenceUnitManager) {
 		if (getPersistenceUnitName() != null) {
 			return persistenceUnitManager.obtainPersistenceUnitInfo(getPersistenceUnitName());
-		}
-		else {
+		} else {
 			return persistenceUnitManager.obtainDefaultPersistenceUnitInfo();
 		}
 	}
@@ -392,6 +404,7 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	 * Hook method allowing subclasses to customize the EntityManagerFactory
 	 * after its creation via the PersistenceProvider.
 	 * <p>The default implementation is empty.
+	 *
 	 * @param emf the newly created EntityManagerFactory we are working with
 	 * @param pui the PersistenceUnitInfo used to configure the EntityManagerFactory
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory

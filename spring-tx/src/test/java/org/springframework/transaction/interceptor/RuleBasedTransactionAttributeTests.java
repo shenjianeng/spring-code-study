@@ -165,10 +165,12 @@ public class RuleBasedTransactionAttributeTests {
 
 
 	@SuppressWarnings("serial")
-	private static class MyBusinessException extends Exception {}
+	private static class MyBusinessException extends Exception {
+	}
 
 
 	@SuppressWarnings("serial")
-	private static final class MyBusinessWarningException extends MyBusinessException {}
+	private static final class MyBusinessWarningException extends MyBusinessException {
+	}
 
 }

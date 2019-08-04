@@ -53,7 +53,7 @@ public abstract class AbstractDataBufferAllocatingTestCase {
 
 	@Parameterized.Parameters(name = "{0}")
 	public static Object[][] dataBufferFactories() {
-		return new Object[][] {
+		return new Object[][]{
 				{new NettyDataBufferFactory(new UnpooledByteBufAllocator(true))},
 				{new NettyDataBufferFactory(new UnpooledByteBufAllocator(false))},
 				// disable caching for reliable leak detection, see https://github.com/netty/netty/issues/5275
@@ -109,8 +109,7 @@ public abstract class AbstractDataBufferAllocatingTestCase {
 			try {
 				verifyAllocations();
 				break;
-			}
-			catch (AssertionError ex) {
+			} catch (AssertionError ex) {
 				// ignore;
 			}
 			Thread.sleep(50);
@@ -131,8 +130,7 @@ public abstract class AbstractDataBufferAllocatingTestCase {
 					if (Instant.now().isBefore(start.plus(Duration.ofSeconds(5)))) {
 						try {
 							Thread.sleep(50);
-						}
-						catch (InterruptedException ex) {
+						} catch (InterruptedException ex) {
 							// ignore
 						}
 						continue;

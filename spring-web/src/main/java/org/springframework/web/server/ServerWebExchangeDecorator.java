@@ -41,9 +41,8 @@ import org.springframework.util.MultiValueMap;
  * {@link ServerWebExchange#mutate()} instead.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
- *
  * @see ServerWebExchange#mutate()
+ * @since 5.0
  */
 public class ServerWebExchangeDecorator implements ServerWebExchange {
 

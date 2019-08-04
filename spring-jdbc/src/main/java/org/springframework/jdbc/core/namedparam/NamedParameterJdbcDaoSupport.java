@@ -25,8 +25,8 @@ import org.springframework.lang.Nullable;
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
- * @since 2.0
  * @see NamedParameterJdbcTemplate
+ * @since 2.0
  */
 public class NamedParameterJdbcDaoSupport extends JdbcDaoSupport {
 

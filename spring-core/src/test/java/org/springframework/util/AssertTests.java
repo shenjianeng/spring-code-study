@@ -323,14 +323,14 @@ public class AssertTests {
 
 	@Test
 	public void notEmptyArray() {
-		Assert.notEmpty(new String[] {"1234"}, "enigma");
+		Assert.notEmpty(new String[]{"1234"}, "enigma");
 	}
 
 	@Test
 	public void notEmptyArrayWithEmptyArray() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("enigma");
-		Assert.notEmpty(new String[] {}, "enigma");
+		Assert.notEmpty(new String[]{}, "enigma");
 	}
 
 	@Test
@@ -342,14 +342,14 @@ public class AssertTests {
 
 	@Test
 	public void notEmptyArrayWithMessageSupplier() {
-		Assert.notEmpty(new String[] {"1234"}, () -> "enigma");
+		Assert.notEmpty(new String[]{"1234"}, () -> "enigma");
 	}
 
 	@Test
 	public void notEmptyArrayWithEmptyArrayAndMessageSupplier() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("enigma");
-		Assert.notEmpty(new String[] {}, () -> "enigma");
+		Assert.notEmpty(new String[]{}, () -> "enigma");
 	}
 
 	@Test
@@ -363,27 +363,27 @@ public class AssertTests {
 	public void notEmptyArrayWithEmptyArrayAndNullMessageSupplier() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage(equalTo(null));
-		Assert.notEmpty(new String[] {}, (Supplier<String>) null);
+		Assert.notEmpty(new String[]{}, (Supplier<String>) null);
 	}
 
 	@Test
 	public void noNullElements() {
-		Assert.noNullElements(new String[] { "1234" }, "enigma");
+		Assert.noNullElements(new String[]{"1234"}, "enigma");
 	}
 
 	@Test
 	public void noNullElementsWithEmptyArray() {
-		Assert.noNullElements(new String[] {}, "enigma");
+		Assert.noNullElements(new String[]{}, "enigma");
 	}
 
 	@Test
 	public void noNullElementsWithMessageSupplier() {
-		Assert.noNullElements(new String[] { "1234" }, () -> "enigma");
+		Assert.noNullElements(new String[]{"1234"}, () -> "enigma");
 	}
 
 	@Test
 	public void noNullElementsWithEmptyArrayAndMessageSupplier() {
-		Assert.noNullElements(new String[] {}, () -> "enigma");
+		Assert.noNullElements(new String[]{}, () -> "enigma");
 	}
 
 	@Test
@@ -395,14 +395,14 @@ public class AssertTests {
 	public void noNullElementsWithNullElementsAndMessageSupplier() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("enigma");
-		Assert.noNullElements(new String[] { "foo", null, "bar" }, () -> "enigma");
+		Assert.noNullElements(new String[]{"foo", null, "bar"}, () -> "enigma");
 	}
 
 	@Test
 	public void noNullElementsWithNullElementsAndNullMessageSupplier() {
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage(equalTo(null));
-		Assert.noNullElements(new String[] { "foo", null, "bar" }, (Supplier<String>) null);
+		Assert.noNullElements(new String[]{"foo", null, "bar"}, (Supplier<String>) null);
 	}
 
 	@Test

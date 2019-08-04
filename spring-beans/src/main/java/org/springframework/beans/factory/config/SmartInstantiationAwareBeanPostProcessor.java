@@ -32,8 +32,8 @@ import org.springframework.lang.Nullable;
  * class. New methods might be added to this interface even in point releases.
  *
  * @author Juergen Hoeller
- * @since 2.0.3
  * @see InstantiationAwareBeanPostProcessorAdapter
+ * @since 2.0.3
  */
 public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessor {
 
@@ -41,8 +41,9 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	 * Predict the type of the bean to be eventually returned from this
 	 * processor's {@link #postProcessBeforeInstantiation} callback.
 	 * <p>The default implementation returns {@code null}.
+	 *
 	 * @param beanClass the raw class of the bean
-	 * @param beanName the name of the bean
+	 * @param beanName  the name of the bean
 	 * @return the type of the bean, or {@code null} if not predictable
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 */
@@ -54,8 +55,9 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	/**
 	 * Determine the candidate constructors to use for the given bean.
 	 * <p>The default implementation returns {@code null}.
+	 *
 	 * @param beanClass the raw class of the bean (never {@code null})
-	 * @param beanName the name of the bean
+	 * @param beanName  the name of the bean
 	 * @return the candidate constructors, or {@code null} if none specified
 	 * @throws org.springframework.beans.BeansException in case of errors
 	 */
@@ -81,7 +83,8 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	 * for the affected bean has been built for a call to this method already,
 	 * it will be exposes as final bean reference by default).
 	 * <p>The default implementation returns the given {@code bean} as-is.
-	 * @param bean the raw bean instance
+	 *
+	 * @param bean     the raw bean instance
 	 * @param beanName the name of the bean
 	 * @return the object to expose as bean reference
 	 * (typically with the passed-in bean instance as default)

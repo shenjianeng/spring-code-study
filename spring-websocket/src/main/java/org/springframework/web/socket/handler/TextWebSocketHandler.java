@@ -40,8 +40,7 @@ public class TextWebSocketHandler extends AbstractWebSocketHandler {
 	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
 		try {
 			session.close(CloseStatus.NOT_ACCEPTABLE.withReason("Binary messages not supported"));
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			// ignore
 		}
 	}

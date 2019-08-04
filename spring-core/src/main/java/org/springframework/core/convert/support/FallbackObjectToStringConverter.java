@@ -38,8 +38,8 @@ import org.springframework.lang.Nullable;
  * @author Keith Donald
  * @author Juergen Hoeller
  * @author Sam Brannen
- * @since 3.0
  * @see ObjectToObjectConverter
+ * @since 3.0
  */
 final class FallbackObjectToStringConverter implements ConditionalGenericConverter {
 

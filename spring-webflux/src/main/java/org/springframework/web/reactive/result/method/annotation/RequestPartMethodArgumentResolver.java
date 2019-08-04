@@ -87,8 +87,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageReaderArgu
 			MethodParameter elementType = parameter.nested();
 			if (Part.class.isAssignableFrom(elementType.getNestedParameterType())) {
 				return parts.collectList().cast(Object.class);
-			}
-			else {
+			} else {
 				return decodePartValues(parts, elementType, bindingContext, exchange, isRequired)
 						.collectList().cast(Object.class);
 			}
@@ -126,7 +125,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageReaderArgu
 
 
 	private Flux<?> decodePartValues(Flux<Part> parts, MethodParameter elementType, BindingContext bindingContext,
-			ServerWebExchange exchange, boolean isRequired) {
+									 ServerWebExchange exchange, boolean isRequired) {
 
 		return parts.flatMap(part -> {
 			ServerHttpRequest partRequest = new PartServerHttpRequest(exchange.getRequest(), part);

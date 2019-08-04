@@ -52,6 +52,7 @@ public @interface Payload {
 	 * handled contains a non-primitive Object as its payload or is in serialized form and
 	 * requires message conversion.
 	 * <p>When processing STOMP over WebSocket messages this attribute is not supported.
+	 *
 	 * @since 4.2
 	 */
 	@AliasFor("value")

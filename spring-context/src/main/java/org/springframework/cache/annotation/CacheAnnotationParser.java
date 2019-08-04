@@ -30,9 +30,9 @@ import org.springframework.lang.Nullable;
  *
  * @author Costin Leau
  * @author Stephane Nicoll
- * @since 3.1
  * @see AnnotationCacheOperationSource
  * @see SpringCacheAnnotationParser
+ * @since 3.1
  */
 public interface CacheAnnotationParser {
 
@@ -41,6 +41,7 @@ public interface CacheAnnotationParser {
 	 * based on an annotation type understood by this parser.
 	 * <p>This essentially parses a known cache annotation into Spring's metadata
 	 * attribute class. Returns {@code null} if the class is not cacheable.
+	 *
 	 * @param type the annotated class
 	 * @return the configured caching operation, or {@code null} if none found
 	 * @see AnnotationCacheOperationSource#findCacheOperations(Class)
@@ -53,6 +54,7 @@ public interface CacheAnnotationParser {
 	 * based on an annotation type understood by this parser.
 	 * <p>This essentially parses a known cache annotation into Spring's metadata
 	 * attribute class. Returns {@code null} if the method is not cacheable.
+	 *
 	 * @param method the annotated method
 	 * @return the configured caching operation, or {@code null} if none found
 	 * @see AnnotationCacheOperationSource#findCacheOperations(Method)

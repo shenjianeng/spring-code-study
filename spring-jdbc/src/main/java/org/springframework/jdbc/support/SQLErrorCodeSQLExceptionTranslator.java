@@ -73,7 +73,9 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	private static final int MESSAGE_SQL_SQLEX_CONSTRUCTOR = 5;
 
 
-	/** Error codes used by this translator. */
+	/**
+	 * Error codes used by this translator.
+	 */
 	@Nullable
 	private SQLErrorCodes sqlErrorCodes;
 
@@ -90,8 +92,9 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	 * Create a SQL error code translator for the given DataSource.
 	 * Invoking this constructor will cause a Connection to be obtained
 	 * from the DataSource to get the meta-data.
+	 *
 	 * @param dataSource the DataSource to use to find meta-data and establish
-	 * which error codes are usable
+	 *                   which error codes are usable
 	 * @see SQLErrorCodesFactory
 	 */
 	public SQLErrorCodeSQLExceptionTranslator(DataSource dataSource) {
@@ -103,6 +106,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	 * Create a SQL error code translator for the given database product name.
 	 * Invoking this constructor will avoid obtaining a Connection from the
 	 * DataSource to get the meta-data.
+	 *
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see SQLErrorCodesFactory
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
@@ -115,6 +119,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * Create a SQLErrorCode translator given these error codes.
 	 * Does not require a database meta-data lookup to be performed using a connection.
+	 *
 	 * @param sec error codes
 	 */
 	public SQLErrorCodeSQLExceptionTranslator(SQLErrorCodes sec) {
@@ -127,8 +132,9 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	 * Set the DataSource for this translator.
 	 * <p>Setting this property will cause a Connection to be obtained from
 	 * the DataSource to get the meta-data.
+	 *
 	 * @param dataSource the DataSource to use to find meta-data and establish
-	 * which error codes are usable
+	 *                   which error codes are usable
 	 * @see SQLErrorCodesFactory#getErrorCodes(javax.sql.DataSource)
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
 	 */
@@ -140,6 +146,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	 * Set the database product name for this translator.
 	 * <p>Setting this property will avoid obtaining a Connection from the DataSource
 	 * to get the meta-data.
+	 *
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see SQLErrorCodesFactory#getErrorCodes(String)
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
@@ -150,6 +157,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 
 	/**
 	 * Set custom error codes to be used for translation.
+	 *
 	 * @param sec custom error codes to use
 	 */
 	public void setSqlErrorCodes(@Nullable SQLErrorCodes sec) {
@@ -159,6 +167,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * Return the error codes used by this translator.
 	 * Usually determined via a DataSource.
+	 *
 	 * @see #setDataSource
 	 */
 	@Nullable
@@ -201,8 +210,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 			String errorCode;
 			if (this.sqlErrorCodes.isUseSqlStateForTranslation()) {
 				errorCode = sqlEx.getSQLState();
-			}
-			else {
+			} else {
 				// Try to find SQLException with actual error code, looping through the causes.
 				// E.g. applicable to java.sql.DataTruncation as of JDK 1.6.
 				SQLException current = sqlEx;
@@ -232,40 +240,31 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 				if (Arrays.binarySearch(this.sqlErrorCodes.getBadSqlGrammarCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new BadSqlGrammarException(task, (sql != null ? sql : ""), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getInvalidResultSetAccessCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getInvalidResultSetAccessCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new InvalidResultSetAccessException(task, (sql != null ? sql : ""), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getDuplicateKeyCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getDuplicateKeyCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new DuplicateKeyException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getDataIntegrityViolationCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getDataIntegrityViolationCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new DataIntegrityViolationException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getPermissionDeniedCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getPermissionDeniedCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new PermissionDeniedDataAccessException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getDataAccessResourceFailureCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getDataAccessResourceFailureCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new DataAccessResourceFailureException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getTransientDataAccessResourceCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getTransientDataAccessResourceCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new TransientDataAccessResourceException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getCannotAcquireLockCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getCannotAcquireLockCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new CannotAcquireLockException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getDeadlockLoserCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getDeadlockLoserCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new DeadlockLoserDataAccessException(buildMessage(task, sql, sqlEx), sqlEx);
-				}
-				else if (Arrays.binarySearch(this.sqlErrorCodes.getCannotSerializeTransactionCodes(), errorCode) >= 0) {
+				} else if (Arrays.binarySearch(this.sqlErrorCodes.getCannotSerializeTransactionCodes(), errorCode) >= 0) {
 					logTranslation(task, sql, sqlEx, false);
 					return new CannotSerializeTransactionException(buildMessage(task, sql, sqlEx), sqlEx);
 				}
@@ -277,8 +276,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 			String codes;
 			if (this.sqlErrorCodes != null && this.sqlErrorCodes.isUseSqlStateForTranslation()) {
 				codes = "SQL state '" + sqlEx.getSQLState() + "', error code '" + sqlEx.getErrorCode();
-			}
-			else {
+			} else {
 				codes = "Error code '" + sqlEx.getErrorCode() + "'";
 			}
 			logger.debug("Unable to translate SQLException with " + codes + ", will now try the fallback translator");
@@ -290,8 +288,9 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * Subclasses can override this method to attempt a custom mapping from
 	 * {@link SQLException} to {@link DataAccessException}.
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (may be {@code null})
+	 *
+	 * @param task  readable text describing the task being attempted
+	 * @param sql   the SQL query or update that caused the problem (may be {@code null})
 	 * @param sqlEx the offending SQLException
 	 * @return {@code null} if no custom translation applies, otherwise a {@link DataAccessException}
 	 * resulting from custom translation. This exception should include the {@code sqlEx} parameter
@@ -306,11 +305,12 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	/**
 	 * Create a custom {@link DataAccessException}, based on a given exception
 	 * class from a {@link CustomSQLErrorCodesTranslation} definition.
-	 * @param task readable text describing the task being attempted
-	 * @param sql the SQL query or update that caused the problem (may be {@code null})
-	 * @param sqlEx the offending SQLException
+	 *
+	 * @param task           readable text describing the task being attempted
+	 * @param sql            the SQL query or update that caused the problem (may be {@code null})
+	 * @param sqlEx          the offending SQLException
 	 * @param exceptionClass the exception class to use, as defined in the
-	 * {@link CustomSQLErrorCodesTranslation} definition
+	 *                       {@link CustomSQLErrorCodesTranslation} definition
 	 * @return {@code null} if the custom exception could not be created, otherwise
 	 * the resulting {@link DataAccessException}. This exception should include the
 	 * {@code sqlEx} parameter as a nested root cause.
@@ -356,28 +356,28 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 			Constructor<?> exceptionConstructor;
 			switch (constructorType) {
 				case MESSAGE_SQL_SQLEX_CONSTRUCTOR:
-					Class<?>[] messageAndSqlAndSqlExArgsClass = new Class<?>[] {String.class, String.class, SQLException.class};
-					Object[] messageAndSqlAndSqlExArgs = new Object[] {task, sql, sqlEx};
+					Class<?>[] messageAndSqlAndSqlExArgsClass = new Class<?>[]{String.class, String.class, SQLException.class};
+					Object[] messageAndSqlAndSqlExArgs = new Object[]{task, sql, sqlEx};
 					exceptionConstructor = exceptionClass.getConstructor(messageAndSqlAndSqlExArgsClass);
 					return (DataAccessException) exceptionConstructor.newInstance(messageAndSqlAndSqlExArgs);
 				case MESSAGE_SQL_THROWABLE_CONSTRUCTOR:
-					Class<?>[] messageAndSqlAndThrowableArgsClass = new Class<?>[] {String.class, String.class, Throwable.class};
-					Object[] messageAndSqlAndThrowableArgs = new Object[] {task, sql, sqlEx};
+					Class<?>[] messageAndSqlAndThrowableArgsClass = new Class<?>[]{String.class, String.class, Throwable.class};
+					Object[] messageAndSqlAndThrowableArgs = new Object[]{task, sql, sqlEx};
 					exceptionConstructor = exceptionClass.getConstructor(messageAndSqlAndThrowableArgsClass);
 					return (DataAccessException) exceptionConstructor.newInstance(messageAndSqlAndThrowableArgs);
 				case MESSAGE_SQLEX_CONSTRUCTOR:
-					Class<?>[] messageAndSqlExArgsClass = new Class<?>[] {String.class, SQLException.class};
-					Object[] messageAndSqlExArgs = new Object[] {task + ": " + sqlEx.getMessage(), sqlEx};
+					Class<?>[] messageAndSqlExArgsClass = new Class<?>[]{String.class, SQLException.class};
+					Object[] messageAndSqlExArgs = new Object[]{task + ": " + sqlEx.getMessage(), sqlEx};
 					exceptionConstructor = exceptionClass.getConstructor(messageAndSqlExArgsClass);
 					return (DataAccessException) exceptionConstructor.newInstance(messageAndSqlExArgs);
 				case MESSAGE_THROWABLE_CONSTRUCTOR:
-					Class<?>[] messageAndThrowableArgsClass = new Class<?>[] {String.class, Throwable.class};
-					Object[] messageAndThrowableArgs = new Object[] {task + ": " + sqlEx.getMessage(), sqlEx};
+					Class<?>[] messageAndThrowableArgsClass = new Class<?>[]{String.class, Throwable.class};
+					Object[] messageAndThrowableArgs = new Object[]{task + ": " + sqlEx.getMessage(), sqlEx};
 					exceptionConstructor = exceptionClass.getConstructor(messageAndThrowableArgsClass);
-					return (DataAccessException)exceptionConstructor.newInstance(messageAndThrowableArgs);
+					return (DataAccessException) exceptionConstructor.newInstance(messageAndThrowableArgs);
 				case MESSAGE_ONLY_CONSTRUCTOR:
-					Class<?>[] messageOnlyArgsClass = new Class<?>[] {String.class};
-					Object[] messageOnlyArgs = new Object[] {task + ": " + sqlEx.getMessage()};
+					Class<?>[] messageOnlyArgsClass = new Class<?>[]{String.class};
+					Object[] messageOnlyArgs = new Object[]{task + ": " + sqlEx.getMessage()};
 					exceptionConstructor = exceptionClass.getConstructor(messageOnlyArgsClass);
 					return (DataAccessException) exceptionConstructor.newInstance(messageOnlyArgs);
 				default:
@@ -386,9 +386,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 								exceptionClass.getName() + "]");
 					}
 					return null;
-				}
-		}
-		catch (Throwable ex) {
+			}
+		} catch (Throwable ex) {
 			if (logger.isWarnEnabled()) {
 				logger.warn("Unable to instantiate custom exception class [" + exceptionClass.getName() + "]", ex);
 			}
@@ -401,7 +400,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 			String intro = custom ? "Custom translation of" : "Translating";
 			logger.debug(intro + " SQLException with SQL state '" + sqlEx.getSQLState() +
 					"', error code '" + sqlEx.getErrorCode() + "', message [" + sqlEx.getMessage() + "]" +
-					(sql != null ? "; SQL was [" + sql + "]": "") + " for task [" + task + "]");
+					(sql != null ? "; SQL was [" + sql + "]" : "") + " for task [" + task + "]");
 		}
 	}
 

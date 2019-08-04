@@ -28,9 +28,9 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  * and allowing for selective use of the cache.
  *
  * @author Juergen Hoeller
- * @since 4.2
  * @see #isWorthTrying()
  * @see #newInstance(Class, boolean)
+ * @since 4.2
  */
 public class SpringObjenesis implements Objenesis {
 
@@ -63,6 +63,7 @@ public class SpringObjenesis implements Objenesis {
 	/**
 	 * Create a new {@code SpringObjenesis} instance with the
 	 * given standard instantiator strategy.
+	 *
 	 * @param strategy the instantiator strategy to use
 	 */
 	public SpringObjenesis(InstantiatorStrategy strategy) {
@@ -88,10 +89,11 @@ public class SpringObjenesis implements Objenesis {
 
 	/**
 	 * Create a new instance of the given class via Objenesis.
-	 * @param clazz the class to create an instance of
+	 *
+	 * @param clazz    the class to create an instance of
 	 * @param useCache whether to use the instantiator cache
-	 * (typically {@code true} but can be set to {@code false}
-	 * e.g. for reloadable classes)
+	 *                 (typically {@code true} but can be set to {@code false}
+	 *                 e.g. for reloadable classes)
 	 * @return the new instance (never {@code null})
 	 * @throws ObjenesisException if instance creation failed
 	 */
@@ -127,8 +129,7 @@ public class SpringObjenesis implements Objenesis {
 				this.worthTrying = Boolean.TRUE;
 			}
 			return instantiator;
-		}
-		catch (ObjenesisException ex) {
+		} catch (ObjenesisException ex) {
 			if (currentWorthTrying == null) {
 				Throwable cause = ex.getCause();
 				if (cause instanceof ClassNotFoundException || cause instanceof IllegalAccessException) {
@@ -139,8 +140,7 @@ public class SpringObjenesis implements Objenesis {
 				}
 			}
 			throw ex;
-		}
-		catch (NoClassDefFoundError err) {
+		} catch (NoClassDefFoundError err) {
 			// Happening on the production version of Google App Engine, coming out of the
 			// restricted "sun.reflect.ReflectionFactory" class...
 			if (currentWorthTrying == null) {

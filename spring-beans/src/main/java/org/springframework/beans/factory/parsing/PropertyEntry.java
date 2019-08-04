@@ -31,9 +31,10 @@ public class PropertyEntry implements ParseState.Entry {
 
 	/**
 	 * Creates a new instance of the {@link PropertyEntry} class.
+	 *
 	 * @param name the name of the JavaBean property represented by this instance
 	 * @throws IllegalArgumentException if the supplied {@code name} is {@code null}
-	 * or consists wholly of whitespace
+	 *                                  or consists wholly of whitespace
 	 */
 	public PropertyEntry(String name) {
 		if (!StringUtils.hasText(name)) {

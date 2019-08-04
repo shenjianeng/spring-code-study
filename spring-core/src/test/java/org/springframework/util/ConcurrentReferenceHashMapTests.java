@@ -514,10 +514,11 @@ public class ConcurrentReferenceHashMapTests {
 
 	/**
 	 * Time a multi-threaded access to a cache.
+	 *
 	 * @return the timing stopwatch
 	 */
 	private <V> StopWatch timeMultiThreaded(String id, final Map<Integer, V> map,
-			ValueFactory<V> factory) throws InterruptedException {
+											ValueFactory<V> factory) throws InterruptedException {
 
 		StopWatch stopWatch = new StopWatch(id);
 		for (int i = 0; i < 500; i++) {
@@ -605,6 +606,7 @@ public class ConcurrentReferenceHashMapTests {
 					}
 					return new MockReference<>(entry, hash, next, TestWeakConcurrentCache.this.queue);
 				}
+
 				@Override
 				public Reference<K, V> pollForPurge() {
 					if (TestWeakConcurrentCache.this.disableTestHooks) {

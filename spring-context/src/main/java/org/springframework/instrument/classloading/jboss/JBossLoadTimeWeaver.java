@@ -57,6 +57,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new instance of the {@link JBossLoadTimeWeaver} class using
 	 * the default {@link ClassLoader class loader}.
+	 *
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	public JBossLoadTimeWeaver() {
@@ -66,6 +67,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 	/**
 	 * Create a new instance of the {@link JBossLoadTimeWeaver} class using
 	 * the supplied {@link ClassLoader}.
+	 *
 	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
 	 */
 	public JBossLoadTimeWeaver(@Nullable ClassLoader classLoader) {
@@ -86,7 +88,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 				if (wrappedTransformer == null) {
 					throw new IllegalArgumentException(
 							"Could not find 'transformer' field on JBoss JLIClassTransformer: " +
-							suggestedTransformer.getClass().getName());
+									suggestedTransformer.getClass().getName());
 				}
 				wrappedTransformer.setAccessible(true);
 				suggestedTransformer = wrappedTransformer.get(suggestedTransformer);
@@ -94,7 +96,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 			if (!suggestedTransformer.getClass().getName().equals(DELEGATING_TRANSFORMER_CLASS_NAME)) {
 				throw new IllegalStateException(
 						"Transformer not of the expected type DelegatingClassFileTransformer: " +
-						suggestedTransformer.getClass().getName());
+								suggestedTransformer.getClass().getName());
 			}
 			this.delegatingTransformer = suggestedTransformer;
 
@@ -103,12 +105,11 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 			if (addTransformer == null) {
 				throw new IllegalArgumentException(
 						"Could not find 'addTransformer' method on JBoss DelegatingClassFileTransformer: " +
-						this.delegatingTransformer.getClass().getName());
+								this.delegatingTransformer.getClass().getName());
 			}
 			addTransformer.setAccessible(true);
 			this.addTransformer = addTransformer;
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalStateException("Could not initialize JBoss LoadTimeWeaver", ex);
 		}
 	}
@@ -118,8 +119,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 	public void addTransformer(ClassFileTransformer transformer) {
 		try {
 			this.addTransformer.invoke(this.delegatingTransformer, transformer);
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			throw new IllegalStateException("Could not add transformer on JBoss ClassLoader: " + this.classLoader, ex);
 		}
 	}

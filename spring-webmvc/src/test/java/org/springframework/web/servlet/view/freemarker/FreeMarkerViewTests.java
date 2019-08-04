@@ -199,8 +199,7 @@ public class FreeMarkerViewTests {
 						assertEquals("myvalue", fmModel.get("myattr").toString());
 					}
 				};
-			}
-			else {
+			} else {
 				throw new FileNotFoundException();
 			}
 		}

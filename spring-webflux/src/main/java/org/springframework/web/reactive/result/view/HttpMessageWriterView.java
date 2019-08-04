@@ -132,14 +132,11 @@ public class HttpMessageWriterView implements View {
 
 		if (result.isEmpty()) {
 			return null;
-		}
-		else if (result.size() == 1) {
+		} else if (result.size() == 1) {
 			return result.values().iterator().next();
-		}
-		else if (this.canWriteMap) {
+		} else if (this.canWriteMap) {
 			return result;
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Multiple matches found: " + result + " but " +
 					"Map rendering is not supported by " + getMessageWriter().getClass().getName());
 		}

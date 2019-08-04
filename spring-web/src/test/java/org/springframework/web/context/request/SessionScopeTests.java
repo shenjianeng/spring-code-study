@@ -192,8 +192,7 @@ public class SessionScopeTests {
 
 		if (beanNameReset) {
 			assertNull(bean.getBeanName());
-		}
-		else {
+		} else {
 			assertNotNull(bean.getBeanName());
 		}
 	}

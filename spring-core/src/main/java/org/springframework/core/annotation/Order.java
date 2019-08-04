@@ -54,11 +54,11 @@ import org.springframework.core.Ordered;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 2.0
  * @see org.springframework.core.Ordered
  * @see AnnotationAwareOrderComparator
  * @see OrderUtils
  * @see javax.annotation.Priority
+ * @since 2.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
@@ -68,6 +68,7 @@ public @interface Order {
 	/**
 	 * The order value.
 	 * <p>Default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 *
 	 * @see Ordered#getOrder()
 	 */
 	int value() default Ordered.LOWEST_PRECEDENCE;

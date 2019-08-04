@@ -256,7 +256,7 @@ public class MvcUriComponentsBuilderTests {
 	@Test  // SPR-14405
 	public void fromMethodNameWithOptionalParam() {
 		UriComponents uriComponents = fromMethodName(ControllerWithMethods.class,
-				"methodWithOptionalParam", new Object[] {null}).build();
+				"methodWithOptionalParam", new Object[]{null}).build();
 
 		assertThat(uriComponents.toUriString(), is("http://localhost/something/optional-param"));
 	}
@@ -514,13 +514,13 @@ public class MvcUriComponentsBuilderTests {
 
 		@RequestMapping(value = "/{id}/foo")
 		HttpEntity<Void> methodForNextPage(@PathVariable String id,
-				@RequestParam Integer offset, @RequestParam Integer limit) {
+										   @RequestParam Integer offset, @RequestParam Integer limit) {
 			return null;
 		}
 
 		@RequestMapping(value = "/{id}/foo")
 		HttpEntity<Void> methodWithMultiValueRequestParams(@PathVariable String id,
-				@RequestParam List<Integer> items, @RequestParam Integer limit) {
+														   @RequestParam List<Integer> items, @RequestParam Integer limit) {
 			return null;
 		}
 

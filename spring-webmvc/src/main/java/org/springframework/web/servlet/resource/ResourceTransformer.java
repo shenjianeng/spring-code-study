@@ -33,8 +33,9 @@ public interface ResourceTransformer {
 
 	/**
 	 * Transform the given resource.
-	 * @param request the current request
-	 * @param resource the resource to transform
+	 *
+	 * @param request          the current request
+	 * @param resource         the resource to transform
 	 * @param transformerChain the chain of remaining transformers to delegate to
 	 * @return the transformed resource (never {@code null})
 	 * @throws IOException if the transformation fails

@@ -62,7 +62,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 
 	protected HandlerResultHandlerSupport(RequestedContentTypeResolver contentTypeResolver,
-			ReactiveAdapterRegistry adapterRegistry) {
+										  ReactiveAdapterRegistry adapterRegistry) {
 
 		Assert.notNull(contentTypeResolver, "RequestedContentTypeResolver is required");
 		Assert.notNull(adapterRegistry, "ReactiveAdapterRegistry is required");
@@ -89,6 +89,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 	 * Set the order for this result handler relative to others.
 	 * <p>By default set to {@link Ordered#LOWEST_PRECEDENCE}, however see
 	 * Javadoc of sub-classes which may change this default.
+	 *
 	 * @param order the order
 	 */
 	public void setOrder(int order) {
@@ -103,6 +104,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 	/**
 	 * Get a {@code ReactiveAdapter} for the top-level return value type.
+	 *
 	 * @return the matching adapter, or {@code null} if none
 	 */
 	@Nullable
@@ -112,7 +114,8 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 	/**
 	 * Select the best media type for the current request through a content negotiation algorithm.
-	 * @param exchange the current request
+	 *
+	 * @param exchange                the current request
 	 * @param producibleTypesSupplier the media types that can be produced for the current request
 	 * @return the selected media type, or {@code null} if none
 	 */
@@ -148,8 +151,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 			if (mediaType.isConcrete()) {
 				selected = mediaType;
 				break;
-			}
-			else if (mediaType.isPresentIn(ALL_APPLICATION_MEDIA_TYPES)) {
+			} else if (mediaType.isPresentIn(ALL_APPLICATION_MEDIA_TYPES)) {
 				selected = MediaType.APPLICATION_OCTET_STREAM;
 				break;
 			}
@@ -160,8 +162,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 				logger.debug("Using '" + selected + "' given " + acceptableTypes +
 						" and supported " + producibleTypes);
 			}
-		}
-		else if (logger.isDebugEnabled()) {
+		} else if (logger.isDebugEnabled()) {
 			logger.debug(exchange.getLogPrefix() +
 					"No match for " + acceptableTypes + ", supported: " + producibleTypes);
 		}

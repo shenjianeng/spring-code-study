@@ -36,8 +36,8 @@ import org.springframework.web.server.ServerWebExchange;
  * template name-value pairs.
  *
  * @author Rossen Stoyanchev
- * @since 5.0
  * @see PathVariableMethodArgumentResolver
+ * @since 5.0
  */
 public class PathVariableMapMethodArgumentResolver extends HandlerMethodArgumentResolverSupport
 		implements SyncHandlerMethodArgumentResolver {

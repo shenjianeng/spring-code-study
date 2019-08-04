@@ -28,14 +28,15 @@ import java.io.Flushable;
  * TransactionStatus.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see DefaultTransactionStatus#isRollbackOnly
+ * @since 1.1
  */
 public interface SmartTransactionObject extends Flushable {
 
 	/**
 	 * Return whether the transaction is internally marked as rollback-only.
 	 * Can, for example, check the JTA UserTransaction.
+	 *
 	 * @see javax.transaction.UserTransaction#getStatus
 	 * @see javax.transaction.Status#STATUS_MARKED_ROLLBACK
 	 */

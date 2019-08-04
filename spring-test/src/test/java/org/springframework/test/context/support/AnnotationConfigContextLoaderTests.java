@@ -51,7 +51,7 @@ public class AnnotationConfigContextLoaderTests {
 		expectedException.expectMessage(containsString("does not support resource locations"));
 
 		MergedContextConfiguration mergedConfig = new MergedContextConfiguration(getClass(),
-			new String[] { "config.xml" }, EMPTY_CLASS_ARRAY, EMPTY_STRING_ARRAY, contextLoader);
+				new String[]{"config.xml"}, EMPTY_CLASS_ARRAY, EMPTY_STRING_ARRAY, contextLoader);
 		contextLoader.loadContext(mergedConfig);
 	}
 

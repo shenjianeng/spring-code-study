@@ -30,17 +30,18 @@ import java.lang.reflect.Method;
  * For unrestricted resolution, choose {@link ReflectivePropertyAccessor} instead.
  *
  * @author Juergen Hoeller
- * @since 4.3.15
  * @see #forReadOnlyAccess()
  * @see #forReadWriteAccess()
  * @see SimpleEvaluationContext
  * @see StandardEvaluationContext
  * @see ReflectivePropertyAccessor
+ * @since 4.3.15
  */
 public final class DataBindingPropertyAccessor extends ReflectivePropertyAccessor {
 
 	/**
 	 * Create a new property accessor for reading and possibly also writing.
+	 *
 	 * @param allowWrite whether to also allow for write operations
 	 * @see #canWrite
 	 */

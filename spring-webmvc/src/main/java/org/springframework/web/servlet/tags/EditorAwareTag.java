@@ -26,15 +26,16 @@ import org.springframework.lang.Nullable;
  * PropertyEditor for a property that they are currently bound to.
  *
  * @author Juergen Hoeller
- * @since 2.5
  * @see BindTag
  * @see org.springframework.web.servlet.tags.form.AbstractDataBoundFormElementTag
+ * @since 2.5
  */
 public interface EditorAwareTag {
 
 	/**
 	 * Retrieve the PropertyEditor for the property that this tag is
 	 * currently bound to. Intended for cooperating nesting tags.
+	 *
 	 * @return the current PropertyEditor, or {@code null} if none
 	 * @throws JspException if resolving the editor failed
 	 */

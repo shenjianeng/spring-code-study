@@ -82,7 +82,7 @@ class OrderedMessageSender implements MessageChannel {
 	}
 
 	private void sendNextMessage() {
-		for (;;) {
+		for (; ; ) {
 			Message<?> message = this.messages.poll();
 			if (message != null) {
 				try {
@@ -90,14 +90,12 @@ class OrderedMessageSender implements MessageChannel {
 					if (this.channel.send(message)) {
 						return;
 					}
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					if (logger.isErrorEnabled()) {
 						logger.error("Failed to send " + message, ex);
 					}
 				}
-			}
-			else {
+			} else {
 				// We ran out of messages..
 				this.sendInProgress.set(false);
 				trySend();
@@ -116,9 +114,10 @@ class OrderedMessageSender implements MessageChannel {
 	/**
 	 * Install or remove an {@link ExecutorChannelInterceptor} that invokes a
 	 * completion task once the message is handled.
-	 * @param channel the channel to configure
+	 *
+	 * @param channel              the channel to configure
 	 * @param preservePublishOrder whether preserve order is on or off based on
-	 * which an interceptor is either added or removed.
+	 *                             which an interceptor is either added or removed.
 	 */
 	static void configureOutboundChannel(MessageChannel channel, boolean preservePublishOrder) {
 		if (preservePublishOrder) {
@@ -128,8 +127,7 @@ class OrderedMessageSender implements MessageChannel {
 			if (execChannel.getInterceptors().stream().noneMatch(i -> i instanceof CallbackInterceptor)) {
 				execChannel.addInterceptor(0, new CallbackInterceptor());
 			}
-		}
-		else if (channel instanceof ExecutorSubscribableChannel) {
+		} else if (channel instanceof ExecutorSubscribableChannel) {
 			ExecutorSubscribableChannel execChannel = (ExecutorSubscribableChannel) channel;
 			execChannel.getInterceptors().stream().filter(i -> i instanceof CallbackInterceptor)
 					.findFirst()

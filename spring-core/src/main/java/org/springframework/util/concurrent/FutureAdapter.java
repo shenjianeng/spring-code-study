@@ -29,10 +29,10 @@ import org.springframework.util.Assert;
  * parameterized over T. All methods are delegated to the adaptee, where {@link #get()}
  * and {@link #get(long, TimeUnit)} call {@link #adapt(Object)} on the adaptee's result.
  *
- * @author Arjen Poutsma
- * @since 4.0
  * @param <T> the type of this {@code Future}
  * @param <S> the type of the adaptee's {@code Future}
+ * @author Arjen Poutsma
+ * @since 4.0
  */
 public abstract class FutureAdapter<T, S> implements Future<T> {
 
@@ -48,6 +48,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 	/**
 	 * Constructs a new {@code FutureAdapter} with the given adaptee.
+	 *
 	 * @param adaptee the future to delegate to
 	 */
 	protected FutureAdapter(Future<S> adaptee) {
@@ -106,13 +107,11 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 						this.result = adapted;
 						this.state = State.SUCCESS;
 						return adapted;
-					}
-					catch (ExecutionException ex) {
+					} catch (ExecutionException ex) {
 						this.result = ex;
 						this.state = State.FAILURE;
 						throw ex;
-					}
-					catch (Throwable ex) {
+					} catch (Throwable ex) {
 						ExecutionException execEx = new ExecutionException(ex);
 						this.result = execEx;
 						this.state = State.FAILURE;
@@ -126,6 +125,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 	/**
 	 * Adapts the given adaptee's result into T.
+	 *
 	 * @return the adapted result
 	 */
 	@Nullable

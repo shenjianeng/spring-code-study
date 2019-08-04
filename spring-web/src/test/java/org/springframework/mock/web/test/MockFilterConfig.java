@@ -33,9 +33,9 @@ import org.springframework.util.Assert;
  * custom {@link javax.servlet.Filter} implementations.
  *
  * @author Juergen Hoeller
- * @since 1.0.2
  * @see MockFilterChain
  * @see PassThroughFilterChain
+ * @since 1.0.2
  */
 public class MockFilterConfig implements FilterConfig {
 
@@ -55,6 +55,7 @@ public class MockFilterConfig implements FilterConfig {
 
 	/**
 	 * Create a new MockFilterConfig with a default {@link MockServletContext}.
+	 *
 	 * @param filterName the name of the filter
 	 */
 	public MockFilterConfig(String filterName) {
@@ -63,6 +64,7 @@ public class MockFilterConfig implements FilterConfig {
 
 	/**
 	 * Create a new MockFilterConfig.
+	 *
 	 * @param servletContext the ServletContext that the servlet runs in
 	 */
 	public MockFilterConfig(@Nullable ServletContext servletContext) {
@@ -71,8 +73,9 @@ public class MockFilterConfig implements FilterConfig {
 
 	/**
 	 * Create a new MockFilterConfig.
+	 *
 	 * @param servletContext the ServletContext that the servlet runs in
-	 * @param filterName the name of the filter
+	 * @param filterName     the name of the filter
 	 */
 	public MockFilterConfig(@Nullable ServletContext servletContext, String filterName) {
 		this.servletContext = (servletContext != null ? servletContext : new MockServletContext());

@@ -194,8 +194,7 @@ public class BshScriptFactoryTests {
 		try {
 			new ClassPathXmlApplicationContext("org/springframework/scripting/bsh/bshBrokenContext.xml");
 			fail("Must throw exception for broken script file");
-		}
-		catch (NestedRuntimeException ex) {
+		} catch (NestedRuntimeException ex) {
 			assertTrue(ex.contains(ScriptCompilationException.class));
 		}
 	}
@@ -212,8 +211,7 @@ public class BshScriptFactoryTests {
 			Messenger messenger = (Messenger) factory.getScriptedObject(script, Messenger.class);
 			messenger.getMessage();
 			fail("Must have thrown a BshScriptUtils.BshExecutionException.");
-		}
-		catch (BshScriptUtils.BshExecutionException expected) {
+		} catch (BshScriptUtils.BshExecutionException expected) {
 		}
 	}
 
@@ -222,8 +220,7 @@ public class BshScriptFactoryTests {
 		try {
 			new BshScriptFactory(null, Messenger.class);
 			fail("Must have thrown exception by this point.");
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 
@@ -232,8 +229,7 @@ public class BshScriptFactoryTests {
 		try {
 			new BshScriptFactory("", Messenger.class);
 			fail("Must have thrown exception by this point.");
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 
@@ -242,8 +238,7 @@ public class BshScriptFactoryTests {
 		try {
 			new BshScriptFactory("\n   ", Messenger.class);
 			fail("Must have thrown exception by this point.");
-		}
-		catch (IllegalArgumentException expected) {
+		} catch (IllegalArgumentException expected) {
 		}
 	}
 

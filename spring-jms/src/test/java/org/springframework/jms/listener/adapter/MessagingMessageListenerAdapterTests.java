@@ -72,7 +72,8 @@ public class MessagingMessageListenerAdapterTests {
 
 	@Test
 	public void buildMessageWithStandardMessage() throws JMSException {
-		Destination replyTo = new Destination() {};
+		Destination replyTo = new Destination() {
+		};
 		Message<String> result = MessageBuilder.withPayload("Response")
 				.setHeader("foo", "bar")
 				.setHeader(JmsHeaders.TYPE, "msg_type")
@@ -101,11 +102,9 @@ public class MessagingMessageListenerAdapterTests {
 		try {
 			listener.onMessage(message, session);
 			fail("Should have thrown an exception");
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			fail("Should not have thrown a JMS exception");
-		}
-		catch (ListenerExecutionFailedException ex) {
+		} catch (ListenerExecutionFailedException ex) {
 			assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
 			assertEquals("Expected test exception", ex.getCause().getMessage());
 		}
@@ -120,11 +119,9 @@ public class MessagingMessageListenerAdapterTests {
 		try {
 			listener.onMessage(message, session);
 			fail("Should have thrown an exception");
-		}
-		catch (JMSException ex) {
+		} catch (JMSException ex) {
 			fail("Should not have thrown a JMS exception");
-		}
-		catch (ListenerExecutionFailedException ex) {
+		} catch (ListenerExecutionFailedException ex) {
 			assertEquals(MessageConversionException.class, ex.getCause().getClass());
 		}
 	}
@@ -363,7 +360,7 @@ public class MessagingMessageListenerAdapterTests {
 	}
 
 	protected MessagingMessageListenerAdapter getPayloadInstance(final Object payload,
-			String methodName, Class... parameterTypes) {
+																 String methodName, Class... parameterTypes) {
 
 		Method method = ReflectionUtils.findMethod(SampleBean.class, methodName, parameterTypes);
 		MessagingMessageListenerAdapter adapter = new MessagingMessageListenerAdapter() {
@@ -442,8 +439,15 @@ public class MessagingMessageListenerAdapterTests {
 		}
 	}
 
-	interface Summary {};
-	interface Full extends Summary {};
+	interface Summary {
+	}
+
+	;
+
+	interface Full extends Summary {
+	}
+
+	;
 
 	private static class SampleResponse {
 

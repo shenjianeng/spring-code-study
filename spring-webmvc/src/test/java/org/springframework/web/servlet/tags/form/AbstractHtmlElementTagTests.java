@@ -125,8 +125,8 @@ public abstract class AbstractHtmlElementTagTests extends AbstractTagTests {
 	protected final void assertContainsAttribute(String output, String attributeName, String attributeValue) {
 		String attributeString = attributeName + "=\"" + attributeValue + "\"";
 		assertTrue("Expected to find attribute '" + attributeName +
-				"' with value '" + attributeValue +
-				"' in output + '" + output + "'",
+						"' with value '" + attributeValue +
+						"' in output + '" + output + "'",
 				output.contains(attributeString));
 	}
 

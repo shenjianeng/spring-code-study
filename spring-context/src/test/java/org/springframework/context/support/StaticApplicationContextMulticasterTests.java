@@ -59,7 +59,7 @@ public class StaticApplicationContextMulticasterTests extends AbstractApplicatio
 		parent.registerSingleton(StaticApplicationContext.APPLICATION_EVENT_MULTICASTER_BEAN_NAME,
 				TestApplicationEventMulticaster.class, null);
 		parent.refresh();
-		parent.addApplicationListener(parentListener) ;
+		parent.addApplicationListener(parentListener);
 
 		parent.getStaticMessageSource().addMessage("code1", Locale.getDefault(), "message1");
 

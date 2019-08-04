@@ -78,8 +78,7 @@ public class Projection extends SpelNodeImpl {
 					state.pushActiveContextObject(new TypedValue(entry));
 					state.enterScope();
 					result.add(this.children[0].getValueInternal(state).getValue());
-				}
-				finally {
+				} finally {
 					state.popActiveContextObject();
 					state.exitScope();
 				}
@@ -103,8 +102,7 @@ public class Projection extends SpelNodeImpl {
 						arrayElementType = determineCommonType(arrayElementType, value.getClass());
 					}
 					result.add(value);
-				}
-				finally {
+				} finally {
 					state.exitScope();
 					state.popActiveContextObject();
 				}
@@ -117,10 +115,10 @@ public class Projection extends SpelNodeImpl {
 				}
 				Object resultArray = Array.newInstance(arrayElementType, result.size());
 				System.arraycopy(result.toArray(), 0, resultArray, 0, result.size());
-				return new ValueRef.TypedValueHolderValueRef(new TypedValue(resultArray),this);
+				return new ValueRef.TypedValueHolderValueRef(new TypedValue(resultArray), this);
 			}
 
-			return new ValueRef.TypedValueHolderValueRef(new TypedValue(result),this);
+			return new ValueRef.TypedValueHolderValueRef(new TypedValue(result), this);
 		}
 
 		if (operand == null) {

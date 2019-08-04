@@ -56,8 +56,7 @@ public class EntityManagerFactoryUtilsTests {
 		try {
 			EntityManagerFactoryUtils.doGetTransactionalEntityManager(null, null);
 			fail("expected exception");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			// it's okay
 		}
 		EntityManagerFactory factory = mock(EntityManagerFactory.class);
@@ -78,9 +77,8 @@ public class EntityManagerFactoryUtilsTests {
 
 			// no tx active
 			assertSame(manager, EntityManagerFactoryUtils.doGetTransactionalEntityManager(factory, null));
-			assertSame(manager, ((EntityManagerHolder)TransactionSynchronizationManager.unbindResource(factory)).getEntityManager());
-		}
-		finally {
+			assertSame(manager, ((EntityManagerHolder) TransactionSynchronizationManager.unbindResource(factory)).getEntityManager());
+		} finally {
 			TransactionSynchronizationManager.clearSynchronization();
 		}
 

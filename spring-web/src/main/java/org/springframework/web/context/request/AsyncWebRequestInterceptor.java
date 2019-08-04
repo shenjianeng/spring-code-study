@@ -32,11 +32,10 @@ package org.springframework.web.context.request;
  * {@code preHandle}, {@code postHandle} and {@code afterCompletion} as usual.
  *
  * @author Rossen Stoyanchev
- * @since 3.2
- *
  * @see org.springframework.web.context.request.async.WebAsyncManager
+ * @since 3.2
  */
-public interface AsyncWebRequestInterceptor extends WebRequestInterceptor{
+public interface AsyncWebRequestInterceptor extends WebRequestInterceptor {
 
 	/**
 	 * Called instead of {@code postHandle} and {@code afterCompletion}, when the

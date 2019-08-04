@@ -47,9 +47,9 @@ import org.springframework.util.StringUtils;
  * </ul>
  *
  * @author Rossen Stoyanchev
- * @since 4.2
  * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#Frames_and_Headers">
  * https://stomp.github.io/stomp-specification-1.2.html#Frames_and_Headers</a>
+ * @since 4.2
  */
 public class StompHeaders implements MultiValueMap<String, String>, Serializable {
 
@@ -119,8 +119,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 			Map<String, List<String>> map = new LinkedMultiValueMap<>(headers.size());
 			headers.forEach((key, value) -> map.put(key, Collections.unmodifiableList(value)));
 			this.headers = Collections.unmodifiableMap(map);
-		}
-		else {
+		} else {
 			this.headers = headers;
 		}
 	}
@@ -135,8 +134,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 			Assert.isTrue(!mimeType.isWildcardType(), "'Content-Type' cannot contain wildcard type '*'");
 			Assert.isTrue(!mimeType.isWildcardSubtype(), "'Content-Type' cannot contain wildcard subtype '*'");
 			set(CONTENT_TYPE, mimeType.toString());
-		}
-		else {
+		} else {
 			set(CONTENT_TYPE, null);
 		}
 	}
@@ -201,6 +199,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	/**
 	 * Set the accept-version header. Must be one of "1.1", "1.2", or both.
 	 * Applies to the CONNECT frame.
+	 *
 	 * @since 5.0.7
 	 */
 	public void setAcceptVersion(@Nullable String... acceptVersions) {
@@ -216,6 +215,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * Get the accept-version header.
+	 *
 	 * @since 5.0.7
 	 */
 	@Nullable
@@ -282,7 +282,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 		if (rawValues == null) {
 			return null;
 		}
-		return new long[] {Long.valueOf(rawValues[0]), Long.valueOf(rawValues[1])};
+		return new long[]{Long.valueOf(rawValues[0]), Long.valueOf(rawValues[1])};
 	}
 
 	/**
@@ -425,6 +425,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * Return the first header value for the given header name, if any.
+	 *
 	 * @param headerName the header name
 	 * @return the first header value, or {@code null} if none
 	 */
@@ -437,7 +438,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * Add the given, single header value under the given name.
-	 * @param headerName the header name
+	 *
+	 * @param headerName  the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported
 	 * @see #put(String, List)
@@ -462,7 +464,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 	/**
 	 * Set the given, single header value under the given name.
-	 * @param headerName the header name
+	 *
+	 * @param headerName  the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported
 	 * @see #put(String, List)

@@ -42,16 +42,16 @@ import org.springframework.util.Assert;
  *         return JmsResponse.forQueue(result, "queueOut");
  *     }
  * }</pre>
- *
+ * <p>
  * If the destination does not need to be computed at runtime,
  * {@link org.springframework.messaging.handler.annotation.SendTo @SendTo}
  * is the recommended declarative approach.
  *
- * @author Stephane Nicoll
- * @since 4.2
  * @param <T> the type of the response
+ * @author Stephane Nicoll
  * @see org.springframework.jms.annotation.JmsListener
  * @see org.springframework.messaging.handler.annotation.SendTo
+ * @since 4.2
  */
 public class JmsResponse<T> {
 
@@ -62,7 +62,8 @@ public class JmsResponse<T> {
 
 	/**
 	 * Create a new {@link JmsResponse} instance.
-	 * @param response the content of the result
+	 *
+	 * @param response    the content of the result
 	 * @param destination the destination
 	 */
 	protected JmsResponse(T response, Object destination) {
@@ -82,8 +83,9 @@ public class JmsResponse<T> {
 	/**
 	 * Resolve the {@link Destination} to use for this instance. The {@link DestinationResolver}
 	 * and {@link Session} can be used to resolve a destination at runtime.
+	 *
 	 * @param destinationResolver the destination resolver to use if necessary
-	 * @param session the session to use, if necessary
+	 * @param session             the session to use, if necessary
 	 * @return the {@link Destination} to use
 	 * @throws JMSException if the DestinationResolver failed to resolve the destination
 	 */

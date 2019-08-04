@@ -42,13 +42,13 @@ public abstract class SimpAttributesContextHolder {
 
 	/**
 	 * Bind the given SimpAttributes to the current thread.
+	 *
 	 * @param attributes the RequestAttributes to expose
 	 */
 	public static void setAttributes(@Nullable SimpAttributes attributes) {
 		if (attributes != null) {
 			attributesHolder.set(attributes);
-		}
-		else {
+		} else {
 			resetAttributes();
 		}
 	}
@@ -56,6 +56,7 @@ public abstract class SimpAttributesContextHolder {
 	/**
 	 * Extract the SiMP session attributes from the given message, wrap them in
 	 * a {@link SimpAttributes} instance and bind it to the current thread.
+	 *
 	 * @param message the message to extract session attributes from
 	 */
 	public static void setAttributesFromMessage(Message<?> message) {
@@ -64,6 +65,7 @@ public abstract class SimpAttributesContextHolder {
 
 	/**
 	 * Return the SimpAttributes currently bound to the thread.
+	 *
 	 * @return the attributes or {@code null} if not bound
 	 */
 	@Nullable
@@ -74,6 +76,7 @@ public abstract class SimpAttributesContextHolder {
 	/**
 	 * Return the SimpAttributes currently bound to the thread or raise an
 	 * {@link java.lang.IllegalStateException} if none are bound.
+	 *
 	 * @return the attributes, never {@code null}
 	 * @throws java.lang.IllegalStateException if attributes are not bound
 	 */

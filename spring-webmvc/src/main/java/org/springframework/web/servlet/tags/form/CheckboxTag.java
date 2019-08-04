@@ -254,9 +254,7 @@ public class CheckboxTag extends AbstractSingleCheckedElementTag {
 			}
 			Boolean booleanValue = (boundValue != null ? (Boolean) boundValue : Boolean.FALSE);
 			renderFromBoolean(booleanValue, tagWriter);
-		}
-
-		else {
+		} else {
 			Object value = getValue();
 			if (value == null) {
 				throw new IllegalArgumentException("Attribute 'value' is required when binding to non-boolean values");

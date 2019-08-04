@@ -145,10 +145,12 @@ class DefaultServerRequest implements ServerRequest {
 					public List<HttpMessageReader<?>> messageReaders() {
 						return messageReaders;
 					}
+
 					@Override
 					public Optional<ServerHttpResponse> serverResponse() {
 						return Optional.of(exchange().getResponse());
 					}
+
 					@Override
 					public Map<String, Object> hints() {
 						return hints;

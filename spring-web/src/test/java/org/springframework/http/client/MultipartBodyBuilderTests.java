@@ -56,7 +56,8 @@ public class MultipartBodyBuilderTests {
 
 		Publisher<String> publisher = Flux.just("foo", "bar", "baz");
 		builder.asyncPart("publisherClass", publisher, String.class).header("baz", "qux");
-		builder.asyncPart("publisherPtr", publisher, new ParameterizedTypeReference<String>() {}).header("baz", "qux");
+		builder.asyncPart("publisherPtr", publisher, new ParameterizedTypeReference<String>() {
+		}).header("baz", "qux");
 
 		MultiValueMap<String, HttpEntity<?>> result = builder.build();
 
@@ -81,14 +82,14 @@ public class MultipartBodyBuilderTests {
 		assertNotNull(resultEntity);
 		assertEquals(publisher, resultEntity.getBody());
 		assertEquals(ResolvableType.forClass(String.class),
-				((PublisherEntity<?,?>) resultEntity).getResolvableType());
+				((PublisherEntity<?, ?>) resultEntity).getResolvableType());
 		assertEquals("qux", resultEntity.getHeaders().getFirst("baz"));
 
 		resultEntity = result.getFirst("publisherPtr");
 		assertNotNull(resultEntity);
 		assertEquals(publisher, resultEntity.getBody());
 		assertEquals(ResolvableType.forClass(String.class),
-				((PublisherEntity<?,?>) resultEntity).getResolvableType());
+				((PublisherEntity<?, ?>) resultEntity).getResolvableType());
 		assertEquals("qux", resultEntity.getHeaders().getFirst("baz"));
 	}
 

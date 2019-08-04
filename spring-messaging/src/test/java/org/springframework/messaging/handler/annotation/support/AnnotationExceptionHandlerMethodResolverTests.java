@@ -107,7 +107,8 @@ public class AnnotationExceptionHandlerMethodResolverTests {
 	@SuppressWarnings("unused")
 	static class ExceptionController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@MessageExceptionHandler(IOException.class)
 		public void handleIOException() {
@@ -131,7 +132,7 @@ public class AnnotationExceptionHandlerMethodResolverTests {
 	static class InheritedController extends ExceptionController {
 
 		@Override
-		public void handleIOException()	{
+		public void handleIOException() {
 		}
 	}
 
@@ -139,7 +140,8 @@ public class AnnotationExceptionHandlerMethodResolverTests {
 	@Controller
 	static class AmbiguousController {
 
-		public void handle() {}
+		public void handle() {
+		}
 
 		@MessageExceptionHandler({BindException.class, IllegalArgumentException.class})
 		public String handle1(Exception ex) throws IOException {

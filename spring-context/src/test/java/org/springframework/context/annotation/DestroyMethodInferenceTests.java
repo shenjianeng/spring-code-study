@@ -129,6 +129,7 @@ public class DestroyMethodInferenceTests {
 				public void close() {
 					throw new IllegalStateException("close() should not be called");
 				}
+
 				@SuppressWarnings("unused")
 				public void other() {
 					this.closed = true;

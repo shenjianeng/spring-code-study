@@ -39,6 +39,7 @@ public interface MethodFilter {
 	 * not be considered candidates and it may sort the results. The resolver will then
 	 * search through the methods as returned from the filter when looking for a suitable
 	 * candidate to invoke.
+	 *
 	 * @param methods the full list of methods the resolver was going to choose from
 	 * @return a possible subset of input methods that may be sorted by order of relevance
 	 */

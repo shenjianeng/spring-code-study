@@ -57,8 +57,8 @@ import org.springframework.util.StringUtils;
  * the particular target DataSource requires it.
  *
  * @author Juergen Hoeller
- * @since 1.0.2
  * @see #getConnection
+ * @since 1.0.2
  */
 public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 
@@ -82,6 +82,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * Set the default username that this adapter should use for retrieving Connections.
 	 * <p>Default is no specific user. Note that an explicitly specified username
 	 * will always override any username/password specified at the DataSource level.
+	 *
 	 * @see #setPassword
 	 * @see #setCredentialsForCurrentThread(String, String)
 	 * @see #getConnection(String, String)
@@ -94,6 +95,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * Set the default user's password that this adapter should use for retrieving Connections.
 	 * <p>Default is no specific password. Note that an explicitly specified username
 	 * will always override any username/password specified at the DataSource level.
+	 *
 	 * @see #setUsername
 	 * @see #setCredentialsForCurrentThread(String, String)
 	 * @see #getConnection(String, String)
@@ -104,8 +106,9 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 
 	/**
 	 * Specify a database catalog to be applied to each retrieved Connection.
-	 * @since 4.3.2
+	 *
 	 * @see Connection#setCatalog
+	 * @since 4.3.2
 	 */
 	public void setCatalog(String catalog) {
 		this.catalog = catalog;
@@ -113,8 +116,9 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 
 	/**
 	 * Specify a database schema to be applied to each retrieved Connection.
-	 * @since 4.3.2
+	 *
 	 * @see Connection#setSchema
+	 * @since 4.3.2
 	 */
 	public void setSchema(String schema) {
 		this.schema = schema;
@@ -127,6 +131,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * {@code getConnection()} calls on this DataSource proxy.
 	 * <p>This will override any statically specified user credentials,
 	 * that is, values of the "username" and "password" bean properties.
+	 *
 	 * @param username the username to apply
 	 * @param password the password to apply
 	 * @see #removeCredentialsFromCurrentThread
@@ -138,6 +143,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	/**
 	 * Remove any user credentials for this proxy from the current thread.
 	 * Statically specified user credentials apply again afterwards.
+	 *
 	 * @see #setCredentialsForCurrentThread
 	 */
 	public void removeCredentialsFromCurrentThread() {
@@ -151,6 +157,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * username and password (i.e. values of the bean properties) otherwise.
 	 * <p>Delegates to {@link #doGetConnection(String, String)} with the
 	 * determined credentials as parameters.
+	 *
 	 * @see #doGetConnection
 	 */
 	@Override
@@ -183,6 +190,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 	 * method of the target DataSource, passing in the specified user credentials.
 	 * If the specified username is empty, it will simply delegate to the standard
 	 * {@code getConnection()} method of the target DataSource.
+	 *
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @return the Connection
@@ -193,8 +201,7 @@ public class UserCredentialsDataSourceAdapter extends DelegatingDataSource {
 		Assert.state(getTargetDataSource() != null, "'targetDataSource' is required");
 		if (StringUtils.hasLength(username)) {
 			return getTargetDataSource().getConnection(username, password);
-		}
-		else {
+		} else {
 			return getTargetDataSource().getConnection();
 		}
 	}

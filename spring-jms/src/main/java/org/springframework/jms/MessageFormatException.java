@@ -20,8 +20,8 @@ package org.springframework.jms;
  * Runtime exception mirroring the JMS MessageFormatException.
  *
  * @author Mark Pollack
- * @since 1.1
  * @see javax.jms.MessageFormatException
+ * @since 1.1
  */
 @SuppressWarnings("serial")
 public class MessageFormatException extends JmsException {

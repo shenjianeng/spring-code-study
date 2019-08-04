@@ -35,6 +35,7 @@ public class CommonsLogWriter extends Writer {
 
 	/**
 	 * Create a new CommonsLogWriter for the given Commons Logging logger.
+	 *
 	 * @param logger the Commons Logging logger to write to
 	 */
 	public CommonsLogWriter(Log logger) {
@@ -47,8 +48,7 @@ public class CommonsLogWriter extends Writer {
 		if (ch == '\n' && this.buffer.length() > 0) {
 			logger.debug(this.buffer.toString());
 			this.buffer.setLength(0);
-		}
-		else {
+		} else {
 			this.buffer.append(ch);
 		}
 	}
@@ -60,8 +60,7 @@ public class CommonsLogWriter extends Writer {
 			if (ch == '\n' && this.buffer.length() > 0) {
 				logger.debug(this.buffer.toString());
 				this.buffer.setLength(0);
-			}
-			else {
+			} else {
 				this.buffer.append(ch);
 			}
 		}

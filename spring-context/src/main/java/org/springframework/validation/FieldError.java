@@ -29,8 +29,8 @@ import org.springframework.util.ObjectUtils;
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
- * @since 10.03.2003
  * @see DefaultMessageCodesResolver
+ * @since 10.03.2003
  */
 @SuppressWarnings("serial")
 public class FieldError extends ObjectError {
@@ -45,8 +45,9 @@ public class FieldError extends ObjectError {
 
 	/**
 	 * Create a new FieldError instance.
-	 * @param objectName the name of the affected object
-	 * @param field the affected field of the object
+	 *
+	 * @param objectName     the name of the affected object
+	 * @param field          the affected field of the object
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public FieldError(String objectName, String field, String defaultMessage) {
@@ -55,17 +56,18 @@ public class FieldError extends ObjectError {
 
 	/**
 	 * Create a new FieldError instance.
-	 * @param objectName the name of the affected object
-	 * @param field the affected field of the object
-	 * @param rejectedValue the rejected field value
+	 *
+	 * @param objectName     the name of the affected object
+	 * @param field          the affected field of the object
+	 * @param rejectedValue  the rejected field value
 	 * @param bindingFailure whether this error represents a binding failure
-	 * (like a type mismatch); else, it is a validation failure
-	 * @param codes the codes to be used to resolve this message
-	 * @param arguments the array of arguments to be used to resolve this message
+	 *                       (like a type mismatch); else, it is a validation failure
+	 * @param codes          the codes to be used to resolve this message
+	 * @param arguments      the array of arguments to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
 	public FieldError(String objectName, String field, @Nullable Object rejectedValue, boolean bindingFailure,
-			@Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage) {
+					  @Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage) {
 
 		super(objectName, codes, arguments, defaultMessage);
 		Assert.notNull(field, "Field must not be null");

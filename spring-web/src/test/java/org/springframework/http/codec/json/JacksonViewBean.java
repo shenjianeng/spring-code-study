@@ -24,9 +24,14 @@ import com.fasterxml.jackson.annotation.JsonView;
 @JsonView(JacksonViewBean.MyJacksonView3.class)
 class JacksonViewBean {
 
-	interface MyJacksonView1 {}
-	interface MyJacksonView2 {}
-	interface MyJacksonView3 {}
+	interface MyJacksonView1 {
+	}
+
+	interface MyJacksonView2 {
+	}
+
+	interface MyJacksonView3 {
+	}
 
 	@JsonView(MyJacksonView1.class)
 	private String withView1;

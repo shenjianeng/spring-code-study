@@ -51,12 +51,12 @@ import org.springframework.util.StringUtils;
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
- * @since 1.2
  * @see #setManagedInterfaces
  * @see #setInterfaceMappings
  * @see MethodNameBasedMBeanInfoAssembler
  * @see SimpleReflectiveMBeanInfoAssembler
  * @see org.springframework.jmx.export.MBeanExporter
+ * @since 1.2
  */
 public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanInfoAssembler
 		implements BeanClassLoaderAware, InitializingBean {
@@ -64,14 +64,18 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	@Nullable
 	private Class<?>[] managedInterfaces;
 
-	/** Mappings of bean keys to an array of classes. */
+	/**
+	 * Mappings of bean keys to an array of classes.
+	 */
 	@Nullable
 	private Properties interfaceMappings;
 
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
-	/** Mappings of bean keys to an array of classes. */
+	/**
+	 * Mappings of bean keys to an array of classes.
+	 */
 	@Nullable
 	private Map<String, Class<?>[]> resolvedInterfaceMappings;
 
@@ -80,8 +84,9 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	 * Set the array of interfaces to use for creating the management info.
 	 * These interfaces will be used for a bean if no entry corresponding to
 	 * that bean is found in the {@code interfaceMappings} property.
+	 *
 	 * @param managedInterfaces an array of classes indicating the interfaces to use.
-	 * Each entry <strong>MUST</strong> be an interface.
+	 *                          Each entry <strong>MUST</strong> be an interface.
 	 * @see #setInterfaceMappings
 	 */
 	public void setManagedInterfaces(@Nullable Class<?>... managedInterfaces) {
@@ -101,6 +106,7 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	 * <p>The property key should match the bean key and the property value should match
 	 * the list of interface names. When searching for interfaces for a bean, Spring
 	 * will check these mappings first.
+	 *
 	 * @param mappings the mappings of bean keys to interface names
 	 */
 	public void setInterfaceMappings(@Nullable Properties mappings) {
@@ -122,12 +128,13 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * Resolve the given interface mappings, turning class names into Class objects.
+	 *
 	 * @param mappings the specified interface mappings
 	 * @return the resolved interface mappings (with Class objects as values)
 	 */
 	private Map<String, Class<?>[]> resolveInterfaceMappings(Properties mappings) {
 		Map<String, Class<?>[]> resolvedMappings = new HashMap<>(mappings.size());
-		for (Enumeration<?> en = mappings.propertyNames(); en.hasMoreElements();) {
+		for (Enumeration<?> en = mappings.propertyNames(); en.hasMoreElements(); ) {
 			String beanKey = (String) en.nextElement();
 			String[] classNames = StringUtils.commaDelimitedListToStringArray(mappings.getProperty(beanKey));
 			Class<?>[] classes = resolveClassNames(classNames, beanKey);
@@ -138,8 +145,9 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 
 	/**
 	 * Resolve the given class names into Class objects.
+	 *
 	 * @param classNames the class names to resolve
-	 * @param beanKey the bean key that the class names are associated with
+	 * @param beanKey    the bean key that the class names are associated with
 	 * @return the resolved Class
 	 */
 	private Class<?>[] resolveClassNames(String[] classNames, String beanKey) {
@@ -159,9 +167,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	/**
 	 * Check to see if the {@code Method} is declared in
 	 * one of the configured interfaces and that it is public.
-	 * @param method the accessor {@code Method}.
+	 *
+	 * @param method  the accessor {@code Method}.
 	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
+	 *                {@code beans} {@code Map}.
 	 * @return {@code true} if the {@code Method} is declared in one of the
 	 * configured interfaces, otherwise {@code false}.
 	 */
@@ -173,9 +182,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	/**
 	 * Check to see if the {@code Method} is declared in
 	 * one of the configured interfaces and that it is public.
-	 * @param method the mutator {@code Method}.
+	 *
+	 * @param method  the mutator {@code Method}.
 	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
+	 *                {@code beans} {@code Map}.
 	 * @return {@code true} if the {@code Method} is declared in one of the
 	 * configured interfaces, otherwise {@code false}.
 	 */
@@ -187,9 +197,10 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	/**
 	 * Check to see if the {@code Method} is declared in
 	 * one of the configured interfaces and that it is public.
-	 * @param method the operation {@code Method}.
+	 *
+	 * @param method  the operation {@code Method}.
 	 * @param beanKey the key associated with the MBean in the
-	 * {@code beans} {@code Map}.
+	 *                {@code beans} {@code Map}.
 	 * @return {@code true} if the {@code Method} is declared in one of the
 	 * configured interfaces, otherwise {@code false}.
 	 */
@@ -201,7 +212,8 @@ public class InterfaceBasedMBeanInfoAssembler extends AbstractConfigurableMBeanI
 	/**
 	 * Check to see if the {@code Method} is both public and declared in
 	 * one of the configured interfaces.
-	 * @param method the {@code Method} to check.
+	 *
+	 * @param method  the {@code Method} to check.
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * @return {@code true} if the {@code Method} is declared in one of the
 	 * configured interfaces and is public, otherwise {@code false}.

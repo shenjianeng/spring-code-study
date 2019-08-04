@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
  *
  * <p>This class focuses on JDK proxy, while a subclass, GenericBridgeMethodMatchingClassProxyTests,
  * focuses on class proxying.
- *
+ * <p>
  * See SPR-3556 for more details.
  *
  * @author Ramnivas Laddad

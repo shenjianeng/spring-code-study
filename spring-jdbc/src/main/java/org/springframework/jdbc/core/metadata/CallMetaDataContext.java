@@ -230,6 +230,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Specify whether parameters should be bound by name.
+	 *
 	 * @since 4.2
 	 */
 	public void setNamedBinding(boolean namedBinding) {
@@ -238,6 +239,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Check whether parameters should be bound by name.
+	 *
 	 * @since 4.2
 	 */
 	public boolean isNamedBinding() {
@@ -247,6 +249,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Initialize this class with meta-data from the database.
+	 *
 	 * @param dataSource the DataSource used to retrieve meta-data
 	 */
 	public void initializeMetaData(DataSource dataSource) {
@@ -261,20 +264,19 @@ public class CallMetaDataContext {
 	/**
 	 * Create a ReturnResultSetParameter/SqlOutParameter depending on the support provided
 	 * by the JDBC driver used for the database in use.
+	 *
 	 * @param parameterName the name of the parameter (also used as the name of the List returned in the output)
-	 * @param rowMapper a RowMapper implementation used to map the data returned in the result set
+	 * @param rowMapper     a RowMapper implementation used to map the data returned in the result set
 	 * @return the appropriate SqlParameter
 	 */
 	public SqlParameter createReturnResultSetParameter(String parameterName, RowMapper<?> rowMapper) {
 		CallMetaDataProvider provider = obtainMetaDataProvider();
 		if (provider.isReturnResultSetSupported()) {
 			return new SqlReturnResultSet(parameterName, rowMapper);
-		}
-		else {
+		} else {
 			if (provider.isRefCursorSupported()) {
 				return new SqlOutParameter(parameterName, provider.getRefCursorSqlType(), rowMapper);
-			}
-			else {
+			} else {
 				throw new InvalidDataAccessApiUsageException(
 						"Return of a ResultSet from a stored procedure is not supported");
 			}
@@ -289,8 +291,7 @@ public class CallMetaDataContext {
 	public String getScalarOutParameterName() {
 		if (isFunction()) {
 			return getFunctionReturnName();
-		}
-		else {
+		} else {
 			if (this.outParameterNames.size() > 1) {
 				logger.info("Accessing single output value when procedure has more than one output parameter");
 			}
@@ -309,6 +310,7 @@ public class CallMetaDataContext {
 	 * Process the list of parameters provided, and if procedure column meta-data is used,
 	 * the parameters will be matched against the meta-data information and any missing
 	 * ones will be automatically included.
+	 *
 	 * @param parameters the list of parameters to use as a base
 	 */
 	public void processParameters(List<SqlParameter> parameters) {
@@ -338,8 +340,7 @@ public class CallMetaDataContext {
 		for (SqlParameter param : parameters) {
 			if (param.isResultsParameter()) {
 				declaredReturnParams.add(param);
-			}
-			else {
+			} else {
 				String paramName = param.getName();
 				if (paramName == null) {
 					throw new IllegalArgumentException("Anonymous parameters not supported for calls - " +
@@ -390,13 +391,11 @@ public class CallMetaDataContext {
 					if (param == null) {
 						throw new InvalidDataAccessApiUsageException(
 								"Unable to locate declared parameter for function return value - " +
-								" add a SqlOutParameter with name '" + getFunctionReturnName() + "'");
-					}
-					else if (paramName != null) {
+										" add a SqlOutParameter with name '" + getFunctionReturnName() + "'");
+					} else if (paramName != null) {
 						setFunctionReturnName(paramName);
 					}
-				}
-				else {
+				} else {
 					param = declaredParams.get(paramNameToCheck);
 				}
 				if (param != null) {
@@ -406,8 +405,7 @@ public class CallMetaDataContext {
 								(paramNameToUse != null ? paramNameToUse : getFunctionReturnName()) + "'");
 					}
 				}
-			}
-			else {
+			} else {
 				if (meta.isReturnParameter()) {
 					// DatabaseMetaData.procedureColumnReturn or possibly procedureColumnResult
 					if (!isFunction() && !isReturnValueRequired() && paramName != null &&
@@ -415,8 +413,7 @@ public class CallMetaDataContext {
 						if (logger.isDebugEnabled()) {
 							logger.debug("Bypassing meta-data return parameter for '" + paramName + "'");
 						}
-					}
-					else {
+					} else {
 						String returnNameToUse =
 								(StringUtils.hasLength(paramNameToUse) ? paramNameToUse : getFunctionReturnName());
 						workParams.add(provider.createDefaultOutParameter(returnNameToUse, meta));
@@ -428,8 +425,7 @@ public class CallMetaDataContext {
 							logger.debug("Added meta-data return parameter for '" + returnNameToUse + "'");
 						}
 					}
-				}
-				else {
+				} else {
 					if (paramNameToUse == null) {
 						paramNameToUse = "";
 					}
@@ -439,15 +435,13 @@ public class CallMetaDataContext {
 						if (logger.isDebugEnabled()) {
 							logger.debug("Added meta-data out parameter for '" + paramNameToUse + "'");
 						}
-					}
-					else if (meta.getParameterType() == DatabaseMetaData.procedureColumnInOut) {
+					} else if (meta.getParameterType() == DatabaseMetaData.procedureColumnInOut) {
 						workParams.add(provider.createDefaultInOutParameter(paramNameToUse, meta));
 						outParamNames.add(paramNameToUse);
 						if (logger.isDebugEnabled()) {
 							logger.debug("Added meta-data in-out parameter for '" + paramNameToUse + "'");
 						}
-					}
-					else {
+					} else {
 						// DatabaseMetaData.procedureColumnIn or possibly procedureColumnUnknown
 						if (this.limitedInParameterNames.isEmpty() ||
 								limitedInParamNamesMap.containsKey(lowerCase(paramNameToUse))) {
@@ -455,8 +449,7 @@ public class CallMetaDataContext {
 							if (logger.isDebugEnabled()) {
 								logger.debug("Added meta-data in parameter for '" + paramNameToUse + "'");
 							}
-						}
-						else {
+						} else {
 							if (logger.isDebugEnabled()) {
 								logger.debug("Limited set of parameters " + limitedInParamNamesMap.keySet() +
 										" skipped parameter for '" + paramNameToUse + "'");
@@ -472,6 +465,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Match input parameter values with the parameters declared to be used in the call.
+	 *
 	 * @param parameterSource the input values
 	 * @return a Map containing the matched parameter names with the value taken from the input
 	 */
@@ -494,32 +488,27 @@ public class CallMetaDataContext {
 					if (parameterSource.hasValue(parameterName)) {
 						matchedParameters.put(parameterName,
 								SqlParameterSourceUtils.getTypedValue(parameterSource, parameterName));
-					}
-					else {
+					} else {
 						String lowerCaseName = parameterName.toLowerCase();
 						if (parameterSource.hasValue(lowerCaseName)) {
 							matchedParameters.put(parameterName,
 									SqlParameterSourceUtils.getTypedValue(parameterSource, lowerCaseName));
-						}
-						else {
+						} else {
 							String englishLowerCaseName = parameterName.toLowerCase(Locale.ENGLISH);
 							if (parameterSource.hasValue(englishLowerCaseName)) {
 								matchedParameters.put(parameterName,
 										SqlParameterSourceUtils.getTypedValue(parameterSource, englishLowerCaseName));
-							}
-							else {
+							} else {
 								String propertyName = JdbcUtils.convertUnderscoreNameToPropertyName(parameterName);
 								if (parameterSource.hasValue(propertyName)) {
 									matchedParameters.put(parameterName,
 											SqlParameterSourceUtils.getTypedValue(parameterSource, propertyName));
-								}
-								else {
+								} else {
 									if (caseInsensitiveParameterNames.containsKey(lowerCaseName)) {
 										String sourceName = caseInsensitiveParameterNames.get(lowerCaseName);
 										matchedParameters.put(parameterName,
 												SqlParameterSourceUtils.getTypedValue(parameterSource, sourceName));
-									}
-									else if (logger.isInfoEnabled()) {
+									} else if (logger.isInfoEnabled()) {
 										logger.info("Unable to locate the corresponding parameter value for '" +
 												parameterName + "' within the parameter values provided: " +
 												caseInsensitiveParameterNames.values());
@@ -541,6 +530,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Match input parameter values with the parameters declared to be used in the call.
+	 *
 	 * @param inParameters the input values
 	 * @return a Map containing the matched parameter names with the value taken from the input
 	 */
@@ -553,7 +543,7 @@ public class CallMetaDataContext {
 		Map<String, String> callParameterNames = new HashMap<>(this.callParameters.size());
 		for (SqlParameter parameter : this.callParameters) {
 			if (parameter.isInputValueProvided()) {
-				String parameterName =  parameter.getName();
+				String parameterName = parameter.getName();
 				String parameterNameToMatch = provider.parameterNameToUse(parameterName);
 				if (parameterNameToMatch != null) {
 					callParameterNames.put(parameterNameToMatch.toLowerCase(), parameterName);
@@ -576,8 +566,7 @@ public class CallMetaDataContext {
 								parameterName + "\" in the parameters used: " + callParameterNames.keySet());
 					}
 				}
-			}
-			else {
+			} else {
 				matchedParameters.put(callParameterName, parameterValue);
 			}
 		});
@@ -605,7 +594,7 @@ public class CallMetaDataContext {
 		int i = 0;
 		for (SqlParameter parameter : this.callParameters) {
 			if (parameter.isInputValueProvided()) {
-				String parameterName =  parameter.getName();
+				String parameterName = parameter.getName();
 				matchedParameters.put(parameterName, parameterValues[i++]);
 			}
 		}
@@ -614,6 +603,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Build the call string based on configuration and meta-data information.
+	 *
 	 * @return the call string to be used
 	 */
 	public String createCallString() {
@@ -630,8 +620,7 @@ public class CallMetaDataContext {
 				!this.metaDataProvider.isSupportsCatalogsInProcedureCalls()) {
 			schemaNameToUse = this.metaDataProvider.catalogNameToUse(getCatalogName());
 			catalogNameToUse = this.metaDataProvider.schemaNameToUse(getSchemaName());
-		}
-		else {
+		} else {
 			catalogNameToUse = this.metaDataProvider.catalogNameToUse(getCatalogName());
 			schemaNameToUse = this.metaDataProvider.schemaNameToUse(getSchemaName());
 		}
@@ -643,8 +632,7 @@ public class CallMetaDataContext {
 					append(StringUtils.hasLength(schemaNameToUse) ? schemaNameToUse + "." : "").
 					append(procedureNameToUse).append("(");
 			parameterCount = -1;
-		}
-		else {
+		} else {
 			callString = new StringBuilder().append("{call ").
 					append(StringUtils.hasLength(catalogNameToUse) ? catalogNameToUse + "." : "").
 					append(StringUtils.hasLength(schemaNameToUse) ? schemaNameToUse + "." : "").
@@ -669,6 +657,7 @@ public class CallMetaDataContext {
 
 	/**
 	 * Build the parameter binding fragment.
+	 *
 	 * @param parameter call parameter
 	 * @return parameter binding fragment
 	 * @since 4.2

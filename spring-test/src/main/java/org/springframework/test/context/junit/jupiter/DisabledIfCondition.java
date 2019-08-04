@@ -29,10 +29,10 @@ import org.junit.jupiter.api.extension.ExtensionContext;
  * {@link ConditionEvaluationResult}.
  *
  * @author Sam Brannen
- * @since 5.0
  * @see DisabledIf
  * @see EnabledIf
  * @see SpringExtension
+ * @since 5.0
  */
 public class DisabledIfCondition extends AbstractExpressionEvaluatingCondition {
 

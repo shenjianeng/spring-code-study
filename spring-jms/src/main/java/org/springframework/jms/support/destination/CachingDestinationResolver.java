@@ -30,6 +30,7 @@ public interface CachingDestinationResolver extends DestinationResolver {
 	 * (if cached by this resolver in the first place).
 	 * <p>To be called if access to the specified destination failed,
 	 * assuming that the JMS Destination object might have become invalid.
+	 *
 	 * @param destinationName the name of the destination
 	 */
 	void removeFromCache(String destinationName);

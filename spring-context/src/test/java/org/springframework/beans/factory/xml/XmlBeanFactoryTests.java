@@ -175,8 +175,7 @@ public class XmlBeanFactoryTests {
 		InputStream inputStream = getClass().getResourceAsStream(REFTYPES_CONTEXT.getPath());
 		try {
 			reader.loadBeanDefinitions(new InputSource(inputStream));
-		}
-		finally {
+		} finally {
 			inputStream.close();
 		}
 
@@ -287,8 +286,7 @@ public class XmlBeanFactoryTests {
 
 		try {
 			xbf.getBean("failsOnInnerBean");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// Check whether message contains outer bean name.
 			ex.printStackTrace();
 			assertTrue(ex.getMessage().contains("failsOnInnerBean"));
@@ -297,8 +295,7 @@ public class XmlBeanFactoryTests {
 
 		try {
 			xbf.getBean("failsOnInnerBeanForConstructor");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// Check whether message contains outer bean name.
 			ex.printStackTrace();
 			assertTrue(ex.getMessage().contains("failsOnInnerBeanForConstructor"));
@@ -423,8 +420,7 @@ public class XmlBeanFactoryTests {
 		try {
 			parent.getBean("inheritedTestBeanWithoutClass");
 			fail("Should have thrown BeanIsAbstractException");
-		}
-		catch (BeanIsAbstractException ex) {
+		} catch (BeanIsAbstractException ex) {
 			// expected
 		}
 
@@ -479,8 +475,7 @@ public class XmlBeanFactoryTests {
 		try {
 			child.getBean("bogusParent", TestBean.class);
 			fail();
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// check exception message contains the name
 			assertTrue(ex.getMessage().contains("bogusParent"));
 			assertTrue(ex.getCause() instanceof NoSuchBeanDefinitionException);
@@ -579,8 +574,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("jenny");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.contains(BeanCurrentlyInCreationException.class));
 		}
 	}
@@ -595,8 +589,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("jenny");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.contains(BeanCurrentlyInCreationException.class));
 		}
 	}
@@ -676,8 +669,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("init-method2");
 			fail();
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getResourceDescription().contains("initializers.xml"));
 			assertEquals("init-method2", ex.getBeanName());
 			assertTrue(ex.getCause() instanceof IOException);
@@ -691,8 +683,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("init-method3");
 			fail();
-		}
-		catch (FatalBeanException ex) {
+		} catch (FatalBeanException ex) {
 			// check message is helpful
 			assertTrue(ex.getMessage().contains("initializers.xml"));
 			assertTrue(ex.getMessage().contains("init-method3"));
@@ -752,8 +743,7 @@ public class XmlBeanFactoryTests {
 		assertTrue(InitAndIB.constructed);
 		try {
 			xbf.getBean("lazy-and-bad");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.getCause() instanceof IOException);
 		}
 	}
@@ -827,8 +817,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("rod4", ConstructorDependenciesBean.class);
 			fail("Must have thrown a FatalBeanException");
-		}
-		catch (FatalBeanException expected) {
+		} catch (FatalBeanException expected) {
 			// expected
 		}
 
@@ -932,8 +921,7 @@ public class XmlBeanFactoryTests {
 
 		try {
 			xbf.getBean("rod2Accessor");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			assertTrue(ex.toString().contains("touchy"));
 			ex.printStackTrace();
 			assertNull(ex.getRelatedCauses());
@@ -1113,8 +1101,7 @@ public class XmlBeanFactoryTests {
 			// let's resolve the bean definition; must blow up
 			factory.getBean("classNotFound");
 			fail("Must have thrown a CannotLoadBeanClassException");
-		}
-		catch (CannotLoadBeanClassException ex) {
+		} catch (CannotLoadBeanClassException ex) {
 			assertTrue(ex.getResourceDescription().contains("classNotFound.xml"));
 			assertTrue(ex.getCause() instanceof ClassNotFoundException);
 		}
@@ -1192,9 +1179,9 @@ public class XmlBeanFactoryTests {
 	}
 
 	/**
-	 * @since 3.2.8 and 4.0.2
 	 * @see <a href="https://jira.spring.io/browse/SPR-10785">SPR-10785</a> and <a
-	 *      href="https://jira.spring.io/browse/SPR-11420">SPR-11420</a>
+	 * href="https://jira.spring.io/browse/SPR-11420">SPR-11420</a>
+	 * @since 3.2.8 and 4.0.2
 	 */
 	@Test
 	public void methodInjectedBeanMustBeOfSameEnhancedCglibSubclassTypeAcrossBeanFactories() {
@@ -1206,12 +1193,11 @@ public class XmlBeanFactoryTests {
 
 			final Class<?> currentClass = bf.getBean("overrideOneMethod").getClass();
 			assertTrue("Method injected bean class [" + currentClass + "] must be a CGLIB enhanced subclass.",
-				ClassUtils.isCglibProxyClass(currentClass));
+					ClassUtils.isCglibProxyClass(currentClass));
 
 			if (firstClass == null) {
 				firstClass = currentClass;
-			}
-			else {
+			} else {
 				assertEquals(firstClass, currentClass);
 			}
 		}
@@ -1252,13 +1238,12 @@ public class XmlBeanFactoryTests {
 	}
 
 	private void lookupOverrideMethodsWithSetterInjection(BeanFactory xbf,
-			String beanName, boolean singleton) {
+														  String beanName, boolean singleton) {
 		OverrideOneMethod oom = (OverrideOneMethod) xbf.getBean(beanName);
 
 		if (singleton) {
 			assertSame(oom, xbf.getBean(beanName));
-		}
-		else {
+		} else {
 			assertNotSame(oom, xbf.getBean(beanName));
 		}
 
@@ -1364,8 +1349,7 @@ public class XmlBeanFactoryTests {
 			reader.loadBeanDefinitions(INVALID_NO_SUCH_METHOD_CONTEXT);
 			xbf.getBean("constructorOverrides");
 			fail("Shouldn't allow override of bogus method");
-		}
-		catch (BeanDefinitionStoreException ex) {
+		} catch (BeanDefinitionStoreException ex) {
 			// Check that the bogus method name was included in the error message
 			assertTrue("Bogus method name correctly reported", ex.getMessage().contains("bogusMethod"));
 		}
@@ -1475,8 +1459,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("lenientDependencyTestBean");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 			ex.printStackTrace();
 			assertTrue(ex.getMostSpecificCause().getMessage().contains("Ambiguous"));
@@ -1492,8 +1475,7 @@ public class XmlBeanFactoryTests {
 		try {
 			xbf.getBean("lenientDependencyTestBeanFactoryMethod");
 			fail("Should have thrown BeanCreationException");
-		}
-		catch (BeanCreationException ex) {
+		} catch (BeanCreationException ex) {
 			// expected
 			ex.printStackTrace();
 			assertTrue(ex.getMostSpecificCause().getMessage().contains("Ambiguous"));
@@ -1576,8 +1558,7 @@ public class XmlBeanFactoryTests {
 		try {
 			new XmlBeanDefinitionReader(xbf).loadBeanDefinitions(TEST_WITH_DUP_NAMES_CONTEXT);
 			fail("Duplicate name not detected");
-		}
-		catch (BeansException ex) {
+		} catch (BeansException ex) {
 			assertTrue(ex.getMessage().contains("Bean name 'foo'"));
 		}
 	}
@@ -1588,8 +1569,7 @@ public class XmlBeanFactoryTests {
 		try {
 			new XmlBeanDefinitionReader(xbf).loadBeanDefinitions(TEST_WITH_DUP_NAME_IN_ALIAS_CONTEXT);
 			fail("Duplicate name not detected");
-		}
-		catch (BeansException e) {
+		} catch (BeansException e) {
 			assertTrue(e.getMessage().contains("Bean name 'foo'"));
 		}
 	}
@@ -1630,7 +1610,9 @@ public class XmlBeanFactoryTests {
 
 	public static class BadInitializer {
 
-		/** Init method */
+		/**
+		 * Init method
+		 */
 		public void init2() throws IOException {
 			throw new IOException();
 		}
@@ -1649,7 +1631,9 @@ public class XmlBeanFactoryTests {
 			num = i;
 		}
 
-		/** Init method */
+		/**
+		 * Init method
+		 */
 		public void init() {
 			this.num *= 2;
 		}
@@ -1677,7 +1661,9 @@ public class XmlBeanFactoryTests {
 			this.afterPropertiesSetInvoked = true;
 		}
 
-		/** Init method */
+		/**
+		 * Init method
+		 */
 		public void customInit() throws IOException {
 			if (!this.afterPropertiesSetInvoked) {
 				fail();

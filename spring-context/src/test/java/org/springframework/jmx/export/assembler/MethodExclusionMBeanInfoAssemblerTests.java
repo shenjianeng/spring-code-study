@@ -60,7 +60,7 @@ public class MethodExclusionMBeanInfoAssemblerTests extends AbstractJmxAssembler
 	@Override
 	protected MBeanInfoAssembler getAssembler() {
 		MethodExclusionMBeanInfoAssembler assembler = new MethodExclusionMBeanInfoAssembler();
-		assembler.setIgnoredMethods(new String[] {"dontExposeMe", "setSuperman"});
+		assembler.setIgnoredMethods(new String[]{"dontExposeMe", "setSuperman"});
 		return assembler;
 	}
 

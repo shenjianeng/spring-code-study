@@ -47,10 +47,13 @@ public class SimpleScopeTests {
 		beanFactory = new DefaultListableBeanFactory();
 		Scope scope = new NoOpScope() {
 			private int index;
-			private List<TestBean> objects = new LinkedList<>(); {
+			private List<TestBean> objects = new LinkedList<>();
+
+			{
 				objects.add(new TestBean());
 				objects.add(new TestBean());
 			}
+
 			@Override
 			public Object get(String name, ObjectFactory<?> objectFactory) {
 				if (index >= objects.size()) {

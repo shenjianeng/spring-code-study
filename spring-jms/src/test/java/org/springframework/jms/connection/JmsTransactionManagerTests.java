@@ -163,8 +163,7 @@ public class JmsTransactionManagerTests {
 		try {
 			tm.commit(ts);
 			fail("Should have thrown UnexpectedRollbackException");
-		}
-		catch (UnexpectedRollbackException ex) {
+		} catch (UnexpectedRollbackException ex) {
 			// expected
 		}
 

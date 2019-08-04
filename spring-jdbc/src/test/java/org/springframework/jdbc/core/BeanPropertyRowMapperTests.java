@@ -43,7 +43,7 @@ public class BeanPropertyRowMapperTests extends AbstractRowMapperTests {
 
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void testOverridingDifferentClassDefinedForMapping() {
 		BeanPropertyRowMapper mapper = new BeanPropertyRowMapper(Person.class);
 		thrown.expect(InvalidDataAccessApiUsageException.class);

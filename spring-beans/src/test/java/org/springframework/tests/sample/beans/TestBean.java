@@ -221,7 +221,7 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 
 	@Override
 	public ITestBean[] getSpouses() {
-		return (spouse != null ? new ITestBean[] {spouse} : null);
+		return (spouse != null ? new ITestBean[]{spouse} : null);
 	}
 
 	public String getTouchy() {
@@ -434,6 +434,7 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 	public void unreliableFileOperation() throws IOException {
 		throw new IOException();
 	}
+
 	/**
 	 * @see org.springframework.tests.sample.beans.ITestBean#returnsThis()
 	 */
@@ -485,8 +486,7 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 	public int compareTo(Object other) {
 		if (this.name != null && other instanceof TestBean) {
 			return this.name.compareTo(((TestBean) other).getName());
-		}
-		else {
+		} else {
 			return 1;
 		}
 	}

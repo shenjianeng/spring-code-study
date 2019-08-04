@@ -34,6 +34,7 @@ public abstract class JmsException extends NestedRuntimeException {
 
 	/**
 	 * Constructor that takes a message.
+	 *
 	 * @param msg the detail message
 	 */
 	public JmsException(String msg) {
@@ -42,10 +43,11 @@ public abstract class JmsException extends NestedRuntimeException {
 
 	/**
 	 * Constructor that takes a message and a root cause.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the cause of the exception. This argument is generally
-	 * expected to be a proper subclass of {@link javax.jms.JMSException},
-	 * but can also be a JNDI NamingException or the like.
+	 *              expected to be a proper subclass of {@link javax.jms.JMSException},
+	 *              but can also be a JNDI NamingException or the like.
 	 */
 	public JmsException(String msg, @Nullable Throwable cause) {
 		super(msg, cause);
@@ -54,8 +56,9 @@ public abstract class JmsException extends NestedRuntimeException {
 	/**
 	 * Constructor that takes a plain root cause, intended for
 	 * subclasses mirroring corresponding {@code javax.jms} exceptions.
+	 *
 	 * @param cause the cause of the exception. This argument is generally
-	 * expected to be a proper subclass of {@link javax.jms.JMSException}.
+	 *              expected to be a proper subclass of {@link javax.jms.JMSException}.
 	 */
 	public JmsException(@Nullable Throwable cause) {
 		super(cause != null ? cause.getMessage() : null, cause);
@@ -65,6 +68,7 @@ public abstract class JmsException extends NestedRuntimeException {
 	/**
 	 * Convenience method to get the vendor specific error code if
 	 * the root cause was an instance of JMSException.
+	 *
 	 * @return a string specifying the vendor-specific error code if the
 	 * root cause is an instance of JMSException, or {@code null}
 	 */
@@ -80,6 +84,7 @@ public abstract class JmsException extends NestedRuntimeException {
 	/**
 	 * Return the detail message, including the message from the linked exception
 	 * if there is one.
+	 *
 	 * @see javax.jms.JMSException#getLinkedException()
 	 */
 	@Override

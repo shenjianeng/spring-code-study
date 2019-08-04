@@ -48,7 +48,7 @@ public final class CloseStatus {
 	 * "1002 indicates that an endpoint is terminating the connection due to a protocol
 	 * error."
 	 */
-	public static final CloseStatus PROTOCOL_ERROR  = new CloseStatus(1002);
+	public static final CloseStatus PROTOCOL_ERROR = new CloseStatus(1002);
 
 	/**
 	 * "1003 indicates that an endpoint is terminating the connection because it has
@@ -138,6 +138,7 @@ public final class CloseStatus {
 	 * become unreliable (e.g. timed out while sending a message) and extra
 	 * care should be exercised, e.g. avoid sending any further data to the
 	 * client that may be done during normal shutdown.
+	 *
 	 * @since 4.0.3
 	 */
 	public static final CloseStatus SESSION_NOT_RELIABLE = new CloseStatus(4500);
@@ -151,6 +152,7 @@ public final class CloseStatus {
 
 	/**
 	 * Create a new {@link CloseStatus} instance.
+	 *
 	 * @param code the status code
 	 */
 	public CloseStatus(int code) {
@@ -159,7 +161,8 @@ public final class CloseStatus {
 
 	/**
 	 * Create a new {@link CloseStatus} instance.
-	 * @param code the status code
+	 *
+	 * @param code   the status code
 	 * @param reason the reason
 	 */
 	public CloseStatus(int code, @Nullable String reason) {
@@ -186,6 +189,7 @@ public final class CloseStatus {
 
 	/**
 	 * Create a new {@link CloseStatus} from this one with the specified reason.
+	 *
 	 * @param reason the reason
 	 * @return a new {@link CloseStatus} instance
 	 */

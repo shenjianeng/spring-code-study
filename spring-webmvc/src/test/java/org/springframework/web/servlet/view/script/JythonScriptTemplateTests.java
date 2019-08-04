@@ -21,8 +21,10 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.mockito.Mockito.mock;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

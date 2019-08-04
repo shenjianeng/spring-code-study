@@ -41,11 +41,11 @@ import org.springframework.util.Assert;
  * and the Quartz default group ("DEFAULT") as job group if not specified.
  *
  * @author Juergen Hoeller
- * @since 3.1
  * @see #setName
  * @see #setGroup
  * @see org.springframework.beans.factory.BeanNameAware
  * @see org.quartz.Scheduler#DEFAULT_GROUP
+ * @since 3.1
  */
 public class JobDetailFactoryBean
 		implements FactoryBean<JobDetail>, BeanNameAware, ApplicationContextAware, InitializingBean {
@@ -104,6 +104,7 @@ public class JobDetailFactoryBean
 
 	/**
 	 * Set the job's JobDataMap.
+	 *
 	 * @see #setJobDataAsMap
 	 */
 	public void setJobDataMap(JobDataMap jobDataMap) {
@@ -124,8 +125,9 @@ public class JobDetailFactoryBean
 	 * <p>Note: When using persistent Jobs whose JobDetail will be kept in the
 	 * database, do not put Spring-managed beans or an ApplicationContext
 	 * reference into the JobDataMap but rather into the SchedulerContext.
+	 *
 	 * @param jobDataAsMap a Map with String keys and any objects as values
-	 * (for example Spring-managed beans)
+	 *                     (for example Spring-managed beans)
 	 * @see org.springframework.scheduling.quartz.SchedulerFactoryBean#setSchedulerContextAsMap
 	 */
 	public void setJobDataAsMap(Map<String, ?> jobDataAsMap) {
@@ -178,6 +180,7 @@ public class JobDetailFactoryBean
 	 * <p><b>Note: When using persistent job stores where JobDetail contents will
 	 * be kept in the database, do not put an ApplicationContext reference into
 	 * the JobDataMap but rather into the SchedulerContext.</b>
+	 *
 	 * @see org.springframework.scheduling.quartz.SchedulerFactoryBean#setApplicationContextSchedulerContextKey
 	 * @see org.springframework.context.ApplicationContext
 	 */
@@ -200,7 +203,7 @@ public class JobDetailFactoryBean
 			if (this.applicationContext == null) {
 				throw new IllegalStateException(
 						"JobDetailBean needs to be set up in an ApplicationContext " +
-						"to be able to handle an 'applicationContextJobDataKey'");
+								"to be able to handle an 'applicationContextJobDataKey'");
 			}
 			getJobDataMap().put(this.applicationContextJobDataKey, this.applicationContext);
 		}

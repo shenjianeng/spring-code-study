@@ -68,12 +68,10 @@ public class StatusResultMatchersTests {
 				ResultMatcher matcher = (ResultMatcher) ReflectionUtils.invokeMethod(method, this.matchers);
 				try {
 					matcher.match(mvcResult);
-				}
-				catch (AssertionError error) {
+				} catch (AssertionError error) {
 					failures.add(error);
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				throw new Exception("Failed to obtain ResultMatcher for status " + status, ex);
 			}
 		}

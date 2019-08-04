@@ -28,7 +28,8 @@ public class RemoteConnectFailureException extends RemoteAccessException {
 
 	/**
 	 * Constructor for RemoteConnectFailureException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause from the remoting API in use
 	 */
 	public RemoteConnectFailureException(String msg, Throwable cause) {

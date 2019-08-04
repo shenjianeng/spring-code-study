@@ -49,7 +49,7 @@ public class DeferredResultMethodReturnValueHandler implements HandlerMethodRetu
 
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
-			ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 
 		if (returnValue == null) {
 			mavContainer.setRequestHandled(true);
@@ -60,14 +60,11 @@ public class DeferredResultMethodReturnValueHandler implements HandlerMethodRetu
 
 		if (returnValue instanceof DeferredResult) {
 			result = (DeferredResult<?>) returnValue;
-		}
-		else if (returnValue instanceof ListenableFuture) {
+		} else if (returnValue instanceof ListenableFuture) {
 			result = adaptListenableFuture((ListenableFuture<?>) returnValue);
-		}
-		else if (returnValue instanceof CompletionStage) {
+		} else if (returnValue instanceof CompletionStage) {
 			result = adaptCompletionStage((CompletionStage<?>) returnValue);
-		}
-		else {
+		} else {
 			// Should not happen...
 			throw new IllegalStateException("Unexpected return value type: " + returnValue);
 		}
@@ -82,6 +79,7 @@ public class DeferredResultMethodReturnValueHandler implements HandlerMethodRetu
 			public void onSuccess(@Nullable Object value) {
 				result.setResult(value);
 			}
+
 			@Override
 			public void onFailure(Throwable ex) {
 				result.setErrorResult(ex);
@@ -98,8 +96,7 @@ public class DeferredResultMethodReturnValueHandler implements HandlerMethodRetu
 					ex = ex.getCause();
 				}
 				result.setErrorResult(ex);
-			}
-			else {
+			} else {
 				result.setResult(value);
 			}
 			return null;

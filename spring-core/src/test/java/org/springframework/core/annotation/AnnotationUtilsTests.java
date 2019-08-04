@@ -1228,7 +1228,7 @@ public class AnnotationUtilsTests {
 		assertNotNull(annotationWithDefaults);
 		assertEquals("text: ", "enigma", annotationWithDefaults.text());
 		assertTrue("predicate: ", annotationWithDefaults.predicate());
-		assertArrayEquals("characters: ", new char[] { 'a', 'b', 'c' }, annotationWithDefaults.characters());
+		assertArrayEquals("characters: ", new char[]{'a', 'b', 'c'}, annotationWithDefaults.characters());
 	}
 
 	@Test
@@ -1534,14 +1534,14 @@ public class AnnotationUtilsTests {
 		assertThat(synthesizedCharsContainer, instanceOf(SynthesizedAnnotation.class));
 
 		char[] chars = synthesizedCharsContainer.chars();
-		assertArrayEquals(new char[] { 'x', 'y', 'z' }, chars);
+		assertArrayEquals(new char[]{'x', 'y', 'z'}, chars);
 
 		// Alter array returned from synthesized annotation
 		chars[0] = '?';
 
 		// Re-retrieve the array from the synthesized annotation
 		chars = synthesizedCharsContainer.chars();
-		assertArrayEquals(new char[] { 'x', 'y', 'z' }, chars);
+		assertArrayEquals(new char[]{'x', 'y', 'z'}, chars);
 	}
 
 	@Test
@@ -1935,7 +1935,7 @@ public class AnnotationUtilsTests {
 		public void handleMappedWithValueAttribute() {
 		}
 
-		@WebMapping(path = "/test", name = "bar", method = { RequestMethod.GET, RequestMethod.POST })
+		@WebMapping(path = "/test", name = "bar", method = {RequestMethod.GET, RequestMethod.POST})
 		public void handleMappedWithPathAttribute() {
 		}
 
@@ -1954,7 +1954,7 @@ public class AnnotationUtilsTests {
 		/**
 		 * mapping is logically "equal" to handleMappedWithPathAttribute().
 		 */
-		@WebMapping(value = "/test", path = "/test", name = "bar", method = { RequestMethod.GET, RequestMethod.POST })
+		@WebMapping(value = "/test", path = "/test", name = "bar", method = {RequestMethod.GET, RequestMethod.POST})
 		public void handleMappedWithSamePathAndValueAttributes() {
 		}
 
@@ -2024,7 +2024,7 @@ public class AnnotationUtilsTests {
 		char[] chars() default {};
 	}
 
-	@CharsContainer(chars = { 'x', 'y', 'z' })
+	@CharsContainer(chars = {'x', 'y', 'z'})
 	static class GroupOfCharsClass {
 	}
 
@@ -2373,7 +2373,9 @@ public class AnnotationUtilsTests {
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface AnnotationWithDefaults {
 		String text() default "enigma";
+
 		boolean predicate() default true;
+
 		char[] characters() default {'a', 'b', 'c'};
 	}
 

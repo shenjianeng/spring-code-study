@@ -51,7 +51,7 @@ public class WebSocketConnectionManagerTests {
 		TestLifecycleWebSocketClient client = new TestLifecycleWebSocketClient(false);
 		WebSocketHandler handler = new TextWebSocketHandler();
 
-		WebSocketConnectionManager manager = new WebSocketConnectionManager(client, handler , "/path/{id}", "123");
+		WebSocketConnectionManager manager = new WebSocketConnectionManager(client, handler, "/path/{id}", "123");
 		manager.setSubProtocols(subprotocols);
 		manager.openConnection();
 
@@ -71,7 +71,7 @@ public class WebSocketConnectionManagerTests {
 	public void clientLifecycle() throws Exception {
 		TestLifecycleWebSocketClient client = new TestLifecycleWebSocketClient(false);
 		WebSocketHandler handler = new TextWebSocketHandler();
-		WebSocketConnectionManager manager = new WebSocketConnectionManager(client, handler , "/a");
+		WebSocketConnectionManager manager = new WebSocketConnectionManager(client, handler, "/a");
 
 		manager.startInternal();
 		assertTrue(client.isRunning());
@@ -113,7 +113,7 @@ public class WebSocketConnectionManagerTests {
 
 		@Override
 		public ListenableFuture<WebSocketSession> doHandshake(WebSocketHandler handler,
-				String uriTemplate, Object... uriVars) {
+															  String uriTemplate, Object... uriVars) {
 
 			URI uri = UriComponentsBuilder.fromUriString(uriTemplate).buildAndExpand(uriVars).encode().toUri();
 			return doHandshake(handler, null, uri);
@@ -121,7 +121,7 @@ public class WebSocketConnectionManagerTests {
 
 		@Override
 		public ListenableFuture<WebSocketSession> doHandshake(WebSocketHandler handler,
-				WebSocketHttpHeaders headers, URI uri) {
+															  WebSocketHttpHeaders headers, URI uri) {
 
 			this.webSocketHandler = handler;
 			this.headers = headers;

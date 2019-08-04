@@ -55,8 +55,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * Initialize the static configuration of caches.
 	 * <p>Triggered on startup through {@link #afterPropertiesSet()};
 	 * can also be called to re-initialize at runtime.
-	 * @since 4.2.2
+	 *
 	 * @see #loadCaches()
+	 * @since 4.2.2
 	 */
 	public void initializeCaches() {
 		Collection<? extends Cache> caches = loadCaches();
@@ -90,8 +91,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 		Cache cache = this.cacheMap.get(name);
 		if (cache != null) {
 			return cache;
-		}
-		else {
+		} else {
 			// Fully synchronize now for missing cache creation...
 			synchronized (this.cacheMap) {
 				cache = this.cacheMap.get(name);
@@ -120,11 +120,12 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * Check for a registered cache of the given name.
 	 * In contrast to {@link #getCache(String)}, this method does not trigger
 	 * the lazy creation of missing caches via {@link #getMissingCache(String)}.
+	 *
 	 * @param name the cache identifier (must not be {@code null})
 	 * @return the associated Cache instance, or {@code null} if none found
-	 * @since 4.1
 	 * @see #getCache(String)
 	 * @see #getMissingCache(String)
+	 * @since 4.1
 	 */
 	@Nullable
 	protected final Cache lookupCache(String name) {
@@ -133,6 +134,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * Dynamically register an additional Cache with this manager.
+	 *
 	 * @param cache the Cache to register
 	 * @deprecated as of Spring 4.3, in favor of {@link #getMissingCache(String)}
 	 */
@@ -151,6 +153,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * <p>This will always be called within a full {@link #cacheMap} lock
 	 * and effectively behaves like a {@code CopyOnWriteArraySet} with
 	 * preserved order but exposed as an unmodifiable reference.
+	 *
 	 * @param name the name of the cache to be added
 	 */
 	private void updateCacheNames(String name) {
@@ -165,6 +168,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 
 	/**
 	 * Decorate the given Cache object if necessary.
+	 *
 	 * @param cache the Cache object to be added to this CacheManager
 	 * @return the decorated Cache object to be used instead,
 	 * or simply the passed-in Cache object by default
@@ -180,11 +184,12 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	 * If a lookup by name does not yield any result, an {@code AbstractCacheManager}
 	 * subclass gets a chance to register such a cache at runtime. The returned cache
 	 * will be automatically added to this cache manager.
+	 *
 	 * @param name the name of the cache to retrieve
 	 * @return the missing cache, or {@code null} if no such cache exists or could be
 	 * created on demand
-	 * @since 4.1
 	 * @see #getCache(String)
+	 * @since 4.1
 	 */
 	@Nullable
 	protected Cache getMissingCache(String name) {

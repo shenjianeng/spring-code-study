@@ -297,8 +297,7 @@ public class FactoryBeanTests {
 			AtomicInteger c = count.get(beanName);
 			if (c != null) {
 				return c.intValue();
-			}
-			else {
+			} else {
 				return 0;
 			}
 		}

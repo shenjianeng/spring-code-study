@@ -35,11 +35,9 @@ public class LeakAwareDataBufferFactoryTests {
 		try {
 			this.bufferFactory.checkForLeaks();
 			fail("AssertionError expected");
-		}
-		catch (AssertionError expected) {
+		} catch (AssertionError expected) {
 			// ignore
-		}
-		finally {
+		} finally {
 			release(dataBuffer);
 		}
 	}

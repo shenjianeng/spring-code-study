@@ -30,6 +30,7 @@ public class HttpMessageNotWritableException extends HttpMessageConversionExcept
 
 	/**
 	 * Create a new HttpMessageNotWritableException.
+	 *
 	 * @param msg the detail message
 	 */
 	public HttpMessageNotWritableException(String msg) {
@@ -38,7 +39,8 @@ public class HttpMessageNotWritableException extends HttpMessageConversionExcept
 
 	/**
 	 * Create a new HttpMessageNotWritableException.
-	 * @param msg the detail message
+	 *
+	 * @param msg   the detail message
 	 * @param cause the root cause (if any)
 	 */
 	public HttpMessageNotWritableException(String msg, @Nullable Throwable cause) {

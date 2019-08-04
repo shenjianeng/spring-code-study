@@ -31,6 +31,7 @@ import static org.junit.Assert.assertSame;
 
 /**
  * Unit tests for {@link DefaultPathContainer}.
+ *
  * @author Rossen Stoyanchev
  */
 public class DefaultPathContainerTests {

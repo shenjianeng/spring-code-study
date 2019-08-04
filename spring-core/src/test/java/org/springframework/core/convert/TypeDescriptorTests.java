@@ -295,24 +295,24 @@ public class TypeDescriptorTests {
 	public void fieldArray() throws Exception {
 		TypeDescriptor typeDescriptor = new TypeDescriptor(TypeDescriptorTests.class.getDeclaredField("intArray"));
 		assertTrue(typeDescriptor.isArray());
-		assertEquals(Integer.TYPE,typeDescriptor.getElementTypeDescriptor().getType());
-		assertEquals("int[]",typeDescriptor.toString());
+		assertEquals(Integer.TYPE, typeDescriptor.getElementTypeDescriptor().getType());
+		assertEquals("int[]", typeDescriptor.toString());
 	}
 
 	@Test
 	public void fieldComplexTypeDescriptor() throws Exception {
 		TypeDescriptor typeDescriptor = new TypeDescriptor(TypeDescriptorTests.class.getDeclaredField("arrayOfListOfString"));
 		assertTrue(typeDescriptor.isArray());
-		assertEquals(List.class,typeDescriptor.getElementTypeDescriptor().getType());
+		assertEquals(List.class, typeDescriptor.getElementTypeDescriptor().getType());
 		assertEquals(String.class, typeDescriptor.getElementTypeDescriptor().getElementTypeDescriptor().getType());
-		assertEquals("java.util.List<java.lang.String>[]",typeDescriptor.toString());
+		assertEquals("java.util.List<java.lang.String>[]", typeDescriptor.toString());
 	}
 
 	@Test
 	public void fieldComplexTypeDescriptor2() throws Exception {
 		TypeDescriptor typeDescriptor = new TypeDescriptor(TypeDescriptorTests.class.getDeclaredField("nestedMapField"));
 		assertTrue(typeDescriptor.isMap());
-		assertEquals(String.class,typeDescriptor.getMapKeyTypeDescriptor().getType());
+		assertEquals(String.class, typeDescriptor.getMapKeyTypeDescriptor().getType());
 		assertEquals(List.class, typeDescriptor.getMapValueTypeDescriptor().getType());
 		assertEquals(Integer.class, typeDescriptor.getMapValueTypeDescriptor().getElementTypeDescriptor().getType());
 		assertEquals("java.util.Map<java.lang.String, java.util.List<java.lang.Integer>>", typeDescriptor.toString());
@@ -428,7 +428,7 @@ public class TypeDescriptorTests {
 	@Test
 	public void nestedNotParameterized() throws Exception {
 		TypeDescriptor t1 = TypeDescriptor.nested(new MethodParameter(getClass().getMethod("test6", List.class), 0), 1);
-		assertEquals(List.class,t1.getType());
+		assertEquals(List.class, t1.getType());
 		assertEquals("java.util.List<?>", t1.toString());
 		TypeDescriptor t2 = TypeDescriptor.nested(new MethodParameter(getClass().getMethod("test6", List.class), 0), 2);
 		assertNull(t2);
@@ -672,8 +672,7 @@ public class TypeDescriptorTests {
 		try {
 			typeDescriptor.upcast(Collection.class);
 			fail("Did not throw");
-		}
-		catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ex) {
 			assertEquals("interface java.util.Map is not assignable to interface java.util.Collection", ex.getMessage());
 		}
 	}

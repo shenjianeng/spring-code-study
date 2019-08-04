@@ -65,7 +65,6 @@ public class ServerSentEventHttpMessageWriterTests extends AbstractDataBufferAll
 	}
 
 
-
 	@Test
 	public void canWrite() {
 		assertTrue(this.messageWriter.canWrite(forClass(Object.class), null));

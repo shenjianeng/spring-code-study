@@ -35,6 +35,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Unit tests for {@link InMemoryWebSessionStore}.
+ *
  * @author Rob Winch
  */
 public class InMemoryWebSessionStoreTests {
@@ -128,7 +129,7 @@ public class InMemoryWebSessionStoreTests {
 	public void expirationCheckPeriod() {
 
 		DirectFieldAccessor accessor = new DirectFieldAccessor(this.store);
-		Map<?,?> sessions = (Map<?, ?>) accessor.getPropertyValue("sessions");
+		Map<?, ?> sessions = (Map<?, ?>) accessor.getPropertyValue("sessions");
 		assertNotNull(sessions);
 
 		// Create 100 sessions
@@ -152,8 +153,7 @@ public class InMemoryWebSessionStoreTests {
 		try {
 			insertSession();
 			fail();
-		}
-		catch (IllegalStateException ex) {
+		} catch (IllegalStateException ex) {
 			assertEquals("Max sessions limit reached: 10000", ex.getMessage());
 		}
 	}

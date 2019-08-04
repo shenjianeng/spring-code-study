@@ -40,9 +40,9 @@ import org.springframework.lang.Nullable;
  * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
  *
  * @author Juergen Hoeller
- * @since 2.0
  * @see SchedulerFactoryBean#setJobFactory
  * @see QuartzJobBean
+ * @since 2.0
  */
 public class SpringBeanJobFactory extends AdaptableJobFactory
 		implements ApplicationContextAware, SchedulerContextAware {
@@ -106,8 +106,7 @@ public class SpringBeanJobFactory extends AdaptableJobFactory
 					}
 				}
 				bw.setPropertyValues(pvs);
-			}
-			else {
+			} else {
 				bw.setPropertyValues(pvs, true);
 			}
 		}
@@ -120,6 +119,7 @@ public class SpringBeanJobFactory extends AdaptableJobFactory
 	 * its bean properties populated.
 	 * <p>The default implementation ignores {@link QuartzJobBean} instances,
 	 * which will inject bean properties themselves.
+	 *
 	 * @param jobObject the job object to introspect
 	 * @see QuartzJobBean
 	 */

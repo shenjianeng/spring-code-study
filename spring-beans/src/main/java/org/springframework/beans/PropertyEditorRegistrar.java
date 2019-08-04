@@ -26,9 +26,9 @@ package org.springframework.beans;
  * registrar and reuse that in each case.
  *
  * @author Juergen Hoeller
- * @since 1.2.6
  * @see PropertyEditorRegistry
  * @see java.beans.PropertyEditor
+ * @since 1.2.6
  */
 public interface PropertyEditorRegistrar {
 
@@ -40,8 +40,9 @@ public interface PropertyEditorRegistrar {
 	 * <p>It is expected that implementations will create brand new
 	 * {@code PropertyEditors} instances for each invocation of this
 	 * method (since {@code PropertyEditors} are not threadsafe).
+	 *
 	 * @param registry the {@code PropertyEditorRegistry} to register the
-	 * custom {@code PropertyEditors} with
+	 *                 custom {@code PropertyEditors} with
 	 */
 	void registerCustomEditors(PropertyEditorRegistry registry);
 

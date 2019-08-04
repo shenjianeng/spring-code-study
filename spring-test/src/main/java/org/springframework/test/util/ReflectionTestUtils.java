@@ -60,9 +60,9 @@ import org.springframework.util.StringUtils;
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
- * @since 2.5
  * @see ReflectionUtils
  * @see AopTestUtils
+ * @since 2.5
  */
 public abstract class ReflectionTestUtils {
 
@@ -81,9 +81,10 @@ public abstract class ReflectionTestUtils {
 	 * provided {@code targetObject} to the supplied {@code value}.
 	 * <p>This method delegates to {@link #setField(Object, String, Object, Class)},
 	 * supplying {@code null} for the {@code type} argument.
+	 *
 	 * @param targetObject the target object on which to set the field; never {@code null}
-	 * @param name the name of the field to set; never {@code null}
-	 * @param value the value to set
+	 * @param name         the name of the field to set; never {@code null}
+	 * @param value        the value to set
 	 */
 	public static void setField(Object targetObject, String name, @Nullable Object value) {
 		setField(targetObject, name, value, null);
@@ -94,12 +95,13 @@ public abstract class ReflectionTestUtils {
 	 * on the provided {@code targetObject} to the supplied {@code value}.
 	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetClass} argument.
+	 *
 	 * @param targetObject the target object on which to set the field; never {@code null}
-	 * @param name the name of the field to set; may be {@code null} if
-	 * {@code type} is specified
-	 * @param value the value to set
-	 * @param type the type of the field to set; may be {@code null} if
-	 * {@code name} is specified
+	 * @param name         the name of the field to set; may be {@code null} if
+	 *                     {@code type} is specified
+	 * @param value        the value to set
+	 * @param type         the type of the field to set; may be {@code null} if
+	 *                     {@code name} is specified
 	 */
 	public static void setField(Object targetObject, @Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
 		setField(targetObject, null, name, value, type);
@@ -110,10 +112,11 @@ public abstract class ReflectionTestUtils {
 	 * the provided {@code targetClass} to the supplied {@code value}.
 	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetObject} and {@code type} arguments.
+	 *
 	 * @param targetClass the target class on which to set the static field;
-	 * never {@code null}
-	 * @param name the name of the field to set; never {@code null}
-	 * @param value the value to set
+	 *                    never {@code null}
+	 * @param name        the name of the field to set; never {@code null}
+	 * @param value       the value to set
 	 * @since 4.2
 	 */
 	public static void setField(Class<?> targetClass, String name, @Nullable Object value) {
@@ -126,13 +129,14 @@ public abstract class ReflectionTestUtils {
 	 * the supplied {@code value}.
 	 * <p>This method delegates to {@link #setField(Object, Class, String, Object, Class)},
 	 * supplying {@code null} for the {@code targetObject} argument.
+	 *
 	 * @param targetClass the target class on which to set the static field;
-	 * never {@code null}
-	 * @param name the name of the field to set; may be {@code null} if
-	 * {@code type} is specified
-	 * @param value the value to set
-	 * @param type the type of the field to set; may be {@code null} if
-	 * {@code name} is specified
+	 *                    never {@code null}
+	 * @param name        the name of the field to set; may be {@code null} if
+	 *                    {@code type} is specified
+	 * @param value       the value to set
+	 * @param type        the type of the field to set; may be {@code null} if
+	 *                    {@code name} is specified
 	 * @since 4.2
 	 */
 	public static void setField(
@@ -152,23 +156,24 @@ public abstract class ReflectionTestUtils {
 	 * field. In addition, an attempt will be made to make non-{@code public}
 	 * fields <em>accessible</em>, thus allowing one to set {@code protected},
 	 * {@code private}, and <em>package-private</em> fields.
+	 *
 	 * @param targetObject the target object on which to set the field; may be
-	 * {@code null} if the field is static
-	 * @param targetClass the target class on which to set the field; may
-	 * be {@code null} if the field is an instance field
-	 * @param name the name of the field to set; may be {@code null} if
-	 * {@code type} is specified
-	 * @param value the value to set
-	 * @param type the type of the field to set; may be {@code null} if
-	 * {@code name} is specified
-	 * @since 4.2
+	 *                     {@code null} if the field is static
+	 * @param targetClass  the target class on which to set the field; may
+	 *                     be {@code null} if the field is an instance field
+	 * @param name         the name of the field to set; may be {@code null} if
+	 *                     {@code type} is specified
+	 * @param value        the value to set
+	 * @param type         the type of the field to set; may be {@code null} if
+	 *                     {@code name} is specified
 	 * @see ReflectionUtils#findField(Class, String, Class)
 	 * @see ReflectionUtils#makeAccessible(Field)
 	 * @see ReflectionUtils#setField(Field, Object, Object)
 	 * @see AopTestUtils#getUltimateTargetObject(Object)
+	 * @since 4.2
 	 */
 	public static void setField(@Nullable Object targetObject, @Nullable Class<?> targetClass,
-			@Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
+								@Nullable String name, @Nullable Object value, @Nullable Class<?> type) {
 
 		Assert.isTrue(targetObject != null || targetClass != null,
 				"Either targetObject or targetClass for the field must be specified");
@@ -201,9 +206,10 @@ public abstract class ReflectionTestUtils {
 	 * from the provided {@code targetObject}.
 	 * <p>This method delegates to {@link #getField(Object, Class, String)},
 	 * supplying {@code null} for the {@code targetClass} argument.
+	 *
 	 * @param targetObject the target object from which to get the field;
-	 * never {@code null}
-	 * @param name the name of the field to get; never {@code null}
+	 *                     never {@code null}
+	 * @param name         the name of the field to get; never {@code null}
 	 * @return the field's current value
 	 * @see #getField(Class, String)
 	 */
@@ -217,12 +223,13 @@ public abstract class ReflectionTestUtils {
 	 * {@code name} from the provided {@code targetClass}.
 	 * <p>This method delegates to {@link #getField(Object, Class, String)},
 	 * supplying {@code null} for the {@code targetObject} argument.
+	 *
 	 * @param targetClass the target class from which to get the static field;
-	 * never {@code null}
-	 * @param name the name of the field to get; never {@code null}
+	 *                    never {@code null}
+	 * @param name        the name of the field to get; never {@code null}
 	 * @return the field's current value
-	 * @since 4.2
 	 * @see #getField(Object, String)
+	 * @since 4.2
 	 */
 	@Nullable
 	public static Object getField(Class<?> targetClass, String name) {
@@ -239,24 +246,25 @@ public abstract class ReflectionTestUtils {
 	 * field. In addition, an attempt will be made to make non-{@code public}
 	 * fields <em>accessible</em>, thus allowing one to get {@code protected},
 	 * {@code private}, and <em>package-private</em> fields.
+	 *
 	 * @param targetObject the target object from which to get the field; may be
-	 * {@code null} if the field is static
-	 * @param targetClass the target class from which to get the field; may
-	 * be {@code null} if the field is an instance field
-	 * @param name the name of the field to get; never {@code null}
+	 *                     {@code null} if the field is static
+	 * @param targetClass  the target class from which to get the field; may
+	 *                     be {@code null} if the field is an instance field
+	 * @param name         the name of the field to get; never {@code null}
 	 * @return the field's current value
-	 * @since 4.2
 	 * @see #getField(Object, String)
 	 * @see #getField(Class, String)
 	 * @see ReflectionUtils#findField(Class, String, Class)
 	 * @see ReflectionUtils#makeAccessible(Field)
 	 * @see ReflectionUtils#getField(Field, Object)
 	 * @see AopTestUtils#getUltimateTargetObject(Object)
+	 * @since 4.2
 	 */
 	@Nullable
 	public static Object getField(@Nullable Object targetObject, @Nullable Class<?> targetClass, String name) {
 		Assert.isTrue(targetObject != null || targetClass != null,
-			"Either targetObject or targetClass for the field must be specified");
+				"Either targetObject or targetClass for the field must be specified");
 
 		if (targetObject != null && springAopPresent) {
 			targetObject = AopTestUtils.getUltimateTargetObject(targetObject);
@@ -290,11 +298,12 @@ public abstract class ReflectionTestUtils {
 	 * names. For example, if you wish to set the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or
 	 * &quot;setName&quot; as the method name.
+	 *
 	 * @param target the target object on which to invoke the specified setter
-	 * method
-	 * @param name the name of the setter method to invoke or the corresponding
-	 * property name
-	 * @param value the value to provide to the setter method
+	 *               method
+	 * @param name   the name of the setter method to invoke or the corresponding
+	 *               property name
+	 * @param value  the value to provide to the setter method
 	 * @see ReflectionUtils#findMethod(Class, String, Class[])
 	 * @see ReflectionUtils#makeAccessible(Method)
 	 * @see ReflectionUtils#invokeMethod(Method, Object, Object[])
@@ -314,12 +323,13 @@ public abstract class ReflectionTestUtils {
 	 * names. For example, if you wish to set the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or
 	 * &quot;setName&quot; as the method name.
+	 *
 	 * @param target the target object on which to invoke the specified setter
-	 * method
-	 * @param name the name of the setter method to invoke or the corresponding
-	 * property name
-	 * @param value the value to provide to the setter method
-	 * @param type the formal parameter type declared by the setter method
+	 *               method
+	 * @param name   the name of the setter method to invoke or the corresponding
+	 *               property name
+	 * @param value  the value to provide to the setter method
+	 * @param type   the formal parameter type declared by the setter method
 	 * @see ReflectionUtils#findMethod(Class, String, Class[])
 	 * @see ReflectionUtils#makeAccessible(Method)
 	 * @see ReflectionUtils#invokeMethod(Method, Object, Object[])
@@ -327,7 +337,7 @@ public abstract class ReflectionTestUtils {
 	public static void invokeSetterMethod(Object target, String name, @Nullable Object value, @Nullable Class<?> type) {
 		Assert.notNull(target, "Target object must not be null");
 		Assert.hasText(name, "Method name must not be empty");
-		Class<?>[] paramTypes = (type != null ? new Class<?>[] {type} : null);
+		Class<?>[] paramTypes = (type != null ? new Class<?>[]{type} : null);
 
 		String setterMethodName = name;
 		if (!name.startsWith(SETTER_PREFIX)) {
@@ -365,10 +375,11 @@ public abstract class ReflectionTestUtils {
 	 * names. For example, if you wish to get the {@code name} property on the
 	 * target object, you may pass either &quot;name&quot; or
 	 * &quot;getName&quot; as the method name.
+	 *
 	 * @param target the target object on which to invoke the specified getter
-	 * method
-	 * @param name the name of the getter method to invoke or the corresponding
-	 * property name
+	 *               method
+	 * @param name   the name of the getter method to invoke or the corresponding
+	 *               property name
 	 * @return the value returned from the invocation
 	 * @see ReflectionUtils#findMethod(Class, String, Class[])
 	 * @see ReflectionUtils#makeAccessible(Method)
@@ -407,9 +418,10 @@ public abstract class ReflectionTestUtils {
 	 * method. In addition, an attempt will be made to make non-{@code public}
 	 * methods <em>accessible</em>, thus allowing one to invoke {@code protected},
 	 * {@code private}, and <em>package-private</em> methods.
+	 *
 	 * @param target the target object on which to invoke the specified method
-	 * @param name the name of the method to invoke
-	 * @param args the arguments to provide to the method
+	 * @param name   the name of the method to invoke
+	 * @param args   the arguments to provide to the method
 	 * @return the invocation result, if any
 	 * @see MethodInvoker
 	 * @see ReflectionUtils#makeAccessible(Method)
@@ -435,8 +447,7 @@ public abstract class ReflectionTestUtils {
 			}
 
 			return (T) methodInvoker.invoke();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			ReflectionUtils.handleReflectionException(ex);
 			throw new IllegalStateException("Should never get here");
 		}
@@ -445,8 +456,7 @@ public abstract class ReflectionTestUtils {
 	private static String safeToString(@Nullable Object target) {
 		try {
 			return String.format("target object [%s]", target);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			return String.format("target of type [%s] whose toString() method threw [%s]",
 					(target != null ? target.getClass().getName() : "unknown"), ex);
 		}

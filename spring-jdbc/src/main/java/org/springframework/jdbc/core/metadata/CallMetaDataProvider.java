@@ -36,6 +36,7 @@ public interface CallMetaDataProvider {
 
 	/**
 	 * Initialize using the provided DatabaseMetData.
+	 *
 	 * @param databaseMetaData used to retrieve database specific information
 	 * @throws SQLException in case of initialization failure
 	 */
@@ -45,15 +46,16 @@ public interface CallMetaDataProvider {
 	 * Initialize the database specific management of procedure column meta-data.
 	 * This is only called for databases that are supported. This initialization
 	 * can be turned off by specifying that column meta-data should not be used.
+	 *
 	 * @param databaseMetaData used to retrieve database specific information
-	 * @param catalogName name of catalog to use (or {@code null} if none)
-	 * @param schemaName name of schema name to use (or {@code null} if none)
-	 * @param procedureName name of the stored procedure
+	 * @param catalogName      name of catalog to use (or {@code null} if none)
+	 * @param schemaName       name of schema name to use (or {@code null} if none)
+	 * @param procedureName    name of the stored procedure
 	 * @throws SQLException in case of initialization failure
-	 * @see	org.springframework.jdbc.core.simple.SimpleJdbcCall#withoutProcedureColumnMetaDataAccess()
+	 * @see    org.springframework.jdbc.core.simple.SimpleJdbcCall#withoutProcedureColumnMetaDataAccess()
 	 */
 	void initializeWithProcedureColumnMetaData(DatabaseMetaData databaseMetaData, @Nullable String catalogName,
-			@Nullable String schemaName, @Nullable String procedureName) throws SQLException;
+											   @Nullable String schemaName, @Nullable String procedureName) throws SQLException;
 
 	/**
 	 * Provide any modification of the procedure name passed in to match the meta-data currently used.
@@ -82,7 +84,7 @@ public interface CallMetaDataProvider {
 	 * used or providing a base catalog if none is provided.
 	 */
 	@Nullable
-	String metaDataCatalogNameToUse(@Nullable String catalogName) ;
+	String metaDataCatalogNameToUse(@Nullable String catalogName);
 
 	/**
 	 * Provide any modification of the schema name passed in to match the meta-data currently used.
@@ -95,6 +97,7 @@ public interface CallMetaDataProvider {
 	/**
 	 * Provide any modification of the column name passed in to match the meta-data currently used.
 	 * This could include altering the case.
+	 *
 	 * @param parameterName name of the parameter of column
 	 */
 	@Nullable
@@ -103,8 +106,9 @@ public interface CallMetaDataProvider {
 	/**
 	 * Create a default out parameter based on the provided meta-data.
 	 * This is used when no explicit parameter declaration has been made.
+	 *
 	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
+	 * @param meta          meta-data used for this call
 	 * @return the configured SqlOutParameter
 	 */
 	SqlParameter createDefaultOutParameter(String parameterName, CallParameterMetaData meta);
@@ -112,8 +116,9 @@ public interface CallMetaDataProvider {
 	/**
 	 * Create a default inout parameter based on the provided meta-data.
 	 * This is used when no explicit parameter declaration has been made.
+	 *
 	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
+	 * @param meta          meta-data used for this call
 	 * @return the configured SqlInOutParameter
 	 */
 	SqlParameter createDefaultInOutParameter(String parameterName, CallParameterMetaData meta);
@@ -121,14 +126,16 @@ public interface CallMetaDataProvider {
 	/**
 	 * Create a default in parameter based on the provided meta-data.
 	 * This is used when no explicit parameter declaration has been made.
+	 *
 	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
+	 * @param meta          meta-data used for this call
 	 * @return the configured SqlParameter
 	 */
 	SqlParameter createDefaultInParameter(String parameterName, CallParameterMetaData meta);
 
 	/**
 	 * Get the name of the current user. Useful for meta-data lookups etc.
+	 *
 	 * @return current user name from database connection
 	 */
 	@Nullable
@@ -166,6 +173,7 @@ public interface CallMetaDataProvider {
 
 	/**
 	 * Get the call parameter meta-data that is currently used.
+	 *
 	 * @return a List of {@link CallParameterMetaData}
 	 */
 	List<CallParameterMetaData> getCallParameterMetaData();

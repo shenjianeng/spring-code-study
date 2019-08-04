@@ -113,8 +113,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		this.messageConverters.add(stringHttpMessageConverter);
 		try {
 			this.messageConverters.add(new SourceHttpMessageConverter<>());
-		}
-		catch (Error err) {
+		} catch (Error err) {
 			// Ignore when no TransformerFactory implementation is available
 		}
 		this.messageConverters.add(new AllEncompassingFormHttpMessageConverter());
@@ -145,8 +144,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	public void setArgumentResolvers(@Nullable List<HandlerMethodArgumentResolver> argumentResolvers) {
 		if (argumentResolvers == null) {
 			this.argumentResolvers = null;
-		}
-		else {
+		} else {
 			this.argumentResolvers = new HandlerMethodArgumentResolverComposite();
 			this.argumentResolvers.addResolvers(argumentResolvers);
 		}
@@ -185,8 +183,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	public void setReturnValueHandlers(@Nullable List<HandlerMethodReturnValueHandler> returnValueHandlers) {
 		if (returnValueHandlers == null) {
 			this.returnValueHandlers = null;
-		}
-		else {
+		} else {
 			this.returnValueHandlers = new HandlerMethodReturnValueHandlerComposite();
 			this.returnValueHandlers.addHandlers(returnValueHandlers);
 		}
@@ -297,8 +294,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			int adviceSize = this.responseBodyAdvice.size();
 			if (handlerSize == 0 && adviceSize == 0) {
 				logger.debug("ControllerAdvice beans: none");
-			}
-			else {
+			} else {
 				logger.debug("ControllerAdvice beans: " +
 						handlerSize + " @ExceptionHandler, " + adviceSize + " ResponseBodyAdvice");
 			}
@@ -381,7 +377,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	@Override
 	@Nullable
 	protected ModelAndView doResolveHandlerMethodException(HttpServletRequest request,
-			HttpServletResponse response, @Nullable HandlerMethod handlerMethod, Exception exception) {
+														   HttpServletResponse response, @Nullable HandlerMethod handlerMethod, Exception exception) {
 
 		ServletInvocableHandlerMethod exceptionHandlerMethod = getExceptionHandlerMethod(handlerMethod, exception);
 		if (exceptionHandlerMethod == null) {
@@ -406,13 +402,11 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			if (cause != null) {
 				// Expose cause as provided argument as well
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, cause, handlerMethod);
-			}
-			else {
+			} else {
 				// Otherwise, just the given exception as-is
 				exceptionHandlerMethod.invokeAndHandle(webRequest, mavContainer, exception, handlerMethod);
 			}
-		}
-		catch (Throwable invocationEx) {
+		} catch (Throwable invocationEx) {
 			// Any other than the original exception is unintended here,
 			// probably an accident (e.g. failed assertion or the like).
 			if (invocationEx != exception && logger.isWarnEnabled()) {
@@ -424,8 +418,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 
 		if (mavContainer.isRequestHandled()) {
 			return new ModelAndView();
-		}
-		else {
+		} else {
 			ModelMap model = mavContainer.getModel();
 			HttpStatus status = mavContainer.getStatus();
 			ModelAndView mav = new ModelAndView(mavContainer.getViewName(), model, status);
@@ -447,8 +440,9 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 	 * and if not found, it continues searching for additional {@code @ExceptionHandler}
 	 * methods assuming some {@linkplain ControllerAdvice @ControllerAdvice}
 	 * Spring-managed beans were detected.
+	 *
 	 * @param handlerMethod the method where the exception was raised (may be {@code null})
-	 * @param exception the raised exception
+	 * @param exception     the raised exception
 	 * @return a method to handle the exception, or {@code null} if none
 	 */
 	@Nullable

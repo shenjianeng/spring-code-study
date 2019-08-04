@@ -34,6 +34,7 @@ public interface HandlerAdapter {
 
 	/**
 	 * Whether this {@code HandlerAdapter} supports the given {@code handler}.
+	 *
 	 * @param handler handler object to check
 	 * @return whether or not the handler is supported
 	 */
@@ -49,9 +50,10 @@ public interface HandlerAdapter {
 	 * {@link HandlerResult#setExceptionHandler(Function) set an exception
 	 * handler} on the {@code HandlerResult} so that may also be applied later
 	 * after result handling.
+	 *
 	 * @param exchange current server exchange
-	 * @param handler the selected handler which must have been previously
-	 * checked via {@link #supports(Object)}
+	 * @param handler  the selected handler which must have been previously
+	 *                 checked via {@link #supports(Object)}
 	 * @return {@link Mono} that emits a single {@code HandlerResult} or none if
 	 * the request has been fully handled and doesn't require further handling.
 	 */

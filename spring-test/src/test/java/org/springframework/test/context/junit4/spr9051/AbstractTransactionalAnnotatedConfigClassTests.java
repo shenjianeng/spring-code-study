@@ -43,8 +43,8 @@ import static org.springframework.test.transaction.TransactionTestUtils.*;
  * with regard to transactional tests.
  *
  * @author Sam Brannen
- * @since 3.2
  * @see org.springframework.test.context.testng.AnnotationConfigTransactionalTestNGSpringContextTests
+ * @since 3.2
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
@@ -88,7 +88,7 @@ public abstract class AbstractTransactionalAnnotatedConfigClassTests {
 
 	protected void assertNumRowsInPersonTable(int expectedNumRows, String testState) {
 		assertEquals("the number of rows in the person table (" + testState + ").", expectedNumRows,
-			countRowsInTable("person"));
+				countRowsInTable("person"));
 	}
 
 	protected void assertAddPerson(final String name) {

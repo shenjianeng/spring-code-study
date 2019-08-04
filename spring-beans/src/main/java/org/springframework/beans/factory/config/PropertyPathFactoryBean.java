@@ -74,14 +74,14 @@ import org.springframework.util.StringUtils;
  *
  * <pre class="code"> &lt;!-- will result in 10, which is the value of property 'age' of bean 'tb' --&gt;
  * &lt;util:property-path id="name" path="testBean.age"/&gt;</pre>
- *
+ * <p>
  * Thanks to Matthias Ernst for the suggestion and initial prototype!
  *
  * @author Juergen Hoeller
- * @since 1.1.2
  * @see #setTargetObject
  * @see #setTargetBeanName
  * @see #setPropertyPath
+ * @since 1.1.2
  */
 public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAware, BeanFactoryAware {
 
@@ -109,8 +109,9 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	/**
 	 * Specify a target object to apply the property path to.
 	 * Alternatively, specify a target bean name.
+	 *
 	 * @param targetObject a target object, for example a bean reference
-	 * or an inner bean
+	 *                     or an inner bean
 	 * @see #setTargetBeanName
 	 */
 	public void setTargetObject(Object targetObject) {
@@ -120,8 +121,9 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	/**
 	 * Specify the name of a target bean to apply the property path to.
 	 * Alternatively, specify a target object directly.
+	 *
 	 * @param targetBeanName the bean name to be looked up in the
-	 * containing bean factory (e.g. "testBean")
+	 *                       containing bean factory (e.g. "testBean")
 	 * @see #setTargetObject
 	 */
 	public void setTargetBeanName(String targetBeanName) {
@@ -130,8 +132,9 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 
 	/**
 	 * Specify the property path to apply to the target.
+	 *
 	 * @param propertyPath the property path, potentially nested
-	 * (e.g. "age" or "spouse.age")
+	 *                     (e.g. "age" or "spouse.age")
 	 */
 	public void setPropertyPath(String propertyPath) {
 		this.propertyPath = StringUtils.trimAllWhitespace(propertyPath);
@@ -143,6 +146,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 	 * or singleton target beans, where the type can be determined through
 	 * introspection. Just specify this in case of a prototype target,
 	 * provided that you need matching by type (for example, for autowiring).
+	 *
 	 * @param resultType the result type, for example "java.lang.Integer"
 	 */
 	public void setResultType(Class<?> resultType) {
@@ -180,13 +184,11 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 			if (dotIndex == -1) {
 				throw new IllegalArgumentException(
 						"Neither 'targetObject' nor 'targetBeanName' specified, and PropertyPathFactoryBean " +
-						"bean name '" + this.beanName + "' does not follow 'beanName.property' syntax");
+								"bean name '" + this.beanName + "' does not follow 'beanName.property' syntax");
 			}
 			this.targetBeanName = this.beanName.substring(0, dotIndex);
 			this.propertyPath = this.beanName.substring(dotIndex + 1);
-		}
-
-		else if (this.propertyPath == null) {
+		} else if (this.propertyPath == null) {
 			// either targetObject or targetBeanName specified
 			throw new IllegalArgumentException("'propertyPath' is required");
 		}
@@ -211,8 +213,7 @@ public class PropertyPathFactoryBean implements FactoryBean<Object>, BeanNameAwa
 				logger.warn("Target bean '" + this.targetBeanName + "' is still in creation due to a circular " +
 						"reference - obtained value for property '" + this.propertyPath + "' may be outdated!");
 			}
-		}
-		else {
+		} else {
 			// Fetch prototype target bean...
 			Assert.state(this.beanFactory != null, "No BeanFactory available");
 			Assert.state(this.targetBeanName != null, "No target bean name specified");
