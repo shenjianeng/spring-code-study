@@ -86,6 +86,7 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+		//在 BeanDefinitionRegistry 中注册 注解配置相关的 processors
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
@@ -222,7 +223,8 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	<T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
 							@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
-
+		//根据传入的Class对象生成  AnnotatedGenericBeanDefinition ,
+		// AnnotatedGenericBeanDefinition 是 BeanDefinition 的 一个实现类
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
@@ -233,7 +235,10 @@ public class AnnotatedBeanDefinitionReader {
 		abd.setScope(scopeMetadata.getScopeName());
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 
+		//解析 Class<T> annotatedClass 是否有通用注解: Lazy，Primary，DependsOn，Role，Description
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
+
+		//Class<? extends Annotation>[] qualifiers 是通过方法调用传入的,上一步是解析Class中是否有注解,这一步是调用方作为参数传入的
 		if (qualifiers != null) {
 			for (Class<? extends Annotation> qualifier : qualifiers) {
 				if (Primary.class == qualifier) {
@@ -241,6 +246,9 @@ public class AnnotatedBeanDefinitionReader {
 				} else if (Lazy.class == qualifier) {
 					abd.setLazyInit(true);
 				} else {
+					//org.springframework.beans.factory.support.AbstractBeanDefinition.qualifiers
+					//Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
+					//直接放入map中
 					abd.addQualifier(new AutowireCandidateQualifier(qualifier));
 				}
 			}
@@ -251,6 +259,12 @@ public class AnnotatedBeanDefinitionReader {
 
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
+
+		//将该Class<T> annotatedClass 转为 BeanDefinition 后, 通过再封装为 BeanDefinitionHolder 对象,进行 registerBeanDefinition
+		//AnnotatedBeanDefinitionReader 中有一个 BeanDefinitionRegistry registry 是通过构造方法传入的
+		//new AnnotationConfigApplicationContext(AppConfig.class); AnnotationConfigApplicationContext extends GenericApplicationContext
+		// GenericApplicationContext 类 实现了 BeanDefinitionRegistry ,registry 即为 AnnotationConfigApplicationContext
+		// GenericApplicationContext 类 内部 是 通过 DefaultListableBeanFactory 来实现 BeanDefinitionRegistry 接口的
 		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
 	}
 
