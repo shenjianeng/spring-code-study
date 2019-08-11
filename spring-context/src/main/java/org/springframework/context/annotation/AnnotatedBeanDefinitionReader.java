@@ -226,6 +226,7 @@ public class AnnotatedBeanDefinitionReader {
 		//根据传入的Class对象生成  AnnotatedGenericBeanDefinition ,
 		// AnnotatedGenericBeanDefinition 是 BeanDefinition 的 一个实现类
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
+		//根据 @Conditional 注解,判断是否需要跳过解析
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
 		}
@@ -235,10 +236,12 @@ public class AnnotatedBeanDefinitionReader {
 		abd.setScope(scopeMetadata.getScopeName());
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 
-		//解析 Class<T> annotatedClass 是否有通用注解: Lazy，Primary，DependsOn，Role，Description
+		//解析 Class<T> annotatedClass 是否有通用注解: @Lazy，@Primary，@DependsOn，@Role，@Description
+		// 并把解决结果放入 AnnotatedBeanDefinition 中
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
 
-		//Class<? extends Annotation>[] qualifiers 是通过方法调用传入的,上一步是解析Class中是否有注解,这一步是调用方作为参数传入的
+		//Class<? extends Annotation>[] qualifiers 是通过方法调用传入的
+		// 上一步是解析Class中是否有注解,这一步是调用方作为参数传入的
 		if (qualifiers != null) {
 			for (Class<? extends Annotation> qualifier : qualifiers) {
 				if (Primary.class == qualifier) {
