@@ -13,3 +13,6 @@ https://github.com/spring-projects/spring-framework/releases/tag/v5.1.9.RELEASE
 6. [Spring5源码分析（四）refresh方法](https://juejin.im/post/5d69e26bf265da03d871d50f)   
 7. [Full @Configuration vs lite @Bean mode](https://juejin.im/post/5d69e26a5188253565576632)
 8. [Spring5源码分析（五）ConfigurationClassPostProcessor](https://juejin.im/post/5d69e26cf265da03f33369f3)
+9. [Spring5源码分析（六）ConfigurationClassParser](https://juejin.im/post/5d6a073de51d4561c67840c7)
+10. [Spring中@Import的各种用法以及ImportAware接口](https://juejin.im/post/5d6a580be51d453b5c121905)
+11. [Spring5源码分析（七）ConfigurationClassParser 解析 @Import](https://juejin.im/post/5d6b3991e51d453c12504e44)

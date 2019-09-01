@@ -16,14 +16,8 @@
 
 package org.springframework.context.annotation;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -37,6 +31,11 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Utilities for identifying {@link Configuration} classes.
@@ -87,6 +86,7 @@ abstract class ConfigurationClassUtils {
 			return false;
 		}
 
+		// 根据不同的 BeanDefinition 类型 获取 metadata
 		AnnotationMetadata metadata;
 		if (beanDef instanceof AnnotatedBeanDefinition &&
 				className.equals(((AnnotatedBeanDefinition) beanDef).getMetadata().getClassName())) {
@@ -110,11 +110,18 @@ abstract class ConfigurationClassUtils {
 			}
 		}
 
+		// 判断是否为 Full Configuration ,如果是则在 BeanDefinition 中做标记
 		if (isFullConfigurationCandidate(metadata)) {
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
-		} else if (isLiteConfigurationCandidate(metadata)) {
+		}
+
+		// 判断是否为 lite Configuration,  是否有 @Component,@ComponentScan,@Import,@ImportResource  注解
+		//  Finally, let's look for @Bean methods...
+		else if (isLiteConfigurationCandidate(metadata)) {
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_LITE);
-		} else {
+		}
+
+		else {
 			return false;
 		}
 
