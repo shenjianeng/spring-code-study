@@ -412,12 +412,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 				// Set enhanced subclass of the user-specified bean class
 				Class<?> configClass = beanDef.resolveBeanClass(this.beanClassLoader);
 				if (configClass != null) {
+					// 对 FullConfigurationClass 进行增强
 					Class<?> enhancedClass = enhancer.enhance(configClass, this.beanClassLoader);
 					if (configClass != enhancedClass) {
 						if (logger.isTraceEnabled()) {
 							logger.trace(String.format("Replacing bean definition '%s' existing class '%s' with " +
 									"enhanced class '%s'", entry.getKey(), configClass.getName(), enhancedClass.getName()));
 						}
+						//将BeanClass设置为增强后的类
 						beanDef.setBeanClass(enhancedClass);
 					}
 				}
