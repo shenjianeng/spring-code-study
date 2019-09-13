@@ -561,24 +561,32 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				// 注册BeanPostProcessors
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
+				// 初始化信息源,作国际化相关
 				initMessageSource();
 
 				// Initialize event multicaster for this context.
+				// 初始化容器实现传播器,也就是往容器中添加了一个Bean
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
+				// 在特定 ApplicationContext 的子类中触发某些特殊的Bean初始化
+				// 在此处AbstractApplicationContext.onRefresh 是一个空方法
 				onRefresh();
 
 				// Check for listener beans and register them.
+				// 注册 ApplicationListener
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
+				// 初始化所有还未被初始化的单例bean,重点!!!
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
+				// 容器启动完成,清理缓存, 发布 ContextRefreshedEvent 事件
 				finishRefresh();
 			} catch (BeansException ex) {
 				if (logger.isWarnEnabled()) {
@@ -587,9 +595,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				}
 
 				// Destroy already created singletons to avoid dangling resources.
+				// 销毁已创建的单例bean
 				destroyBeans();
 
 				// Reset 'active' flag.
+				// 取消Refresh,Reset 'active' flag.
 				cancelRefresh(ex);
 
 				// Propagate exception to caller.
@@ -597,6 +607,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			} finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
+				// 清理缓存信息
 				resetCommonCaches();
 			}
 		}
@@ -864,18 +875,21 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void registerListeners() {
 		// Register statically specified listeners first.
+		// 这里的 applicationListeners 是需要我们手动调用 AbstractApplicationContext.addApplicationListener 方法才会有内容
 		for (ApplicationListener<?> listener : getApplicationListeners()) {
 			getApplicationEventMulticaster().addApplicationListener(listener);
 		}
 
 		// Do not initialize FactoryBeans here: We need to leave all regular beans
 		// uninitialized to let post-processors apply to them!
+		// 默认情况下,这里也是空
 		String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false);
 		for (String listenerBeanName : listenerBeanNames) {
 			getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
 		}
 
 		// Publish early application events now that we finally have a multicaster...
+		// 默认情况下,这里还是空
 		Set<ApplicationEvent> earlyEventsToProcess = this.earlyApplicationEvents;
 		this.earlyApplicationEvents = null;
 		if (earlyEventsToProcess != null) {

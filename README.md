@@ -32,3 +32,5 @@ https://github.com/spring-projects/spring-framework/releases/tag/v5.1.9.RELEASE
 [Spring5源码分析（九）ConfigurationClassPostProcessor增强 Full Configuration](https://juejin.im/post/5d6fb2895188252847346d0b)
 
 [Spring5源码分析（10）ConfigurationClassPostProcessor增强FullConfiguration(下)](https://juejin.im/post/5d737cd75188255b0600620a)
+
+[Spring5源码分析(11) refresh方法总结](https://juejin.im/post/5d7afbc6518825345a05c549)
