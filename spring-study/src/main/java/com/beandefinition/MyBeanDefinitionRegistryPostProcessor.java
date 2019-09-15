@@ -17,6 +17,7 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
 
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+		//向Spring容器中注册OrderService
 		BeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(OrderService.class)
 				//这里的属性名是根据setter方法
 				.addPropertyReference("dao", "orderDao")
@@ -30,6 +31,8 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		//do nothing
+		// 在这里修改orderService bean的scope为PROTOTYPE
+		BeanDefinition beanDefinition = beanFactory.getBeanDefinition("orderService");
+		beanDefinition.setScope(BeanDefinition.SCOPE_PROTOTYPE);
 	}
 }
