@@ -18,7 +18,7 @@ public class AppConfig {
 	@Bean
 	public String name() throws Exception {
 		System.out.println("name()");
-		getUserBean().getObject();
+//		getUserBean().getObject();
 		return "程序员小黑";
 	}
 

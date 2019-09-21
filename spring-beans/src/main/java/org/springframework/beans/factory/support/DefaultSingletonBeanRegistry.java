@@ -16,26 +16,15 @@
 
 package org.springframework.beans.factory.support;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.BeanCreationNotAllowedException;
-import org.springframework.beans.factory.BeanCurrentlyInCreationException;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.core.SimpleAliasRegistry;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Generic registry for shared bean instances, implementing the
@@ -201,14 +190,22 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		//singletonObjects 就是Spring内部用来存放单例Bean的对象池,key为beanName，value为Bean
 		Object singletonObject = this.singletonObjects.get(beanName);
+		// singletonsCurrentlyInCreation 存放了当前正在创建的bean的BeanName
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
+				// earlySingletonObjects 是早期单例Bean的缓存池,此时Bean已经被创建(newInstance),但是还没有完成初始化
+				// key为beanName，value为Bean
 				singletonObject = this.earlySingletonObjects.get(beanName);
+				//是否允许早期依赖
 				if (singletonObject == null && allowEarlyReference) {
+					//singletonFactories 单例工厂的缓存,key为beanName,value 为ObjectFactory
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
+						//获取早期Bean
 						singletonObject = singletonFactory.getObject();
+						//将早期Bean放到earlySingletonObjects中
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);
 					}
